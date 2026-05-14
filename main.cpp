@@ -4,29 +4,35 @@
 
 #include "union/out.h"
 
+void foo() {};
+
 int main()
 {
 
     console.log("popa");
 
-    while (true)
+    while (!quit)
     {
-        if (!quit)
-        {
-            listenner(quit);
-            ctx.CreateDrawZone(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT);
-            ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "white");
-
-            //    // game->process(&startTick, &optimalDeltaTime);
-            
-            console.proc(mouse.x, mouse.y, mouse.leftKey);
-            console.draw();
-            ctx.End();
-        }
-        else
-        {
-            ctx.Close();
-            break;
-        }
+        thread th_do_1(foo);
+        thread th_do_2(foo);
+        thread th_do_3(foo);
+        thread th_do_4(foo);
+        basicDo([]() {}); // units prog basic th
+        th_do_1.join();
+        th_do_2.join();
+        th_do_3.join();
+        th_do_4.join();
+        thread th_way_1(foo);
+        thread th_way_2(foo);
+        thread th_way_3(foo);
+        thread th_way_4(foo);
+        // user input & fractions control
+        basicDraw([]() {});
+        // calculated hold here || needReturn = true;
+        th_way_1.join();
+        th_way_2.join();
+        th_way_3.join();
+        th_way_4.join();
     }
+    ctx.Close();
 }

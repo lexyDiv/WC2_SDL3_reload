@@ -2,14 +2,15 @@
 // g++ -g main.cpp -I./include -fmax-include-depth=5000 -o prog -L./sdl3-sample/build -lSDL3 -lSDL3_image
 // g++ main.cpp -I./include -fmax-include-depth=5000 -o prog -L./sdl3-sample/build -lSDL3 -lSDL3_image
 
-#include "union/out.h"
+#include "body/out.h"
 
 void foo() {};
+
+
 
 int main()
 {
 
-    console.log("popa");
 
     while (!quit)
     {

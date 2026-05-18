@@ -10,7 +10,7 @@ void foo() {};
 
 int main()
 {
-
+console.log("papa loh");
 
     while (!quit)
     {

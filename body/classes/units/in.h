@@ -1,2 +1,2 @@
 #include "../system/out.h"
-//=>out.h
+//=>out.h > mobile in

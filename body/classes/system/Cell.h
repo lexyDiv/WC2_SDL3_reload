@@ -4,3 +4,4 @@
 class GameField;
 class Fraction;
 class ObjMenu;
+class Unit;

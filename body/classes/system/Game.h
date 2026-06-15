@@ -1,7 +1,7 @@
 #include "Fraction.h"
 //=>GameField
 
-class ProtoGame
+class Game
 {
 public:
   virtual void getPotentialWayControl(){};
@@ -22,14 +22,14 @@ public:
 
   //////////////////////////////////////////////////////////  <= cases
 
-  ProtoGame();
-  virtual ~ProtoGame();
-  virtual void create();
-  virtual void draw();
-  virtual void preDraw();
-  virtual void fonMenuDraw();
-  virtual void fractionsControl();
-  virtual void process(Uint64 *startTick, int *optimalDeltaTime) {};
+  Game(){};
+   ~Game();
+   void create();
+   void draw(){};
+   void preDraw(){};
+   void fonMenuDraw(){};
+   void fractionsControl(){};
+   void process(Uint64 *startTick, int *optimalDeltaTime) {};
 
   vector<string> pathes{
       "levels/test_1.txt",
@@ -40,10 +40,10 @@ public:
   ObjMenu *objMenu = nullptr;
   bool isGFComplite = false;
   Array<Fraction *> fractions;
-  Array<ProtoObj *> unitsOnWay;
+  Array<Unit *> unitsOnWay;
 
-  Array<ProtoObj *> AllUnits;
-  Array<ProtoObj *> allPeons;
-  Array<ProtoObj *> allPeons2;
+  Array<Unit *> AllUnits;
+  Array<Unit *> allPeons;
+  Array<Unit *> allPeons2;
   int scanIndex = 0;
 };

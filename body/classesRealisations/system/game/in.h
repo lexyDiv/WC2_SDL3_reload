@@ -1,2 +1,2 @@
 #include "../fraction/out.h"
-//=>out
+//=>Game.cpp

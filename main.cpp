@@ -12,7 +12,6 @@ int main()
 {
 console.log("papa loh");
 
-
     while (!quit)
     {
         thread th_do_1(foo);

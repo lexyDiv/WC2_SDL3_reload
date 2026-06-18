@@ -72,13 +72,14 @@ inline Array<T>::~Array()
 template <typename T>
 inline T Array<T>::getItem(int i)
 {
-        return this->vec.at(i);
+    return this->vec.at(i);
 }
 
 template <typename T>
 inline T Array<T>::getItem(int i, string str)
 {
-    if (i >= this->vec.size() || i < 0) {
+    if (i >= this->vec.size() || i < 0)
+    {
         std::cout << str << std::endl;
     }
     return this->vec.at(i);
@@ -87,13 +88,13 @@ inline T Array<T>::getItem(int i, string str)
 template <typename T>
 inline T Array<T>::getItem2(int i)
 {
-        return this->vec[i];   
+    return this->vec[i];
 }
 
 template <typename T>
 inline T &Array<T>::getItem3(int i)
 {
-       return *&this->vec[i];
+    return *&this->vec[i];
 }
 
 template <typename T>
@@ -180,11 +181,19 @@ inline void Array<T>::forEachDel(function<bool(T item, int index, vector<T> vec)
 template <typename T>
 inline void Array<T>::forEach(function<void(T item, int index, vector<T> vec)> fn)
 {
-    // int size = this->vec.size();
-    for (int i = 0; i < this->vec.size(); i++)
+
+    // for (int i = 0; i < this->vec.size(); i++)
+    // {
+    //     T item = this->vec[i];
+    //     fn(item, i, this->vec);
+    // }
+    int i = 0;
+    for (auto it = this->vec.begin(); it != this->vec.end(); ++it)
     {
-        T item = this->vec[i];
+        // cout << *it << " ";
+        T item = *it;
         fn(item, i, this->vec);
+        i++;
     }
 }
 
@@ -192,10 +201,19 @@ template <typename T>
 inline void Array<T>::forEach(function<void(T item, int index)> fn)
 {
     // int size = this->vec.size();
-    for (int i = 0; i < this->vec.size(); i++)
+    // for (int i = 0; i < this->vec.size(); i++)
+    // {
+    //     T item = this->vec[i];
+    //     fn(item, i);
+    // }
+    int i = 0;
+    for (auto it = this->vec.begin(); it != this->vec.end(); ++it)
     {
-        T item = this->vec[i];
+        // cout << *it << " ";
+
+        T item = *it;
         fn(item, i);
+        i++;
     }
 }
 
@@ -203,9 +221,18 @@ template <typename T>
 inline void Array<T>::forEach(function<void(T item)> fn)
 {
     // int size = this->vec.size();
-    for (int i = 0; i < this->vec.size(); i++)
+    // for (int i = 0; i < this->vec.size(); i++)
+    // {
+    //     T item = this->vec[i];
+    //     fn(item);
+    // }
+
+    // int i = 0;
+    for (auto it = this->vec.begin(); it != this->vec.end(); ++it)
     {
-        T item = this->vec[i];
+        // cout << *it << " ";
+        // i++;
+        T item = *it;
         fn(item);
     }
 }

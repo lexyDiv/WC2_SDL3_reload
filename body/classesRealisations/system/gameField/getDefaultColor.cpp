@@ -1,5 +1,5 @@
 #include "mapInit.cpp"
-//=> out
+//=> getAroundCells
 
 Color GameField::getDefaultColor(char lit)
 {

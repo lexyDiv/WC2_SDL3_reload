@@ -1,2 +1,2 @@
-#include "getDefaultColor.cpp"
+#include "cellsIteration.cpp"
 //=>imager

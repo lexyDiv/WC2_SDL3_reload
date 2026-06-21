@@ -87,16 +87,16 @@ void GameField::create()
     this->miniMapWinGab = ceil(this->mcs * 15);
 
      this->mapInit(array);
-    // this->getFieldImage();
-    // this->getAroundCells(1, false, [](ProtoObj *focusCell, ProtoObj *pushedCell){
-    //    focusCell->aroundCells.push(pushedCell);
-    // });
-    // this->getAroundCells(9, true, [](ProtoObj *focusCell, ProtoObj *pushedCell){
-    //    focusCell->drawCells.push(pushedCell);
-    // });
-    // this->getAroundCells(11, false, [](ProtoObj *focusCell, ProtoObj *pushedCell){
-    //    focusCell->maxAroundCells.push(pushedCell);
-    // });
+
+    this->getAroundCells(1, false, [](Cell *focusCell, Cell *pushedCell){
+       focusCell->aroundCells.push(pushedCell);
+    });
+    this->getAroundCells(9, true, [](Cell *focusCell, Cell *pushedCell){
+       focusCell->drawCells.push(pushedCell);
+    });
+    this->getAroundCells(11, false, [](Cell *focusCell, Cell *pushedCell){
+       focusCell->maxAroundCells.push(pushedCell);
+    });
     // this->getContinents();
 
     // this->getMaxAroundCellsDis();

@@ -30,6 +30,7 @@ public:
    void fonMenuDraw();
    void fractionsControl();
    void process(Uint64 *startTick, int *optimalDeltaTime);
+      void process();
 
   vector<string> pathes{
       "levels/test_1.txt",

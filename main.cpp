@@ -38,16 +38,17 @@ int main()
         // thread th_do_2(foo);
         // thread th_do_3(foo);
         // thread th_do_4(foo);
-        basicDo([]() {}); // units prog basic th
-                          // th_do_1.join();
-                          // th_do_2.join();
-                          // th_do_3.join();
-                          // th_do_4.join();
-                          // thread th_way_1(foo);
-                          // thread th_way_2(foo);
-                          // thread th_way_3(foo);
-                          // thread th_way_4(foo);
-                          // // user input & fractions control
+        basicDo([]()
+                { game->process(); }); // units prog basic th
+                                       // th_do_1.join();
+                                       // th_do_2.join();
+                                       // th_do_3.join();
+                                       // th_do_4.join();
+                                       // thread th_way_1(foo);
+                                       // thread th_way_2(foo);
+                                       // thread th_way_3(foo);
+                                       // thread th_way_4(foo);
+                                       // // user input & fractions control
         basicDraw([]()
                   { game->draw(); });
         // // calculated hold here || needReturn = true;

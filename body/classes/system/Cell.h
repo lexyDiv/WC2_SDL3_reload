@@ -259,15 +259,15 @@ public:
     int createTimerMax = 100;
     int updateTimer = 0;
     int updateTimerMax = 1000;
-    int level = 1;
+  //  int level = 1;
     /////// => trupy
     Array<Unit *> ripUnits; // trupy
      void trupCreate() {};
     int deleteTimer = 0;
      void drawTrup() { console.log("trup draw"); };
-     void takeDamage(int damage) {};
+   //  void takeDamage(int damage) {};
     /////// <= trupy
-    Array<MinData> wellComeCells;
+   // Array<MinData> wellComeCells;
      void getWellComeCells();
     double inOutCount = 0;
     double inOutMashtabCount = 0;
@@ -323,68 +323,41 @@ public:
     // sea units
 
     // buildings
-    Array<Cell *> myCells;
-    Cell *bornCell = nullptr;
-    int bornCount = 0;
+  //  Array<Cell *> myCells;
+  //  Cell *bornCell = nullptr;
+  //  int bornCount = 0;
     // land objects
     //
-    int inOutTimer = 0;
-    bool inSave = false;
+  //  int inOutTimer = 0;
+  //  bool inSave = false;
     ////////////////// => remove
     // void reMove() {};
     // int reMoveTimer = 0;
     ///////////////// <= remove
-     void orderOnWayControl() {};
-     void goWayAnimation() {};
-     void inFightAnimation() {};
-     void goWay() {};
-     bool isNextCellFreeToGoWay(Cell *nextCell) { return true; };
-     bool isNeedHoldGoWay(Cell *nextCell) { return true; };
-     bool isGetTarget() { return true; };
-     bool isTargetObjValide() { return true; };
-     Unit *getBaseForUnloading() { return nullptr; };
-     Unit *getBaseForUnloadingGold() { return nullptr; };
-     void preDraw() {};
-     void getTrees() {};
-     void getShahts() {};
-    // bool isIValideOnWay(ProtoObj *unit) override;
-    //  MinData getPeonOutCell()
-    // {
-    //     MinData md;
-    //     return md;
-    // };
-    //  MinData getPeonExtrimeOutCell()
-    // {
-    //     MinData md;
-    //     md.cell = nullptr;
-    //     md.index = -1;
+    //  void orderOnWayControl() {};
+    //  void goWayAnimation() {};
+    //  void inFightAnimation() {};
+    //  void goWay() {};
+    //  bool isNextCellFreeToGoWay(Cell *nextCell) { return true; };
+    //  bool isNeedHoldGoWay(Cell *nextCell) { return true; };
+    //  bool isGetTarget() { return true; };
+    //  bool isTargetObjValide() { return true; };
+    //  Unit *getBaseForUnloading() { return nullptr; };
+    //  Unit *getBaseForUnloadingGold() { return nullptr; };
+    //  void preDraw() {};
+    //  void getTrees() {};
+    //  void getShahts() {};
 
-    //     int ol = this->exitCells.length;
-    //     for (int i = 0; i < ol; i++)
-    //     {
-    //         Cell *cell = this->exitCells.getItem(i);
-    //         if (!cell->groundUnit)
-    //         {
-    //             md.cell = cell;
-    //             md.index = i;
-    //             return md;
-    //         }
-    //     }
-
-    //     return md;
-    // };
-
-    Array<Unit *> interUnits;
+   // Array<Unit *> interUnits;
 
     // wall
     ///// test
-    bool focus = false;
-    int noIsCompliteTimer = 0;
-    bool frashWay = false;
-    // bool closed = false;
-    bool isAnimyCheckNeeded = true;
-     void iAmHere() {};
-     void iSeeYou(Unit *unit) {};
+    // bool focus = false;
+    // int noIsCompliteTimer = 0;
+    // bool frashWay = false;
+    // bool isAnimyCheckNeeded = true;
+    //  void iAmHere() {};
+    //  void iSeeYou(Unit *unit) {};
 
 private:
 };

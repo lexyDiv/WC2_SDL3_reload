@@ -99,8 +99,8 @@ void GameField::create()
     });
      this->getContinents();
 
-    // this->getMaxAroundCellsDis();
-    // this->getToOtherPlaneCellsNumber();
+     this->getMaxAroundCellsDis();
+     this->getToOtherPlaneCellsNumber();
     // this->getToTreeCellLineNumber();
     // this->getCellImageCellDrawIndexCellUnitInit();
      this->init = true;

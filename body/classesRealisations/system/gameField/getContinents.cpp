@@ -1,5 +1,5 @@
 #include "cellsIteration.cpp"
-//=> out
+//=> getMaxAroundCellsDis
 
 void recAroundCellsCont(Array<Cell *> &frash, GameField *gf)
 {

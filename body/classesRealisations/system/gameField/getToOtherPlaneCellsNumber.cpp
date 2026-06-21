@@ -1,5 +1,5 @@
 #include "getMaxAroundCellsDis.cpp"
-//=> out
+//=> getToTreeCellLineNumber
 
 void GameField::getToOtherPlaneCellsNumber()
 {

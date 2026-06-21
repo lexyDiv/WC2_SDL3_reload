@@ -101,7 +101,7 @@ void GameField::create()
 
      this->getMaxAroundCellsDis();
      this->getToOtherPlaneCellsNumber();
-    // this->getToTreeCellLineNumber();
-    // this->getCellImageCellDrawIndexCellUnitInit();
+     this->getToTreeCellLineNumber();
+     this->getCellImageCellDrawIndexCellUnitInit();
      this->init = true;
 };

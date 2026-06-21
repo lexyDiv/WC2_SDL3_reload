@@ -1,5 +1,5 @@
 #include "getAroundCells.cpp"
-//=>out
+//=>getContonents
 
 void GameField::cellsIteration(function<void(Cell *cell)> fn)
 {

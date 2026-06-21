@@ -97,11 +97,11 @@ void GameField::create()
     this->getAroundCells(11, false, [](Cell *focusCell, Cell *pushedCell){
        focusCell->maxAroundCells.push(pushedCell);
     });
-    // this->getContinents();
+     this->getContinents();
 
     // this->getMaxAroundCellsDis();
     // this->getToOtherPlaneCellsNumber();
     // this->getToTreeCellLineNumber();
     // this->getCellImageCellDrawIndexCellUnitInit();
-    // this->init = true;
+     this->init = true;
 };

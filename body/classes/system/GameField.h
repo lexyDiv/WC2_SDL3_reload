@@ -25,65 +25,65 @@ int thread_7_postIndex = 0;
 
 Array<int> deeps;
 
-    virtual void exploreNewCellAndAddToOpenArr(Unit *unit, Cell *fatherCell, Cell *potentialCell) {};
-    virtual void getPotentialWay(Unit *unit) {};
-    virtual int get_G(Cell *cell, Cell *potentialCell) { return 0; };
-    virtual int get_H(Cell *potentialCell, Cell *finishCell) { return 0; };
-    virtual void potentialWayCreate(Unit *unit, Unit *finalCell) {};
+     void exploreNewCellAndAddToOpenArr(Unit *unit, Cell *fatherCell, Cell *potentialCell) {};
+     void getPotentialWay(Unit *unit) {};
+     int get_G(Cell *cell, Cell *potentialCell) { return 0; };
+     int get_H(Cell *potentialCell, Cell *finishCell) { return 0; };
+     void potentialWayCreate(Unit *unit, Unit *finalCell) {};
     Cell *min_F_cell = nullptr;
     Cell *globalMin_H_cell = nullptr;
 
-    virtual void exploreNewCellAndAddToOpenArr2(Unit *unit, Cell *fatherCell, Cell *potentialCell) {};
-    virtual void getPotentialWay2(Unit *unit) {};
-    virtual int get_G2(Cell *cell, Cell *potentialCell) { return 0; };
-    virtual int get_H2(Cell *potentialCell, Cell *finishCell) { return 0; };
-    virtual void potentialWayCreate2(Unit *unit, Cell *finalCell) {};
+     void exploreNewCellAndAddToOpenArr2(Unit *unit, Cell *fatherCell, Cell *potentialCell) {};
+     void getPotentialWay2(Unit *unit) {};
+     int get_G2(Cell *cell, Cell *potentialCell) { return 0; };
+     int get_H2(Cell *potentialCell, Cell *finishCell) { return 0; };
+     void potentialWayCreate2(Unit *unit, Cell *finalCell) {};
     Cell *min_F_cell2 = nullptr;
     Cell *globalMin_H_cell2 = nullptr;
 
-    virtual void exploreNewCellAndAddToOpenArr3(Unit *unit, Cell *fatherCell, Cell *potentialCell) {};
-    virtual void getPotentialWay3(Unit *unit) {};
-    virtual int get_G3(Cell *cell, Cell *potentialCell) { return 0; };
-    virtual int get_H3(Cell *potentialCell, Cell *finishCell) { return 0; };
-    virtual void potentialWayCreate3(Unit *unit, Cell *finalCell) {};
+     void exploreNewCellAndAddToOpenArr3(Unit *unit, Cell *fatherCell, Cell *potentialCell) {};
+     void getPotentialWay3(Unit *unit) {};
+     int get_G3(Cell *cell, Cell *potentialCell) { return 0; };
+     int get_H3(Cell *potentialCell, Cell *finishCell) { return 0; };
+     void potentialWayCreate3(Unit *unit, Cell *finalCell) {};
     Cell *min_F_cell3 = nullptr;
     Cell *globalMin_H_cell3 = nullptr;
 
 
-    virtual void exploreNewCellAndAddToOpenArr4(Unit *unit, Cell *fatherCell, Cell *potentialCell) {};
-    virtual void getPotentialWay4(Unit *unit) {};
-    virtual int get_G4(Cell *cell, Cell *potentialCell) { return 0; };
-    virtual int get_H4(Cell *potentialCell, Cell *finishCell) { return 0; };
-    virtual void potentialWayCreate4(Unit *unit, Cell *finalCell) {};
+     void exploreNewCellAndAddToOpenArr4(Unit *unit, Cell *fatherCell, Cell *potentialCell) {};
+     void getPotentialWay4(Unit *unit) {};
+     int get_G4(Cell *cell, Cell *potentialCell) { return 0; };
+     int get_H4(Cell *potentialCell, Cell *finishCell) { return 0; };
+     void potentialWayCreate4(Unit *unit, Cell *finalCell) {};
     Cell *min_F_cell4 = nullptr;
     Cell *globalMin_H_cell4 = nullptr;
 
     ///////////////////////////////////////////////////////////////////////////////
 
     GameField(string *path, int type);
-    virtual ~GameField();
-    virtual void create();
-    virtual void mapInit(Array<string> array);
-    virtual void getFieldImage();
-    virtual void miniMapUpdate();
-    virtual void miniMapDraw();
-    virtual void cellsIteration(function<void(Cell *cell)> fn);
-    virtual void getAroundCells(int wing, bool selfCell, function<void(Cell *focusCell, Cell *cellToPush)> fn);
-    virtual void offsetControl();
-    virtual void miniMapMouseControl();
-    virtual void miniMapHoldLeftMouseKey();
-    virtual void getContinents();
-    virtual void getMaxAroundCellsDis();
-    virtual void getToOtherPlaneCellsNumber();
-    virtual void getToTreeCellLineNumber();
-    virtual void getCellImageCellDrawIndexCellUnitInit();
-    virtual void getVectorCells(Cell *cell);
-    virtual void fieldClick();
-    virtual void fieldClickRight();
+     ~GameField();
+     void create();
+     void mapInit(Array<string> array);
+     void getFieldImage();
+     void miniMapUpdate();
+     void miniMapDraw();
+     void cellsIteration(function<void(Cell *cell)> fn);
+     void getAroundCells(int wing, bool selfCell, function<void(Cell *focusCell, Cell *cellToPush)> fn);
+     void offsetControl();
+     void miniMapMouseControl();
+     void miniMapHoldLeftMouseKey();
+     void getContinents();
+     void getMaxAroundCellsDis();
+     void getToOtherPlaneCellsNumber();
+     void getToTreeCellLineNumber();
+     void getCellImageCellDrawIndexCellUnitInit();
+     void getVectorCells(Cell *cell);
+     void fieldClick();
+     void fieldClickRight();
 
     double getMinCellsDis(Cell *cell, Cell *cell2);
 
-    virtual Color getDefaultColor(char lit);
+     Color getDefaultColor(char lit);
 
     // ProtoObjMenu* objMenu = nullptr;
     Game *game = nullptr;
@@ -97,8 +97,8 @@ Array<int> deeps;
     Array<Unit *> activeShahts;
 
     Array<Unit *> trupsOnDelete;
-    virtual void trupsControl() {};
-    virtual void activeShahtsControl() {};
+     void trupsControl() {};
+     void activeShahtsControl() {};
 
     Image *miniMap = nullptr;
     Cell *drawCell = nullptr;
@@ -159,7 +159,7 @@ Array<int> deeps;
     Array<Array<Cell *>> exp;
 
     // bool isQuick = false;
-    //  virtual void potentialWayCreate2(ProtoObj *unit, ProtoObj *finalCell) {};
+    //   void potentialWayCreate2(ProtoObj *unit, ProtoObj *finalCell) {};
 
 private:
 };

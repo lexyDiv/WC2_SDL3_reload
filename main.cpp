@@ -4,13 +4,14 @@
 
 #include "body/out.h"
 
+Game *game = new Game;
+
+
 void foo() {};
-
-
-
 int main()
 {
-console.log("papa loh");
+
+   game->create();
 
     while (!quit)
     {
@@ -36,4 +37,7 @@ console.log("papa loh");
         th_way_4.join();
     }
     ctx.Close();
+
+    delete game;
+    game = nullptr;
 }

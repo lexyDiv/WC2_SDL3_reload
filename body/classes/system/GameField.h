@@ -63,7 +63,7 @@ Array<int> deeps;
     GameField(string *path, int type);
      ~GameField();
      void create();
-     void mapInit(Array<string> array);
+     void mapInit(Array<string> &array);
      void getFieldImage();
      void miniMapUpdate();
      void miniMapDraw();

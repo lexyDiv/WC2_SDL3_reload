@@ -1,2 +1,2 @@
-#include "mapInit.cpp"
+#include "getDefaultColor.cpp"
 //=>imager

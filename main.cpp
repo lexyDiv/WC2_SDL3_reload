@@ -13,6 +13,7 @@ int main()
 
    game->create();
 
+
     while (!quit)
     {
         thread th_do_1(foo);

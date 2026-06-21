@@ -25,11 +25,11 @@ public:
   Game(){};
    ~Game();
    void create();
-   void draw(){};
-   void preDraw(){};
-   void fonMenuDraw(){};
-   void fractionsControl(){};
-   void process(Uint64 *startTick, int *optimalDeltaTime) {};
+   void draw();
+   void preDraw();
+   void fonMenuDraw();
+   void fractionsControl();
+   void process(Uint64 *startTick, int *optimalDeltaTime);
 
   vector<string> pathes{
       "levels/test_1.txt",

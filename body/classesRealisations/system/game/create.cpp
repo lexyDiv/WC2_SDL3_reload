@@ -1,5 +1,5 @@
 #include "Game.cpp"
-//=>out
+//=>draw
 
 void Game::create()
 {

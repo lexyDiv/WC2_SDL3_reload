@@ -48,7 +48,8 @@ int main()
                           // thread th_way_3(foo);
                           // thread th_way_4(foo);
                           // // user input & fractions control
-        basicDraw([]() {});
+        basicDraw([]()
+                  { game->draw(); });
         // // calculated hold here || needReturn = true;
         // th_way_1.join();
         // th_way_2.join();

@@ -2,7 +2,7 @@
 
 using namespace std;
 
-class ProtoObj;
+class Cell;
 
 struct MinData
 {
@@ -11,7 +11,7 @@ struct MinData
     int i = 0;
     int k = 0;
     // double dis = 0;
-    ProtoObj *cell = nullptr;
+    Cell *cell = nullptr;
 };
 
 template <typename T>
@@ -43,10 +43,10 @@ public:
     void splice(int index, int count);
     void filterSelf(function<bool(T item)> fn);
     void sort(function<bool(T a, T b)> fn);
-    ProtoObj *getMin(function<double(ProtoObj *item)> fn);
-    MinData getMinData(function<double(ProtoObj *item)> fn);
-    ProtoObj *getMAx(function<double(ProtoObj *item)> fn);
-    Array<ProtoObj *> map(function<ProtoObj *(T item)> fn);
+   // ProtoObj *getMin(function<double(ProtoObj *item)> fn);
+   // MinData getMinData(function<double(ProtoObj *item)> fn);
+   // ProtoObj *getMAx(function<double(ProtoObj *item)> fn);
+   // Array<ProtoObj *> map(function<ProtoObj *(T item)> fn);
     void copy(Array<T> arr);
 
     void clear();
@@ -320,81 +320,81 @@ inline void Array<T>::sort(function<bool(T a, T b)> fn)
               { return fn(a, b); });
 }
 
-template <typename T>
-inline ProtoObj *Array<T>::getMin(function<double(ProtoObj *item)> fn)
-{
-    if (this->length)
-    {
-        ProtoObj *el = this->getItem(0);
-        double min = fn(el);
-        for (int i = 1; i < this->length; i++)
-        {
-            ProtoObj *e = this->vec[i];
-            double current = fn(e);
-            if (min > current)
-            {
-                min = current;
-                el = e;
-            }
-        }
-        return el;
-    }
-    return nullptr;
-}
+// template <typename T>
+// inline ProtoObj *Array<T>::getMin(function<double(ProtoObj *item)> fn)
+// {
+//     if (this->length)
+//     {
+//         ProtoObj *el = this->getItem(0);
+//         double min = fn(el);
+//         for (int i = 1; i < this->length; i++)
+//         {
+//             ProtoObj *e = this->vec[i];
+//             double current = fn(e);
+//             if (min > current)
+//             {
+//                 min = current;
+//                 el = e;
+//             }
+//         }
+//         return el;
+//     }
+//     return nullptr;
+// }
 
-template <typename T>
-inline MinData Array<T>::getMinData(function<double(ProtoObj *item)> fn)
-{
-    MinData md;
-    if (this->length)
-    {
-        md.cell = this->getItem(0);
-        md.min = fn(md.cell);
-        for (int i = 1; i < this->length; i++)
-        {
-            ProtoObj *e = this->vec[i];
-            double current = fn(e);
-            if (md.min > current)
-            {
-                md.index = i;
-                md.min = current;
-                md.cell = e;
-            }
-        }
-    }
-    return md;
-}
+// template <typename T>
+// inline MinData Array<T>::getMinData(function<double(ProtoObj *item)> fn)
+// {
+//     MinData md;
+//     if (this->length)
+//     {
+//         md.cell = this->getItem(0);
+//         md.min = fn(md.cell);
+//         for (int i = 1; i < this->length; i++)
+//         {
+//             ProtoObj *e = this->vec[i];
+//             double current = fn(e);
+//             if (md.min > current)
+//             {
+//                 md.index = i;
+//                 md.min = current;
+//                 md.cell = e;
+//             }
+//         }
+//     }
+//     return md;
+// }
 
-template <typename T>
-inline ProtoObj *Array<T>::getMAx(function<double(ProtoObj *item)> fn)
-{
-    if (this->length)
-    {
-        ProtoObj *el = this->getItem(0);
-        double max = fn(el);
-        for (int i = 1; i < this->length; i++)
-        {
-            ProtoObj *e = this->vec[i];
-            double current = fn(e);
-            if (max < current)
-            {
-                max = current;
-                el = e;
-            }
-        }
-        return el;
-    }
-    return nullptr;
-}
+// template <typename T>
+// inline ProtoObj *Array<T>::getMAx(function<double(ProtoObj *item)> fn)
+// {
+//     if (this->length)
+//     {
+//         ProtoObj *el = this->getItem(0);
+//         double max = fn(el);
+//         for (int i = 1; i < this->length; i++)
+//         {
+//             ProtoObj *e = this->vec[i];
+//             double current = fn(e);
+//             if (max < current)
+//             {
+//                 max = current;
+//                 el = e;
+//             }
+//         }
+//         return el;
+//     }
+//     return nullptr;
+// }
 
-template <typename T>
-inline Array<ProtoObj *> Array<T>::map(function<ProtoObj *(T item)> fn)
-{
-    Array<ProtoObj *> newArr;
-    this->forEach([&newArr, fn](T item)
-                  { newArr.push(fn(item)); });
-    return *&newArr;
-}
+// template <typename T>
+// inline Array<ProtoObj *> Array<T>::map(function<ProtoObj *(T item)> fn)
+// {
+//     Array<ProtoObj *> newArr;
+//     this->forEach([&newArr, fn](T item)
+//                   { newArr.push(fn(item)); });
+//     return *&newArr;
+// }
 
 template <typename T>
 inline void Array<T>::copy(Array<T> arr)

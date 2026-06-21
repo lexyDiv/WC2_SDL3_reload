@@ -1,5 +1,5 @@
 #include "getVectorCells.cpp"
-//=>out
+//=>miniMapMouseControl
 
 void GameField::getCellImageCellDrawIndexCellUnitInit()
 {

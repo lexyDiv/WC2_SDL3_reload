@@ -3,7 +3,7 @@
 
 void Cell::draw()
 {
-console.log("cell.draw()");
+
   float drawDeltaX = this->gf->drawDeltaX;
   float drawDeltaY = this->gf->drawDeltaY;
 

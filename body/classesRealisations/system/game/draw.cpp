@@ -12,7 +12,7 @@ void Game::draw()
     ctx.CreateDrawZone(this->gf->x, this->gf->y, this->gf->screenWidth, this->gf->screenHeight);
 
 
-ctx.FillRect(-500, -500, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "blue");
+ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "green");
     if (this->gf->drawCell != nullptr)
     {
         float drawDeltaX = this->gf->drawDeltaX;
@@ -75,9 +75,7 @@ ctx.FillRect(-500, -500, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "blue");
         //         fcp->gabX, fcp->gabY, "red");
         // }
         // /////////////// zone
-    } else {
-        console.log("no drawCell");
-    }
+    } 
 
     ctx.CreateDrawZone(0, 0, this->gf->screenWidth, ctx.SCREEN_HEIGHT - this->gf->screenHeight);
     ctx.FillRect(0, 0, this->gf->screenWidth, ctx.SCREEN_HEIGHT - this->gf->screenHeight, "black");

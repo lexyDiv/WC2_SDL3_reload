@@ -1,4 +1,4 @@
-#include "getCellImageCellDrawIndexCellUnitInit.cpp"
+#include "offsetControl.cpp"
 //=>imager
 
 void GameField::getVectorCells(Cell *cell)

@@ -5,7 +5,7 @@ void Game::preDraw()
 {
      
         this->gf->miniMapMouseControl();
-       // this->gf->offsetControl();
+        this->gf->offsetControl();
        // this->gf->fieldClick();
       //  this->gf->fieldClickRight();
        // this->objMenu->control();

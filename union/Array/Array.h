@@ -32,10 +32,10 @@ public:
     T &pop2();
     T shift();
     void changeEl(T item, int i);
-    void forEachDel(function<bool(T item, int index, vector<T> vec)> fn);
-    void forEach(function<void(T item, int index, vector<T> vec)> fn);
-    void forEach(function<void(T item, int index)> fn);
-    void forEach(function<void(T item)> fn);
+    void forEachDel(function<bool(T &item, int index, vector<T> vec)> fn);
+    void forEach(function<void(T &item, int index, vector<T> &vec)> fn);
+    void forEach(function<void(T &item, int index)> fn);
+    void forEach(function<void(T &item)> fn);
     int indexOf(T el);
     int indexOf2(function<bool(T item)> fn);
     T find(function<bool(T item)> fn);
@@ -161,7 +161,7 @@ inline void Array<T>::changeEl(T item, int i)
 }
 
 template <typename T>
-inline void Array<T>::forEachDel(function<bool(T item, int index, vector<T> vec)> fn)
+inline void Array<T>::forEachDel(function<bool(T &item, int index, vector<T> vec)> fn)
 {
     int size = this->vec.size();
     for (int i = 0; i < size; i++)
@@ -179,7 +179,7 @@ inline void Array<T>::forEachDel(function<bool(T item, int index, vector<T> vec)
 }
 
 template <typename T>
-inline void Array<T>::forEach(function<void(T item, int index, vector<T> vec)> fn)
+inline void Array<T>::forEach(function<void(T &item, int index, vector<T> &vec)> fn)
 {
 
     // for (int i = 0; i < this->vec.size(); i++)
@@ -198,7 +198,7 @@ inline void Array<T>::forEach(function<void(T item, int index, vector<T> vec)> f
 }
 
 template <typename T>
-inline void Array<T>::forEach(function<void(T item, int index)> fn)
+inline void Array<T>::forEach(function<void(T &item, int index)> fn)
 {
     // int size = this->vec.size();
     // for (int i = 0; i < this->vec.size(); i++)
@@ -218,7 +218,7 @@ inline void Array<T>::forEach(function<void(T item, int index)> fn)
 }
 
 template <typename T>
-inline void Array<T>::forEach(function<void(T item)> fn)
+inline void Array<T>::forEach(function<void(T &item)> fn)
 {
     // int size = this->vec.size();
     // for (int i = 0; i < this->vec.size(); i++)

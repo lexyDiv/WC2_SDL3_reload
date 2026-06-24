@@ -27,6 +27,17 @@ ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "green");
 
         Array<int> max;
 
+        Cell *dc = this->gf->drawCell;
+
+        if (!dc->isZ_indexesSorted) {
+            dc->cellsOnDraw.forEach([](Array<Cell *> drawLine){
+               drawLine.sort([](Cell *a, Cell *b){
+                return a->z_index < b->z_index;
+               });
+            });
+            dc->isZ_indexesSorted = true;
+        }
+
         this->gf->drawCell->cellsOnDraw.forEach([drawDeltaY, &DA, &max](Array<Cell *> drawLine)
                                                 { drawLine.forEach([drawDeltaY, &DA, &max](Cell *cell)
                                                                    {

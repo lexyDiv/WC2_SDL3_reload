@@ -39,7 +39,8 @@ public:
      bool isActiveCheck() { return false; };
    // std::mutex mute_case;
 
-    
+    int z_index = 0;
+    bool isZ_indexesSorted = false;
 
     int G = 0;
     int F = 0;

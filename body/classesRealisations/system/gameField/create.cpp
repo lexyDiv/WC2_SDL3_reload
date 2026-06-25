@@ -55,7 +55,7 @@ void GameField::create()
         }
         else
         {
-            string &str = this->oilData.getItem3(oilIndex);
+            string &str = this->oilData.getItemLnk(oilIndex);
             str += lit;
         }
     }
@@ -75,8 +75,8 @@ void GameField::create()
              string gdi = "";
              this->goldData.push(gdi);
           } else {
-             string &str = this->goldData.getItem3(goldIndex);
-             str += lit;
+             string *str = this->goldData.getItemPtr(goldIndex);
+             *str += lit;
           }
         }
        array.pop();

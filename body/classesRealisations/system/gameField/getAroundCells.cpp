@@ -16,7 +16,7 @@ void GameField::getAroundCells(int wing, bool selfCell, function<void(Cell *focu
             ver < this->gabarit &&
             hor >= 0 &&
             hor < this->gabarit) {
-                Cell *pushedCell = this->field.getItem(ver).getItem(hor);
+                Cell *pushedCell = this->field.getItemLnk(ver).getItem(hor);
                 if (!selfCell) {
                     if (cell != pushedCell) {
                     fn(cell, pushedCell);

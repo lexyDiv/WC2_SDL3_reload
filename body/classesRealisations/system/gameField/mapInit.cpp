@@ -3,7 +3,7 @@
 
 void GameField::mapInit(Array<string> &array)
 {
-    array.forEach([this](string str, int ver)
+    array.forEach([this](string &str, int ver)
                   {
          Array<Cell *> arr;
         for (int hor = 0; hor < str.size(); hor++) {

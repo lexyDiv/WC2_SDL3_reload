@@ -24,7 +24,8 @@ public:
     T getItem(int i);
     T getItem(int i, string str);
     T getItem2(int i);
-    T &getItem3(int i);
+    T &getItemLnk(int i);
+    T *getItemPtr(int i);
 
     void push(T el);
     void unshift(T el);
@@ -95,9 +96,17 @@ inline T Array<T>::getItem2(int i)
 }
 
 template <typename T>
-inline T &Array<T>::getItem3(int i)
+inline T &Array<T>::getItemLnk(int i)
 {
-    return *&this->vec[i];
+    T &item = this->vec[i];
+    return item;
+}
+
+template <typename T>
+inline T *Array<T>::getItemPtr(int i)
+{   
+    T *item = &this->vec[i];
+    return item;
 }
 
 template <typename T>

@@ -130,7 +130,7 @@ void GameField::getCellImageCellDrawIndexCellUnitInit()
                                            }
                                        }); });
 
-    this->field.forEach([](Array<Cell *> arr)
+    this->field.forEach([](Array<Cell *> &arr)
                         { arr.forEach([](Cell *cell)
                                       {
                                           for (int i = 0; i <= 3; i++)

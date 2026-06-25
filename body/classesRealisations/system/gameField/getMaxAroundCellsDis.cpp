@@ -3,7 +3,7 @@
 
 void GameField::getMaxAroundCellsDis()
 {
-    this->field.forEach([](Array<Cell *> arr)
+    this->field.forEach([](Array<Cell *> &arr)
                         { arr.forEach([](Cell *cell)
                                       { cell->maxAroundCells.forEach([cell](Cell *ac)
                                                                      {

@@ -5,7 +5,7 @@ void GameField::getToTreeCellLineNumber()
 {
     console.log("getToTreeCellLineNumber");
 
-    this->field.forEach([this](Array<Cell *> line){
+    this->field.forEach([this](Array<Cell *> &line){
         line.forEach([this](Cell* cell){
                this->getVectorCells(cell);
         });

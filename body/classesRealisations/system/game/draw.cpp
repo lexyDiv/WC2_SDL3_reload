@@ -29,19 +29,10 @@ ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "green");
 
         Cell *dc = this->gf->drawCell;
 
-        if (!dc->isZ_indexesSorted) {
-            dc->cellsOnDraw.forEach([](Array<Cell *> drawLine){
-               drawLine.sort([](Cell *a, Cell *b){
-                return a->z_index < b->z_index;
-               });
-            });
-            dc->isZ_indexesSorted = true;
-        }
-
-        this->gf->drawCell->cellsOnDraw.forEach([drawDeltaY, &DA, &max](Array<Cell *> drawLine)
+        this->gf->drawCell->cellsOnDraw.forEach([drawDeltaY, &DA, &max](Array<Cell *> &drawLine)
                                                 { drawLine.forEach([drawDeltaY, &DA, &max](Cell *cell)
                                                                    {
-                     cell->draw();
+                    cell->draw();
                     Unit *groundUnit = cell->groundUnit;
                     // if (groundUnit && !groundUnit->isAddOnDraw
                     // ) {
@@ -54,7 +45,7 @@ ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "green");
                     // } 
                 }); });
 
-        this->gf->drawCell->cellsOnDraw.forEach([drawDeltaY, &DA, &max](Array<Cell *> drawLine)
+        this->gf->drawCell->cellsOnDraw.forEach([drawDeltaY, &DA, &max](Array<Cell *> &drawLine)
                                                 { drawLine.forEach([drawDeltaY, &DA, &max](Cell *cell)
                                                                    {
                     //   cell->ripUnits.forEach([](Unit* trup){

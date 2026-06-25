@@ -6,19 +6,11 @@ void GameField::getCellImageCellDrawIndexCellUnitInit()
 
    int powGab = this->gabarit * this->gabarit;
 
-   Array<int> indexes;
 
-   for (int i = 0; i <= powGab; i++) {
-    indexes.push(i);
-   }
 
-    this->field.forEach([this, &indexes](Array<Cell *> line)
-                        { line.forEach([this, &indexes](Cell *cell)
-                                       {
-                                         int rand = intRand(0, indexes.length);
-                                         cell->z_index = indexes.getItem(rand);
-                                         indexes.splice(rand, 1);
-
+    this->field.forEach([this](Array<Cell *> &line)
+                        { line.forEach([this](Cell *cell, int i)
+                                       {     
                                            if (cell->litera == '0' || cell->litera == 'S')
                                            {
                                                if (

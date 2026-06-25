@@ -25,9 +25,9 @@ void do1()
 }
 
 
+
 int main()
 {
-
 
     thread th_1(do1);
     thread th_2(foo);

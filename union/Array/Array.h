@@ -32,10 +32,16 @@ public:
     T &pop2();
     T shift();
     void changeEl(T item, int i);
-    void forEachDel(function<bool(T &item, int index, vector<T> vec)> fn);
-    void forEach(function<void(T &item, int index, vector<T> &vec)> fn);
+    void forEach(function<void(T item, int index, vector<T> vec)> fn);
+    ///////////////////////////////////////////////////////////////
+  //  void forEach(function<void(T item, int index)> fn);
+    void forEach(function<void(T *item, int index)> fn);
     void forEach(function<void(T &item, int index)> fn);
-    void forEach(function<void(T &item)> fn);
+////////////////////////////
+ //   void forEach(function<void(T item)> fn);
+     void forEach(function<void(T *item)> fn);
+     void forEach(function<void(T &item)> fn);
+////////////////////////////////
     int indexOf(T el);
     int indexOf2(function<bool(T item)> fn);
     T find(function<bool(T item)> fn);
@@ -43,10 +49,7 @@ public:
     void splice(int index, int count);
     void filterSelf(function<bool(T item)> fn);
     void sort(function<bool(T a, T b)> fn);
-   // ProtoObj *getMin(function<double(ProtoObj *item)> fn);
-   // MinData getMinData(function<double(ProtoObj *item)> fn);
-   // ProtoObj *getMAx(function<double(ProtoObj *item)> fn);
-   // Array<ProtoObj *> map(function<ProtoObj *(T item)> fn);
+
     void copy(Array<T> arr);
 
     void clear();
@@ -160,26 +163,10 @@ inline void Array<T>::changeEl(T item, int i)
     this->vec[i] = item;
 }
 
-template <typename T>
-inline void Array<T>::forEachDel(function<bool(T &item, int index, vector<T> vec)> fn)
-{
-    int size = this->vec.size();
-    for (int i = 0; i < size; i++)
-    {
-        T item = this->vec[i];
-        bool del = fn(item, i, this->vec);
-        if (del)
-        {
-            vec.erase(vec.begin() + i);
-            i--;
-            size--;
-        }
-    }
-    this->length = vec.size();
-}
+
 
 template <typename T>
-inline void Array<T>::forEach(function<void(T &item, int index, vector<T> &vec)> fn)
+inline void Array<T>::forEach(function<void(T item, int index, vector<T> vec)> fn)
 {
 
     // for (int i = 0; i < this->vec.size(); i++)
@@ -197,43 +184,78 @@ inline void Array<T>::forEach(function<void(T &item, int index, vector<T> &vec)>
     }
 }
 
+// template <typename T>
+// inline void Array<T>::forEach(function<void(T item, int index)> fn)
+// {
+//     int i = 0;
+//     for (auto it = this->vec.begin(); it != this->vec.end(); ++it)
+//     {
+//         T item = *it;
+//         fn(item, i);
+//         i++;
+//     }
+// }
+
+template <typename T>
+inline void Array<T>::forEach(function<void(T *item, int index)> fn)
+{
+    // int i = 0;
+    // for (auto it = this->vec.begin(); it != this->vec.end(); ++it)
+    // {
+    //     T &item = *it;
+    //     fn(&item, i);
+    //     i++;
+    // }
+    for (int i = 0; i < this->length; i++) {
+        T *el = &this->vec[i];
+        fn(el, i);
+    }
+}
+
 template <typename T>
 inline void Array<T>::forEach(function<void(T &item, int index)> fn)
 {
-    // int size = this->vec.size();
-    // for (int i = 0; i < this->vec.size(); i++)
-    // {
-    //     T item = this->vec[i];
-    //     fn(item, i);
-    // }
-    int i = 0;
-    for (auto it = this->vec.begin(); it != this->vec.end(); ++it)
-    {
-        // cout << *it << " ";
+        for (int i = 0; i < this->length; i++) {
+        T &el = this->vec[i];
+        fn(el, i);
+    }
+}
 
-        T item = *it;
-        fn(item, i);
-        i++;
+// template <typename T>
+// inline void Array<T>::forEach(function<void(T item)> fn)
+// {
+//     for (auto it = this->vec.begin(); it != this->vec.end(); ++it)
+//     {
+//         T item = *it;
+//         fn(item);
+//     }
+// }
+
+template <typename T>
+inline void Array<T>::forEach(function<void(T *item)> fn)
+{
+    // for (auto it = this->vec.begin(); it != this->vec.end(); ++it)
+    // {
+    //     T &item = *it;
+    //     fn(&item);
+    // }
+        for (int i = 0; i < this->length; i++) {
+        T *el = &this->vec[i];
+        fn(el);
     }
 }
 
 template <typename T>
 inline void Array<T>::forEach(function<void(T &item)> fn)
 {
-    // int size = this->vec.size();
-    // for (int i = 0; i < this->vec.size(); i++)
+    // for (auto it = this->vec.begin(); it != this->vec.end(); ++it)
     // {
-    //     T item = this->vec[i];
-    //     fn(item);
+    //     T &item = *it;
+    //     fn(&item);
     // }
-
-    // int i = 0;
-    for (auto it = this->vec.begin(); it != this->vec.end(); ++it)
-    {
-        // cout << *it << " ";
-        // i++;
-        T item = *it;
-        fn(item);
+        for (int i = 0; i < this->length; i++) {
+        T &el = this->vec[i];
+        fn(el);
     }
 }
 

@@ -4,7 +4,6 @@
 
 #include "body/out.h"
 
-
 void foo()
 {
 
@@ -40,8 +39,6 @@ void do1()
     }
 }
 
-
-
 int main()
 {
 
@@ -50,30 +47,27 @@ int main()
     thread th_3(foo2);
     thread th_4(foo3);
 
+    int optimalDeltaTime = 1000 / 30;
+
     while (!quit)
     {
-        // thread th_do_1(foo);
-        // thread th_do_2(foo);
-        // thread th_do_3(foo);
-        // thread th_do_4(foo);
+        Uint64 startTick = SDL_GetTicks();
+
         basicDo([]()
-                { game->process(); }); // units prog basic th
-                                       // th_do_1.join();
-                                       // th_do_2.join();
-                                       // th_do_3.join();
-                                       // th_do_4.join();
-                                       // thread th_way_1(foo);
-                                       // thread th_way_2(foo);
-                                       // thread th_way_3(foo);
-                                       // thread th_way_4(foo);
-                                       // // user input & fractions control
+                { game->process(); });
+
         basicDraw([]()
                   { game->draw(); });
-        // // calculated hold here || needReturn = true;
-        // th_way_1.join();
-        // th_way_2.join();
-        // th_way_3.join();
-        // th_way_4.join();
+
+        Uint64 finishTick = SDL_GetTicks();
+        int deltaTime = int(finishTick) - int(startTick);
+        if (deltaTime < optimalDeltaTime)
+        {
+          //  console.log("delay : " + to_string(optimalDeltaTime - deltaTime));
+            SDL_Delay(optimalDeltaTime - deltaTime);
+        } else {
+            console.log("hold");
+        }
     }
     ctx.Close();
 
@@ -81,6 +75,4 @@ int main()
     th_2.join();
     th_3.join();
     th_4.join();
-
-
 }

@@ -122,7 +122,7 @@ Array<int> deeps;
     float drawOffsetY = 0;
     float width = 0;
     float height = 0;
-    float offsetStep = 12;
+    float offsetStep = 20;
     bool init = false;
     double createCount = 0.0;
     double createCount2 = 0.0;

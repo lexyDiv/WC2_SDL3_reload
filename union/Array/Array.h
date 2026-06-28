@@ -35,21 +35,21 @@ public:
     void changeEl(T item, int i);
     void forEach(function<void(T item, int index, vector<T> vec)> fn);
     ///////////////////////////////////////////////////////////////
-  //  void forEach(function<void(T item, int index)> fn);
+    //  void forEach(function<void(T item, int index)> fn);
     void forEach(function<void(T *item, int index)> fn);
     void forEach(function<void(T &item, int index)> fn);
-////////////////////////////
- //   void forEach(function<void(T item)> fn);
-     void forEach(function<void(T *item)> fn);
-     void forEach(function<void(T &item)> fn);
-////////////////////////////////
+    ////////////////////////////
+    //   void forEach(function<void(T item)> fn);
+    void forEach(function<void(T *item)> fn);
+    void forEach(function<void(T &item)> fn);
+    ////////////////////////////////
     int indexOf(T el);
     int indexOf2(function<bool(T item)> fn);
     T find(function<bool(T item)> fn);
     void splice(int index, int count, T el);
     void splice(int index, int count);
     void filterSelf(function<bool(T item)> fn);
-    void sort(function<bool(T a, T b)> fn);
+    void sort(function<bool(T &a, T &b)> fn);
 
     void copy(Array<T> arr);
 
@@ -104,7 +104,7 @@ inline T &Array<T>::getItemLnk(int i)
 
 template <typename T>
 inline T *Array<T>::getItemPtr(int i)
-{   
+{
     T *item = &this->vec[i];
     return item;
 }
@@ -172,8 +172,6 @@ inline void Array<T>::changeEl(T item, int i)
     this->vec[i] = item;
 }
 
-
-
 template <typename T>
 inline void Array<T>::forEach(function<void(T item, int index, vector<T> vec)> fn)
 {
@@ -215,18 +213,38 @@ inline void Array<T>::forEach(function<void(T *item, int index)> fn)
     //     fn(&item, i);
     //     i++;
     // }
-    for (int i = 0; i < this->length; i++) {
-        T *el = &this->vec[i];
-        fn(el, i);
+    // for (int i = 0; i < this->length; i++)
+    // {
+    //     T *el = &this->vec[i];
+    //     fn(el, i);
+    // }
+    int i = 0;
+    auto ptr = this->vec.data();
+    auto end_ptr = ptr + this->vec.size();
+    while (ptr < end_ptr)
+    {
+        fn(ptr, i);
+        ++ptr;
+        i++;
     }
 }
 
 template <typename T>
 inline void Array<T>::forEach(function<void(T &item, int index)> fn)
 {
-        for (int i = 0; i < this->length; i++) {
-        T &el = this->vec[i];
-        fn(el, i);
+    //     for (int i = 0; i < this->length; i++) {
+    //     T &el = this->vec[i];
+    //     fn(el, i);
+    // }
+    int i = 0;
+    auto ptr = this->vec.data();
+    auto end_ptr = ptr + this->vec.size();
+    while (ptr < end_ptr)
+    {
+        T &item = *ptr;
+        fn(item, i);
+        ++ptr;
+        i++;
     }
 }
 
@@ -248,9 +266,18 @@ inline void Array<T>::forEach(function<void(T *item)> fn)
     //     T &item = *it;
     //     fn(&item);
     // }
-        for (int i = 0; i < this->length; i++) {
-        T *el = &this->vec[i];
-        fn(el);
+
+    //     for (int i = 0; i < this->length; i++) {
+    //     T *el = &this->vec[i];
+    //     fn(el);
+    // }
+
+    auto ptr = this->vec.data();
+    auto end_ptr = ptr + this->vec.size();
+    while (ptr < end_ptr)
+    {
+        fn(ptr);
+        ++ptr;
     }
 }
 
@@ -262,7 +289,8 @@ inline void Array<T>::forEach(function<void(T &item)> fn)
     //     T &item = *it;
     //     fn(&item);
     // }
-        for (int i = 0; i < this->length; i++) {
+    for (int i = 0; i < this->length; i++)
+    {
         T &el = this->vec[i];
         fn(el);
     }
@@ -345,9 +373,9 @@ inline void Array<T>::filterSelf(function<bool(T item)> fn)
 }
 
 template <typename T>
-inline void Array<T>::sort(function<bool(T a, T b)> fn)
+inline void Array<T>::sort(function<bool(T &a, T &b)> fn)
 {
-    std::sort(this->vec.begin(), this->vec.end(), [fn](T a, T b)
+    std::sort(this->vec.begin(), this->vec.end(), [fn](T &a, T &b)
               { return fn(a, b); });
 }
 

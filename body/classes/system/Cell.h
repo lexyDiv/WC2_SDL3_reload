@@ -33,6 +33,9 @@ struct UnitPack
 class Cell
 {
 public:
+
+   
+
     bool closedOnCase = false;
 
     bool isPotentialWayComplite = true;
@@ -80,7 +83,7 @@ public:
 
     bool isClosed = false;
     Cell(){};
-     ~Cell();
+     ~Cell(){};
      void draw();
      Color getMapColor();
 

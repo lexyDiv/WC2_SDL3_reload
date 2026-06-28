@@ -29,6 +29,25 @@ void do1()
 int main()
 {
 
+    Array<Array<int>> arr;
+    Array<int> a;
+    for (int i = 0; i < 3; i++) {
+        a.push(i);
+    }
+    arr.push(a);
+
+    arr.forEach([](Array<int> *ar){
+        ar->sort([](int a, int b){
+            return a > b;
+        });
+    });
+
+    arr.forEach([](Array<int> &ar){
+        ar.forEach([](int i){
+            console.log(to_string(i));
+        });
+    });
+
     thread th_1(do1);
     thread th_2(foo);
     thread th_3(foo);

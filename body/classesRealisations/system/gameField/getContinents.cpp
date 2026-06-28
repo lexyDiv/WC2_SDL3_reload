@@ -51,17 +51,31 @@ void recAroundCellsSea(Array<Cell *> &frash, GameField *gf)
 
 void GameField::getContinents()
 {
+    Array<Plane> &allPlanes = this->game->allPlanes;
+    Array<ToOtherPlane> &allToOtherPlanes = this->game->allToOtherPlanes;
+
+    for (int i = 0; i < 1000; i++)
+    {
+        Plane pl;
+        allPlanes.push(pl);
+        ToOtherPlane op;
+        allToOtherPlanes.push(op);
+    }
+
     int gCont = 1;
     int gSea = 1;
+    int planesCount = 0;
+    int toOtherPlanesCount = 0;
     for (int ver = 0; ver < this->field.length; ver++)
     {
-        Array<Cell *> arr = this->field.getItem(ver);
+        Array<Cell *> &arr = this->field.getItemLnk(ver);
         for (int hor = 0; hor < arr.length; hor++)
         {
             Cell *cell = arr.getItem(hor);
             if (cell->litera != 'w' && cell->litera != '9' && !cell->plane)
             {
-                Plane *plane = new Plane;
+                Plane *plane = allPlanes.getItemPtr(planesCount);
+                planesCount++;
                 plane->type = "ground";
                 this->planes.push(plane);
                 cell->plane = plane;
@@ -86,7 +100,8 @@ void GameField::getContinents()
             }
             else if ((cell->litera == 'w' || cell->litera == '9') && !cell->plane)
             {
-                Plane *plane = new Plane;
+                Plane *plane = allPlanes.getItemPtr(planesCount);
+                planesCount++;
                 plane->type = "sea";
                 this->planes.push(plane);
                 cell->plane = plane;
@@ -112,18 +127,20 @@ void GameField::getContinents()
         }
     }
 
-    this->planes.forEach([this](Plane *plane)
-                         { plane->cells.forEach([this, plane](Cell *cell)
+    this->planes.forEach([this, &toOtherPlanesCount](Plane *plane)
+                         { plane->cells.forEach([this, &plane, &toOtherPlanesCount](Cell *cell)
                                                 {
          int aclength = cell->aroundCells.length;
          for (int i = 0; i < aclength; i++) {
             Cell *ac = cell->aroundCells.getItem(i);
             if (ac->plane != cell->plane) {
-               ToOtherPlane *op = plane->contactPlanes.find([ac](ToOtherPlane *item){
+               ToOtherPlane *op = plane->contactPlanes.find([ac, &toOtherPlanesCount](ToOtherPlane *item){
                   return item->otherPlane == ac->plane;
                });
+ 
                if (op == nullptr) {
-                  op = new ToOtherPlane;
+                  op = this->game->allToOtherPlanes.getItemPtr(toOtherPlanesCount);
+                  toOtherPlanesCount++;
                   op->otherPlane = ac->plane;
                   plane->contactPlanes.push(op);
                }
@@ -132,4 +149,8 @@ void GameField::getContinents()
                break;
             }
          } }); });
+
+    allPlanes.splice(planesCount, allPlanes.length - planesCount);
+    allToOtherPlanes.splice(toOtherPlanesCount, allToOtherPlanes.length - toOtherPlanesCount);
+    //console.log(to_string(allToOtherPlanes.length));
 }

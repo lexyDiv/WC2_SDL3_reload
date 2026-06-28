@@ -1,7 +1,10 @@
 #include "Nation.h"
 //=>Th
 
-struct ToOtherPlane {
+class ToOtherPlane {
+    public:
+    ToOtherPlane(){};
+    ~ToOtherPlane(){};
     Plane *otherPlane = nullptr;
     Array<Cell *> cellsToOther;
 };

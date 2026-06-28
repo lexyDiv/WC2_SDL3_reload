@@ -110,20 +110,22 @@ void GameField::getCellImageCellDrawIndexCellUnitInit()
                                            if (cell->litera == 'w')
                                            {
                                                cell->cellImage = imager.ocean;
-                                               Water *water1 = new Water;
-                                               Water *water2 = new Water;
+                                               Water water1 = Water();
+                                               Water water2 = Water();
                                                int rand = intRand(0, 2);
-                                               water1->alpha = rand ? 250 : 0;
-                                               water2->alpha = rand ? 0 : 250;
+                                               water1.alpha = rand ? 250 : 0;
+                                               water2.alpha = rand ? 0 : 250;
                                                int checkTakt = intRand(1, 3);
-                                               water1->checkTakt = checkTakt;
-                                               water2->checkTakt = checkTakt;
+                                               water1.checkTakt = checkTakt;
+                                               water2.checkTakt = checkTakt;
                                                cell->waters.push(water1);
                                                cell->waters.push(water2);
-                                               water1->animX = 100 * intRand(0, 8);
-                                               water1->animY = cell->lineToOtherPlaneNumber ? 100 : 0;
-                                               water2->animX = 100 * intRand(0, 8);
-                                               water2->animY = cell->lineToOtherPlaneNumber == 1 ? 100 : 0;
+                                               Water &w1 = cell->waters.getItemLnk(0);
+                                               Water &w2 = cell->waters.getItemLnk(1);
+                                               w1.animX = 100 * intRand(0, 8);
+                                               w1.animY = cell->lineToOtherPlaneNumber ? 100 : 0;
+                                               w2.animX = 100 * intRand(0, 8);
+                                               w2.animY = cell->lineToOtherPlaneNumber == 1 ? 100 : 0;
                                                cell->animGabX = 100;
                                                cell->animGabY = 100;
                                                cell->cellDrawIndex = cell->lineToOtherPlaneNumber == 1 ? 3 : 2;

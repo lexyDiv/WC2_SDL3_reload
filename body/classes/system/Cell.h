@@ -12,6 +12,7 @@ struct FieldClick;
 struct Water;
 struct AnimLines;
 class Game;
+class ToOtherPlane;
 
 struct UnitPack
 {
@@ -307,7 +308,7 @@ public:
     int LineToMountNumber = 0;
     int lineToDarckGround = 0;
     int cellDrawIndex = 0;
-    Array<Water *> waters;
+    Array<Water> waters;
     Image *cellImage = nullptr;
     Image *cellImage2 = nullptr;
     Image *cellImage3 = nullptr;

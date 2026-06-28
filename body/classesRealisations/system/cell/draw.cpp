@@ -33,9 +33,9 @@ void Cell::draw()
                     this->drawGabaritX, this->drawGabaritY);
 
            } else {
-                this->waters.forEach([this](Water* water, int i){
-                  water->drawControlBasic(i);
-                  water->draw(this, i);
+                this->waters.forEach([this](Water &water, int i){
+                  water.drawControlBasic(i);
+                  water.draw(this, i);
                 });
            }
 

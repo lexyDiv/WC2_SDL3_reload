@@ -59,8 +59,8 @@ Array<int> deeps;
     Cell *globalMin_H_cell4 = nullptr;
 
     ///////////////////////////////////////////////////////////////////////////////
-
-    GameField(string *path, int type);
+    GameField(){};
+   // GameField(string *path, int type);
      ~GameField();
      void create();
      void mapInit(Array<string> &array);
@@ -80,6 +80,7 @@ Array<int> deeps;
      void getVectorCells(Cell *cell);
      void fieldClick();
      void fieldClickRight();
+     void getPathes(string *path, int type);
 
     double getMinCellsDis(Cell *cell, Cell *cell2);
 

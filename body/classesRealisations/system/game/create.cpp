@@ -1,9 +1,13 @@
 #include "Game.cpp"
 //=>draw
 
+GameField gfData;
+
 void Game::create()
 {
-    this->gf = new GameField(&this->pathes[0], 1);
+    gfData = GameField();
+    this->gf = &gfData;//new GameField(&this->pathes[0], 1);
+    this->gf->getPathes(&this->pathes[0], 1);
     this->gf->game = this;
     this->gf->create();
 

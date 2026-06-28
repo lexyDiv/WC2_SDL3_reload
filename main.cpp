@@ -4,8 +4,6 @@
 
 #include "body/out.h"
 
-Game *game = new Game;
-
 
 void foo()
 {
@@ -84,6 +82,5 @@ int main()
     th_3.join();
     th_4.join();
 
-    delete game;
-    game = nullptr;
+
 }

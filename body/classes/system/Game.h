@@ -36,7 +36,6 @@ public:
       "levels/test_1.txt",
       "levels/testBig_1.txt",
       "levels/testBig_500.txt"};
-
   GameField *gf = nullptr;
   ObjMenu *objMenu = nullptr;
   bool isGFComplite = false;
@@ -46,5 +45,10 @@ public:
   Array<Unit *> AllUnits;
   Array<Unit *> allPeons;
   Array<Unit *> allPeons2;
+  Array<Cell> allCells;
   int scanIndex = 0;
 };
+
+Game gameData;
+
+Game *game = &gameData;

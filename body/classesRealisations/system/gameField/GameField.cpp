@@ -13,6 +13,10 @@ void GameField::getPathes(string *path, int type)
     this->type = type;
 }
 
-GameField::~GameField() {
-  
+GameField::~GameField()
+{
+    this->planes.forEach([](Plane *plane)
+                         {
+        delete plane;
+        plane = nullptr; });
 }

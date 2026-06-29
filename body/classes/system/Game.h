@@ -47,8 +47,6 @@ public:
   Array<Unit *> allPeons2;
   ///////////////////////////////////////////////////
   Array<Cell> allCells;
-  Array<Plane> allPlanes;
-  Array<ToOtherPlane> allToOtherPlanes;
 
   int scanIndex = 0;
 };

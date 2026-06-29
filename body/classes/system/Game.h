@@ -42,9 +42,10 @@ public:
   Array<Fraction *> fractions;
   Array<Unit *> unitsOnWay;
 
-  Array<Unit *> AllUnits;
-  Array<Unit *> allPeons;
-  Array<Unit *> allPeons2;
+   Array<Unit *> AllUnitsPtr;
+   Array<Unit *> allPeonsPtr;
+   Array<Unit *> allTreesPtr;
+  
   ///////////////////////////////////////////////////
   Array<Cell> allCells;
 

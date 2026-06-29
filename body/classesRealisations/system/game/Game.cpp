@@ -3,18 +3,11 @@
 
 Game::~Game()
 {
-    // if (this->gf)
-    // {
-    //     delete this->gf;
-    //     this->gf = nullptr;
-    // }
-
-    // if (this->objMenu)
-    // {
-    //     delete this->objMenu;
-    //     this->objMenu = nullptr;
-    // }
-
+    this->allTreesPtr.forEach([](Unit *tree){
+        if (tree) {
+            delete tree;
+        }
+    });
     // this->AllUnits.forEach([](Unit *unit)
     //                        {
     //     delete unit;

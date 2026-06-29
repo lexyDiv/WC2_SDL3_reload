@@ -5,40 +5,38 @@ void GameField::getToTreeCellLineNumber()
 {
     console.log("getToTreeCellLineNumber");
 
-    this->field.forEach([this](Array<Cell *> &line){
-        line.forEach([this](Cell* cell){
-               this->getVectorCells(cell);
-        });
-    });
+    this->field.forEach([this](Array<Cell *> &line)
+                        { line.forEach([this](Cell *cell)
+                                       { this->getVectorCells(cell); }); });
 
     this->planes.forEach([this](Plane *plane)
                          {
                            
-    //                          if (plane->type == "ground")
-    //                          {
+                             if (plane->type == "ground")
+                            {
 
-    //                              Array<ProtoObj *> arr;
-    //                              Array<ProtoObj *> arrAroundDarck;
-    //                             Array<ProtoObj *> arrStones;
-    //                             Array<ProtoObj *> shahts;
+                                Array<Cell *> arr;
+                                Array<Cell *> arrAroundDarck;
+                                Array<Cell *> arrStones;
+                                Array<Cell *> shahts;
                                 
                                  
-    //                              plane->cells.forEach([plane, &arr, &arrStones, &arrAroundDarck, &shahts](ProtoObj *cell)
-    //                                                   {  
+                                  plane->cells.forEach([plane, &arr, &arrStones, &arrAroundDarck, &shahts](Cell *cell)
+                                                      {  
                                
-    //             if (cell->litera == 't') {
-    //                 ProtoObj *tree = new Tree;
-    //                 tree->create(cell);
-    //                 cell->aroundCells.forEach([plane, &arr](ProtoObj* ac){
-    //                     if (ac->plane == plane &&
-    //                     ac->litera != 't' && ac->litera != '1' &&
-    //                     !ac->lineToTreeNumber) {
-    //                         ac->lineToTreeNumber = 1;
-    //                         arr.push(ac);  
-    //                     }
-    //                 });
-    //              // plane->trees.push(tree);
-    //            } 
+                if (cell->litera == 't') {
+                    // ProtoObj *tree = new Tree;
+                    // tree->create(cell);
+                    // cell->aroundCells.forEach([plane, &arr](Cell* ac){
+                    //     if (ac->plane == plane &&
+                    //     ac->litera != 't' && ac->litera != '1' &&
+                    //     !ac->lineToTreeNumber) {
+                    //         ac->lineToTreeNumber = 1;
+                    //         arr.push(ac);  
+                    //     }
+                    // });
+                  // plane->trees.push(tree);
+                } 
     //            if (cell->litera == 'S') {
     //                 shahts.push(cell);
     //            }
@@ -114,8 +112,6 @@ void GameField::getToTreeCellLineNumber()
     //             oil->create(cell);
     //             oil->oil = stoi(this->oilData.getItem(i));
 
-    //     });
-    //                          }
-                              });
-
+        });
+                             } });
 };

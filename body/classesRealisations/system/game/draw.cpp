@@ -18,10 +18,10 @@ ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "green");
         float drawDeltaX = this->gf->drawDeltaX;
         float drawDeltaY = this->gf->drawDeltaY;
 
-        Array<Array<Cell *>> DA;
+        Array<Array<Unit *>> DA;
         for (int i = 0; i < 230; i++)
         {
-            Array<Cell *> a;
+            Array<Unit *> a;
             DA.push(a);
         };
 
@@ -34,15 +34,15 @@ ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "green");
                                                                    {
                     cell->draw();
                     Unit *groundUnit = cell->groundUnit;
-                    // if (groundUnit && !groundUnit->isAddOnDraw
-                    // ) {
-                    // int index = ceil((((groundUnit->drawIndexY) + drawDeltaY) / 10) + 30);
+                    if (groundUnit && !groundUnit->isAddOnDraw
+                    ) {
+                    int index = ceil((((groundUnit->drawIndexY) + drawDeltaY) / 10) + 30);
 
-                    //     groundUnit->isAddOnDraw = true;
-                    //    Array<ProtoObj *> &line = DA.getItem3(index);                    
-                    //     line.push(groundUnit);
-                    //    max.push(index);
-                    // } 
+                        groundUnit->isAddOnDraw = true;
+                       Array<Unit *> &line = DA.getItemLnk(index);                    
+                        line.push(groundUnit);
+                       max.push(index);
+                    } 
                 }); });
 
         this->gf->drawCell->cellsOnDraw.forEach([drawDeltaY, &DA, &max](Array<Cell *> &drawLine)
@@ -53,9 +53,11 @@ ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "green");
                     //   });
                      }); });
 
-        // DA.forEach([](Array<ProtoObj *> line)
-        //            { line.forEach([](ProtoObj *unit)
-        //                           { unit->draw(); }); });
+        DA.forEach([](Array<Unit *> &line)
+                   { line.forEach([](Unit *unit)
+                                  { 
+                                    unit->draw(); 
+                                }); });
 
         /////////  setka
         // this->gf->drawCell->cellsOnDraw.forEach([drawDeltaX, drawDeltaY](Array<ProtoObj *> drawLine)

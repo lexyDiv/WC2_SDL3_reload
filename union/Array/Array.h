@@ -51,7 +51,7 @@ public:
     void filterSelf(function<bool(T item)> fn);
     void sort(function<bool(T &a, T &b)> fn);
 
-    void copy(Array<T> arr);
+    void copy(Array<T> &arr);
 
     void clear();
 
@@ -456,7 +456,7 @@ inline void Array<T>::sort(function<bool(T &a, T &b)> fn)
 // }
 
 template <typename T>
-inline void Array<T>::copy(Array<T> arr)
+inline void Array<T>::copy(Array<T> &arr)
 {
     this->vec = arr.vec;
     this->length = this->vec.size();

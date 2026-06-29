@@ -25,17 +25,16 @@ void GameField::getToTreeCellLineNumber()
                                                       {  
                                
                 if (cell->litera == 't') {
-                    // ProtoObj *tree = new Tree;
-                    // tree->create(cell);
-                    // cell->aroundCells.forEach([plane, &arr](Cell* ac){
-                    //     if (ac->plane == plane &&
-                    //     ac->litera != 't' && ac->litera != '1' &&
-                    //     !ac->lineToTreeNumber) {
-                    //         ac->lineToTreeNumber = 1;
-                    //         arr.push(ac);  
-                    //     }
-                    // });
-                  // plane->trees.push(tree);
+                    Unit *tree = new Tree;
+                    tree->create(cell);
+                    cell->aroundCells.forEach([plane, &arr](Cell* ac){
+                        if (ac->plane == plane &&
+                        ac->litera != 't' && ac->litera != '1' &&
+                        !ac->lineToTreeNumber) {
+                            ac->lineToTreeNumber = 1;
+                            arr.push(ac);  
+                        }
+                    }); 
                 } 
     //            if (cell->litera == 'S') {
     //                 shahts.push(cell);

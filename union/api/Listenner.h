@@ -20,9 +20,9 @@ void listenner(bool &quit)
         if (e.type == SDL_EVENT_KEY_DOWN)
         {
             // console.log(to_string(e.key.keysym.scancode)); // int 40
-            if (e.key.key == 40)
+            if (e.key.key == 13)
             {
-                nextMove = true;
+                nextMove = !nextMove;
                 // console.log("eneter");
                 //  game->speed++;
                 //  game->pause = false;

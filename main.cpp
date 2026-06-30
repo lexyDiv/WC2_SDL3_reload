@@ -2,31 +2,77 @@
 // g++ -g main.cpp -I./include -fmax-include-depth=5000 -o prog -L./sdl3-sample/build -lSDL3 -lSDL3_image
 // g++ main.cpp -I./include -fmax-include-depth=5000 -o prog -L./sdl3-sample/build -lSDL3 -lSDL3_image
 
-#include "union/out.h"
+#include "body/out.h"
+
+void foo()
+{
+
+    while (!quit)
+    {
+        this_thread::sleep_for(chrono::nanoseconds(1));
+    }
+};
+
+void foo2()
+{
+    while (!quit)
+    {
+        this_thread::sleep_for(chrono::nanoseconds(1));
+    }
+};
+
+void foo3()
+{
+    while (!quit)
+    {
+        this_thread::sleep_for(chrono::nanoseconds(1));
+    }
+};
+
+void do1()
+{
+    game->create();
+
+    while (!quit)
+    {
+        this_thread::sleep_for(chrono::nanoseconds(1));
+    }
+}
 
 int main()
 {
 
-    console.log("popa");
+    thread th_1(do1);
+    thread th_2(foo);
+    thread th_3(foo2);
+    thread th_4(foo3);
 
-    while (true)
+    int optimalDeltaTime = 1000 / 30;
+
+    while (!quit)
     {
-        if (!quit)
-        {
-            listenner(quit);
-            ctx.CreateDrawZone(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT);
-            ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "white");
+        Uint64 startTick = SDL_GetTicks();
 
-            //    // game->process(&startTick, &optimalDeltaTime);
-            
-            console.proc(mouse.x, mouse.y, mouse.leftKey);
-            console.draw();
-            ctx.End();
-        }
-        else
+        basicDo([]()
+                { game->process(); });
+
+        basicDraw([]()
+                  { game->draw(); });
+
+        Uint64 finishTick = SDL_GetTicks();
+        int deltaTime = int(finishTick) - int(startTick);
+        if (deltaTime < optimalDeltaTime)
         {
-            ctx.Close();
-            break;
+          //  console.log("delay : " + to_string(optimalDeltaTime - deltaTime));
+            SDL_Delay(optimalDeltaTime - deltaTime);
+        } else {
+            console.log("hold");
         }
     }
+    ctx.Close();
+
+    th_1.join();
+    th_2.join();
+    th_3.join();
+    th_4.join();
 }

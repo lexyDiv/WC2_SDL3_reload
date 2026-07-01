@@ -7,7 +7,7 @@ void Game::process()
     {
        // this->objMenu->getCandidateCells();
 
-        needReturn = true;
+       // needReturn = true;
         // while (!goWorkReady || !hardReady || !dop_1Ready)
         // {
         // }

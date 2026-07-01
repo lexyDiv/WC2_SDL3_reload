@@ -105,7 +105,7 @@ Array<int> deeps;
     Cell *drawCell = nullptr;
     string path;
     int type;
-    float miniMapUpdateVer = 0;
+    int miniMapUpdateVer = 0;
     float gabarit = 0;
     float screenWidth = 720;
     float screenHeight = 720;

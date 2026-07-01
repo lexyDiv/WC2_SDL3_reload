@@ -1,5 +1,5 @@
 #include "miniMapMouseControl.cpp"
-//=>out
+//=>miniMapDraw
 
 int iter = 0;
 

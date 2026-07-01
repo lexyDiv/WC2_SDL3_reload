@@ -1,5 +1,5 @@
 #include "Water::draw.cpp"
-//=> out
+//=> getMapColor
 
 void Cell::draw()
 {

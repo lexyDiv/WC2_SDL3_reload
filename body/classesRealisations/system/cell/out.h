@@ -1,2 +1,3 @@
-#include "draw.cpp"
+#include "getMapColor.cpp"
 //=>fraction
+

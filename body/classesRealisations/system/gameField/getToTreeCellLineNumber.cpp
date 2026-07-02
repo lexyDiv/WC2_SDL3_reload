@@ -44,37 +44,37 @@ void GameField::getToTreeCellLineNumber()
                         Unit *mount = new Mount();
                         mount->create(cell);
                     }
-    //                 if (cell->litera == 'e') {
-    //                     cell->lineToDarckGround = 1;
-    //                      arrAroundDarck.push(cell);
-    //                 }  
+                    if (cell->litera == 'e') {
+                        cell->lineToDarckGround = 1;
+                         arrAroundDarck.push(cell);
+                    }  
     //            });
-    //                 arr.forEach([](ProtoObj *firstCell)
-    //                 {
+                    arr.forEach([](Cell *firstCell)
+                    {
                         
-    //                      firstCell->aroundCells.forEach([](ProtoObj *secondCell)
-    //                                                                           {
-    //                 if (secondCell->litera != 't' && 
-    //                 !secondCell->lineToTreeNumber) {
-    //                     int rand = intRand(0, 5);
-    //                     if (!rand) {secondCell->lineToTreeNumber = 2;}
-    //                 } }); });
+                         firstCell->aroundCells.forEach([](Cell *secondCell)
+                                                                              {
+                    if (secondCell->litera != 't' && 
+                    !secondCell->lineToTreeNumber) {
+                        int rand = intRand(0, 5);
+                        if (!rand) {secondCell->lineToTreeNumber = 2;}
+                    } }); });
 
 
-    //                 arrAroundDarck.forEach([](ProtoObj* cell){
-    //                     cell->maxAroundCells.forEach([cell](ProtoObj* ac, int i){
-    //                         int dis = cell->maxAroundCellsDis.getItem(i);
-    //                        if (dis <= 150 && (!ac->lineToDarckGround || (
-    //                         ac->lineToDarckGround > 1
-    //                        ))) {
-    //                               ac->lineToDarckGround = 1;
-    //                        } else if (dis <= 250 && (!ac->lineToDarckGround || (
-    //                         ac->lineToDarckGround > 2
-    //                        ))) {
-    //                         ac->lineToDarckGround = 2;
-    //                        }
-    //                     });
-    //                 });
+                    arrAroundDarck.forEach([](Cell* cell){
+                        cell->maxAroundCells.forEach([cell](Cell* ac, int i){
+                            int dis = cell->maxAroundCellsDis.getItem(i);
+                           if (dis <= 150 && (!ac->lineToDarckGround || (
+                            ac->lineToDarckGround > 1
+                           ))) {
+                                  ac->lineToDarckGround = 1;
+                           } else if (dis <= 250 && (!ac->lineToDarckGround || (
+                            ac->lineToDarckGround > 2
+                           ))) {
+                            ac->lineToDarckGround = 2;
+                           }
+                        });
+                    });
 
                     arrStones.forEach([](Cell* as){
                         as->maxAroundCells.forEach([as](Cell* ac){

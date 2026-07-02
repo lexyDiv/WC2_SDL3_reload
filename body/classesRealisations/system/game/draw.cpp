@@ -93,5 +93,7 @@ ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "green");
    // this->objMenu->draw();
 
     ctx.CreateDrawZone(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT);
+     
+   // ctx.FillRect(gf->dx, gf->dy, 3, 3, "blue");
                             }
 }

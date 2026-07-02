@@ -143,8 +143,8 @@ Array<int> deeps;
     bool miniMapClick = false;
     float miniMapWinGab = 0;
     float mcs = 0.0f;
-    int dx = 0;
-    int dy = 0;
+    double dx = 0;
+    double dy = 0;
     //////////////////////////// <= miniMap
 
     ///////////////// => fieldClick

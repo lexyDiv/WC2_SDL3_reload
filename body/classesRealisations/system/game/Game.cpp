@@ -14,6 +14,12 @@ Game::~Game()
             delete mount;
         }
     });
+
+    this->allShahtsPtr.forEach([](Unit *shaht){
+        if (shaht) {
+            delete shaht;
+        }
+    });
     // this->AllUnits.forEach([](Unit *unit)
     //                        {
     //     delete unit;

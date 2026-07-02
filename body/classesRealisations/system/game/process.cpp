@@ -5,6 +5,7 @@ void Game::process()
 {
     if (this->isGFComplite)
     {
+       // console.log(to_string(this->allMountsPtr.length));
        // this->objMenu->getCandidateCells();
 
        // needReturn = true;

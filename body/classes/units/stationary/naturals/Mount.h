@@ -6,4 +6,5 @@ class Mount : public Unit {
     Mount(){};
     ~Mount(){};
     void create(Cell* cell) override;
+    void draw() override;
 };

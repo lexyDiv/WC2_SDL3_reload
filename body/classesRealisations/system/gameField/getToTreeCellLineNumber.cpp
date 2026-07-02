@@ -39,11 +39,11 @@ void GameField::getToTreeCellLineNumber()
     //            if (cell->litera == 'S') {
     //                 shahts.push(cell);
     //            }
-    //                                if (cell->litera == 'g') {
-    //                     arrStones.push(cell);
-    //                     ProtoObj *mount = new Mount();
-    //                     mount->create(cell);
-    //                 }
+                                   if (cell->litera == 'g') {
+                        arrStones.push(cell);
+                        Unit *mount = new Mount();
+                        mount->create(cell);
+                    }
     //                 if (cell->litera == 'e') {
     //                     cell->lineToDarckGround = 1;
     //                      arrAroundDarck.push(cell);
@@ -76,20 +76,21 @@ void GameField::getToTreeCellLineNumber()
     //                     });
     //                 });
 
-    //                 arrStones.forEach([](ProtoObj* as){
-    //                     as->maxAroundCells.forEach([as](ProtoObj* ac){
-    //                     Delta delta = getDeltas(
-    //                     {as->x + as->gabX, as->y + as->gabY},
-    //                     {ac->x + as->gabX / 2, ac->y + as->gabY /2}
-    //                     ); 
-    //                     double dis = getDis(delta); 
-    //                     if (dis <= 100) {
-    //                         ac->LineToMountNumber = 1;
-    //                     } else if (dis <= 200 && !ac->LineToMountNumber) {
-    //                         ac->LineToMountNumber = 2;
-    //                     }
-    //                     });
-    //                 });
+                    arrStones.forEach([](Cell* as){
+                        as->maxAroundCells.forEach([as](Cell* ac){
+                        Delta delta = getDeltas(
+                        {as->x + as->gabX, as->y + as->gabY},
+                        {ac->x + as->gabX / 2, ac->y + as->gabY /2}
+                        ); 
+                        double dis = getDis(delta); 
+                        if (dis <= 100) {
+                            ac->LineToMountNumber = 1;
+                        } else if (dis <= 200 && !ac->LineToMountNumber) {
+                            ac->LineToMountNumber = 2;
+                        }
+                        });
+
+                     });
 
     //         shahts.forEach([this](ProtoObj *cell, int i){
     //             ProtoObj *shaht = new Shaht;

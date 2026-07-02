@@ -1,5 +1,5 @@
 #include "Th.h"
-//=>system/out.h
+//=>Unit.cpp
 
 class Unit
 {
@@ -10,8 +10,9 @@ public:
     Cell *cell = nullptr;
 
    virtual void create(Cell*){};
-   virtual void getContactCells(){};
+   virtual void getContactCells();
    virtual void draw(){};
+   virtual void get2x2myCells(Cell *cell);
 
      int deleteTimer = 50;
     Array<Cell *> myCells;

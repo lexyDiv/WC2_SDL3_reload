@@ -50,6 +50,8 @@ public:
     void splice(int index, int count);
     void filterSelf(function<bool(T item)> fn);
     void sort(function<bool(T &a, T &b)> fn);
+    Array<Cell *> map(function<Cell *(T &item)> fn);
+    MinData getMinData(function<double(Cell *item)> fn);
 
     void copy(Array<T> &arr);
 
@@ -379,6 +381,8 @@ inline void Array<T>::sort(function<bool(T &a, T &b)> fn)
               { return fn(a, b); });
 }
 
+
+
 // template <typename T>
 // inline ProtoObj *Array<T>::getMin(function<double(ProtoObj *item)> fn)
 // {
@@ -401,28 +405,28 @@ inline void Array<T>::sort(function<bool(T &a, T &b)> fn)
 //     return nullptr;
 // }
 
-// template <typename T>
-// inline MinData Array<T>::getMinData(function<double(ProtoObj *item)> fn)
-// {
-//     MinData md;
-//     if (this->length)
-//     {
-//         md.cell = this->getItem(0);
-//         md.min = fn(md.cell);
-//         for (int i = 1; i < this->length; i++)
-//         {
-//             ProtoObj *e = this->vec[i];
-//             double current = fn(e);
-//             if (md.min > current)
-//             {
-//                 md.index = i;
-//                 md.min = current;
-//                 md.cell = e;
-//             }
-//         }
-//     }
-//     return md;
-// }
+template <typename T>
+inline MinData Array<T>::getMinData(function<double(Cell *item)> fn)
+{
+    MinData md;
+    if (this->length)
+    {
+        md.cell = this->getItem(0);
+        md.min = fn(md.cell);
+        for (int i = 1; i < this->length; i++)
+        {
+            Cell *e = this->vec[i];
+            double current = fn(e);
+            if (md.min > current)
+            {
+                md.index = i;
+                md.min = current;
+                md.cell = e;
+            }
+        }
+    }
+    return md;
+}
 
 // template <typename T>
 // inline ProtoObj *Array<T>::getMAx(function<double(ProtoObj *item)> fn)
@@ -446,14 +450,14 @@ inline void Array<T>::sort(function<bool(T &a, T &b)> fn)
 //     return nullptr;
 // }
 
-// template <typename T>
-// inline Array<ProtoObj *> Array<T>::map(function<ProtoObj *(T item)> fn)
-// {
-//     Array<ProtoObj *> newArr;
-//     this->forEach([&newArr, fn](T item)
-//                   { newArr.push(fn(item)); });
-//     return *&newArr;
-// }
+template <typename T>
+inline Array<Cell *> Array<T>::map(function<Cell *(T &item)> fn)
+{
+    Array<Cell *> newArr;
+    this->forEach([&newArr, fn](T item)
+                  { newArr.push(fn(item)); });
+    return newArr;
+}
 
 template <typename T>
 inline void Array<T>::copy(Array<T> &arr)

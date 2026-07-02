@@ -1,5 +1,5 @@
 #include "get3x3myCells.cpp"
-//=>out
+//=>getContactAndExitCells
 
 void Unit::getContactCells()
 {

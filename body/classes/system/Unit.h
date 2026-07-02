@@ -14,10 +14,16 @@ public:
    virtual void draw(){};
    virtual void get2x2myCells(Cell *cell);
    virtual void get3x3myCells(Cell *cell);
+   virtual void getContactAndExitCells(Cell *cell, Cell *exitCell, Cell *centerCell);
+   virtual void getWellComeCells();
 
      int deleteTimer = 50;
     Array<Cell *> myCells;
     Array<Cell *> contactCells;
+    Array<Cell *> exitCells;
+    Array<Unit *> clients;
+    Array<MinData> wellComeCells;
+    
     string name = "tree";
     string type = "building";
     Color mapColor = {R: 0, G: 150, B: 0};
@@ -48,4 +54,5 @@ public:
     int alpha = 255;
     int getGabX = 0;
     int getGabY = 0;
+    int gold = 0;
 };

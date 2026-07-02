@@ -11,17 +11,15 @@ void GameField::getToTreeCellLineNumber()
 
     this->planes.forEach([this](Plane *plane)
                          {
-                           
                              if (plane->type == "ground")
-                            {
+                             {
 
-                                Array<Cell *> arr;
-                                Array<Cell *> arrAroundDarck;
-                                Array<Cell *> arrStones;
-                                Array<Cell *> shahts;
-                                
-                                 
-                                  plane->cells.forEach([plane, &arr, &arrStones, &arrAroundDarck, &shahts](Cell *cell)
+                                 Array<Cell *> arr;
+                                 Array<Cell *> arrAroundDarck;
+                                 Array<Cell *> arrStones;
+                                 Array<Cell *> shahts;
+
+                                 plane->cells.forEach([plane, &arr, &arrStones, &arrAroundDarck, &shahts](Cell *cell)
                                                       {  
                                
                 if (cell->litera == 't') {
@@ -36,9 +34,9 @@ void GameField::getToTreeCellLineNumber()
                         }
                     }); 
                 } 
-    //            if (cell->litera == 'S') {
-    //                 shahts.push(cell);
-    //            }
+               if (cell->litera == 'S') {
+                    shahts.push(cell);
+               }
                                    if (cell->litera == 'g') {
                         arrStones.push(cell);
                         Unit *mount = new Mount();
@@ -47,12 +45,9 @@ void GameField::getToTreeCellLineNumber()
                     if (cell->litera == 'e') {
                         cell->lineToDarckGround = 1;
                          arrAroundDarck.push(cell);
-                    }  
-    //            });
-                    arr.forEach([](Cell *firstCell)
-                    {
-                        
-                         firstCell->aroundCells.forEach([](Cell *secondCell)
+                    } });
+                                 arr.forEach([](Cell *firstCell)
+                                             { firstCell->aroundCells.forEach([](Cell *secondCell)
                                                                               {
                     if (secondCell->litera != 't' && 
                     !secondCell->lineToTreeNumber) {
@@ -60,9 +55,9 @@ void GameField::getToTreeCellLineNumber()
                         if (!rand) {secondCell->lineToTreeNumber = 2;}
                     } }); });
 
-
-                    arrAroundDarck.forEach([](Cell* cell){
-                        cell->maxAroundCells.forEach([cell](Cell* ac, int i){
+                                 arrAroundDarck.forEach([](Cell *cell)
+                                                        { cell->maxAroundCells.forEach([cell](Cell *ac, int i)
+                                                                                       {
                             int dis = cell->maxAroundCellsDis.getItem(i);
                            if (dis <= 150 && (!ac->lineToDarckGround || (
                             ac->lineToDarckGround > 1
@@ -72,12 +67,12 @@ void GameField::getToTreeCellLineNumber()
                             ac->lineToDarckGround > 2
                            ))) {
                             ac->lineToDarckGround = 2;
-                           }
-                        });
-                    });
+                           } }); });
 
-                    arrStones.forEach([](Cell* as){
-                        as->maxAroundCells.forEach([as](Cell* ac){
+                                 arrStones.forEach([](Cell *as)
+                                                   {
+                                                       as->maxAroundCells.forEach([as](Cell *ac)
+                                                                                  {
                         Delta delta = getDeltas(
                         {as->x + as->gabX, as->y + as->gabY},
                         {ac->x + as->gabX / 2, ac->y + as->gabY /2}
@@ -87,31 +82,29 @@ void GameField::getToTreeCellLineNumber()
                             ac->LineToMountNumber = 1;
                         } else if (dis <= 200 && !ac->LineToMountNumber) {
                             ac->LineToMountNumber = 2;
-                        }
-                        });
+                        } });
+                                                   });
 
-                     });
+                                 shahts.forEach([this](Cell *cell, int i)
+                                                {
+                Shaht *shaht = new Shaht;
+                shaht->create(cell);
+                shaht->gold = stoi(this->goldData.getItem(i)); });
+                             }
+                             else
+                             {
+                                 //  Array<ProtoObj *> oils;
+                                 //  plane->cells.forEach([&oils, this](ProtoObj * cell){
+                                 //     if (cell->litera == '9') {
+                                 //         oils.push(cell);
+                                 //     }
+                                 //  });
+                                 //     oils.forEach([this](ProtoObj * cell, int i){
+                                 //             ProtoObj *oil = new Oil;
+                                 //             oil->create(cell);
+                                 //             oil->oil = stoi(this->oilData.getItem(i));
 
-    //         shahts.forEach([this](ProtoObj *cell, int i){
-    //             ProtoObj *shaht = new Shaht;
-    //             shaht->create(cell);
-    //             shaht->gold = stoi(this->goldData.getItem(i));
-    //         });
-
-            
-
-    // } else {
-    //  Array<ProtoObj *> oils;
-    //  plane->cells.forEach([&oils, this](ProtoObj * cell){
-    //     if (cell->litera == '9') {
-    //         oils.push(cell);
-    //     }
-    //  });
-    //     oils.forEach([this](ProtoObj * cell, int i){
-    //             ProtoObj *oil = new Oil;
-    //             oil->create(cell);
-    //             oil->oil = stoi(this->oilData.getItem(i));
-
-        });
-                             } });
+                                 //     });
+                             }
+                         });
 };

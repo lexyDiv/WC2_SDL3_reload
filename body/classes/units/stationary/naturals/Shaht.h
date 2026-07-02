@@ -7,6 +7,8 @@ public:
     Shaht() : Unit() {};
     ~Shaht();
 
+  
+
     void create(Cell *cell) override;
     void draw() override;
   //  void createUnitMenu() override;

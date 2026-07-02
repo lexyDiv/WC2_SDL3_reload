@@ -15,8 +15,8 @@ void Shaht::create(Cell *cell)
     this->cell = centerCell;
     this->cell->game->allShahtsPtr.push(this);
 
-   // this->getContactAndExitCells(cell, exitCell, centerCell);
-   // this->getWellComeCells();
+    this->getContactAndExitCells(cell, exitCell, centerCell);
+    this->getWellComeCells();
     this->name = "shaht";
     this->type = "building";
     this->mapColor = {R : 255, G : 255, B : 0};

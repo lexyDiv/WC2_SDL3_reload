@@ -45,6 +45,8 @@ public:
    Array<Unit *> AllUnitsPtr;
    Array<Unit *> allPeonsPtr;
    Array<Unit *> allTreesPtr;
+   Array<Unit *> allMountsPtr;
+   Array<Unit *> allShahtsPtr;
   
   ///////////////////////////////////////////////////
   Array<Cell> allCells;

@@ -1,4 +1,4 @@
-#include "offsetControl.cpp"
+#include "miniMapUpdate.cpp"
 //=>imager
 
 void GameField::getVectorCells(Cell *cell)

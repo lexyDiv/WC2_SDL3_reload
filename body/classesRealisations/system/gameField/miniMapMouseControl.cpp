@@ -6,37 +6,34 @@ void GameField::miniMapHoldLeftMouseKey()
     int clickIndexX, clickIndexY;
     clickIndexX = this->dx / this->mcs;
     clickIndexY = this->dy / this->mcs;
-    
     clickIndexX = clickIndexX >= this->gabarit ? this->gabarit - 1 : clickIndexX;
     clickIndexY = clickIndexY >= this->gabarit ? this->gabarit - 1 : clickIndexY;
-
+    //  console.log(to_string(clickIndexX));
 
     Cell *cell = this->field.getItem(clickIndexY).getItem(clickIndexX);
-    if (cell && this->drawCell) {
-    int deltaIndexX = this->drawCell->hor - cell->hor;
-    int deltaIndexY = this->drawCell->ver - cell->ver;
-    int deltaScrollX = deltaIndexX * this->cellSize;
-    int deltaScrollY = deltaIndexY * this->cellSize;
-    this->offsetX -= deltaScrollX;
-    this->offsetY -= deltaScrollY;
+    if (cell && this->drawCell)
+    {
+        this->offsetX = (this->x + cell->x) - centerX; 
+        this->offsetY = (this->y + cell->y) - centerY; 
     }
 }
-
 
 void GameField::miniMapMouseControl()
 {
     bool click = mouse.leftKeyDown;
+    bool inMap = false;
     if (mouse.leftKeyUp)
     {
         this->miniMapClick = false;
-       // mouse.leftKeyUp = false;
     }
+
     if (click)
     {
         int mx = mouse.x;
         int my = mouse.y;
-        if (!(mx < this->miniMapX || mx > this->miniMapX + this->miniMapGab ||
-              my < this->miniMapY || my > this->miniMapY + this->miniMapGab))
+        inMap = !(mx < this->miniMapX || mx > this->miniMapX + this->miniMapGab ||
+                  my < this->miniMapY || my > this->miniMapY + this->miniMapGab);
+        if (inMap)
         {
             this->miniMapClick = true;
             this->miniMapClickX = mx;
@@ -47,13 +44,12 @@ void GameField::miniMapMouseControl()
 
             this->miniMapHoldLeftMouseKey();
         }
-       // mouse.leftKeyDown = false;
     }
 
     if (this->miniMapClick)
     {
-        float deltaX = mouse.x - this->miniMapClickX;
-        float deltaY = mouse.y - this->miniMapClickY;
+        double deltaX = mouse.x - this->miniMapClickX;
+        double deltaY = mouse.y - this->miniMapClickY;
 
         if (deltaX || deltaY)
         {
@@ -72,5 +68,4 @@ void GameField::miniMapMouseControl()
         this->miniMapClickX = mouse.x;
         this->miniMapClickY = mouse.y;
     }
-    
 }

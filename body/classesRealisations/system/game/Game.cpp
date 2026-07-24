@@ -8,6 +8,18 @@ Game::~Game()
             delete tree;
         }
     });
+
+    this->allMountsPtr.forEach([](Unit *mount){
+        if (mount) {
+            delete mount;
+        }
+    });
+
+    this->allShahtsPtr.forEach([](Unit *shaht){
+        if (shaht) {
+            delete shaht;
+        }
+    });
     // this->AllUnits.forEach([](Unit *unit)
     //                        {
     //     delete unit;

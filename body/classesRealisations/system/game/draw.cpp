@@ -79,7 +79,7 @@ ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "green");
         //         fcp->gabX, fcp->gabY, "red");
         // }
         // /////////////// zone
-    } 
+     
 
     ctx.CreateDrawZone(0, 0, this->gf->screenWidth, ctx.SCREEN_HEIGHT - this->gf->screenHeight);
     ctx.FillRect(0, 0, this->gf->screenWidth, ctx.SCREEN_HEIGHT - this->gf->screenHeight, "black");
@@ -88,9 +88,12 @@ ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "green");
     ctx.FillRect(this->gf->screenWidth, 0, 324, ctx.SCREEN_HEIGHT, "black");
 
   //  this->fonMenuDraw();
-   // this->gf->miniMapDraw();
+    this->gf->miniMapDraw();
 
    // this->objMenu->draw();
 
     ctx.CreateDrawZone(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT);
+     
+   // ctx.FillRect(gf->dx, gf->dy, 3, 3, "blue");
+                            }
 }

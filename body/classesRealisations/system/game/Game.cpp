@@ -20,6 +20,12 @@ Game::~Game()
             delete shaht;
         }
     });
+
+        this->allOilsPtr.forEach([](Unit *oil){
+        if (oil) {
+            delete oil;
+        }
+    });
     // this->AllUnits.forEach([](Unit *unit)
     //                        {
     //     delete unit;

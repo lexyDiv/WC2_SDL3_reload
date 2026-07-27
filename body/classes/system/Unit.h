@@ -55,4 +55,5 @@ public:
     int getGabX = 0;
     int getGabY = 0;
     int gold = 0;
+    
 };

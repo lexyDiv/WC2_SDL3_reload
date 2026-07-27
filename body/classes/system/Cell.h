@@ -14,6 +14,7 @@ struct AnimLines;
 class Game;
 class ToOtherPlane;
 
+
 struct UnitPack
 {
     Unit *unit = nullptr;
@@ -135,9 +136,9 @@ struct AnimLines
     int gabY = 5;
     float alpha = 255;
 
-    void draw(Unit *oil)
-    {
-        // float drawDeltaX = oil->gf->drawDeltaX;
+    void draw(Unit *oil);
+   // {
+        //  float drawDeltaX = oil->gf->drawDeltaX;
         // float drawDeltaY = oil->gf->drawDeltaY;
         // ctx.DrawImage(oil->image,
         //               this->animX,
@@ -145,7 +146,7 @@ struct AnimLines
         //               this->animGabX, this->animGabY,
         //               oil->x + this->deltaX + drawDeltaX, oil->y + this->y + drawDeltaY,
         //               oil->getGabX, this->gabY, SDL_FLIP_NONE, 0, this->alpha);
-    };
+  //  };
 };
 
 struct Water

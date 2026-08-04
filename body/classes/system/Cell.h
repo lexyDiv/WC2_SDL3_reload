@@ -13,6 +13,7 @@ struct Water;
 struct AnimLines;
 class Game;
 class ToOtherPlane;
+class Nation;
 
 
 

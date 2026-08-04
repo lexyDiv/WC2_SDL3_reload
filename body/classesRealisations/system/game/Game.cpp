@@ -31,10 +31,10 @@ Game::~Game()
     //     delete unit;
     //     unit = nullptr; });
 
-    // this->fractions.forEach([](Fraction *fr)
-    //                         {
-    //     delete fr;
-    //     fr = nullptr; });
+    this->fractions.forEach([](Fraction *fr)
+                            {
+        delete fr;
+        fr = nullptr; });
 
     // delete nationsHub;
     // nationsHub = nullptr;   // opredelit chto eto !!!

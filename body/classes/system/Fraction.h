@@ -2,6 +2,8 @@
 //=> Game
 
 
+
+
 class Upgrade {
     public:
     int current = 0;
@@ -35,13 +37,13 @@ struct FractionLamberMill {
 
 class Fraction {
     public:
-    Fraction();
-   virtual ~Fraction();
-   virtual void create(Game* game, Nation &nation);
+     Fraction(){};
+   virtual ~Fraction(){};
+    virtual void create(Game* game, Nation *nation);
 
-   virtual void orderControl();
-   virtual void controller();
-   virtual void activeUnitsControl();
+   virtual void orderControl(){};
+   virtual void controller(){};
+   virtual void activeUnitsControl(){};
 
    /////////////////////  union buildings
     FractionTownHall fTownHoll;
@@ -54,9 +56,7 @@ class Fraction {
     Array<Unit *> units;
     Array<Unit *> AllLifeUnits;
     Array<Unit *> allBuildings;
-   // Array<Order*> orders;
-  //  Array<ProtoObj*> activeUnits;
-  //  Array<ProtoObj *> activeBuildings;
+
     Game *game = nullptr;
     Array<Unit *> peons;
     Array<Unit *> peonsOnWood;
@@ -76,7 +76,5 @@ class Fraction {
     int controlTimer = 0;
     int unitCount = 0;
     int hold = 0;
-   // int persNumber = 1;
 
-   // Nation nation = nationsHub.
 };

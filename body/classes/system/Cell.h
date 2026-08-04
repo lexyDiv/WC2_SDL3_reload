@@ -1,5 +1,5 @@
 #include "in.h"
-//=> Fraction
+//=> Imager
 
 class GameField;
 class Fraction;

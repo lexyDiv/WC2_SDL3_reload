@@ -14,6 +14,7 @@ public:
   virtual void draw() {};
   virtual void get2x2myCells(Cell *cell);
   virtual void get3x3myCells(Cell *cell);
+  virtual void get4x4myCells(Cell *cell);
   virtual void getContactAndExitCells(Cell *cell, Cell *exitCell, Cell *centerCell);
   virtual void getWellComeCells();
 
@@ -84,6 +85,8 @@ public:
   int animY = 0;
   int animTakt = 0;
   GameField *gf = nullptr;
+  Game *game = nullptr;
+  Fraction *fraction;
   bool isAddOnDraw = false;
   int alpha = 255;
   int getGabX = 0;

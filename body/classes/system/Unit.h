@@ -5,7 +5,7 @@ class Unit
 {
 public:
   Unit() {};
-  ~Unit() {};
+ virtual ~Unit() {};
 
   Cell *cell = nullptr;
 
@@ -52,6 +52,24 @@ public:
     cell : nullptr
   }; };
 
+  virtual void getHandTarget(Cell *cell) {};
+  virtual void getCurrentTargetCell() {};
+  virtual void stendOnCell() {};
+  virtual void stendOnCellWait() {};
+  virtual void selectAnAction(){};
+  virtual void fightControl(){};
+  virtual void createInside(Cell *c) {};
+  virtual Unit *getAnyTree(){ return nullptr; };
+  virtual Unit *getAnyShaht(){ return nullptr; };
+  virtual Unit *getTreeNear(){ return nullptr; };
+  virtual Unit *getBaseForUnloading(){ return nullptr; };
+  virtual Unit *getBaseForUnloadingGold(){ return nullptr; };
+  virtual void preDraw(){};
+  virtual void updateCurrentTarget(){};
+  virtual void takeDamage(int damage){};
+  virtual void trupCreate(){};
+  virtual void drawTrup(){};
+
   int deleteTimer = 50;
   Array<Cell *> myCells;
   Array<Cell *> contactCells;
@@ -92,4 +110,10 @@ public:
   int getGabX = 0;
   int getGabY = 0;
   int gold = 0;
+  bool inSave = false;
+  double animMashtab = 1;
+  bool isActive = false;
+  int animTimer = 0;
+  bool isGetMyCell = true;
+  bool inFight = false;
 };

@@ -4,8 +4,8 @@
 class Shaht : public Unit
 {
 public:
-    Shaht() : Unit() {};
-    ~Shaht();
+    Shaht(){};
+    ~Shaht(){};
 
   
 

@@ -28,9 +28,14 @@ public:
     string type = "";
     string color = "";
     Color mapColor;
+    ///////////////////////// => peon
     Image *peon = nullptr;
     Image *peonWithWood = nullptr;
     Image *peonWithGold = nullptr;
+    float peon_peasant_sight = 1.0f;
+    float peon_peasant_speed = 1.0f;
+    float peon_peasant_hpMax = 50.0f;
+    /////////////////////////// <= peon
     Image *greateHall = nullptr;
     Image *greateHall2 = nullptr;
     Image *greateHall3 = nullptr;

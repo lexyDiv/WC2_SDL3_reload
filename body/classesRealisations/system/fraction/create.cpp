@@ -7,9 +7,9 @@ void Fraction::create(Game *game, Nation *nation)
    this->nation = nation;
    // console.log(this->nation.color);
    this->game = game;
-//    ProtoObj *peon = new Peon;
-//    peon->fraction = this;
-//    peon->create(game->gf->field.getItem(10).getItem(3));
+    Unit *peon = new Peon_peasant;
+    peon->fraction = this;
+    peon->create(game->gf->field.getItem(10).getItem(3));
 
 //    ProtoObj *peon2 = new Peon;
 //    peon2->fraction = this;
@@ -17,7 +17,7 @@ void Fraction::create(Game *game, Nation *nation)
 
 //    this->peons.push(peon);
 //    this->peons.push(peon2);
-//    this->game->allPeons.push(peon);
+    this->game->allPeonsPtr.push(peon);
 //     this->game->allPeons.push(peon2);
 //     this->AllLifeUnits.push(peon);
 //     this->AllLifeUnits.push(peon2);

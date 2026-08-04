@@ -24,12 +24,12 @@ void Fraction::create(Game *game, Nation *nation)
 
    ////////////////// townHall
 
-//    ProtoObj *townHall = new TownHall;
-//    townHall->fraction = this;
-//    townHall->create(game->gf->field.getItem(2).getItem(20));
+    Unit *townHall = new TownHall;
+    townHall->fraction = this;
+    townHall->create(game->gf->field.getItem(2).getItem(20));
 //    this->fTownHoll.level_1_townHollsCount++;
-//    this->fTownHoll.townHolls.push(townHall);
-//    townHall->isComplite = true;
+    this->fTownHoll.townHolls.push(townHall);
+    townHall->isComplite = true;
 //    ////////////////////
 //    townHall->createTimer = 100;
 //    townHall->isActive = true;

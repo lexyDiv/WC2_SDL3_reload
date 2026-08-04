@@ -6,7 +6,7 @@
 class TownHall : public Unit {
     public:
     TownHall() : Unit(){};
-    ~TownHall();
+    ~TownHall(){};
 
     void create(Cell * cell) override;
     void draw() override;
@@ -19,7 +19,7 @@ class TownHall : public Unit {
      MinData getPeonExtrimeOutCell() override;
 };
 
-void TownHall::draw() {};
+//void TownHall::draw() {};
 void TownHall::wellCome(Unit*) {};
 void TownHall::activeProg() {};
 void TownHall::getTrees() {};

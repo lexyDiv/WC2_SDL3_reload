@@ -24,3 +24,4 @@ void TownHall::draw()
     //                             "violet"); });
     //  ctx.FillRect(this->cell->x + drawDeltaX, this->cell->y + drawDeltaY, this->cell->gabX, this->cell->gabY, "blue");
 };
+

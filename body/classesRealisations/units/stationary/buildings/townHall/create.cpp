@@ -41,3 +41,4 @@ void TownHall::create(Cell *cell)
      this->hpMax = 1200;
      this->hp = 1200;
 }
+

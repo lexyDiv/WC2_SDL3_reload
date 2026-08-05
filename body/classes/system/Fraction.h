@@ -42,7 +42,7 @@ class Fraction {
     virtual void create(Game* game, Nation *nation);
 
    virtual void orderControl(){};
-   virtual void controller(){};
+   virtual void controller();
    virtual void activeUnitsControl(){};
 
    /////////////////////  union buildings

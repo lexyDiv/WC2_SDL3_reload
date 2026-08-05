@@ -21,7 +21,7 @@ class TownHall : public Unit {
 
 //void TownHall::draw() {};
 void TownHall::wellCome(Unit*) {};
-void TownHall::activeProg() {};
+//void TownHall::activeProg(){};
 void TownHall::getTrees() {};
 void TownHall::getShahts() {};
 bool TownHall::isActiveCheck() {return false;};

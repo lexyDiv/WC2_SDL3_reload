@@ -75,7 +75,9 @@ public:
   Array<Cell *> contactCells;
   Array<Cell *> exitCells;
   Array<Unit *> clients;
+  Array<Unit *> outClients;
   Array<MinData> wellComeCells;
+  Array<Unit *> potentialClients;
 
   string name = "tree";
   string type = "building";
@@ -110,10 +112,23 @@ public:
   int getGabX = 0;
   int getGabY = 0;
   int gold = 0;
+  int wood = 0;
   bool inSave = false;
   double animMashtab = 1;
   bool isActive = false;
   int animTimer = 0;
   bool isGetMyCell = true;
   bool inFight = false;
+  int createTimer = 0;
+  int persNum = 0;
+  string profession = "";
+  int inOutTimer = 0;
+  int inOutCount = 0;
+  double inOutMashtabCount = 0;
+  double inOutMashtabMin = 0.456000;
+
+  double wayDeltaX = 0;
+  double wayDeltaY = 0;
+  int outHoldTimer = 0;
+
 };

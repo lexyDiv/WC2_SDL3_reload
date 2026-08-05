@@ -1,5 +1,5 @@
 #include "activeUnitsControl.cpp"
-//=>out
+//=>controller
 
 void Fraction::create(Game *game, Nation *nation)
 {
@@ -10,6 +10,8 @@ void Fraction::create(Game *game, Nation *nation)
     Unit *peon = new Peon_peasant;
     peon->fraction = this;
     peon->create(game->gf->field.getItem(10).getItem(3));
+    this->game->allPeonsPtr.push(peon);
+    this->AllLifeUnits.push(peon);
 
 //    ProtoObj *peon2 = new Peon;
 //    peon2->fraction = this;
@@ -17,9 +19,7 @@ void Fraction::create(Game *game, Nation *nation)
 
 //    this->peons.push(peon);
 //    this->peons.push(peon2);
-    this->game->allPeonsPtr.push(peon);
 //     this->game->allPeons.push(peon2);
-//     this->AllLifeUnits.push(peon);
 //     this->AllLifeUnits.push(peon2);
 
    ////////////////// townHall
@@ -31,8 +31,8 @@ void Fraction::create(Game *game, Nation *nation)
     this->fTownHoll.townHolls.push(townHall);
     townHall->isComplite = true;
 //    ////////////////////
-//    townHall->createTimer = 100;
-//    townHall->isActive = true;
+    townHall->createTimer = 100;
+    townHall->isActive = true;
    //this->activeBuildings.push(townHall);
    ////////////////// townHall
 

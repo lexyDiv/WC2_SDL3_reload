@@ -1,5 +1,5 @@
 #include "create.cpp"
-//=>out
+//=>activeProg
 
 void TownHall::draw()
 {

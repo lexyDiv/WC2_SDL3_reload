@@ -5,9 +5,9 @@ class Game
 {
 public:
   virtual void getPotentialWayControl(){};
-  virtual void getPotentialWayControl2() {};
-  virtual void getPotentialWayControl3() {};
-  virtual void getPotentialWayControl4() {};
+  // virtual void getPotentialWayControl2() {};
+  // virtual void getPotentialWayControl3() {};
+  // virtual void getPotentialWayControl4() {};
 
   ////////////////////////////////////////////  => cases
   virtual void unitsActiveZone(int index, bool isFinal) {};

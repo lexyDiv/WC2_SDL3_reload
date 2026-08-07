@@ -15,10 +15,10 @@ void Game::create()
   //  this->objMenu->create(this->gf);
 
     ////////////////////////////// fractons
-  //  ProtoFraction *fraction = new Fraction;
-  //  fraction->create(this, nationsHub->orcs.getItem3(0));
-   // fraction->control = "human";
-   // this->fractions.push(fraction);
+    Fraction *fraction = new Fraction;
+    fraction->create(this, nationsHub.orcs.getItemPtr(0));
+    fraction->control = "human";
+    this->fractions.push(fraction);
     //////////////////////////////
 
     this->isGFComplite = true;

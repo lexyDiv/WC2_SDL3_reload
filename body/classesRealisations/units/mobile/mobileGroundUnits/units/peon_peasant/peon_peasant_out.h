@@ -1,2 +1,2 @@
-#include "peon_peasant_in.h"
+#include "stendOnCell.cpp"
 //=>units_out

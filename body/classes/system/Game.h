@@ -5,9 +5,9 @@ class Game
 {
 public:
   virtual void getPotentialWayControl(){};
-  virtual void getPotentialWayControl2() {};
-  virtual void getPotentialWayControl3() {};
-  virtual void getPotentialWayControl4() {};
+  // virtual void getPotentialWayControl2() {};
+  // virtual void getPotentialWayControl3() {};
+  // virtual void getPotentialWayControl4() {};
 
   ////////////////////////////////////////////  => cases
   virtual void unitsActiveZone(int index, bool isFinal) {};
@@ -47,6 +47,7 @@ public:
    Array<Unit *> allTreesPtr;
    Array<Unit *> allMountsPtr;
    Array<Unit *> allShahtsPtr;
+   Array<Unit *> allOilsPtr;
   
   ///////////////////////////////////////////////////
   Array<Cell> allCells;

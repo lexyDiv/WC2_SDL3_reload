@@ -1,5 +1,5 @@
 #include "preDraw.cpp"
-//=>uot
+//=>fractionsControl
 
 void Game::process()
 {
@@ -13,7 +13,7 @@ void Game::process()
         // {
         // }
 
-       // this->fractionsControl();
+        this->fractionsControl();
        // this->gf->activeShahtsControl();
        // this->isUnitsActiveComplite2 = false;
        // this->isUnitsActiveComplite3 = false;

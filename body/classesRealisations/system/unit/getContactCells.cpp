@@ -1,4 +1,4 @@
-#include "get3x3myCells.cpp"
+#include "get4x4myCells.cpp"
 //=>getContactAndExitCells
 
 void Unit::getContactCells()

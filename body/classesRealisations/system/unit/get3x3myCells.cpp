@@ -1,5 +1,5 @@
 #include "get2x2myCells.cpp"
-//=>getContactCells
+//=>get4X4myCells
 
 void Unit::get3x3myCells(Cell *cell)
 {

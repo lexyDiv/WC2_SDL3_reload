@@ -1,5 +1,5 @@
 #include "draw.cpp"
-//=>peon out
+//=>createInside
 
 void Peon_peasant::preDraw()
 {

@@ -1,42 +1,41 @@
 #include "draw.cpp"
-//=>out
-
+//=>isActiveCheck
 
 bool ok = false;
 // int tt = 0;
 
 void TownHall::activeProg()
 {
-    console.log("void TownHall::activeProg");
+   // console.log("void TownHall::activeProg");
     this->isActive = this->isActiveCheck();
     if (!this->isActive)
     {
         return;
     }
-//this->createTimer = 0;
+
+    // this->createTimer = 0;
     if (this->createTimer)
     {
         this->createTimer--;
         if (!this->createTimer)
         {
             //  console.log("create peon");
-            if (this->fraction->peons.length < 2) // 6000 crash 3000
-            {
-                this->createTimer = 10;
-            }
+            // if (this->fraction->peons.length == 0) // 6000 crash 3000
+            // {
+            //     this->createTimer = 10;
+            // }
             this->fraction->unitCount++;
             Unit *peon = new Peon_peasant;
             peon->persNum = this->fraction->unitCount;
             peon->fraction = this->fraction;
             peon->createInside(this->cell);
             int ran = intRand(0, 10);
-           // peon->profession = ran ? "w" : "g";
-             peon->profession = "w";
+            // peon->profession = ran ? "w" : "g";
+            peon->profession = "w";
 
             this->fraction->peons.push(peon);
             this->fraction->AllLifeUnits.push(peon);
             this->outClients.push(peon);
-            this->cell->game->AllUnitsPtr.push(peon);
         }
     }
 
@@ -108,76 +107,80 @@ void TownHall::activeProg()
     // MoveCase *mc = new MoveCase;
     // mc->moveCase = [this]()
     // {
-        for (int i = 0; i < this->outClients.length; i++)
+    // console.log(to_string(this->createTimer));
+    // return;
+    for (int i = 0; i < this->outClients.length; i++)
+    {
+        Unit *peon = this->outClients.getItem(i);
+        if (!peon->inOutTimer)
         {
-            Unit *peon = this->outClients.getItem(i);
-            if (!peon->inOutTimer)
-            {
-                peon->inOutCount = 0;
-                MinData md = this->getPeonOutCell();
-                int index = md.index;
+            peon->inOutCount = 0;
+            MinData md = this->getPeonOutCell();
+            int index = md.index;
 
-                if (index != -1)
-                {
-                    Cell *oc = md.cell;
-                    MinData md = this->wellComeCells.getItem(index);
-                    peon->cell = md.cell;
-                    peon->inOutCount = ceil(md.min / peon->fraction->nation->peon_peasant_speed);
-                    peon->x = peon->cell->x;
-                    peon->y = peon->cell->y;
-                    peon->drawIndexY = peon->y;
-                  //  peon->unitMenu->getDeltasXY(peon, oc); // !!!!!!! wery impotent !!!!!!!
-                    peon->cell = oc;
-                    peon->inOutMashtabCount = (1 - peon->inOutMashtabMin) / peon->inOutCount;
-                    peon->image = peon->fraction->nation->peon;
-                    oc->groundUnit = peon;
-                   // oc->closedOnCase = false;
-                }
-                else
-                {
-                    MinData md = this->getPeonExtrimeOutCell();
-                    Cell *oc = md.cell;
-                    peon->cell = oc;
-                    peon->inOutCount = 0;
-                    peon->x = peon->cell->x;
-                    peon->y = peon->cell->y;
-                    peon->drawIndexY = peon->y;
-                    peon->inOutMashtabCount = 1;
-                    peon->image = peon->fraction->nation->peon;
-                    oc->groundUnit = peon;
-                   // oc->closedOnCase = false;
-                }
-            }
-
-            if (peon->inOutTimer < peon->inOutCount)
+            if (index != -1)
             {
-                peon->x += peon->wayDeltaX;
-                peon->y += peon->wayDeltaY;
+                Cell *oc = md.cell;
+                MinData md = this->wellComeCells.getItem(index);
+                peon->cell = md.cell;
+                peon->inOutCount = ceil(md.min / peon->fraction->nation->peon_peasant_speed);
+                peon->x = peon->cell->x;
+                peon->y = peon->cell->y;
                 peon->drawIndexY = peon->y;
-                peon->animMashtab += peon->inOutMashtabCount;
-
-                peon->inOutTimer++;
+                //  peon->unitMenu->getDeltasXY(peon, oc); // !!!!!!! wery impotent !!!!!!!
+                peon->cell = oc;
+                peon->inOutMashtabCount = (1 - peon->inOutMashtabMin) / peon->inOutCount;
+                peon->image = peon->fraction->nation->peon;
+                oc->groundUnit = peon;
+                // oc->closedOnCase = false;
             }
             else
             {
-                peon->inOutTimer = 0;
-                peon->animMashtab = 1;
-                peon->inSave = false;
-               // peon->targetObj.unit = nullptr;
-                peon->stendOnCell();
-                peon->outHoldTimer = 30;
-                peon->isActive = true;
-                // peon->fraction->activeUnits.push(peon);
+                MinData md = this->getPeonExtrimeOutCell();
+                Cell *oc = md.cell;
+                peon->cell = oc;
+                peon->inOutCount = 0;
+                peon->x = peon->cell->x;
+                peon->y = peon->cell->y;
+                peon->drawIndexY = peon->y;
+                peon->inOutMashtabCount = 1;
+                peon->image = peon->fraction->nation->peon;
+                oc->groundUnit = peon;
+                // oc->closedOnCase = false;
             }
-        };
+        }
 
-        this->outClients.filterSelf([](Unit *peon)
-                                    {
+        if (peon->inOutTimer < peon->inOutCount)
+        {
+           // console.log("here");
+            peon->x += peon->wayDeltaX;
+            peon->y += peon->wayDeltaY;
+            peon->drawIndexY = peon->y;
+            peon->animMashtab += peon->inOutMashtabCount;
+
+            peon->inOutTimer++;
+        }
+        else
+        {
+           // console.log("here 2");
+            peon->inOutTimer = 0;
+            peon->animMashtab = 1;
+            peon->inSave = false;
+            // peon->targetObj.unit = nullptr;
+            peon->stendOnCell();
+            peon->outHoldTimer = 30;
+            peon->isActive = true;
+            // peon->fraction->activeUnits.push(peon);
+        }
+    };
+
+    this->outClients.filterSelf([](Unit *peon)
+                                {
             if (!peon->inOutTimer) {
             return true;
         }
         return false; });
-  // };
+    // };
     // this->game->mute_push_cases.lock();
     // this->game->addCase(mc);
     // this->game->mute_push_cases.unlock();

@@ -78,6 +78,7 @@ public:
   Array<Unit *> outClients;
   Array<MinData> wellComeCells;
   Array<Unit *> potentialClients;
+  Array<Cell *> potentialWay;
 
   string name = "tree";
   string type = "building";
@@ -126,9 +127,15 @@ public:
   int inOutCount = 0;
   double inOutMashtabCount = 0;
   double inOutMashtabMin = 0.456000;
+  double startAnimMashtab = 0.456000;
 
   double wayDeltaX = 0;
   double wayDeltaY = 0;
   int outHoldTimer = 0;
+  int updateTimer = 0;
 
+   double speedTale = 0;
+   int wayTakts = 0;
+   int holdWayCount = 0;
+   int wayIndex = 0;
 };

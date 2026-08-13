@@ -1,5 +1,5 @@
 #include "Th.h"
-//=>system unitData
+//=>system out
 
 class Unit
 {

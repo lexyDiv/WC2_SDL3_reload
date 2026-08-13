@@ -17,6 +17,7 @@ class Nation;
 
 
 
+
 struct UnitPack
 {
     Unit *unit = nullptr;

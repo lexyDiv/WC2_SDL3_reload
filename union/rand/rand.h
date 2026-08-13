@@ -54,6 +54,12 @@ double getDis(Delta &del)
     return c;
 };
 
+// double getDis(Delta del)
+// {
+//     double c = sqrt(del.deltaX * del.deltaX + del.deltaY * del.deltaY);
+//     return c;
+// };
+
 
 double getDis(Delta *del)
 {

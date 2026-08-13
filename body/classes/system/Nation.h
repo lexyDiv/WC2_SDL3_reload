@@ -1,8 +1,8 @@
-#include "Imager.h"
+#include "UnitData.h"
 //=>Fraction
 
 
-class Nation
+class Nation  // only too nations = orcs & peoples
 {
 public:
     Nation() {};

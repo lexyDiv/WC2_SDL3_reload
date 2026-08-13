@@ -45,6 +45,10 @@ class Fraction {
    virtual void controller();
    virtual void activeUnitsControl(){};
 
+   ////////////////////// => new system
+   UnitData peon;
+   ////////////////////// <= new system
+
    /////////////////////  union buildings
     FractionTownHall fTownHoll;
     FractionLamberMill fLamberMill;

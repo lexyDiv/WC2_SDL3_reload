@@ -1,5 +1,5 @@
 #include "Cell.h"
-//=>Nation.h.h
+//=>UnitData
 
 class Imager
 {

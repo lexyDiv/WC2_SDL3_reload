@@ -109,7 +109,9 @@ Array<int> deeps;
     float gabarit = 0;
     float screenWidth = 720;
     float screenHeight = 720;
-    float cellSize = this->screenHeight / 15;
+    double cellSize = this->screenHeight / 15;
+    Delta delta = { deltaX: cellSize, deltaY: cellSize };
+    double degDis = getDis(delta); //67.882251;
     float x = 0;
     float y = 48;
     float centerX = this->screenWidth / 2;  //+ this->x;
@@ -124,6 +126,8 @@ Array<int> deeps;
     float height = 0;
     float offsetStep = 20;
     bool init = false;
+
+
     double createCount = 0.0;
     double createCount2 = 0.0;
     double createCount3 = 0.0;
@@ -132,6 +136,8 @@ Array<int> deeps;
     double procCurr2 = 0.0;
     double procCurr3 = 0.0;
     double procCurr4 = 0.0;
+
+    
 
     // this->miniMap, 0, 0, this->gabarit, this->gabarit, 732, 100, 285, 285
     ////////////////////////////// => miniMap

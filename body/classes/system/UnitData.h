@@ -4,9 +4,13 @@
 class UnitData
 {
 public:
-    UnitData(string name, Nation *nation);
+    UnitData(string name, Nation *nation, string &color);
     UnitData(){};
     ~UnitData() {};
+
+    void createPeon(Fraction *fraction);
+    void createTownHall(Fraction *fraction);
+
     string name = "";
     Image *img_1 = nullptr;
     Image *img_2 = nullptr;

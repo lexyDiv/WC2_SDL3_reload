@@ -15,8 +15,8 @@ void Peon_peasant::createInside(Cell *c)
 
     this->name = "peon";
     this->type = "life";
-    this->mapColor = this->fraction->nation->mapColor;
-    this->image = this->fraction->nation->peon;
+    this->mapColor = this->fraction->mapColor;
+    this->image = this->fraction->peon.img_1;
     this->x = c->x;
     this->y = c->y;
     this->getGabX = c->gabX;

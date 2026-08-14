@@ -1,6 +1,6 @@
 #include "in.h"
-//=>out.h
+//=>createPeon
 
-UnitData::UnitData(string name, Nation *nation) {
+UnitData::UnitData(string name, Nation *nation, string &color) {
 
 };

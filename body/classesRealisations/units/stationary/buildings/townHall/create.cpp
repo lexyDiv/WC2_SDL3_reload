@@ -22,8 +22,8 @@ void TownHall::create(Cell *cell)
      this->getShahts();
      this->name = "greatHall";
      this->type = "building";
-     this->mapColor = this->fraction->nation->mapColor;
-     this->image = this->fraction->nation->greateHall;
+     this->mapColor = this->fraction->mapColor;
+     this->image = this->fraction->townHall.img_1;
      this->gf = this->cell->gf;
      this->x = cell->x;
      this->y = cell->y;

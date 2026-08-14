@@ -34,6 +34,9 @@ public:
   virtual void getTrees() {};
   virtual void getShahts() {};
   virtual bool isActiveCheck() { return false; };
+
+  virtual void getDeltasXY(Cell *nextCell) {};
+
   virtual MinData getPeonOutCell()
   {
     return {
@@ -91,6 +94,7 @@ public:
   int randYVec = intRand(0, 2);
   double x = randXVec = 0;
   double y = randYVec = 0;
+  double conor = 0;
   double saveX = 0;
   double drawIndexY = 0;
   int hp = 50;

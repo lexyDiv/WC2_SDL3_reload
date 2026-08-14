@@ -127,7 +127,7 @@ void TownHall::activeProg()
                 peon->x = peon->cell->x;
                 peon->y = peon->cell->y;
                 peon->drawIndexY = peon->y;
-                //  peon->unitMenu->getDeltasXY(peon, oc); // !!!!!!! wery impotent !!!!!!!
+                peon->getDeltasXY(oc); // !!!!!!! wery impotent !!!!!!!
                 peon->cell = oc;
                 peon->inOutMashtabCount = (1 - peon->inOutMashtabMin) / peon->inOutCount;
                 peon->image = peon->fraction->peon.img_1;

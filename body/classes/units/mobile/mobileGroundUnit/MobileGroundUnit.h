@@ -16,6 +16,7 @@ class MobileGroundUnit : public Unit {
     bool isTargetObjValide() override;
     bool isBlockedd(Unit *unit) override;
     void iAmHere() override;
+    void getDeltasXY(Cell *nextCell) override;
 };
 
 MobileGroundUnit::MobileGroundUnit(){};

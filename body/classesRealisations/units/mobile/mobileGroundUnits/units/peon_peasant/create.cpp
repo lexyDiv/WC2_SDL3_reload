@@ -15,8 +15,8 @@ void Peon_peasant::create(Cell *cell)
   this->game = cell->game;
   this->name = "peon";
   this->type = "life";
-  this->mapColor = this->fraction->nation->mapColor;
-  this->image = this->fraction->nation->peon;
+  this->mapColor = this->fraction->mapColor;
+  this->image = this->fraction->peon.img_1;
   this->x = cell->x;
   this->y = cell->y;
   this->getGabX = cell->gabX;
@@ -28,5 +28,5 @@ void Peon_peasant::create(Cell *cell)
   this->animStepY = 100;
   this->animX = intRand(0, 8) * 100;
   this->animY = 0;
-  this->hp = this->fraction->nation->peon_peasant_hpMax;
+  this->hp = this->fraction->peon.hpMax;
 };

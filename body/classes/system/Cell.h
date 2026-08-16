@@ -1,5 +1,5 @@
 #include "in.h"
-//=> Imager
+//=> Order
 
 class GameField;
 class Fraction;
@@ -14,6 +14,7 @@ struct AnimLines;
 class Game;
 class ToOtherPlane;
 class Nation;
+
 
 
 

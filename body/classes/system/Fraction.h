@@ -39,11 +39,16 @@ class Fraction {
     public:
      Fraction(){};
    virtual ~Fraction(){};
-    virtual void create(Game* game, Nation *nation);
+    virtual void create(Game* game, Nation *nation, string color);
 
    virtual void orderControl(){};
    virtual void controller();
    virtual void activeUnitsControl(){};
+
+   ////////////////////// => new system
+   UnitData peon;
+   UnitData townHall;
+   ////////////////////// <= new system
 
    /////////////////////  union buildings
     FractionTownHall fTownHoll;
@@ -52,6 +57,8 @@ class Fraction {
 
     string name = "";
     string control = "";
+    string color = "";
+    Color mapColor = { R: 255, G: 0, B: 0 };
     int level = 0;
     Array<Unit *> units;
     Array<Unit *> AllLifeUnits;

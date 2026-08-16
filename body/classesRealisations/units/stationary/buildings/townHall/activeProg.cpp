@@ -123,14 +123,14 @@ void TownHall::activeProg()
                 Cell *oc = md.cell;
                 MinData md = this->wellComeCells.getItem(index);
                 peon->cell = md.cell;
-                peon->inOutCount = ceil(md.min / peon->fraction->nation->peon_peasant_speed);
+                peon->inOutCount = ceil(md.min / peon->fraction->peon.speed);
                 peon->x = peon->cell->x;
                 peon->y = peon->cell->y;
                 peon->drawIndexY = peon->y;
-                //  peon->unitMenu->getDeltasXY(peon, oc); // !!!!!!! wery impotent !!!!!!!
+                peon->getDeltasXY(oc); // !!!!!!! wery impotent !!!!!!!
                 peon->cell = oc;
                 peon->inOutMashtabCount = (1 - peon->inOutMashtabMin) / peon->inOutCount;
-                peon->image = peon->fraction->nation->peon;
+                peon->image = peon->fraction->peon.img_1;
                 oc->groundUnit = peon;
                 // oc->closedOnCase = false;
             }
@@ -144,7 +144,7 @@ void TownHall::activeProg()
                 peon->y = peon->cell->y;
                 peon->drawIndexY = peon->y;
                 peon->inOutMashtabCount = 1;
-                peon->image = peon->fraction->nation->peon;
+                peon->image = peon->fraction->peon.img_1;
                 oc->groundUnit = peon;
                 // oc->closedOnCase = false;
             }

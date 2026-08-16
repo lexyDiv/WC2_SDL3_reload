@@ -16,12 +16,13 @@ class MobileGroundUnit : public Unit {
     bool isTargetObjValide() override;
     bool isBlockedd(Unit *unit) override;
     void iAmHere() override;
+    void getDeltasXY(Cell *nextCell) override;
 };
 
 MobileGroundUnit::MobileGroundUnit(){};
 MobileGroundUnit::~MobileGroundUnit(){};
 void MobileGroundUnit::orderOnWayControl(){};
-void MobileGroundUnit::goWayAnimation(){};
+//void MobileGroundUnit::goWayAnimation(){};
 void MobileGroundUnit::inFightAnimation(){};
 void MobileGroundUnit::goWay(){};
 bool MobileGroundUnit::isNextCellFreeToGoWay(Cell *nextCell) { return false; };

@@ -83,6 +83,7 @@ public:
   Array<MinData> wellComeCells;
   Array<Unit *> potentialClients;
   Array<Cell *> potentialWay;
+  Array<Cell *> way;
 
   string name = "tree";
   string type = "building";
@@ -144,4 +145,6 @@ public:
    int holdWayCount = 0;
    int wayIndex = 0;
    bool isPotentialWayComplite = true;
+
+   Order orderOnWay;
 };

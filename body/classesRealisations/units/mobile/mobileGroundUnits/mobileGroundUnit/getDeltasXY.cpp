@@ -1,5 +1,5 @@
 #include "mobileGroundUnit_in.h"
-//=> mobGU out
+//=> mobGU goWayANIMATION
 
 void MobileGroundUnit::getDeltasXY(Cell *nextCell) {
             double startDis = 0;

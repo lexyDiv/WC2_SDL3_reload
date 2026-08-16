@@ -1,5 +1,5 @@
 #include "activeProg.cpp"
-//=>out
+//=>updateCurrentTarget
 
 bool Peon_peasant::isActiveCheck()
 {
@@ -11,7 +11,7 @@ bool Peon_peasant::isActiveCheck()
          (!this->orderOnWay.isComplite) ||
          !this->isGetMyCell ||
          this->inFight ||
-         this->outHoldTimer ||
+         this->outHoldTimer || // => in activeProg
          this->way.length
         ))
     {

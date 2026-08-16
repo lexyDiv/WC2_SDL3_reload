@@ -71,7 +71,7 @@ void Fraction::controller()
     //     }
     // }
     //  }
-   // this->activeUnitsControl();
+    this->activeUnitsControl();
 
        this->allBuildings.forEach([](Unit *building){
             if (building->isActive) {

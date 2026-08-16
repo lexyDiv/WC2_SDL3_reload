@@ -1,0 +1,2 @@
+#include "isActiveCheck.cpp"
+//=>getAnyShaht

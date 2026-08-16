@@ -43,7 +43,7 @@ class Fraction {
 
    virtual void orderControl(){};
    virtual void controller();
-   virtual void activeUnitsControl(){};
+   virtual void activeUnitsControl();
 
    ////////////////////// => new system
    UnitData peon;

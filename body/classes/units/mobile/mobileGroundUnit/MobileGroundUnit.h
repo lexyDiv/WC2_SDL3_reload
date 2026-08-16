@@ -30,5 +30,5 @@ bool MobileGroundUnit::isNeedHoldGoWay(Cell *nextCell) { return false; };
 bool MobileGroundUnit::isGetTarget() { return false; };
 bool MobileGroundUnit::isTargetObjValide() { return false; };
 bool MobileGroundUnit::isBlockedd(Unit *unit) { return false; };
-void MobileGroundUnit::iAmHere(){};
+//void MobileGroundUnit::iAmHere(){};
 

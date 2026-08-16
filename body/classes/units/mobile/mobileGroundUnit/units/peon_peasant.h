@@ -23,13 +23,13 @@ public:
     // void fightControl() override;
      void createInside(Cell *c) override;
 
-    // Unit *getAnyTree() override;
-    // Unit *getAnyShaht() override;
+     Unit *getAnyTree() override;
+     Unit *getAnyShaht() override;
     // Unit *getTreeNear() override;
     // Unit *getBaseForUnloading() override;
     // Unit *getBaseForUnloadingGold() override;
      void preDraw() override;
-    // void updateCurrentTarget() override;
+     void updateCurrentTarget() override;
     // void takeDamage(int damage) override;
     // void trupCreate() override;
     // void drawTrup() override;

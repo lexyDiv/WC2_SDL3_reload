@@ -27,7 +27,8 @@ public:
   virtual bool isGetTarget() { return false; };
   virtual bool isTargetObjValide() { return false; };
   virtual bool isBlockedd(Unit *unit) { return false; };
-  virtual void iAmHere() {};
+  virtual void iAmHere(){};
+  virtual void iSeeYou(Unit *unit) {};
 
   virtual void wellCome(Unit *peon) {};
   virtual void activeProg() {};
@@ -84,6 +85,7 @@ public:
   Array<Unit *> potentialClients;
   Array<Cell *> potentialWay;
   Array<Cell *> way;
+  Array<Unit *> orderedTrees;
 
   string name = "tree";
   string type = "building";
@@ -145,6 +147,10 @@ public:
    int holdWayCount = 0;
    int wayIndex = 0;
    bool isPotentialWayComplite = true;
-
+   bool isIgetMyTarget = true;
    Order orderOnWay;
+   TargetObj targetObj;
+   Cell *targetCell = nullptr;
+   Cell *preTargetCell = nullptr;
+   Unit* lesorub = nullptr;
 };

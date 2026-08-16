@@ -17,6 +17,12 @@ class Nation;
 
 
 
+class TargetObj {
+  public:
+  Unit *unit = nullptr;
+  Cell *unitOldCell = nullptr;
+};
+
 
 struct UnitPack
 {

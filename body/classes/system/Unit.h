@@ -72,6 +72,7 @@ public:
   virtual void takeDamage(int damage){};
   virtual void trupCreate(){};
   virtual void drawTrup(){};
+  virtual void standOnCell() {};
 
   int deleteTimer = 50;
   Array<Cell *> myCells;
@@ -142,4 +143,5 @@ public:
    int wayTakts = 0;
    int holdWayCount = 0;
    int wayIndex = 0;
+   bool isPotentialWayComplite = true;
 };

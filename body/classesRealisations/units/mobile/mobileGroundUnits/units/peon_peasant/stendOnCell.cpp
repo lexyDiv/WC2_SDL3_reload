@@ -1,5 +1,5 @@
 #include "createInside.cpp"
-//=>out
+//=>activeProg
 
 void Peon_peasant::stendOnCell()
 {

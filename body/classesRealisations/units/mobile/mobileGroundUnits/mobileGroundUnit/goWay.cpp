@@ -9,7 +9,7 @@ void MobileGroundUnit::goWay()
             this->way.length &&
             this->wayIndex > 0)
         {
-
+    
             Cell *nextCell = this->way.getItem(this->wayIndex - 1);
 
             bool isNeedHold = this->isNeedHoldGoWay(nextCell);

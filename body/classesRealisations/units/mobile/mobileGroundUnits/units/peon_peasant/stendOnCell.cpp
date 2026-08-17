@@ -9,7 +9,7 @@ void Peon_peasant::stendOnCell()
     this->drawIndexY = this->y;
     this->speedTale = 0;
     this->isGetMyCell = true;
-    this->potentialWay.clear();
+    this->way.clear();
     this->wayIndex = 0;
     this->animTimer = 0;
     this->animY = 0;

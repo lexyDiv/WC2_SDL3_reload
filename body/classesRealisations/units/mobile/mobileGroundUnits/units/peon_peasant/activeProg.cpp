@@ -34,7 +34,7 @@ void Peon_peasant::activeProg()
         this->potentialWay.length)
     {
       this->way.copy(this->potentialWay);
-     // this->targetObjControl(this); // !!! impotent
+     // this->targetObjControl(this); // !!! impotent IMPOTENT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       this->potentialWay.clear();
     }
 
@@ -89,6 +89,7 @@ void Peon_peasant::activeProg()
     }
     else
     {
+  
       this->goWay();
       this->orderOnWayControl();
     }

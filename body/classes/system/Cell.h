@@ -4,7 +4,7 @@
 class GameField;
 class Fraction;
 class ObjMenu;
-class Unit;
+//class Unit;
 class Plane;
 class Order;
 class UnitMenu;
@@ -21,6 +21,7 @@ class TargetObj {
   public:
   Unit *unit = nullptr;
   Cell *unitOldCell = nullptr;
+  int bornCount = 0;
 };
 
 

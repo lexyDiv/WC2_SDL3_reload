@@ -3,6 +3,7 @@
 using namespace std;
 
 class Cell;
+class Unit;
 
 struct MinData
 {
@@ -12,6 +13,7 @@ struct MinData
     int k = 0;
     // double dis = 0;
     Cell *cell = nullptr;
+    Unit *unit = nullptr;
 };
 
 template <typename T>
@@ -52,6 +54,7 @@ public:
     void sort(function<bool(T &a, T &b)> fn);
     Array<Cell *> map(function<Cell *(T &item)> fn);
     MinData getMinData(function<double(Cell *item)> fn);
+    MinData getMinDataU(function<double(Unit *item)> fn);
 
     void copy(Array<T> &arr);
 
@@ -381,8 +384,6 @@ inline void Array<T>::sort(function<bool(T &a, T &b)> fn)
               { return fn(a, b); });
 }
 
-
-
 // template <typename T>
 // inline ProtoObj *Array<T>::getMin(function<double(ProtoObj *item)> fn)
 // {
@@ -422,6 +423,29 @@ inline MinData Array<T>::getMinData(function<double(Cell *item)> fn)
                 md.index = i;
                 md.min = current;
                 md.cell = e;
+            }
+        }
+    }
+    return md;
+}
+
+template <typename T>
+inline MinData Array<T>::getMinDataU(function<double(Unit *item)> fn)
+{
+    MinData md;
+    if (this->length)
+    {
+        md.unit = this->getItem(0);
+        md.min = fn(md.unit);
+        for (int i = 1; i < this->length; i++)
+        {
+            Unit *e = this->vec[i];
+            double current = fn(e);
+            if (md.min > current)
+            {
+                md.index = i;
+                md.min = current;
+                md.unit = e;
             }
         }
     }

@@ -1,5 +1,5 @@
 #include "getAnyShaht.cpp"
-//=>out
+//=>getBaseForUploadingGold
 
 Unit *Peon_peasant::getAnyTree()
 {
@@ -29,14 +29,14 @@ Unit *Peon_peasant::getAnyTree()
     else
     {
         // console.log(to_string(this->cell->plane->trees.length));
-        MinData md = this->cell->plane->trees.getMinData([this](Cell *item)
+        MinData md = this->cell->plane->trees.getMinDataU([this](Unit *item)
                                                          {
                                                         PointF pointThis = {x : this->cell->x, y : this->cell->y};
                                                         PointF pointLM = {x : item->cell->x, y : item->cell->y};
                                                         Delta delta = getDeltas(&pointThis, &pointLM);
                                                         double dis = !item->lesorub && item->hp > 0 ? getDis(&delta) : 10000000;
                                                         return dis; });
-        ProtoObj *minDisTree = md.cell && md.cell->hp > 0 && !md.cell->lesorub ? md.cell : nullptr;
+        Unit *minDisTree = md.unit && md.unit->hp > 0 && !md.unit->lesorub ? md.unit : nullptr;
         return minDisTree;
     }
     // this->plane->trees.clear();

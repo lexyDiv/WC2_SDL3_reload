@@ -17,17 +17,17 @@ public:
      void activeProg() override;
      void stendOnCell() override;
     // void stendOnCellWait() override;
-    // bool isGetTarget() override;
-    // bool isTargetObjValide() override;
-    // void selectAnAction() override;
+     bool isGetTarget() override;
+     bool isTargetObjValide() override;
+     void selectAnAction() override;
     // void fightControl() override;
      void createInside(Cell *c) override;
 
      Unit *getAnyTree() override;
      Unit *getAnyShaht() override;
-    // Unit *getTreeNear() override;
+     Unit *getTreeNear() override;
     // Unit *getBaseForUnloading() override;
-    // Unit *getBaseForUnloadingGold() override;
+     Unit *getBaseForUnloadingGold() override;
      void preDraw() override;
      void updateCurrentTarget() override;
     // void takeDamage(int damage) override;

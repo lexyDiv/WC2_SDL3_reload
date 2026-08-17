@@ -37,6 +37,7 @@ public:
   virtual bool isActiveCheck() { return false; };
 
   virtual void getDeltasXY(Cell *nextCell) {};
+  virtual void getConor(Cell *nextCell){};
 
   virtual MinData getPeonOutCell()
   {
@@ -86,6 +87,7 @@ public:
   Array<Cell *> potentialWay;
   Array<Cell *> way;
   Array<Unit *> orderedTrees;
+  Array<Unit *> orderedShahts;
 
   string name = "tree";
   string type = "building";
@@ -148,9 +150,11 @@ public:
    int wayIndex = 0;
    bool isPotentialWayComplite = true;
    bool isIgetMyTarget = true;
+   bool iNeedFreeWay = false;
    Order orderOnWay;
    TargetObj targetObj;
    Cell *targetCell = nullptr;
    Cell *preTargetCell = nullptr;
    Unit* lesorub = nullptr;
+   int bornCount = 0;
 };

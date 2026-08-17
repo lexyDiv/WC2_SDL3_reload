@@ -1,5 +1,5 @@
 #include "goWayAnimation.cpp"
-//=>out
+//=>isBlockedd
 
 void MobileGroundUnit::iAmHere()
 {

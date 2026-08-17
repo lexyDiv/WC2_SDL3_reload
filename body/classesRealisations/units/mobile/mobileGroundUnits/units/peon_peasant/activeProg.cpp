@@ -50,7 +50,7 @@ void Peon_peasant::activeProg()
         this->wayIndex <= 5 &&
         this->isPotentialWayComplite &&
         this->orderOnWay.isComplite &&
-        this->potentialWay.length && // ???????? way.length ????? !!!!!!
+        this->way.length && // ???????? way.length ????? !!!!!!
         !this->holdWayCount &&
         !this->inFight)
     {
@@ -85,7 +85,7 @@ void Peon_peasant::activeProg()
 
     if (this->inFight)
     {
-      this->fightControl();
+      this->fightControl(); // maybee HUYNYA refactoring needed !!!
     }
     else
     {

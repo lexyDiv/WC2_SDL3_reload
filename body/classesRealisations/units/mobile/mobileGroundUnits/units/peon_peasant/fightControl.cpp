@@ -1,5 +1,5 @@
 #include "selectAnAction.cpp"
-//=>out
+//=>standOnCellWait
 
 void Peon_peasant::fightControl()
 {

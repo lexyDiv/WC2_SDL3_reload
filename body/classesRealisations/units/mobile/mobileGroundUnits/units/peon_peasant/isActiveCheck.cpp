@@ -8,7 +8,7 @@ bool Peon_peasant::isActiveCheck()
         this->cell && this->hp &&
         (this->potentialWay.length ||
          !this->isPotentialWayComplite ||
-         (!this->orderOnWay.isComplite) ||
+         !this->orderOnWay.isComplite ||
          !this->isGetMyCell ||
          this->inFight ||
          this->outHoldTimer || // => in activeProg

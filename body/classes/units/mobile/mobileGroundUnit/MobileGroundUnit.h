@@ -22,12 +22,12 @@ class MobileGroundUnit : public Unit {
 
 MobileGroundUnit::MobileGroundUnit(){};
 MobileGroundUnit::~MobileGroundUnit(){};
-void MobileGroundUnit::orderOnWayControl(){};
+//void MobileGroundUnit::orderOnWayControl(){};
 //void MobileGroundUnit::goWayAnimation(){};
 void MobileGroundUnit::inFightAnimation(){};
-void MobileGroundUnit::goWay(){};
-bool MobileGroundUnit::isNextCellFreeToGoWay(Cell *nextCell) { return false; };
-bool MobileGroundUnit::isNeedHoldGoWay(Cell *nextCell) { return false; };
+//void MobileGroundUnit::goWay(){};
+//bool MobileGroundUnit::isNextCellFreeToGoWay(Cell *nextCell) { return false; };
+//bool MobileGroundUnit::isNeedHoldGoWay(Cell *nextCell) { return false; };
 bool MobileGroundUnit::isGetTarget() { return false; };
 bool MobileGroundUnit::isTargetObjValide() { return false; };
 

@@ -1,5 +1,5 @@
 #include "isBlockedd.cpp"
-//=>out
+//=>goWay
 
 void MobileGroundUnit::getConor(Cell *nextCell)
 {

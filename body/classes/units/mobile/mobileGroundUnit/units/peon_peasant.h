@@ -16,7 +16,7 @@ public:
     // // void getCurrentTargetCell4() override;
      void activeProg() override;
      void stendOnCell() override;
-    // void stendOnCellWait() override;
+     void stendOnCellWait() override;
      bool isGetTarget() override;
      bool isTargetObjValide() override;
      void selectAnAction() override;

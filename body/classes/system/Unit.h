@@ -75,6 +75,7 @@ public:
   virtual void trupCreate(){};
   virtual void drawTrup(){};
   virtual void standOnCell() {};
+  virtual void stressControl(){};
 
   int deleteTimer = 50;
   Array<Cell *> myCells;
@@ -157,4 +158,6 @@ public:
    Cell *preTargetCell = nullptr;
    Unit* lesorub = nullptr;
    int bornCount = 0;
+   int inFightTimer = 0;
+   int stress = 0;
 };

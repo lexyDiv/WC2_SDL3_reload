@@ -20,7 +20,7 @@ public:
      bool isGetTarget() override;
      bool isTargetObjValide() override;
      void selectAnAction() override;
-    // void fightControl() override;
+     void fightControl() override;
      void createInside(Cell *c) override;
 
      Unit *getAnyTree() override;

@@ -1,5 +1,5 @@
 #include "isGetTarget.cpp"
-//=>out
+//=>fightControl
 
 void Peon_peasant::selectAnAction()
 {

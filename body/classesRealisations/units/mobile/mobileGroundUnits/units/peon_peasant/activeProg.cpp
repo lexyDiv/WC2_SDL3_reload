@@ -50,7 +50,7 @@ void Peon_peasant::activeProg()
         this->wayIndex <= 5 &&
         this->isPotentialWayComplite &&
         this->orderOnWay.isComplite &&
-        this->potentialWay.length &&
+        this->potentialWay.length && // ???????? way.length ????? !!!!!!
         !this->holdWayCount &&
         !this->inFight)
     {

@@ -9,4 +9,5 @@ public:
     void create(Cell *cell) override;
     void getContactCells() override;
     void draw() override;
+    void stressControl() override;
 };

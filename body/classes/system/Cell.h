@@ -253,6 +253,7 @@ struct Water
 
 struct CellDis
 {
+    Unit *unit = nullptr;
     Cell *cell = nullptr;
     double dis = 0.0;
 };

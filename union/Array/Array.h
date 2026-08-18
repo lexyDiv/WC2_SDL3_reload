@@ -53,6 +53,7 @@ public:
     void filterSelf(function<bool(T item)> fn);
     void sort(function<bool(T &a, T &b)> fn);
     Array<Cell *> map(function<Cell *(T &item)> fn);
+    Array<Unit *> mapU(function<Unit *(T &item)> fn);
     MinData getMinData(function<double(Cell *item)> fn);
     MinData getMinDataU(function<double(Unit *item)> fn);
 
@@ -478,6 +479,15 @@ template <typename T>
 inline Array<Cell *> Array<T>::map(function<Cell *(T &item)> fn)
 {
     Array<Cell *> newArr;
+    this->forEach([&newArr, fn](T item)
+                  { newArr.push(fn(item)); });
+    return newArr;
+}
+
+template <typename T>
+inline Array<Unit *> Array<T>::mapU(function<Unit *(T &item)> fn)
+{
+    Array<Unit *> newArr;
     this->forEach([&newArr, fn](T item)
                   { newArr.push(fn(item)); });
     return newArr;

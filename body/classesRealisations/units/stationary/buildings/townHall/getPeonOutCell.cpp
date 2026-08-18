@@ -1,5 +1,5 @@
 #include "getPeonExtrimeOutCell.cpp"
-//=>out
+//=>wellCome
 
 MinData TownHall::getPeonOutCell()
 {

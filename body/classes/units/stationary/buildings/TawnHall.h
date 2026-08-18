@@ -20,8 +20,8 @@ class TownHall : public Unit {
 };
 
 //void TownHall::draw() {};
-void TownHall::wellCome(Unit*) {};
+//void TownHall::wellCome(Unit*) {};
 //void TownHall::activeProg(){};
-void TownHall::getTrees() {};
-void TownHall::getShahts() {};
+//void TownHall::getTrees() {};
+//void TownHall::getShahts() {};
 

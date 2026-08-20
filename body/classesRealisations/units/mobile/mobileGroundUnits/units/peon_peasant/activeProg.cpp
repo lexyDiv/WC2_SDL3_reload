@@ -10,6 +10,7 @@ void Peon_peasant::activeProg()
   this->isActive = this->isActiveCheck();
   if (!this->isActive)
   {
+    console.log("here");
     return;
   }
 
@@ -89,7 +90,6 @@ void Peon_peasant::activeProg()
     }
     else
     {
-  
       this->goWay();
       this->orderOnWayControl();
     }

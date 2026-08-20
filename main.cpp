@@ -50,7 +50,7 @@ int main()
     thread th_4(foo3);
 
     int optimalDeltaTime = 1000 / 30;
-    console.log(to_string(game->gf->degDis));
+    console.log(to_string(std::thread::hardware_concurrency())); // threds count
     while (!quit)
     {
         Uint64 startTick = SDL_GetTicks();

@@ -4,53 +4,67 @@
 
 #include "body/out.h"
 
-void foo()
-{
+// void foo()
+// {
 
-    while (!quit)
-    {
-        this_thread::sleep_for(chrono::nanoseconds(1));
-    }
-};
+//     while (!quit)
+//     {
+//         this_thread::sleep_for(chrono::nanoseconds(1));
+//     }
+// };
 
-void foo2()
-{
-    while (!quit)
-    {
-        this_thread::sleep_for(chrono::nanoseconds(1));
-    }
-};
+// void foo2()
+// {
+//     while (!quit)
+//     {
+//         this_thread::sleep_for(chrono::nanoseconds(1));
+//     }
+// };
 
-void foo3()
-{
-    while (!quit)
-    {
-        this_thread::sleep_for(chrono::nanoseconds(1));
-    }
-};
+// void foo3()
+// {
+//     while (!quit)
+//     {
+//         this_thread::sleep_for(chrono::nanoseconds(1));
+//     }
+// };
 
-void do1()
-{
-    game->create();
+// void do1()
+// {
+//     game->create();
 
-    while (!quit)
-    {
-        this_thread::sleep_for(chrono::nanoseconds(1));
-    }
+//     while (!quit)
+//     {
+//         this_thread::sleep_for(chrono::nanoseconds(1));
+//     }
+// }
+
+void hz(ThData* td) {
+ td->process();
 }
-
-
 
 int main()
 {
+  // game->create();
 
-    thread th_1(do1);
-    thread th_2(foo);
-    thread th_3(foo2);
-    thread th_4(foo3);
+   int th_count = std::thread::hardware_concurrency() - 1;
+
+    std::vector<std::thread> threads;
+
+    for (int i = 0; i < th_count; i++) {
+         ThData *td = new ThData(i);
+         thDatas.push(td);
+         threads.emplace_back(&ThData::process, td);
+    } 
+
+
+    // thread th_1(do1);
+    // thread th_2(foo);
+    // thread th_3(foo2);
+    // thread th_4(foo3);
 
     int optimalDeltaTime = 1000 / 30;
-    console.log(to_string(std::thread::hardware_concurrency())); // threds count
+   // console.log(to_string(std::thread::hardware_concurrency())); // threds count
     while (!quit)
     {
         Uint64 startTick = SDL_GetTicks();
@@ -73,8 +87,16 @@ int main()
     }
     ctx.Close();
 
-    th_1.join();
-    th_2.join();
-    th_3.join();
-    th_4.join();
+    // th_1.join();
+    // th_2.join();
+    // th_3.join();
+    // th_4.join();
+
+        for (auto& t : threads) {
+        t.join();
+    }
+
+    thDatas.forEach([](ThData* td){
+        delete td;
+    });
 }

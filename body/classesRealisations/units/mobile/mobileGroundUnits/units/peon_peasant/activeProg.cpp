@@ -10,7 +10,7 @@ void Peon_peasant::activeProg()
   this->isActive = this->isActiveCheck();
   if (!this->isActive)
   {
-    console.log("here");
+   // console.log("here");
     return;
   }
 

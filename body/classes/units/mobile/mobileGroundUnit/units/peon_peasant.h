@@ -14,6 +14,7 @@ public:
     // // void getCurrentTargetCell2() override;
     // // void getCurrentTargetCell3() override;
     // // void getCurrentTargetCell4() override;
+     void getCurrentTarget(Cell* cell) override;
      void activeProg() override;
      void stendOnCell() override;
      void stendOnCellWait() override;

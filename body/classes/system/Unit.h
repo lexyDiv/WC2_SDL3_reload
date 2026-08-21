@@ -57,6 +57,7 @@ public:
     cell : nullptr
   }; };
 
+    virtual void getCurrentTarget(Cell *cell) {};
   virtual void getHandTarget(Cell *cell) {};
   virtual void getCurrentTargetCell() {};
   virtual void stendOnCell() {};
@@ -160,4 +161,8 @@ public:
    int bornCount = 0;
    int inFightTimer = 0;
    int stress = 0;
+   bool isWarrior = false;
+
+   function<bool(Cell *cell)> isOnGetPotentialWayGetTarget;
+   function<bool(Cell* cell)> isNewCellOnGetWayValide;
 };

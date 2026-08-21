@@ -27,7 +27,8 @@ public:
   virtual bool isGetTarget() { return false; };
   virtual bool isTargetObjValide() { return false; };
   virtual bool isBlockedd(Unit *unit) { return false; };
-  virtual void iAmHere() {};
+  virtual void iAmHere(){};
+  virtual void iSeeYou(Unit *unit) {};
 
   virtual void wellCome(Unit *peon) {};
   virtual void activeProg() {};
@@ -36,6 +37,7 @@ public:
   virtual bool isActiveCheck() { return false; };
 
   virtual void getDeltasXY(Cell *nextCell) {};
+  virtual void getConor(Cell *nextCell){};
 
   virtual MinData getPeonOutCell()
   {
@@ -73,6 +75,7 @@ public:
   virtual void trupCreate(){};
   virtual void drawTrup(){};
   virtual void standOnCell() {};
+  virtual void stressControl(){};
 
   int deleteTimer = 50;
   Array<Cell *> myCells;
@@ -84,6 +87,8 @@ public:
   Array<Unit *> potentialClients;
   Array<Cell *> potentialWay;
   Array<Cell *> way;
+  Array<Unit *> orderedTrees;
+  Array<Unit *> orderedShahts;
 
   string name = "tree";
   string type = "building";
@@ -145,6 +150,14 @@ public:
    int holdWayCount = 0;
    int wayIndex = 0;
    bool isPotentialWayComplite = true;
-
+   bool isIgetMyTarget = true;
+   bool iNeedFreeWay = false;
    Order orderOnWay;
+   TargetObj targetObj;
+   Cell *targetCell = nullptr;
+   Cell *preTargetCell = nullptr;
+   Unit* lesorub = nullptr;
+   int bornCount = 0;
+   int inFightTimer = 0;
+   int stress = 0;
 };

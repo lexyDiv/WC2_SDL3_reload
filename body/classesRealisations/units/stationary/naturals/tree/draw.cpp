@@ -1,5 +1,5 @@
 #include "getContactCells.cpp"
-//=> tree out
+//=> tree stressControl
 
 void Tree::draw() {
 

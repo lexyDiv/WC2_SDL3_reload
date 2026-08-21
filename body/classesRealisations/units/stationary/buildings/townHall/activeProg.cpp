@@ -36,6 +36,7 @@ void TownHall::activeProg()
             this->fraction->peons.push(peon);
             this->fraction->AllLifeUnits.push(peon);
             this->outClients.push(peon);
+            //////
         }
     }
 
@@ -53,19 +54,12 @@ void TownHall::activeProg()
                                        {
 
                                            this->clients.push(peon);
-                                           // MoveCase *mc = new MoveCase;
-                                          //  mc->moveCase = [peon](){
-                                           // while(peon->cell->closedOnCase) {};
+    
                                             Cell *pc = peon->cell;
-                                          //  peon->cell->closedOnCase = true;
+                                      
                                             peon->cell->groundUnit = nullptr;
                                             peon->cell = nullptr;
-                                          //  pc->closedOnCase = false;                  
-                                    // };
-                                    // this->game->mute_push_cases.lock();
-                                    //  this->game->addCase(mc);
-                                    //  this->game->mute_push_cases.unlock();
-                                         
+
                                            peon->inOutTimer = 0;
                                            peon->animMashtab = peon->inOutMashtabMin;
                                            if (this->fraction->fTownHoll.level_3_townHollsCount) {
@@ -104,11 +98,6 @@ void TownHall::activeProg()
         }
         return false; });
 
-    // MoveCase *mc = new MoveCase;
-    // mc->moveCase = [this]()
-    // {
-    // console.log(to_string(this->createTimer));
-    // return;
     for (int i = 0; i < this->outClients.length; i++)
     {
         Unit *peon = this->outClients.getItem(i);
@@ -132,7 +121,8 @@ void TownHall::activeProg()
                 peon->inOutMashtabCount = (1 - peon->inOutMashtabMin) / peon->inOutCount;
                 peon->image = peon->fraction->peon.img_1;
                 oc->groundUnit = peon;
-                // oc->closedOnCase = false;
+                /////// fake way
+        
             }
             else
             {
@@ -146,7 +136,7 @@ void TownHall::activeProg()
                 peon->inOutMashtabCount = 1;
                 peon->image = peon->fraction->peon.img_1;
                 oc->groundUnit = peon;
-                // oc->closedOnCase = false;
+      
             }
         }
 

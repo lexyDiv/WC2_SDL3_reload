@@ -4,7 +4,7 @@
 class GameField;
 class Fraction;
 class ObjMenu;
-class Unit;
+//class Unit;
 class Plane;
 class Order;
 class UnitMenu;
@@ -16,6 +16,13 @@ class ToOtherPlane;
 class Nation;
 
 
+
+class TargetObj {
+  public:
+  Unit *unit = nullptr;
+  Cell *unitOldCell = nullptr;
+  int bornCount = 0;
+};
 
 
 struct UnitPack
@@ -246,6 +253,7 @@ struct Water
 
 struct CellDis
 {
+    Unit *unit = nullptr;
     Cell *cell = nullptr;
     double dis = 0.0;
 };

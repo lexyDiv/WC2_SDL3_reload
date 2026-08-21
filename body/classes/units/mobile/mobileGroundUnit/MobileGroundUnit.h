@@ -17,18 +17,20 @@ class MobileGroundUnit : public Unit {
     bool isBlockedd(Unit *unit) override;
     void iAmHere() override;
     void getDeltasXY(Cell *nextCell) override;
+    void getConor(Cell *cell) override;
 };
 
 MobileGroundUnit::MobileGroundUnit(){};
 MobileGroundUnit::~MobileGroundUnit(){};
-void MobileGroundUnit::orderOnWayControl(){};
+//void MobileGroundUnit::orderOnWayControl(){};
 //void MobileGroundUnit::goWayAnimation(){};
 void MobileGroundUnit::inFightAnimation(){};
-void MobileGroundUnit::goWay(){};
-bool MobileGroundUnit::isNextCellFreeToGoWay(Cell *nextCell) { return false; };
-bool MobileGroundUnit::isNeedHoldGoWay(Cell *nextCell) { return false; };
+//void MobileGroundUnit::goWay(){};
+//bool MobileGroundUnit::isNextCellFreeToGoWay(Cell *nextCell) { return false; };
+//bool MobileGroundUnit::isNeedHoldGoWay(Cell *nextCell) { return false; };
 bool MobileGroundUnit::isGetTarget() { return false; };
 bool MobileGroundUnit::isTargetObjValide() { return false; };
-bool MobileGroundUnit::isBlockedd(Unit *unit) { return false; };
-void MobileGroundUnit::iAmHere(){};
+
+//bool MobileGroundUnit::isBlockedd(Unit *unit) { return false; };
+//void MobileGroundUnit::iAmHere(){};
 

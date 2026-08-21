@@ -36,6 +36,8 @@ class Cell
 {
 public:
 
+    int activeZoneIndex = 0;
+
     int G = 0;
     int F = 0;
     int H = 0;

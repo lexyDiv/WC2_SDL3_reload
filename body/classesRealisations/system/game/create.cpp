@@ -24,5 +24,6 @@ void Game::create()
   this->isGFComplite = true;
 
   thDatas.forEach([](ThData *th)
-                  { th->createMyActiveProgZone(thDatas.length); });
+                  { th->createMyActiveProgZone(thDatas.length); 
+                  });
 }

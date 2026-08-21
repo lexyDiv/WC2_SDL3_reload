@@ -1,5 +1,5 @@
 #include "in.h"
-//=>out
+//=>createMyActiveProgZone
 
     void  ThData::process()
     {

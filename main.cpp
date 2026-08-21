@@ -39,9 +39,7 @@
 //     }
 // }
 
-void hz(ThData* td) {
- td->process();
-}
+
 
 int main()
 {
@@ -56,6 +54,8 @@ int main()
          thDatas.push(td);
          threads.emplace_back(&ThData::process, td);
     } 
+
+
 
 
     // thread th_1(do1);

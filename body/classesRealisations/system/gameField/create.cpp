@@ -4,7 +4,7 @@
 void GameField::create()
 {
     Array<string> array = readMap(&this->path);
-    console.log(to_string(array.length));
+    //console.log(to_string(array.length));
      this->gabarit = array.length;
      this->fieldMidIndex = array.length / 2;
     // ///////////////////////

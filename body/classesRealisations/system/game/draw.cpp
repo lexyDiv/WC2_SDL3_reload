@@ -4,7 +4,7 @@
 void Game::draw()
 {
 
-    
+    if (!this->isGFComplite) {return;}
 
    // ctx.CreateDrawZone(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT);
   //  ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "black");
@@ -61,15 +61,15 @@ ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "green");
                                 }); });
 
 
-                                        dc->cellsOnDraw.forEach([drawDeltaY, &DA, &max, this](Array<Cell *> &drawLine)
-                                                { drawLine.forEach([drawDeltaY, &DA, &max, this](Cell *cell)
-                                                                   {
+                    //                     dc->cellsOnDraw.forEach([drawDeltaY, &DA, &max, this](Array<Cell *> &drawLine)
+                    //                             { drawLine.forEach([drawDeltaY, &DA, &max, this](Cell *cell)
+                    //                                                {
 
-                      float drawDeltaX = this->gf->drawDeltaX;
-                      float drawDeltaY = this->gf->drawDeltaY;
-                      ctx.DrawText(cell->x +drawDeltaX, cell->y + drawDeltaY, 20, to_string(cell->activeZoneIndex));
+                    //   float drawDeltaX = this->gf->drawDeltaX;
+                    //   float drawDeltaY = this->gf->drawDeltaY;
+                    //   ctx.DrawText(cell->x +drawDeltaX, cell->y + drawDeltaY, 20, to_string(cell->activeZoneIndex));
                              
-                     }); });
+                    //  }); });
 
                              
 

@@ -1,5 +1,5 @@
 #include "process.cpp"
-//=>out
+//=>isAllThreadsBasicComplite
 
 void ThData::createMyActiveProgZone(int pathesLength)
 {

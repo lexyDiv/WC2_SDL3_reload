@@ -1,52 +1,37 @@
 #include "preDraw.cpp"
 //=>fractionsControl
 
+int th_count = std::thread::hardware_concurrency() - 1;
+std::vector<std::thread> threads;
+
 void Game::process()
 {
-    if (this->isGFComplite)
+
+    this->fractionsControl();
+    this->gf->activeShahtsControl();
+
+    this->thSpin = !this->thSpin;
+
+    thDatas.forEach([](ThData *td)
+                    { threads.emplace_back(&ThData::process, td); });
+
+    while (!this->isGFComplite)
     {
-       // console.log(to_string(this->allMountsPtr.length));
-       // this->objMenu->getCandidateCells();
-
-       // needReturn = true;
-        // while (!goWorkReady || !hardReady || !dop_1Ready)
-        // {
-        // }
-
-        this->fractionsControl();
-       // this->gf->activeShahtsControl();
-       // this->isUnitsActiveComplite2 = false;
-       // this->isUnitsActiveComplite3 = false;
-       // this->isUnitsActiveComplite4 = false;
-       // this->unitsActiveZone(this->gf->thread_1_postIndex, false);
-        // while (!this->isUnitsActiveComplite2 ||
-        //        !this->isUnitsActiveComplite3 ||
-        //        !this->isUnitsActiveComplite4)
-        // {
-        // };
-        /////////////////////////////////   => zones 2
-
-        // this->isUnitsActiveComplite5 = false;
-        // this->isUnitsActiveComplite6 = false;
-        // this->unitsActiveZone(this->gf->thread_2_postIndex, false);
-        // while (!this->isUnitsActiveComplite5 ||
-        //        !this->isUnitsActiveComplite6)
-        // {
-        // };
-
-       // this->gf->trupsControl();
-
-        needReturn = false;
-       // this->getPotentialWayControl4(startTick, optimalDeltaTime);
-
-       // Uint64 finishTick = SDL_GetTicks();
-       // float basicDeltaTime = float(finishTick) - float(*startTick);
-        // console.log("delta : " + to_string(basicDeltaTime));
-        // tiks.push(basicDeltaTime);
-        // if (tiks.length >= 10000) {
-        //     tiks.shift();
-        // }
-        this->preDraw();
-      
+        basicDraw([]()
+                  {
+    ctx.FillRect(0, 0, 1000, 1000, "white");
+    ctx.DrawText(30, 30, 50, "loading"); });
+        this_thread::sleep_for(chrono::nanoseconds(10000));
     }
+
+    for (auto &t : threads)
+    {
+        t.join();
+    }
+
+    threads.clear();
+
+    this->gf->trupsControl();
+
+    this->preDraw();
 }

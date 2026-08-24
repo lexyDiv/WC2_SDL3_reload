@@ -5,6 +5,7 @@ GameField gfData;
 
 void Game::create()
 {
+
   gfData = GameField();
   this->gf = &gfData; // new GameField(&this->pathes[0], 1);
   this->gf->getPathes(&this->pathes[0], 1);

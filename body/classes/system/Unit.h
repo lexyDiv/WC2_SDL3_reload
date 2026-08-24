@@ -162,6 +162,7 @@ public:
    int inFightTimer = 0;
    int stress = 0;
    bool isWarrior = false;
+   bool thSpin = true;
 
    function<bool(Cell *cell)> isOnGetPotentialWayGetTarget;
    function<bool(Cell* cell)> isNewCellOnGetWayValide;

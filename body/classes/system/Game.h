@@ -32,6 +32,8 @@ public:
    void process(Uint64 *startTick, int *optimalDeltaTime);
       void process();
 
+      bool quit = false;
+
   vector<string> pathes{
       "levels/test_1.txt",
       "levels/testBig_1.txt",
@@ -53,6 +55,7 @@ public:
   Array<Cell> allCells;
 
   int scanIndex = 0;
+  bool thSpin = true;
 };
 
 Game gameData;

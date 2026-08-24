@@ -29,6 +29,9 @@ void Game::process()
         t.join();
     }
 
+    
+
+
     threads.clear();
 
     this->gf->trupsControl();

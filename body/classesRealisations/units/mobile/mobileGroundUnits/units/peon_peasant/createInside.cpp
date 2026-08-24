@@ -37,4 +37,5 @@ void Peon_peasant::createInside(Cell *c)
     this->inSave = true;
     this->animMashtab = this->startAnimMashtab;
     c->game->AllUnitsPtr.push(this);
+    c->game->allLifeUnitsPtr.push(this);
 }

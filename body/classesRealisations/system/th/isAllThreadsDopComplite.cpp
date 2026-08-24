@@ -1,5 +1,5 @@
 #include "isAllThreadsBasicComplite.cpp"
-//=>out
+//=>PWProcess
 
 bool ThData::isAllThreadsDopComplite()
 {

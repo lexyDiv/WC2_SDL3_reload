@@ -4,7 +4,7 @@
 class ThData
 {
 public:
-    ThData(int num) { this->num = num; };
+    ThData(int num) { this->num = num; this->hold = num; };
     ~ThData() {};
     int num = 0;
     Game *game = &gameData;
@@ -13,6 +13,7 @@ public:
 
     int dopStartIndex = 0;
     int dopFinishIndex = 0;
+    int hold = 0;
 
     bool isBasicActiveProgComplite = true;
     bool isDopActiveProgComplite = true;
@@ -24,6 +25,8 @@ public:
     void process();
     bool isAllThreadsBasicComplite();
     bool isAllThreadsDopComplite();
+
+    void PWProcess();
 };
 
 Array<ThData *> thDatas;

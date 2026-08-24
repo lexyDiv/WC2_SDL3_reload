@@ -12,13 +12,7 @@ public:
   ////////////////////////////////////////////  => cases
   virtual void unitsActiveZone(int index, bool isFinal) {};
 
-  bool isUnitsActiveComplite = false;
-  bool isUnitsActiveComplite2 = false;
-  bool isUnitsActiveComplite3 = false;
-  bool isUnitsActiveComplite4 = false;
-  bool isUnitsActiveComplite5 = false;
-  bool isUnitsActiveComplite6 = false;
-  bool isUnitsActiveComplite7 = false;
+  
 
   //////////////////////////////////////////////////////////  <= cases
 
@@ -50,12 +44,15 @@ public:
    Array<Unit *> allMountsPtr;
    Array<Unit *> allShahtsPtr;
    Array<Unit *> allOilsPtr;
+
+   Array<Unit *> allLifeUnitsPtr;
   
   ///////////////////////////////////////////////////
   Array<Cell> allCells;
 
   int scanIndex = 0;
   bool thSpin = true;
+  bool needReturn = false;
 };
 
 Game gameData;

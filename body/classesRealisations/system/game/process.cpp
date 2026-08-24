@@ -29,10 +29,11 @@ void Game::process()
         t.join();
     }
 
-    
-
-
     threads.clear();
+
+    thDatas.forEach([](ThData *td)
+                    { threads.emplace_back(&ThData::PWProcess, td); });
+
 
     this->gf->trupsControl();
 

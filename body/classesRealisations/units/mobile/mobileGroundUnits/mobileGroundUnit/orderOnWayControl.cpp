@@ -21,7 +21,7 @@ void MobileGroundUnit::orderOnWayControl()
 
         if (this->isPotentialWayComplite)
         {
-            this->getHandTarget(oCell);
+            this->getCurrentTarget(oCell);
             this->orderOnWay.isComplite = true;
         }
         this->iNeedFreeWay = false;

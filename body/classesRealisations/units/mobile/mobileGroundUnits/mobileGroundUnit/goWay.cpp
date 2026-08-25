@@ -49,7 +49,7 @@ void MobileGroundUnit::goWay()
                     }
                     else
                     {
-                        this->stendOnCell();
+                       this->stendOnCell();
                         this->targetObj.unit = nullptr;
                         if (this->profession != "")
                         {

@@ -1,7 +1,7 @@
 // gdb ./prog core
 // g++ -g main.cpp -I./include -fmax-include-depth=5000 -o prog -L./sdl3-sample/build -lSDL3 -lSDL3_image
 // g++ main.cpp -I./include -fmax-include-depth=5000 -o prog -L./sdl3-sample/build -lSDL3 -lSDL3_image
-// fantasios.tech
+
 #include "body/out.h"
 
 int main()
@@ -15,14 +15,16 @@ int main()
     }
 
     int optimalDeltaTime = 1000 / 30;
-
+    
     while (!quit)
     {
         // console.log(to_string(game->isGFComplite));
         Uint64 startTick = SDL_GetTicks();
 
         basicDo([]()
-                { game->process(); });
+                {
+                     game->process(); 
+                    });
 
         basicDraw([]()
                   { game->draw(); });

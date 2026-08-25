@@ -31,48 +31,62 @@ struct UnitPack
     int bornCount = 0;
 };
 
+class Td_way_data {
+    public:
+  //  Td_way_data(){};
+    double createCountData = 0;
+    int F = 0.0F;
+    int H = 0.0F;
+    int G = 0.0F;
+    double explored = 0;
+    double procCurr = 0;
+    Cell *wayFather = nullptr;
+};
+
 
 class Cell
 {
 public:
 
+Array<Td_way_data> thwd;
+
     int activeZoneIndex = 0;
 
-    int G = 0;
-    int F = 0;
-    int H = 0;
-    Cell *wayFather = nullptr;
-     void getCurrentTargetCell();
+    // int G = 0;
+    // int F = 0;
+    // int H = 0;
+    //Cell *wayFather = nullptr;
+    // void getCurrentTargetCell();
     double createCountData = 0.0;
-    double explored = 0.0;
-    double procCurr = 0;
+   // double explored = 0.0;
 
-    int G2 = 0;
-    int F2 = 0;
-    int H2 = 0;
-    Cell *wayFather2 = nullptr;
-    double createCountData2 = 0.0;
-     void getCurrentTargetCell2() {};
-    double explored2 = 0.0;
-    double procCurr2 = 0;
 
-    int G3 = 0;
-    int F3 = 0;
-    int H3 = 0;
-    Cell *wayFather3 = nullptr;
-    double createCountData3 = 0.0;
-     void getCurrentTargetCell3() {};
-    double explored3 = 0.0;
-    double procCurr3 = 0;
+    // int G2 = 0;
+    // int F2 = 0;
+    // int H2 = 0;
+    // Cell *wayFather2 = nullptr;
+    // double createCountData2 = 0.0;
+    //  void getCurrentTargetCell2() {};
+    // double explored2 = 0.0;
+    // double procCurr2 = 0;
 
-    int G4 = 0;
-    int F4 = 0;
-    int H4 = 0;
-    Cell *wayFather4 = nullptr;
-    double createCountData4 = 0.0;
-     void getCurrentTargetCell4() {};
-    double explored4 = 0.0;
-    double procCurr4 = 0;
+    // int G3 = 0;
+    // int F3 = 0;
+    // int H3 = 0;
+    // Cell *wayFather3 = nullptr;
+    // double createCountData3 = 0.0;
+    //  void getCurrentTargetCell3() {};
+    // double explored3 = 0.0;
+    // double procCurr3 = 0;
+
+    // int G4 = 0;
+    // int F4 = 0;
+    // int H4 = 0;
+    // Cell *wayFather4 = nullptr;
+    // double createCountData4 = 0.0;
+    //  void getCurrentTargetCell4() {};
+    // double explored4 = 0.0;
+    // double procCurr4 = 0;
 
     /////////////////////////////////////////////////////////////////////////////////////////////////
 

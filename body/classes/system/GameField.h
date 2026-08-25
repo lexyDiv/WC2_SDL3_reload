@@ -5,58 +5,58 @@ class GameField
 {
 public:
 
-int deep = 30000;
-int deep2 = 30000;
-int deep3 = 30000;
-int deep4 = 30000;
-int maxDeep = 30000;
-int minDeep = 1000;
-int fieldMidIndex = 0;
-//////
-int threadStep = 0;
-int thread_1_postIndex = 0;
-int thread_2_postIndex = 0;
-int thread_3_postIndex = 0;
-int thread_4_postIndex = 0;
-int thread_5_postIndex = 0;
-int thread_6_postIndex = 0;
-int thread_7_postIndex = 0;
+// int deep = 30000;
+// int deep2 = 30000;
+// int deep3 = 30000;
+// int deep4 = 30000;
+// int maxDeep = 30000;
+// int minDeep = 1000;
+ int fieldMidIndex = 0;
+// //////
+// int threadStep = 0;
+// int thread_1_postIndex = 0;
+// int thread_2_postIndex = 0;
+// int thread_3_postIndex = 0;
+// int thread_4_postIndex = 0;
+// int thread_5_postIndex = 0;
+// int thread_6_postIndex = 0;
+// int thread_7_postIndex = 0;
 
 
-Array<int> deeps;
+// Array<int> deeps;
 
-     void exploreNewCellAndAddToOpenArr(Unit *unit, Cell *fatherCell, Cell *potentialCell) {};
-     void getPotentialWay(Unit *unit) {};
-     int get_G(Cell *cell, Cell *potentialCell) { return 0; };
-     int get_H(Cell *potentialCell, Cell *finishCell) { return 0; };
-     void potentialWayCreate(Unit *unit, Unit *finalCell) {};
-    Cell *min_F_cell = nullptr;
-    Cell *globalMin_H_cell = nullptr;
+//      void exploreNewCellAndAddToOpenArr(Unit *unit, Cell *fatherCell, Cell *potentialCell) {};
+//      void getPotentialWay(Unit *unit) {};
+//      int get_G(Cell *cell, Cell *potentialCell) { return 0; };
+//      int get_H(Cell *potentialCell, Cell *finishCell) { return 0; };
+//      void potentialWayCreate(Unit *unit, Unit *finalCell) {};
+//     Cell *min_F_cell = nullptr;
+//     Cell *globalMin_H_cell = nullptr;
 
-     void exploreNewCellAndAddToOpenArr2(Unit *unit, Cell *fatherCell, Cell *potentialCell) {};
-     void getPotentialWay2(Unit *unit) {};
-     int get_G2(Cell *cell, Cell *potentialCell) { return 0; };
-     int get_H2(Cell *potentialCell, Cell *finishCell) { return 0; };
-     void potentialWayCreate2(Unit *unit, Cell *finalCell) {};
-    Cell *min_F_cell2 = nullptr;
-    Cell *globalMin_H_cell2 = nullptr;
+//      void exploreNewCellAndAddToOpenArr2(Unit *unit, Cell *fatherCell, Cell *potentialCell) {};
+//      void getPotentialWay2(Unit *unit) {};
+//      int get_G2(Cell *cell, Cell *potentialCell) { return 0; };
+//      int get_H2(Cell *potentialCell, Cell *finishCell) { return 0; };
+//      void potentialWayCreate2(Unit *unit, Cell *finalCell) {};
+//     Cell *min_F_cell2 = nullptr;
+//     Cell *globalMin_H_cell2 = nullptr;
 
-     void exploreNewCellAndAddToOpenArr3(Unit *unit, Cell *fatherCell, Cell *potentialCell) {};
-     void getPotentialWay3(Unit *unit) {};
-     int get_G3(Cell *cell, Cell *potentialCell) { return 0; };
-     int get_H3(Cell *potentialCell, Cell *finishCell) { return 0; };
-     void potentialWayCreate3(Unit *unit, Cell *finalCell) {};
-    Cell *min_F_cell3 = nullptr;
-    Cell *globalMin_H_cell3 = nullptr;
+//      void exploreNewCellAndAddToOpenArr3(Unit *unit, Cell *fatherCell, Cell *potentialCell) {};
+//      void getPotentialWay3(Unit *unit) {};
+//      int get_G3(Cell *cell, Cell *potentialCell) { return 0; };
+//      int get_H3(Cell *potentialCell, Cell *finishCell) { return 0; };
+//      void potentialWayCreate3(Unit *unit, Cell *finalCell) {};
+//     Cell *min_F_cell3 = nullptr;
+//     Cell *globalMin_H_cell3 = nullptr;
 
 
-     void exploreNewCellAndAddToOpenArr4(Unit *unit, Cell *fatherCell, Cell *potentialCell) {};
-     void getPotentialWay4(Unit *unit) {};
-     int get_G4(Cell *cell, Cell *potentialCell) { return 0; };
-     int get_H4(Cell *potentialCell, Cell *finishCell) { return 0; };
-     void potentialWayCreate4(Unit *unit, Cell *finalCell) {};
-    Cell *min_F_cell4 = nullptr;
-    Cell *globalMin_H_cell4 = nullptr;
+//      void exploreNewCellAndAddToOpenArr4(Unit *unit, Cell *fatherCell, Cell *potentialCell) {};
+//      void getPotentialWay4(Unit *unit) {};
+//      int get_G4(Cell *cell, Cell *potentialCell) { return 0; };
+//      int get_H4(Cell *potentialCell, Cell *finishCell) { return 0; };
+//      void potentialWayCreate4(Unit *unit, Cell *finalCell) {};
+//     Cell *min_F_cell4 = nullptr;
+//     Cell *globalMin_H_cell4 = nullptr;
 
     ///////////////////////////////////////////////////////////////////////////////
     GameField(){};
@@ -128,14 +128,14 @@ Array<int> deeps;
     bool init = false;
 
 
-    double createCount = 0.0;
-    double createCount2 = 0.0;
-    double createCount3 = 0.0;
-    double createCount4 = 0.0;
-    double procCurr = 0.0;
-    double procCurr2 = 0.0;
-    double procCurr3 = 0.0;
-    double procCurr4 = 0.0;
+     double createCount = 0.0;
+    // double createCount2 = 0.0;
+    // double createCount3 = 0.0;
+    // double createCount4 = 0.0;
+    // double procCurr = 0.0;
+    // double procCurr2 = 0.0;
+    // double procCurr3 = 0.0;
+    // double procCurr4 = 0.0;
 
     
 
@@ -159,10 +159,10 @@ Array<int> deeps;
 
     FieldClick *fieldClickPoint = nullptr;
 
-    Array<Cell *> openArr;
-    Array<Cell *> openArr2;
-    Array<Cell *> openArr3;
-    Array<Cell *> openArr4;
+    // Array<Cell *> openArr;
+    // Array<Cell *> openArr2;
+    // Array<Cell *> openArr3;
+    // Array<Cell *> openArr4;
     Array<Array<Cell *>> exp;
 
     // bool isQuick = false;

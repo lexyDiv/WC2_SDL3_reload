@@ -1,5 +1,5 @@
 #include "isAllThreadsDopComplite.cpp"
-//=>out
+//=>createPotentialWay
 
 void ThData::PWProcess() {
 

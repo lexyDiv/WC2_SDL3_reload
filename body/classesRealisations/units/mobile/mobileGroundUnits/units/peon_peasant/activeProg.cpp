@@ -7,7 +7,7 @@ void Peon_peasant::activeProg()
   //   if (this->focus) {
   //    // console.log(to_string(this->isPotentialWayComplite));
   //   }
-console.log("active");
+
   this->isActive = this->isActiveCheck();
   if (!this->isActive)
   {

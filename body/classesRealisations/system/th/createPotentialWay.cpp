@@ -10,9 +10,13 @@ void ThData::createPotentialWay(Unit *unit)
 
     int iter = 0;
 
-    unit->getCurrentTargetCell(); // ?????
+    this->getCurrentTargetCell(unit); // ok
+
+
 
     Td_way_data *td_way_data = unit->cell->thwd.length ? unit->cell->thwd.getItemPtr(this->num) : nullptr;
+
+
 
     if (
         unit->hp > 0 && td_way_data)
@@ -109,6 +113,7 @@ void ThData::createPotentialWay(Unit *unit)
                 {
                     this->globalMin_H_cell = this->min_F_cell;
                 }
+  
             }
             else
             {
@@ -120,11 +125,14 @@ void ThData::createPotentialWay(Unit *unit)
                     // {
                     //     console.log("69");
                     // }
+
                 }
                 else
                 {
+
                     this->potentialWayCreate(unit, this->globalMin_H_cell);
                     // unit->targetCell = this->globalMin_H_cell;
+
                 }
 
                 return;

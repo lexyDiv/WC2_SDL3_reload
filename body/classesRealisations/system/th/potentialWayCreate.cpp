@@ -2,20 +2,20 @@
 //=>out
 
 void ThData::potentialWayCreate(Unit *unit, Cell *finalCell) {
-        Cell *uc = unit->cell;
+    Cell *uc = unit->cell;
     if (uc &&
         uc != finalCell)
     {
         Cell *nextCell = finalCell;
-        Td_way_data *nextCell_thwd = nextCell->thwd.getItemPtr(this->num);
         unit->potentialWay.push(nextCell);
-        int large = 0;
+       // int iter = 0;
         while (true)
         {
-            if (nextCell_thwd->wayFather &&
-                nextCell_thwd->wayFather != uc)
+          //  iter++;
+            if (nextCell->thwd.getItemPtr(this->num)->wayFather &&
+                nextCell->thwd.getItemPtr(this->num)->wayFather != uc)
             {
-                nextCell = nextCell_thwd->wayFather;
+                nextCell = nextCell->thwd.getItemPtr(this->num)->wayFather;
                 unit->potentialWay.push(nextCell);
             }
             else

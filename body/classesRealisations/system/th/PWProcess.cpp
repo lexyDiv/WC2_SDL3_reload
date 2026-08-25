@@ -7,12 +7,13 @@ void ThData::PWProcess() {
     for (int i = this->hold; i < length; i += this->thds->length)
     {
 
-        Unit *peon = this->game->allLifeUnitsPtr.getItem(i);
+        Unit *unit = this->game->allLifeUnitsPtr.getItem(i);
            
-        if (!peon->isPotentialWayComplite)
+        if (!unit->isPotentialWayComplite)
         {
            // console.log(to_string(this->num));
            // this->gf->getPotentialWay(peon);
+           this->createPotentialWay(unit);
 
         }
         if (this->game->needReturn)

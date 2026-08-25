@@ -50,7 +50,7 @@ void Fraction::controller()
                         peon->orderOnWay.isComplite = false;
                         peon->orderOnWay.cell = shaht->cell;
                         peon->isActive = true;
-                       // this->activeUnits.push(peon);
+                  
                     }
                 }
             }
@@ -73,7 +73,7 @@ void Fraction::controller()
     }
    //  }
 
-    this->activeUnitsControl();
+  //  this->activeUnitsControl();
 
        this->allBuildings.forEach([](Unit *building){
             if (building->isActive) {

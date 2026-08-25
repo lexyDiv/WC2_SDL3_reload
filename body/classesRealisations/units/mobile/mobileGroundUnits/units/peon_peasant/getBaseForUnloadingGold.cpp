@@ -3,6 +3,7 @@
 
 Unit *Peon_peasant::getBaseForUnloadingGold()
 {
+    
     if (this->fraction->fTownHoll.townHolls.length)
     {
         MinData md = this->fraction->fTownHoll.townHolls.getMinDataU([this](Unit *item)

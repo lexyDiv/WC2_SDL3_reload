@@ -1,5 +1,5 @@
 #include "fightControl.cpp"
-//=>out
+//=>getCurrentTarget
 
 void Peon_peasant::stendOnCellWait()
 {

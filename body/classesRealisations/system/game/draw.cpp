@@ -4,7 +4,7 @@
 void Game::draw()
 {
 
-    
+    if (!this->isGFComplite) {return;}
 
    // ctx.CreateDrawZone(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT);
   //  ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "black");
@@ -29,7 +29,7 @@ ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "green");
 
         Cell *dc = this->gf->drawCell;
 
-        this->gf->drawCell->cellsOnDraw.forEach([drawDeltaY, &DA, &max](Array<Cell *> &drawLine)
+        dc->cellsOnDraw.forEach([drawDeltaY, &DA, &max](Array<Cell *> &drawLine)
                                                 { drawLine.forEach([drawDeltaY, &DA, &max](Cell *cell)
                                                                    {
                     cell->draw();
@@ -45,12 +45,13 @@ ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "green");
                     } 
                 }); });
 
-        this->gf->drawCell->cellsOnDraw.forEach([drawDeltaY, &DA, &max](Array<Cell *> &drawLine)
+        dc->cellsOnDraw.forEach([drawDeltaY, &DA, &max](Array<Cell *> &drawLine)
                                                 { drawLine.forEach([drawDeltaY, &DA, &max](Cell *cell)
                                                                    {
-                    //   cell->ripUnits.forEach([](Unit* trup){
-                    //     trup->drawTrup();
-                    //   });
+                      cell->ripUnits.forEach([](Unit* trup){
+                        trup->drawTrup();
+                      });
+               
                      }); });
 
         DA.forEach([](Array<Unit *> &line)
@@ -58,6 +59,19 @@ ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "green");
                                   { 
                                     unit->draw(); 
                                 }); });
+
+
+                    //                     dc->cellsOnDraw.forEach([drawDeltaY, &DA, &max, this](Array<Cell *> &drawLine)
+                    //                             { drawLine.forEach([drawDeltaY, &DA, &max, this](Cell *cell)
+                    //                                                {
+
+                    //   float drawDeltaX = this->gf->drawDeltaX;
+                    //   float drawDeltaY = this->gf->drawDeltaY;
+                    //   ctx.DrawText(cell->x +drawDeltaX, cell->y + drawDeltaY, 20, to_string(cell->activeZoneIndex));
+                             
+                    //  }); });
+
+                             
 
         /////////  setka
         // this->gf->drawCell->cellsOnDraw.forEach([drawDeltaX, drawDeltaY](Array<ProtoObj *> drawLine)

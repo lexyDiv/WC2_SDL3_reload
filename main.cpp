@@ -4,99 +4,57 @@
 
 #include "body/out.h"
 
-// void foo()
-// {
-
-//     while (!quit)
-//     {
-//         this_thread::sleep_for(chrono::nanoseconds(1));
-//     }
-// };
-
-// void foo2()
-// {
-//     while (!quit)
-//     {
-//         this_thread::sleep_for(chrono::nanoseconds(1));
-//     }
-// };
-
-// void foo3()
-// {
-//     while (!quit)
-//     {
-//         this_thread::sleep_for(chrono::nanoseconds(1));
-//     }
-// };
-
-// void do1()
-// {
-//     game->create();
-
-//     while (!quit)
-//     {
-//         this_thread::sleep_for(chrono::nanoseconds(1));
-//     }
-// }
-
-void hz(ThData* td) {
- td->process();
-}
-
 int main()
 {
-  // game->create();
 
-   int th_count = std::thread::hardware_concurrency() - 1;
-
-    std::vector<std::thread> threads;
-
-    for (int i = 0; i < th_count; i++) {
-         ThData *td = new ThData(i);
-         thDatas.push(td);
-         threads.emplace_back(&ThData::process, td);
-    } 
-
-
-    // thread th_1(do1);
-    // thread th_2(foo);
-    // thread th_3(foo2);
-    // thread th_4(foo3);
+    for (int i = 0; i < th_count; i++)
+    {
+        ThData *td = new ThData(i);
+        td->thds = &thDatas;
+        thDatas.push(td);
+    }
 
     int optimalDeltaTime = 1000 / 30;
-   // console.log(to_string(std::thread::hardware_concurrency())); // threds count
+    
     while (!quit)
     {
+        // console.log(to_string(game->isGFComplite));
         Uint64 startTick = SDL_GetTicks();
 
         basicDo([]()
-                { game->process(); });
+                {
+                     game->process(); 
+                    });
 
         basicDraw([]()
                   { game->draw(); });
+
+
+        for (auto &t : threads)
+        {
+            t.join();
+        }
 
         Uint64 finishTick = SDL_GetTicks();
         int deltaTime = int(finishTick) - int(startTick);
         if (deltaTime < optimalDeltaTime)
         {
-          //  console.log("delay : " + to_string(optimalDeltaTime - deltaTime));
+              console.log("delay : " + to_string(optimalDeltaTime - deltaTime));
+            
             SDL_Delay(optimalDeltaTime - deltaTime);
-        } else {
+        }
+        else
+        {
             console.log("hold");
         }
+
+
+
+        threads.clear();
     }
+    game->quit = quit;
     ctx.Close();
 
-    // th_1.join();
-    // th_2.join();
-    // th_3.join();
-    // th_4.join();
-
-        for (auto& t : threads) {
-        t.join();
-    }
-
-    thDatas.forEach([](ThData* td){
-        delete td;
-    });
+    thDatas.forEach([](ThData *td)
+                    { delete td; });
 }

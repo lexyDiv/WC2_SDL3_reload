@@ -73,5 +73,6 @@ void MobileGroundUnit::getDeltasXY(Cell *nextCell) {
         double preTakts = startDis / this->fraction->peon.speed;
         int preTaktsFloor = floor(preTakts);
         this->speedTale = preTakts - preTaktsFloor;
-        this->wayTakts = preTaktsFloor;
+        this->wayTakts = preTaktsFloor - 1;
+ 
 }

@@ -3,16 +3,18 @@
 
 bool Peon_peasant::isGetTarget()
 {
+    //console.log("here");
     Unit *to = this->targetObj.unit;
-    if (                 //! this->holdWayCount &&
+    if (                 ! this->holdWayCount &&
         this->targetCell // &&
                          // !to &&
-                         //  !this->wayTakts &&
-        // this->potentialWay.length &&
-        // this->wayIndex <= 5 &&
-        //  this->isPotentialWayComplite
+                         &&  !this->wayTakts &&
+         this->way.length &&
+         this->wayIndex <= 5 &&
+         this->isPotentialWayComplite
     )
     {
+        
         if (to)
         {
             if (to->name == "tree")

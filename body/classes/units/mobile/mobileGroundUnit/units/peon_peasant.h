@@ -14,6 +14,7 @@ public:
     // // void getCurrentTargetCell2() override;
     // // void getCurrentTargetCell3() override;
     // // void getCurrentTargetCell4() override;
+     void getCurrentTarget(Cell* cell) override;
      void activeProg() override;
      void stendOnCell() override;
      void stendOnCellWait() override;
@@ -26,13 +27,15 @@ public:
      Unit *getAnyTree() override;
      Unit *getAnyShaht() override;
      Unit *getTreeNear() override;
-    // Unit *getBaseForUnloading() override;
+     Unit *getBaseForUnloading() override;
      Unit *getBaseForUnloadingGold() override;
      void preDraw() override;
      void updateCurrentTarget() override;
+     void inFightAnimation() override;
     // void takeDamage(int damage) override;
-    // void trupCreate() override;
+     void trupCreate() override;
     // void drawTrup() override;
+    void targetObjControl() override;
 
     
     // void trupCreate() override;

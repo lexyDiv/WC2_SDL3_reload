@@ -57,6 +57,7 @@ public:
     cell : nullptr
   }; };
 
+    virtual void getCurrentTarget(Cell *cell) {};
   virtual void getHandTarget(Cell *cell) {};
   virtual void getCurrentTargetCell() {};
   virtual void stendOnCell() {};
@@ -76,6 +77,7 @@ public:
   virtual void drawTrup(){};
   virtual void standOnCell() {};
   virtual void stressControl(){};
+  virtual void targetObjControl(){};
 
   int deleteTimer = 50;
   Array<Cell *> myCells;
@@ -101,6 +103,9 @@ public:
   int randYVec = intRand(0, 2);
   double x = randXVec = 0;
   double y = randYVec = 0;
+
+  double saveX2 = 0;
+
   double conor = 0;
   double saveX = 0;
   double drawIndexY = 0;
@@ -160,4 +165,10 @@ public:
    int bornCount = 0;
    int inFightTimer = 0;
    int stress = 0;
+   bool isWarrior = false;
+   bool thSpin = true;
+   bool isDelete = false;
+
+   function<bool(Cell *cell)> isOnGetPotentialWayGetTarget;
+   function<bool(Cell* cell)> isNewCellOnGetWayValide;
 };

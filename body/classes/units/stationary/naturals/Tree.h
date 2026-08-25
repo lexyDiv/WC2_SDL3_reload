@@ -11,4 +11,5 @@ public:
     void draw() override;
     void stressControl() override;
     void trupCreate() override;
+    void drawTrup() override;
 };

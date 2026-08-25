@@ -48,9 +48,9 @@ ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "green");
         dc->cellsOnDraw.forEach([drawDeltaY, &DA, &max](Array<Cell *> &drawLine)
                                                 { drawLine.forEach([drawDeltaY, &DA, &max](Cell *cell)
                                                                    {
-                    //   cell->ripUnits.forEach([](Unit* trup){
-                    //     trup->drawTrup();
-                    //   });
+                      cell->ripUnits.forEach([](Unit* trup){
+                        trup->drawTrup();
+                      });
                
                      }); });
 

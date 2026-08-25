@@ -1,2 +1,2 @@
 #include "stressControl.cpp"
-//=>out
+//=>drawTrup

@@ -27,10 +27,11 @@ public:
      Unit *getAnyTree() override;
      Unit *getAnyShaht() override;
      Unit *getTreeNear() override;
-    // Unit *getBaseForUnloading() override;
+     Unit *getBaseForUnloading() override;
      Unit *getBaseForUnloadingGold() override;
      void preDraw() override;
      void updateCurrentTarget() override;
+     void inFightAnimation() override;
     // void takeDamage(int damage) override;
     // void trupCreate() override;
     // void drawTrup() override;

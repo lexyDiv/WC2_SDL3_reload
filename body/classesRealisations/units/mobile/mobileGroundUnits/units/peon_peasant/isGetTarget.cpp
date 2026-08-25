@@ -3,6 +3,7 @@
 
 bool Peon_peasant::isGetTarget()
 {
+    //console.log("here");
     Unit *to = this->targetObj.unit;
     if (                 //! this->holdWayCount &&
         this->targetCell // &&
@@ -13,6 +14,7 @@ bool Peon_peasant::isGetTarget()
         //  this->isPotentialWayComplite
     )
     {
+        
         if (to)
         {
             if (to->name == "tree")

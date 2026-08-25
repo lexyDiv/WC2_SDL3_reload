@@ -1,0 +1,2 @@
+#include "inFightAnimation.cpp"
+//=>out

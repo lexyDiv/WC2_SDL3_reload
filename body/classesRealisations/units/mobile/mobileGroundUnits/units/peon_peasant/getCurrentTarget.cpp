@@ -1,5 +1,5 @@
 #include "stendOnCellWait.cpp"
-//=>out
+//=>inFightAnimation
 
 void Peon_peasant::getCurrentTarget(Cell *cell) {
        this->preTargetCell = cell;

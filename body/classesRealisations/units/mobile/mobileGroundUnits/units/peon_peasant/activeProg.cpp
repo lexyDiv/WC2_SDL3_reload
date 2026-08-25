@@ -38,6 +38,7 @@ void Peon_peasant::activeProg()
     this->way.copy(this->potentialWay);
     // this->targetObjControl(this); // !!! impotent IMPOTENT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     this->potentialWay.clear();
+    this->isIgetMyTarget = false;
   }
 
   // if (this->isAnimyCheckNeeded)

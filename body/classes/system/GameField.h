@@ -98,7 +98,7 @@ public:
     Array<Unit *> activeShahts;
 
     Array<Unit *> trupsOnDelete;
-     void trupsControl() {};
+     void trupsControl();
      void activeShahtsControl() {};
 
     Image *miniMap = nullptr;

@@ -1,5 +1,5 @@
 #include "miniMapDraw.cpp"
-//=>out
+//=>trupControl
 
 void GameField::miniMapUpdate() {
       if (!this->miniMap) {

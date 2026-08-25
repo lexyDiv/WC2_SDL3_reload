@@ -1,2 +1,2 @@
 #include "inFightAnimation.cpp"
-//=>out
+//=>trupCreate

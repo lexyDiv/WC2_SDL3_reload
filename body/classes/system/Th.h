@@ -14,7 +14,7 @@ public:
     int dopStartIndex = 0;
     int dopFinishIndex = 0;
     int hold = 0;
-    int deep = 10000;
+    int deep = 30000;
 
     double createCount = 0;
     double procCurr = 0;

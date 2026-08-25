@@ -166,6 +166,7 @@ public:
    int stress = 0;
    bool isWarrior = false;
    bool thSpin = true;
+   bool isDelete = false;
 
    function<bool(Cell *cell)> isOnGetPotentialWayGetTarget;
    function<bool(Cell* cell)> isNewCellOnGetWayValide;

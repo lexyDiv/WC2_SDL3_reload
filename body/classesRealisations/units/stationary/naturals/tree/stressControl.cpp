@@ -1,5 +1,5 @@
 #include "draw.cpp"
-//=>out
+//=>trupCreate
 
 void Tree::stressControl()
 {

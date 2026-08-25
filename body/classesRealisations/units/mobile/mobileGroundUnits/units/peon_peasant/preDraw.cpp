@@ -4,7 +4,7 @@
 void Peon_peasant::preDraw()
 {
     this->isAddOnDraw = false;
-    return;
+
     if (this->hp)
     {
         if (!this->isActive && !this->inSave)

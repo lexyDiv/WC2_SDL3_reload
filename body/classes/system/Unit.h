@@ -102,6 +102,9 @@ public:
   int randYVec = intRand(0, 2);
   double x = randXVec = 0;
   double y = randYVec = 0;
+
+  double saveX2 = 0;
+
   double conor = 0;
   double saveX = 0;
   double drawIndexY = 0;

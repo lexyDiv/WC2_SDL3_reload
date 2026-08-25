@@ -11,11 +11,11 @@ void Peon_peasant::activeProg()
   this->isActive = this->isActiveCheck();
   if (!this->isActive)
   {
-   // console.log("here");
+    // console.log("here");
     return;
   }
 
-    if (this->outHoldTimer == 30)
+  if (this->outHoldTimer == 30)
   {
     this->outHoldTimer--;
     this->iAmHere();
@@ -32,66 +32,64 @@ void Peon_peasant::activeProg()
     }
   }
 
-    if (this->isPotentialWayComplite &&
-        this->potentialWay.length)
-    {
-      this->way.copy(this->potentialWay);
-     // this->targetObjControl(this); // !!! impotent IMPOTENT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      this->potentialWay.clear();
-    }
+  if (this->isPotentialWayComplite &&
+      this->potentialWay.length)
+  {
+    this->way.copy(this->potentialWay);
+    // this->targetObjControl(this); // !!! impotent IMPOTENT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    this->potentialWay.clear();
+  }
 
-    // if (this->isAnimyCheckNeeded)
-    // {
-    //   this->isAnimyCheckNeeded = false;
-    //   this->iAmHere();
-    // }
-
+  // if (this->isAnimyCheckNeeded)
+  // {
+  //   this->isAnimyCheckNeeded = false;
+  //   this->iAmHere();
+  // }
 
   //   ///////////////////////////////////////////////////////////////
-    if (!this->wayTakts &&
-        this->wayIndex <= 5 &&
-        this->isPotentialWayComplite &&
-        this->orderOnWay.isComplite &&
-        this->way.length && // ???????? way.length ????? !!!!!!
-        !this->holdWayCount &&
-        !this->inFight)
+  if (!this->wayTakts &&
+      this->wayIndex <= 5 &&
+      this->isPotentialWayComplite &&
+      this->orderOnWay.isComplite &&
+      this->way.length && // ???????? way.length ????? !!!!!!
+      !this->holdWayCount &&
+      !this->inFight)
+  {
+    if (!this->isIgetMyTarget)
     {
-      if (!this->isIgetMyTarget)
+      Unit *to = this->targetObj.unit;
+      if (to)
       {
-        Unit *to = this->targetObj.unit;
-        if (to)
+        bool isTOValide = this->isTargetObjValide();
+        if (!isTOValide)
         {
-          bool isTOValide = this->isTargetObjValide();
-          if (!isTOValide)
-          {
-            this->stendOnCell();
-            this->updateCurrentTarget();
-
-          }
-        }
-
-        this->isGetTarget();
-        if (this->isIgetMyTarget)
-        {
-          this->targetCell = nullptr;
-          this->preTargetCell = nullptr;
           this->stendOnCell();
-          this->isIgetMyTarget = false;
-          this->selectAnAction();
+          this->updateCurrentTarget();
         }
       }
-      else
+
+      this->isGetTarget();
+      if (this->isIgetMyTarget)
       {
+        this->targetCell = nullptr;
+        this->preTargetCell = nullptr;
+        this->stendOnCell();
+        this->isIgetMyTarget = false;
+        this->selectAnAction();
       }
     }
+    // else
+    // {
+    // }
+  }
 
-    if (this->inFight)
-    {
-      this->fightControl(); // maybee HUYNYA refactoring needed !!!
-    }
-    else
-    {
-      this->goWay();
-      this->orderOnWayControl();
-    }
+  if (this->inFight)
+  {
+    this->fightControl(); // maybee HUYNYA refactoring needed !!!
+  }
+  else
+  {
+    this->goWay();
+    this->orderOnWayControl();
+  }
 }

@@ -9,7 +9,7 @@ void MobileGroundUnit::goWay()
             this->way.length &&
             this->wayIndex > 0)
         {
-    
+
             Cell *nextCell = this->way.getItem(this->wayIndex - 1);
 
             bool isNeedHold = this->isNeedHoldGoWay(nextCell);
@@ -26,11 +26,13 @@ void MobileGroundUnit::goWay()
                 this->cell->groundUnit = this;
                 this->isGetMyCell = false;
                 this->iAmHere();
+
                 if (saveSpeedTale)
                 {
                     this->x += cos(this->conor) * saveSpeedTale;
                     this->y += sin(this->conor) * saveSpeedTale;
                 }
+
                 this->drawIndexY = this->y;
             }
             else if (isNeedHold)
@@ -49,11 +51,11 @@ void MobileGroundUnit::goWay()
                     }
                     else
                     {
-                       this->stendOnCell();
+                        this->stendOnCell();
                         this->targetObj.unit = nullptr;
                         if (this->profession != "")
                         {
-                            this->updateCurrentTarget();
+
                             return;
                         }
                         this->orderOnWay.cell = this->preTargetCell;

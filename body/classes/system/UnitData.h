@@ -16,7 +16,7 @@ public:
     Image *img_2 = nullptr;
     Image *img_3 = nullptr;
     double sight = 1;
-    double speed = 1.6;
+    double speed = 1;
     double hpMax = 5;
 
     double conorLeft = 0;          // degToRad(180);

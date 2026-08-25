@@ -28,6 +28,10 @@ public:
 
       bool quit = false;
 
+      Uint64 finishTick = SDL_GetTicks();
+      Uint64 startTick = SDL_GetTicks();
+      int optimalDeltaTime = 1000 / 30;
+
   vector<string> pathes{
       "levels/test_1.txt",
       "levels/testBig_1.txt",

@@ -14,12 +14,12 @@ int main()
         thDatas.push(td);
     }
 
-    int optimalDeltaTime = 1000 / 30;
+   
     
     while (!quit)
     {
         // console.log(to_string(game->isGFComplite));
-        Uint64 startTick = SDL_GetTicks();
+        game->startTick = SDL_GetTicks();
 
         basicDo([]()
                 {
@@ -35,13 +35,13 @@ int main()
             t.join();
         }
 
-        Uint64 finishTick = SDL_GetTicks();
-        int deltaTime = int(finishTick) - int(startTick);
-        if (deltaTime < optimalDeltaTime)
+        game->finishTick = SDL_GetTicks();
+        int deltaTime = int(game->finishTick) - int(game->startTick);
+        if (deltaTime < game->optimalDeltaTime)
         {
-              console.log("delay : " + to_string(optimalDeltaTime - deltaTime));
+            //  console.log("delay : " + to_string(game->optimalDeltaTime - deltaTime));
             
-            SDL_Delay(optimalDeltaTime - deltaTime);
+            SDL_Delay(game->optimalDeltaTime - deltaTime);
         }
         else
         {

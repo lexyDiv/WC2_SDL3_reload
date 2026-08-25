@@ -36,7 +36,7 @@ void Peon_peasant::activeProg()
       this->potentialWay.length)
   {
     this->way.copy(this->potentialWay);
-    // this->targetObjControl(this); // !!! impotent IMPOTENT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     this->targetObjControl(); // !!! impotent IMPOTENT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     this->potentialWay.clear();
     this->isIgetMyTarget = false;
   }

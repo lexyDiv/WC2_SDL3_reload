@@ -35,6 +35,7 @@ public:
     // void takeDamage(int damage) override;
      void trupCreate() override;
     // void drawTrup() override;
+    void targetObjControl() override;
 
     
     // void trupCreate() override;

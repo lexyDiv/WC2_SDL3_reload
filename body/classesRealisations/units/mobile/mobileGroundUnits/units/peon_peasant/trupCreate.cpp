@@ -1,5 +1,5 @@
 #include "getBaseForUnloading.cpp"
-//=>out
+//=>targetObjControl
 
 void Peon_peasant::trupCreate() {
        this->deleteTimer--;

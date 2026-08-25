@@ -29,11 +29,18 @@ int main()
         basicDraw([]()
                   { game->draw(); });
 
+
+        for (auto &t : threads)
+        {
+            t.join();
+        }
+
         Uint64 finishTick = SDL_GetTicks();
         int deltaTime = int(finishTick) - int(startTick);
         if (deltaTime < optimalDeltaTime)
         {
-            //  console.log("delay : " + to_string(optimalDeltaTime - deltaTime));
+              console.log("delay : " + to_string(optimalDeltaTime - deltaTime));
+            
             SDL_Delay(optimalDeltaTime - deltaTime);
         }
         else
@@ -41,10 +48,7 @@ int main()
             console.log("hold");
         }
 
-        for (auto &t : threads)
-        {
-            t.join();
-        }
+
 
         threads.clear();
     }

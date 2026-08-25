@@ -77,6 +77,7 @@ public:
   virtual void drawTrup(){};
   virtual void standOnCell() {};
   virtual void stressControl(){};
+  virtual void targetObjControl(){};
 
   int deleteTimer = 50;
   Array<Cell *> myCells;

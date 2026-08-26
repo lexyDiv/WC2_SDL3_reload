@@ -8,7 +8,6 @@ public:
     ~Order() {};
     Cell *cell = nullptr;
     Unit *unit = nullptr;
+    string profession = "";
     bool isComplite = true;
-    int deleteTimer = 0;
-    bool isRealClick = false;
 };

@@ -22,7 +22,7 @@ void TownHall::activeProg()
             peon->createInside(this->cell);
             int ran = intRand(0, 10);
             this->outClients.push(peon);
-            peon->profession = "w";
+           // peon->profession = "w";
             // peon->profession = ran ? "w" : "g";
             if (this->fraction->peons.length < 1) // 6000 crash 3000
             {

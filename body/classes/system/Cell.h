@@ -21,15 +21,15 @@ class TargetObj {
   public:
   Unit *unit = nullptr;
   Cell *unitOldCell = nullptr;
-  int bornCount = 0;
+  Cell *targetCell = nullptr;
 };
 
 
-struct UnitPack
-{
-    Unit *unit = nullptr;
-    int bornCount = 0;
-};
+// struct UnitPack
+// {
+//     Unit *unit = nullptr;
+//     int bornCount = 0;
+// };
 
 class Td_way_data {
     public:

@@ -13,11 +13,11 @@ bool Peon_peasant::isActiveCheck()
          this->inFight ||
          this->outHoldTimer || // => in activeProg
          this->way.length ||
-         this->profession != ""
-        ))
+         this->profession != ""))
     {
+        this->isActive = true;
         return true;
     }
-
+    this->isActive = false;
     return false;
 };

@@ -15,12 +15,12 @@ if (this->color == "red") {
    // console.log("fraction created");
    
    // console.log(this->nation.color);
-   this->game = game;
-    Unit *peon = new Peon_peasant;
-    peon->fraction = this;
-    peon->create(game->gf->field.getItem(10).getItem(3));
-    this->game->allPeonsPtr.push(peon);
-    this->AllLifeUnits.push(peon);
+//    this->game = game;
+//     Unit *peon = new Peon_peasant;
+//     peon->fraction = this;
+//     peon->create(game->gf->field.getItem(10).getItem(3));
+//     this->game->allPeonsPtr.push(peon);
+//     this->AllLifeUnits.push(peon);
 
 //    ProtoObj *peon2 = new Peon;
 //    peon2->fraction = this;

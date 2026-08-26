@@ -7,18 +7,18 @@ void ThData::process()
    // while (!this->game->quit)
    // {
 
-        if (this->num == this->thds->length - 1 && !this->game->isGFComplite)
-        {
-            this->game->create();
-            this->game->gf->field.forEach([this](Array<Cell *> cells){
-                cells.forEach([this](Cell *cell){
-                     for (int i = 0; i < this->thds->length; i++) {
-                        Td_way_data twd;
-                        cell->thwd.push(twd);
-                     }
-                });
-            });
-        }
+        // if (this->num == this->thds->length - 1 && !this->game->isGFComplite)
+        // {
+        //     this->game->create();
+        //     this->game->gf->field.forEach([this](Array<Cell *> cells){
+        //         cells.forEach([this](Cell *cell){
+        //              for (int i = 0; i < this->thds->length; i++) {
+        //                 Td_way_data twd;
+        //                 cell->thwd.push(twd);
+        //              }
+        //         });
+        //     });
+        // }
 
         if (this->game->isGFComplite)
         {

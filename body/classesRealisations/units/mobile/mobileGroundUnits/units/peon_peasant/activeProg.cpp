@@ -11,7 +11,6 @@ void Peon_peasant::activeProg()
   this->isActive = this->isActiveCheck();
   if (!this->isActive)
   {
-    // console.log("here");
     return;
   }
 
@@ -24,12 +23,6 @@ void Peon_peasant::activeProg()
   else if (this->outHoldTimer)
   {
     this->outHoldTimer--;
-    if (!this->outHoldTimer && this->orderOnWay.isComplite)
-    {
-      this->updateCurrentTarget();
-      this->isActiveCheck();
-      return;
-    }
   }
 
   if (this->isPotentialWayComplite &&

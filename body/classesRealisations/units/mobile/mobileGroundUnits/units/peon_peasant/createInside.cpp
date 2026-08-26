@@ -3,16 +3,11 @@
 
 void Peon_peasant::createInside(Cell *c)
 {
-   // this->unitMenu = unitMenuPack.peon;
 
+    this->persNum = this->fraction->unitCount;
     this->cell = nullptr;
-
-
     this->gf = c->gf;
     this->game = c->game;
-
-
-
     this->name = "peon";
     this->type = "life";
     this->mapColor = this->fraction->mapColor;
@@ -38,4 +33,6 @@ void Peon_peasant::createInside(Cell *c)
     this->animMashtab = this->startAnimMashtab;
     c->game->AllUnitsPtr.push(this);
     c->game->allLifeUnitsPtr.push(this);
+    this->fraction->peons.push(this);
+    this->fraction->AllLifeUnits.push(this);
 }

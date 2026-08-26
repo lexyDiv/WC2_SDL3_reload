@@ -6,41 +6,31 @@ bool ok = false;
 
 void TownHall::activeProg()
 {
-   // console.log("void TownHall::activeProg");
     this->isActive = this->isActiveCheck();
     if (!this->isActive)
     {
         return;
     }
 
-    // this->createTimer = 0;
     if (this->createTimer)
     {
         this->createTimer--;
         if (!this->createTimer)
         {
-            //  console.log("create peon");
-            if (this->fraction->peons.length < 100) // 6000 crash 3000
+            this->fraction->unitCount++;
+            Unit *peon = new Peon_peasant(this->fraction);
+            peon->createInside(this->cell);
+            int ran = intRand(0, 10);
+            this->outClients.push(peon);
+            peon->profession = "w";
+            // peon->profession = ran ? "w" : "g";
+            if (this->fraction->peons.length < 1) // 6000 crash 3000
             {
                 this->createTimer = 1;
             }
-            this->fraction->unitCount++;
-            Unit *peon = new Peon_peasant;
-            peon->persNum = this->fraction->unitCount;
-            peon->fraction = this->fraction;
-            peon->createInside(this->cell);
-            int ran = intRand(0, 10);
-            // peon->profession = ran ? "w" : "g";
-            peon->profession = "w";
-
-            this->fraction->peons.push(peon);
-            this->fraction->AllLifeUnits.push(peon);
-            this->outClients.push(peon);
-            //////
         }
     }
 
-    ////////////////////////
     this->potentialClients.forEach([this](Unit *peon)
                                    {
                                        if (peon->inOutTimer < peon->inOutCount)
@@ -122,7 +112,6 @@ void TownHall::activeProg()
                 peon->image = peon->fraction->peon.img_1;
                 oc->groundUnit = peon;
                 /////// fake way
-        
             }
             else
             {
@@ -136,13 +125,12 @@ void TownHall::activeProg()
                 peon->inOutMashtabCount = 1;
                 peon->image = peon->fraction->peon.img_1;
                 oc->groundUnit = peon;
-      
             }
         }
 
         if (peon->inOutTimer < peon->inOutCount)
         {
-           // console.log("here");
+            // console.log("here");
             peon->x += peon->wayDeltaX;
             peon->y += peon->wayDeltaY;
             peon->drawIndexY = peon->y;
@@ -152,7 +140,7 @@ void TownHall::activeProg()
         }
         else
         {
-           // console.log("here 2");
+            // console.log("here 2");
             peon->inOutTimer = 0;
             peon->animMashtab = 1;
             peon->inSave = false;

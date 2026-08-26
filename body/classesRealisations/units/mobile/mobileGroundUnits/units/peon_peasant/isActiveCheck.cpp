@@ -12,7 +12,8 @@ bool Peon_peasant::isActiveCheck()
          !this->isGetMyCell ||
          this->inFight ||
          this->outHoldTimer || // => in activeProg
-         this->way.length
+         this->way.length ||
+         this->profession != ""
         ))
     {
         return true;

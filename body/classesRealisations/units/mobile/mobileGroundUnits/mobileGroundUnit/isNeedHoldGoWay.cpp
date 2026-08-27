@@ -4,7 +4,7 @@
 bool MobileGroundUnit::isNeedHoldGoWay(Cell *nextCell)
 {
     Unit *gu = nextCell->groundUnit;
-    if (gu &&
+    if (gu && this->way.length >= 10&&
         (!gu->isPotentialWayComplite ||
          gu->inSave ||
          ((gu->way.length) &&

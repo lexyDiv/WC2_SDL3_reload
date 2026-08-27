@@ -38,10 +38,11 @@ void Peon_peasant::getCurrentTarget(Cell *cell) {
                 Unit *base = this->getBaseForUnloading();
                 if (base)
                 {
-                    this->getHandTarget(base->cell);
+                    this->getCurrentTarget(base->cell);
                     return;
                 }
             }
+
             //this->targetObjControl = this->fraction->control == "" ? this->unitMenu->targetObjControlWoodComp : this->unitMenu->targetObjControlWood;
             this->isOnGetPotentialWayGetTarget = [this](Cell *cell)
             {
@@ -95,19 +96,19 @@ void Peon_peasant::getCurrentTarget(Cell *cell) {
         }
         else
         {
-            if (cell->groundUnit->name == "shaht")
-            {
-                this->profession = "g";
-                if (this->gold > 0)
-                {
-                    Unit *base = this->getBaseForUnloadingGold();
-                    if (base)
-                    {
-                        this->getHandTarget(base->cell);
-                        return;
-                    }
-                }
-            };
+            // if (cell->groundUnit->name == "shaht")
+            // {
+            //     this->profession = "g";
+            //     if (this->gold > 0)
+            //     {
+            //         Unit *base = this->getBaseForUnloadingGold();
+            //         if (base)
+            //         {
+            //             this->getHandTarget(base->cell);
+            //             return;
+            //         }
+            //     }
+            // };
             // if (cell->groundUnit->type != "life")
             // {
             //     this->targetObjControl = this->fraction->control == "" ? this->unitMenu->targetObjControlBuildingComp : this->unitMenu->targetObjControlBuilding;

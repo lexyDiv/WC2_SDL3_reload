@@ -7,7 +7,7 @@ bool MobileGroundUnit::isBlockedd(Unit *unit)
     {
         Cell *ac = this->cell->aroundCells.getItem(i);
         if (!ac->groundUnit ||
-            ac->groundUnit->potentialWay.length ||
+            ac->groundUnit->way.length ||
             ac->groundUnit == unit)
         {
             return false;

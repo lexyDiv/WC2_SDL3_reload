@@ -15,14 +15,14 @@ void Game::process()
     thDatas.forEach([](ThData *td)
                     { threads.emplace_back(&ThData::process, td); });
 
-    while (!this->isGFComplite)
-    {
-        basicDraw([]()
-                  {
-    ctx.FillRect(0, 0, 1000, 1000, "white");
-    ctx.DrawText(30, 30, 50, "loading"); });
-        this_thread::sleep_for(chrono::nanoseconds(10000));
-    }
+    // while (!this->isGFComplite)
+    // {
+    //     basicDraw([]()
+    //               {
+    // ctx.FillRect(0, 0, 1000, 1000, "white");
+    // ctx.DrawText(30, 30, 50, "loading"); });
+    //     this_thread::sleep_for(chrono::nanoseconds(10000));
+    // }
 
     for (auto &t : threads)
     {

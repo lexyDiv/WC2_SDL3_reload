@@ -4,13 +4,10 @@
 
 void Fraction::controller()
 {
-        
-    // if (this->control == "human")
-    // {
-    // this->orderControl();
-    int ordinar = 100;
+    
+    int ordinar = 1000;
     this->controlTimer++;
-    if (this->controlTimer == 10)
+    if (this->controlTimer == 2)
     {
         this->controlTimer = 0;
 
@@ -22,14 +19,17 @@ void Fraction::controller()
         for (int i = this->hold; i < this->peons.length; i++)
         {
             // current++;
+            
             this->hold = i;
             Unit *peon = this->peons.getItem(i);
+           // console.log(to_string(peon->isActive));
             if (peon->hp &&
                 !peon->inSave &&
                 !peon->isActive &&
                 peon->profession != "" &&
                 !peon->isBlockedd(peon))
             {
+                
                 current++;
                 if (peon->profession == "w")
                 {
@@ -71,7 +71,7 @@ void Fraction::controller()
             this->hold = 0;
         }
     }
-   //  }
+
 
   //  this->activeUnitsControl();
 

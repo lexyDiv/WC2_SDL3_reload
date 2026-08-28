@@ -42,7 +42,7 @@ bool Peon_peasant::isGetTarget()
                 if (valideTree)
                 {
                     this->targetObj.unit = valideTree;
-                    this->targetObj.bornCount = valideTree->bornCount;
+                   // this->targetObj.bornCount = valideTree->bornCount;
 
                     this->iNeedFreeWay = false;
                     this->isIgetMyTarget = true;

@@ -14,43 +14,56 @@ int main()
         thDatas.push(td);
     }
 
-    int optimalDeltaTime = 1000 / 30;
-    
     while (!quit)
     {
-        // console.log(to_string(game->isGFComplite));
-        Uint64 startTick = SDL_GetTicks();
 
-        basicDo([]()
-                {
-                     game->process(); 
-                    });
-
-        basicDraw([]()
-                  { game->draw(); });
-
-
-        for (auto &t : threads)
+        if (!game->isGFComplite || th_create_game)
         {
-            t.join();
-        }
+            if (!th_create_game) {
+                th_create_game = new thread(th_create);
+            }
+            basicDraw([]()
+                      {
+    ctx.FillRect(0, 0, 1000, 1000, "white");
+    ctx.DrawText(30, 30, 50, "loading"); });
 
-        Uint64 finishTick = SDL_GetTicks();
-        int deltaTime = int(finishTick) - int(startTick);
-        if (deltaTime < optimalDeltaTime)
+            if (game->isGFComplite)
+            {
+                th_create_game->join();
+                delete th_create_game;
+                th_create_game = nullptr;
+            }
+        }
+        else //if (!th_create_game)
         {
-              console.log("delay : " + to_string(optimalDeltaTime - deltaTime));
-            
-            SDL_Delay(optimalDeltaTime - deltaTime);
+            game->startTick = SDL_GetTicks();
+
+            basicDo([]()
+                    { game->process(); });
+
+            basicDraw([]()
+                      { game->draw(); });
+
+            for (auto &t : threads)
+            {
+                t.join();
+            }
+
+            game->finishTick = SDL_GetTicks();
+            int deltaTime = int(game->finishTick) - int(game->startTick);
+            if (deltaTime < game->optimalDeltaTime)
+            {
+                //  console.log("delay : " + to_string(game->optimalDeltaTime - deltaTime));
+
+                SDL_Delay(game->optimalDeltaTime - deltaTime);
+            }
+            else
+            {
+                console.log("hold");
+            }
+
+            threads.clear();
         }
-        else
-        {
-            console.log("hold");
-        }
-
-
-
-        threads.clear();
     }
     game->quit = quit;
     ctx.Close();

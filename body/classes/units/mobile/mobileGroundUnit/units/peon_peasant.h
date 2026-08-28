@@ -4,7 +4,7 @@
 class Peon_peasant : public MobileGroundUnit
 {
 public:
-    Peon_peasant(){};
+    Peon_peasant(Fraction *fraction);
     ~Peon_peasant(){};
      bool isActiveCheck() override;
      void create(Cell *cell) override;
@@ -36,6 +36,7 @@ public:
      void trupCreate() override;
     // void drawTrup() override;
     void targetObjControl() override;
+    void holdTimerControl();
 
     
     // void trupCreate() override;

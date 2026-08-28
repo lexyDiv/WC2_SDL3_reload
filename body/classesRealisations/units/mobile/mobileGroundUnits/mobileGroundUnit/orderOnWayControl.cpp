@@ -25,5 +25,6 @@ void MobileGroundUnit::orderOnWayControl()
             this->orderOnWay.isComplite = true;
         }
         this->iNeedFreeWay = false;
+       // console.log("here mmmmmm");
     }
 };

@@ -7,47 +7,29 @@ void Peon_peasant::activeProg()
   //   if (this->focus) {
   //    // console.log(to_string(this->isPotentialWayComplite));
   //   }
-
-  this->isActive = this->isActiveCheck();
-  if (!this->isActive)
+ // console.log("here");
+ 
+  if (!this->isActiveCheck())
   {
-    // console.log("here");
     return;
   }
 
-  if (this->outHoldTimer == 30)
-  {
-    this->outHoldTimer--;
-    this->iAmHere();
+  this->holdTimerControl();
+  if(this->outHoldTimer) {
     return;
   }
-  else if (this->outHoldTimer)
-  {
-    this->outHoldTimer--;
-    if (!this->outHoldTimer && this->orderOnWay.isComplite)
-    {
-      this->updateCurrentTarget();
-      this->isActiveCheck();
-      return;
-    }
-  }
+
 
   if (this->isPotentialWayComplite &&
       this->potentialWay.length)
   {
     this->way.copy(this->potentialWay);
-     this->targetObjControl(); // !!! impotent IMPOTENT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // this->targetObjControl(); // !!! impotent IMPOTENT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     this->potentialWay.clear();
     this->isIgetMyTarget = false;
   }
 
-  // if (this->isAnimyCheckNeeded)
-  // {
-  //   this->isAnimyCheckNeeded = false;
-  //   this->iAmHere();
-  // }
 
-  //   ///////////////////////////////////////////////////////////////
   if (!this->wayTakts &&
       this->wayIndex <= 5 &&
       this->isPotentialWayComplite &&

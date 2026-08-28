@@ -1,5 +1,5 @@
 #include "trupCreate.cpp"
-//=>out
+//=>PeonPeasant.cpp
 
 void Peon_peasant::targetObjControl()
 {

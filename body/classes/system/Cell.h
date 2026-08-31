@@ -20,8 +20,12 @@ class Nation;
 class TargetObj {
   public:
   Unit *unit = nullptr;
+  int unitPersNum = 0;
+  Cell *clicckedCell = nullptr;
+
   Cell *unitOldCell = nullptr;
   Cell *targetCell = nullptr;
+  string profession = "";
 };
 
 

@@ -1,5 +1,5 @@
 #include "Peon_peasant.cpp"
-//=>out
+//=>orderOnWayControl
 
 void Peon_peasant::holdTimerControl()
 {

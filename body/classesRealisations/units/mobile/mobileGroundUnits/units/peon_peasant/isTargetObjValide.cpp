@@ -3,7 +3,7 @@
 
 bool Peon_peasant::isTargetObjValide()
 {
-    Unit *to = this->targetObj.unit;
+    Unit *to = this->targetData.unit;
     if (to->name == "tree")
     {
         if (to->lesorub ||

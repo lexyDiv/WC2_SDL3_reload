@@ -18,10 +18,13 @@ class MobileGroundUnit : public Unit {
     void iAmHere() override;
     void getDeltasXY(Cell *nextCell) override;
     void getConor(Cell *cell) override;
+    void targetObjControl() override;
 };
 
 MobileGroundUnit::MobileGroundUnit(){};
 MobileGroundUnit::~MobileGroundUnit(){};
+
+void MobileGroundUnit::targetObjControl(){};
 //void MobileGroundUnit::orderOnWayControl(){};
 //void MobileGroundUnit::goWayAnimation(){};
 void MobileGroundUnit::inFightAnimation(){};

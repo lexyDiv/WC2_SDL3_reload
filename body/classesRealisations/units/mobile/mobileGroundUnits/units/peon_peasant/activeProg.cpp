@@ -24,7 +24,7 @@ void Peon_peasant::activeProg()
       this->potentialWay.length)
   {
     this->way.copy(this->potentialWay);
-    // this->targetObjControl(); // !!! impotent IMPOTENT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // this->targetDataControl(); // !!! impotent IMPOTENT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     this->potentialWay.clear();
     this->isIgetMyTarget = false;
   }
@@ -40,7 +40,7 @@ void Peon_peasant::activeProg()
   {
     if (!this->isIgetMyTarget)
     {
-      Unit *to = this->targetObj.unit;
+      Unit *to = this->targetData.unit;
       if (to)
       {
         bool isTOValide = this->isTargetObjValide();

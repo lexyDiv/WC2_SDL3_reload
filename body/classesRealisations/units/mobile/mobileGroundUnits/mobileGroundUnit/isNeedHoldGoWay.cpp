@@ -4,23 +4,22 @@
 bool MobileGroundUnit::isNeedHoldGoWay(Cell *nextCell)
 {
     Unit *gu = nextCell->groundUnit;
-    if (gu && this->way.length >= 10&&
+    if (gu && this->wayIndex > 10 &&
         (!gu->isPotentialWayComplite ||
          gu->inSave ||
          ((gu->way.length) &&
           (gu->wayIndex) &&
           (this->wayIndex > 1 &&
            (gu->way.getItem(gu->wayIndex - 1) == this->way.getItem(this->wayIndex - 2))) &&
-          gu->targetObj.unit == this->targetObj.unit &&
-          gu->targetObj.unit && (gu->gold > 0 || gu->wood) && (this->gold > 0 || this->wood) && (gu->targetObj.unit->name == "shaht" || gu->targetObj.unit->name == "greatHall"))))
+          gu->targetData.unit == this->targetData.unit &&
+          gu->targetData.unit && (gu->gold > 0 || gu->wood) && (this->gold > 0 || this->wood) && (gu->targetData.unit->name == "shaht" || gu->targetData.unit->name == "greatHall"))))
     {
         return true;
     }
 
     bool isCrox = (nextCell == this->cell->top_right &&
                    ((this->cell->top->groundUnit && this->cell->top->groundUnit->isPotentialWayComplite &&
-                     !this->cell->top->groundUnit->isGetMyCell 
-                     && this->cell->top->groundUnit->conor == this->fraction->peon.conorTop_left) ||
+                     !this->cell->top->groundUnit->isGetMyCell && this->cell->top->groundUnit->conor == this->fraction->peon.conorTop_left) ||
                     (this->cell->right->groundUnit && this->cell->right->groundUnit->isPotentialWayComplite &&
                      !this->cell->right->groundUnit->isGetMyCell &&
                      this->cell->right->groundUnit->conor == this->fraction->peon.conorBottom_right))) ||

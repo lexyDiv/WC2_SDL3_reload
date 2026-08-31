@@ -9,8 +9,8 @@ void Peon_peasant::getCurrentTarget(Cell *cell) {
 
     this->isPotentialWayComplite = false;
     this->targetCell = nullptr;
-    //this->targetObjControl = this->unitMenu->targetObjControl;
-    this->targetObj.unit = nullptr;
+    //this->targetDataControl = this->unitMenu->targetDataControl;
+    this->targetData.unit = nullptr;
 
 
    // console.log(to_string(this->deep));
@@ -18,14 +18,14 @@ void Peon_peasant::getCurrentTarget(Cell *cell) {
     if (cell->groundUnit)
     {
 
-        this->targetObj.unit = cell->groundUnit;
-       // this->targetObj.bornCount = cell->groundUnit->bornCount;
+        this->targetData.unit = cell->groundUnit;
+       // this->targetData.bornCount = cell->groundUnit->bornCount;
 
         if (this->fraction->control == "human" &&
-        &this->fraction->nation == &targetObj.unit->fraction->nation)
+        &this->fraction->nation == &targetData.unit->fraction->nation)
         {
-            this->profession = this->gold > 0 && this->targetObj.unit->name == "greatHall" ? "g" : this->profession;
-            this->profession = this->wood > 0 && (this->targetObj.unit->name == "greatHall" || this->targetObj.unit->name == "mill") ? "w" : this->profession;
+            this->profession = this->gold > 0 && this->targetData.unit->name == "greatHall" ? "g" : this->profession;
+            this->profession = this->wood > 0 && (this->targetData.unit->name == "greatHall" || this->targetData.unit->name == "mill") ? "w" : this->profession;
         }
 
 
@@ -43,15 +43,15 @@ void Peon_peasant::getCurrentTarget(Cell *cell) {
                 }
             }
 
-            //this->targetObjControl = this->fraction->control == "" ? this->unitMenu->targetObjControlWoodComp : this->unitMenu->targetObjControlWood;
+            //this->targetDataControl = this->fraction->control == "" ? this->unitMenu->targetDataControlWoodComp : this->unitMenu->targetDataControlWood;
             this->isOnGetPotentialWayGetTarget = [this](Cell *cell)
             {
                 Unit *gu = cell->groundUnit;
                 if (
                     gu && gu->name == "tree")
                 {
-                    this->targetObj.unit = gu;
-                   // this->targetObj.bornCount = gu->bornCount;
+                    this->targetData.unit = gu;
+                   // this->targetData.bornCount = gu->bornCount;
                     return true;
                 }
                 return false;
@@ -111,13 +111,13 @@ void Peon_peasant::getCurrentTarget(Cell *cell) {
             // };
             // if (cell->groundUnit->type != "life")
             // {
-            //     this->targetObjControl = this->fraction->control == "" ? this->unitMenu->targetObjControlBuildingComp : this->unitMenu->targetObjControlBuilding;
+            //     this->targetDataControl = this->fraction->control == "" ? this->unitMenu->targetDataControlBuildingComp : this->unitMenu->targetDataControlBuilding;
             // }
             this->isOnGetPotentialWayGetTarget = [this](Cell *cell)
             {
                 Unit *gu = cell->groundUnit;
                 if ( // cell == this->targetCell ||
-                    gu == this->targetObj.unit)
+                    gu == this->targetData.unit)
                 {
                     return true;
                 }
@@ -134,7 +134,7 @@ void Peon_peasant::getCurrentTarget(Cell *cell) {
                         cell->plane == tc->plane &&
                         (!gu ||
                          gu->way.length ||
-                         gu == this->targetObj.unit))
+                         gu == this->targetData.unit))
                     {
                         return true;
                     }
@@ -151,7 +151,7 @@ void Peon_peasant::getCurrentTarget(Cell *cell) {
                         cell->plane == tc->plane &&
                         (!gu ||
                          gu->type == "life" ||
-                         gu == this->targetObj.unit))
+                         gu == this->targetData.unit))
                     {
                         return true;
                     }

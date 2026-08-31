@@ -158,7 +158,7 @@ public:
    bool isIgetMyTarget = true;
    bool iNeedFreeWay = false;
    Order orderOnWay;
-   TargetObj targetObj;
+   TargetData targetData;
    Cell *targetCell = nullptr;
    Cell *preTargetCell = nullptr;
    Unit* lesorub = nullptr;

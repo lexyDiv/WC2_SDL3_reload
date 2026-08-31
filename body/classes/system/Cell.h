@@ -17,7 +17,7 @@ class Nation;
 
 
 
-class TargetObj {
+class TargetData {
   public:
   Unit *unit = nullptr;
   int unitPersNum = 0;

@@ -4,7 +4,7 @@
 bool Peon_peasant::isGetTarget()
 {
     //console.log("here");
-    Unit *to = this->targetObj.unit;
+    Unit *to = this->targetData.unit;
     if (                 ! this->holdWayCount &&
         this->targetCell // &&
                          // !to &&
@@ -41,8 +41,8 @@ bool Peon_peasant::isGetTarget()
                 }
                 if (valideTree)
                 {
-                    this->targetObj.unit = valideTree;
-                   // this->targetObj.bornCount = valideTree->bornCount;
+                    this->targetData.unit = valideTree;
+                   // this->targetData.bornCount = valideTree->bornCount;
 
                     this->iNeedFreeWay = false;
                     this->isIgetMyTarget = true;

@@ -15,7 +15,7 @@ void Peon_peasant::updateCurrentTarget()
         else
         {
             this->profession = "";
-            this->targetObj.unit = nullptr;
+            this->targetData.unit = nullptr;
             // console.log("no tree 2");
         }
     }
@@ -31,7 +31,7 @@ void Peon_peasant::updateCurrentTarget()
         else
         {
             this->profession = "";
-            this->targetObj.unit = nullptr;
+            this->targetData.unit = nullptr;
             //  console.log("no shaht");
         }
     }
@@ -40,6 +40,6 @@ void Peon_peasant::updateCurrentTarget()
 
         // this->profession = "";
         //  console.log("??? " + this->profession);
-        // this->targetObj.unit = nullptr;
+        // this->targetData.unit = nullptr;
     }
 };

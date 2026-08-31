@@ -41,7 +41,7 @@ public:
     
     // void trupCreate() override;
 
-    // void orderOnWayControl() override;
+     void orderOnWayControl() override;
     //  void goWayAnimation() override;
     // void goWay() override;
     // bool isNextCellFreeToGoWay(ProtoObj *nextCell) override;
@@ -49,3 +49,5 @@ public:
     // bool isOnGetPotentialWayGetTarget(ProtoObj *cell) override;
     // bool isNewCellOnGetWayValide(ProtoObj *cell) override;
 };
+
+

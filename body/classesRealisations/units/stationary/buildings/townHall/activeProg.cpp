@@ -28,7 +28,7 @@ void TownHall::activeProg()
           //  peon->orderOnWay.profession = "w";
           //  peon->orderOnWay.isComplite = false;
 
-            if (this->fraction->peons.length < 600) // 6000 crash 3000
+            if (this->fraction->peons.length < 10000) // 6000 crash 3000
             {
                 this->createTimer = 1;
             }

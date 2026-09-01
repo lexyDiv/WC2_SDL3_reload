@@ -1,11 +1,13 @@
 #include "basicDo.cpp"
 // => union out
 
-void basicDraw(function<void()> fn)
+void bdrfn();
+
+void basicDraw()
 {
     ctx.CreateDrawZone(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT);
     ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "white");
-    fn();
+    bdrfn();
     console.draw();
     ctx.End();
 }

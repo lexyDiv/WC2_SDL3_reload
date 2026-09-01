@@ -4,6 +4,14 @@
 
 #include "body/out.h"
 
+void bdofn() {
+    game->process();
+};
+
+void bdrfn() {
+   game->draw();
+};
+
 int main()
 {
 
@@ -22,10 +30,11 @@ int main()
             if (!th_create_game) {
                 th_create_game = new thread(th_create);
             }
-            basicDraw([]()
-                      {
-    ctx.FillRect(0, 0, 1000, 1000, "white");
-    ctx.DrawText(30, 30, 50, "loading"); });
+//             basicDraw([]()
+//                       {
+//     ctx.FillRect(0, 0, 1000, 1000, "white");
+//     ctx.DrawText(30, 30, 50, "loading"); 
+// });
 
             if (game->isGFComplite)
             {
@@ -38,11 +47,9 @@ int main()
         {
             game->startTick = SDL_GetTicks();
 
-            basicDo([]()
-                    { game->process(); });
+            basicDo();
 
-            basicDraw([]()
-                      { game->draw(); });
+            basicDraw();
 
             for (auto &t : threads)
             {

@@ -46,6 +46,7 @@ void Peon_peasant::activeProg()
         bool isTOValide = this->isTargetObjValide();
         if (!isTOValide)
         {
+       
           this->stendOnCell();
           this->updateCurrentTarget();
         }
@@ -54,8 +55,9 @@ void Peon_peasant::activeProg()
       this->isGetTarget();
       if (this->isIgetMyTarget)
       {
-        this->targetCell = nullptr;
-        this->preTargetCell = nullptr;
+
+       this->targetData.clicckedCell = nullptr; //this->targetCell = nullptr;
+       // this->preTargetCell = nullptr;
         this->stendOnCell();
         this->isIgetMyTarget = false;
         this->selectAnAction();
@@ -69,6 +71,7 @@ void Peon_peasant::activeProg()
   if (this->inFight)
   {
     this->fightControl(); // maybee HUYNYA refactoring needed !!!
+    this->flipCell = nullptr;
   }
   else
   {

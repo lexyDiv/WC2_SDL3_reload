@@ -42,7 +42,7 @@ void ThData::createPotentialWay(Unit *unit)
                                         {
             Unit *gu = cell->groundUnit;
             if (gu
-            && gu != unit->targetCell->groundUnit
+            && gu != unit->targetData.unit //unit->targetCell->groundUnit
             ) {
                 cell->thwd.getItemPtr(this->num)->explored = this->createCount;
             } });
@@ -75,11 +75,11 @@ void ThData::createPotentialWay(Unit *unit)
 
             MinData md;
 
-            if ((!unit->orderOnWay.isComplite))
-            {
-                unit->isPotentialWayComplite = true;
-                return;
-            }
+            // if ((!unit->orderOnWay.isComplite))
+            // {
+            //     unit->isPotentialWayComplite = true;
+            //     return;
+            // }
 
             for (int i = 0; i < this->min_F_cell->aroundCells.length; i++)
             {

@@ -4,7 +4,7 @@
 class GameField;
 class Fraction;
 class ObjMenu;
-//class Unit;
+// class Unit;
 class Plane;
 class Order;
 class UnitMenu;
@@ -15,19 +15,30 @@ class Game;
 class ToOtherPlane;
 class Nation;
 
+class TargetData
+{
+public:
+    Unit *unit = nullptr;
+    int unitPersNum = 0;
+    Cell *clicckedCell = nullptr;
 
+    Cell *unitOldCell = nullptr;
+   // Cell *targetCell = nullptr;
+    string profession = "";
+    bool isActual = false;
 
-class TargetData {
-  public:
-  Unit *unit = nullptr;
-  int unitPersNum = 0;
-  Cell *clicckedCell = nullptr;
+    void clear()
+    {
+        unit = nullptr;
+        unitPersNum = 0;
+        clicckedCell = nullptr;
 
-  Cell *unitOldCell = nullptr;
-  Cell *targetCell = nullptr;
-  string profession = "";
+        unitOldCell = nullptr;
+       // targetCell = nullptr;
+        profession = "";
+        isActual = false;
+    };
 };
-
 
 // struct UnitPack
 // {
@@ -35,9 +46,10 @@ class TargetData {
 //     int bornCount = 0;
 // };
 
-class Td_way_data {
-    public:
-  //  Td_way_data(){};
+class Td_way_data
+{
+public:
+    //  Td_way_data(){};
     double createCountData = 0;
     int F = 0.0F;
     int H = 0.0F;
@@ -47,23 +59,20 @@ class Td_way_data {
     Cell *wayFather = nullptr;
 };
 
-
 class Cell
 {
 public:
-
-Array<Td_way_data> thwd;
+    Array<Td_way_data> thwd;
 
     int activeZoneIndex = 0;
 
     // int G = 0;
     // int F = 0;
     // int H = 0;
-    //Cell *wayFather = nullptr;
+    // Cell *wayFather = nullptr;
     // void getCurrentTargetCell();
     double createCountData = 0.0;
-   // double explored = 0.0;
-
+    // double explored = 0.0;
 
     // int G2 = 0;
     // int F2 = 0;
@@ -95,10 +104,10 @@ Array<Td_way_data> thwd;
     /////////////////////////////////////////////////////////////////////////////////////////////////
 
     bool isClosed = false;
-    Cell(){};
-     ~Cell(){};
-     void draw();
-     Color getMapColor();
+    Cell() {};
+    ~Cell() {};
+    void draw();
+    Color getMapColor();
     int persNum = 0;
     GameField *gf = nullptr;
     Game *game = nullptr;
@@ -130,8 +139,7 @@ Array<Td_way_data> thwd;
 
     Array<Unit *> ripUnits; // trupy
 
-     void drawTrup() { console.log("trup draw"); };
-
+    void drawTrup() { console.log("trup draw"); };
 
     Cell *left = nullptr;
     Cell *right = nullptr;
@@ -167,16 +175,16 @@ struct AnimLines
     float alpha = 255;
 
     void draw(Unit *oil);
-   // {
-        //  float drawDeltaX = oil->gf->drawDeltaX;
-        // float drawDeltaY = oil->gf->drawDeltaY;
-        // ctx.DrawImage(oil->image,
-        //               this->animX,
-        //               this->animY,
-        //               this->animGabX, this->animGabY,
-        //               oil->x + this->deltaX + drawDeltaX, oil->y + this->y + drawDeltaY,
-        //               oil->getGabX, this->gabY, SDL_FLIP_NONE, 0, this->alpha);
-  //  };
+    // {
+    //  float drawDeltaX = oil->gf->drawDeltaX;
+    // float drawDeltaY = oil->gf->drawDeltaY;
+    // ctx.DrawImage(oil->image,
+    //               this->animX,
+    //               this->animY,
+    //               this->animGabX, this->animGabY,
+    //               oil->x + this->deltaX + drawDeltaX, oil->y + this->y + drawDeltaY,
+    //               oil->getGabX, this->gabY, SDL_FLIP_NONE, 0, this->alpha);
+    //  };
 };
 
 struct Water

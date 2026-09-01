@@ -6,7 +6,8 @@ bool Peon_peasant::isGetTarget()
     //console.log("here");
     Unit *to = this->targetData.unit;
     if (                 ! this->holdWayCount &&
-        this->targetCell // &&
+       // this->targetCell // &&
+       this->targetData.clicckedCell
                          // !to &&
                          &&  !this->wayTakts &&
          this->way.length &&
@@ -66,7 +67,7 @@ bool Peon_peasant::isGetTarget()
         }
         else
         {
-            if (this->cell == this->targetCell ||
+            if (this->cell == this->targetData.clicckedCell || //this->targetCell ||
                 (this->wayIndex == 1 &&
                  this->potentialWay.getItem(0)->groundUnit))
             {
@@ -76,8 +77,9 @@ bool Peon_peasant::isGetTarget()
             }
             else
             {
-                this->orderOnWay.cell = this->targetCell;
-                this->orderOnWay.isComplite = false;
+                this->orderOnWay.cell = this->targetData.clicckedCell; //this->targetCell;
+              //  this->orderOnWay.isComplite = false;
+               // console.log("papa loh");
             }
         }
     }

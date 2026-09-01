@@ -10,19 +10,21 @@ void MobileGroundUnit::goWay()
             this->wayIndex > 0)
         {
 
-            Cell *nextCell = this->way.getItem(this->wayIndex - 1);
-
-            bool isNeedHold = this->isNeedHoldGoWay(nextCell);
-            if (this->isNextCellFreeToGoWay(nextCell) && !isNeedHold)
+            Cell *nc = this->way.getItem(this->wayIndex - 1);
+            this->nextCell = nc;
+            int flipCellIndex = this->wayIndex - 2;
+            this->flipCell =flipCellIndex >= 0 ? this->way.getItem(flipCellIndex) : nullptr;
+            bool isNeedHold = this->isNeedHoldGoWay(nc);
+            if (this->isNextCellFreeToGoWay(nc) && !isNeedHold)
             {
                 this->holdWayCount = 0;
                 this->wayIndex--;
                 this->x = this->cell->x;
                 this->y = this->cell->y;
                 double saveSpeedTale = this->speedTale;
-                this->getDeltasXY(nextCell);
+                this->getDeltasXY(nc);
                 this->cell->groundUnit = nullptr;
-                this->cell = nextCell;
+                this->cell = nc;
                 this->cell->groundUnit = this;
                 this->isGetMyCell = false;
                 this->iAmHere();
@@ -41,7 +43,11 @@ void MobileGroundUnit::goWay()
             }
             else
             {
-                if (this->preTargetCell)
+                   
+                if (
+                   // this->preTargetCell
+                   this->targetData.clicckedCell
+                )
                 {
 
                     if (this->iNeedFreeWay)
@@ -58,14 +64,17 @@ void MobileGroundUnit::goWay()
 
                             return;
                         }
-                        this->orderOnWay.cell = this->preTargetCell;
+                        this->orderOnWay.cell = this->targetData.clicckedCell; //this->preTargetCell;
                         this->orderOnWay.isComplite = false;
+                       
                     }
                 }
             }
         }
         else
         {
+            this->nextCell = nullptr;
+            this->flipCell = nullptr;
             this->stendOnCell();
         }
     }
@@ -76,5 +85,7 @@ void MobileGroundUnit::goWay()
         this->drawIndexY = this->y;
         this->wayTakts--;
         this->holdWayCount = 0;
+    } else {
+        this->flipCell = nullptr;
     }
 };

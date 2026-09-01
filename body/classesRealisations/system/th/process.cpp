@@ -19,7 +19,7 @@ void ThData::process()
         //         });
         //     });
         // }
-
+this->isBasicActiveProgComplite = false;
         if (this->game->isGFComplite)
         {
             this->dopUnits.clear();

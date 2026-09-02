@@ -171,20 +171,20 @@ public:
   Cell *flipCell = nullptr;
   Cell *nextCell = nullptr;
 
-  bool isOnGetPotentialWayGetTarget(Cell *cell)
+  function<bool(Cell* c)> isOnGetPotentialWayGetTarget = [this](Cell *c)
   {
     if (this->targetData.unit)
     {
-      if (cell->groundUnit)
+      if (c->groundUnit)
       {
-        if (this->targetData.unit->name == "tree" && cell->groundUnit->name == "tree" && !cell->groundUnit->lesorub &&
-            cell->groundUnit->hp)
+        if (this->targetData.unit->name == "tree" && c->groundUnit->name == "tree" && !c->groundUnit->lesorub &&
+            c->groundUnit->hp)
         {
-          this->targetData.unit = cell->groundUnit;
-          this->targetData.clicckedCell = cell->groundUnit->cell;
+          this->targetData.unit = c->groundUnit;
+          this->targetData.clicckedCell = c->groundUnit->cell;
           return true;
         }
-        if (this->targetData.unit && cell->groundUnit == this->targetData.unit)
+        if (this->targetData.unit && c->groundUnit == this->targetData.unit)
         {
           return true;
         }
@@ -192,7 +192,7 @@ public:
     }
     else
     {
-      if (this->targetData.clicckedCell == cell)
+      if (this->targetData.clicckedCell == c)
       {
         return true;
       }
@@ -200,29 +200,29 @@ public:
     return false;
   };
 
-  bool isNewCellOnGetWayValide(Cell *cell)
+  function<bool(Cell *c)> isNewCellOnGetWayValide = [this](Cell *c)
   {
-    if (cell->plane == this->cell->plane 
-      && (!cell->groundUnit 
-        || (cell->groundUnit->fraction && this->fraction && cell->groundUnit->fraction->unionCase == this->fraction->unionCase)))
+    if (c->plane == this->cell->plane 
+      && (!c->groundUnit 
+        || (c->groundUnit->fraction && this->fraction && c->groundUnit->fraction->unionCase == this->fraction->unionCase)))
     {
       return true;
     }
-    if (cell->groundUnit)
+    if (c->groundUnit)
     {
-      if (this->targetData.unit->name == "tree" && cell->groundUnit->name == "tree" && !cell->groundUnit->lesorub &&
-          cell->groundUnit->hp)
+      if (this->targetData.unit->name == "tree" && c->groundUnit->name == "tree" && !c->groundUnit->lesorub &&
+          c->groundUnit->hp)
       {
         return true;
       }
-      if (this->targetData.unit && cell->groundUnit == this->targetData.unit)
+      if (this->targetData.unit && c->groundUnit == this->targetData.unit)
       {
         return true;
       }
     }
     else
     {
-      if (this->targetData.clicckedCell && this->targetData.clicckedCell == cell && cell->plane == this->cell->plane)
+      if (this->targetData.clicckedCell && this->targetData.clicckedCell == c && c->plane == this->cell->plane)
       {
         return true;
       }

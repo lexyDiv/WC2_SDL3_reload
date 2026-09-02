@@ -230,12 +230,12 @@ void Peon_peasant::orderOnWayControl()
                 }
             }
         }
-        //   this->getCurrentTarget();
+           this->getCurrentTarget();
         this->orderOnWay.isComplite = true;
-        this->potentialWay.clear();
-        this->wayIndex = 0;
+        // this->potentialWay.clear();
+        // this->wayIndex = 0;
 
-        this->isPotentialWayComplite = false;
+       // this->isPotentialWayComplite = false;
         // console.log(this->targetData.unit->name);
     }
 

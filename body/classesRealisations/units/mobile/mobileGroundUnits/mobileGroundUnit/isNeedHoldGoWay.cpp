@@ -9,40 +9,42 @@ bool MobileGroundUnit::isNeedHoldGoWay(Cell *nc)
     Unit *gutdu = gu ? gu->targetData.unit : nullptr;
 
 
-//     if (gu
-//        // && this->wayIndex > 10
-//     && gu->isActive
-//     && gu->isPotentialWayComplite
-//     && gu->way.length 
-//    // && this->wayIndex > 1 
-//    // && this->way.length > 2 
-//     //&& gufc 
-//    // && gufc == this->way.getItem(this->wayIndex - 2)
-//    && guNextCell
-//    && guNextCell == this->flipCell
-// ) {
-//        // console.log("here");
-//         return true;
-//     }
-
-    if (gu && this->wayIndex > 10 
-        &&  (!gu->isPotentialWayComplite ||
-        gu->inSave ||
-         (!gu->potentialWay.length && 
-          (gu->way.length) &&
-          (gu->wayIndex) &&
-          (this->wayIndex > 1 &&
-           (guNextCell && guNextCell == this->way.getItem(this->wayIndex - 2))) 
-           && gutdu 
-           && gutdu == this->targetData.unit &&
-           (gu->gold > 0 || gu->wood) && (this->gold > 0 || this->wood) && (gutdu->name == "shaht" || gutdu->name == "greatHall"))
-      
-        )
-        )
-    {
+     if (gu
+       // && this->wayIndex > 10
+    && gu->isActive
+    && gu->isPotentialWayComplite
+    && gu->way.length 
+   // && this->wayIndex > 1 
+   // && this->way.length > 2 
+    //&& gufc 
+   // && gufc == this->way.getItem(this->wayIndex - 2)
+   && guNextCell
+   && (guNextCell == this->flipCell 
+   // || (gutdu && gutdu == this->targetData.unit)
+)
+) {
        // console.log("here");
         return true;
     }
+
+    // if (gu && this->wayIndex > 10 
+    //     &&  (!gu->isPotentialWayComplite ||
+    //     gu->inSave ||
+    //      (!gu->potentialWay.length && 
+    //       (gu->way.length) &&
+    //       (gu->wayIndex) &&
+    //       (this->wayIndex > 1 &&
+    //        (guNextCell && guNextCell == this->way.getItem(this->wayIndex - 2))) 
+    //        && gutdu 
+    //        && gutdu == this->targetData.unit &&
+    //        (gu->gold > 0 || gu->wood) && (this->gold > 0 || this->wood) && (gutdu->name == "shaht" || gutdu->name == "greatHall"))
+      
+    //     )
+    //     )
+    // {
+    //    // console.log("here");
+    //     return true;
+    // } // => is classic
 
     bool isCrox = (nextCell == this->cell->top_right &&
                    ((this->cell->top->groundUnit && this->cell->top->groundUnit->isPotentialWayComplite &&

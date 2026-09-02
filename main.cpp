@@ -66,7 +66,7 @@ int main()
             }
             else
             {
-                console.log("hold");
+                console.log("hold " + to_string(thDatas.getItem(0)->deep));
             }
 
             threads.clear();

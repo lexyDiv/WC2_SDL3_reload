@@ -18,9 +18,9 @@ void ThData::createPotentialWay(Unit *unit)
 
 
 
-    if (
-        unit->hp > 0 && td_way_data)
-    {
+    // if (
+    //     unit->hp > 0 && td_way_data)
+    // {
 
         this->createCount += 0.001;
         if (this->createCount >= 100000000)
@@ -117,10 +117,10 @@ void ThData::createPotentialWay(Unit *unit)
             }
             else
             {
-                unit->isPotentialWayComplite = true;
+               // unit->isPotentialWayComplite = true;
                 if (!this->globalMin_H_cell)
                 {
-                    unit->isPotentialWayComplite = true;
+                   // unit->isPotentialWayComplite = true;
                     // if (unit->focus)
                     // {
                     //     console.log("69");
@@ -134,7 +134,7 @@ void ThData::createPotentialWay(Unit *unit)
                     // unit->targetCell = this->globalMin_H_cell;
 
                 }
-
+                 unit->isPotentialWayComplite = true;
                 return;
             }
 
@@ -146,5 +146,5 @@ void ThData::createPotentialWay(Unit *unit)
                 break;
             }
         }
-    }
+   // }
 };

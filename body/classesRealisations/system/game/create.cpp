@@ -8,7 +8,7 @@ void Game::create()
 
   gfData = GameField();
   this->gf = &gfData; 
-  this->gf->getPathes(&this->pathes[0], 1);
+  this->gf->getPathes(&this->pathes[1], 1);
   this->gf->game = this;
   this->gf->create();
 

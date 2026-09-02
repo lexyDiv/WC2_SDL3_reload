@@ -4,11 +4,6 @@
 void Peon_peasant::activeProg()
 {
 
-  //   if (this->focus) {
-  //    // console.log(to_string(this->isPotentialWayComplite));
-  //   }
- // console.log("here");
- 
   if (!this->isActiveCheck())
   {
     return;
@@ -24,7 +19,6 @@ void Peon_peasant::activeProg()
       this->potentialWay.length)
   {
     this->way.copy(this->potentialWay);
-    // this->targetDataControl(); // !!! impotent IMPOTENT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     this->potentialWay.clear();
     this->isIgetMyTarget = false;
   }
@@ -34,38 +28,30 @@ void Peon_peasant::activeProg()
       this->wayIndex <= 5 &&
       this->isPotentialWayComplite &&
       this->orderOnWay.isComplite &&
-      this->way.length && // ???????? way.length ????? !!!!!!
+      this->way.length && 
       !this->needHolTimer &&
-      !this->inFight)
+      !this->inFight &&
+      !this->isIgetMyTarget)
   {
-    if (!this->isIgetMyTarget)
-    {
       Unit *to = this->targetData.unit;
       if (to)
       {
         bool isTOValide = this->isTargetObjValide();
         if (!isTOValide)
         {
-       
           this->stendOnCell();
           this->updateCurrentTarget();
         }
       }
 
       this->isGetTarget();
+
       if (this->isIgetMyTarget)
       {
-
-       this->targetData.clicckedCell = nullptr; //this->targetCell = nullptr;
-       // this->preTargetCell = nullptr;
         this->stendOnCell();
         this->isIgetMyTarget = false;
         this->selectAnAction();
       }
-    }
-    // else
-    // {
-    // }
   }
 
   if (this->inFight)

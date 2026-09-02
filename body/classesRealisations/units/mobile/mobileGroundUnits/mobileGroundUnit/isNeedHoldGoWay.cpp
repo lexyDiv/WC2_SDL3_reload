@@ -53,7 +53,7 @@
 
 bool MobileGroundUnit::isNeedHoldGoWay()
 {
-
+console.log("MobileGroundUnit isNeedHoldGoWay");
 //     Unit *gu = nc ? nc->groundUnit : nullptr;
 //     Cell *guNextCell = gu ? gu->nextCell : nullptr;
 //     Unit *gutdu = gu ? gu->targetData.unit : nullptr;

@@ -16,7 +16,7 @@ void Peon_peasant::updateCurrentTarget()
         {
             this->profession = "";
             this->targetData.unit = nullptr;
-            // console.log("no tree 2");
+            this->targetData.clear();
         }
     }
     else if (this->profession == "g")
@@ -32,14 +32,7 @@ void Peon_peasant::updateCurrentTarget()
         {
             this->profession = "";
             this->targetData.unit = nullptr;
-            //  console.log("no shaht");
+            this->targetData.clear();
         }
-    }
-    else
-    {
-
-        // this->profession = "";
-        //  console.log("??? " + this->profession);
-        // this->targetData.unit = nullptr;
     }
 };

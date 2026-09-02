@@ -36,7 +36,7 @@ public:
      void trupCreate() override;
     // void drawTrup() override;
     void targetObjControl() override;
-    void holdTimerControl();
+    int holdTimerControl();
 
     
     // void trupCreate() override;

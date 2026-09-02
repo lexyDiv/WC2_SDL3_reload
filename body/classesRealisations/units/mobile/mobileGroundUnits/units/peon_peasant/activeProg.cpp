@@ -4,16 +4,10 @@
 void Peon_peasant::activeProg()
 {
 
-  if (!this->isActiveCheck())
+  if (!this->isActiveCheck() || this->holdTimerControl())
   {
     return;
   }
-
-  this->holdTimerControl();
-  if(this->outHoldTimer) {
-    return;
-  }
-
 
   if (this->isPotentialWayComplite &&
       this->potentialWay.length)

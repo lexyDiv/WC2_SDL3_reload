@@ -1,7 +1,7 @@
 #include "Peon_peasant.cpp"
 //=>orderOnWayControl
 
-void Peon_peasant::holdTimerControl()
+int Peon_peasant::holdTimerControl()
 {
     if (this->outHoldTimer == 30)
     {
@@ -12,4 +12,5 @@ void Peon_peasant::holdTimerControl()
     {
         this->outHoldTimer--;
     }
+    return this->outHoldTimer;
 };

@@ -23,7 +23,7 @@ public:
   virtual void inFightAnimation() {};
   virtual void goWay() {};
   virtual bool isNextCellFreeToGoWay(Cell *nextCell) { return false; };
-  virtual bool isNeedHoldGoWay(Cell *nextCell) { return false; };
+  virtual bool isNeedHoldGoWay() { return false; };
   virtual bool isGetTarget() { return false; };
   virtual bool isTargetObjValide() { return false; };
   virtual bool isBlockedd(Unit *unit) { return false; };
@@ -178,5 +178,7 @@ public:
   
   int needHolTimer = 0;
   int needHoldTimerMax = 100;
+
+  virtual bool crox(){return false;};
 
 };

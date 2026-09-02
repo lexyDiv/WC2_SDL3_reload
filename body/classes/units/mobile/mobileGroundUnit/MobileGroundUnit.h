@@ -11,7 +11,7 @@ class MobileGroundUnit : public Unit {
     void inFightAnimation() override;
     void goWay() override;
     bool isNextCellFreeToGoWay(Cell *nextCell) override;
-    bool isNeedHoldGoWay(Cell *nextCell) override;
+    bool isNeedHoldGoWay() override;
     bool isGetTarget() override;
     bool isTargetObjValide() override;
     bool isBlockedd(Unit *unit) override;
@@ -19,6 +19,7 @@ class MobileGroundUnit : public Unit {
     void getDeltasXY(Cell *nextCell) override;
     void getConor(Cell *cell) override;
     void targetObjControl() override;
+    bool crox() override;
 };
 
 MobileGroundUnit::MobileGroundUnit(){};

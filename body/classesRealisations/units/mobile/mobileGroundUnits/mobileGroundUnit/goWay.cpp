@@ -14,7 +14,7 @@ void MobileGroundUnit::goWay()
             this->nextCell = nc;
             int flipCellIndex = this->wayIndex - 2;
             this->flipCell =flipCellIndex >= 0 ? this->way.getItem(flipCellIndex) : nullptr;
-            bool isNeedHold = this->isNeedHoldGoWay(nc);
+            bool isNeedHold = this->isNeedHoldGoWay();
             if (this->isNextCellFreeToGoWay(nc) && !isNeedHold)
             {
                 this->holdWayCount = 0;

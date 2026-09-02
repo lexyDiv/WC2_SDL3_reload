@@ -152,7 +152,7 @@ public:
 
   double speedTale = 0;
   int wayTakts = 0;
-  int holdWayCount = 0;
+  //int holdWayCount = 0;
   int wayIndex = 0;
   bool isPotentialWayComplite = true;
   bool isIgetMyTarget = true;

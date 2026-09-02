@@ -13,11 +13,12 @@ void MobileGroundUnit::goWay()
             Cell *nc = this->way.getItem(this->wayIndex - 1);
             this->nextCell = nc;
             int flipCellIndex = this->wayIndex - 2;
-            this->flipCell =flipCellIndex >= 0 ? this->way.getItem(flipCellIndex) : nullptr;
+            this->flipCell = flipCellIndex >= 0 ? this->way.getItem(flipCellIndex) : nullptr;
             bool isNeedHold = this->isNeedHoldGoWay();
-            if (this->isNextCellFreeToGoWay(nc) && !isNeedHold)
+            bool isCrox = this->crox();
+            if (this->isNextCellFreeToGoWay(nc) && !isNeedHold && !isCrox)
             {
-                this->holdWayCount = 0;
+                this->needHolTimer = 0;
                 this->wayIndex--;
                 this->x = this->cell->x;
                 this->y = this->cell->y;
@@ -37,21 +38,25 @@ void MobileGroundUnit::goWay()
 
                 this->drawIndexY = this->y;
             }
+            else if (isCrox)
+            {
+                this->stendOnCellWait();
+            }
             else if (isNeedHold)
             {
                 this->needHolTimer++;
                 this->stendOnCellWait();
-                if (this->needHolTimer % 10 == 0 && !isTargetObjValide()) {
+                if (this->needHolTimer % 10 == 0 && !isTargetObjValide())
+                {
                     updateCurrentTarget();
                 }
             }
             else
             {
-                   
+
                 if (
-                   // this->preTargetCell
-                   this->targetData.clicckedCell
-                )
+                    // this->preTargetCell
+                    this->targetData.clicckedCell)
                 {
 
                     if (this->iNeedFreeWay)
@@ -68,9 +73,8 @@ void MobileGroundUnit::goWay()
 
                             return;
                         }
-                        this->orderOnWay.cell = this->targetData.clicckedCell; //this->preTargetCell;
+                        this->orderOnWay.cell = this->targetData.clicckedCell; // this->preTargetCell;
                         this->orderOnWay.isComplite = false;
-                       
                     }
                 }
             }
@@ -88,8 +92,10 @@ void MobileGroundUnit::goWay()
         this->y += this->wayDeltaY;
         this->drawIndexY = this->y;
         this->wayTakts--;
-        this->holdWayCount = 0;
-    } else {
+        this->needHolTimer = 0;
+    }
+    else
+    {
         this->flipCell = nullptr;
     }
 };

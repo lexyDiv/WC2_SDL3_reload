@@ -35,7 +35,7 @@ void Peon_peasant::activeProg()
       this->isPotentialWayComplite &&
       this->orderOnWay.isComplite &&
       this->way.length && // ???????? way.length ????? !!!!!!
-      !this->holdWayCount &&
+      !this->needHolTimer &&
       !this->inFight)
   {
     if (!this->isIgetMyTarget)

@@ -5,7 +5,7 @@ bool Peon_peasant::isGetTarget()
 {
     //console.log("here");
     Unit *to = this->targetData.unit;
-    if (                 ! this->holdWayCount &&
+    if (                 ! this->needHolTimer &&
        // this->targetCell // &&
        this->targetData.clicckedCell
                          // !to &&

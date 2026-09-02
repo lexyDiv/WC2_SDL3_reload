@@ -10,5 +10,5 @@ void Peon_peasant::stendOnCellWait()
     this->isGetMyCell = true;
     this->animTimer = 0;
     this->animY = 0;
-    this->holdWayCount ++;
+   // this->holdWayCount ++;
 };

@@ -171,62 +171,12 @@ public:
   Cell *flipCell = nullptr;
   Cell *nextCell = nullptr;
 
-  function<bool(Cell* c)> isOnGetPotentialWayGetTarget = [this](Cell *c)
-  {
-    if (this->targetData.unit)
-    {
-      if (c->groundUnit)
-      {
-        if (this->targetData.unit->name == "tree" && c->groundUnit->name == "tree" && !c->groundUnit->lesorub &&
-            c->groundUnit->hp)
-        {
-          this->targetData.unit = c->groundUnit;
-          this->targetData.clicckedCell = c->groundUnit->cell;
-          return true;
-        }
-        if (this->targetData.unit && c->groundUnit == this->targetData.unit)
-        {
-          return true;
-        }
-      }
-    }
-    else
-    {
-      if (this->targetData.clicckedCell == c)
-      {
-        return true;
-      }
-    }
-    return false;
-  };
+  function<bool(Cell* c)> isOnGetPotentialWayGetTarget = [](Cell *c){ return false; };
+  
 
-  function<bool(Cell *c)> isNewCellOnGetWayValide = [this](Cell *c)
-  {
-    if (c->plane == this->cell->plane 
-      && (!c->groundUnit 
-        || (c->groundUnit->fraction && this->fraction && c->groundUnit->fraction->unionCase == this->fraction->unionCase)))
-    {
-      return true;
-    }
-    if (c->groundUnit)
-    {
-      if (this->targetData.unit->name == "tree" && c->groundUnit->name == "tree" && !c->groundUnit->lesorub &&
-          c->groundUnit->hp)
-      {
-        return true;
-      }
-      if (this->targetData.unit && c->groundUnit == this->targetData.unit)
-      {
-        return true;
-      }
-    }
-    else
-    {
-      if (this->targetData.clicckedCell && this->targetData.clicckedCell == c && c->plane == this->cell->plane)
-      {
-        return true;
-      }
-    }
-    return false;
-  };
+  function<bool(Cell *c)> isNewCellOnGetWayValide = [](Cell *c){ return false; };
+  
+  int needHolTimer = 0;
+  int needHoldTimerMax = 100;
+
 };

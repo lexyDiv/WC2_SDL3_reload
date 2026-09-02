@@ -139,7 +139,7 @@ void Peon_peasant::getCurrentTarget() {
                     Unit *gu = c->groundUnit;
                     Cell *tc = this->cell;
                     if (tc &&
-                        cell->plane == tc->plane &&
+                        c->plane == tc->plane &&
                         (!gu ||
                          gu->wayIndex ||
                          gu == this->targetData.unit))

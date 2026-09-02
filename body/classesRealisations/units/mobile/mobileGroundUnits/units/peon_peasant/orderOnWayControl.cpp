@@ -191,6 +191,8 @@ void Peon_peasant::orderOnWayControl()
                     }
                     else
                     {
+                        this->profession = "";
+                       // this->targetData.clear();
                     }
                 }
             }

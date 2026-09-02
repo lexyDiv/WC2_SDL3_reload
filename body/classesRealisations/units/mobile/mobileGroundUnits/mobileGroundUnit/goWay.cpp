@@ -39,7 +39,11 @@ void MobileGroundUnit::goWay()
             }
             else if (isNeedHold)
             {
+                this->needHolTimer++;
                 this->stendOnCellWait();
+                if (this->needHolTimer % 10 == 0 && !isTargetObjValide()) {
+                    updateCurrentTarget();
+                }
             }
             else
             {

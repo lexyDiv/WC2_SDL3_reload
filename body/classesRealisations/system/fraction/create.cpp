@@ -45,86 +45,86 @@ if (this->color == "red") {
 
 
 
-   //this->activeBuildings.push(townHall);
-   ////////////////// townHall
+//    //this->activeBuildings.push(townHall);
+//    ////////////////// townHall
 
-    townHall = new TownHall;
-   townHall->fraction = this;
-   townHall->create(game->gf->field.getItem(2).getItem(120));
-   this->fTownHoll.level_1_townHollsCount++;
-   this->fTownHoll.townHolls.push(townHall);
-   townHall->isComplite = true;
-   ////////////////////
+//     townHall = new TownHall;
+//    townHall->fraction = this;
+//    townHall->create(game->gf->field.getItem(2).getItem(120));
+//    this->fTownHoll.level_1_townHollsCount++;
+//    this->fTownHoll.townHolls.push(townHall);
+//    townHall->isComplite = true;
+//    ////////////////////
 
-   townHall->createTimer = 100;
-   townHall->isActive = true;
-   //this->activeBuildings.push(townHall);
-
-
-
-    townHall = new TownHall;
-   townHall->fraction = this;
-   townHall->create(game->gf->field.getItem(2).getItem(220));
-   this->fTownHoll.level_1_townHollsCount++;
-   this->fTownHoll.townHolls.push(townHall);
-   townHall->isComplite = true;
-   ////////////////////
-
-   townHall->createTimer = 100;
-   townHall->isActive = true;
-   //this->activeBuildings.push(townHall);
+//    townHall->createTimer = 100;
+//    townHall->isActive = true;
+//    //this->activeBuildings.push(townHall);
 
 
-       townHall = new TownHall;
-   townHall->fraction = this;
-   townHall->create(game->gf->field.getItem(220).getItem(120));
-   this->fTownHoll.level_1_townHollsCount++;
-   this->fTownHoll.townHolls.push(townHall);
-   townHall->isComplite = true;
-   ////////////////////
 
-   townHall->createTimer = 100;
-   townHall->isActive = true;
-   //this->activeBuildings.push(townHall);
+//     townHall = new TownHall;
+//    townHall->fraction = this;
+//    townHall->create(game->gf->field.getItem(2).getItem(220));
+//    this->fTownHoll.level_1_townHollsCount++;
+//    this->fTownHoll.townHolls.push(townHall);
+//    townHall->isComplite = true;
+//    ////////////////////
 
-
-          townHall = new TownHall;
-   townHall->fraction = this;
-   townHall->create(game->gf->field.getItem(220).getItem(20));
-   this->fTownHoll.level_1_townHollsCount++;
-   this->fTownHoll.townHolls.push(townHall);
-   townHall->isComplite = true;
-   ////////////////////
-
-   townHall->createTimer = 100;
-   townHall->isActive = true;
-   //this->activeBuildings.push(townHall);
+//    townHall->createTimer = 100;
+//    townHall->isActive = true;
+//    //this->activeBuildings.push(townHall);
 
 
-             townHall = new TownHall;
-   townHall->fraction = this;
-   townHall->create(game->gf->field.getItem(220).getItem(220));
-   this->fTownHoll.level_1_townHollsCount++;
-   this->fTownHoll.townHolls.push(townHall);
-   townHall->isComplite = true;
-   ////////////////////
+//        townHall = new TownHall;
+//    townHall->fraction = this;
+//    townHall->create(game->gf->field.getItem(220).getItem(120));
+//    this->fTownHoll.level_1_townHollsCount++;
+//    this->fTownHoll.townHolls.push(townHall);
+//    townHall->isComplite = true;
+//    ////////////////////
 
-   townHall->createTimer = 100;
-   townHall->isActive = true;
-   //this->activeBuildings.push(townHall);
+//    townHall->createTimer = 100;
+//    townHall->isActive = true;
+//    //this->activeBuildings.push(townHall);
 
 
-       townHall = new TownHall;
-   townHall->fraction = this;
-   townHall->create(game->gf->field.getItem(225).getItem(220));
-   this->fTownHoll.level_1_townHollsCount++;
-   this->fTownHoll.townHolls.push(townHall);
-   townHall->isComplite = true;
-   ////////////////////
+//           townHall = new TownHall;
+//    townHall->fraction = this;
+//    townHall->create(game->gf->field.getItem(220).getItem(20));
+//    this->fTownHoll.level_1_townHollsCount++;
+//    this->fTownHoll.townHolls.push(townHall);
+//    townHall->isComplite = true;
+//    ////////////////////
 
-   townHall->createTimer = 100;
-   townHall->isActive = true;
-  //this->activeBuildings.push(townHall);
+//    townHall->createTimer = 100;
+//    townHall->isActive = true;
+//    //this->activeBuildings.push(townHall);
+
+
+//              townHall = new TownHall;
+//    townHall->fraction = this;
+//    townHall->create(game->gf->field.getItem(220).getItem(220));
+//    this->fTownHoll.level_1_townHollsCount++;
+//    this->fTownHoll.townHolls.push(townHall);
+//    townHall->isComplite = true;
+//    ////////////////////
+
+//    townHall->createTimer = 100;
+//    townHall->isActive = true;
+//    //this->activeBuildings.push(townHall);
+
+
+//        townHall = new TownHall;
+//    townHall->fraction = this;
+//    townHall->create(game->gf->field.getItem(225).getItem(220));
+//    this->fTownHoll.level_1_townHollsCount++;
+//    this->fTownHoll.townHolls.push(townHall);
+//    townHall->isComplite = true;
+//    ////////////////////
+
+//    townHall->createTimer = 100;
+//    townHall->isActive = true;
+//   //this->activeBuildings.push(townHall);
 
 
 };

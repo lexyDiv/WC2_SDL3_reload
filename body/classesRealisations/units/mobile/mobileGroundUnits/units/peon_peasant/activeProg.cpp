@@ -12,6 +12,7 @@ void Peon_peasant::activeProg()
   if (this->isPotentialWayComplite &&
       this->potentialWay.length)
   {
+    this->isNeedFreeWay();
     this->way.copy(this->potentialWay);
     this->potentialWay.clear();
     this->isIgetMyTarget = false;

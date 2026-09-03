@@ -56,7 +56,7 @@ class Fraction {
    ////////////////////
 
     string name = "";
-    string control = "";
+    bool control = false;
     string color = "";
     Color mapColor = { R: 255, G: 0, B: 0 };
     int level = 0;

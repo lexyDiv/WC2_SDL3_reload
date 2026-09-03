@@ -11,17 +11,21 @@ class MobileGroundUnit : public Unit {
     void inFightAnimation() override;
     void goWay() override;
     bool isNextCellFreeToGoWay(Cell *nextCell) override;
-    bool isNeedHoldGoWay(Cell *nextCell) override;
+    bool isNeedHoldGoWay() override;
     bool isGetTarget() override;
     bool isTargetObjValide() override;
     bool isBlockedd(Unit *unit) override;
     void iAmHere() override;
     void getDeltasXY(Cell *nextCell) override;
     void getConor(Cell *cell) override;
+    void targetObjControl() override;
+    bool crox() override;
 };
 
 MobileGroundUnit::MobileGroundUnit(){};
 MobileGroundUnit::~MobileGroundUnit(){};
+
+void MobileGroundUnit::targetObjControl(){};
 //void MobileGroundUnit::orderOnWayControl(){};
 //void MobileGroundUnit::goWayAnimation(){};
 void MobileGroundUnit::inFightAnimation(){};

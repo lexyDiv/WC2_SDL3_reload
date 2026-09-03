@@ -3,7 +3,7 @@
 
 void Peon_peasant::selectAnAction()
 {
-    Unit *gu = this->targetObj.unit;
+    Unit *gu = this->targetData.unit;
 
     if (gu)
     {

@@ -4,6 +4,25 @@
 
 #include "body/out.h"
 
+void bdofn()
+{
+    game->process();
+};
+
+void bdrfn()
+{
+    game->draw();
+};
+
+void loadDrawFn()
+{
+    ctx.FillRect(0, 0, 1000, 1000, "white");
+    ctx.DrawText(30, 30, 50, "loading");
+}
+
+
+
+
 int main()
 {
 
@@ -19,13 +38,12 @@ int main()
 
         if (!game->isGFComplite || th_create_game)
         {
-            if (!th_create_game) {
+            if (!th_create_game)
+            {
                 th_create_game = new thread(th_create);
             }
-            basicDraw([]()
-                      {
-    ctx.FillRect(0, 0, 1000, 1000, "white");
-    ctx.DrawText(30, 30, 50, "loading"); });
+            
+            loadingDraw();
 
             if (game->isGFComplite)
             {
@@ -34,15 +52,13 @@ int main()
                 th_create_game = nullptr;
             }
         }
-        else //if (!th_create_game)
+        else // if (!th_create_game)
         {
             game->startTick = SDL_GetTicks();
 
-            basicDo([]()
-                    { game->process(); });
+            basicDo();
 
-            basicDraw([]()
-                      { game->draw(); });
+            basicDraw();
 
             for (auto &t : threads)
             {
@@ -59,7 +75,7 @@ int main()
             }
             else
             {
-                console.log("hold");
+                // console.log("hold " + to_string(thDatas.getItem(0)->deep));
             }
 
             threads.clear();

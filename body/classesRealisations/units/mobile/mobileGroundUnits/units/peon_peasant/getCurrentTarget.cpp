@@ -1,70 +1,78 @@
 #include "stendOnCellWait.cpp"
 //=>inFightAnimation
 
-void Peon_peasant::getCurrentTarget(Cell *cell) {
-       this->preTargetCell = cell;
+void Peon_peasant::getCurrentTarget() {
+      // this->preTargetCell = cell;
     // this->profession = "";
     this->potentialWay.clear();
     this->wayIndex = 0;
 
     this->isPotentialWayComplite = false;
-    this->targetCell = nullptr;
-    //this->targetObjControl = this->unitMenu->targetObjControl;
-    this->targetObj.unit = nullptr;
+   // this->targetCell = nullptr;
+    //this->targetDataControl = this->unitMenu->targetDataControl;
+   // this->targetData.unit = nullptr;
 
 
    // console.log(to_string(this->deep));
-
-    if (cell->groundUnit)
+     Unit *tdu = this->targetData.unit;
+    if (
+        //cell->groundUnit
+        tdu
+    )
     {
 
-        this->targetObj.unit = cell->groundUnit;
-       // this->targetObj.bornCount = cell->groundUnit->bornCount;
+    //     this->targetData.unit = cell->groundUnit;
+    //    // this->targetData.bornCount = cell->groundUnit->bornCount;
 
-        if (this->fraction->control == "human" &&
-        &this->fraction->nation == &targetObj.unit->fraction->nation)
+    //     if (this->fraction->control == "human" &&
+    //     &this->fraction->nation == &targetData.unit->fraction->nation)
+    //     {
+    //         this->profession = this->gold > 0 && this->targetData.unit->name == "greatHall" ? "g" : this->profession;
+    //         this->profession = this->wood > 0 && (this->targetData.unit->name == "greatHall" || this->targetData.unit->name == "mill") ? "w" : this->profession;
+    //     }
+
+
+
+        if (
+           // cell->groundUnit->name == "tree"
+            tdu->name == "tree"
+        )
         {
-            this->profession = this->gold > 0 && this->targetObj.unit->name == "greatHall" ? "g" : this->profession;
-            this->profession = this->wood > 0 && (this->targetObj.unit->name == "greatHall" || this->targetObj.unit->name == "mill") ? "w" : this->profession;
-        }
+           // this->profession = "w";
+            // if (this->wood)
+            // {
+            //     Unit *base = this->getBaseForUnloading();
+            //     if (base)
+            //     {
+            //         this->getCurrentTarget(base->cell);
+            //         return;
+            //     }
+            // }
 
-
-
-        if (cell->groundUnit->name == "tree")
-        {
-            this->profession = "w";
-            if (this->wood)
+            //this->targetDataControl = this->fraction->control == "" ? this->unitMenu->targetDataControlWoodComp : this->unitMenu->targetDataControlWood;
+            this->isOnGetPotentialWayGetTarget = [this](Cell *c)
             {
-                Unit *base = this->getBaseForUnloading();
-                if (base)
-                {
-                    this->getCurrentTarget(base->cell);
-                    return;
-                }
-            }
-
-            //this->targetObjControl = this->fraction->control == "" ? this->unitMenu->targetObjControlWoodComp : this->unitMenu->targetObjControlWood;
-            this->isOnGetPotentialWayGetTarget = [this](Cell *cell)
-            {
-                Unit *gu = cell->groundUnit;
+                Unit *gu = c->groundUnit;
                 if (
-                    gu && gu->name == "tree")
+                    gu && gu->name == "tree"
+                && !gu->lesorub)
                 {
-                    this->targetObj.unit = gu;
-                   // this->targetObj.bornCount = gu->bornCount;
+                    this->targetData.unit = gu;
+                    this->targetData.clicckedCell = gu->cell;
+                   // this->targetData.bornCount = gu->bornCount;
                     return true;
                 }
                 return false;
             };
 
-            if (!this->iNeedFreeWay)
-            {
-                this->isNewCellOnGetWayValide = [this](Cell *cell)
+            // if (!this->iNeedFreeWay)
+            // {
+                this->isNewCellOnGetWayValide = [this](Cell *c)
                 {
-                    Unit *gu = cell->groundUnit;
+                    Unit *gu = c->groundUnit;
                     Cell *tc = this->cell;
                     if (tc &&
-                        cell->plane == tc->plane &&
+                        c->plane == tc->plane &&
                         (!gu ||
                          gu->way.length ||
                          (gu->fraction && gu->fraction->unionCase != this->fraction->unionCase &&
@@ -75,24 +83,24 @@ void Peon_peasant::getCurrentTarget(Cell *cell) {
                     }
                     return false;
                 };
-            }
-            else
-            {
-                this->isNewCellOnGetWayValide = [this](Cell *cell)
-                {
-                    Unit *gu = cell->groundUnit;
-                    Cell *tc = this->cell;
-                    if (tc &&
-                        cell->plane == tc->plane &&
-                        (!gu ||
-                         gu->type == "life" ||
-                         gu->name == "tree" && !gu->lesorub))
-                    {
-                        return true;
-                    }
-                    return false;
-                };
-            }
+         //   }
+            // else
+            // {
+            //     this->isNewCellOnGetWayValide = [this](Cell *cell)
+            //     {
+            //         Unit *gu = cell->groundUnit;
+            //         Cell *tc = this->cell;
+            //         if (tc &&
+            //             cell->plane == tc->plane &&
+            //             (!gu ||
+            //              gu->type == "life" ||
+            //              gu->name == "tree" && !gu->lesorub))
+            //         {
+            //             return true;
+            //         }
+            //         return false;
+            //     };
+            // }
         }
         else
         {
@@ -111,78 +119,84 @@ void Peon_peasant::getCurrentTarget(Cell *cell) {
             // };
             // if (cell->groundUnit->type != "life")
             // {
-            //     this->targetObjControl = this->fraction->control == "" ? this->unitMenu->targetObjControlBuildingComp : this->unitMenu->targetObjControlBuilding;
+            //     this->targetDataControl = this->fraction->control == "" ? this->unitMenu->targetDataControlBuildingComp : this->unitMenu->targetDataControlBuilding;
             // }
-            this->isOnGetPotentialWayGetTarget = [this](Cell *cell)
+            this->isOnGetPotentialWayGetTarget = [this](Cell *c)
             {
-                Unit *gu = cell->groundUnit;
+                Unit *gu = c->groundUnit;
                 if ( // cell == this->targetCell ||
-                    gu == this->targetObj.unit)
+                   gu && gu == this->targetData.unit)
                 {
                     return true;
                 }
                 return false;
             };
 
-            if (!this->iNeedFreeWay)
-            {
-                this->isNewCellOnGetWayValide = [this](Cell *cell)
+          //  if (!this->iNeedFreeWay)
+          //  {
+                this->isNewCellOnGetWayValide = [this](Cell *c)
                 {
-                    Unit *gu = cell->groundUnit;
+                    Unit *gu = c->groundUnit;
                     Cell *tc = this->cell;
                     if (tc &&
-                        cell->plane == tc->plane &&
+                        c->plane == tc->plane &&
                         (!gu ||
-                         gu->way.length ||
-                         gu == this->targetObj.unit))
+                         gu->wayIndex ||
+                         gu == this->targetData.unit))
                     {
                         return true;
                     }
                     return false;
                 };
-            }
-            else
-            {
-                this->isNewCellOnGetWayValide = [this](Cell *cell)
-                {
-                    Unit *gu = cell->groundUnit;
-                    Cell *tc = this->cell;
-                    if (tc &&
-                        cell->plane == tc->plane &&
-                        (!gu ||
-                         gu->type == "life" ||
-                         gu == this->targetObj.unit))
-                    {
-                        return true;
-                    }
-                    return false;
-                };
-            }
+           // }
+            // else
+            // {
+            //     this->isNewCellOnGetWayValide = [this](Cell *cell)
+            //     {
+            //         Unit *gu = cell->groundUnit;
+            //         Cell *tc = this->cell;
+            //         if (tc &&
+            //             cell->plane == tc->plane &&
+            //             (!gu ||
+            //              gu->type == "life" ||
+            //              gu == this->targetData.unit))
+            //         {
+            //             return true;
+            //         }
+            //         return false;
+            //     };
+            // }
         }
     }
     else
     {
-        if (this->fraction->control == "human")
+        // if (this->fraction->control == "human")
+        // {
+        //     this->profession = "";
+        // }
+        this->isOnGetPotentialWayGetTarget = [this](Cell *c)
         {
-            this->profession = "";
-        }
-        this->isOnGetPotentialWayGetTarget = [this](Cell *cell)
-        {
-            if (cell == this->targetCell)
+            if (!this->targetData.clicckedCell) {
+                console.log("No clickeddCell");
+            }
+            if (
+               // cell == this->targetCell
+               c == this->targetData.clicckedCell
+            )
             {
                 return true;
             }
             return false;
         };
 
-        this->isNewCellOnGetWayValide = [this](Cell *cell)
+        this->isNewCellOnGetWayValide = [this](Cell *c)
         {
-            Unit *gu = cell->groundUnit;
+            Unit *gu = c->groundUnit;
             Cell *tc = this->cell;
             if (tc &&
-                cell->plane == tc->plane &&
+                c->plane == tc->plane &&
                 (!gu ||
-                 gu->way.length))
+                 gu->wayIndex))
             {
                 return true;
             }
@@ -194,9 +208,9 @@ void Peon_peasant::getCurrentTarget(Cell *cell) {
     // {
     //     this->game->unitsOnWay.push(this);
     // }
-    if (!this->isActive)
-    {
+  //  if (!this->isActive)
+   // {
         this->isActive = true;
        // this->fraction->activeUnits.push(this);
-    }
+   // }
 }

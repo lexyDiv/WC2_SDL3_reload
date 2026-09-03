@@ -43,7 +43,10 @@ void ThData::exploreNewCellAndAddToOpenArr(Unit *unit, Cell *fatherCell, Cell *p
 
       potentialCell_thwd->createCountData = this->createCount;
       int G = this->get_G(fatherCell, potentialCell);
-      int H = this->get_H(potentialCell, unit->targetCell);
+      int H = this->get_H(potentialCell, 
+       // unit->targetCell
+       unit->targetData.clicckedCell
+      );
 
       potentialCell_thwd->G = fatherCell ? G + fatherCell_thwd->G : G;
       potentialCell_thwd->H = H;

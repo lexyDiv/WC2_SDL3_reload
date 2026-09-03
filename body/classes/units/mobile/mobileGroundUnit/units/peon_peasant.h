@@ -14,7 +14,7 @@ public:
     // // void getCurrentTargetCell2() override;
     // // void getCurrentTargetCell3() override;
     // // void getCurrentTargetCell4() override;
-     void getCurrentTarget(Cell* cell) override;
+     void getCurrentTarget() override;
      void activeProg() override;
      void stendOnCell() override;
      void stendOnCellWait() override;
@@ -36,12 +36,13 @@ public:
      void trupCreate() override;
     // void drawTrup() override;
     void targetObjControl() override;
-    void holdTimerControl();
+    int holdTimerControl();
 
     
     // void trupCreate() override;
 
-    // void orderOnWayControl() override;
+     void orderOnWayControl() override;
+     bool isNeedHoldGoWay() override;
     //  void goWayAnimation() override;
     // void goWay() override;
     // bool isNextCellFreeToGoWay(ProtoObj *nextCell) override;
@@ -49,3 +50,5 @@ public:
     // bool isOnGetPotentialWayGetTarget(ProtoObj *cell) override;
     // bool isNewCellOnGetWayValide(ProtoObj *cell) override;
 };
+
+

@@ -40,6 +40,7 @@ void Fraction::controller()
                         peon->orderOnWay.cell = tree->cell;
                         peon->isActive = true;
                        // this->activeUnits.push(peon);
+             
                     }
                 }
                 else if (peon->profession == "g")

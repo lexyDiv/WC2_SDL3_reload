@@ -1,7 +1,9 @@
 #include "../FS/FS.cpp"
 
-void basicDo(function<void()> fn) {
+void bdofn();
+
+void basicDo() {
     listenner(quit);
-    fn();
+    bdofn();
     console.proc(mouse.x, mouse.y, mouse.leftKey);
-}
+};

@@ -4,27 +4,15 @@
 void Peon_peasant::activeProg()
 {
 
-  //   if (this->focus) {
-  //    // console.log(to_string(this->isPotentialWayComplite));
-  //   }
- // console.log("here");
- 
-  if (!this->isActiveCheck())
+  if (!this->isActiveCheck() || this->holdTimerControl())
   {
     return;
   }
-
-  this->holdTimerControl();
-  if(this->outHoldTimer) {
-    return;
-  }
-
 
   if (this->isPotentialWayComplite &&
       this->potentialWay.length)
   {
     this->way.copy(this->potentialWay);
-    // this->targetObjControl(); // !!! impotent IMPOTENT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     this->potentialWay.clear();
     this->isIgetMyTarget = false;
   }
@@ -34,13 +22,12 @@ void Peon_peasant::activeProg()
       this->wayIndex <= 5 &&
       this->isPotentialWayComplite &&
       this->orderOnWay.isComplite &&
-      this->way.length && // ???????? way.length ????? !!!!!!
-      !this->holdWayCount &&
-      !this->inFight)
+      this->way.length && 
+      !this->needHolTimer &&
+      !this->inFight &&
+      !this->isIgetMyTarget)
   {
-    if (!this->isIgetMyTarget)
-    {
-      Unit *to = this->targetObj.unit;
+      Unit *to = this->targetData.unit;
       if (to)
       {
         bool isTOValide = this->isTargetObjValide();
@@ -52,23 +39,19 @@ void Peon_peasant::activeProg()
       }
 
       this->isGetTarget();
+
       if (this->isIgetMyTarget)
       {
-        this->targetCell = nullptr;
-        this->preTargetCell = nullptr;
         this->stendOnCell();
         this->isIgetMyTarget = false;
         this->selectAnAction();
       }
-    }
-    // else
-    // {
-    // }
   }
 
   if (this->inFight)
   {
     this->fightControl(); // maybee HUYNYA refactoring needed !!!
+    this->flipCell = nullptr;
   }
   else
   {

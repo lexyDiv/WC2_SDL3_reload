@@ -5,7 +5,7 @@ class Unit
 {
 public:
   Unit() {};
- virtual ~Unit() {};
+  virtual ~Unit() {};
 
   Cell *cell = nullptr;
 
@@ -23,11 +23,11 @@ public:
   virtual void inFightAnimation() {};
   virtual void goWay() {};
   virtual bool isNextCellFreeToGoWay(Cell *nextCell) { return false; };
-  virtual bool isNeedHoldGoWay(Cell *nextCell) { return false; };
+  virtual bool isNeedHoldGoWay() { return false; };
   virtual bool isGetTarget() { return false; };
   virtual bool isTargetObjValide() { return false; };
   virtual bool isBlockedd(Unit *unit) { return false; };
-  virtual void iAmHere(){};
+  virtual void iAmHere() {};
   virtual void iSeeYou(Unit *unit) {};
 
   virtual void wellCome(Unit *peon) {};
@@ -37,7 +37,7 @@ public:
   virtual bool isActiveCheck() { return false; };
 
   virtual void getDeltasXY(Cell *nextCell) {};
-  virtual void getConor(Cell *nextCell){};
+  virtual void getConor(Cell *nextCell) {};
 
   virtual MinData getPeonOutCell()
   {
@@ -57,27 +57,27 @@ public:
     cell : nullptr
   }; };
 
-    virtual void getCurrentTarget(Cell *cell) {};
+  virtual void getCurrentTarget() {};
   virtual void getHandTarget(Cell *cell) {};
   virtual void getCurrentTargetCell() {};
   virtual void stendOnCell() {};
   virtual void stendOnCellWait() {};
-  virtual void selectAnAction(){};
-  virtual void fightControl(){};
+  virtual void selectAnAction() {};
+  virtual void fightControl() {};
   virtual void createInside(Cell *c) {};
-  virtual Unit *getAnyTree(){ return nullptr; };
-  virtual Unit *getAnyShaht(){ return nullptr; };
-  virtual Unit *getTreeNear(){ return nullptr; };
-  virtual Unit *getBaseForUnloading(){ return nullptr; };
-  virtual Unit *getBaseForUnloadingGold(){ return nullptr; };
-  virtual void preDraw(){};
-  virtual void updateCurrentTarget(){};
-  virtual void takeDamage(int damage){};
-  virtual void trupCreate(){};
-  virtual void drawTrup(){};
+  virtual Unit *getAnyTree() { return nullptr; };
+  virtual Unit *getAnyShaht() { return nullptr; };
+  virtual Unit *getTreeNear() { return nullptr; };
+  virtual Unit *getBaseForUnloading() { return nullptr; };
+  virtual Unit *getBaseForUnloadingGold() { return nullptr; };
+  virtual void preDraw() {};
+  virtual void updateCurrentTarget() {};
+  virtual void takeDamage(int damage) {};
+  virtual void trupCreate() {};
+  virtual void drawTrup() {};
   virtual void standOnCell() {};
-  virtual void stressControl(){};
-  virtual void targetObjControl(){};
+  virtual void stressControl() {};
+  virtual void targetObjControl() {};
 
   int deleteTimer = 50;
   Array<Cell *> myCells;
@@ -150,25 +150,35 @@ public:
   int outHoldTimer = 0;
   int updateTimer = 0;
 
-   double speedTale = 0;
-   int wayTakts = 0;
-   int holdWayCount = 0;
-   int wayIndex = 0;
-   bool isPotentialWayComplite = true;
-   bool isIgetMyTarget = true;
-   bool iNeedFreeWay = false;
-   Order orderOnWay;
-   TargetObj targetObj;
-   Cell *targetCell = nullptr;
-   Cell *preTargetCell = nullptr;
-   Unit* lesorub = nullptr;
-   int bornCount = 0;
-   int inFightTimer = 0;
-   int stress = 0;
-   bool isWarrior = false;
-   bool thSpin = true;
-   bool isDelete = false;
+  double speedTale = 0;
+  int wayTakts = 0;
+  //int holdWayCount = 0;
+  int wayIndex = 0;
+  bool isPotentialWayComplite = true;
+  bool isIgetMyTarget = true;
+  bool iNeedFreeWay = false;
+  Order orderOnWay;
+  TargetData targetData;
+  // Cell *targetCell = nullptr;
+  // Cell *preTargetCell = nullptr;
+  Unit *lesorub = nullptr;
+  int bornCount = 0;
+  int inFightTimer = 0;
+  int stress = 0;
+  bool isWarrior = false;
+  bool thSpin = true;
+  bool isDelete = false;
+  Cell *flipCell = nullptr;
+  Cell *nextCell = nullptr;
 
-   function<bool(Cell *cell)> isOnGetPotentialWayGetTarget;
-   function<bool(Cell* cell)> isNewCellOnGetWayValide;
+  function<bool(Cell* c)> isOnGetPotentialWayGetTarget = [](Cell *c){ return false; };
+  
+
+  function<bool(Cell *c)> isNewCellOnGetWayValide = [](Cell *c){ return false; };
+  
+  int needHolTimer = 0;
+  int needHoldTimerMax = 100;
+
+  virtual bool crox(){return false;};
+
 };

@@ -3,6 +3,7 @@
 
 int th_count = std::thread::hardware_concurrency() - 1;
 std::vector<std::thread> threads;
+Uint64 PWPstart;
 
 void Game::process()
 {
@@ -31,6 +32,7 @@ void Game::process()
 
     threads.clear();
 
+    PWPstart = SDL_GetTicks();
     thDatas.forEach([](ThData *td)
                     { threads.emplace_back(&ThData::PWProcess, td); });
 

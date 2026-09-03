@@ -1,44 +1,40 @@
 #include "stendOnCellWait.cpp"
 //=>inFightAnimation
 
-void Peon_peasant::getCurrentTarget() {
-      // this->preTargetCell = cell;
+void Peon_peasant::getCurrentTarget()
+{
+    // this->preTargetCell = cell;
     // this->profession = "";
     this->potentialWay.clear();
     this->wayIndex = 0;
 
     this->isPotentialWayComplite = false;
-   // this->targetCell = nullptr;
-    //this->targetDataControl = this->unitMenu->targetDataControl;
-   // this->targetData.unit = nullptr;
+    // this->targetCell = nullptr;
+    // this->targetDataControl = this->unitMenu->targetDataControl;
+    // this->targetData.unit = nullptr;
 
-
-   // console.log(to_string(this->deep));
-     Unit *tdu = this->targetData.unit;
+    // console.log(to_string(this->deep));
+    Unit *tdu = this->targetData.unit;
     if (
-        //cell->groundUnit
-        tdu
-    )
+        // cell->groundUnit
+        tdu)
     {
 
-    //     this->targetData.unit = cell->groundUnit;
-    //    // this->targetData.bornCount = cell->groundUnit->bornCount;
+        //     this->targetData.unit = cell->groundUnit;
+        //    // this->targetData.bornCount = cell->groundUnit->bornCount;
 
-    //     if (this->fraction->control == "human" &&
-    //     &this->fraction->nation == &targetData.unit->fraction->nation)
-    //     {
-    //         this->profession = this->gold > 0 && this->targetData.unit->name == "greatHall" ? "g" : this->profession;
-    //         this->profession = this->wood > 0 && (this->targetData.unit->name == "greatHall" || this->targetData.unit->name == "mill") ? "w" : this->profession;
-    //     }
-
-
+        //     if (this->fraction->control == "human" &&
+        //     &this->fraction->nation == &targetData.unit->fraction->nation)
+        //     {
+        //         this->profession = this->gold > 0 && this->targetData.unit->name == "greatHall" ? "g" : this->profession;
+        //         this->profession = this->wood > 0 && (this->targetData.unit->name == "greatHall" || this->targetData.unit->name == "mill") ? "w" : this->profession;
+        //     }
 
         if (
-           // cell->groundUnit->name == "tree"
-            tdu->name == "tree"
-        )
+            // cell->groundUnit->name == "tree"
+            tdu->name == "tree")
         {
-           // this->profession = "w";
+            // this->profession = "w";
             // if (this->wood)
             // {
             //     Unit *base = this->getBaseForUnloading();
@@ -49,17 +45,16 @@ void Peon_peasant::getCurrentTarget() {
             //     }
             // }
 
-            //this->targetDataControl = this->fraction->control == "" ? this->unitMenu->targetDataControlWoodComp : this->unitMenu->targetDataControlWood;
+            // this->targetDataControl = this->fraction->control == "" ? this->unitMenu->targetDataControlWoodComp : this->unitMenu->targetDataControlWood;
             this->isOnGetPotentialWayGetTarget = [this](Cell *c)
             {
                 Unit *gu = c->groundUnit;
                 if (
-                    gu && gu->name == "tree"
-                && !gu->lesorub)
+                    gu && gu->name == "tree" && !gu->lesorub)
                 {
                     this->targetData.unit = gu;
                     this->targetData.clicckedCell = gu->cell;
-                   // this->targetData.bornCount = gu->bornCount;
+                    // this->targetData.bornCount = gu->bornCount;
                     return true;
                 }
                 return false;
@@ -67,23 +62,33 @@ void Peon_peasant::getCurrentTarget() {
 
             // if (!this->iNeedFreeWay)
             // {
-                this->isNewCellOnGetWayValide = [this](Cell *c)
+            this->isNewCellOnGetWayValide = [this](Cell *c)
+            {
+       
+                Unit *gu = c->groundUnit;
+                
+                Cell *tc = this->cell;
+
+                if (gu && gu->needHolTimer)
                 {
-                    Unit *gu = c->groundUnit;
-                    Cell *tc = this->cell;
-                    if (tc &&
-                        c->plane == tc->plane &&
-                        (!gu ||
-                         gu->way.length ||
-                         (gu->fraction && gu->fraction->unionCase != this->fraction->unionCase &&
-                          gu->isWarrior) ||
-                         (gu->name == "tree" && !gu->lesorub)))
-                    {
-                        return true;
-                    }
                     return false;
-                };
-         //   }
+                }
+
+                if (tc &&
+                    c->plane == tc->plane &&
+                    (!gu ||
+                     gu->way.length ||
+                     (gu->fraction && gu->fraction->unionCase != this->fraction->unionCase &&
+                      gu->isWarrior) ||
+                     (gu->name == "tree" && !gu->lesorub)))
+                {
+                  
+                    return true;
+                }
+        
+                return false;
+            };
+            //   }
             // else
             // {
             //     this->isNewCellOnGetWayValide = [this](Cell *cell)
@@ -125,30 +130,35 @@ void Peon_peasant::getCurrentTarget() {
             {
                 Unit *gu = c->groundUnit;
                 if ( // cell == this->targetCell ||
-                   gu && gu == this->targetData.unit)
+                    gu && gu == this->targetData.unit)
                 {
                     return true;
                 }
                 return false;
             };
 
-          //  if (!this->iNeedFreeWay)
-          //  {
-                this->isNewCellOnGetWayValide = [this](Cell *c)
+            //  if (!this->iNeedFreeWay)
+            //  {
+            this->isNewCellOnGetWayValide = [this](Cell *c)
+            {
+                Unit *gu = c->groundUnit;
+                Cell *tc = this->cell;
+
+                if (gu && gu->needHolTimer)
                 {
-                    Unit *gu = c->groundUnit;
-                    Cell *tc = this->cell;
-                    if (tc &&
-                        c->plane == tc->plane &&
-                        (!gu ||
-                         gu->wayIndex ||
-                         gu == this->targetData.unit))
-                    {
-                        return true;
-                    }
                     return false;
-                };
-           // }
+                }
+                if (tc &&
+                    c->plane == tc->plane &&
+                    (!gu ||
+                     gu->wayIndex ||
+                     gu == this->targetData.unit))
+                {
+                    return true;
+                }
+                return false;
+            };
+            // }
             // else
             // {
             //     this->isNewCellOnGetWayValide = [this](Cell *cell)
@@ -176,13 +186,13 @@ void Peon_peasant::getCurrentTarget() {
         // }
         this->isOnGetPotentialWayGetTarget = [this](Cell *c)
         {
-            if (!this->targetData.clicckedCell) {
+            if (!this->targetData.clicckedCell)
+            {
                 console.log("No clickeddCell");
             }
             if (
-               // cell == this->targetCell
-               c == this->targetData.clicckedCell
-            )
+                // cell == this->targetCell
+                c == this->targetData.clicckedCell)
             {
                 return true;
             }
@@ -193,6 +203,10 @@ void Peon_peasant::getCurrentTarget() {
         {
             Unit *gu = c->groundUnit;
             Cell *tc = this->cell;
+            if (gu && gu->needHolTimer)
+            {
+                return false;
+            }
             if (tc &&
                 c->plane == tc->plane &&
                 (!gu ||
@@ -208,9 +222,9 @@ void Peon_peasant::getCurrentTarget() {
     // {
     //     this->game->unitsOnWay.push(this);
     // }
-  //  if (!this->isActive)
-   // {
-        this->isActive = true;
-       // this->fraction->activeUnits.push(this);
-   // }
+    //  if (!this->isActive)
+    // {
+    this->isActive = true;
+    // this->fraction->activeUnits.push(this);
+    // }
 }

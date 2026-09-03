@@ -12,7 +12,10 @@ void Peon_peasant::activeProg()
   if (this->isPotentialWayComplite &&
       this->potentialWay.length)
   {
-    this->isNeedFreeWay();
+   // this->isNeedFreeWay();
+    if (this->iNeedFreeWay) {
+      console.log("need free way");
+    }
     this->way.copy(this->potentialWay);
     this->potentialWay.clear();
     this->isIgetMyTarget = false;

@@ -123,7 +123,7 @@ public:
   int animTakt = 0;
   GameField *gf = nullptr;
   Game *game = nullptr;
-  Fraction *fraction;
+  Fraction *fraction = nullptr;
   bool isAddOnDraw = false;
   int alpha = 255;
   int getGabX = 0;

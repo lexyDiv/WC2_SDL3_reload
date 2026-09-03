@@ -33,6 +33,7 @@ public:
       int optimalDeltaTime = 1000 / 30;
 
   vector<string> pathes{
+    "levels/lowTrees.txt",
       "levels/test_1.txt",
       "levels/testBig_1.txt",
       "levels/testBig_500.txt"};

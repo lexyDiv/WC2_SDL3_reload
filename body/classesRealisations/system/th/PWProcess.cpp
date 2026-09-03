@@ -56,7 +56,7 @@ void ThData::PWProcess() {
         {
            //console.log("here");
             this->hold = i;
-           // this->deep = this->deep >= 5000 ? this->deep - 50 : this->deep;
+            this->deep = this->deep >= 10000 ? this->deep - 50 : this->deep;
            // return;
         }
        

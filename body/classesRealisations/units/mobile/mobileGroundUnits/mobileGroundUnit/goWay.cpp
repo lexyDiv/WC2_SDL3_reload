@@ -5,10 +5,16 @@ void MobileGroundUnit::goWay()
 {
     if (!this->wayTakts)
     {
+
         if (this->isPotentialWayComplite &&
-            this->way.length &&
+            // this->way.length &&
             this->wayIndex > 0)
         {
+
+            if (this->persNum == 1103)
+            {
+                console.log("goWay");
+            }
 
             Cell *nc = this->way.getItem(this->wayIndex - 1);
             this->nextCell = nc;
@@ -44,6 +50,7 @@ void MobileGroundUnit::goWay()
             }
             else if (isNeedHold)
             {
+
                 this->needHolTimer++;
                 this->stendOnCellWait();
                 if (this->needHolTimer % 10 == 0 && !isTargetObjValide())
@@ -54,29 +61,33 @@ void MobileGroundUnit::goWay()
             else
             {
 
-                if (
-                    // this->preTargetCell
-                    this->targetData.clicckedCell)
+                //  if (
+                // this->preTargetCell
+                //    this->targetData.clicckedCell)
+                // {
+
+                // if (this->iNeedFreeWay)
+                // {
+                // console.log("poshel na huy!");
+                // this->stendOnCellWait();
+                // }
+                // else
+                // {
+                this->stendOnCell();
+                // this->targetData.unit = nullptr;
+                // this->targetData.clear();
+                // if (this->profession != "")
+                // {
+
+                //     return;
+                // }
+                if (this->targetData.clicckedCell)
                 {
-
-                    if (this->iNeedFreeWay)
-                    {
-                        // console.log("poshel na huy!");
-                        this->stendOnCellWait();
-                    }
-                    else
-                    {
-                        this->stendOnCell();
-                        this->targetData.unit = nullptr;
-                        if (this->profession != "")
-                        {
-
-                            return;
-                        }
-                        this->orderOnWay.cell = this->targetData.clicckedCell; // this->preTargetCell;
-                        this->orderOnWay.isComplite = false;
-                    }
+                    this->orderOnWay.cell = this->targetData.clicckedCell; // this->preTargetCell;
+                    this->orderOnWay.isComplite = false;
                 }
+                //}
+                //  }
             }
         }
         else

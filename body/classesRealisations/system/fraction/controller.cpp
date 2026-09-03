@@ -5,7 +5,7 @@
 void Fraction::controller()
 {
     
-    int ordinar = 1000;
+    int ordinar = 30;
     this->controlTimer++;
     if (this->controlTimer == 2)
     {
@@ -26,22 +26,25 @@ void Fraction::controller()
             if (peon->hp &&
                 !peon->inSave &&
                 !peon->isActive &&
-                peon->profession != "" &&
-                !peon->isBlockedd(peon))
+                peon->profession != ""// &&
+               // !peon->isBlockedd(peon)
+               )
             {
                 
                 current++;
                 if (peon->profession == "w")
                 {
-                    Unit *tree = peon->getAnyTree();
-                    if (tree)
-                    {
+                   // Unit *tree = peon->getAnyTree();
+                   // if (tree)
+                   // {
+                  // console.log("here");
                         peon->orderOnWay.isComplite = false;
-                        peon->orderOnWay.cell = tree->cell;
+                        peon->orderOnWay.profession = "w";
+                        //peon->orderOnWay.cell = tree->cell;
                         peon->isActive = true;
                        // this->activeUnits.push(peon);
              
-                    }
+                    //}
                 }
                 else if (peon->profession == "g")
                 {

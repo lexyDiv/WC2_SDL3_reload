@@ -72,15 +72,6 @@ int main()
             }
 
             game->finishTick = SDL_GetTicks();
-           //////////////////////////
-           int PWPres = int(game->finishTick) - int(PWPstart);
-           
-           if (PWPres > PWPmax) {
-            PWPmax = PWPres;
-           }
-           console.log(to_string(PWPres) + " max : " + to_string(PWPmax));
-           /////////////////////////
-
 
             int deltaTime = int(game->finishTick) - int(game->startTick);
             if (deltaTime < game->optimalDeltaTime)
@@ -107,6 +98,7 @@ int main()
                 //  });
                 //  console.log("min : " + to_string(thdMin->num) + " d = " + to_string(thdMin->deep) + " max : " + to_string(thdMax->num) + " d = " + to_string(thdMax->deep));
                // console.log("hold " + to_string(thDatas.getItem(0)->deep));
+              // console.log("hold = " + to_string(deltaTime));
             }
 
             threads.clear();

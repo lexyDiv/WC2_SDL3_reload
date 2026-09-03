@@ -153,11 +153,11 @@ void Peon_peasant::orderOnWayControl()
         }
         else
         {
-            if (this->profession == this->orderOnWay.profession)
-            {
-                this->orderOnWay.isComplite = true;
-                return;
-            }
+            // if (this->profession == this->orderOnWay.profession)
+            // {
+            //     this->orderOnWay.isComplite = true;
+            //     return;
+            // }
             if (this->orderOnWay.profession == "w")
             {
                 if (this->wood)
@@ -192,7 +192,7 @@ void Peon_peasant::orderOnWayControl()
                     else
                     {
                         this->profession = "";
-                       // this->targetData.clear();
+                        this->targetData.clear();
                     }
                 }
             }
@@ -232,7 +232,9 @@ void Peon_peasant::orderOnWayControl()
                 }
             }
         }
-           this->getCurrentTarget();
+           if (this->targetData.clicckedCell) {
+            this->getCurrentTarget();
+           }
         this->orderOnWay.isComplite = true;
         // this->potentialWay.clear();
         // this->wayIndex = 0;

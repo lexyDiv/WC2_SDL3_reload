@@ -15,7 +15,7 @@ void Peon_peasant::updateCurrentTarget()
         else
         {
             this->profession = "";
-            this->targetData.unit = nullptr;
+            //this->targetData.unit = nullptr;
             this->targetData.clear();
         }
     }

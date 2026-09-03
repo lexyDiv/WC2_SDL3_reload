@@ -38,10 +38,10 @@ void Peon_peasant::draw()
         100,
         100);
 
-    // ctx.DrawText(this->x + drawDeltaX + 10,
-    //              this->y + drawDeltaY + 20,
-    //              14,
-    //              to_string(this->persNum));
+    ctx.DrawText(this->x + drawDeltaX + 10,
+                 this->y + drawDeltaY + 20,
+                 14,
+                 to_string(this->persNum));
   }
   else
   {

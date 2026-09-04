@@ -34,17 +34,10 @@ void Fraction::controller()
                 current++;
                 if (peon->profession == "w")
                 {
-                   // Unit *tree = peon->getAnyTree();
-                   // if (tree)
-                   // {
-                  // console.log("here");
                         peon->orderOnWay.isComplite = false;
                         peon->orderOnWay.profession = "w";
-                        //peon->orderOnWay.cell = tree->cell;
                         peon->isActive = true;
-                       // this->activeUnits.push(peon);
-             
-                    //}
+
                 }
                 else if (peon->profession == "g")
                 {

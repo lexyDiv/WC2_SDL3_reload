@@ -51,6 +51,8 @@ public:
    Array<Unit *> allOilsPtr;
 
    Array<Unit *> allLifeUnitsPtr;
+
+   Array<Unit *> allMobileActiveUnits;
   
   ///////////////////////////////////////////////////
   Array<Cell> allCells;

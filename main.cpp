@@ -28,7 +28,8 @@ void loadDrawFn()
 
 int main()
 {
-    int PWPmax = 0;
+
+    Array<int> deltas;
 
     for (int i = 0; i //< 1;
        < th_count;
@@ -82,23 +83,19 @@ int main()
             }
             else
             {
-                //  ThData *thdMin = nullptr;
-                //  int minDeep = 30000;
-                // ThData *thdMax = nullptr;
-                //  int maxDeep = 0;
-                //  thDatas.forEach([&thdMin, &minDeep, &thdMax, &maxDeep](ThData *t){
-                //        if (t->deep < minDeep) {
-                //         minDeep = t->deep;
-                //         thdMin = t;
-                //        }
-                //         if (t->deep > maxDeep) {
-                //         maxDeep = t->deep;
-                //         thdMax = t;
-                //        }
-                //  });
-                //  console.log("min : " + to_string(thdMin->num) + " d = " + to_string(thdMin->deep) + " max : " + to_string(thdMax->num) + " d = " + to_string(thdMax->deep));
-               // console.log("hold " + to_string(thDatas.getItem(0)->deep));
+                 
               // console.log("hold = " + to_string(deltaTime));
+            }
+
+            deltas.push(deltaTime);
+            if (deltas.length == 500) {
+                int acc = 0;
+                deltas.forEach([&acc](int d){
+                    acc += d;
+                });
+                int res = acc / 500;
+                console.log("mid = " + to_string(res));
+                deltas.clear();
             }
 
             threads.clear();

@@ -35,7 +35,9 @@ bool Peon_peasant::isNeedHoldGoWay()
         gu
         && gu->isActive
         && gu->wayIndex 
-        && (this->wayIndex > 7 || gu->inSave) && !isLoop(this))
+        && (this->wayIndex >= 5 || gu->inSave || !this->isPotentialWayComplite 
+            ||this->isBlockedd(this)
+        ) && !isLoop(this))
     {
         return true;
     }

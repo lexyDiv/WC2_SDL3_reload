@@ -5,9 +5,9 @@
 void Fraction::controller()
 {
     
-    int ordinar = 30;
+    int ordinar = 1000;
     this->controlTimer++;
-    if (this->controlTimer == 2)
+    if (this->controlTimer == 1)
     {
         this->controlTimer = 0;
 
@@ -18,7 +18,7 @@ void Fraction::controller()
         // console.log("-------------------");
         for (int i = this->hold; i < this->peons.length; i++)
         {
-            // current++;
+           
             
             this->hold = i;
             Unit *peon = this->peons.getItem(i);
@@ -26,8 +26,8 @@ void Fraction::controller()
             if (peon->hp &&
                 !peon->inSave &&
                 !peon->isActive &&
-                peon->profession != ""// &&
-               // !peon->isBlockedd(peon)
+                peon->profession != "" &&
+                !peon->isBlockedd(peon)
                )
             {
                 

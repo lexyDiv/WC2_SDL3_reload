@@ -38,10 +38,23 @@ void Peon_peasant::draw()
         100,
         100);
 
-    ctx.DrawText(this->x + drawDeltaX + 10,
-                 this->y + drawDeltaY + 20,
-                 14,
-                 to_string(this->persNum));
+    // ctx.DrawText(this->x + drawDeltaX + 10,
+    //              this->y + drawDeltaY + 20,
+    //              14,
+    //              to_string(this->persNum));
+
+    //              if (this->persNum == 2) {
+    //                this->way.forEach([&drawDeltaX, &drawDeltaY](Cell *c, int i){
+    //                 ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, c->game->gf->cellSize, c->game->gf->cellSize, "green", 100);
+    //                 ctx.StrokeRect(c->x + drawDeltaX, c->y + drawDeltaY, c->game->gf->cellSize, c->game->gf->cellSize, "black", 100);
+    //                 ctx.DrawText(c->x + drawDeltaX, c->y + drawDeltaY, 20, to_string(i));
+    //                });
+
+    //                this->rwd.dopWay.forEach([&drawDeltaX, &drawDeltaY](Cell *c, int i){
+    //                 ctx.StrokeRect(c->x + drawDeltaX, c->y + drawDeltaY, c->game->gf->cellSize, c->game->gf->cellSize, "blue", 100);
+    //                 ctx.DrawText(c->x + drawDeltaX + 30, c->y + drawDeltaY, 20, to_string(i));
+    //                });
+    //              }
   }
   else
   {

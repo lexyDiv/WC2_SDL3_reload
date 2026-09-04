@@ -1,6 +1,27 @@
 #include "Th.h"
 //=>system out
 
+class RefactorWayData
+{
+public:
+  RefactorWayData() {};
+  Cell *targetCell = nullptr;
+  Cell *saveClickedCell = nullptr;
+  Array<Cell *> dopWay;
+  Array<Cell *> saveWay;
+  Unit *saveUnit = nullptr;
+  int index = 0;
+  void clear()
+  {
+    targetCell = nullptr;
+    saveClickedCell = nullptr;
+    dopWay.clear();
+    saveWay.clear();
+    saveUnit = nullptr;
+    index = 0;
+  }
+};
+
 class Unit
 {
 public:
@@ -152,7 +173,7 @@ public:
 
   double speedTale = 0;
   int wayTakts = 0;
-  //int holdWayCount = 0;
+  // int holdWayCount = 0;
   int wayIndex = 0;
   bool isPotentialWayComplite = true;
   bool isIgetMyTarget = true;
@@ -171,14 +192,20 @@ public:
   Cell *flipCell = nullptr;
   Cell *nextCell = nullptr;
 
-  function<bool(Cell* c)> isOnGetPotentialWayGetTarget = [](Cell *c){ return false; };
-  
+  function<bool(Cell *c)> isOnGetPotentialWayGetTarget = [](Cell *c)
+  { return false; };
 
-  function<bool(Cell *c)> isNewCellOnGetWayValide = [](Cell *c){ return false; };
-  
+  function<bool(Cell *c)> isNewCellOnGetWayValide = [](Cell *c)
+  { return false; };
+
   int needHolTimer = 0;
-  int needHoldTimerMax = 100;
+  int needHoldTimerMax = 500;
 
-  virtual bool crox(){return false;};
+  virtual bool crox() { return false; };
+
+
+  RefactorWayData rwd;
+  void getRefactorCell();
+
 
 };

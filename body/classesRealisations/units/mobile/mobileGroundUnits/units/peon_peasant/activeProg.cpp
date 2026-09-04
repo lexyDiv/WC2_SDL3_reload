@@ -8,48 +8,79 @@ void Peon_peasant::activeProg()
   {
     return;
   }
+  ////////////////////////////////////////////////////////////
+  if (this->rwd.targetCell)
+  {
+
+    this->targetData.clicckedCell = this->rwd.saveClickedCell;
+    this->targetData.unit = this->rwd.saveUnit;
+
+    if (this->potentialWay.length && this->potentialWay.getItem(0) == this->rwd.targetCell)
+    {
+      // console.log("ok");
+      this->rwd.dopWay.copy(this->potentialWay);
+      this->rwd.saveWay.splice(this->rwd.index, this->rwd.saveWay.length - this->rwd.index);
+
+      this->rwd.dopWay.forEach([this](Cell *c)
+                               { this->rwd.saveWay.push(c); });
+
+      this->way.copy(this->rwd.saveWay);
+      this->way.push(this->cell);
+      this->wayIndex = this->way.length - 1;
+      this->rwd.dopWay.clear();
+      this->potentialWay.clear();
+    }
+    else
+    {
+      // console.log("NO");
+      this->orderOnWay.cell = this->targetData.clicckedCell;
+      this->orderOnWay.isComplite = false;
+      this->potentialWay.clear();
+      this->wayIndex = 0;
+      this->rwd.clear();
+    }
+  }
+
+  ////////////////////////////////////////////////////////////////////
 
   if (this->isPotentialWayComplite &&
       this->potentialWay.length)
   {
-   // this->isNeedFreeWay();
-    if (this->iNeedFreeWay) {
-      console.log("need free way");
-    }
+    // this->isNeedFreeWay();
+
     this->way.copy(this->potentialWay);
     this->potentialWay.clear();
     this->isIgetMyTarget = false;
   }
 
-
   if (!this->wayTakts &&
       this->wayIndex <= 5 &&
       this->isPotentialWayComplite &&
       this->orderOnWay.isComplite &&
-      this->way.length && 
+      this->way.length &&
       !this->needHolTimer &&
       !this->inFight &&
       !this->isIgetMyTarget)
   {
-      Unit *to = this->targetData.unit;
-      if (to)
-      {
-        bool isTOValide = this->isTargetObjValide();
-        if (!isTOValide)
-        {
-          this->stendOnCell();
-          this->updateCurrentTarget();
-        }
-      }
-
-      this->isGetTarget();
-
-      if (this->isIgetMyTarget)
+    Unit *to = this->targetData.unit;
+    if (to)
+    {
+      bool isTOValide = this->isTargetObjValide();
+      if (!isTOValide)
       {
         this->stendOnCell();
-        this->isIgetMyTarget = false;
-        this->selectAnAction();
+        this->updateCurrentTarget();
       }
+    }
+
+    this->isGetTarget();
+
+    if (this->isIgetMyTarget)
+    {
+      this->stendOnCell();
+      this->isIgetMyTarget = false;
+      this->selectAnAction();
+    }
   }
 
   if (this->inFight)

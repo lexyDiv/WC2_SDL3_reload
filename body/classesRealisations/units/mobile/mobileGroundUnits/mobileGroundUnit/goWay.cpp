@@ -11,10 +11,7 @@ void MobileGroundUnit::goWay()
             this->wayIndex > 0)
         {
 
-            if (this->persNum == 1103)
-            {
-                console.log("goWay");
-            }
+
 
             Cell *nc = this->way.getItem(this->wayIndex - 1);
             this->nextCell = nc;
@@ -53,7 +50,7 @@ void MobileGroundUnit::goWay()
 
                 this->needHolTimer++;
                 this->stendOnCellWait();
-                if (this->needHolTimer % 10 == 0 && !isTargetObjValide())
+                if (this->needHolTimer % 100 == 0 && !isTargetObjValide())
                 {
                     updateCurrentTarget();
                 }
@@ -73,6 +70,9 @@ void MobileGroundUnit::goWay()
                 // }
                 // else
                 // {
+
+                this->getRefactorCell();
+
                 this->stendOnCell();
                 // this->targetData.unit = nullptr;
                 // this->targetData.clear();
@@ -81,7 +81,9 @@ void MobileGroundUnit::goWay()
 
                 //     return;
                 // }
-                if (this->targetData.clicckedCell)
+                if (this->targetData.clicckedCell 
+                    && !this->rwd.targetCell
+                )
                 {
                     this->orderOnWay.cell = this->targetData.clicckedCell; // this->preTargetCell;
                     this->orderOnWay.isComplite = false;

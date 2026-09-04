@@ -3,10 +3,8 @@
 
 void ThData::createPotentialWay(Unit *unit)
 {
-    // if (unit->focus)
-    // {
-    //     console.log("this 1 : " + to_string(this->deep));
-    // }
+
+    int currentDeep = unit->rwd.targetCell ? 50 : this->deep;
 
     int iter = 0;
 
@@ -50,36 +48,11 @@ void ThData::createPotentialWay(Unit *unit)
         while (true)
         {
 
-            // Uint64 finishT = SDL_GetTicks();
-            // Uint64 deltaT = finishT - startT;
-            // if (deltaT > 20 && this->deep > this->minDeep)
-            // {
-            //     this->deep -= 10;
-            // }
-            // else if (this->deep < this->maxDeep)
-            // {
-            //     this->deep += 10;
-            // }
-
-            // if (needReturn)
-            // {
-            //     return;
-            // }
-
-            // if (iterationsPerSecond < targetFPS * 0.8)
-            // {
-            //     this->deep = 50;
-            // }
 
             iter++;
 
             MinData md;
 
-            // if ((!unit->orderOnWay.isComplite))
-            // {
-            //     unit->isPotentialWayComplite = true;
-            //     return;
-            // }
 
             for (int i = 0; i < this->min_F_cell->aroundCells.length; i++)
             {
@@ -87,7 +60,7 @@ void ThData::createPotentialWay(Unit *unit)
                 this->exploreNewCellAndAddToOpenArr(unit, this->min_F_cell, pc);
             }
 
-            if (this->openArr.length && iter < this->deep)
+            if (this->openArr.length && iter < currentDeep)
             {
                 int index = this->openArr.length - 1;
                 md.cell = this->openArr.getItem(this->openArr.length - 1);

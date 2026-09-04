@@ -71,7 +71,7 @@ void MobileGroundUnit::goWay()
                 // else
                 // {
 
-                this->getRefactorCell();
+               // this->getRefactorCell();
 
                 this->stendOnCell();
                 // this->targetData.unit = nullptr;

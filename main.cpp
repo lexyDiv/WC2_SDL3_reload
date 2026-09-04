@@ -88,12 +88,12 @@ int main()
             }
 
             deltas.push(deltaTime);
-            if (deltas.length == 500) {
+            if (deltas.length == 10000) {
                 int acc = 0;
                 deltas.forEach([&acc](int d){
                     acc += d;
                 });
-                int res = acc / 500;
+                int res = acc / 10000;
                 console.log("mid = " + to_string(res));
                 deltas.clear();
             }

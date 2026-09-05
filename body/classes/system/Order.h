@@ -2,17 +2,17 @@
 //=>Imager
 
 
-class PreOrder
-{
-public:
-    PreOrder() {};
-    ~PreOrder() {};
-    Cell *cell = nullptr;
-    Unit *unit = nullptr;
-    int unitPersNum = 0;
-    string profession = "";
-   // bool isComplite = true;
-};
+// class PreOrder
+// {
+// public:
+//     PreOrder() {};
+//     ~PreOrder() {};
+//     Cell *cell = nullptr;
+//     Unit *unit = nullptr;
+//     int unitPersNum = 0;
+//     string profession = "";
+//    // bool isComplite = true;
+// };
 
 class Order
 {
@@ -24,4 +24,5 @@ public:
     int unitPersNum = 0;
     string profession = "";
     bool isComplite = true;
+    mutex mt;
 };

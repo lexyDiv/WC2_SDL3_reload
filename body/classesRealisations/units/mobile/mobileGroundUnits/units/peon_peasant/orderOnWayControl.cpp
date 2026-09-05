@@ -4,6 +4,7 @@
 void Peon_peasant::orderOnWayControl()
 {
 
+    this->orderOnWay.mt.lock();
     if (!this->orderOnWay.isComplite
         //&& !this->wayTakts
     )
@@ -17,6 +18,7 @@ void Peon_peasant::orderOnWayControl()
             if (!this->cell || oCell->plane != this->cell->plane || oCell->groundUnit == this || finishCell == oCell || (tdu && tdu == oCell->groundUnit && this->way.length))
             { // click on old obj or cell
                 this->orderOnWay.isComplite = true;
+                this->orderOnWay.mt.unlock();
                 return;
             }
             this->targetData.clear();
@@ -236,12 +238,15 @@ void Peon_peasant::orderOnWayControl()
             this->getCurrentTarget();
            }
         this->orderOnWay.isComplite = true;
+        this->orderOnWay.mt.unlock();
         // this->potentialWay.clear();
         // this->wayIndex = 0;
 
        // this->isPotentialWayComplite = false;
         // console.log(this->targetData.unit->name);
     }
+
+    this->orderOnWay.mt.unlock();
 
     ///////////////////////////////// => inpotent old keys
     // this->preTargetCell

@@ -37,10 +37,10 @@
 void ThData::PWProcess()
 {
 
-    int length = this->game->allLifeUnitsPtr.length;
+    int length = this->game->unitsOnWay.length;
     for (int i = this->num; i < length; i += this->thds->length)
     {
-        Unit *unit = this->game->allLifeUnitsPtr.getItem(i);
+        Unit *unit = this->game->unitsOnWay.getItem(i);
 
         if (!unit->isPotentialWayComplite && unit->cell && unit->hp)
         {

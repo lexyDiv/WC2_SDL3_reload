@@ -72,6 +72,8 @@ int main()
                 t.join();
             }
 
+            game->unitsOnWay.clear();
+
             game->finishTick = SDL_GetTicks();
 
             int deltaTime = int(game->finishTick) - int(game->startTick);

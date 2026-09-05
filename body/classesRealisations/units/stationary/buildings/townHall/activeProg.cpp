@@ -23,6 +23,7 @@ void TownHall::activeProg()
             int ran = intRand(0, 10);
             this->outClients.push(peon);
             peon->profession = "w";
+            peon->outHoldTimer = 30;
             // peon->profession = ran ? "w" : "g";
 
           //  peon->orderOnWay.profession = "w";

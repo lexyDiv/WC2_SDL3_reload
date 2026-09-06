@@ -57,9 +57,15 @@ public:
   ///////////////////////////////////////////////////
   Array<Cell> allCells;
 
-  int scanIndex = 0;
+
   bool thSpin = true;
-  bool needReturn = false;
+
+  Array<Unit *> spinUnits;
+  Array<Unit *> noSpinUnits;
+
+  Array<Unit *> &spinUnitsL = this->spinUnits;
+  Array<Unit *> &noSpinUnitsL = this->noSpinUnits;
+
 };
 
 Game gameData;

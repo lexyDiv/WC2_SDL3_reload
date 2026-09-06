@@ -4,22 +4,22 @@
 class RefactorWayData
 {
 public:
-  RefactorWayData() {};
-  Cell *targetCell = nullptr;
-  Cell *saveClickedCell = nullptr;
-  Array<Cell *> dopWay;
-  Array<Cell *> saveWay;
-  Unit *saveUnit = nullptr;
-  int index = 0;
-  void clear()
-  {
-    targetCell = nullptr;
-    saveClickedCell = nullptr;
-    dopWay.clear();
-    saveWay.clear();
-    saveUnit = nullptr;
-    index = 0;
-  }
+  // RefactorWayData() {};
+  // Cell *targetCell = nullptr;
+  // Cell *saveClickedCell = nullptr;
+  // Array<Cell *> dopWay;
+  // Array<Cell *> saveWay;
+  // Unit *saveUnit = nullptr;
+  // int index = 0;
+  // void clear()
+  // {
+  //   targetCell = nullptr;
+  //   saveClickedCell = nullptr;
+  //   dopWay.clear();
+  //   saveWay.clear();
+  //   saveUnit = nullptr;
+  //   index = 0;
+  // }
 };
 
 class Unit

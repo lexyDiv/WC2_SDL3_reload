@@ -19,38 +19,38 @@ void Peon_peasant::getCurrentTarget()
 
     // console.log(to_string(this->deep));
 
-    if (this->rwd.targetCell)
-    {
-        this->isOnGetPotentialWayGetTarget = [this](Cell *c)
-        {
-            if (
-                // cell == this->targetCell
-                c == this->rwd.targetCell)
-            {
-                return true;
-            }
-            return false;
-        };
+    // if (this->rwd.targetCell)
+    // {
+    //     this->isOnGetPotentialWayGetTarget = [this](Cell *c)
+    //     {
+    //         if (
+    //             // cell == this->targetCell
+    //             c == this->rwd.targetCell)
+    //         {
+    //             return true;
+    //         }
+    //         return false;
+    //     };
 
-        this->isNewCellOnGetWayValide = [this](Cell *c)
-        {
-            Unit *gu = c->groundUnit;
-            Cell *tc = this->cell;
+    //     this->isNewCellOnGetWayValide = [this](Cell *c)
+    //     {
+    //         Unit *gu = c->groundUnit;
+    //         Cell *tc = this->cell;
 
-            if (tc &&
-                c->plane == tc->plane &&
-                (!gu ||
-                 gu->wayIndex
-                || !gu->orderOnWay.isComplite 
-               // || c == this->rwd.targetCell
-            ))
-            {
-                return true;
-            }
-            return false;
-        };
-        return;
-    }
+    //         if (tc &&
+    //             c->plane == tc->plane &&
+    //             (!gu ||
+    //              gu->wayIndex
+    //             || !gu->orderOnWay.isComplite 
+    //             || c == this->rwd.targetCell
+    //         ))
+    //         {
+    //             return true;
+    //         }
+    //         return false;
+    //     };
+    //     return;
+    // }
 
     Unit *tdu = this->targetData.unit;
     if (

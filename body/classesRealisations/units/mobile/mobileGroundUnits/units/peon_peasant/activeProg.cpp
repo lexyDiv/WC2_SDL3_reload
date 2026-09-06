@@ -17,38 +17,37 @@ void Peon_peasant::activeProg()
   }
 
   ////////////////////////////////////////////////////////////
-  if (this->rwd.targetCell)
-  {
+ // if (this->rwd.targetCell)
+ // {
 
-    this->targetData.clicckedCell = this->rwd.saveClickedCell;
-    this->targetData.unit = this->rwd.saveUnit;
+    // this->targetData.clicckedCell = this->rwd.saveClickedCell;
+    // this->targetData.unit = this->rwd.saveUnit;
 
-    if (this->potentialWay.length && this->potentialWay.getItem(0) == this->rwd.targetCell)
-    {
-      // console.log("ok");
-      this->rwd.dopWay.copy(this->potentialWay);
-      this->rwd.saveWay.splice(this->rwd.index, this->rwd.saveWay.length - this->rwd.index);
+    // if (this->potentialWay.length && this->potentialWay.getItem(0) == this->rwd.targetCell)
+    // {
+    //   // console.log("ok");
+    //   this->rwd.dopWay.copy(this->potentialWay);
+    //   this->rwd.saveWay.splice(this->rwd.index, this->rwd.saveWay.length - this->rwd.index);
 
-      this->rwd.dopWay.forEach([this](Cell *c)
-                               { this->rwd.saveWay.push(c); });
+    //   this->rwd.dopWay.forEach([this](Cell *c)
+    //                            { this->rwd.saveWay.push(c); });
 
-      this->way.copy(this->rwd.saveWay);
-      this->way.push(this->cell);
-      this->wayIndex = this->way.length - 1;
-      this->rwd.dopWay.clear();
-      this->potentialWay.clear();
-    }
-    else
-    {
-      // console.log("NO");
-      // this->orderOnWay.cell = this->targetData.clicckedCell;
-      // this->orderOnWay.isComplite = false;
-      this->orderOnWay.go(this->targetData.clicckedCell);
-      this->potentialWay.clear();
-      this->wayIndex = 0;
-      this->rwd.clear();
-    }
-  }
+    //   this->way.copy(this->rwd.saveWay);
+    //   this->way.push(this->cell);
+    //   this->wayIndex = this->way.length - 1;
+    //   this->rwd.dopWay.clear();
+    //   this->potentialWay.clear();
+    // }
+    // else
+    // {
+    //   // console.log("NO");
+
+    //  // this->orderOnWay.go(this->targetData.clicckedCell);
+    //  // this->potentialWay.clear();
+    //  // this->wayIndex = 0;
+    //   this->rwd.clear();
+    // }
+ // }
 
   ////////////////////////////////////////////////////////////////////
 

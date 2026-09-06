@@ -59,12 +59,14 @@ void MobileGroundUnit::goWay()
 
 
 
-                // this->getRefactorCell();
+                
 
 
                 this->stendOnCell();
 
-                if (this->targetData.clicckedCell && !this->rwd.targetCell)
+                if (this->targetData.clicckedCell 
+                  //  && !this->rwd.targetCell
+                )
                 {
 
                     this->orderOnWay.go(this->targetData.clicckedCell);
@@ -75,7 +77,9 @@ void MobileGroundUnit::goWay()
         }
         else
         {
-            if (this->targetData.clicckedCell && !this->rwd.targetCell)
+            if (this->targetData.clicckedCell
+                // && !this->rwd.targetCell
+                )
             {
                 // this->orderOnWay.cell = this->targetData.clicckedCell; // this->preTargetCell;
                 // this->orderOnWay.isComplite = false;

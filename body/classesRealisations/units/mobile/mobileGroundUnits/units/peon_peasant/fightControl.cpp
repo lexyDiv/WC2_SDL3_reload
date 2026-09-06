@@ -32,8 +32,9 @@ void Peon_peasant::fightControl()
                 Unit *base = this->getBaseForUnloading();
                 if (base)
                 {
-                    this->orderOnWay.isComplite = false;
-                    this->orderOnWay.cell = base->cell;
+                    // this->orderOnWay.isComplite = false;
+                    // this->orderOnWay.cell = base->cell;
+                    this->orderOnWay.go(base->cell);
                 }
             }
             else if (!this->orderOnWay.isComplite)

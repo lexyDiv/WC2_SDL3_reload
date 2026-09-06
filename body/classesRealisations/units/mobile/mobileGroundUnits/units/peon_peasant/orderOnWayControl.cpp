@@ -238,7 +238,7 @@ void Peon_peasant::orderOnWayControl()
             this->getCurrentTarget();
            }
         this->orderOnWay.isComplite = true;
-        this->orderOnWay.mt.unlock();
+        
         // this->potentialWay.clear();
         // this->wayIndex = 0;
 

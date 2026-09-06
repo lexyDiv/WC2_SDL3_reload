@@ -6,18 +6,21 @@ void Peon_peasant::updateCurrentTarget()
 
     if (this->profession != "")
     {
-        this->orderOnWay.profession = this->profession;
-        this->orderOnWay.isComplite = false;
+        // this->orderOnWay.profession = this->profession;
+        // this->orderOnWay.isComplite = false;
+        this->orderOnWay.go(this->profession);
     }
     else if (this->targetData.clicckedCell)
     {
-        this->orderOnWay.cell = this->targetData.clicckedCell;
-        this->orderOnWay.isComplite = false;
+        // this->orderOnWay.cell = this->targetData.clicckedCell;
+        // this->orderOnWay.isComplite = false;
+        this->orderOnWay.go(this->targetData.clicckedCell);
     }
     else if (this->targetData.unit && this->targetData.unit->cell && this->targetData.unit->hp)
     {
-        this->orderOnWay.cell = this->targetData.unit->cell;
-        this->orderOnWay.isComplite = false;
+        // this->orderOnWay.cell = this->targetData.unit->cell;
+        // this->orderOnWay.isComplite = false;
+        this->orderOnWay.go(this->targetData.unit->cell);
     }
     else
     {

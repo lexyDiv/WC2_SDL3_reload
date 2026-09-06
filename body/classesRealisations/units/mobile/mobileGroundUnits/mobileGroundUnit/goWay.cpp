@@ -57,37 +57,17 @@ void MobileGroundUnit::goWay()
             else
             {
 
-                //  if (
-                // this->preTargetCell
-                //    this->targetData.clicckedCell)
-                // {
 
-                // if (this->iNeedFreeWay)
-                // {
-                // console.log("poshel na huy!");
-                // this->stendOnCellWait();
-                // }
-                // else
-                // {
 
                 // this->getRefactorCell();
 
-                // if (this->persNum == 1)
-                // {
-                //     console.log("here 11");
-                // }
-                this->stendOnCell();
-                // this->targetData.unit = nullptr;
-                // this->targetData.clear();
-                // if (this->profession != "")
-                // {
 
-                //     return;
-                // }
+                this->stendOnCell();
+
                 if (this->targetData.clicckedCell && !this->rwd.targetCell)
                 {
-                    this->orderOnWay.cell = this->targetData.clicckedCell; // this->preTargetCell;
-                    this->orderOnWay.isComplite = false;
+
+                    this->orderOnWay.go(this->targetData.clicckedCell);
                 }
                 //}
                 //  }
@@ -97,8 +77,9 @@ void MobileGroundUnit::goWay()
         {
             if (this->targetData.clicckedCell && !this->rwd.targetCell)
             {
-                this->orderOnWay.cell = this->targetData.clicckedCell; // this->preTargetCell;
-                this->orderOnWay.isComplite = false;
+                // this->orderOnWay.cell = this->targetData.clicckedCell; // this->preTargetCell;
+                // this->orderOnWay.isComplite = false;
+                this->orderOnWay.go(this->targetData.clicckedCell);
             }
             this->nextCell = nullptr;
             this->flipCell = nullptr;

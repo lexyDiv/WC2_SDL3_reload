@@ -4,7 +4,7 @@
 void ThData::createPotentialWay(Unit *unit)
 {
 
-    int currentDeep = unit->rwd.targetCell ? 50 : this->deep;
+    int currentDeep = unit->rwd.targetCell ? 20 : this->deep;
 
     int iter = 0;
 

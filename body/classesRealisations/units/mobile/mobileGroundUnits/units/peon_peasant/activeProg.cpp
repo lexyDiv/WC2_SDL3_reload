@@ -41,8 +41,9 @@ void Peon_peasant::activeProg()
     else
     {
       // console.log("NO");
-      this->orderOnWay.cell = this->targetData.clicckedCell;
-      this->orderOnWay.isComplite = false;
+      // this->orderOnWay.cell = this->targetData.clicckedCell;
+      // this->orderOnWay.isComplite = false;
+      this->orderOnWay.go(this->targetData.clicckedCell);
       this->potentialWay.clear();
       this->wayIndex = 0;
       this->rwd.clear();

@@ -33,24 +33,8 @@ void Fraction::controller()
             {
                 
                 current++;
-                if (peon->profession == "w")
-                {
-                        peon->orderOnWay.isComplite = false;
-                        peon->orderOnWay.profession = "w";
-                        peon->isActive = true;
-
-                }
-                else if (peon->profession == "g")
-                {
-                    Unit *shaht = peon->getAnyShaht();
-                    if (shaht)
-                    {
-                        peon->orderOnWay.isComplite = false;
-                        peon->orderOnWay.cell = shaht->cell;
-                        peon->isActive = true;
-                  
-                    }
-                }
+                peon->orderOnWay.go(peon->profession);
+                peon->isActive = true;
             }
             if (current == ordinar)
             {

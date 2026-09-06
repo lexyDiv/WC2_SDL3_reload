@@ -234,7 +234,7 @@ void Peon_peasant::orderOnWayControl()
                 }
             }
         }
-           if (this->targetData.clicckedCell) {
+           if (this->targetData.clicckedCell && !this->isBlocked) {
             this->getCurrentTarget();
            }
         this->orderOnWay.isComplite = true;

@@ -4,10 +4,18 @@
 void Peon_peasant::activeProg()
 {
 
-  if (!this->isActiveCheck() || this->holdTimerControl())
+  // if (this->persNum == 302) {
+  //   console.log(to_string(!this->wayIndex && !this->wayTakts && this->isBlockedd(this)));
+  // }
+
+  if (!this->isActiveCheck() 
+  || this->holdTimerControl() 
+  //|| (!this->potentialWay.length && this->orderOnWay.isComplite && !this->wayIndex && !this->wayTakts && this->isBlockedd(this))
+  )
   {
     return;
   }
+
   ////////////////////////////////////////////////////////////
   if (this->rwd.targetCell)
   {
@@ -42,6 +50,8 @@ void Peon_peasant::activeProg()
   }
 
   ////////////////////////////////////////////////////////////////////
+
+  
 
   if (this->isPotentialWayComplite &&
       this->potentialWay.length)

@@ -13,7 +13,9 @@ bool Peon_peasant::isActiveCheck()
          this->inFight ||
          this->outHoldTimer || // => in activeProg
          this->way.length 
-         || this->rwd.targetCell//||
+         || this->rwd.targetCell
+        // || this->targetData.clicckedCell
+         //||
         // this->profession != ""
         ))
     {

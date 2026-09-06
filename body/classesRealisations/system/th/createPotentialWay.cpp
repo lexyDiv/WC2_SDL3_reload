@@ -15,11 +15,6 @@ void ThData::createPotentialWay(Unit *unit)
     Td_way_data *td_way_data = unit->cell->thwd.length ? unit->cell->thwd.getItemPtr(this->num) : nullptr;
 
 
-
-    // if (
-    //     unit->hp > 0 && td_way_data)
-    // {
-
         this->createCount += 0.001;
         if (this->createCount >= 100000000)
         {

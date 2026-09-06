@@ -206,6 +206,6 @@ public:
 
   RefactorWayData rwd;
   void getRefactorCell();
-
+  bool isBlocked = false;
 
 };

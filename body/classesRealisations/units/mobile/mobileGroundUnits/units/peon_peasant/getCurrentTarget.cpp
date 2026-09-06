@@ -115,6 +115,9 @@ void Peon_peasant::getCurrentTarget()
                     c->plane == tc->plane &&
                     (!gu ||
                      gu->way.length ||
+                      gu->needHolTimer ||
+                      !gu->isPotentialWayComplite ||
+                      gu->outHoldTimer ||
                      (gu->fraction && gu->fraction->unionCase != this->fraction->unionCase &&
                       gu->isWarrior) ||
                      (gu->name == "tree" && !gu->lesorub)))

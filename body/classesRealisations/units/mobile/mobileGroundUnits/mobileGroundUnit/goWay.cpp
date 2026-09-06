@@ -5,13 +5,12 @@ void MobileGroundUnit::goWay()
 {
     if (!this->wayTakts)
     {
+        this->isBlocked = this->isBlockedd(this);
 
         if (this->isPotentialWayComplite &&
             // this->way.length &&
             this->wayIndex > 0)
         {
-
-
 
             Cell *nc = this->way.getItem(this->wayIndex - 1);
             this->nextCell = nc;
@@ -71,8 +70,12 @@ void MobileGroundUnit::goWay()
                 // else
                 // {
 
-               // this->getRefactorCell();
+                // this->getRefactorCell();
 
+                // if (this->persNum == 1)
+                // {
+                //     console.log("here 11");
+                // }
                 this->stendOnCell();
                 // this->targetData.unit = nullptr;
                 // this->targetData.clear();
@@ -81,9 +84,7 @@ void MobileGroundUnit::goWay()
 
                 //     return;
                 // }
-                if (this->targetData.clicckedCell 
-                    && !this->rwd.targetCell
-                )
+                if (this->targetData.clicckedCell && !this->rwd.targetCell)
                 {
                     this->orderOnWay.cell = this->targetData.clicckedCell; // this->preTargetCell;
                     this->orderOnWay.isComplite = false;
@@ -94,9 +95,23 @@ void MobileGroundUnit::goWay()
         }
         else
         {
+            if (this->targetData.clicckedCell && !this->rwd.targetCell)
+            {
+                this->orderOnWay.cell = this->targetData.clicckedCell; // this->preTargetCell;
+                this->orderOnWay.isComplite = false;
+            }
             this->nextCell = nullptr;
             this->flipCell = nullptr;
             this->stendOnCell();
+
+            //               if (this->persNum == 344) {
+            //     console.log("here");
+            //   }
+
+            // if (this->persNum == 1)
+            // {
+            //     console.log("here 13");
+            // }
         }
     }
     else if (this->wayTakts)

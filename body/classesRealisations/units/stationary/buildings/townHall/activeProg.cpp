@@ -22,7 +22,10 @@ void TownHall::activeProg()
             peon->createInside(this->cell);
             int ran = intRand(0, 10);
             this->outClients.push(peon);
-            peon->profession = "w";
+            peon->orderOnWay.profession = "w";
+            peon->orderOnWay.isComplite = false;
+            
+           // peon->profession = "w";
             peon->outHoldTimer = 30;
             // peon->profession = ran ? "w" : "g";
 
@@ -49,6 +52,7 @@ void TownHall::activeProg()
                                        {
 
                                            this->clients.push(peon);
+                                           
     
                                             Cell *pc = peon->cell;
                                       

@@ -17,6 +17,9 @@ class TownHall : public Unit {
      bool isActiveCheck() override;
      MinData getPeonOutCell() override;
      MinData getPeonExtrimeOutCell() override;
+
+     mutex potentialClientsMT;
+
 };
 
 //void TownHall::draw() {};

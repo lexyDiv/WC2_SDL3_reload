@@ -27,6 +27,7 @@ void Fraction::controller()
                 !peon->inSave &&
                 !peon->isActive &&
                 peon->profession != "" &&
+                peon->orderOnWay.isComplite &&
                 !peon->isBlockedd(peon)
                )
             {

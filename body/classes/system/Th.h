@@ -47,3 +47,5 @@ public:
 };
 
 Array<ThData *> thDatas;
+
+

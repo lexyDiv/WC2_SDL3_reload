@@ -5,8 +5,9 @@ void Peon_peasant::getCurrentTarget()
 {
     // this->preTargetCell = cell;
     // this->profession = "";
-
-    this->game->unitsOnWay.savePush(this);
+    this->game->unitsOnWayMT.lock();
+    this->game->unitsOnWay.push(this);
+    this->game->unitsOnWayMT.unlock();
 
     this->potentialWay.clear();
     this->wayIndex = 0;

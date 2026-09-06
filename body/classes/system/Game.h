@@ -65,7 +65,7 @@ public:
 
   Array<Unit *> &spinUnitsL = this->spinUnits;
   Array<Unit *> &noSpinUnitsL = this->noSpinUnits;
-
+  mutex unitsOnWayMT;
 };
 
 Game gameData;

@@ -50,10 +50,10 @@ void MobileGroundUnit::goWay()
 
                 this->needHolTimer++;
                 this->stendOnCellWait();
-                if (this->needHolTimer % 100 == 0 && !isTargetObjValide())
-                {
-                    updateCurrentTarget();
-                }
+                // if (this->needHolTimer % 100 == 0 && !isTargetObjValide())
+                // {
+                //     updateCurrentTarget();
+                // }
             }
             else
             {

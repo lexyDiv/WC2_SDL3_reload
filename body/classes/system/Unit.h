@@ -4,6 +4,8 @@
 class RefactorWayData
 {
 public:
+ // Array<Cell *> basicWay;
+  
   // RefactorWayData() {};
   // Cell *targetCell = nullptr;
   // Cell *saveClickedCell = nullptr;
@@ -203,9 +205,7 @@ public:
 
   virtual bool crox() { return false; };
 
-
   RefactorWayData rwd;
   void getRefactorCell();
   bool isBlocked = false;
-
 };

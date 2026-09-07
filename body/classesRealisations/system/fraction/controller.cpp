@@ -31,7 +31,6 @@ void Fraction::controller()
                 !peon->isBlockedd(peon)
                )
             {
-                
                 current++;
                 peon->orderOnWay.go(peon->profession);
                 peon->isActive = true;

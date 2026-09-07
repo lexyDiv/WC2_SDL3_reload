@@ -4,35 +4,32 @@
 void ThData::createPotentialWay(Unit *unit)
 {
 
-    int currentDeep =  this->deep;
-
+    unit->way.clear();
+    int currentDeep = this->deep;
     int iter = 0;
 
     this->getCurrentTargetCell(unit); // ok
 
-
-
     Td_way_data *td_way_data = unit->cell->thwd.length ? unit->cell->thwd.getItemPtr(this->num) : nullptr;
 
+    this->createCount += 0.001;
+    if (this->createCount >= 100000000)
+    {
+        this->createCount = 0;
+        console.log("default");
+    }
+    td_way_data->createCountData = this->createCount;
+    this->openArr.clear();
+    this->min_F_cell = unit->cell;
+    this->min_F_cell->thwd.getItemPtr(this->num)->F = 0;
+    this->min_F_cell->thwd.getItemPtr(this->num)->H = 0;
+    this->min_F_cell->thwd.getItemPtr(this->num)->G = 0;
+    this->globalMin_H_cell = nullptr;
 
-        this->createCount += 0.001;
-        if (this->createCount >= 100000000)
-        {
-            this->createCount = 0;
-            console.log("default");
-        }
-        td_way_data->createCountData = this->createCount;
-        this->openArr.clear();
-        this->min_F_cell = unit->cell;
-        this->min_F_cell->thwd.getItemPtr(this->num)->F = 0;
-        this->min_F_cell->thwd.getItemPtr(this->num)->H = 0;
-        this->min_F_cell->thwd.getItemPtr(this->num)->G = 0;
-        this->globalMin_H_cell = nullptr;
+    ///////////////////////////  poka tak!
 
-        ///////////////////////////  poka tak!
-
-        unit->cell->aroundCells.forEach([this, unit](Cell *cell)
-                                        {
+    unit->cell->aroundCells.forEach([this, unit](Cell *cell)
+                                    {
             Unit *gu = cell->groundUnit;
             if (gu
             && gu != unit->targetData.unit //unit->targetCell->groundUnit
@@ -40,79 +37,81 @@ void ThData::createPotentialWay(Unit *unit)
                 cell->thwd.getItemPtr(this->num)->explored = this->createCount;
             } });
 
-        while (true)
+    while (true)
+    {
+
+        iter++;
+
+        MinData md;
+
+        for (int i = 0; i < this->min_F_cell->aroundCells.length; i++)
         {
+            Cell *pc = this->min_F_cell->aroundCells.getItem(i);
+            this->exploreNewCellAndAddToOpenArr(unit, this->min_F_cell, pc);
+        }
 
-
-            iter++;
-
-            MinData md;
-
-
-            for (int i = 0; i < this->min_F_cell->aroundCells.length; i++)
+        if (this->openArr.length && iter < currentDeep)
+        {
+            int index = this->openArr.length - 1;
+            md.cell = this->openArr.getItem(this->openArr.length - 1);
+            md.index = index;
+            for (int i = index; i >= 0; i--)
             {
-                Cell *pc = this->min_F_cell->aroundCells.getItem(i);
-                this->exploreNewCellAndAddToOpenArr(unit, this->min_F_cell, pc);
-            }
-
-            if (this->openArr.length && iter < currentDeep)
-            {
-                int index = this->openArr.length - 1;
-                md.cell = this->openArr.getItem(this->openArr.length - 1);
-                md.index = index;
-                for (int i = index; i >= 0; i--)
+                Cell *cell = this->openArr.getItem(i);
+                if (md.cell->thwd.getItemPtr(this->num)->F >= cell->thwd.getItemPtr(this->num)->F)
                 {
-                    Cell *cell = this->openArr.getItem(i);
-                    if (md.cell->thwd.getItemPtr(this->num)->F >= cell->thwd.getItemPtr(this->num)->F)
+                    md.cell = cell;
+                    md.index = i;
+                    if (cell->thwd.getItemPtr(this->num)->F < this->min_F_cell->thwd.getItemPtr(this->num)->F)
                     {
-                        md.cell = cell;
-                        md.index = i;
-                        if (cell->thwd.getItemPtr(this->num)->F < this->min_F_cell->thwd.getItemPtr(this->num)->F)
-                        {
-                            break;
-                        }
+                        break;
                     }
                 }
-                this->openArr.splice(md.index, 1);
+            }
+            this->openArr.splice(md.index, 1);
 
-                this->min_F_cell = md.cell;
-                this->min_F_cell->thwd.getItemPtr(this->num)->explored = this->createCount;
-                if (!this->globalMin_H_cell || this->globalMin_H_cell->thwd.getItemPtr(this->num)->H > this->min_F_cell->thwd.getItemPtr(this->num)->H)
-                {
-                    this->globalMin_H_cell = this->min_F_cell;
-                }
-  
+            this->min_F_cell = md.cell;
+            this->min_F_cell->thwd.getItemPtr(this->num)->explored = this->createCount;
+            if (!this->globalMin_H_cell || this->globalMin_H_cell->thwd.getItemPtr(this->num)->H > this->min_F_cell->thwd.getItemPtr(this->num)->H)
+            {
+                this->globalMin_H_cell = this->min_F_cell;
+            }
+        }
+        else
+        {
+            // unit->isPotentialWayComplite = true;
+            if (!this->globalMin_H_cell)
+            {
+                // unit->isPotentialWayComplite = true;
+                // if (unit->focus)
+                // {
+                //     console.log("69");
+                // }
             }
             else
             {
-               // unit->isPotentialWayComplite = true;
-                if (!this->globalMin_H_cell)
+
+                this->potentialWayCreate(unit, this->globalMin_H_cell);
+                if (unit->persNum == 1)
                 {
-                   // unit->isPotentialWayComplite = true;
-                    // if (unit->focus)
-                    // {
-                    //     console.log("69");
-                    // }
-
+                    console.log("By glodal iter = " + to_string(iter) + " way.length =  " + to_string(unit->way.length));
                 }
-                else
-                {
-
-                    this->potentialWayCreate(unit, this->globalMin_H_cell);
-                    // unit->targetCell = this->globalMin_H_cell;
-
-                }
-                 unit->isPotentialWayComplite = true;
-                return;
             }
-
-            ///////////////////////////////////////////////////////
-
-            if (unit->isOnGetPotentialWayGetTarget(this->min_F_cell))
-            {
-                this->potentialWayCreate(unit, this->min_F_cell);
-                break;
-            }
+            return;
         }
-   // }
+
+        ///////////////////////////////////////////////////////
+
+        if (unit->isOnGetPotentialWayGetTarget(this->min_F_cell))
+        {
+            this->potentialWayCreate(unit, this->min_F_cell);
+            unit->isPotentialWayComplite = true;
+            if (unit->persNum == 1)
+            {
+                console.log("iter = " + to_string(iter) + " way.length =  " + to_string(unit->way.length));
+            }
+            break;
+        }
+    }
+    // }
 };

@@ -25,8 +25,7 @@ bool Peon_peasant::isNeedHoldGoWay()
     Cell *guNextCell = gu ? gu->nextCell : nullptr;
     Unit *gutdu = gu ? gu->targetData.unit : nullptr;
 
-    if (this->needHolTimer >= this->wayIndex * 30
-        //this->needHoldTimerMax
+    if (this->needHolTimer >= this->wayIndex * 100
     )
     {
         this->updateCurrentTarget();

@@ -38,6 +38,18 @@ void Peon_peasant::draw()
         100,
         100);
 
+
+        if (this->persNum == 1 && this->cell) {
+
+                   this->way.forEach([&drawDeltaX, &drawDeltaY](Cell *c, int i){
+                    ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, c->game->gf->cellSize, c->game->gf->cellSize, "violet", 100);
+                   // ctx.StrokeRect(c->x + drawDeltaX, c->y + drawDeltaY, c->game->gf->cellSize, c->game->gf->cellSize, "black", 100);
+                   // ctx.DrawText(c->x + drawDeltaX, c->y + drawDeltaY, 20, to_string(i));
+                   });
+
+    ctx.FillRect(this->cell->x + drawDeltaX, this->cell->y + drawDeltaY, this->cell->game->gf->cellSize, this->cell->game->gf->cellSize, "blue", 100);
+        }
+
     // ctx.DrawText(this->x + drawDeltaX + 10,
     //              this->y + drawDeltaY + 20,
     //              14,

@@ -3,8 +3,7 @@
 
 void Peon_peasant::getCurrentTarget()
 {
-    // this->preTargetCell = cell;
-    // this->profession = "";
+
     this->game->unitsOnWayMT.lock();
     this->game->unitsOnWay.push(this);
     this->game->unitsOnWayMT.unlock();
@@ -13,44 +12,7 @@ void Peon_peasant::getCurrentTarget()
     this->wayIndex = 0;
 
     this->isPotentialWayComplite = false;
-    // this->targetCell = nullptr;
-    // this->targetDataControl = this->unitMenu->targetDataControl;
-    // this->targetData.unit = nullptr;
 
-    // console.log(to_string(this->deep));
-
-    // if (this->rwd.targetCell)
-    // {
-    //     this->isOnGetPotentialWayGetTarget = [this](Cell *c)
-    //     {
-    //         if (
-    //             // cell == this->targetCell
-    //             c == this->rwd.targetCell)
-    //         {
-    //             return true;
-    //         }
-    //         return false;
-    //     };
-
-    //     this->isNewCellOnGetWayValide = [this](Cell *c)
-    //     {
-    //         Unit *gu = c->groundUnit;
-    //         Cell *tc = this->cell;
-
-    //         if (tc &&
-    //             c->plane == tc->plane &&
-    //             (!gu ||
-    //              gu->wayIndex
-    //             || !gu->orderOnWay.isComplite 
-    //             || c == this->rwd.targetCell
-    //         ))
-    //         {
-    //             return true;
-    //         }
-    //         return false;
-    //     };
-    //     return;
-    // }
 
     Unit *tdu = this->targetData.unit;
     if (

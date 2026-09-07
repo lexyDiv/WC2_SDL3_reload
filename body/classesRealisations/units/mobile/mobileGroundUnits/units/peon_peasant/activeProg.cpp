@@ -4,13 +4,9 @@
 void Peon_peasant::activeProg()
 {
 
-  // if (this->persNum == 302) {
-  //   console.log(to_string(!this->wayIndex && !this->wayTakts && this->isBlockedd(this)));
-  // }
-
   if (!this->isActiveCheck() 
   || this->holdTimerControl() 
-  //|| (!this->potentialWay.length && this->orderOnWay.isComplite && !this->wayIndex && !this->wayTakts && this->isBlockedd(this))
+
   )
   {
     return;
@@ -52,16 +48,6 @@ void Peon_peasant::activeProg()
   ////////////////////////////////////////////////////////////////////
 
   
-
-  if (this->isPotentialWayComplite &&
-      this->potentialWay.length)
-  {
-    // this->isNeedFreeWay();
-
-    this->way.copy(this->potentialWay);
-    this->potentialWay.clear();
-    this->isIgetMyTarget = false;
-  }
 
   if (!this->wayTakts &&
       this->wayIndex <= 5 &&

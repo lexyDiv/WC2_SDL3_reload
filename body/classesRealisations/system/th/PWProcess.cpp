@@ -45,6 +45,7 @@ void ThData::PWProcess()
         if (!unit->isPotentialWayComplite && unit->cell && unit->hp)
         {
             this->createPotentialWay(unit);
+            unit->isPotentialWayComplite = true;
         }
         Uint64 currentTime = SDL_GetTicks();
         int deltaTime = int(currentTime) - int(this->game->startTick);

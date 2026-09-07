@@ -7,8 +7,8 @@ void ThData::potentialWayCreate(Unit *unit, Cell *finalCell) {
         uc != finalCell)
     {
         Cell *nextCell = finalCell;
-        unit->potentialWay.push(nextCell);
-       // int iter = 0;
+        unit->way.push(nextCell);
+
         while (true)
         {
           //  iter++;
@@ -16,7 +16,7 @@ void ThData::potentialWayCreate(Unit *unit, Cell *finalCell) {
                 nextCell->thwd.getItemPtr(this->num)->wayFather != uc)
             {
                 nextCell = nextCell->thwd.getItemPtr(this->num)->wayFather;
-                unit->potentialWay.push(nextCell);
+                unit->way.push(nextCell);
             }
             else
             {
@@ -26,6 +26,7 @@ void ThData::potentialWayCreate(Unit *unit, Cell *finalCell) {
         }
     }
 
-      unit->wayIndex = unit->potentialWay.length;
+      unit->wayIndex = unit->way.length;
       unit->isPotentialWayComplite = true;
+      unit->isIgetMyTarget = false;
 };

@@ -49,54 +49,29 @@ void MobileGroundUnit::goWay()
 
                 this->needHolTimer++;
                 this->stendOnCellWait();
-                // if (this->needHolTimer % 100 == 0 && !isTargetObjValide())
-                // {
-                //     updateCurrentTarget();
-                // }
+                if (this->needHolTimer % 200 == 0 && !isTargetObjValide())
+                {
+                    updateCurrentTarget();
+                }
             }
             else
             {
-
-
-
-                
-
-
                 this->stendOnCell();
 
                 if (this->targetData.clicckedCell 
-                  //  && !this->rwd.targetCell
                 )
                 {
 
                     this->orderOnWay.go(this->targetData.clicckedCell);
                 }
-                //}
-                //  }
+
             }
         }
         else
         {
-            if (this->targetData.clicckedCell
-                // && !this->rwd.targetCell
-                )
-            {
-                // this->orderOnWay.cell = this->targetData.clicckedCell; // this->preTargetCell;
-                // this->orderOnWay.isComplite = false;
-                this->orderOnWay.go(this->targetData.clicckedCell);
-            }
             this->nextCell = nullptr;
             this->flipCell = nullptr;
             this->stendOnCell();
-
-            //               if (this->persNum == 344) {
-            //     console.log("here");
-            //   }
-
-            // if (this->persNum == 1)
-            // {
-            //     console.log("here 13");
-            // }
         }
     }
     else if (this->wayTakts)

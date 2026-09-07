@@ -26,6 +26,7 @@ public:
    // Cell *targetCell = nullptr;
     string profession = "";
     bool isActual = false;
+    Array<Cell *> basicWay;
 
     void clear()
     {
@@ -37,6 +38,7 @@ public:
        // targetCell = nullptr;
         profession = "";
         isActual = false;
+        //basicWay.clear();
     };
 };
 

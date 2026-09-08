@@ -58,13 +58,15 @@ void MobileGroundUnit::goWay()
             {
                 this->stendOnCell();
 
-                if (this->targetData.clicckedCell 
-                )
+                if (this->profession != "")
+                {
+                    this->orderOnWay.go(this->profession);
+                }
+                else if (this->targetData.clicckedCell)
                 {
 
                     this->orderOnWay.go(this->targetData.clicckedCell);
                 }
-
             }
         }
         else

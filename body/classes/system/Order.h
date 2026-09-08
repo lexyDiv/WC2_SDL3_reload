@@ -34,6 +34,7 @@ void Order::go(Cell *cell) {
     this->mt.lock();
     this->cell = cell;
     this->isComplite = false;
+    this->profession = "";
     this->mt.unlock();
 }
 
@@ -41,5 +42,6 @@ void Order::go(string profession) {
     this->mt.lock();
     this->profession = profession;
     this->isComplite = false;
+    this->cell = nullptr; //=> ???
     this->mt.unlock();
 }

@@ -1,4 +1,6 @@
 // gdb ./prog core
+// export DEBUGINFOD_URLS="https://debuginfod.archlinux.org"
+// g++ -g -O0 main.cpp -I./include -fmax-include-depth=5000 -o prog -L./sdl3-sample/build -lSDL3 -lSDL3_image
 // g++ -g main.cpp -I./include -fmax-include-depth=5000 -o prog -L./sdl3-sample/build -lSDL3 -lSDL3_image
 // g++ main.cpp -I./include -fmax-include-depth=5000 -o prog -L./sdl3-sample/build -lSDL3 -lSDL3_image
 
@@ -23,10 +25,15 @@ void loadDrawFn()
 
 
 
+
 int main()
 {
 
-    for (int i = 0; i < th_count; i++)
+    Array<int> deltas;
+
+    for (int i = 0; i //< 1;
+       < th_count;
+         i++)
     {
         ThData *td = new ThData(i);
         td->thds = &thDatas;
@@ -65,7 +72,10 @@ int main()
                 t.join();
             }
 
+            game->unitsOnWay.clear();
+
             game->finishTick = SDL_GetTicks();
+
             int deltaTime = int(game->finishTick) - int(game->startTick);
             if (deltaTime < game->optimalDeltaTime)
             {
@@ -75,7 +85,19 @@ int main()
             }
             else
             {
-                // console.log("hold " + to_string(thDatas.getItem(0)->deep));
+                 
+              // console.log("hold = " + to_string(deltaTime));
+            }
+
+            deltas.push(deltaTime);
+            if (deltas.length == 10000) {
+                int acc = 0;
+                deltas.forEach([&acc](int d){
+                    acc += d;
+                });
+                int res = acc / 10000;
+                console.log("mid = " + to_string(res));
+                deltas.clear();
             }
 
             threads.clear();

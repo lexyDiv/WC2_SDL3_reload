@@ -5,8 +5,9 @@ void MobileGroundUnit::goWay()
 {
     if (!this->wayTakts)
     {
+        this->isBlocked = this->isBlockedd(this);
+
         if (this->isPotentialWayComplite &&
-            this->way.length &&
             this->wayIndex > 0)
         {
 
@@ -44,39 +45,25 @@ void MobileGroundUnit::goWay()
             }
             else if (isNeedHold)
             {
+
                 this->needHolTimer++;
                 this->stendOnCellWait();
-                if (this->needHolTimer % 10 == 0 && !isTargetObjValide())
+                if (this->needHolTimer % 200 == 0 && !isTargetObjValide())
                 {
                     updateCurrentTarget();
                 }
             }
             else
             {
-
-                if (
-                    // this->preTargetCell
-                    this->targetData.clicckedCell)
-                {
-
-                    if (this->iNeedFreeWay)
+                this->stendOnCell();
+                    if (this->profession != "")
                     {
-                        // console.log("poshel na huy!");
-                        this->stendOnCellWait();
+                        this->orderOnWay.go(this->profession);
                     }
-                    else
+                    else if (this->targetData.clicckedCell)
                     {
-                        this->stendOnCell();
-                        this->targetData.unit = nullptr;
-                        if (this->profession != "")
-                        {
-
-                            return;
-                        }
-                        this->orderOnWay.cell = this->targetData.clicckedCell; // this->preTargetCell;
-                        this->orderOnWay.isComplite = false;
+                        this->orderOnWay.go(this->targetData.clicckedCell);
                     }
-                }
             }
         }
         else

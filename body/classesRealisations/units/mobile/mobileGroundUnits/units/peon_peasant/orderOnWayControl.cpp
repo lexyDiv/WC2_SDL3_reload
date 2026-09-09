@@ -4,6 +4,7 @@
 void Peon_peasant::orderOnWayControl()
 {
 
+    this->orderOnWay.mt.lock();
     if (!this->orderOnWay.isComplite
         //&& !this->wayTakts
     )
@@ -13,10 +14,11 @@ void Peon_peasant::orderOnWayControl()
         if (this->orderOnWay.profession == "")
         {
             Cell *finishCell = this->way.length ? this->way.getItem(0) : nullptr;
-            Unit *tdu = this->targetData.isActual ? this->targetData.unit : nullptr;
+            Unit *tdu =  this->targetData.unit;
             if (!this->cell || oCell->plane != this->cell->plane || oCell->groundUnit == this || finishCell == oCell || (tdu && tdu == oCell->groundUnit && this->way.length))
             { // click on old obj or cell
                 this->orderOnWay.isComplite = true;
+                this->orderOnWay.mt.unlock();
                 return;
             }
             this->targetData.clear();
@@ -153,11 +155,11 @@ void Peon_peasant::orderOnWayControl()
         }
         else
         {
-            if (this->profession == this->orderOnWay.profession)
-            {
-                this->orderOnWay.isComplite = true;
-                return;
-            }
+            // if (this->profession == this->orderOnWay.profession)
+            // {
+            //     this->orderOnWay.isComplite = true;
+            //     return;
+            // }
             if (this->orderOnWay.profession == "w")
             {
                 if (this->wood)
@@ -192,7 +194,7 @@ void Peon_peasant::orderOnWayControl()
                     else
                     {
                         this->profession = "";
-                       // this->targetData.clear();
+                        this->targetData.clear();
                     }
                 }
             }
@@ -232,37 +234,11 @@ void Peon_peasant::orderOnWayControl()
                 }
             }
         }
-           this->getCurrentTarget();
+           if (this->targetData.clicckedCell && !this->isBlocked) {
+            this->getCurrentTarget();
+           }
         this->orderOnWay.isComplite = true;
-        // this->potentialWay.clear();
-        // this->wayIndex = 0;
-
-       // this->isPotentialWayComplite = false;
-        // console.log(this->targetData.unit->name);
     }
 
-    ///////////////////////////////// => inpotent old keys
-    // this->preTargetCell
-    // this->targetCell
-    ///////////////////////////////// <= inpotent old keys
-
-    // if (!this->orderOnWay.isComplite)
-    // {
-    //     Cell *oCell = this->orderOnWay.cell;
-    //     Cell *finishCell = this->way.length ? this->way.getItem(0) : nullptr;
-    //     Unit *tarObj = this->targetData.unit ? this->targetData.unit : nullptr;
-    //     if (!this->cell ||
-    //         (oCell->plane != this->cell->plane) ||
-    //         (oCell->groundUnit == this) ||
-    //         (finishCell == oCell) ||
-    //         (tarObj && tarObj == oCell->groundUnit && this->way.length) || this->isBlockedd(this))
-    //     {
-
-    //         this->orderOnWay.isComplite = true;
-    //         return;
-    //     }
-
-    //         this->getCurrentTarget(oCell);
-    //         this->orderOnWay.isComplite = true;
-    // }
+    this->orderOnWay.mt.unlock();
 };

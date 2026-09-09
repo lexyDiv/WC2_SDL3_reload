@@ -1,6 +1,36 @@
 #include "Th.h"
 //=>system out
 
+// class RefactorWayData
+// {
+// public:
+//  // Array<Cell *> basicWay;
+  
+//   RefactorWayData() {};
+
+//   Cell *saveClickedCell = nullptr;
+//   Array<Cell *> dopWay;
+//   Array<Cell *> saveWay;
+//   Unit *saveUnit = nullptr;
+//   int minIndex = 0;
+//   int targetCellIndex = -1;
+//   string saveProfession = "";
+//   bool isActual = false;
+
+//   void clear()
+//   {
+//     isActual = false;
+//     saveClickedCell = nullptr;
+//     dopWay.clear();
+//     saveWay.clear();
+//     saveUnit = nullptr;
+//     minIndex = 0;
+//     saveProfession = "";
+
+//     targetCellIndex = -1;
+//   }
+// };
+
 class Unit
 {
 public:
@@ -8,7 +38,7 @@ public:
   virtual ~Unit() {};
 
   Cell *cell = nullptr;
-
+  bool focus = false;
   virtual void create(Cell *) {};
   virtual void getContactCells();
   virtual void draw() {};
@@ -123,7 +153,7 @@ public:
   int animTakt = 0;
   GameField *gf = nullptr;
   Game *game = nullptr;
-  Fraction *fraction;
+  Fraction *fraction = nullptr;
   bool isAddOnDraw = false;
   int alpha = 255;
   int getGabX = 0;
@@ -152,7 +182,7 @@ public:
 
   double speedTale = 0;
   int wayTakts = 0;
-  //int holdWayCount = 0;
+  // int holdWayCount = 0;
   int wayIndex = 0;
   bool isPotentialWayComplite = true;
   bool isIgetMyTarget = true;
@@ -171,14 +201,18 @@ public:
   Cell *flipCell = nullptr;
   Cell *nextCell = nullptr;
 
-  function<bool(Cell* c)> isOnGetPotentialWayGetTarget = [](Cell *c){ return false; };
-  
+  function<bool(Cell *c)> isOnGetPotentialWayGetTarget = [](Cell *c)
+  { return false; };
 
-  function<bool(Cell *c)> isNewCellOnGetWayValide = [](Cell *c){ return false; };
-  
+  function<bool(Cell *c)> isNewCellOnGetWayValide = [](Cell *c)
+  { return false; };
+
   int needHolTimer = 0;
-  int needHoldTimerMax = 100;
+  int needHoldTimerMax = 500;
 
-  virtual bool crox(){return false;};
+  virtual bool crox() { return false; };
 
+ // RefactorWayData rwd;
+  void getRefactorCell();
+  bool isBlocked = false;
 };

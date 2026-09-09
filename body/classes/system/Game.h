@@ -33,6 +33,7 @@ public:
       int optimalDeltaTime = 1000 / 30;
 
   vector<string> pathes{
+    "levels/lowTrees.txt",
       "levels/test_1.txt",
       "levels/testBig_1.txt",
       "levels/testBig_500.txt"};
@@ -50,13 +51,21 @@ public:
    Array<Unit *> allOilsPtr;
 
    Array<Unit *> allLifeUnitsPtr;
+
+   Array<Unit *> allMobileActiveUnits;
   
   ///////////////////////////////////////////////////
   Array<Cell> allCells;
 
-  int scanIndex = 0;
+
   bool thSpin = true;
-  bool needReturn = false;
+
+  Array<Unit *> spinUnits;
+  Array<Unit *> noSpinUnits;
+
+  Array<Unit *> &spinUnitsL = this->spinUnits;
+  Array<Unit *> &noSpinUnitsL = this->noSpinUnits;
+  mutex unitsOnWayMT;
 };
 
 Game gameData;

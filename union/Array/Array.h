@@ -16,6 +16,8 @@ struct MinData
     Unit *unit = nullptr;
 };
 
+mutex savePushMT;
+
 template <typename T>
 class Array
 {
@@ -30,6 +32,8 @@ public:
     T *getItemPtr(int i);
 
     void push(T el);
+    void savePush(T el);
+
     void unshift(T el);
     T pop();
     T &pop2();
@@ -120,6 +124,15 @@ inline void Array<T>::push(T el)
 {
     this->vec.push_back(el);
     this->length = vec.size();
+}
+
+template <typename T>
+inline void Array<T>::savePush(T el)
+{
+    savePushMT.lock();
+    this->vec.push_back(el);
+    this->length = vec.size();
+    savePushMT.unlock();
 }
 
 template <typename T>

@@ -3,13 +3,13 @@
 
 void ThData::process()
 {
-this->isBasicActiveProgComplite = false;
-        if (this->game->isGFComplite)
-        {
-            this->dopUnits.clear();
-            this->game->fractions.forEach([this](Fraction *fr)
-                                          { fr->AllLifeUnits.forEach([this](Unit *unit)
-                                                                     {
+    this->isBasicActiveProgComplite = false;
+    if (this->game->isGFComplite)
+    {
+        this->dopUnits.clear();
+        this->game->fractions.forEach([this](Fraction *fr)
+                                      { fr->AllLifeUnits.forEach([this](Unit *unit)
+                                                                 {
                         if (unit->isActive
                             && unit->thSpin != this->game->thSpin
                             && unit->cell
@@ -28,28 +28,21 @@ this->isBasicActiveProgComplite = false;
                            }
                         } }); });
 
+        this->isBasicActiveProgComplite = true;
 
-            this->isBasicActiveProgComplite = true;
+        while (!this->isAllThreadsBasicComplite())
+        {
+        };
 
-
-            while (!this->isAllThreadsBasicComplite())
-            {
-
-            };
-
-            this->dopUnits.forEach([this](Unit *unit)
-                                   {
+        this->dopUnits.forEach([this](Unit *unit)
+                               {
                                if (unit->thSpin != this->game->thSpin) {
                                         if (unit->isActive) {
                                 unit->thSpin = this->game->thSpin;
                                  unit->activeProg();
                               }
                                } });
-    
-            this->isDopActiveProgComplite = true;
-      
-        }
 
-       // this_thread::sleep_for(chrono::nanoseconds(1));
+        this->isDopActiveProgComplite = true;
     }
-//}
+}

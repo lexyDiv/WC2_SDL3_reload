@@ -5,6 +5,7 @@ void TownHall::wellCome(Unit *peon)
 {
     if (peon->gold > 0 || peon->wood)
     {
+        this->potentialClientsMT.lock();
         int index = this->contactCells.indexOf(peon->cell);
         MinData wellComeCell = index != -1 ? this->wellComeCells.getItem(index) : wellComeCell;
         if (wellComeCell.cell)
@@ -16,11 +17,14 @@ void TownHall::wellCome(Unit *peon)
             // peon->gold = 100;
             // peon->wood = 0;
             // this->gold -= 100;
+
             this->potentialClients.push(peon);
+
             if (!this->isActive)
             {
                 this->isActive = true;
             }
         }
+        this->potentialClientsMT.unlock();
     }
 }

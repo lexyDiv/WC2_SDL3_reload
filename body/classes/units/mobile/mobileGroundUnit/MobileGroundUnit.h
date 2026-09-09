@@ -20,6 +20,7 @@ class MobileGroundUnit : public Unit {
     void getConor(Cell *cell) override;
     void targetObjControl() override;
     bool crox() override;
+    virtual bool isNeedFreeWay();
 };
 
 MobileGroundUnit::MobileGroundUnit(){};

@@ -62,6 +62,7 @@ public:
     GameField(){};
    // GameField(string *path, int type);
      ~GameField();
+     Unit *focusUnit = nullptr;
      void create();
      void mapInit(Array<string> &array);
      void getFieldImage();

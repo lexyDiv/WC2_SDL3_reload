@@ -9,8 +9,9 @@ bool Peon_peasant::isTargetObjValide()
         to && ((to->lesorub) ||
                to->hp <= 0 ||
                !to->cell ||
-               (to->name == "shaht" && !to->gold) ||
-               to->isBlockedd(this)))
+               (to->name == "shaht" && !to->gold) //||
+              // to->isBlockedd(this)
+            ))
     {
         return false;
     }

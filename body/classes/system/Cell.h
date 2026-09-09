@@ -26,6 +26,7 @@ public:
    // Cell *targetCell = nullptr;
     string profession = "";
     bool isActual = false;
+    Array<Cell *> basicWay;
 
     void clear()
     {
@@ -37,6 +38,7 @@ public:
        // targetCell = nullptr;
         profession = "";
         isActual = false;
+        //basicWay.clear();
     };
 };
 
@@ -57,6 +59,9 @@ public:
     double explored = 0;
     double procCurr = 0;
     Cell *wayFather = nullptr;
+
+   // int dopWayIndex = -1;
+    //bool touch = false;
 };
 
 class Cell
@@ -104,6 +109,7 @@ public:
     /////////////////////////////////////////////////////////////////////////////////////////////////
 
     bool isClosed = false;
+
     Cell() {};
     ~Cell() {};
     void draw();

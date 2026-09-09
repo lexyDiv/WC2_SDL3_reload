@@ -25,14 +25,22 @@ bool Peon_peasant::isNeedHoldGoWay()
     Cell *guNextCell = gu ? gu->nextCell : nullptr;
     Unit *gutdu = gu ? gu->targetData.unit : nullptr;
 
-    if (this->needHolTimer >= this->needHoldTimerMax)
+    if (this->needHolTimer >= this->wayIndex * 100
+    )
     {
+        this->updateCurrentTarget();
         this->needHolTimer = 0;
         return false;
     }
 
     if (
-        gu && (this->wayIndex > 7 || gu->inSave) && !isLoop(this))
+        gu
+        && gu->isActive
+        && gu->wayIndex 
+        && (this->wayIndex >= 5 ||
+             gu->inSave || !this->isPotentialWayComplite 
+            || this->isBlocked
+        ) && !isLoop(this))
     {
         return true;
     }

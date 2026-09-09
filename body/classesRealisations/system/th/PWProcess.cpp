@@ -8,7 +8,7 @@
 //     {
 
 //         Unit *unit = this->game->allLifeUnitsPtr.getItem(i);
-           
+
 //         if (!unit->isPotentialWayComplite && unit->cell && unit->hp)
 //         {
 //            // console.log(to_string(this->num));
@@ -25,7 +25,7 @@
 //             this->deep = 100;
 //             return;
 //         }
-       
+
 //     };
 //     this->hold = this->num;
 //     if (this->deep < 30000) {
@@ -34,35 +34,29 @@
 //    // console.log("thd : " + to_string(this->num) + " deep : " + to_string(this->deep));
 // }
 
-void ThData::PWProcess() {
+void ThData::PWProcess()
+{
 
-    int length = this->game->allLifeUnitsPtr.length; //this->allPeons.length;
+    int length = this->game->unitsOnWay.length;
     for (int i = this->num; i < length; i += this->thds->length)
     {
+        Unit *unit = this->game->unitsOnWay.getItem(i);
 
-        Unit *unit = this->game->allLifeUnitsPtr.getItem(i);
-           
         if (!unit->isPotentialWayComplite && unit->cell && unit->hp)
         {
-           // console.log(to_string(this->num));
-           // this->gf->getPotentialWay(peon);
-           this->createPotentialWay(unit);
-
+            this->createPotentialWay(unit);
+            unit->isPotentialWayComplite = true;
         }
         Uint64 currentTime = SDL_GetTicks();
         int deltaTime = int(currentTime) - int(this->game->startTick);
         if (deltaTime >= this->game->optimalDeltaTime - 5)
         {
-           //console.log("here");
             this->hold = i;
-            this->deep = this->deep >= 500 ? this->deep - 50 : this->deep;
-           // return;
+            this->deep = this->deep >= 5000 ? this->deep - 50 : this->deep;
         }
-       
     };
-   // this->hold = this->num;
-    if (this->deep < 30000) {
+    if (this->deep < 30000)
+    {
         this->deep += 25;
     }
-   // console.log("thd : " + to_string(this->num) + " deep : " + to_string(this->deep));
 }

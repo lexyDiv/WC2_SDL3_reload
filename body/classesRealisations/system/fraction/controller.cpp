@@ -13,16 +13,14 @@ void Fraction::controller()
 
         int current = 0;
 
-        // console.log("hold: " + to_string(this->hold));
-        // console.log("length: " + to_string(this->peons.length));
-        // console.log("-------------------");
         for (int i = this->hold; i < this->peons.length; i++)
         {
            
             
             this->hold = i;
             Unit *peon = this->peons.getItem(i);
-           // console.log(to_string(peon->isActive));
+
+
             if (peon->hp &&
                 !peon->inSave &&
                 !peon->isActive &&
@@ -34,6 +32,7 @@ void Fraction::controller()
                 current++;
                 peon->orderOnWay.go(peon->profession);
                 peon->isActive = true;
+
             }
             if (current == ordinar)
             {

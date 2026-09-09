@@ -20,7 +20,7 @@ if (this->color == "red") {
 
 
 //     Unit *peon = new Peon_peasant(this);
-//     peon->persNum = 1;
+//     peon->persNum = 2;
 //     peon->create(game->gf->field.getItem(10).getItem(3));
 //     this->game->allLifeUnitsPtr.push(peon);
 //     this->AllLifeUnits.push(peon);
@@ -30,7 +30,7 @@ if (this->color == "red") {
 //     peon->isActive = true;
 
 //    Unit *peon2 = new Peon_peasant(this);
-//    peon2->persNum = 2;
+//    peon2->persNum = 1;
 //    peon2->fraction = this;
 //    peon2->create(game->gf->field.getItem(10).getItem(12));
 //     this->game->allLifeUnitsPtr.push(peon2);

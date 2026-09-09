@@ -22,9 +22,6 @@ bool Peon_peasant::isActiveCheck()
         // this->profession != ""
         ))
     {
-                //                          if (this->persNum == 1) {
-                //     console.log("orderOnWayIsCompl = " + to_string(!this->isPotentialWayComplite));
-                // }
         this->isActive = true;
         return true;
     }

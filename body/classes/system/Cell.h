@@ -59,6 +59,9 @@ public:
     double explored = 0;
     double procCurr = 0;
     Cell *wayFather = nullptr;
+
+   // int dopWayIndex = -1;
+    //bool touch = false;
 };
 
 class Cell
@@ -106,6 +109,7 @@ public:
     /////////////////////////////////////////////////////////////////////////////////////////////////
 
     bool isClosed = false;
+
     Cell() {};
     ~Cell() {};
     void draw();

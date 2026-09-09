@@ -27,15 +27,8 @@ void Peon_peasant::fightControl()
                 this->animY = 0;
                 this->image = this->fraction->peon.img_2;
                 this->wood = 100;
-                //// experement
                 this->profession = "w";
-                Unit *base = this->getBaseForUnloading();
-                if (base)
-                {
-                    // this->orderOnWay.isComplite = false;
-                    // this->orderOnWay.cell = base->cell;
-                    this->orderOnWay.go(base->cell);
-                }
+                this->orderOnWay.go("w");
             }
             else if (!this->orderOnWay.isComplite)
             {

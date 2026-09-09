@@ -8,7 +8,6 @@ void ThData::createPotentialWay(Unit *unit)
     int currentDeep = this->deep;
     int iter = 0;
 
-    this->getCurrentTargetCell(unit); // ok
 
     Td_way_data *td_way_data = unit->cell->thwd.length ? unit->cell->thwd.getItemPtr(this->num) : nullptr;
 
@@ -79,23 +78,12 @@ void ThData::createPotentialWay(Unit *unit)
         }
         else
         {
-            // unit->isPotentialWayComplite = true;
             if (!this->globalMin_H_cell)
             {
-                // unit->isPotentialWayComplite = true;
-                // if (unit->focus)
-                // {
-                //     console.log("69");
-                // }
             }
             else
             {
-
                 this->potentialWayCreate(unit, this->globalMin_H_cell);
-                if (unit->persNum == 1)
-                {
-                    console.log("By glodal iter = " + to_string(iter) + " way.length =  " + to_string(unit->way.length));
-                }
             }
             return;
         }
@@ -106,12 +94,7 @@ void ThData::createPotentialWay(Unit *unit)
         {
             this->potentialWayCreate(unit, this->min_F_cell);
             unit->isPotentialWayComplite = true;
-            if (unit->persNum == 1)
-            {
-                console.log("iter = " + to_string(iter) + " way.length =  " + to_string(unit->way.length));
-            }
             break;
         }
     }
-    // }
 };

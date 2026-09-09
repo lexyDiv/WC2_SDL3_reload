@@ -1,28 +1,35 @@
 #include "Th.h"
 //=>system out
 
-class RefactorWayData
-{
-public:
- // Array<Cell *> basicWay;
+// class RefactorWayData
+// {
+// public:
+//  // Array<Cell *> basicWay;
   
-  // RefactorWayData() {};
-  // Cell *targetCell = nullptr;
-  // Cell *saveClickedCell = nullptr;
-  // Array<Cell *> dopWay;
-  // Array<Cell *> saveWay;
-  // Unit *saveUnit = nullptr;
-  // int index = 0;
-  // void clear()
-  // {
-  //   targetCell = nullptr;
-  //   saveClickedCell = nullptr;
-  //   dopWay.clear();
-  //   saveWay.clear();
-  //   saveUnit = nullptr;
-  //   index = 0;
-  // }
-};
+//   RefactorWayData() {};
+
+//   Cell *saveClickedCell = nullptr;
+//   Array<Cell *> dopWay;
+//   Array<Cell *> saveWay;
+//   Unit *saveUnit = nullptr;
+//   int minIndex = 0;
+//   int targetCellIndex = -1;
+//   string saveProfession = "";
+//   bool isActual = false;
+
+//   void clear()
+//   {
+//     isActual = false;
+//     saveClickedCell = nullptr;
+//     dopWay.clear();
+//     saveWay.clear();
+//     saveUnit = nullptr;
+//     minIndex = 0;
+//     saveProfession = "";
+
+//     targetCellIndex = -1;
+//   }
+// };
 
 class Unit
 {
@@ -31,7 +38,7 @@ public:
   virtual ~Unit() {};
 
   Cell *cell = nullptr;
-
+  bool focus = false;
   virtual void create(Cell *) {};
   virtual void getContactCells();
   virtual void draw() {};
@@ -205,7 +212,7 @@ public:
 
   virtual bool crox() { return false; };
 
-  RefactorWayData rwd;
+ // RefactorWayData rwd;
   void getRefactorCell();
   bool isBlocked = false;
 };

@@ -6,6 +6,7 @@ void GameField::mapInit(Array<string> &array)
     int cellsCount = this->gabarit * this->gabarit;
     for (int i = 0; i < cellsCount; i++) {
         Cell cell;
+        cell.persNum = i;
         this->game->allCells.push(cell);
     }
     int cc = 0;

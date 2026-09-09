@@ -8,7 +8,6 @@ void MobileGroundUnit::goWay()
         this->isBlocked = this->isBlockedd(this);
 
         if (this->isPotentialWayComplite &&
-            // this->way.length &&
             this->wayIndex > 0)
         {
 
@@ -57,16 +56,14 @@ void MobileGroundUnit::goWay()
             else
             {
                 this->stendOnCell();
-
-                if (this->profession != "")
-                {
-                    this->orderOnWay.go(this->profession);
-                }
-                else if (this->targetData.clicckedCell)
-                {
-
-                    this->orderOnWay.go(this->targetData.clicckedCell);
-                }
+                    if (this->profession != "")
+                    {
+                        this->orderOnWay.go(this->profession);
+                    }
+                    else if (this->targetData.clicckedCell)
+                    {
+                        this->orderOnWay.go(this->targetData.clicckedCell);
+                    }
             }
         }
         else

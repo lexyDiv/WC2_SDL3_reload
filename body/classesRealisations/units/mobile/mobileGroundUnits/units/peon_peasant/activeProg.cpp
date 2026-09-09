@@ -4,6 +4,7 @@
 void Peon_peasant::activeProg()
 {
 
+
   if (!this->isActiveCheck() 
   || this->holdTimerControl() 
 
@@ -11,43 +12,6 @@ void Peon_peasant::activeProg()
   {
     return;
   }
-
-  ////////////////////////////////////////////////////////////
- // if (this->rwd.targetCell)
- // {
-
-    // this->targetData.clicckedCell = this->rwd.saveClickedCell;
-    // this->targetData.unit = this->rwd.saveUnit;
-
-    // if (this->potentialWay.length && this->potentialWay.getItem(0) == this->rwd.targetCell)
-    // {
-    //   // console.log("ok");
-    //   this->rwd.dopWay.copy(this->potentialWay);
-    //   this->rwd.saveWay.splice(this->rwd.index, this->rwd.saveWay.length - this->rwd.index);
-
-    //   this->rwd.dopWay.forEach([this](Cell *c)
-    //                            { this->rwd.saveWay.push(c); });
-
-    //   this->way.copy(this->rwd.saveWay);
-    //   this->way.push(this->cell);
-    //   this->wayIndex = this->way.length - 1;
-    //   this->rwd.dopWay.clear();
-    //   this->potentialWay.clear();
-    // }
-    // else
-    // {
-    //   // console.log("NO");
-
-    //  // this->orderOnWay.go(this->targetData.clicckedCell);
-    //  // this->potentialWay.clear();
-    //  // this->wayIndex = 0;
-    //   this->rwd.clear();
-    // }
- // }
-
-  ////////////////////////////////////////////////////////////////////
-
-  
 
   if (!this->wayTakts &&
       this->wayIndex <= 5 &&

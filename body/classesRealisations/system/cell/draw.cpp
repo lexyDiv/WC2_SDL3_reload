@@ -17,11 +17,11 @@ void Cell::draw()
   //     this->getMapColor().B,
   //     255);
 
-  if (this->plane)
-  {
+ // if (this->plane)
+//  {
 
-    if (this->cellImage)
-    {
+  //  if (this->cellImage)
+  //  {
            if (this->litera != 'w') {
                   ctx.DrawImage(this->cellImage,
                     this->animX,
@@ -32,6 +32,12 @@ void Cell::draw()
                     this->y + drawDeltaY - 35,
                     this->drawGabaritX, this->drawGabaritY);
 
+                    // if (this->thwd.getItemPtr(0)->dopWayIndex >= 0) {
+                    //   ctx.StrokeRect(this->x + drawDeltaX, this->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "black");
+                    //   ctx.DrawText(this->x + drawDeltaX, this->y + drawDeltaY, 20, to_string(this->thwd.getItemPtr(0)->dopWayIndex));
+                    //   ctx.DrawText(this->x + drawDeltaX + 5, this->y + drawDeltaY + 20, 10, to_string(this->persNum));
+                    // }
+
            } else {
                 this->waters.forEach([this](Water &water, int i){
                   water.drawControlBasic(i);
@@ -39,7 +45,7 @@ void Cell::draw()
                 });
            }
 
-    }
+   // }
 
     //     string str = "K: " + to_string(this->plane->number);
     //     if (this->plane->type == "sea") {
@@ -71,7 +77,7 @@ void Cell::draw()
     //       string str = "K: " + to_string(this->lineToDarckGround);
     //      ctx.DrawText(this->x + drawDeltaX, this->y + drawDeltaY + 5, 10,  str, 255);
     // }
-  }
+ // }
 
   // ctx.StrokeRect(
   //     this->x + drawDeltaX,

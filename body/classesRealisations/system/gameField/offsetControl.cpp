@@ -58,7 +58,41 @@ void GameField::offsetControl()
     this->drawDeltaY = this->y - this->offsetY;
 
 
-    
+    ////////////////////////////////////////////////////////////////////////////////
+    bool clickLeft = mouse.leftKeyDown;
+    bool clickLeftUp = mouse.leftKeyUp;
+    bool clickRight = mouse.rightKeyDown;
+
+    int x = mouse.x;
+    int y = mouse.y;
+
+    float drawDeltaX = this->drawDeltaX;
+    float drawDeltaY = this->drawDeltaY;
+
+
+   if (clickLeft) {
+     int cx = x - drawDeltaX;
+     int cy = y - drawDeltaY;
+     int xIndex = cx / this->cellSize;
+     int yIndex = cy / this->cellSize;
+     if (xIndex < this->gabarit && yIndex < this->gabarit) {
+        Cell *tc = this->field.getItemPtr(yIndex)->getItem(xIndex);
+        if (tc->groundUnit) {
+            if (this->focusUnit) {
+                this->focusUnit->focus = false;
+            }
+            tc->groundUnit->focus = true;
+            this->focusUnit = tc->groundUnit;
+        } else {
+                if (this->focusUnit) {
+                this->focusUnit->focus = false;
+            }
+            this->focusUnit = nullptr;
+        }
+     }
+   }
+
+    //////////////////////////////////////////////////////////////////
     // iter++;
     // if (iter == 1)
     // {

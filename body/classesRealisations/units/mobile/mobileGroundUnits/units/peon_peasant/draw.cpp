@@ -38,7 +38,6 @@ void Peon_peasant::draw()
         100,
         100);
 
-
     //     if (this->persNum == 1 && this->cell) {
 
     //                this->way.forEach([&drawDeltaX, &drawDeltaY](Cell *c, int i){
@@ -55,18 +54,22 @@ void Peon_peasant::draw()
     //              14,
     //              to_string(this->persNum));
 
-    //              if (this->persNum == 2) {
-    //                this->way.forEach([&drawDeltaX, &drawDeltaY](Cell *c, int i){
+    // if (this->persNum == 1)
+    // {
+    //   this->way.forEach([&drawDeltaX, &drawDeltaY, this](Cell *c, int i)
+    //                     {
     //                 ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, c->game->gf->cellSize, c->game->gf->cellSize, "green", 100);
-    //                 ctx.StrokeRect(c->x + drawDeltaX, c->y + drawDeltaY, c->game->gf->cellSize, c->game->gf->cellSize, "black", 100);
-    //                 ctx.DrawText(c->x + drawDeltaX, c->y + drawDeltaY, 20, to_string(i));
-    //                });
+    //                 ctx.StrokeRect(c->x + drawDeltaX, c->y + drawDeltaY, c->game->gf->cellSize, c->game->gf->cellSize, "black", 100); });
 
-    //                this->rwd.dopWay.forEach([&drawDeltaX, &drawDeltaY](Cell *c, int i){
-    //                 ctx.StrokeRect(c->x + drawDeltaX, c->y + drawDeltaY, c->game->gf->cellSize, c->game->gf->cellSize, "blue", 100);
-    //                 ctx.DrawText(c->x + drawDeltaX + 30, c->y + drawDeltaY, 20, to_string(i));
-    //                });
-    //              }
+    //                 if (this->cell) {
+    //                   ctx.FillRect(this->cell->x + drawDeltaX, this->cell->y + drawDeltaY, this->game->gf->cellSize, this->game->gf->cellSize, "violet", 100);
+    //                 }
+
+    //   //  this->rwd.dopWay.forEach([&drawDeltaX, &drawDeltaY](Cell *c, int i){
+    //   //   ctx.StrokeRect(c->x + drawDeltaX, c->y + drawDeltaY, c->game->gf->cellSize, c->game->gf->cellSize, "blue", 100);
+    //   //   ctx.DrawText(c->x + drawDeltaX + 30, c->y + drawDeltaY, 20, to_string(i));
+    //   //  });
+    // }
   }
   else
   {

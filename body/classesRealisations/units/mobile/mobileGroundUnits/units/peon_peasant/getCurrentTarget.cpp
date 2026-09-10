@@ -15,7 +15,6 @@ void Peon_peasant::getCurrentTarget()
 
     Unit *tdu = this->targetData.unit;
 
-
     if (tdu)
     {
 
@@ -39,7 +38,7 @@ void Peon_peasant::getCurrentTarget()
 
             // if (!this->iNeedFreeWay)
             // {
-            this->isNewCellOnGetWayValide = [this](Cell *c)
+            this->isNewCellOnGetWayValide = [this](Cell *c, int iter)
             {
                 Unit *gu = c->groundUnit;
 
@@ -53,6 +52,7 @@ void Peon_peasant::getCurrentTarget()
                 if (tc &&
                     c->plane == tc->plane &&
                     (!gu ||
+                     (gu->type == "life" && iter >= 300) ||
                      gu->way.length ||
                      gu->needHolTimer ||
                      !gu->isPotentialWayComplite ||
@@ -81,18 +81,19 @@ void Peon_peasant::getCurrentTarget()
                 return false;
             };
 
-            this->isNewCellOnGetWayValide = [this](Cell *c)
+            this->isNewCellOnGetWayValide = [this](Cell *c, int iter)
             {
                 Unit *gu = c->groundUnit;
                 Cell *tc = this->cell;
 
-                if (gu && gu->needHolTimer)
+                if (gu && gu->needHolTimer && iter < 100)
                 {
                     return false;
                 }
                 if (tc &&
                     c->plane == tc->plane &&
                     (!gu ||
+                        (gu->type == "life" && iter >= 300) ||
                      gu->wayIndex ||
                      gu == this->targetData.unit))
                 {
@@ -115,17 +116,18 @@ void Peon_peasant::getCurrentTarget()
             return false;
         };
 
-        this->isNewCellOnGetWayValide = [this](Cell *c)
+        this->isNewCellOnGetWayValide = [this](Cell *c, int iter)
         {
             Unit *gu = c->groundUnit;
             Cell *tc = this->cell;
-            if (gu && gu->needHolTimer)
+            if (gu && gu->needHolTimer && iter < 100)
             {
                 return false;
             }
             if (tc &&
                 c->plane == tc->plane &&
                 (!gu ||
+                    (gu->type == "life" && iter >= 300) ||
                  gu->wayIndex))
             {
                 return true;

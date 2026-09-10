@@ -37,7 +37,7 @@ void ThData::exploreNewCellAndAddToOpenArr(Unit *unit, Cell *fatherCell, Cell *p
       }
     }
     else if (
-        unit->isNewCellOnGetWayValide(potentialCell))
+        unit->isNewCellOnGetWayValide(potentialCell, this->iter))
     {
       potentialCell_thwd->wayFather = fatherCell;
 

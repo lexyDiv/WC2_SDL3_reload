@@ -204,7 +204,7 @@ public:
   function<bool(Cell *c)> isOnGetPotentialWayGetTarget = [](Cell *c)
   { return false; };
 
-  function<bool(Cell *c)> isNewCellOnGetWayValide = [](Cell *c)
+  function<bool(Cell *c, int iter)> isNewCellOnGetWayValide = [](Cell *c, int iter)
   { return false; };
 
   int needHolTimer = 0;

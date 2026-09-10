@@ -6,7 +6,7 @@ void ThData::createPotentialWay(Unit *unit)
 
     unit->way.clear();
     int currentDeep = this->deep;
-    int iter = 0;
+    this->iter = 0;
 
 
     Td_way_data *td_way_data = unit->cell->thwd.length ? unit->cell->thwd.getItemPtr(this->num) : nullptr;
@@ -39,7 +39,7 @@ void ThData::createPotentialWay(Unit *unit)
     while (true)
     {
 
-        iter++;
+        this->iter++;
 
         MinData md;
 
@@ -49,7 +49,7 @@ void ThData::createPotentialWay(Unit *unit)
             this->exploreNewCellAndAddToOpenArr(unit, this->min_F_cell, pc);
         }
 
-        if (this->openArr.length && iter < currentDeep)
+        if (this->openArr.length && this->iter < currentDeep)
         {
             int index = this->openArr.length - 1;
             md.cell = this->openArr.getItem(this->openArr.length - 1);
@@ -84,6 +84,7 @@ void ThData::createPotentialWay(Unit *unit)
             else
             {
                 this->potentialWayCreate(unit, this->globalMin_H_cell);
+                //console.log("MAXIMUM !!! = " + to_string(this->iter));
             }
             return;
         }

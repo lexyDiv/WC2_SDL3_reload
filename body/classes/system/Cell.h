@@ -140,6 +140,7 @@ public:
     Array<Cell *> aroundCells;
     Array<Cell *> maxAroundCells;
     Array<double> maxAroundCellsDis;
+    Array<Cell *> panicCells;
     Array<Cell *> drawCells;
     Array<Array<Cell *>> cellsOnDraw;
 

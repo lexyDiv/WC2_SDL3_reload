@@ -215,4 +215,5 @@ public:
  // RefactorWayData rwd;
   void getRefactorCell();
   bool isBlocked = false;
+  bool metka = false;
 };

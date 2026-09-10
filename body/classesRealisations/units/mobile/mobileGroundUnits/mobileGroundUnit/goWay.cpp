@@ -46,6 +46,12 @@ void MobileGroundUnit::goWay()
             else if (isNeedHold)
             {
 
+                if (this->iNeedFreeWay)
+                {
+                   // this->metka = true;
+                    this->iNeedFreeWay = false;
+                }
+
                 this->needHolTimer++;
                 this->stendOnCellWait();
                 if (this->needHolTimer % 200 == 0 && !isTargetObjValide())
@@ -56,18 +62,19 @@ void MobileGroundUnit::goWay()
             else
             {
                 this->stendOnCell();
-                    if (this->profession != "")
-                    {
-                        this->orderOnWay.go(this->profession);
-                    }
-                    else if (this->targetData.clicckedCell)
-                    {
-                        this->orderOnWay.go(this->targetData.clicckedCell);
-                    }
+                if (this->profession != "")
+                {
+                    this->orderOnWay.go(this->profession);
+                }
+                else if (this->targetData.clicckedCell)
+                {
+                    this->orderOnWay.go(this->targetData.clicckedCell);
+                }
             }
         }
         else
         {
+            this->iNeedFreeWay = false;
             this->nextCell = nullptr;
             this->flipCell = nullptr;
             this->stendOnCell();

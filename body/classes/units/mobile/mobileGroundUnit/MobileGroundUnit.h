@@ -21,6 +21,7 @@ class MobileGroundUnit : public Unit {
     void targetObjControl() override;
     bool crox() override;
     virtual bool isNeedFreeWay();
+    void stepToTheSide() override;
 };
 
 MobileGroundUnit::MobileGroundUnit(){};

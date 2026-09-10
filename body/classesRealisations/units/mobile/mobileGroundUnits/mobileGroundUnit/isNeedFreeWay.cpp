@@ -1,5 +1,5 @@
 #include "crox.cpp"
-//=>out
+//=>stepToTheSide
 
 bool MobileGroundUnit::isNeedFreeWay() {
     if (this->profession != "" && this->targetData.unit) {

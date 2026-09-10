@@ -216,4 +216,5 @@ public:
   void getRefactorCell();
   bool isBlocked = false;
   bool metka = false;
+  virtual void stepToTheSide() {};
 };

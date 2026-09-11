@@ -5,7 +5,7 @@ void ThData::createPotentialWay(Unit *unit)
 {
 
     unit->way.clear();
-    int currentDeep = this->deep;
+    int currentDeep = unit->personalCaseDeep ? unit->personalCaseDeep : this->deep;
     this->iter = 0;
 
 
@@ -85,6 +85,10 @@ void ThData::createPotentialWay(Unit *unit)
             {
                 this->potentialWayCreate(unit, this->globalMin_H_cell);
                 //console.log("MAXIMUM !!! = " + to_string(this->iter));
+                if (!unit->personalCaseDeep) {
+                    unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON
+                    unit->frashWayCheckNeed = true;
+                }
             }
             return;
         }

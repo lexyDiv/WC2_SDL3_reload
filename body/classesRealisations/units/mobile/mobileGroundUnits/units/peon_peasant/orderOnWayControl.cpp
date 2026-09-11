@@ -237,6 +237,7 @@ void Peon_peasant::orderOnWayControl()
            if (this->targetData.clicckedCell && !this->isBlocked) {
             this->getCurrentTarget();
            }
+        this->personalCaseDeep = this->orderOnWay.pcd;
         this->orderOnWay.isComplite = true;
     }
 

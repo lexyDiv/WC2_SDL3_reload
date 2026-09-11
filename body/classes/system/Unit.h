@@ -217,4 +217,6 @@ public:
   bool isBlocked = false;
   bool metka = false;
   virtual void stepToTheSide() {};
+  int personalCaseDeep = 0;
+  bool frashWayCheckNeed = false;
 };

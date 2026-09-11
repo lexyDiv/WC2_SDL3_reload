@@ -126,7 +126,7 @@ void Peon_peasant::getCurrentTarget()
             }
             if (tc &&
                 c->plane == tc->plane &&
-                (!gu ||
+                (!gu || c == this->targetData.clicckedCell ||
                     (gu->type == "life" && (iter >= 300 || this->iNeedFreeWay)) ||
                  gu->wayIndex))
             {

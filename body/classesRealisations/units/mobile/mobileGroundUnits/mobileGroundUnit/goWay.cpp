@@ -7,7 +7,7 @@ void MobileGroundUnit::goWay()
     {
         this->isBlocked = this->isBlockedd(this);
 
-        if (this->isPotentialWayComplite &&
+        if (//this->isPotentialWayComplite &&
             this->wayIndex > 0)
         {
 
@@ -46,12 +46,6 @@ void MobileGroundUnit::goWay()
             else if (isNeedHold)
             {
 
-                if (this->iNeedFreeWay)
-                {
-                   // this->metka = true;
-                    this->iNeedFreeWay = false;
-                }
-
                 this->needHolTimer++;
                 this->stendOnCellWait();
                 if (this->needHolTimer % 200 == 0 && !isTargetObjValide())
@@ -61,14 +55,15 @@ void MobileGroundUnit::goWay()
             }
             else
             {
+                this->iNeedFreeWay = !this->personalCaseDeep ? true : false; // <<<<<<<<<<<<< ON
                 this->stendOnCell();
                 if (this->profession != "")
                 {
-                    this->orderOnWay.go(this->profession);
+                    this->orderOnWay.go(this->profession, this->personalCaseDeep);
                 }
                 else if (this->targetData.clicckedCell)
                 {
-                    this->orderOnWay.go(this->targetData.clicckedCell);
+                    this->orderOnWay.go(this->targetData.clicckedCell, this->personalCaseDeep);
                 }
             }
         }

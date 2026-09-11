@@ -32,21 +32,16 @@ bool Peon_peasant::isNeedHoldGoWay()
         return false;
     }
 
-    if (gu && gu->type == "life" && gu->profession == "" && !gu->isActive)
+    if (gu && gu->type == "life" && gu->profession == "" && !gu->isActive && this->iNeedFreeWay)
     {
-        this->iNeedFreeWay = true;
-
-        if (!this->isTargetObjValide())
-        {
-            this->stendOnCell();
-            this->updateCurrentTarget();
-        }
 
         return true;
     }
 
     if (
-        gu && gu->isActive && gu->wayIndex && (this->wayIndex >= 5 || gu->inSave || !this->isPotentialWayComplite || this->isBlocked
+        gu && gu->isActive && gu->wayIndex && (this->wayIndex > 5 || this->iNeedFreeWay) && (
+           // this->wayIndex >= 5 ||
+             gu->inSave || !this->isPotentialWayComplite || this->isBlocked
                                                //  || (gu->type == "life" && gu->profession == "" && !gu->isActive)
                                                ) &&
         !isLoop(this))

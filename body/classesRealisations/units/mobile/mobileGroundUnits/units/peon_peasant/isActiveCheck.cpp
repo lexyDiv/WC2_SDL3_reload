@@ -16,7 +16,7 @@ bool Peon_peasant::isActiveCheck()
          this->inFight ||                 // 0
          this->outHoldTimer ||            // 0
          this->way.length                 // 0
-        // || this->rwd.targetCell
+         || this->iNeedFreeWay
         // || this->targetData.clicckedCell
          //||
         // this->profession != ""
@@ -27,5 +27,6 @@ bool Peon_peasant::isActiveCheck()
     }
 
     this->isActive = false;
+    this->targetData.clear();
     return false;
 };

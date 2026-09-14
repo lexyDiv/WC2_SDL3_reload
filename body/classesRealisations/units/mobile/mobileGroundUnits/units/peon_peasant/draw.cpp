@@ -49,20 +49,20 @@ void Peon_peasant::draw()
    // ctx.FillRect(this->cell->x + drawDeltaX, this->cell->y + drawDeltaY, this->cell->game->gf->cellSize, this->cell->game->gf->cellSize, "blue", 100);
         }
 
-        if (this->iNeedFreeWay) {
-          ctx.FillRect(this->cell->x + drawDeltaX, this->cell->y + drawDeltaY, this->cell->game->gf->cellSize, this->cell->game->gf->cellSize, "blue", 100);
-        }
+  //       if (this->metka) {
+  //         ctx.FillRect(this->cell->x + drawDeltaX, this->cell->y + drawDeltaY, this->cell->game->gf->cellSize, this->cell->game->gf->cellSize, "blue", 100);
+  //       }
 
-        if (this->targetData.clicckedCell 
-         // && this->focus
-        ) {
-          ctx.FillRect(this->targetData.clicckedCell->x + drawDeltaX, this->targetData.clicckedCell->y + drawDeltaY, this->cell->game->gf->cellSize, this->cell->game->gf->cellSize, "yellow", 100);
-        }
+  //       if (this->targetData.clicckedCell 
+  //        // && this->focus
+  //       ) {
+  //         ctx.FillRect(this->targetData.clicckedCell->x + drawDeltaX, this->targetData.clicckedCell->y + drawDeltaY, this->cell->game->gf->cellSize, this->cell->game->gf->cellSize, "yellow", 100);
+  //       }
 
-    // ctx.DrawText(this->x + drawDeltaX + 10,
-    //              this->y + drawDeltaY + 20,
-    //              14,
-    //              to_string(this->persNum));
+  //   ctx.DrawText(this->x + drawDeltaX + 10,
+  //                this->y + drawDeltaY + 20,
+  //                14,
+  //                to_string(this->persNum));
 
     // if (this->persNum == 1)
     // {

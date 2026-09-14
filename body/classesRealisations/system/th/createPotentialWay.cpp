@@ -85,7 +85,21 @@ void ThData::createPotentialWay(Unit *unit)
             {
                 this->potentialWayCreate(unit, this->globalMin_H_cell);
                 //console.log("MAXIMUM !!! = " + to_string(this->iter));
-                if (!unit->personalCaseDeep) {
+                bool nextUnitIsNoActive = false;
+                // for (int i = unit->way.length - 1; i >= 0; i--) {
+                //      Cell *c = unit->way.getItem(i);
+                //      if (c->groundUnit) {
+                //         if (c->groundUnit->type == "life" && !c->groundUnit->isActive) {
+                //             nextUnitIsNoActive = true;
+                //         }
+                //         break;
+                //      }
+                // }
+
+                if (!unit->personalCaseDeep 
+                    //&& unit->way.length && unit->way.getItem(unit->wayIndex - 1)->groundUnit 
+               // && !unit->way.getItem(unit->wayIndex - 1)->groundUnit->isActive
+            ) {
                     unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON
                     unit->frashWayCheckNeed = true;
                 }

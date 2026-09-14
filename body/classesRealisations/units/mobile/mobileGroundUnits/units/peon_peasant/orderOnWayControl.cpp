@@ -149,7 +149,7 @@ void Peon_peasant::orderOnWayControl()
                 this->targetData.unit = nullptr;
                 this->targetData.unitPersNum = 0;
                 this->targetData.profession = "";
-                this->profession = "";
+                this->profession = this->personalCaseDeep ? this->profession : "";
                 this->targetData.isActual = true;
             }
         }

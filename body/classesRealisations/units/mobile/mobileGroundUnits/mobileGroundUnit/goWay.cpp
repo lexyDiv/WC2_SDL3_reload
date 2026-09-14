@@ -46,6 +46,13 @@ void MobileGroundUnit::goWay()
             else if (isNeedHold)
             {
 
+                if (this->iNeedFreeWay
+                     && this->nextCell->groundUnit && !this->nextCell->groundUnit->isActive
+                    ) {
+                    this->stepToTheSide();
+                
+                }
+
                 this->needHolTimer++;
                 this->stendOnCellWait();
                 if (this->needHolTimer % 200 == 0 && !isTargetObjValide())

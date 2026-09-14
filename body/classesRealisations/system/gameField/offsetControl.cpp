@@ -72,7 +72,7 @@ void GameField::offsetControl()
 
     ////////////////////////////////////////////////////////////////// => VREMENNO DEBUG !!!!
     if (clickRight) {
-           int cx = x - drawDeltaX;
+    int cx = x - drawDeltaX;
      int cy = y - drawDeltaY;
      int xIndex = cx / this->cellSize;
      int yIndex = cy / this->cellSize;
@@ -85,7 +85,7 @@ void GameField::offsetControl()
      }
     }
 
-   if (clickLeft) {
+   if (clickLeft && x < 720) {
      int cx = x - drawDeltaX;
      int cy = y - drawDeltaY;
      int xIndex = cx / this->cellSize;

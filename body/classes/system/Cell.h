@@ -14,6 +14,7 @@ struct AnimLines;
 class Game;
 class ToOtherPlane;
 class Nation;
+class MagistralClaster;
 
 class TargetData
 {
@@ -166,7 +167,7 @@ public:
     int cellDrawIndex = 0;
     Array<Water> waters;
     Image *cellImage = nullptr;
-
+    MagistralClaster *mc = nullptr;
 private:
 };
 

@@ -56,6 +56,7 @@ public:
   
   ///////////////////////////////////////////////////
   Array<Cell> allCells;
+  Array<Array<MagistralClaster>> allMagistralClasters;
 
 
   bool thSpin = true;

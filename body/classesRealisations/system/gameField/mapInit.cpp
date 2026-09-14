@@ -33,4 +33,6 @@ void GameField::mapInit(Array<string> &array)
             arr.push(cell);
         } 
         this->field.push(arr); });
+
+
 }

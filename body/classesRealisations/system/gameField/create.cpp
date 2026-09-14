@@ -108,5 +108,38 @@ void GameField::create()
    this->getToOtherPlaneCellsNumber();
    this->getToTreeCellLineNumber();
    this->getCellImageCellDrawIndexCellUnitInit();
+
+////////////////////////////////////////////////////////////////// => magistral create
+        for (int ver = 1; ver < this->field.length; ver += 3) {
+            Array<Cell *> &vertical = this->field.getItemLnk(ver);
+            Array<MagistralClaster> mca;
+            this->game->allMagistralClasters.push(mca);
+            int index = this->game->allMagistralClasters.length - 1;
+            for (int hor = 1; hor < this->field.length; hor += 3) {
+                Cell *cell = vertical.getItem(hor);
+                MagistralClaster mc(cell);
+               // mca.push(mc);
+               this->game->allMagistralClasters.getItemLnk(index).push(mc);
+            }
+        }
+
+        
+       this->game->allMagistralClasters.forEach([this](Array<MagistralClaster> &mca, int ver){
+           mca.forEach([&ver, this, &mca](MagistralClaster &mc, int hor){
+              int currentVerUp = ver - 1;
+              int currentHorLeft = hor - 1;
+              int currentVerDown = ver + 1;
+              int currentHorRight = hor + 1;
+              mc.up = currentVerUp >= 0 ? this->game->allMagistralClasters.getItemLnk(currentVerUp).getItemPtr(hor) : nullptr;
+              mc.down = currentVerDown <= mca.length - 1 ? this->game->allMagistralClasters.getItemLnk(currentVerDown).getItemPtr(hor) : nullptr;
+              mc.left = currentHorLeft >= 0 ? this->game->allMagistralClasters.getItemLnk(ver).getItemPtr(currentHorLeft) : nullptr;
+              mc.right = currentHorRight <= mca.length - 1 ? this->game->allMagistralClasters.getItemLnk(ver).getItemPtr(currentHorRight) : nullptr;
+             mc.cells.forEach([&mc](Cell *c){
+               c->mc = &mc;
+             });
+           });
+       });
+
+
    this->init = true;
 };

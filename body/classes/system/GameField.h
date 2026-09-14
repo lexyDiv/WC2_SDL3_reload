@@ -92,6 +92,7 @@ public:
     Array<Fraction *> fractions;
 
     Array<Array<Cell *>> field;
+    Array<Array<MagistralClaster *>> magistralField;
 
     Array<Plane *> planes;
     Array<string> goldData;

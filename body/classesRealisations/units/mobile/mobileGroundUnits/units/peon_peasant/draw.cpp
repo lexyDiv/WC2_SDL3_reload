@@ -38,16 +38,29 @@ void Peon_peasant::draw()
         100,
         100);
 
-        if (this->focus && this->cell) {
+      //  if (this->focus && this->cell) {
+      //     MagistralClaster *mc = this->cell->mc;
+      //   ctx.StrokeRect(mc->x + drawDeltaX, mc->y + drawDeltaY, mc->gabarit, mc->gabarit, "red");
 
-                   this->way.forEach([&drawDeltaX, &drawDeltaY](Cell *c, int i){
-                    ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, c->game->gf->cellSize, c->game->gf->cellSize, "violet", 100);
-                   // ctx.StrokeRect(c->x + drawDeltaX, c->y + drawDeltaY, c->game->gf->cellSize, c->game->gf->cellSize, "black", 100);
-                   // ctx.DrawText(c->x + drawDeltaX, c->y + drawDeltaY, 20, to_string(i));
-                   });
+      //   ctx.StrokeRect(mc->up->x + drawDeltaX, mc->up->y + drawDeltaY, mc->gabarit, mc->gabarit, "red");
+      //   ctx.StrokeRect(mc->down->x + drawDeltaX, mc->down->y + drawDeltaY, mc->gabarit, mc->gabarit, "red");
+      //   ctx.StrokeRect(mc->left->x + drawDeltaX, mc->left->y + drawDeltaY, mc->gabarit, mc->gabarit, "red");
+      //   ctx.StrokeRect(mc->right->x + drawDeltaX, mc->right->y + drawDeltaY, mc->gabarit, mc->gabarit, "red");
+         
+      //  }
 
-   // ctx.FillRect(this->cell->x + drawDeltaX, this->cell->y + drawDeltaY, this->cell->game->gf->cellSize, this->cell->game->gf->cellSize, "blue", 100);
-        }
+
+
+  //       if (this->focus && this->cell) {
+
+  //                  this->way.forEach([&drawDeltaX, &drawDeltaY](Cell *c, int i){
+  //                   ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, c->game->gf->cellSize, c->game->gf->cellSize, "violet", 100);
+  //                  // ctx.StrokeRect(c->x + drawDeltaX, c->y + drawDeltaY, c->game->gf->cellSize, c->game->gf->cellSize, "black", 100);
+  //                  // ctx.DrawText(c->x + drawDeltaX, c->y + drawDeltaY, 20, to_string(i));
+  //                  });
+
+  //  // ctx.FillRect(this->cell->x + drawDeltaX, this->cell->y + drawDeltaY, this->cell->game->gf->cellSize, this->cell->game->gf->cellSize, "blue", 100);
+  //       }
 
   //       if (this->metka) {
   //         ctx.FillRect(this->cell->x + drawDeltaX, this->cell->y + drawDeltaY, this->cell->game->gf->cellSize, this->cell->game->gf->cellSize, "blue", 100);

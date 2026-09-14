@@ -1,5 +1,5 @@
 #include "Th.h"
-//=>system out
+//=>system MagistralClaster
 
 // class RefactorWayData
 // {

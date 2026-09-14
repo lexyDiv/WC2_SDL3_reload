@@ -14,4 +14,11 @@ void th_create()
                         Td_way_data twd;
                         cell->thwd.push(twd);
                      } }); });
+                     
+     game->allMagistralClasters.forEach([](Array<MagistralClaster> *mca){
+      mca->forEach([](MagistralClaster &mc){
+         Td_way_data_magistral twdm;
+         mc.thwd_mag.push(twdm);
+      });
+     });                
 };

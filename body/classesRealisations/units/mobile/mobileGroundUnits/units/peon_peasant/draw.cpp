@@ -42,10 +42,16 @@ void Peon_peasant::draw()
       //     MagistralClaster *mc = this->cell->mc;
       //   ctx.StrokeRect(mc->x + drawDeltaX, mc->y + drawDeltaY, mc->gabarit, mc->gabarit, "red");
 
-      //   ctx.StrokeRect(mc->up->x + drawDeltaX, mc->up->y + drawDeltaY, mc->gabarit, mc->gabarit, "red");
-      //   ctx.StrokeRect(mc->down->x + drawDeltaX, mc->down->y + drawDeltaY, mc->gabarit, mc->gabarit, "red");
-      //   ctx.StrokeRect(mc->left->x + drawDeltaX, mc->left->y + drawDeltaY, mc->gabarit, mc->gabarit, "red");
-      //   ctx.StrokeRect(mc->right->x + drawDeltaX, mc->right->y + drawDeltaY, mc->gabarit, mc->gabarit, "red");
+      //   this->cell->mc->cells.forEach([&drawDeltaX, &drawDeltaY](Cell *c){
+      //     if (c->thwd.getItemPtr(0)->createCountData == thDatas.getItem(0)->createCount) {
+      //       ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, c->game->gf->cellSize, c->game->gf->cellSize, "violet", 100);
+      //     }
+      //   });
+
+      //   // ctx.StrokeRect(mc->up->x + drawDeltaX, mc->up->y + drawDeltaY, mc->gabarit, mc->gabarit, "red");
+      //   // ctx.StrokeRect(mc->down->x + drawDeltaX, mc->down->y + drawDeltaY, mc->gabarit, mc->gabarit, "red");
+      //   // ctx.StrokeRect(mc->left->x + drawDeltaX, mc->left->y + drawDeltaY, mc->gabarit, mc->gabarit, "red");
+      //   // ctx.StrokeRect(mc->right->x + drawDeltaX, mc->right->y + drawDeltaY, mc->gabarit, mc->gabarit, "red");
          
       //  }
 

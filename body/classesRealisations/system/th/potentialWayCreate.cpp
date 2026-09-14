@@ -1,5 +1,5 @@
 #include "get_H.cpp"
-//=>out
+//=>createMagistralWay
 
 void ThData::potentialWayCreate(Unit *unit, Cell *finalCell) {
     Cell *uc = unit->cell;

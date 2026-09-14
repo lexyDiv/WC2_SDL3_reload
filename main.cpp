@@ -31,8 +31,8 @@ int main()
 
     Array<int> deltas;
 
-    for (int i = 0; i //< 1;
-       < th_count;
+    for (int i = 0; i < 1;
+      // < th_count;
          i++)
     {
         ThData *td = new ThData(i);

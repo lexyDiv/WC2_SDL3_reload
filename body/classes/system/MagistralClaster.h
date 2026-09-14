@@ -11,7 +11,8 @@ public:
     int G = 0.0F;
     double explored = 0;
     double procCurr = 0;
-    Cell *wayFather = nullptr;
+    MagistralClaster *wayFather = nullptr;
+    Array<Cell *> validCellsForWayFather;
 
     Array<Td_way_data_magistral *> bad;
 };
@@ -31,9 +32,19 @@ class MagistralClaster {
     int gabarit = 0;
     Cell *centralCell = nullptr;
     Array<Cell *> cells;
+   // Array<Cell *> validCellsToFather;
     MagistralClaster *up = nullptr;
     MagistralClaster *down = nullptr;
     MagistralClaster *left = nullptr;
     MagistralClaster *right = nullptr;
     Array<Td_way_data_magistral> thwd_mag;
+    MagistralClaster *father = nullptr;
+
+    Array<Cell *> upHor;
+    Array<Cell *> midHor;
+    Array<Cell *> downHor;
+
+    Array<Cell *> leftVer;
+    Array<Cell *> midVer;
+    Array<Cell *> rightVer;
 };

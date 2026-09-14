@@ -17,7 +17,7 @@ public:
     int deep = 30000;
     int iter = 0;
 
-    double createCount = 0;
+    double createCount = 0.1;
     double procCurr = 0;
 
 
@@ -27,9 +27,13 @@ public:
     Cell *min_F_cell = nullptr;
     Cell *globalMin_H_cell = nullptr;
 
+    MagistralClaster *min_F_mc = nullptr;
+    MagistralClaster *globalMin_H_mc = nullptr;
+
     Array<ThData *> *thds = nullptr;
     Array<Unit *> dopUnits;
     Array<Cell *> openArr;
+    Array<MagistralClaster *> openArrMag;
 
     void createMyActiveProgZone(int pathesLength);
     void process();
@@ -45,6 +49,12 @@ public:
 
     int get_G(Cell *fatherCell, Cell *potentialCell);
     int get_H(Cell *potentialCell, Cell *finishCell);
+    ////////////////////////////////// => magistral
+
+    void createMagistralWay(Unit *unit);
+    void exploreNewMagClasterAndAddToOpenArr(Unit *unit, MagistralClaster *mcFather);
+    int get_GMagistral(MagistralClaster *fatherMc, MagistralClaster *potentialMc);
+    int get_HMagistral(MagistralClaster *potentialMc, MagistralClaster *finishMc);
 };
 
 Array<ThData *> thDatas;

@@ -3,8 +3,12 @@
 
 void ThData::magistrallWayCreate(Unit *unit, MagistralClaster *finalMc)
 {
+    console.log("CREATE");
     // Cell *uc = unit->cell;
     MagistralClaster *umc = unit->cell->mc;
+
+unit->targetData.magistralWay.push(unit->cell);
+
     if (umc &&
         umc != finalMc)
     {
@@ -23,7 +27,7 @@ void ThData::magistrallWayCreate(Unit *unit, MagistralClaster *finalMc)
             {
 
                 nextMc = nextMc->thwd_mag.getItemPtr(this->num)->wayFather;
-                // unit->way.push(nextCell);
+                 
                 if (index % 4 == 0)
                 {
                     unit->targetData.magistralWay.push(nextMc->centralCell);
@@ -33,13 +37,14 @@ void ThData::magistrallWayCreate(Unit *unit, MagistralClaster *finalMc)
             }
             else
             {
-                unit->targetData.magistralWay.push(unit->targetData.clicckedCell);
+               // unit->targetData.magistralWay.push(unit->targetData.clicckedCell);
                 // unit->isPotentialWayComplite = true; // ????????????????????????????????????????????????????????
                 break;
             }
         }
     }
 
+    
     unit->targetData.magistralWay.push(unit->targetData.clicckedCell);
 
     //   unit->wayIndex = unit->way.length;

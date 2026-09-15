@@ -134,11 +134,6 @@ void ThData::createMagistralWay(Unit *unit)
                 this->magistrallWayCreate(unit, this->globalMin_H_mc);
                 console.log("bad iter = " + to_string(iter));
             }
-            // else
-            // {
-            //     this->magistrallWayCreate(unit, this->globalMin_H_mc);
-            //     console.log("bad iter = " + to_string(iter));
-            // }
             return;
         }
         ///////////////////////////////////////////////////
@@ -160,12 +155,6 @@ void ThData::createMagistralWay(Unit *unit)
             console.log("good iter = " + to_string(iter));
             return;
         }
-
-        // if (iter == 41) {
-        //     this->magistrallWayCreate(unit, this->min_F_mc);
-        //     console.log("special");
-        //     return;
-        // }
 
         this->iter++;
     }

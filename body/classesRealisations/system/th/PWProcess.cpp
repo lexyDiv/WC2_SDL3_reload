@@ -46,7 +46,7 @@ void ThData::PWProcess()
         {
             Uint64 before = SDL_GetTicks();
            // this->createPotentialWay(unit);
-           this->createMagistralWay(unit);
+            this->createMagistralWay(unit);
             unit->isPotentialWayComplite = true;
             Uint64 past = SDL_GetTicks();
             int res = past - before;

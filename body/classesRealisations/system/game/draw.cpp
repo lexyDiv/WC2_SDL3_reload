@@ -4,15 +4,17 @@
 void Game::draw()
 {
 
-    if (!this->isGFComplite) {return;}
+    if (!this->isGFComplite)
+    {
+        return;
+    }
 
-   // ctx.CreateDrawZone(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT);
-  //  ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "black");
+    // ctx.CreateDrawZone(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT);
+    //  ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "black");
 
     ctx.CreateDrawZone(this->gf->x, this->gf->y, this->gf->screenWidth, this->gf->screenHeight);
 
-
-ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "green");
+    ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "green");
     if (this->gf->drawCell != nullptr)
     {
         float drawDeltaX = this->gf->drawDeltaX;
@@ -30,8 +32,8 @@ ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "green");
         Cell *dc = this->gf->drawCell;
 
         dc->cellsOnDraw.forEach([drawDeltaY, &DA, &max](Array<Cell *> &drawLine)
-                                                { drawLine.forEach([drawDeltaY, &DA, &max](Cell *cell)
-                                                                   {
+                                { drawLine.forEach([drawDeltaY, &DA, &max](Cell *cell)
+                                                   {
                     cell->draw();
                     Unit *groundUnit = cell->groundUnit;
                     if (groundUnit && !groundUnit->isAddOnDraw
@@ -42,36 +44,28 @@ ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "green");
                        Array<Unit *> &line = DA.getItemLnk(index);                    
                         line.push(groundUnit);
                        max.push(index);
-                    } 
-                }); });
+                    } }); });
 
         dc->cellsOnDraw.forEach([drawDeltaY, &DA, &max](Array<Cell *> &drawLine)
-                                                { drawLine.forEach([drawDeltaY, &DA, &max](Cell *cell)
-                                                                   {
-                      cell->ripUnits.forEach([](Unit* trup){
-                        trup->drawTrup();
-                      });
-               
-                     }); });
+                                { drawLine.forEach([drawDeltaY, &DA, &max](Cell *cell)
+                                                   {
+                                                       cell->ripUnits.forEach([](Unit *trup)
+                                                                              { trup->drawTrup(); });
+                                                   }); });
 
         DA.forEach([](Array<Unit *> &line)
                    { line.forEach([](Unit *unit)
-                                  { 
-                                    unit->draw(); 
-                                }); });
+                                  { unit->draw(); }); });
 
+        //                     dc->cellsOnDraw.forEach([drawDeltaY, &DA, &max, this](Array<Cell *> &drawLine)
+        //                             { drawLine.forEach([drawDeltaY, &DA, &max, this](Cell *cell)
+        //                                                {
 
-                    //                     dc->cellsOnDraw.forEach([drawDeltaY, &DA, &max, this](Array<Cell *> &drawLine)
-                    //                             { drawLine.forEach([drawDeltaY, &DA, &max, this](Cell *cell)
-                    //                                                {
+        //   float drawDeltaX = this->gf->drawDeltaX;
+        //   float drawDeltaY = this->gf->drawDeltaY;
+        //   ctx.DrawText(cell->x +drawDeltaX, cell->y + drawDeltaY, 20, to_string(cell->activeZoneIndex));
 
-                    //   float drawDeltaX = this->gf->drawDeltaX;
-                    //   float drawDeltaY = this->gf->drawDeltaY;
-                    //   ctx.DrawText(cell->x +drawDeltaX, cell->y + drawDeltaY, 20, to_string(cell->activeZoneIndex));
-                             
-                    //  }); });
-
-                             
+        //  }); });
 
         /////////  setka
         // this->gf->drawCell->cellsOnDraw.forEach([drawDeltaX, drawDeltaY](Array<ProtoObj *> drawLine)
@@ -81,7 +75,6 @@ ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "green");
         //                                                           //  ctx.DrawText(cell->x + drawDeltaX, cell->y + drawDeltaY + 10, 10, "v= " + to_string((int)cell->ver));
         //                                                           //  ctx.DrawText(cell->x + drawDeltaX, cell->y + drawDeltaY + 20, 10, "h= " + to_string((int)cell->hor));
         //                                                             }); });
-
 
         // /////////////// zone
         // FieldClick *fcp = this->gf->fieldClickPoint;
@@ -94,7 +87,6 @@ ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "green");
         // }
         // /////////////// zone
 
-
         // ThData *thd = thDatas.getItem(0);
         // thd->openArrMag.forEach([&drawDeltaX, &drawDeltaY, this](MagistralClaster *mc){
         //    ctx.StrokeRect(mc->x + drawDeltaX, mc->y + drawDeltaY, mc->gabarit, mc->gabarit, "red");
@@ -105,26 +97,34 @@ ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "green");
 
         if (this->gf->focusUnit) {
             Unit *u = this->gf->focusUnit;
-            u->targetData.magistralWay.forEach([&drawDeltaX, &drawDeltaY, this](MagistralClaster *mc){
-            ctx.FillRect(mc->x + drawDeltaX, mc->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "violet", 100);
+            u->targetData.magistralWay.forEach([&drawDeltaX, &drawDeltaY, this](MagistralClaster *mc, int i){
+            ctx.FillRect(mc->x + drawDeltaX, mc->y + drawDeltaY, mc->gabarit, mc->gabarit, "violet", 50);
+            ctx.StrokeRect(mc->x + drawDeltaX, mc->y + drawDeltaY, mc->gabarit, mc->gabarit, "blue", 50);
+            ctx.DrawText(mc->x + 40 + i + drawDeltaX, mc->y + 40 + i + drawDeltaY, 20, to_string(i));
             });
         }
 
-     
+        // this->allMagistralClasters.forEach([&drawDeltaX, &drawDeltaY, this](Array<MagistralClaster> &mca)
+        //                                    { mca.forEach([&drawDeltaX, &drawDeltaY, this](MagistralClaster &mc)
+        //                                                  {
+        //                      ctx.FillRect(mc.x + drawDeltaX, mc.y + drawDeltaY, mc.gabarit, mc.gabarit, "violet", 100);
+        //      ctx.DrawText(mc.x + drawDeltaX, mc.y + drawDeltaY, 20, to_string(mc.ver)); }); });
 
-    ctx.CreateDrawZone(0, 0, this->gf->screenWidth, ctx.SCREEN_HEIGHT - this->gf->screenHeight);
-    ctx.FillRect(0, 0, this->gf->screenWidth, ctx.SCREEN_HEIGHT - this->gf->screenHeight, "black");
 
-    ctx.CreateDrawZone(this->gf->screenWidth, 0, 324, ctx.SCREEN_HEIGHT);
-    ctx.FillRect(this->gf->screenWidth, 0, 324, ctx.SCREEN_HEIGHT, "black");
 
-  //  this->fonMenuDraw();
-    this->gf->miniMapDraw();
+        ctx.CreateDrawZone(0, 0, this->gf->screenWidth, ctx.SCREEN_HEIGHT - this->gf->screenHeight);
+        ctx.FillRect(0, 0, this->gf->screenWidth, ctx.SCREEN_HEIGHT - this->gf->screenHeight, "black");
 
-   // this->objMenu->draw();
+        ctx.CreateDrawZone(this->gf->screenWidth, 0, 324, ctx.SCREEN_HEIGHT);
+        ctx.FillRect(this->gf->screenWidth, 0, 324, ctx.SCREEN_HEIGHT, "black");
 
-    ctx.CreateDrawZone(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT);
-     
-   // ctx.FillRect(gf->dx, gf->dy, 3, 3, "blue");
-                            }
+        //  this->fonMenuDraw();
+        this->gf->miniMapDraw();
+
+        // this->objMenu->draw();
+
+        ctx.CreateDrawZone(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT);
+
+        // ctx.FillRect(gf->dx, gf->dy, 3, 3, "blue");
+    }
 }

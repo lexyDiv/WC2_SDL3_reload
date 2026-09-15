@@ -24,6 +24,8 @@ public:
     bool isBasicActiveProgComplite = true;
     bool isDopActiveProgComplite = true;
 
+    bool magOK = false;
+
     Cell *min_F_cell = nullptr;
     Cell *globalMin_H_cell = nullptr;
 

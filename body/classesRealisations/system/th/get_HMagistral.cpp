@@ -11,5 +11,5 @@ int ThData::get_HMagistral(MagistralClaster *potentialMc, MagistralClaster *fini
     int deltaHor = abs(finHor - pHor);
     int deltaVer = abs(finVer - pVer);
 
-    return deltaHor + deltaVer;
+    return (deltaHor + deltaVer) * 10;
 }

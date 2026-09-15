@@ -12,6 +12,7 @@ public:
     double explored = 0;
     double procCurr = 0;
     MagistralClaster *wayFather = nullptr;
+    bool addOnWay = false;
     Array<Cell *> validCellsForWayFather;
 
     Array<Td_way_data_magistral *> bad;

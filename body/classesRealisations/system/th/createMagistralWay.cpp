@@ -1,10 +1,10 @@
 #include "potentialWayCreate.cpp"
 //=>exploreNewMagistral
 
-void veer(Cell *cell, double &createCount, int &thdIndex)
+void veer(Unit *unit, double &createCount, int &thdIndex)
 {
 
-    Cell *c = cell;
+    Cell *c = unit->cell;
     c->thwd.getItemPtr(thdIndex)->createCountData = createCount;
     Array<Cell *> cells;
     cells.push(c);
@@ -18,8 +18,8 @@ void veer(Cell *cell, double &createCount, int &thdIndex)
 
             if (c && ac &&
                 ac->mc == c->mc &&
-                !ac->groundUnit &&
-                ac->plane == cell->plane &&
+                (!ac->groundUnit || ac->groundUnit == unit)  &&
+                ac->plane == unit->cell->plane &&
                 ac->thwd.getItemPtr(thdIndex)->createCountData != createCount)
             {
                 cells.push(ac);
@@ -84,14 +84,15 @@ void ThData::createMagistralWay(Unit *unit)
     this->min_F_mc->thwd_mag.getItemPtr(this->num)->H = 0;
     this->min_F_mc->thwd_mag.getItemPtr(this->num)->G = 0;
     this->globalMin_H_mc = nullptr;
+    this->openArrMag.push(this->min_F_mc);
+    // if (unit->)
 
     ///////////////////////// first crox haldler
-    veer(unit->cell, createCount, this->num);
+    veer(unit, createCount, this->num);
 
     while (true)
     {
 
-        
         MinDataMag md;
 
         this->exploreNewMagClasterAndAddToOpenArr(unit, this->min_F_mc);
@@ -140,114 +141,31 @@ void ThData::createMagistralWay(Unit *unit)
 
         MagistralClaster *mcTarget = unit->targetData.clicckedCell->mc;
 
-        if (this->min_F_mc == mcTarget ||
-            this->min_F_mc->left == mcTarget ||
-            this->min_F_mc->right == mcTarget ||
-            this->min_F_mc->up == mcTarget ||
-            this->min_F_mc->down == mcTarget)
+        if (
+            (unit->targetData.clicckedCell->thwd.getItemPtr(this->num)->createCountData == this->createCount ||
+          iter >= 3) &&
+            (this->min_F_mc == mcTarget ||
+             this->min_F_mc->left == mcTarget ||
+             this->min_F_mc->right == mcTarget ||
+             this->min_F_mc->up == mcTarget ||
+             this->min_F_mc->down == mcTarget)
+            )
         {
             this->magistrallWayCreate(unit, this->min_F_mc);
             unit->isPotentialWayComplite = true;
             console.log("good iter = " + to_string(iter));
-            break;
-
-            
+            return;
         }
 
-        // if (unit->isOnGetPotentialWayGetTarget(this->min_F_cell))
-        // {
-        //     this->potentialWayCreate(unit, this->min_F_cell);
-        //     unit->isPotentialWayComplite = true;
-        //     break;
+
+        // if (iter == 41) {
+        //     this->magistrallWayCreate(unit, this->min_F_mc);
+        //     console.log("special");
+        //     return;
         // }
 
-      //  console.log("wery bad iter = " + to_string(iter));
 
-    //   if (iter == 2) {
-    //     return;
-    //   }
 
-      this->iter++;
+        this->iter++;
     }
-
-    ////////////////////////
-
-    // this->min_F_cell = unit->cell;
-    // this->min_F_cell->thwd.getItemPtr(this->num)->F = 0;
-    // this->min_F_cell->thwd.getItemPtr(this->num)->H = 0;
-    // this->min_F_cell->thwd.getItemPtr(this->num)->G = 0;
-    // this->globalMin_H_cell = nullptr;
-
-    ///////////////////////////  poka tak!
-
-    // unit->cell->aroundCells.forEach([this, unit](Cell *cell)
-    //                                 {
-    //         Unit *gu = cell->groundUnit;
-    //         if (gu
-    //         && gu != unit->targetData.unit //unit->targetCell->groundUnit
-    //         ) {
-    //             cell->thwd.getItemPtr(this->num)->explored = this->createCount;
-    //         } });
-
-    // while (true)
-    // {
-
-    //     this->iter++;
-
-    //     MinData md;
-
-    //     for (int i = 0; i < this->min_F_cell->aroundCells.length; i++)
-    //     {
-    //         Cell *pc = this->min_F_cell->aroundCells.getItem(i);
-    //         this->exploreNewCellAndAddToOpenArr(unit, this->min_F_cell, pc);
-    //     }
-
-    //     if (this->openArr.length && this->iter < currentDeep)
-    //     {
-    //         int index = this->openArr.length - 1;
-    //         md.cell = this->openArr.getItem(this->openArr.length - 1);
-    //         md.index = index;
-    //         for (int i = index; i >= 0; i--)
-    //         {
-    //             Cell *cell = this->openArr.getItem(i);
-    //             if (md.cell->thwd.getItemPtr(this->num)->F >= cell->thwd.getItemPtr(this->num)->F)
-    //             {
-    //                 md.cell = cell;
-    //                 md.index = i;
-    //                 if (cell->thwd.getItemPtr(this->num)->F < this->min_F_cell->thwd.getItemPtr(this->num)->F)
-    //                 {
-    //                     break;
-    //                 }
-    //             }
-    //         }
-    //         this->openArr.splice(md.index, 1);
-
-    //         this->min_F_cell = md.cell;
-    //         this->min_F_cell->thwd.getItemPtr(this->num)->explored = this->createCount;
-    //         if (!this->globalMin_H_cell || this->globalMin_H_cell->thwd.getItemPtr(this->num)->H > this->min_F_cell->thwd.getItemPtr(this->num)->H)
-    //         {
-    //             this->globalMin_H_cell = this->min_F_cell;
-    //         }
-    //     }
-    //     else
-    //     {
-    //         if (!this->globalMin_H_cell)
-    //         {
-    //         }
-    //         else
-    //         {
-    //             this->potentialWayCreate(unit, this->globalMin_H_cell);
-    //         }
-    //         return;
-    //     }
-
-    //     ///////////////////////////////////////////////////////
-
-    //     if (unit->isOnGetPotentialWayGetTarget(this->min_F_cell))
-    //     {
-    //         this->potentialWayCreate(unit, this->min_F_cell);
-    //         unit->isPotentialWayComplite = true;
-    //         break;
-    //     }
-    // }
 };

@@ -6,8 +6,8 @@ void ThData::exploreNewMagClasterAndAddToOpenArr(Unit *unit, MagistralClaster *m
     // mcFather->thwd_mag.getItemPtr(this->num)->explored = this->createCount; => Here or not ???
 
     MagistralClaster *left = mcFather->left &&
-                                     mcFather->left->thwd_mag.getItemPtr(this->num)->createCountData != this->createCount &&
-                                     mcFather->left->thwd_mag.getItemPtr(this->num)->explored != this->createCount
+                                    // mcFather->left->thwd_mag.getItemPtr(this->num)->createCountData != this->createCount &&
+                                     (mcFather->left->thwd_mag.getItemPtr(this->num)->explored != this->createCount)
                                  ? mcFather->left
                                  : nullptr;
     if (left)
@@ -56,7 +56,7 @@ void ThData::exploreNewMagClasterAndAddToOpenArr(Unit *unit, MagistralClaster *m
     ////////////////////////////////////////////////////////////////////////
 
     MagistralClaster *right = mcFather->right &&
-                                      mcFather->right->thwd_mag.getItemPtr(this->num)->createCountData != this->createCount &&
+                                    //  mcFather->right->thwd_mag.getItemPtr(this->num)->createCountData != this->createCount &&
                                       mcFather->right->thwd_mag.getItemPtr(this->num)->explored != this->createCount
                                   ? mcFather->right
                                   : nullptr;
@@ -104,7 +104,7 @@ void ThData::exploreNewMagClasterAndAddToOpenArr(Unit *unit, MagistralClaster *m
     ////////////////////////////////////////////////////////////////////////////////////////
 
     MagistralClaster *up = mcFather->up &&
-                                   mcFather->up->thwd_mag.getItemPtr(this->num)->createCountData != this->createCount &&
+                                  // mcFather->up->thwd_mag.getItemPtr(this->num)->createCountData != this->createCount &&
                                    mcFather->up->thwd_mag.getItemPtr(this->num)->explored != this->createCount
                                ? mcFather->up
                                : nullptr;
@@ -151,7 +151,7 @@ void ThData::exploreNewMagClasterAndAddToOpenArr(Unit *unit, MagistralClaster *m
     }
     ///////////////////////////////////////////////////////////////////////////////////////////
     MagistralClaster *down = mcFather->down &&
-                                     mcFather->down->thwd_mag.getItemPtr(this->num)->createCountData != this->createCount &&
+                                    // mcFather->down->thwd_mag.getItemPtr(this->num)->createCountData != this->createCount &&
                                      mcFather->down->thwd_mag.getItemPtr(this->num)->explored != this->createCount
                                  ? mcFather->down
                                  : nullptr;

@@ -11,7 +11,9 @@ void ThData::magistrallWayCreate(Unit *unit, MagistralClaster *finalMc)
         //Cell *nextCell = finalCell;
         MagistralClaster *nextMc = finalMc;
        // unit->way.push(nextCell);
-       unit->targetData.magistralWay.push(nextMc);
+      // unit->targetData.magistralWay.push(nextMc);
+
+       int index = 0;
 
         while (true)
         {
@@ -19,9 +21,14 @@ void ThData::magistrallWayCreate(Unit *unit, MagistralClaster *finalMc)
             if (nextMc->thwd_mag.getItemPtr(this->num)->wayFather &&
                 nextMc->thwd_mag.getItemPtr(this->num)->wayFather != umc)
             {
+
                 nextMc = nextMc->thwd_mag.getItemPtr(this->num)->wayFather;
                // unit->way.push(nextCell);
-               unit->targetData.magistralWay.push(nextMc);
+               if (index % 4 == 0) {
+                unit->targetData.magistralWay.push(nextMc);
+               }
+
+               index++;
             }
             else
             {

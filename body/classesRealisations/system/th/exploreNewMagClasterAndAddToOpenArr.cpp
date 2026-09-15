@@ -6,7 +6,7 @@ void ThData::exploreNewMagClasterAndAddToOpenArr(Unit *unit, MagistralClaster *m
     // mcFather->thwd_mag.getItemPtr(this->num)->explored = this->createCount; => Here or not ???
 
     MagistralClaster *left = mcFather->left &&
-                                    // mcFather->left->thwd_mag.getItemPtr(this->num)->createCountData != this->createCount &&
+                                     // mcFather->left->thwd_mag.getItemPtr(this->num)->createCountData != this->createCount &&
                                      (mcFather->left->thwd_mag.getItemPtr(this->num)->explored != this->createCount)
                                  ? mcFather->left
                                  : nullptr;
@@ -19,15 +19,22 @@ void ThData::exploreNewMagClasterAndAddToOpenArr(Unit *unit, MagistralClaster *m
         mcFather->leftVer.forEach([this, left, thwd_magLeft, unit](Cell *c)
                                   {           
             if (c && 
-                c->plane == unit->cell->plane &&
-                c->thwd.getItemPtr(this->num)->createCountData == this->createCount ) {
-                
+               // c->plane == unit->cell->plane &&
+                c->thwd.getItemPtr(this->num)->createCountData == this->createCount //&&
+               // unit->isNewCellOnGetWayValide(c, iter)
+             ) {
                  c->aroundCells.forEach([&left, this, thwd_magLeft, unit](Cell *ac){
                     if (ac->mc == left &&
-                        !ac->groundUnit &&
-                        ac->plane == unit->cell->plane &&
-                        ac->thwd.getItemPtr(this->num)->createCountData != this->createCount
+                       // !ac->groundUnit &&
+                       // ac->plane == unit->cell->plane &&
+                        ac->thwd.getItemPtr(this->num)->createCountData != this->createCount &&
+                        unit->isNewCellOnGetWayValide(ac, iter)
                     ) {
+  
+                        if (unit->isOnGetPotentialWayGetTarget(ac)) {
+                            this->magOK = true;
+                        }
+
                         thwd_magLeft->validCellsForWayFather.push(ac);
                         ac->thwd.getItemPtr(this->num)->createCountData = this->createCount;
                     }
@@ -56,7 +63,7 @@ void ThData::exploreNewMagClasterAndAddToOpenArr(Unit *unit, MagistralClaster *m
     ////////////////////////////////////////////////////////////////////////
 
     MagistralClaster *right = mcFather->right &&
-                                    //  mcFather->right->thwd_mag.getItemPtr(this->num)->createCountData != this->createCount &&
+                                      //  mcFather->right->thwd_mag.getItemPtr(this->num)->createCountData != this->createCount &&
                                       mcFather->right->thwd_mag.getItemPtr(this->num)->explored != this->createCount
                                   ? mcFather->right
                                   : nullptr;
@@ -68,15 +75,21 @@ void ThData::exploreNewMagClasterAndAddToOpenArr(Unit *unit, MagistralClaster *m
         mcFather->rightVer.forEach([this, right, thwd_magRight, unit](Cell *c)
                                    {           
             if (c && 
-                c->plane == unit->cell->plane &&
-                c->thwd.getItemPtr(this->num)->createCountData == this->createCount ) {
+               // c->plane == unit->cell->plane &&
+                c->thwd.getItemPtr(this->num)->createCountData == this->createCount //&&
+           // unit->isNewCellOnGetWayValide(c, iter)
+         ) {
                 
                  c->aroundCells.forEach([&right, this, thwd_magRight, unit](Cell *ac){
                     if (ac->mc == right &&
-                        !ac->groundUnit &&
-                        ac->plane == unit->cell->plane &&
-                        ac->thwd.getItemPtr(this->num)->createCountData != this->createCount
+                       // !ac->groundUnit &&
+                       // ac->plane == unit->cell->plane &&
+                        ac->thwd.getItemPtr(this->num)->createCountData != this->createCount &&
+                        unit->isNewCellOnGetWayValide(ac, iter)
                     ) {
+                        if (unit->isOnGetPotentialWayGetTarget(ac)) {
+                            this->magOK = true;
+                        }
                         thwd_magRight->validCellsForWayFather.push(ac);
                         ac->thwd.getItemPtr(this->num)->createCountData = this->createCount;
                     }
@@ -104,7 +117,7 @@ void ThData::exploreNewMagClasterAndAddToOpenArr(Unit *unit, MagistralClaster *m
     ////////////////////////////////////////////////////////////////////////////////////////
 
     MagistralClaster *up = mcFather->up &&
-                                  // mcFather->up->thwd_mag.getItemPtr(this->num)->createCountData != this->createCount &&
+                                   // mcFather->up->thwd_mag.getItemPtr(this->num)->createCountData != this->createCount &&
                                    mcFather->up->thwd_mag.getItemPtr(this->num)->explored != this->createCount
                                ? mcFather->up
                                : nullptr;
@@ -116,15 +129,23 @@ void ThData::exploreNewMagClasterAndAddToOpenArr(Unit *unit, MagistralClaster *m
         mcFather->upHor.forEach([this, up, thwd_magUp, unit](Cell *c)
                                 {           
             if (c && 
-                c->plane == unit->cell->plane &&
-                c->thwd.getItemPtr(this->num)->createCountData == this->createCount ) {
+               // c->plane == unit->cell->plane &&
+                c->thwd.getItemPtr(this->num)->createCountData == this->createCount //&&
+           // unit->isNewCellOnGetWayValide(c, iter) 
+        ) {
                 
                  c->aroundCells.forEach([&up, this, thwd_magUp, unit](Cell *ac){
                     if (ac->mc == up &&
-                        !ac->groundUnit &&
-                        ac->plane == unit->cell->plane &&
-                        ac->thwd.getItemPtr(this->num)->createCountData != this->createCount
+                       // !ac->groundUnit &&
+                       // ac->plane == unit->cell->plane &&
+                        ac->thwd.getItemPtr(this->num)->createCountData != this->createCount &&
+                        unit->isNewCellOnGetWayValide(ac, iter)
                     ) {
+
+                        if (unit->isOnGetPotentialWayGetTarget(ac)) {
+                            this->magOK = true;
+                        }
+
                         thwd_magUp->validCellsForWayFather.push(ac);
                         ac->thwd.getItemPtr(this->num)->createCountData = this->createCount;
                     }
@@ -151,7 +172,7 @@ void ThData::exploreNewMagClasterAndAddToOpenArr(Unit *unit, MagistralClaster *m
     }
     ///////////////////////////////////////////////////////////////////////////////////////////
     MagistralClaster *down = mcFather->down &&
-                                    // mcFather->down->thwd_mag.getItemPtr(this->num)->createCountData != this->createCount &&
+                                     // mcFather->down->thwd_mag.getItemPtr(this->num)->createCountData != this->createCount &&
                                      mcFather->down->thwd_mag.getItemPtr(this->num)->explored != this->createCount
                                  ? mcFather->down
                                  : nullptr;
@@ -163,15 +184,23 @@ void ThData::exploreNewMagClasterAndAddToOpenArr(Unit *unit, MagistralClaster *m
         mcFather->downHor.forEach([this, down, thwd_magDown, unit](Cell *c)
                                   {           
             if (c && 
-                c->plane == unit->cell->plane &&
-                c->thwd.getItemPtr(this->num)->createCountData == this->createCount ) {
+                //c->plane == unit->cell->plane &&
+                c->thwd.getItemPtr(this->num)->createCountData == this->createCount //&&
+          //  unit->isNewCellOnGetWayValide(c, iter) 
+        ) {
                 
                  c->aroundCells.forEach([&down, this, thwd_magDown, unit](Cell *ac){
                     if (ac->mc == down &&
-                        ac->plane == unit->cell->plane &&
-                        !ac->groundUnit &&
-                        ac->thwd.getItemPtr(this->num)->createCountData != this->createCount
+                       // ac->plane == unit->cell->plane &&
+                       // !ac->groundUnit &&
+                        ac->thwd.getItemPtr(this->num)->createCountData != this->createCount &&
+                        unit->isNewCellOnGetWayValide(ac, iter)
                     ) {
+
+                        if (unit->isOnGetPotentialWayGetTarget(ac)) {
+                            this->magOK = true;
+                        }
+
                         thwd_magDown->validCellsForWayFather.push(ac);
                         ac->thwd.getItemPtr(this->num)->createCountData = this->createCount;
                     }
@@ -184,7 +213,7 @@ void ThData::exploreNewMagClasterAndAddToOpenArr(Unit *unit, MagistralClaster *m
             thwd_magDown->createCountData = this->createCount;
             veerArr(thwd_magDown->validCellsForWayFather, this->createCount, this->num);
             this->openArrMag.push(down);
-                        //////////////////////////////////////
+            //////////////////////////////////////
 
             int G = this->get_GMagistral();
             int H = this->get_HMagistral(down, unit->targetData.clicckedCell->mc);

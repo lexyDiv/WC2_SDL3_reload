@@ -18,7 +18,7 @@ void veer(Unit *unit, double &createCount, int &thdIndex)
 
             if (c && ac &&
                 ac->mc == c->mc &&
-                (!ac->groundUnit || ac->groundUnit == unit)  &&
+                (!ac->groundUnit || ac->groundUnit == unit) &&
                 ac->plane == unit->cell->plane &&
                 ac->thwd.getItemPtr(thdIndex)->createCountData != createCount)
             {
@@ -98,7 +98,9 @@ void ThData::createMagistralWay(Unit *unit)
         this->exploreNewMagClasterAndAddToOpenArr(unit, this->min_F_mc);
 
         ////////////////////////////////////////////////////
-        if (this->openArrMag.length && this->iter < currentDeep)
+        if (this->openArrMag.length
+            // && this->iter < currentDeep
+        )
         {
             int index = this->openArrMag.length - 1;
             md.mc = this->openArrMag.getItem(this->openArrMag.length - 1);
@@ -129,42 +131,41 @@ void ThData::createMagistralWay(Unit *unit)
         {
             if (!this->globalMin_H_mc)
             {
-            }
-            else
-            {
                 this->magistrallWayCreate(unit, this->globalMin_H_mc);
                 console.log("bad iter = " + to_string(iter));
             }
+            // else
+            // {
+            //     this->magistrallWayCreate(unit, this->globalMin_H_mc);
+            //     console.log("bad iter = " + to_string(iter));
+            // }
             return;
         }
         ///////////////////////////////////////////////////
 
         MagistralClaster *mcTarget = unit->targetData.clicckedCell->mc;
 
-        if (
-            (unit->targetData.clicckedCell->thwd.getItemPtr(this->num)->createCountData == this->createCount ||
-          iter >= 3) &&
-            (this->min_F_mc == mcTarget ||
-             this->min_F_mc->left == mcTarget ||
-             this->min_F_mc->right == mcTarget ||
-             this->min_F_mc->up == mcTarget ||
-             this->min_F_mc->down == mcTarget)
-            )
+        if (this->magOK ||
+            ((unit->targetData.clicckedCell->thwd.getItemPtr(this->num)->createCountData == this->createCount ||
+              iter >= 3) &&
+             (this->min_F_mc == mcTarget ||
+              this->min_F_mc->left == mcTarget ||
+              this->min_F_mc->right == mcTarget ||
+              this->min_F_mc->up == mcTarget ||
+              this->min_F_mc->down == mcTarget)))
         {
+            this->magOK = false;
             this->magistrallWayCreate(unit, this->min_F_mc);
             unit->isPotentialWayComplite = true;
             console.log("good iter = " + to_string(iter));
             return;
         }
 
-
         // if (iter == 41) {
         //     this->magistrallWayCreate(unit, this->min_F_mc);
         //     console.log("special");
         //     return;
         // }
-
-
 
         this->iter++;
     }

@@ -97,10 +97,10 @@ void Game::draw()
 
         if (this->gf->focusUnit) {
             Unit *u = this->gf->focusUnit;
-            u->targetData.magistralWay.forEach([&drawDeltaX, &drawDeltaY, this](MagistralClaster *mc, int i){
-            ctx.FillRect(mc->x + drawDeltaX, mc->y + drawDeltaY, mc->gabarit, mc->gabarit, "violet", 50);
-            ctx.StrokeRect(mc->x + drawDeltaX, mc->y + drawDeltaY, mc->gabarit, mc->gabarit, "blue", 50);
-            ctx.DrawText(mc->x + 40 + i + drawDeltaX, mc->y + 40 + i + drawDeltaY, 20, to_string(i));
+            u->targetData.magistralWay.forEach([&drawDeltaX, &drawDeltaY, this](Cell *c, int i){
+            ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "violet", 50);
+            ctx.StrokeRect(c->x + drawDeltaX, c->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "blue", 50);
+           // ctx.DrawText(mc->x + 40 + i + drawDeltaX, mc->y + 40 + i + drawDeltaY, 20, to_string(i));
             });
         }
 

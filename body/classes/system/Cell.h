@@ -28,7 +28,7 @@ public:
     string profession = "";
     bool isActual = false;
     Array<Cell *> basicWay;
-    Array<MagistralClaster *> magistralWay;
+    Array<Cell *> magistralWay;
 
     void clear()
     {

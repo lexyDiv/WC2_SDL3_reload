@@ -3,40 +3,45 @@
 
 void ThData::magistrallWayCreate(Unit *unit, MagistralClaster *finalMc)
 {
-       // Cell *uc = unit->cell;
-       MagistralClaster *umc = unit->cell->mc;
+    // Cell *uc = unit->cell;
+    MagistralClaster *umc = unit->cell->mc;
     if (umc &&
         umc != finalMc)
     {
-        //Cell *nextCell = finalCell;
+        // Cell *nextCell = finalCell;
         MagistralClaster *nextMc = finalMc;
-       // unit->way.push(nextCell);
-      // unit->targetData.magistralWay.push(nextMc);
+        // unit->way.push(nextCell);
+        // unit->targetData.magistralWay.push(nextMc);
 
-       int index = 0;
+        int index = 0;
 
         while (true)
         {
-          //  iter++;
+            //  iter++;
             if (nextMc->thwd_mag.getItemPtr(this->num)->wayFather &&
                 nextMc->thwd_mag.getItemPtr(this->num)->wayFather != umc)
             {
 
                 nextMc = nextMc->thwd_mag.getItemPtr(this->num)->wayFather;
-               // unit->way.push(nextCell);
-               if (index % 4 == 0) {
-                unit->targetData.magistralWay.push(nextMc);
-               }
+                // unit->way.push(nextCell);
+                if (index % 4 == 0)
+                {
+                    unit->targetData.magistralWay.push(nextMc->centralCell);
+                }
 
-               index++;
+                index++;
             }
             else
             {
-                unit->isPotentialWayComplite = true; // ????????????????????????????????????????????????????????
+                unit->targetData.magistralWay.push(unit->targetData.clicckedCell);
+                // unit->isPotentialWayComplite = true; // ????????????????????????????????????????????????????????
                 break;
             }
         }
     }
+
+    unit->targetData.magistralWay.push(unit->targetData.clicckedCell);
+
     //   unit->wayIndex = unit->way.length;
     //   unit->isPotentialWayComplite = true;
     //   unit->isIgetMyTarget = false;

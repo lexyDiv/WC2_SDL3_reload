@@ -14,7 +14,7 @@ struct AnimLines;
 class Game;
 class ToOtherPlane;
 class Nation;
-class MagistralClaster;
+
 
 class TargetData
 {

@@ -4,6 +4,7 @@ using namespace std;
 
 class Cell;
 class Unit;
+class MagistralClaster;
 
 struct MinData
 {
@@ -13,6 +14,17 @@ struct MinData
     int k = 0;
     // double dis = 0;
     Cell *cell = nullptr;
+    Unit *unit = nullptr;
+};
+
+struct MinDataMag
+{
+    int index = 0;
+    double min = 0;
+    int i = 0;
+    int k = 0;
+    // double dis = 0;
+    MagistralClaster *mc = nullptr;
     Unit *unit = nullptr;
 };
 

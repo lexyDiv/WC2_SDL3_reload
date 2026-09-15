@@ -1,5 +1,5 @@
 #include "get_GMagistral.cpp"
-//=>out
+//=>magistralWayCreate
 
 int ThData::get_HMagistral(MagistralClaster *potentialMc, MagistralClaster *finishMc)
 {

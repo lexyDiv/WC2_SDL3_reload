@@ -55,6 +55,7 @@ public:
     void exploreNewMagClasterAndAddToOpenArr(Unit *unit, MagistralClaster *mcFather);
     int get_GMagistral();
     int get_HMagistral(MagistralClaster *potentialMc, MagistralClaster *finishMc);
+    void magistrallWayCreate(Unit *unit, MagistralClaster *finalMc);
 };
 
 Array<ThData *> thDatas;

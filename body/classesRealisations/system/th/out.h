@@ -1,3 +1,3 @@
-#include "get_HMagistral.cpp"
+#include "magistralWayCreate.cpp"
 //=>unit
 

@@ -3,7 +3,7 @@
 
 void UnitData::createPeon(Fraction *fraction)
 {
-    this->speed = 1.6;
+    this->speed = 10; //1.6;
 
     if (fraction->nation->type == "orcs")
     {

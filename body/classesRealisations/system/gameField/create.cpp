@@ -110,19 +110,27 @@ void GameField::create()
    this->getCellImageCellDrawIndexCellUnitInit();
 
    ////////////////////////////////////////////////////////////////// => magistral create
+   int v = 0;
    for (int ver = 1; ver < this->field.length; ver += 3)
    {
+
       Array<Cell *> &vertical = this->field.getItemLnk(ver);
       Array<MagistralClaster> mca;
       this->game->allMagistralClasters.push(mca);
       int index = this->game->allMagistralClasters.length - 1;
+      int h = 0;
       for (int hor = 1; hor < this->field.length; hor += 3)
       {
+
          Cell *cell = vertical.getItem(hor);
          MagistralClaster mc(cell);
+         mc.ver = v;
+         mc.hor = h;
          // mca.push(mc);
          this->game->allMagistralClasters.getItemLnk(index).push(mc);
+         h++;
       }
+      v++;
    }
 
    this->game->allMagistralClasters.forEach([this](Array<MagistralClaster> &mca, int ver)
@@ -164,8 +172,7 @@ void GameField::create()
                                                              mc.midHor.push(mc.centralCell->right);
 
                                                              mc.rightVer.push(mc.centralCell->bottom_right);
-                                                             mc.downHor.push(mc.centralCell->bottom_right);
-                                                          }); });
+                                                             mc.downHor.push(mc.centralCell->bottom_right); }); });
 
    this->init = true;
 };

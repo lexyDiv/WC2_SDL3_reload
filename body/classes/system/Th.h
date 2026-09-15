@@ -53,7 +53,7 @@ public:
 
     void createMagistralWay(Unit *unit);
     void exploreNewMagClasterAndAddToOpenArr(Unit *unit, MagistralClaster *mcFather);
-    int get_GMagistral(MagistralClaster *fatherMc, MagistralClaster *potentialMc);
+    int get_GMagistral();
     int get_HMagistral(MagistralClaster *potentialMc, MagistralClaster *finishMc);
 };
 

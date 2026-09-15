@@ -29,6 +29,8 @@ class MagistralClaster {
     };
     int x = 0;
     int y = 0;
+    int ver = 0;
+    int hor = 0;
     int gabarit = 0;
     Cell *centralCell = nullptr;
     Array<Cell *> cells;

@@ -95,13 +95,20 @@ ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "green");
         // /////////////// zone
 
 
-        ThData *thd = thDatas.getItem(0);
-        thd->openArrMag.forEach([&drawDeltaX, &drawDeltaY, this](MagistralClaster *mc){
-           ctx.StrokeRect(mc->x + drawDeltaX, mc->y + drawDeltaY, mc->gabarit, mc->gabarit, "red");
-           mc->thwd_mag.getItemPtr(0)->validCellsForWayFather.forEach([&drawDeltaX, &drawDeltaY, this](Cell *c){
-            ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "violet", 100);
-           });
-        });
+        // ThData *thd = thDatas.getItem(0);
+        // thd->openArrMag.forEach([&drawDeltaX, &drawDeltaY, this](MagistralClaster *mc){
+        //    ctx.StrokeRect(mc->x + drawDeltaX, mc->y + drawDeltaY, mc->gabarit, mc->gabarit, "red");
+        //    mc->thwd_mag.getItemPtr(0)->validCellsForWayFather.forEach([&drawDeltaX, &drawDeltaY, this](Cell *c){
+        //     ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "violet", 100);
+        //    });
+        // });
+
+        if (this->gf->focusUnit) {
+            Unit *u = this->gf->focusUnit;
+            u->targetData.magistralWay.forEach([&drawDeltaX, &drawDeltaY, this](MagistralClaster *mc){
+            ctx.FillRect(mc->x + drawDeltaX, mc->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "violet", 100);
+            });
+        }
 
      
 

@@ -16,8 +16,10 @@ void veer(Cell *cell, double &createCount, int &thdIndex)
         {
             Cell *ac = cl->aroundCells.getItem(k);
 
-            if (ac->mc == c->mc &&
+            if (c && ac &&
+                ac->mc == c->mc &&
                 !ac->groundUnit &&
+                ac->plane == cell->plane &&
                 ac->thwd.getItemPtr(thdIndex)->createCountData != createCount)
             {
                 cells.push(ac);
@@ -44,8 +46,10 @@ void veerArr(Array<Cell *> &myValidCellsToFather, double &createCount, int &thdI
         {
             Cell *ac = cl->aroundCells.getItem(k);
 
-            if (ac->mc == cl->mc &&
+            if (ac && cl &&
+                ac->mc == cl->mc &&
                 !ac->groundUnit &&
+                ac->plane == cl->plane &&
                 ac->thwd.getItemPtr(thdIndex)->createCountData != createCount)
             {
                 cells.push(ac);
@@ -87,7 +91,7 @@ void ThData::createMagistralWay(Unit *unit)
     while (true)
     {
 
-        this->iter++;
+        
         MinDataMag md;
 
         this->exploreNewMagClasterAndAddToOpenArr(unit, this->min_F_mc);
@@ -144,9 +148,10 @@ void ThData::createMagistralWay(Unit *unit)
         {
             this->magistrallWayCreate(unit, this->min_F_mc);
             unit->isPotentialWayComplite = true;
+            console.log("good iter = " + to_string(iter));
             break;
 
-            console.log("good iter = " + to_string(iter));
+            
         }
 
         // if (unit->isOnGetPotentialWayGetTarget(this->min_F_cell))
@@ -155,6 +160,14 @@ void ThData::createMagistralWay(Unit *unit)
         //     unit->isPotentialWayComplite = true;
         //     break;
         // }
+
+      //  console.log("wery bad iter = " + to_string(iter));
+
+    //   if (iter == 2) {
+    //     return;
+    //   }
+
+      this->iter++;
     }
 
     ////////////////////////

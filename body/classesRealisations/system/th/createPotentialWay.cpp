@@ -85,7 +85,7 @@ void ThData::createPotentialWay(Unit *unit)
             {
                 this->potentialWayCreate(unit, this->globalMin_H_cell);
                 //console.log("MAXIMUM !!! = " + to_string(this->iter));
-
+console.log("CLASSIC BAD ITER = " +to_string(iter));
                 if (!unit->personalCaseDeep 
                     //&& unit->way.length && unit->way.getItem(unit->wayIndex - 1)->groundUnit 
                // && !unit->way.getItem(unit->wayIndex - 1)->groundUnit->isActive
@@ -103,6 +103,7 @@ void ThData::createPotentialWay(Unit *unit)
         {
             this->potentialWayCreate(unit, this->min_F_cell);
             unit->isPotentialWayComplite = true;
+            console.log("CLASSIC ITER = " +to_string(iter));
             break;
         }
     }

@@ -152,7 +152,7 @@ void ThData::createMagistralWay(Unit *unit)
             this->magOK = false;
             this->magistrallWayCreate(unit, this->min_F_mc);
             unit->isPotentialWayComplite = true;
-            console.log("good iter = " + to_string(iter));
+           // console.log("good iter = " + to_string(iter));
             return;
         }
 

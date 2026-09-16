@@ -29,6 +29,11 @@ public:
     Cell *min_F_cell = nullptr;
     Cell *globalMin_H_cell = nullptr;
 
+     Cell *prevMagCell = nullptr;
+     Cell *targetMagCell = nullptr;
+    // int prevMagCellIndex = 0;
+    // int targetMagCellIndex = 0;
+
     MagistralClaster *min_F_mc = nullptr;
     MagistralClaster *globalMin_H_mc = nullptr;
 

@@ -6,9 +6,9 @@ class Td_way_data_magistral
 public:
     //  Td_way_data(){};
     double createCountData = 0;
-    int F = 0.0F;
-    int H = 0.0F;
-    int G = 0.0F;
+    float F = 0.0F;
+    float H = 0.0F;
+    float G = 0.0F;
     double explored = 0;
     double procCurr = 0;
     MagistralClaster *wayFather = nullptr;
@@ -28,26 +28,27 @@ class MagistralClaster {
         this->y = cell->y - cell->gf->cellSize;
         this->gabarit = cell->gf->cellSize * 3;
     };
-    int x = 0;
-    int y = 0;
-    int ver = 0;
-    int hor = 0;
+    float x = 0;
+    float y = 0;
+    float ver = 0;
+    float hor = 0;
     int gabarit = 0;
     Cell *centralCell = nullptr;
     Array<Cell *> cells;
-   // Array<Cell *> validCellsToFather;
+    Array<Cell *> validCellsToFather;
     MagistralClaster *up = nullptr;
     MagistralClaster *down = nullptr;
     MagistralClaster *left = nullptr;
     MagistralClaster *right = nullptr;
+    Array<MagistralClaster *> aroundMc;
     Array<Td_way_data_magistral> thwd_mag;
     MagistralClaster *father = nullptr;
 
-    Array<Cell *> upHor;
-    Array<Cell *> midHor;
-    Array<Cell *> downHor;
+    // Array<Cell *> upHor;
+    // Array<Cell *> midHor;
+    // Array<Cell *> downHor;
 
-    Array<Cell *> leftVer;
-    Array<Cell *> midVer;
-    Array<Cell *> rightVer;
+    // Array<Cell *> leftVer;
+    // Array<Cell *> midVer;
+    // Array<Cell *> rightVer;
 };

@@ -144,35 +144,66 @@ void GameField::create()
                                                              mc.down = currentVerDown <= mca.length - 1 ? this->game->allMagistralClasters.getItemLnk(currentVerDown).getItemPtr(hor) : nullptr;
                                                              mc.left = currentHorLeft >= 0 ? this->game->allMagistralClasters.getItemLnk(ver).getItemPtr(currentHorLeft) : nullptr;
                                                              mc.right = currentHorRight <= mca.length - 1 ? this->game->allMagistralClasters.getItemLnk(ver).getItemPtr(currentHorRight) : nullptr;
+                                                             if (mc.up)
+                                                             {
+                                                                mc.aroundMc.push(mc.up);
+                                                             }
+                                                             if (mc.down)
+                                                             {
+                                                                mc.aroundMc.push(mc.down);
+                                                             }
+                                                             if (mc.left)
+                                                             {
+                                                                mc.aroundMc.push(mc.left);
+                                                             }
+                                                             if (mc.right)
+                                                             {
+                                                                mc.aroundMc.push(mc.right);
+                                                             }
                                                              mc.cells.forEach([&mc](Cell *c)
                                                                               { c->mc = &mc; });
+                                                          }); });
 
-                                                             mc.leftVer.push(mc.centralCell->top_left);
-                                                             mc.upHor.push(mc.centralCell->top_left);
+   // this->game->allMagistralClasters.forEach([this](Array<MagistralClaster> &mca, int ver)
+   //                                          { mca.forEach([&ver, this, &mca](MagistralClaster &mc, int hor)
+   //                                                        {
+   //                                                           int currentVerUp = ver - 1;
+   //                                                           int currentHorLeft = hor - 1;
+   //                                                           int currentVerDown = ver + 1;
+   //                                                           int currentHorRight = hor + 1;
+   //                                                           mc.up = currentVerUp >= 0 ? this->game->allMagistralClasters.getItemLnk(currentVerUp).getItemPtr(hor) : nullptr;
+   //                                                           mc.down = currentVerDown <= mca.length - 1 ? this->game->allMagistralClasters.getItemLnk(currentVerDown).getItemPtr(hor) : nullptr;
+   //                                                           mc.left = currentHorLeft >= 0 ? this->game->allMagistralClasters.getItemLnk(ver).getItemPtr(currentHorLeft) : nullptr;
+   //                                                           mc.right = currentHorRight <= mca.length - 1 ? this->game->allMagistralClasters.getItemLnk(ver).getItemPtr(currentHorRight) : nullptr;
+   //                                                           mc.cells.forEach([&mc](Cell *c)
+   //                                                                            { c->mc = &mc; });
 
-                                                             mc.leftVer.push(mc.centralCell->left);
-                                                             mc.midHor.push(mc.centralCell->left);
+   //                                                           mc.leftVer.push(mc.centralCell->top_left);
+   //                                                           mc.upHor.push(mc.centralCell->top_left);
 
-                                                             mc.leftVer.push(mc.centralCell->bottom_left);
-                                                             mc.downHor.push(mc.centralCell->bottom_left);
+   //                                                           mc.leftVer.push(mc.centralCell->left);
+   //                                                           mc.midHor.push(mc.centralCell->left);
 
-                                                             mc.midVer.push(mc.centralCell->top);
-                                                             mc.upHor.push(mc.centralCell->top);
+   //                                                           mc.leftVer.push(mc.centralCell->bottom_left);
+   //                                                           mc.downHor.push(mc.centralCell->bottom_left);
 
-                                                             mc.midVer.push(mc.centralCell);
-                                                             mc.midHor.push(mc.centralCell);
+   //                                                           mc.midVer.push(mc.centralCell->top);
+   //                                                           mc.upHor.push(mc.centralCell->top);
 
-                                                             mc.midVer.push(mc.centralCell->bottom);
-                                                             mc.downHor.push(mc.centralCell->bottom);
+   //                                                           mc.midVer.push(mc.centralCell);
+   //                                                           mc.midHor.push(mc.centralCell);
 
-                                                             mc.rightVer.push(mc.centralCell->top_right);
-                                                             mc.upHor.push(mc.centralCell->top_right);
+   //                                                           mc.midVer.push(mc.centralCell->bottom);
+   //                                                           mc.downHor.push(mc.centralCell->bottom);
 
-                                                             mc.rightVer.push(mc.centralCell->right);
-                                                             mc.midHor.push(mc.centralCell->right);
+   //                                                           mc.rightVer.push(mc.centralCell->top_right);
+   //                                                           mc.upHor.push(mc.centralCell->top_right);
 
-                                                             mc.rightVer.push(mc.centralCell->bottom_right);
-                                                             mc.downHor.push(mc.centralCell->bottom_right); }); });
+   //                                                           mc.rightVer.push(mc.centralCell->right);
+   //                                                           mc.midHor.push(mc.centralCell->right);
+
+   //                                                           mc.rightVer.push(mc.centralCell->bottom_right);
+   //                                                           mc.downHor.push(mc.centralCell->bottom_right); }); });
 
    this->init = true;
 };

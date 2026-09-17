@@ -61,6 +61,12 @@ int main()
         }
         else // if (!th_create_game)
         {
+
+              if (nextMove) {
+                nextMove = false;
+                thDatas.getItem(0)->nextStap = true;
+              }
+
             game->startTick = SDL_GetTicks();
 
             basicDo();

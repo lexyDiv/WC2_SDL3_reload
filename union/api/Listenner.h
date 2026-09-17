@@ -19,10 +19,11 @@ void listenner(bool &quit)
         }
         if (e.type == SDL_EVENT_KEY_DOWN)
         {
-            // console.log(to_string(e.key.keysym.scancode)); // int 40
+            // console.log(to_string(e.key.key)); // int 40
             if (e.key.key == 13)
             {
-                nextMove = !nextMove;
+                nextMove = true;
+               // nextMove = !nextMove;
                 // console.log("eneter");
                 //  game->speed++;
                 //  game->pause = false;
@@ -32,11 +33,12 @@ void listenner(bool &quit)
             if (e.key.key == 44)
             {
                 // game->pause = false;
-                float acc = 0.0f;
-                tiks.forEach([&acc](float e){
-                    acc += e;
-                });
-                console.log("res : " + to_string(acc / float(tiks.length)));
+                // float acc = 0.0f;
+                // tiks.forEach([&acc](float e){
+                //     acc += e;
+                // });
+                // console.log("res : " + to_string(acc / float(tiks.length)));
+               // console.log("key");
             }
         }
         if (e.type == SDL_EVENT_MOUSE_MOTION)

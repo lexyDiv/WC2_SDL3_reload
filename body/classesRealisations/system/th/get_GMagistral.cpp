@@ -1,6 +1,6 @@
 #include "exploreNewMagClasterAndAddToOpenArr.cpp"
 //=>get_HMagistral
 
-int ThData::get_GMagistral() {
-   return 1;
+float ThData::get_GMagistral() {
+   return 10.F;
 }

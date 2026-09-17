@@ -4,11 +4,22 @@
 void Peon_peasant::orderOnWayControl()
 {
 
+   // if (thDatas.getItem(0)->frash) {
+
+    
+
+  //  }
+
     this->orderOnWay.mt.lock();
     if (!this->orderOnWay.isComplite
         //&& !this->wayTakts
     )
     {
+            if (!thDatas.getItem(0)->frash) {
+                thDatas.getItem(0)->frash = true;
+                console.log("RE FRASH");
+            }
+
 
         Cell *oCell = this->orderOnWay.cell;
         if (this->orderOnWay.profession == "")

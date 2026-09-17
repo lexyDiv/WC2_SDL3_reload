@@ -112,6 +112,48 @@ void Game::draw()
         //                      ctx.FillRect(mc.x + drawDeltaX, mc.y + drawDeltaY, mc.gabarit, mc.gabarit, "violet", 100);
         //      ctx.DrawText(mc.x + drawDeltaX, mc.y + drawDeltaY, 20, to_string(mc.ver)); }); });
 
+        /////////////////////////////////////////////////////////////////////////////////////
+         ThData *td = thDatas.getItem(0);
+         td->openArrMag.forEach([&drawDeltaX, &drawDeltaY, this](MagistralClaster *mc){
+            ctx.FillRect(mc->x + drawDeltaX, mc->y + drawDeltaY, mc->gabarit, mc->gabarit, "green", 100);
+             Td_way_data_magistral *tdm = mc->thwd_mag.getItemPtr(0);
+            ctx.DrawText(mc->x + drawDeltaX + 20, mc->y + drawDeltaY + 20, 10, "F = " + to_string(tdm->F));
+            ctx.DrawText(mc->x + drawDeltaX + 20, mc->y + drawDeltaY + 50, 10, "G = " + to_string(tdm->G));
+            ctx.DrawText(mc->x + drawDeltaX + 20, mc->y + drawDeltaY + 80, 10, "H = " + to_string(tdm->H));
+
+            mc->validCellsToFather.forEach([&drawDeltaX, &drawDeltaY, this](Cell *c){
+                ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "yellow", 50);
+                ctx.StrokeRect(c->x + drawDeltaX, c->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "blue", 100);
+            });
+
+             if (mc->father) {
+
+             }
+
+         });
+
+
+         td->cam.forEach([&drawDeltaX, &drawDeltaY, this](MagistralClaster *mc){
+            ctx.FillRect(mc->x + drawDeltaX, mc->y + drawDeltaY, mc->gabarit, mc->gabarit, "red", 100);
+             Td_way_data_magistral *tdm = mc->thwd_mag.getItemPtr(0);
+            ctx.DrawText(mc->x + drawDeltaX + 20, mc->y + drawDeltaY + 20, 10, "F = " + to_string(tdm->F));
+            ctx.DrawText(mc->x + drawDeltaX + 20, mc->y + drawDeltaY + 50, 10, "G = " + to_string(tdm->G));
+            ctx.DrawText(mc->x + drawDeltaX + 20, mc->y + drawDeltaY + 80, 10, "H = " + to_string(tdm->H));
+         });
+
+         if (td->min_F_mc) {
+            ctx.StrokeRect(td->min_F_mc->x + drawDeltaX, td->min_F_mc->y + drawDeltaY, td->min_F_mc->gabarit, td->min_F_mc->gabarit, "violet");
+         }
+
+         if (this->gf->focusUnit) {
+            Unit *u = this->gf->focusUnit;
+            Cell *c = u->targetData.clicckedCell;
+            if (c) {
+            ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "blue");
+            }
+         }
+
+        ///////////////////////////////////////////////////////////////////////////////////
 
 
         ctx.CreateDrawZone(0, 0, this->gf->screenWidth, ctx.SCREEN_HEIGHT - this->gf->screenHeight);

@@ -31,6 +31,8 @@ public:
 
      Cell *prevMagCell = nullptr;
      Cell *targetMagCell = nullptr;
+     bool frash = true;
+     bool nextStap = false;
     // int prevMagCellIndex = 0;
     // int targetMagCellIndex = 0;
 
@@ -41,6 +43,7 @@ public:
     Array<Unit *> dopUnits;
     Array<Cell *> openArr;
     Array<MagistralClaster *> openArrMag;
+    Array<MagistralClaster *> cam;
 
     void createMyActiveProgZone(int pathesLength);
     void process();
@@ -59,9 +62,9 @@ public:
     ////////////////////////////////// => magistral
 
     void createMagistralWay(Unit *unit);
-    void exploreNewMagClasterAndAddToOpenArr(Unit *unit, MagistralClaster *mcFather);
-    int get_GMagistral();
-    int get_HMagistral(MagistralClaster *potentialMc, MagistralClaster *finishMc);
+    void exploreNewMagClasterAndAddToOpenArr(Unit *unit, MagistralClaster *son);
+    float get_GMagistral();
+    float get_HMagistral(MagistralClaster *potentialMc, MagistralClaster *finishMc);
     void magistrallWayCreate(Unit *unit, MagistralClaster *finalMc);
 };
 

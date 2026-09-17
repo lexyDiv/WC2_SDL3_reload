@@ -53,8 +53,8 @@ void addToSonValidCellsToFather(Unit *unit, ThData *td, MagistralClaster *son)
 void ThData::createMagistralWay(Unit *unit)
 {
 
-    if (this->frash)
-    {
+    // if (this->frash)
+    // {
         // console.log("frash");
         this->frash = false;
         unit->targetData.magistralWay.clear();
@@ -79,7 +79,7 @@ void ThData::createMagistralWay(Unit *unit)
         this->min_F_mc->thwd_mag.getItemPtr(this->num)->F = 0;
         this->min_F_mc->thwd_mag.getItemPtr(this->num)->H = 0;
         this->min_F_mc->thwd_mag.getItemPtr(this->num)->G = 0;
-        this->globalMin_H_mc = nullptr;
+        this->globalMin_F_mc = nullptr;
         this->openArrMag.push(this->min_F_mc);
 
         veer(unit, this);
@@ -95,16 +95,62 @@ void ThData::createMagistralWay(Unit *unit)
             // console.log("good iter = " + to_string(iter));
             return;
         }
-    }
+  //  }
 
-    // while (true)
-    // {
-
-    if (this->nextStap)
+    while (true)
     {
-         console.log("step");
+
+    // if (this->nextStap)
+    // {
+         //console.log("step");
         this->nextStap = false;
+
+        //////////////////////////////////////////////////////////////////////////////
         MinDataMag md;
+
+
+        if (this->openArrMag.length
+             && this->iter < 1500
+        )
+        {
+            int index = this->openArrMag.length - 1;
+            md.mc = this->openArrMag.getItem(this->openArrMag.length - 1);
+            md.index = index;
+            for (int i = index; i >= 0; i--)
+            {
+                MagistralClaster *mc = this->openArrMag.getItem(i);
+                if (md.mc->thwd_mag.getItemPtr(this->num)->F >= mc->thwd_mag.getItemPtr(this->num)->F)
+                {
+                    md.mc = mc;
+                    md.index = i;
+                }
+            }
+
+            this->min_F_mc = md.mc;
+            this->cam.push(this->min_F_mc);
+            this->min_F_mc->thwd_mag.getItemPtr(this->num)->explored = this->createCount;
+            this->openArrMag.splice(md.index, 1);
+           // this->min_F_mc->thwd_mag.getItemPtr(this->num)->explored = this->createCount;
+
+            if (iter && ((!this->globalMin_F_mc )
+                || (this->globalMin_F_mc->thwd_mag.getItemPtr(this->num)->F > this->min_F_mc->thwd_mag.getItemPtr(this->num)->F)))
+            {
+                
+                this->globalMin_F_mc = this->min_F_mc;
+            }
+        }
+        else
+        {
+           // if (!this->globalMin_H_mc)
+           // {
+                       
+
+                this->magistrallWayCreate(unit, this->globalMin_F_mc);
+               // console.log("bad iter = " + to_string(iter));
+          //  }
+            return;
+        }
+
 
         // this->exploreNewMagClasterAndAddToOpenArr(unit, this->min_F_mc);
         this->min_F_mc->aroundMc.forEach([unit, this](MagistralClaster *mc)
@@ -124,47 +170,16 @@ void ThData::createMagistralWay(Unit *unit)
 
 
         ////////////////////////////////////////////////////
-        if (this->openArrMag.length
-            // && this->iter < currentDeep
-        )
-        {
-            int index = this->openArrMag.length - 1;
-            md.mc = this->openArrMag.getItem(this->openArrMag.length - 1);
-            md.index = index;
-            for (int i = index; i >= 0; i--)
-            {
-                MagistralClaster *mc = this->openArrMag.getItem(i);
-                if (md.mc->thwd_mag.getItemPtr(this->num)->F >= mc->thwd_mag.getItemPtr(this->num)->F)
-                {
-                    md.mc = mc;
-                    md.index = i;
-                }
-            }
-
-            this->min_F_mc = md.mc;
-           // this->min_F_mc->thwd_mag.getItemPtr(this->num)->explored = this->createCount;
-            if (!this->globalMin_H_mc || this->globalMin_H_mc->thwd_mag.getItemPtr(this->num)->H > this->min_F_mc->thwd_mag.getItemPtr(this->num)->H)
-            {
-                this->globalMin_H_mc = this->min_F_mc;
-            }
-        }
-        else
-        {
-            if (!this->globalMin_H_mc)
-            {
-                this->magistrallWayCreate(unit, this->globalMin_H_mc);
-                console.log("bad iter = " + to_string(iter));
-            }
-            return;
-        }
+         /// wose here
         ///////////////////////////////////////////////////
 
-        MagistralClaster *mcTarget = unit->targetData.clicckedCell->mc;
+       // MagistralClaster *mcTarget = unit->targetData.clicckedCell->mc;
 
         if (this->magOK)
         {
-            this->magOK = false;
+            ;
             this->magistrallWayCreate(unit, this->min_F_mc);
+            this->magOK = false;
             unit->isPotentialWayComplite = true;
             // console.log("good iter = " + to_string(iter));
             return;

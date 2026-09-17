@@ -4,20 +4,42 @@
 void getVCTF(MagistralClaster *son, Array<Cell *> *contactToSonCells, Unit *unit, ThData *td)
 {
     son->validCellsToFather.clear();
-    contactToSonCells->forEach([unit, td, son](Cell *fc)
-                               {
-                                           if (fc->thwd.getItemPtr(td->num)->createCountData == td->createCount)
-                                           {
-                                               fc->aroundCells.forEach([unit, td, son](Cell *sc)
-                                                                       {
-                Td_way_data * sc_thwd = sc->thwd.getItemPtr(td->num);
-                    if (sc_thwd->createCountData != td->createCount &&
-                        sc->mc == son &&
-                        unit->isNewCellOnGetWayValide(sc, iter)) {
-                            sc_thwd->createCountData = td->createCount;
-                            son->validCellsToFather.push(sc);
-                        } });
-                                           } });
+
+    for (int i = 0; i < contactToSonCells->length; i++)
+    {
+        Cell *fc = contactToSonCells->getItem(i);
+        if (fc->thwd.getItemPtr(td->num)->createCountData == td->createCount)
+        {
+            for (int k = 0; k < fc->aroundCells.length; k++)
+            {
+                Cell *sc = fc->aroundCells.getItem(k);
+                Td_way_data *sc_thwd = sc->thwd.getItemPtr(td->num);
+                if (sc_thwd->createCountData != td->createCount &&
+                    sc->mc == son &&
+                    unit->isNewCellOnGetWayValide(sc, iter))
+                {
+                    sc_thwd->createCountData = td->createCount;
+                    son->validCellsToFather.push(sc);
+                }
+            }
+        }
+    }
+
+    // contactToSonCells->forEach([unit, td, son](Cell *fc)
+    //                            {
+    //                                        if (fc->thwd.getItemPtr(td->num)->createCountData == td->createCount)
+    //                                        {
+    //                                            fc->aroundCells.forEach([unit, td, son](Cell *sc)
+    //                                                                    {
+    //             Td_way_data * sc_thwd = sc->thwd.getItemPtr(td->num);
+    //                 if (sc_thwd->createCountData != td->createCount &&
+    //                     sc->mc == son &&
+    //                     unit->isNewCellOnGetWayValide(sc, iter)) {
+    //                         sc_thwd->createCountData = td->createCount;
+    //                         son->validCellsToFather.push(sc);
+    //                     } });
+    //                                        }
+    //                                     });
 }
 
 void ThData::exploreNewMagClasterAndAddToOpenArr(Unit *unit, MagistralClaster *son)
@@ -53,78 +75,26 @@ void ThData::exploreNewMagClasterAndAddToOpenArr(Unit *unit, MagistralClaster *s
         {
             getVCTF(son, contactToSonCells, unit, this);
 
-
             if (son->validCellsToFather.length)
             {
                 thwd_mag_son->wayFather = mcFather;
                 thwd_mag_son->createCountData = this->createCount;
                 addToSonValidCellsToFather(unit, this, son);
-                int G = 10.F;
-                int H = this->get_HMagistral(son, unit->targetData.clicckedCell->mc);
+                // int G = 10.F;
+                // int H =
+                thwd_mag_son->F = this->get_HMagistral(son, unit->targetData.clicckedCell->mc);
 
-                thwd_mag_son->G = mcFather ? G + mcFather->left->thwd_mag.getItemPtr(this->num)->G : G;
-                thwd_mag_son->H = H;
-                thwd_mag_son->F = thwd_mag_son->G + thwd_mag_son->H;
+                //  thwd_mag_son->G = G + thwd_mag_father->G;
+                //  thwd_mag_son->H = H;
+                //  thwd_mag_son->F = G + H; // F = G + H (1)
                 this->openArrMag.push(son);
             }
         }
         else
         {
-            console.log("father = " + to_string(mcFather->centralCell->persNum) + " need re father = " + to_string(son->centralCell->persNum));
         }
     }
-    // else
-    // {
-    //     if (son == unit->cell->mc)
-    //     {
-
-    //         Array<Td_way_data *> sonCells_thwd;
-    //         Array<Cell *> saveSonValidCellsToFather;
-    //         saveSonValidCellsToFather.copy(son->validCellsToFather);
-    //         son->validCellsToFather.forEach([this, &sonCells_thwd](Cell *c)
-    //                                         {
-    //             Td_way_data * sonC_thwd = c->thwd.getItemPtr(this->num);
-    //             sonC_thwd->createCountData = 0;
-    //             sonCells_thwd.push(sonC_thwd); });
-    //         getVCTF(son, contactToSonCells, unit, this);
-    //         console.log("length = " + to_string(son->validCellsToFather.length));
-
-    //         addToSonValidCellsToFather(unit, this, son);
-
-    //         if (this->magOK) {
-    //             console.log("here");
-    //         }
-
-    //         if (!son->validCellsToFather.length || !this->magOK)
-    //         {
-    //             son->validCellsToFather.copy(saveSonValidCellsToFather);
-    //             sonCells_thwd.forEach([this](Td_way_data *thwd)
-    //                                   { thwd->createCountData = this->createCount; });
-    //             console.log("continue");
-    //         }
-
-    //         //  if (son->validCellsToFather.length)
-    //         // {
-    //         //     addToSonValidCellsToFather(unit, this, son);
-    //         //     if (this->magOK)
-    //         //     {
-    //         //         console.log("FINISH HERE 2");
-    //         //     }
-    //         //     else
-    //         //     {
-    //         //         son->validCellsToFather.copy(saveSonValidCellsToFather);
-    //         //         sonCells_thwd.forEach([this](Td_way_data *thwd)
-    //         //                               { thwd->createCountData = this->createCount; });
-    //         //         console.log("continue 1");
-    //         //     }
-    //         // }
-    //         // else
-    //         // {
-    //         //     son->validCellsToFather.copy(saveSonValidCellsToFather);
-    //         //     sonCells_thwd.forEach([this](Td_way_data *thwd)
-    //         //                           { thwd->createCountData = this->createCount; });
-    //         //     console.log("continue 2");
-    //         // }
-    //     }
-    // }
+    else
+    {
+    }
 }

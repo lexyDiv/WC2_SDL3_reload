@@ -37,7 +37,7 @@ public:
     // int targetMagCellIndex = 0;
 
     MagistralClaster *min_F_mc = nullptr;
-    MagistralClaster *globalMin_H_mc = nullptr;
+    MagistralClaster *globalMin_F_mc = nullptr;
 
     Array<ThData *> *thds = nullptr;
     Array<Unit *> dopUnits;

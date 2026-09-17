@@ -3,15 +3,17 @@
 
 float ThData::get_HMagistral(MagistralClaster *potentialMc, MagistralClaster *finishMc)
 {
-    // float finVer = finishMc->y; //finishCell->ver;
-    // float finHor = finishMc->x; //finishCell->hor;
-    // float pVer = potentialMc->x;
-    // float pHor = potentialMc->y;
+//     float finVer = finishMc->ver; //finishCell->ver;
+//     float finHor = finishMc->hor; //finishCell->hor;
+//     float pVer = potentialMc->ver;
+//     float pHor = potentialMc->hor;
 
-    // float deltaHor = abs(finHor - pHor);
-    // float deltaVer = abs(finVer - pVer);
+//     float deltaHor = abs(finHor - pHor);
+//     float deltaVer = abs(finVer - pVer);
 
-   // return (deltaHor + deltaVer) * 10;
+//    return (deltaHor + deltaVer) * 10;
+
+
     float xCat = potentialMc->hor - finishMc->hor;
     float yCat = potentialMc->ver - finishMc->ver;
     float dis = sqrt(xCat *xCat + yCat *yCat);

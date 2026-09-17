@@ -106,13 +106,13 @@ void Game::draw()
             });
         }
 
-        // this->allMagistralClasters.forEach([&drawDeltaX, &drawDeltaY, this](Array<MagistralClaster> &mca)
-        //                                    { mca.forEach([&drawDeltaX, &drawDeltaY, this](MagistralClaster &mc)
-        //                                                  {
-        //                      ctx.FillRect(mc.x + drawDeltaX, mc.y + drawDeltaY, mc.gabarit, mc.gabarit, "violet", 100);
-        //      ctx.DrawText(mc.x + drawDeltaX, mc.y + drawDeltaY, 20, to_string(mc.ver)); }); });
+        // // this->allMagistralClasters.forEach([&drawDeltaX, &drawDeltaY, this](Array<MagistralClaster> &mca)
+        // //                                    { mca.forEach([&drawDeltaX, &drawDeltaY, this](MagistralClaster &mc)
+        // //                                                  {
+        // //                      ctx.FillRect(mc.x + drawDeltaX, mc.y + drawDeltaY, mc.gabarit, mc.gabarit, "violet", 100);
+        // //      ctx.DrawText(mc.x + drawDeltaX, mc.y + drawDeltaY, 20, to_string(mc.ver)); }); });
 
-        /////////////////////////////////////////////////////////////////////////////////////
+        // /////////////////////////////////////////////////////////////////////////////////////
         //  ThData *td = thDatas.getItem(0);
         //  td->openArrMag.forEach([&drawDeltaX, &drawDeltaY, this](MagistralClaster *mc){
         //     ctx.FillRect(mc->x + drawDeltaX, mc->y + drawDeltaY, mc->gabarit, mc->gabarit, "green", 100);

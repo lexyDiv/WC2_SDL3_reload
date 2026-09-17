@@ -108,6 +108,7 @@ public:
   virtual void standOnCell() {};
   virtual void stressControl() {};
   virtual void targetObjControl() {};
+  virtual void continueMagistral() {};
 
   int deleteTimer = 50;
   Array<Cell *> myCells;

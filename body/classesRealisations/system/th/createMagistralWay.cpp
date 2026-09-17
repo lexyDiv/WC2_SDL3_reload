@@ -19,11 +19,11 @@ void veer(Unit *unit, ThData *td)
         Td_way_data_magistral *thwdMcAc = ac->mc->thwd_mag.getItemPtr(td->num);
         if (unit->isOnGetPotentialWayGetTarget(ac)) {
                 td->magOK = true;
-                console.log("clear finish");
+               // console.log("clear finish");
                }
           if (thwdAc->createCountData != td->createCount &&
               ac->mc == mc &&
-              unit->isNewCellOnGetWayValide(ac, td->iter)) {
+              (unit->isNewCellOnGetWayValide(ac, td->iter) || ac->groundUnit == unit)) {
                 thwdAc->createCountData = td->createCount;
                 cells.push(ac);
               }
@@ -40,11 +40,11 @@ void addToSonValidCellsToFather(Unit *unit, ThData *td, MagistralClaster *son)
                     Td_way_data *thwd_ac = ac->thwd.getItemPtr(td->num);
                 if (unit->isOnGetPotentialWayGetTarget(ac)) {
                 td->magOK = true;
-                console.log("finish bliat !!!");
+               // console.log("finish bliat !!!");
                }
         if (thwd_ac->createCountData != td->createCount &&
             ac->mc == son &&
-            unit->isNewCellOnGetWayValide(ac, 0)) {
+            (unit->isNewCellOnGetWayValide(ac, 0))) {
                thwd_ac->createCountData = td->createCount;
                son->validCellsToFather.push(ac);
         } }); });
@@ -95,7 +95,7 @@ void ThData::createMagistralWay(Unit *unit)
             // console.log("good iter = " + to_string(iter));
             return;
         }
-  //  }
+   // }
 
     while (true)
     {
@@ -127,7 +127,7 @@ void ThData::createMagistralWay(Unit *unit)
             }
 
             this->min_F_mc = md.mc;
-            this->cam.push(this->min_F_mc);
+           // this->cam.push(this->min_F_mc);
             this->min_F_mc->thwd_mag.getItemPtr(this->num)->explored = this->createCount;
             this->openArrMag.splice(md.index, 1);
            // this->min_F_mc->thwd_mag.getItemPtr(this->num)->explored = this->createCount;
@@ -160,13 +160,13 @@ void ThData::createMagistralWay(Unit *unit)
                                          });
 
 
-            this->openArrMag.filterSelf([this](MagistralClaster *mc)
-                                        {
-            if (mc->thwd_mag.getItemPtr(this->num)->explored == this->createCount) {
-                this->cam.push(mc);
-                return true;
-            }
-            return false; });
+            // this->openArrMag.filterSelf([this](MagistralClaster *mc)
+            //                             {
+            // if (mc->thwd_mag.getItemPtr(this->num)->explored == this->createCount) {
+            //     this->cam.push(mc);
+            //     return true;
+            // }
+            // return false; });
 
 
         ////////////////////////////////////////////////////

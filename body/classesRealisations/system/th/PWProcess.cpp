@@ -43,10 +43,9 @@ void ThData::PWProcess()
     //        if (!u->isPotentialWayComplite) {
     //           this->createMagistralWay(u);
     //        }
-        
+
     //     return;
     //  }
-
 
     int length = this->game->unitsOnWay.length;
     for (int i = this->num; i < length; i += this->thds->length)
@@ -56,9 +55,12 @@ void ThData::PWProcess()
         if (!unit->isPotentialWayComplite && unit->cell && unit->hp)
         {
             Uint64 before = SDL_GetTicks();
-           // this->createMagistralWay(unit);
+            if (!unit->targetData.magistralWay.length)
+            {
+                this->createMagistralWay(unit);
+            }
             this->createPotentialWay(unit);
-           // unit->isPotentialWayComplite = true;
+            unit->isPotentialWayComplite = true;
             Uint64 past = SDL_GetTicks();
             int res = past - before;
             console.log("res = " + to_string(res));

@@ -7,8 +7,8 @@ void ThData::magistrallWayCreate(Unit *unit, MagistralClaster *finalMc)
     // Cell *uc = unit->cell;
     MagistralClaster *umc = unit->cell->mc;
 
-    unit->targetData.magistralWay.push(unit->cell);
-
+    
+   unit->targetData.magistralWay.push(unit->targetData.clicckedCell);
     if (umc &&
         umc != finalMc)
     {
@@ -44,7 +44,8 @@ void ThData::magistrallWayCreate(Unit *unit, MagistralClaster *finalMc)
         }
     }
 
-    unit->targetData.magistralWay.push(unit->targetData.clicckedCell);
+    unit->targetData.magistralWay.push(unit->cell);
+   // unit->targetData.magistralWay.push(unit->targetData.clicckedCell);
     ////////////////////////////////////////////////////////////////////////////////////////
 
     // console.log("good iter HERE = " + to_string(iter));

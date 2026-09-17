@@ -100,7 +100,7 @@ void Game::draw()
             //u->way
             u->targetData.magistralWay
             .forEach([&drawDeltaX, &drawDeltaY, this](Cell *c, int i){
-            ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "violet", 50);
+            ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "black");
             ctx.StrokeRect(c->x + drawDeltaX, c->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "blue", 50);
            // ctx.DrawText(mc->x + 40 + i + drawDeltaX, mc->y + 40 + i + drawDeltaY, 20, to_string(i));
             });
@@ -120,6 +120,7 @@ void Game::draw()
             ctx.DrawText(mc->x + drawDeltaX + 20, mc->y + drawDeltaY + 20, 10, "F = " + to_string(tdm->F));
             ctx.DrawText(mc->x + drawDeltaX + 20, mc->y + drawDeltaY + 50, 10, "G = " + to_string(tdm->G));
             ctx.DrawText(mc->x + drawDeltaX + 20, mc->y + drawDeltaY + 80, 10, "H = " + to_string(tdm->H));
+            ctx.DrawText(mc->centralCell->x + drawDeltaX, mc->centralCell->y + drawDeltaY + 80, 10, "num = " + to_string(mc->centralCell->persNum));
 
             mc->validCellsToFather.forEach([&drawDeltaX, &drawDeltaY, this](Cell *c){
                 ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "yellow", 50);
@@ -139,6 +140,7 @@ void Game::draw()
             ctx.DrawText(mc->x + drawDeltaX + 20, mc->y + drawDeltaY + 20, 10, "F = " + to_string(tdm->F));
             ctx.DrawText(mc->x + drawDeltaX + 20, mc->y + drawDeltaY + 50, 10, "G = " + to_string(tdm->G));
             ctx.DrawText(mc->x + drawDeltaX + 20, mc->y + drawDeltaY + 80, 10, "H = " + to_string(tdm->H));
+            ctx.DrawText(mc->centralCell->x + drawDeltaX, mc->centralCell->y + drawDeltaY + 80, 10, "num = " + to_string(mc->centralCell->persNum));
          });
 
          if (td->min_F_mc) {

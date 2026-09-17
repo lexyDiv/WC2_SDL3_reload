@@ -1,241 +1,130 @@
 #include "createMagistralWay.cpp"
 //=>get_GMagistral
 
+void getVCTF(MagistralClaster *son, Array<Cell *> *contactToSonCells, Unit *unit, ThData *td)
+{
+    son->validCellsToFather.clear();
+    contactToSonCells->forEach([unit, td, son](Cell *fc)
+                               {
+                                           if (fc->thwd.getItemPtr(td->num)->createCountData == td->createCount)
+                                           {
+                                               fc->aroundCells.forEach([unit, td, son](Cell *sc)
+                                                                       {
+                Td_way_data * sc_thwd = sc->thwd.getItemPtr(td->num);
+                    if (sc_thwd->createCountData != td->createCount &&
+                        sc->mc == son &&
+                        unit->isNewCellOnGetWayValide(sc, iter)) {
+                            sc_thwd->createCountData = td->createCount;
+                            son->validCellsToFather.push(sc);
+                        } });
+                                           } });
+}
+
 void ThData::exploreNewMagClasterAndAddToOpenArr(Unit *unit, MagistralClaster *son)
 {
 
     MagistralClaster *mcFather = this->min_F_mc;
+
+    Array<Cell *> *contactToSonCells = nullptr;
+
+    if (son == mcFather->left)
+    {
+        contactToSonCells = &mcFather->leftVer;
+    }
+    else if (son == mcFather->right)
+    {
+        contactToSonCells = &mcFather->rightVer;
+    }
+    else if (son == mcFather->up)
+    {
+        contactToSonCells = &mcFather->upHor;
+    }
+    else if (son == mcFather->down)
+    {
+        contactToSonCells = &mcFather->downHor;
+    }
+
     Td_way_data_magistral *thwd_mag_father = mcFather->thwd_mag.getItemPtr(this->num);
     Td_way_data_magistral *thwd_mag_son = son->thwd_mag.getItemPtr(this->num);
 
-    if (thwd_mag_son->createCountData != this->createCount)
+    if (thwd_mag_son->explored != this->createCount)
     {
-        
+        if (thwd_mag_son->createCountData != this->createCount)
+        {
+            getVCTF(son, contactToSonCells, unit, this);
+
+
+            if (son->validCellsToFather.length)
+            {
+                thwd_mag_son->wayFather = mcFather;
+                thwd_mag_son->createCountData = this->createCount;
+                addToSonValidCellsToFather(unit, this, son);
+                int G = 10.F;
+                int H = this->get_HMagistral(son, unit->targetData.clicckedCell->mc);
+
+                thwd_mag_son->G = mcFather ? G + mcFather->left->thwd_mag.getItemPtr(this->num)->G : G;
+                thwd_mag_son->H = H;
+                thwd_mag_son->F = thwd_mag_son->G + thwd_mag_son->H;
+                this->openArrMag.push(son);
+            }
+        }
+        else
+        {
+            console.log("father = " + to_string(mcFather->centralCell->persNum) + " need re father = " + to_string(son->centralCell->persNum));
+        }
     }
-    else
-    {
-    }
-
-    // // mcFather->thwd_mag.getItemPtr(this->num)->explored = this->createCount; => Here or not ???
-
-    // MagistralClaster *left = mcFather->left &&
-    //                                  // mcFather->left->thwd_mag.getItemPtr(this->num)->createCountData != this->createCount &&
-    //                                  (mcFather->left->thwd_mag.getItemPtr(this->num)->explored != this->createCount)
-    //                              ? mcFather->left
-    //                              : nullptr;
-    // if (left)
+    // else
     // {
-    //     Td_way_data_magistral *thwd_magLeft = left->thwd_mag.getItemPtr(this->num);
-
-    //     thwd_magLeft->validCellsForWayFather.clear();
-
-    //     mcFather->leftVer.forEach([this, left, thwd_magLeft, unit](Cell *c)
-    //                               {
-    //         if (c &&
-    //            // c->plane == unit->cell->plane &&
-    //             c->thwd.getItemPtr(this->num)->createCountData == this->createCount //&&
-    //            // unit->isNewCellOnGetWayValide(c, iter)
-    //          ) {
-    //              c->aroundCells.forEach([&left, this, thwd_magLeft, unit](Cell *ac){
-    //                 if (ac->mc == left &&
-    //                    // !ac->groundUnit &&
-    //                    // ac->plane == unit->cell->plane &&
-    //                     ac->thwd.getItemPtr(this->num)->createCountData != this->createCount &&
-    //                     unit->isNewCellOnGetWayValide(ac, iter)
-    //                 ) {
-
-    //                     if (unit->isOnGetPotentialWayGetTarget(ac)) {
-    //                         this->magOK = true;
-    //                     }
-
-    //                     thwd_magLeft->validCellsForWayFather.push(ac);
-    //                     ac->thwd.getItemPtr(this->num)->createCountData = this->createCount;
-    //                 }
-    //              });
-    //         } });
-
-    //     if (thwd_magLeft->validCellsForWayFather.length)
+    //     if (son == unit->cell->mc)
     //     {
-    //         thwd_magLeft->wayFather = mcFather;
-    //         thwd_magLeft->createCountData = this->createCount;
-    //         veerArr(thwd_magLeft->validCellsForWayFather, this->createCount, this->num);
-    //         this->openArrMag.push(left);
 
-    //         //////////////////////////////////////
+    //         Array<Td_way_data *> sonCells_thwd;
+    //         Array<Cell *> saveSonValidCellsToFather;
+    //         saveSonValidCellsToFather.copy(son->validCellsToFather);
+    //         son->validCellsToFather.forEach([this, &sonCells_thwd](Cell *c)
+    //                                         {
+    //             Td_way_data * sonC_thwd = c->thwd.getItemPtr(this->num);
+    //             sonC_thwd->createCountData = 0;
+    //             sonCells_thwd.push(sonC_thwd); });
+    //         getVCTF(son, contactToSonCells, unit, this);
+    //         console.log("length = " + to_string(son->validCellsToFather.length));
 
-    //         int G = this->get_GMagistral();
-    //         int H = this->get_HMagistral(left, unit->targetData.clicckedCell->mc);
+    //         addToSonValidCellsToFather(unit, this, son);
 
-    //         thwd_magLeft->G = mcFather ? G + mcFather->left->thwd_mag.getItemPtr(this->num)->G : G;
-    //         thwd_magLeft->H = H;
-    //         thwd_magLeft->F = thwd_magLeft->G + thwd_magLeft->H;
+    //         if (this->magOK) {
+    //             console.log("here");
+    //         }
 
-    //         /////////////////////////////////////
-    //     }
-    // }
-    // ////////////////////////////////////////////////////////////////////////
+    //         if (!son->validCellsToFather.length || !this->magOK)
+    //         {
+    //             son->validCellsToFather.copy(saveSonValidCellsToFather);
+    //             sonCells_thwd.forEach([this](Td_way_data *thwd)
+    //                                   { thwd->createCountData = this->createCount; });
+    //             console.log("continue");
+    //         }
 
-    // MagistralClaster *right = mcFather->right &&
-    //                                   //  mcFather->right->thwd_mag.getItemPtr(this->num)->createCountData != this->createCount &&
-    //                                   mcFather->right->thwd_mag.getItemPtr(this->num)->explored != this->createCount
-    //                               ? mcFather->right
-    //                               : nullptr;
-    // if (right)
-    // {
-    //     Td_way_data_magistral *thwd_magRight = right->thwd_mag.getItemPtr(this->num);
-    //     thwd_magRight->validCellsForWayFather.clear();
-
-    //     mcFather->rightVer.forEach([this, right, thwd_magRight, unit](Cell *c)
-    //                                {
-    //         if (c &&
-    //            // c->plane == unit->cell->plane &&
-    //             c->thwd.getItemPtr(this->num)->createCountData == this->createCount //&&
-    //        // unit->isNewCellOnGetWayValide(c, iter)
-    //      ) {
-
-    //              c->aroundCells.forEach([&right, this, thwd_magRight, unit](Cell *ac){
-    //                 if (ac->mc == right &&
-    //                    // !ac->groundUnit &&
-    //                    // ac->plane == unit->cell->plane &&
-    //                     ac->thwd.getItemPtr(this->num)->createCountData != this->createCount &&
-    //                     unit->isNewCellOnGetWayValide(ac, iter)
-    //                 ) {
-    //                     if (unit->isOnGetPotentialWayGetTarget(ac)) {
-    //                         this->magOK = true;
-    //                     }
-    //                     thwd_magRight->validCellsForWayFather.push(ac);
-    //                     ac->thwd.getItemPtr(this->num)->createCountData = this->createCount;
-    //                 }
-    //              });
-    //         } });
-
-    //     if (thwd_magRight->validCellsForWayFather.length)
-    //     {
-    //         thwd_magRight->wayFather = mcFather;
-    //         thwd_magRight->createCountData = this->createCount;
-    //         veerArr(thwd_magRight->validCellsForWayFather, this->createCount, this->num);
-    //         this->openArrMag.push(right);
-    //         //////////////////////////////////////
-
-    //         int G = this->get_GMagistral();
-    //         int H = this->get_HMagistral(right, unit->targetData.clicckedCell->mc);
-
-    //         thwd_magRight->G = mcFather ? G + mcFather->right->thwd_mag.getItemPtr(this->num)->G : G;
-    //         thwd_magRight->H = H;
-    //         thwd_magRight->F = thwd_magRight->G + thwd_magRight->H;
-
-    //         /////////////////////////////////////
-    //     }
-    // }
-    // ////////////////////////////////////////////////////////////////////////////////////////
-
-    // MagistralClaster *up = mcFather->up &&
-    //                                // mcFather->up->thwd_mag.getItemPtr(this->num)->createCountData != this->createCount &&
-    //                                mcFather->up->thwd_mag.getItemPtr(this->num)->explored != this->createCount
-    //                            ? mcFather->up
-    //                            : nullptr;
-    // if (up)
-    // {
-    //     Td_way_data_magistral *thwd_magUp = up->thwd_mag.getItemPtr(this->num);
-    //     thwd_magUp->validCellsForWayFather.clear();
-
-    //     mcFather->upHor.forEach([this, up, thwd_magUp, unit](Cell *c)
-    //                             {
-    //         if (c &&
-    //            // c->plane == unit->cell->plane &&
-    //             c->thwd.getItemPtr(this->num)->createCountData == this->createCount //&&
-    //        // unit->isNewCellOnGetWayValide(c, iter)
-    //     ) {
-
-    //              c->aroundCells.forEach([&up, this, thwd_magUp, unit](Cell *ac){
-    //                 if (ac->mc == up &&
-    //                    // !ac->groundUnit &&
-    //                    // ac->plane == unit->cell->plane &&
-    //                     ac->thwd.getItemPtr(this->num)->createCountData != this->createCount &&
-    //                     unit->isNewCellOnGetWayValide(ac, iter)
-    //                 ) {
-
-    //                     if (unit->isOnGetPotentialWayGetTarget(ac)) {
-    //                         this->magOK = true;
-    //                     }
-
-    //                     thwd_magUp->validCellsForWayFather.push(ac);
-    //                     ac->thwd.getItemPtr(this->num)->createCountData = this->createCount;
-    //                 }
-    //              });
-    //         } });
-
-    //     if (thwd_magUp->validCellsForWayFather.length)
-    //     {
-    //         thwd_magUp->wayFather = mcFather;
-    //         thwd_magUp->createCountData = this->createCount;
-    //         veerArr(thwd_magUp->validCellsForWayFather, this->createCount, this->num);
-    //         this->openArrMag.push(up);
-    //         //////////////////////////////////////
-
-    //         int G = this->get_GMagistral();
-    //         int H = this->get_HMagistral(up, unit->targetData.clicckedCell->mc);
-
-    //         thwd_magUp->G = mcFather ? G + mcFather->up->thwd_mag.getItemPtr(this->num)->G : G;
-    //         thwd_magUp->H = H;
-    //         thwd_magUp->F = thwd_magUp->G + thwd_magUp->H;
-
-    //         /////////////////////////////////////
-    //     }
-    // }
-    // ///////////////////////////////////////////////////////////////////////////////////////////
-    // MagistralClaster *down = mcFather->down &&
-    //                                  // mcFather->down->thwd_mag.getItemPtr(this->num)->createCountData != this->createCount &&
-    //                                  mcFather->down->thwd_mag.getItemPtr(this->num)->explored != this->createCount
-    //                              ? mcFather->down
-    //                              : nullptr;
-    // if (down)
-    // {
-    //     Td_way_data_magistral *thwd_magDown = down->thwd_mag.getItemPtr(this->num);
-    //     thwd_magDown->validCellsForWayFather.clear();
-
-    //     mcFather->downHor.forEach([this, down, thwd_magDown, unit](Cell *c)
-    //                               {
-    //         if (c &&
-    //             //c->plane == unit->cell->plane &&
-    //             c->thwd.getItemPtr(this->num)->createCountData == this->createCount //&&
-    //       //  unit->isNewCellOnGetWayValide(c, iter)
-    //     ) {
-
-    //              c->aroundCells.forEach([&down, this, thwd_magDown, unit](Cell *ac){
-    //                 if (ac->mc == down &&
-    //                    // ac->plane == unit->cell->plane &&
-    //                    // !ac->groundUnit &&
-    //                     ac->thwd.getItemPtr(this->num)->createCountData != this->createCount &&
-    //                     unit->isNewCellOnGetWayValide(ac, iter)
-    //                 ) {
-
-    //                     if (unit->isOnGetPotentialWayGetTarget(ac)) {
-    //                         this->magOK = true;
-    //                     }
-
-    //                     thwd_magDown->validCellsForWayFather.push(ac);
-    //                     ac->thwd.getItemPtr(this->num)->createCountData = this->createCount;
-    //                 }
-    //              });
-    //         } });
-
-    //     if (thwd_magDown->validCellsForWayFather.length)
-    //     {
-    //         thwd_magDown->wayFather = mcFather;
-    //         thwd_magDown->createCountData = this->createCount;
-    //         veerArr(thwd_magDown->validCellsForWayFather, this->createCount, this->num);
-    //         this->openArrMag.push(down);
-    //         //////////////////////////////////////
-
-    //         int G = this->get_GMagistral();
-    //         int H = this->get_HMagistral(down, unit->targetData.clicckedCell->mc);
-
-    //         thwd_magDown->G = mcFather ? G + mcFather->down->thwd_mag.getItemPtr(this->num)->G : G;
-    //         thwd_magDown->H = H;
-    //         thwd_magDown->F = thwd_magDown->G + thwd_magDown->H;
-
-    //         /////////////////////////////////////
+    //         //  if (son->validCellsToFather.length)
+    //         // {
+    //         //     addToSonValidCellsToFather(unit, this, son);
+    //         //     if (this->magOK)
+    //         //     {
+    //         //         console.log("FINISH HERE 2");
+    //         //     }
+    //         //     else
+    //         //     {
+    //         //         son->validCellsToFather.copy(saveSonValidCellsToFather);
+    //         //         sonCells_thwd.forEach([this](Td_way_data *thwd)
+    //         //                               { thwd->createCountData = this->createCount; });
+    //         //         console.log("continue 1");
+    //         //     }
+    //         // }
+    //         // else
+    //         // {
+    //         //     son->validCellsToFather.copy(saveSonValidCellsToFather);
+    //         //     sonCells_thwd.forEach([this](Td_way_data *thwd)
+    //         //                           { thwd->createCountData = this->createCount; });
+    //         //     console.log("continue 2");
+    //         // }
     //     }
     // }
 }

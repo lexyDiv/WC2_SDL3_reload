@@ -162,6 +162,50 @@ void GameField::create()
                                                              }
                                                              mc.cells.forEach([&mc](Cell *c)
                                                                               { c->mc = &mc; });
+
+                                                             if (mc.centralCell->top_left)
+                                                             {
+                                                                mc.leftVer.push(mc.centralCell->top_left);
+                                                                mc.upHor.push(mc.centralCell->top_left);
+                                                             }
+
+                                                             if (mc.centralCell->left)
+                                                             {
+                                                                mc.leftVer.push(mc.centralCell->left);
+                                                             }
+
+                                                             if (mc.centralCell->bottom_left)
+                                                             {
+                                                                mc.leftVer.push(mc.centralCell->bottom_left);
+                                                                mc.downHor.push(mc.centralCell->bottom_left);
+                                                             }
+
+                                                             if (mc.centralCell->top)
+                                                             {
+                                                                mc.upHor.push(mc.centralCell->top);
+                                                             }
+
+                                                             if (mc.centralCell->bottom)
+                                                             {
+                                                                mc.downHor.push(mc.centralCell->bottom);
+                                                             }
+
+                                                             if (mc.centralCell->top_right)
+                                                             {
+                                                                mc.rightVer.push(mc.centralCell->top_right);
+                                                                mc.upHor.push(mc.centralCell->top_right);
+                                                             }
+
+                                                             if (mc.centralCell->right)
+                                                             {
+                                                                mc.rightVer.push(mc.centralCell->right);
+                                                             }
+
+                                                             if (mc.centralCell->bottom_right)
+                                                             {
+                                                                mc.rightVer.push(mc.centralCell->bottom_right);
+                                                                mc.downHor.push(mc.centralCell->bottom_right);
+                                                             }
                                                           }); });
 
    // this->game->allMagistralClasters.forEach([this](Array<MagistralClaster> &mca, int ver)

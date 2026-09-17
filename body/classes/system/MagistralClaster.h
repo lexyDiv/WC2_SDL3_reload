@@ -44,11 +44,11 @@ class MagistralClaster {
     Array<Td_way_data_magistral> thwd_mag;
     MagistralClaster *father = nullptr;
 
-    // Array<Cell *> upHor;
+     Array<Cell *> upHor;
     // Array<Cell *> midHor;
-    // Array<Cell *> downHor;
+     Array<Cell *> downHor;
 
-    // Array<Cell *> leftVer;
+     Array<Cell *> leftVer;
     // Array<Cell *> midVer;
-    // Array<Cell *> rightVer;
+     Array<Cell *> rightVer;
 };

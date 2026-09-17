@@ -17,6 +17,7 @@ void Peon_peasant::orderOnWayControl()
     {
             if (!thDatas.getItem(0)->frash) {
                 thDatas.getItem(0)->frash = true;
+                thDatas.getItem(0)->nextStap = false;
                 console.log("RE FRASH");
             }
 

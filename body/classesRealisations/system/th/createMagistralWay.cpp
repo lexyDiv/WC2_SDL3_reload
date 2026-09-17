@@ -17,6 +17,10 @@ void veer(Unit *unit, ThData *td)
           c->aroundCells.forEach([td, mc, thwdMc, unit, &cells](Cell *ac){
         Td_way_data *thwdAc = ac->thwd.getItemPtr(td->num);
         Td_way_data_magistral *thwdMcAc = ac->mc->thwd_mag.getItemPtr(td->num);
+        if (unit->isOnGetPotentialWayGetTarget(ac)) {
+                td->magOK = true;
+                console.log("clear finish");
+               }
           if (thwdAc->createCountData != td->createCount &&
               ac->mc == mc &&
               unit->isNewCellOnGetWayValide(ac, td->iter)) {
@@ -28,8 +32,22 @@ void veer(Unit *unit, ThData *td)
     mc->validCellsToFather.copy(cells);
 }
 
-void addToSonValidCellsToFather(Unit *unit, ThData *td, MagistralClaster *father, MagistralClaster *son) {
-    
+void addToSonValidCellsToFather(Unit *unit, ThData *td, MagistralClaster *son)
+{
+    son->validCellsToFather.forEach([td, son, unit](Cell *cell)
+                                    { cell->aroundCells.forEach([td, son, unit](Cell *ac)
+                                                                {
+                    Td_way_data *thwd_ac = ac->thwd.getItemPtr(td->num);
+                if (unit->isOnGetPotentialWayGetTarget(ac)) {
+                td->magOK = true;
+                console.log("finish bliat !!!");
+               }
+        if (thwd_ac->createCountData != td->createCount &&
+            ac->mc == son &&
+            unit->isNewCellOnGetWayValide(ac, 0)) {
+               thwd_ac->createCountData = td->createCount;
+               son->validCellsToFather.push(ac);
+        } }); });
 }
 
 void ThData::createMagistralWay(Unit *unit)
@@ -57,7 +75,7 @@ void ThData::createMagistralWay(Unit *unit)
         this->cam.clear();
 
         this->min_F_mc = unit->cell->mc;
-        this->min_F_mc->father = nullptr;
+        this->min_F_mc->thwd_mag.getItemPtr(this->num)->wayFather = nullptr;
         this->min_F_mc->thwd_mag.getItemPtr(this->num)->F = 0;
         this->min_F_mc->thwd_mag.getItemPtr(this->num)->H = 0;
         this->min_F_mc->thwd_mag.getItemPtr(this->num)->G = 0;
@@ -65,6 +83,18 @@ void ThData::createMagistralWay(Unit *unit)
         this->openArrMag.push(this->min_F_mc);
 
         veer(unit, this);
+
+        if (this->magOK)
+        {
+            console.log("special create");
+            this->magOK = false;
+            unit->targetData.magistralWay.push(unit->targetData.clicckedCell);
+            unit->targetData.magistralWay.push(unit->cell);
+           // this->magistrallWayCreate(unit, this->min_F_mc);
+            unit->isPotentialWayComplite = true;
+            // console.log("good iter = " + to_string(iter));
+            return;
+        }
     }
 
     // while (true)
@@ -72,14 +102,26 @@ void ThData::createMagistralWay(Unit *unit)
 
     if (this->nextStap)
     {
-        // console.log("step");
+         console.log("step");
         this->nextStap = false;
         MinDataMag md;
 
-       // this->exploreNewMagClasterAndAddToOpenArr(unit, this->min_F_mc);
-       this->min_F_mc->aroundMc.forEach([unit, this](MagistralClaster *mc){
-             this->exploreNewMagClasterAndAddToOpenArr(unit, mc);
-       });
+        // this->exploreNewMagClasterAndAddToOpenArr(unit, this->min_F_mc);
+        this->min_F_mc->aroundMc.forEach([unit, this](MagistralClaster *mc)
+                                         {
+                                             this->exploreNewMagClasterAndAddToOpenArr(unit, mc);
+                                             this->min_F_mc->thwd_mag.getItemPtr(this->num)->explored = this->createCount;
+                                         });
+
+
+            this->openArrMag.filterSelf([this](MagistralClaster *mc)
+                                        {
+            if (mc->thwd_mag.getItemPtr(this->num)->explored == this->createCount) {
+                this->cam.push(mc);
+                return true;
+            }
+            return false; });
+
 
         ////////////////////////////////////////////////////
         if (this->openArrMag.length
@@ -96,29 +138,11 @@ void ThData::createMagistralWay(Unit *unit)
                 {
                     md.mc = mc;
                     md.index = i;
-                    // if (mc->thwd_mag.getItemPtr(this->num)->F < this->min_F_mc->thwd_mag.getItemPtr(this->num)->F)
-                    // {
-                    //     break;
-                    // }
                 }
             }
 
-            // MagistralClaster *mc = this->openArrMag.getItem(md.index);
-            // Array<MagistralClaster *> kuku;
-            // kuku.push(mc);
-            // mc->thwd_mag.getItemPtr(this->num)->explored = this->createCount;
-            // this->cam.push(mc);
-            // this->openArrMag.splice(md.index, 1);
-            this->openArrMag.filterSelf([this](MagistralClaster *mc)
-                                        {
-            if (mc->thwd_mag.getItemPtr(this->num)->explored == this->createCount) {
-                this->cam.push(mc);
-                return true;
-            }
-            return false; });
-
             this->min_F_mc = md.mc;
-            this->min_F_mc->thwd_mag.getItemPtr(this->num)->explored = this->createCount;
+           // this->min_F_mc->thwd_mag.getItemPtr(this->num)->explored = this->createCount;
             if (!this->globalMin_H_mc || this->globalMin_H_mc->thwd_mag.getItemPtr(this->num)->H > this->min_F_mc->thwd_mag.getItemPtr(this->num)->H)
             {
                 this->globalMin_H_mc = this->min_F_mc;
@@ -137,14 +161,7 @@ void ThData::createMagistralWay(Unit *unit)
 
         MagistralClaster *mcTarget = unit->targetData.clicckedCell->mc;
 
-        if (this->magOK ||
-            ((unit->targetData.clicckedCell->thwd.getItemPtr(this->num)->createCountData == this->createCount ||
-              iter >= 3) &&
-             (this->min_F_mc == mcTarget ||
-              this->min_F_mc->left == mcTarget ||
-              this->min_F_mc->right == mcTarget ||
-              this->min_F_mc->up == mcTarget ||
-              this->min_F_mc->down == mcTarget)))
+        if (this->magOK)
         {
             this->magOK = false;
             this->magistrallWayCreate(unit, this->min_F_mc);

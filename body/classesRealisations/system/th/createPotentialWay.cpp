@@ -8,7 +8,6 @@ void ThData::createPotentialWay(Unit *unit)
     int currentDeep = unit->personalCaseDeep ? unit->personalCaseDeep : this->deep;
     this->iter = 0;
 
-
     Td_way_data *td_way_data = unit->cell->thwd.length ? unit->cell->thwd.getItemPtr(this->num) : nullptr;
 
     this->createCount += 0.001;
@@ -23,6 +22,7 @@ void ThData::createPotentialWay(Unit *unit)
     this->min_F_cell->thwd.getItemPtr(this->num)->F = 0;
     this->min_F_cell->thwd.getItemPtr(this->num)->H = 0;
     this->min_F_cell->thwd.getItemPtr(this->num)->G = 0;
+    this->openArr.push(this->min_F_cell);
     this->globalMin_H_cell = nullptr;
 
     ///////////////////////////  poka tak!
@@ -43,12 +43,6 @@ void ThData::createPotentialWay(Unit *unit)
 
         MinData md;
 
-        for (int i = 0; i < this->min_F_cell->aroundCells.length; i++)
-        {
-            Cell *pc = this->min_F_cell->aroundCells.getItem(i);
-            this->exploreNewCellAndAddToOpenArr(unit, this->min_F_cell, pc);
-        }
-
         if (this->openArr.length && this->iter < currentDeep)
         {
             int index = this->openArr.length - 1;
@@ -61,17 +55,18 @@ void ThData::createPotentialWay(Unit *unit)
                 {
                     md.cell = cell;
                     md.index = i;
-                    if (cell->thwd.getItemPtr(this->num)->F < this->min_F_cell->thwd.getItemPtr(this->num)->F)
-                    {
-                        break;
-                    }
+                    // if (cell->thwd.getItemPtr(this->num)->F < this->min_F_cell->thwd.getItemPtr(this->num)->F)
+                    // {
+                    //     break;
+                    // }
                 }
             }
             this->openArr.splice(md.index, 1);
 
             this->min_F_cell = md.cell;
-            this->min_F_cell->thwd.getItemPtr(this->num)->explored = this->createCount;
-            if (!this->globalMin_H_cell || this->globalMin_H_cell->thwd.getItemPtr(this->num)->H > this->min_F_cell->thwd.getItemPtr(this->num)->H)
+           // this->min_F_cell->thwd.getItemPtr(this->num)->explored = this->createCount;
+            if (this->min_F_cell->thwd.getItemPtr(this->num)->F &&
+                (!this->globalMin_H_cell || (this->globalMin_H_cell->thwd.getItemPtr(this->num)->H > this->min_F_cell->thwd.getItemPtr(this->num)->H)))
             {
                 this->globalMin_H_cell = this->min_F_cell;
             }
@@ -84,17 +79,25 @@ void ThData::createPotentialWay(Unit *unit)
             else
             {
                 this->potentialWayCreate(unit, this->globalMin_H_cell);
-                //console.log("MAXIMUM !!! = " + to_string(this->iter));
-console.log("CLASSIC BAD ITER = " +to_string(iter));
-                if (!unit->personalCaseDeep 
-                    //&& unit->way.length && unit->way.getItem(unit->wayIndex - 1)->groundUnit 
-               // && !unit->way.getItem(unit->wayIndex - 1)->groundUnit->isActive
-            ) {
+                // console.log("MAXIMUM !!! = " + to_string(this->iter));
+               // console.log("CLASSIC BAD ITER = " + to_string(iter));
+                if (!unit->personalCaseDeep
+                    //&& unit->way.length && unit->way.getItem(unit->wayIndex - 1)->groundUnit
+                    // && !unit->way.getItem(unit->wayIndex - 1)->groundUnit->isActive
+                )
+                {
                     unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON
                     unit->frashWayCheckNeed = true;
                 }
             }
             return;
+        }
+
+        for (int i = 0; i < this->min_F_cell->aroundCells.length; i++)
+        {
+            Cell *pc = this->min_F_cell->aroundCells.getItem(i);
+            this->exploreNewCellAndAddToOpenArr(unit, this->min_F_cell, pc);
+            this->min_F_cell->thwd.getItemPtr(this->num)->explored = this->createCount;
         }
 
         ///////////////////////////////////////////////////////
@@ -103,7 +106,7 @@ console.log("CLASSIC BAD ITER = " +to_string(iter));
         {
             this->potentialWayCreate(unit, this->min_F_cell);
             unit->isPotentialWayComplite = true;
-            console.log("CLASSIC ITER = " +to_string(iter));
+            console.log("CLASSIC ITER = " + to_string(iter));
             break;
         }
     }

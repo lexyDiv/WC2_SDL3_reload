@@ -28,16 +28,31 @@ void ThData::exploreNewCellAndAddToOpenArr(Unit *unit, Cell *fatherCell, Cell *p
     if (potentialCell_thwd->createCountData == this->createCount)
     {
       int G = this->get_G(fatherCell, potentialCell) + fatherCell_thwd->G;
-      int F = G + potentialCell_thwd->H;
-      if (potentialCell_thwd->F > F)
+     // int F = G + potentialCell_thwd->H;
+      if (
+        potentialCell_thwd->G > G
+      )
       {
+        console.log("re father");
+        int F = G + potentialCell_thwd->H;
         potentialCell_thwd->wayFather = fatherCell;
         potentialCell_thwd->G = G;
         potentialCell_thwd->F = F;
       }
     }
     else if (
-        unit->isNewCellOnGetWayValide(potentialCell, this->iter))
+        unit->isNewCellOnGetWayValide(potentialCell, this->iter) //&&
+        // ! (
+        //   (potentialCell == fatherCell->bottom_right && fatherCell->right->groundUnit) ||
+        //   (potentialCell == fatherCell->bottom_right && fatherCell->bottom->groundUnit) ||
+        //   (potentialCell == fatherCell->top_right && fatherCell->right->groundUnit) ||
+        //   (potentialCell == fatherCell->top_right && fatherCell->top->groundUnit) ||
+        //   (potentialCell == fatherCell->bottom_left && fatherCell->left->groundUnit) ||
+        //   (potentialCell == fatherCell->bottom_left && fatherCell->bottom->groundUnit) ||
+        //   (potentialCell == fatherCell->top_left && fatherCell->left->groundUnit) ||
+        //   (potentialCell == fatherCell->top_left && fatherCell->top->groundUnit)
+        // )
+      )
     {
       potentialCell_thwd->wayFather = fatherCell;
 
@@ -48,6 +63,7 @@ void ThData::exploreNewCellAndAddToOpenArr(Unit *unit, Cell *fatherCell, Cell *p
        unit->targetData.clicckedCell
       );
 
+      potentialCell_thwd->last_G = G;
       potentialCell_thwd->G = fatherCell_thwd->G + G;
       potentialCell_thwd->H = H;
       potentialCell_thwd->F = potentialCell_thwd->G + potentialCell_thwd->H;  // F = G + H

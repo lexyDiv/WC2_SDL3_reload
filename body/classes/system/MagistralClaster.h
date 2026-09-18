@@ -13,6 +13,7 @@ public:
     double procCurr = 0;
     MagistralClaster *wayFather = nullptr;
     bool addOnWay = false;
+    float last_G = 0;
     Array<Cell *> validCellsForWayFather;
 
     Array<Td_way_data_magistral *> bad;

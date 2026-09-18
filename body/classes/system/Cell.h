@@ -79,6 +79,7 @@ public:
     // Cell *wayFather = nullptr;
     // void getCurrentTargetCell();
     double createCountData = 0.0;
+    bool isDraw = false;
     // double explored = 0.0;
 
     // int G2 = 0;

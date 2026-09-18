@@ -44,6 +44,7 @@ public:
     Array<Cell *> openArr;
     Array<MagistralClaster *> openArrMag;
     Array<MagistralClaster *> cam;
+    Array<Cell *> bu;
 
     void createMyActiveProgZone(int pathesLength);
     void process();

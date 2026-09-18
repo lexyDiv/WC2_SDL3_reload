@@ -41,7 +41,9 @@ void ThData::PWProcess()
      if (u) {
 
            if (!u->isPotentialWayComplite) {
-              this->createMagistralWay(u);
+              //this->createMagistralWay(u);
+              this->createPotentialWay(u);
+             // u->isPotentialWayComplite = true;
            }
 
         return;

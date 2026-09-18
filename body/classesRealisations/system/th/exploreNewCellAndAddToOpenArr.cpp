@@ -33,7 +33,7 @@ void ThData::exploreNewCellAndAddToOpenArr(Unit *unit, Cell *fatherCell, Cell *p
         potentialCell_thwd->G > G
       )
       {
-        console.log("re father");
+       // console.log("re father");
         int F = G + potentialCell_thwd->H;
         potentialCell_thwd->wayFather = fatherCell;
         potentialCell_thwd->G = G;

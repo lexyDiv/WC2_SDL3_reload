@@ -37,17 +37,20 @@
 void ThData::PWProcess()
 {
 
-    Unit *u = this->game->gf->focusUnit;
-     if (u) {
+    // Unit *u = this->game->gf->focusUnit;
+    //  if (u) {
 
-           if (!u->isPotentialWayComplite) {
-              //this->createMagistralWay(u);
-              this->createPotentialWay(u);
-             // u->isPotentialWayComplite = true;
-           }
+    //        if (!u->isPotentialWayComplite) {
+    //           //this->createMagistralWay(u);
+    //           this->createPotentialWay(u);
+    //          // u->isPotentialWayComplite = true;
+    //        }
 
-        return;
-     }
+    //     return;
+    //  }
+
+
+
 
     int length = this->game->unitsOnWay.length;
     for (int i = this->num; i < length; i += this->thds->length)
@@ -57,10 +60,10 @@ void ThData::PWProcess()
         if (!unit->isPotentialWayComplite && unit->cell && unit->hp)
         {
             Uint64 before = SDL_GetTicks();
-            if (!unit->targetData.magistralWay.length)
-            {
-                this->createMagistralWay(unit);
-            }
+           // if (!unit->targetData.magistralWay.length)
+           // {
+              //  this->createMagistralWay(unit);
+           // }
             this->createPotentialWay(unit);
             unit->isPotentialWayComplite = true;
             Uint64 past = SDL_GetTicks();

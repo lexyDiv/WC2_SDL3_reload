@@ -6,8 +6,8 @@ void ThData::createPotentialWay(Unit *unit)
 
     int currentDeep = unit->personalCaseDeep ? unit->personalCaseDeep : this->deep;
 
-    if (this->frash)
-    {
+    // if (this->frash)
+    // {
         this->frash = false;
 
     unit->way.clear();
@@ -24,7 +24,7 @@ void ThData::createPotentialWay(Unit *unit)
     }
     td_way_data->createCountData = this->createCount;
     this->openArr.clear();
-    this->bu.clear();
+   // this->bu.clear();
     this->min_F_cell = unit->cell;
     this->min_F_cell->thwd.getItemPtr(this->num)->F = 0;
     this->min_F_cell->thwd.getItemPtr(this->num)->H = 0;
@@ -43,13 +43,13 @@ void ThData::createPotentialWay(Unit *unit)
                 cell->thwd.getItemPtr(this->num)->explored = this->createCount;
             } });
 
-        }
+      //  }
 
-    // while (true)
-    // {
-
-       if (this->nextStap)
+    while (true)
     {
+
+    //    if (this->nextStap)
+    // {
 
         this->nextStap = false;
         this->iter++;
@@ -77,7 +77,7 @@ void ThData::createPotentialWay(Unit *unit)
             this->openArr.splice(md.index, 1);
 
             this->min_F_cell = md.cell;
-            this->bu.push(md.cell);
+          //  this->bu.push(md.cell);
            // this->min_F_cell->thwd.getItemPtr(this->num)->explored = this->createCount;
             if (this->min_F_cell->thwd.getItemPtr(this->num)->F &&
                 (!this->globalMin_H_cell || (this->globalMin_H_cell->thwd.getItemPtr(this->num)->H > this->min_F_cell->thwd.getItemPtr(this->num)->H)))

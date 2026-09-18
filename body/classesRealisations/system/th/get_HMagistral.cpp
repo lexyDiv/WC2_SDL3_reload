@@ -11,7 +11,7 @@ float ThData::get_HMagistral(MagistralClaster *potentialMc, MagistralClaster *fi
 //     float deltaHor = abs(finHor - pHor);
 //     float deltaVer = abs(finVer - pVer);
 
-//    return (deltaHor + deltaVer) * 10;
+//    return (deltaHor + deltaVer) * 30;
 
 
     float xCat = potentialMc->hor - finishMc->hor;

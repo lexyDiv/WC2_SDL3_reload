@@ -66,7 +66,7 @@ void ThData::exploreNewMagClasterAndAddToOpenArr(Unit *unit, MagistralClaster *s
         contactToSonCells = &mcFather->downHor;
     }
     ///////////////////
-        else if (son == mcFather->upLeft)
+    else if (son == mcFather->upLeft)
     {
         contactToSonCells = &mcFather->upLeftConor;
     }
@@ -74,11 +74,11 @@ void ThData::exploreNewMagClasterAndAddToOpenArr(Unit *unit, MagistralClaster *s
     {
         contactToSonCells = &mcFather->upRightConor;
     }
-        else if (son == mcFather->downLeft)
+    else if (son == mcFather->downLeft)
     {
         contactToSonCells = &mcFather->downLeftConor;
     }
-        else if (son == mcFather->downRight)
+    else if (son == mcFather->downRight)
     {
         contactToSonCells = &mcFather->downRightConor;
     }
@@ -94,33 +94,79 @@ void ThData::exploreNewMagClasterAndAddToOpenArr(Unit *unit, MagistralClaster *s
 
             if (son->validCellsToFather.length)
             {
+
                 thwd_mag_son->wayFather = mcFather;
+
                 thwd_mag_son->createCountData = this->createCount;
-                addToSonValidCellsToFather(unit, this, son);
+                int G = this->get_GMagistral(mcFather, son);
+                int H = this->get_HMagistral(son,
+                                             // unit->targetCell
+                                             unit->targetData.clicckedCell->mc);
 
-
-      int G = this->get_GMagistral(mcFather, son);
-      int H = this->get_HMagistral(son, 
-       // unit->targetCell
-       unit->targetData.clicckedCell->mc
-      );
-
-      thwd_mag_son->G = thwd_mag_father->G + G;
-      thwd_mag_son->H = H;
-      thwd_mag_son->F = thwd_mag_son->G + thwd_mag_son->H;  // F = G + H
-
-                // int G = 10.F;
-                // int H =
-               // thwd_mag_son->F = this->get_HMagistral(son, unit->targetData.clicckedCell->mc);
-
-                //  thwd_mag_son->G = G + thwd_mag_father->G;
-                //  thwd_mag_son->H = H;
-                //  thwd_mag_son->F = G + H; // F = G + H (1)
+                // potentialCell_thwd->last_G = G;
+                thwd_mag_son->G = thwd_mag_father->G + G;
+                thwd_mag_son->H = H;
+                thwd_mag_son->F = thwd_mag_son->G + thwd_mag_son->H; // F = G + H
                 this->openArrMag.push(son);
+                addToSonValidCellsToFather(unit, this, son);
+                // thwd_mag_son->wayFather = mcFather;
+                // thwd_mag_son->createCountData = this->createCount;
+                // addToSonValidCellsToFather(unit, this, son);
+
+                // int G = this->get_GMagistral(mcFather, son);
+                // int H = this->get_HMagistral(son,
+                //                              // unit->targetCell
+                //                              unit->targetData.clicckedCell->mc);
+
+                // thwd_mag_son->G = thwd_mag_father->G + G;
+                // thwd_mag_son->H = H;
+                // thwd_mag_son->F = thwd_mag_son->G + thwd_mag_son->H; // F = G + H
+
+                // this->openArrMag.push(son);
             }
         }
-        else
+        else // => here !!! re way
         {
+//             int G = this->get_GMagistral(mcFather, son) + thwd_mag_father->G;
+//             // int F = G + potentialCell_thwd->H;
+//             if (
+//                 thwd_mag_son->G > G)
+//             {
+//                 console.log("re father");
+//                 Array<Cell *> saveOldValideCellsToFather;
+//                 saveOldValideCellsToFather.copy(thwd_mag_son->validCellsForWayFather);
+
+//                 son->cells.forEach([this](Cell *cell)
+//                                    {
+//                     Td_way_data *c_thwd = cell->thwd.getItemPtr(this->num);
+//                     c_thwd->createCountData = 0; });
+
+//                 getVCTF(son, contactToSonCells, unit, this);
+
+//                 if (son->validCellsToFather.length)
+//                 {
+// console.log("re father");
+//                     int F = G + thwd_mag_son->H;
+//                     thwd_mag_son->wayFather = mcFather;
+//                     thwd_mag_son->G = G;
+//                     thwd_mag_son->F = F;
+//                     addToSonValidCellsToFather(unit, this, son);
+//                 }
+//                 else
+//                 {
+//                     console.log("continue");
+//                     son->cells.forEach([this](Cell *cell)
+//                                        {
+//                     Td_way_data *c_thwd = cell->thwd.getItemPtr(this->num);
+//                     c_thwd->createCountData = this->createCount; });
+//                     thwd_mag_son->validCellsForWayFather.copy(saveOldValideCellsToFather);
+//                 }
+
+//                 // int F = G + thwd_mag_son->H;
+//                 // thwd_mag_son->wayFather = mcFather;
+//                 // thwd_mag_son->G = G;
+//                 // thwd_mag_son->F = F;
+//             }
         }
     }
     else

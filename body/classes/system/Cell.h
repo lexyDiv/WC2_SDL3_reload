@@ -55,13 +55,13 @@ class Td_way_data
 public:
     //  Td_way_data(){};
     double createCountData = 0;
-    int F = 0;
-    int H = 0;
-    int G = 0;
+    float F = 0;
+    float H = 0;
+    float G = 0;
     double explored = 0;
     double procCurr = 0;
     Cell *wayFather = nullptr;
-    int last_G = 0;
+    //int last_G = 0;
    // int dopWayIndex = -1;
     //bool touch = false;
 };

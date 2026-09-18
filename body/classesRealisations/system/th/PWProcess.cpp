@@ -59,16 +59,16 @@ void ThData::PWProcess()
 
         if (!unit->isPotentialWayComplite && unit->cell && unit->hp)
         {
-            Uint64 before = SDL_GetTicks();
+           // Uint64 before = SDL_GetTicks();
            // if (!unit->targetData.magistralWay.length)
            // {
-              //  this->createMagistralWay(unit);
+             //   this->createMagistralWay(unit);
            // }
             this->createPotentialWay(unit);
             unit->isPotentialWayComplite = true;
-            Uint64 past = SDL_GetTicks();
-            int res = past - before;
-            console.log("res = " + to_string(res));
+           // Uint64 past = SDL_GetTicks();
+           // int res = past - before;
+           // console.log("res = " + to_string(res));
         }
         Uint64 currentTime = SDL_GetTicks();
         int deltaTime = int(currentTime) - int(this->game->startTick);

@@ -120,7 +120,7 @@ void ThData::createPotentialWay(Unit *unit)
         {
             this->potentialWayCreate(unit, this->min_F_cell);
             unit->isPotentialWayComplite = true;
-            console.log("CLASSIC ITER = " + to_string(iter));
+           // console.log("CLASSIC ITER = " + to_string(iter));
           //  break;
           return;
         }

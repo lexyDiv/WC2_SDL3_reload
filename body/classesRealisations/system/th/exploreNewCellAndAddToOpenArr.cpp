@@ -63,7 +63,7 @@ void ThData::exploreNewCellAndAddToOpenArr(Unit *unit, Cell *fatherCell, Cell *p
        unit->targetData.clicckedCell
       );
 
-      potentialCell_thwd->last_G = G;
+     // potentialCell_thwd->last_G = G;
       potentialCell_thwd->G = fatherCell_thwd->G + G;
       potentialCell_thwd->H = H;
       potentialCell_thwd->F = potentialCell_thwd->G + potentialCell_thwd->H;  // F = G + H

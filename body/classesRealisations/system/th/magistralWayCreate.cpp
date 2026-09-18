@@ -38,7 +38,7 @@ void ThData::magistrallWayCreate(Unit *unit, MagistralClaster *finalMc)
 
                 nextMc = nextMc->thwd_mag.getItemPtr(this->num)->wayFather;
 
-                if (index % 4 == 0)
+                if (index % 1 == 0)
                 {
                     Cell *validCell = nullptr;
                     if (unit->isNewCellOnGetWayValide(nextMc->centralCell, 0))

@@ -53,8 +53,8 @@ void addToSonValidCellsToFather(Unit *unit, ThData *td, MagistralClaster *son)
 void ThData::createMagistralWay(Unit *unit)
 {
 
-    if (this->frash)
-    {
+    // if (this->frash)
+    // {
         // console.log("frash");
         this->frash = false;
         unit->targetData.magistralWay.clear();
@@ -72,7 +72,7 @@ void ThData::createMagistralWay(Unit *unit)
         td_way_data_mag->createCountData = this->createCount;
 
         this->openArrMag.clear();
-        this->cam.clear();
+       // this->cam.clear();
 
         this->min_F_mc = unit->cell->mc;
         this->min_F_mc->thwd_mag.getItemPtr(this->num)->wayFather = nullptr;
@@ -95,13 +95,13 @@ void ThData::createMagistralWay(Unit *unit)
             // console.log("good iter = " + to_string(iter));
             return;
         }
-    }
+  //  }
 
-    // while (true)
-    // {
-
-    if (this->nextStap)
+    while (true)
     {
+
+    // if (this->nextStap)
+    // {
          //console.log("step");
         this->nextStap = false;
 
@@ -127,7 +127,7 @@ void ThData::createMagistralWay(Unit *unit)
             }
 
             this->min_F_mc = md.mc;
-            this->cam.push(this->min_F_mc);
+           // this->cam.push(this->min_F_mc);
             this->min_F_mc->thwd_mag.getItemPtr(this->num)->explored = this->createCount;
             this->openArrMag.splice(md.index, 1);
            // this->min_F_mc->thwd_mag.getItemPtr(this->num)->explored = this->createCount;

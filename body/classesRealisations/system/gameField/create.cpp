@@ -140,11 +140,29 @@ void GameField::create()
                                                              int currentHorLeft = hor - 1;
                                                              int currentVerDown = ver + 1;
                                                              int currentHorRight = hor + 1;
-                                                             mc.up = currentVerUp >= 0 ? this->game->allMagistralClasters.getItemLnk(currentVerUp).getItemPtr(hor) : nullptr;
-                                                             mc.down = currentVerDown <= mca.length - 1 ? this->game->allMagistralClasters.getItemLnk(currentVerDown).getItemPtr(hor) : nullptr;
-                                                             mc.left = currentHorLeft >= 0 ? this->game->allMagistralClasters.getItemLnk(ver).getItemPtr(currentHorLeft) : nullptr;
-                                                             mc.right = currentHorRight <= mca.length - 1 ? this->game->allMagistralClasters.getItemLnk(ver).getItemPtr(currentHorRight) : nullptr;
-                                                             if (mc.up)
+                                                          
+   mc.upLeft = currentVerUp >= 0 && currentHorLeft >= 0 ? this->game->allMagistralClasters.getItemLnk(currentVerUp).getItemPtr(currentHorLeft) : nullptr;  
+   mc.upRight = currentVerUp >= 0 && currentHorRight <= mca.length - 1 ? this->game->allMagistralClasters.getItemLnk(currentVerUp).getItemPtr(currentHorRight) : nullptr; 
+   mc.downLeft = currentHorLeft >= 0 && currentVerDown <= mca.length - 1 ? this->game->allMagistralClasters.getItemLnk(currentVerDown).getItemPtr(currentHorLeft) : nullptr;
+   mc.downRight = currentHorRight <= mca.length - 1 && currentVerDown <= mca.length - 1 ? this->game->allMagistralClasters.getItemLnk(currentVerDown).getItemPtr(currentHorRight) : nullptr;
+
+   mc.up = currentVerUp >= 0 ? this->game->allMagistralClasters.getItemLnk(currentVerUp).getItemPtr(hor) : nullptr;
+   mc.down = currentVerDown <= mca.length - 1 ? this->game->allMagistralClasters.getItemLnk(currentVerDown).getItemPtr(hor) : nullptr;
+   mc.left = currentHorLeft >= 0 ? this->game->allMagistralClasters.getItemLnk(ver).getItemPtr(currentHorLeft) : nullptr;
+   mc.right = currentHorRight <= mca.length - 1 ? this->game->allMagistralClasters.getItemLnk(ver).getItemPtr(currentHorRight) : nullptr;
+
+         if (mc.upLeft) {
+            mc.aroundMc.push(mc.upLeft);
+         }
+         if (mc.upRight) {
+            mc.aroundMc.push(mc.upRight);
+         }
+         if (mc.downLeft) {
+            mc.aroundMc.push(mc.downLeft);
+         }
+         if (mc.downRight) {
+            mc.aroundMc.push(mc.downRight);
+         }                                                   if (mc.up)
                                                              {
                                                                 mc.aroundMc.push(mc.up);
                                                              }
@@ -163,10 +181,14 @@ void GameField::create()
                                                              mc.cells.forEach([&mc](Cell *c)
                                                                               { c->mc = &mc; });
 
+
+
+
                                                              if (mc.centralCell->top_left)
                                                              {
                                                                 mc.leftVer.push(mc.centralCell->top_left);
                                                                 mc.upHor.push(mc.centralCell->top_left);
+                                                                mc.upLeftConor.push(mc.centralCell->top_left);
                                                              }
 
                                                              if (mc.centralCell->left)
@@ -178,6 +200,7 @@ void GameField::create()
                                                              {
                                                                 mc.leftVer.push(mc.centralCell->bottom_left);
                                                                 mc.downHor.push(mc.centralCell->bottom_left);
+                                                                mc.downLeftConor.push(mc.centralCell->bottom_left);
                                                              }
 
                                                              if (mc.centralCell->top)
@@ -194,6 +217,7 @@ void GameField::create()
                                                              {
                                                                 mc.rightVer.push(mc.centralCell->top_right);
                                                                 mc.upHor.push(mc.centralCell->top_right);
+                                                                mc.upRightConor.push(mc.centralCell->top_right);
                                                              }
 
                                                              if (mc.centralCell->right)
@@ -205,8 +229,8 @@ void GameField::create()
                                                              {
                                                                 mc.rightVer.push(mc.centralCell->bottom_right);
                                                                 mc.downHor.push(mc.centralCell->bottom_right);
-                                                             }
-                                                          }); });
+                                                                mc.downRightConor.push(mc.centralCell->bottom_right);
+                                                             } }); });
 
    // this->game->allMagistralClasters.forEach([this](Array<MagistralClaster> &mca, int ver)
    //                                          { mca.forEach([&ver, this, &mca](MagistralClaster &mc, int hor)

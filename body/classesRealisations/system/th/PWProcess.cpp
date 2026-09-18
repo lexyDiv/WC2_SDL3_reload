@@ -37,15 +37,15 @@
 void ThData::PWProcess()
 {
 
-    // Unit *u = this->game->gf->focusUnit;
-    //  if (u) {
+    Unit *u = this->game->gf->focusUnit;
+     if (u) {
 
-    //        if (!u->isPotentialWayComplite) {
-    //           this->createMagistralWay(u);
-    //        }
+           if (!u->isPotentialWayComplite) {
+              this->createMagistralWay(u);
+           }
 
-    //     return;
-    //  }
+        return;
+     }
 
     int length = this->game->unitsOnWay.length;
     for (int i = this->num; i < length; i += this->thds->length)

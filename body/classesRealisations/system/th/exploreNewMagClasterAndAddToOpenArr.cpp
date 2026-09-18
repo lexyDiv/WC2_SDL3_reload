@@ -65,6 +65,23 @@ void ThData::exploreNewMagClasterAndAddToOpenArr(Unit *unit, MagistralClaster *s
     {
         contactToSonCells = &mcFather->downHor;
     }
+    ///////////////////
+        else if (son == mcFather->upLeft)
+    {
+        contactToSonCells = &mcFather->upLeftConor;
+    }
+    else if (son == mcFather->upRight)
+    {
+        contactToSonCells = &mcFather->upRightConor;
+    }
+        else if (son == mcFather->downLeft)
+    {
+        contactToSonCells = &mcFather->downLeftConor;
+    }
+        else if (son == mcFather->downRight)
+    {
+        contactToSonCells = &mcFather->downRightConor;
+    }
 
     Td_way_data_magistral *thwd_mag_father = mcFather->thwd_mag.getItemPtr(this->num);
     Td_way_data_magistral *thwd_mag_son = son->thwd_mag.getItemPtr(this->num);
@@ -80,9 +97,21 @@ void ThData::exploreNewMagClasterAndAddToOpenArr(Unit *unit, MagistralClaster *s
                 thwd_mag_son->wayFather = mcFather;
                 thwd_mag_son->createCountData = this->createCount;
                 addToSonValidCellsToFather(unit, this, son);
+
+
+      int G = this->get_GMagistral(mcFather, son);
+      int H = this->get_HMagistral(son, 
+       // unit->targetCell
+       unit->targetData.clicckedCell->mc
+      );
+
+      thwd_mag_son->G = thwd_mag_father->G + G;
+      thwd_mag_son->H = H;
+      thwd_mag_son->F = thwd_mag_son->G + thwd_mag_son->H;  // F = G + H
+
                 // int G = 10.F;
                 // int H =
-                thwd_mag_son->F = this->get_HMagistral(son, unit->targetData.clicckedCell->mc);
+               // thwd_mag_son->F = this->get_HMagistral(son, unit->targetData.clicckedCell->mc);
 
                 //  thwd_mag_son->G = G + thwd_mag_father->G;
                 //  thwd_mag_son->H = H;

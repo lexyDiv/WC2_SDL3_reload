@@ -20,6 +20,6 @@ float ThData::get_HMagistral(MagistralClaster *potentialMc, MagistralClaster *fi
    //console.log("y = " + to_string(potentialMc->y));
    // console.log("dis = " + to_string(dis));
 
-    return dis;
+    return dis * 30;
 
 }

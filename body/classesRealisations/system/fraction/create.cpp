@@ -21,7 +21,7 @@ if (this->color == "red") {
 
     Unit *peon = new Peon_peasant(this);
     peon->persNum = 2;
-    peon->create(game->gf->field.getItem(4).getItem(3));
+    peon->create(game->gf->field.getItem(51).getItem(6));
     this->game->allLifeUnitsPtr.push(peon);
     this->AllLifeUnits.push(peon);
 

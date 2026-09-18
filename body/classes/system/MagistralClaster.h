@@ -37,7 +37,11 @@ class MagistralClaster {
     Array<Cell *> cells;
     Array<Cell *> validCellsToFather;
     MagistralClaster *up = nullptr;
+    MagistralClaster *upLeft = nullptr;
+    MagistralClaster *upRight = nullptr;
     MagistralClaster *down = nullptr;
+    MagistralClaster *downLeft = nullptr;
+    MagistralClaster *downRight = nullptr;
     MagistralClaster *left = nullptr;
     MagistralClaster *right = nullptr;
     Array<MagistralClaster *> aroundMc;
@@ -51,4 +55,9 @@ class MagistralClaster {
      Array<Cell *> leftVer;
     // Array<Cell *> midVer;
      Array<Cell *> rightVer;
+
+     Array<Cell *> upRightConor;
+     Array<Cell *> upLeftConor;
+     Array<Cell *> downRightConor;
+     Array<Cell *> downLeftConor;
 };

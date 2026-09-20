@@ -70,16 +70,16 @@ void ThData::PWProcess()
            // int res = past - before;
            // console.log("res = " + to_string(res));
         }
-        Uint64 currentTime = SDL_GetTicks();
-        int deltaTime = int(currentTime) - int(this->game->startTick);
-        if (deltaTime >= this->game->optimalDeltaTime - 5)
-        {
-            this->hold = i;
-            this->deep = this->deep >= 5000 ? this->deep - 50 : this->deep;
-        }
+        // Uint64 currentTime = SDL_GetTicks();
+        // int deltaTime = int(currentTime) - int(this->game->startTick);
+        // if (deltaTime >= this->game->optimalDeltaTime - 5)
+        // {
+        //     this->hold = i;
+        //     this->deep = this->deep >= 5000 ? this->deep - 50 : this->deep;
+        // }
     };
-    if (this->deep < 30000)
-    {
-        this->deep += 25;
-    }
+    // if (this->deep < 30000)
+    // {
+    //     this->deep += 25;
+    // }
 }

@@ -11,7 +11,7 @@ int ThData::get_H(Cell *potentialCell, Cell *finishCell)
     int deltaHor = abs(finHor - pHor);
     int deltaVer = abs(finVer - pVer);
 
-    return (deltaHor + deltaVer) * 10;
+    return (deltaHor + deltaVer) * 100;
 
 
 

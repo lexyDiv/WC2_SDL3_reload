@@ -3,13 +3,21 @@
 
 void ThData::magistrallWayCreate(Unit *unit, MagistralClaster *finalMc)
 {
+
+            if (!finalMc) {
+                cout << "no final mc = " + to_string(iter) << endl;
+                return;
+            }
+
     // console.log("CREATE");
     // Cell *uc = unit->cell;
     MagistralClaster *umc = unit->cell->mc;
+    TargetData &td = unit->targetData;
 
     // if (this->magOK)
     // {
     unit->targetData.magistralWay.push(unit->targetData.clicckedCell);
+
     // }
     //  else
     //  {
@@ -23,6 +31,7 @@ void ThData::magistrallWayCreate(Unit *unit, MagistralClaster *finalMc)
         // console.log("CREATE");
         // Cell *nextCell = finalCell;
         MagistralClaster *nextMc = finalMc;
+        
         // unit->way.push(nextCell);
         // unit->targetData.magistralWay.push(nextMc);
 
@@ -31,6 +40,7 @@ void ThData::magistrallWayCreate(Unit *unit, MagistralClaster *finalMc)
         while (true)
         {
 
+
             //  iter++;
             if (nextMc->thwd_mag.getItemPtr(this->num)->wayFather &&
                 nextMc->thwd_mag.getItemPtr(this->num)->wayFather != umc)
@@ -38,7 +48,7 @@ void ThData::magistrallWayCreate(Unit *unit, MagistralClaster *finalMc)
 
                 nextMc = nextMc->thwd_mag.getItemPtr(this->num)->wayFather;
 
-                if (index % 1 == 0)
+                if (index % 4 == 0)
                 {
                     Cell *validCell = nullptr;
                     if (unit->isNewCellOnGetWayValide(nextMc->centralCell, 0))
@@ -58,7 +68,7 @@ void ThData::magistrallWayCreate(Unit *unit, MagistralClaster *finalMc)
                         }
                     }
 
-                    unit->targetData.magistralWay.push(validCell);
+                    td.magistralWay.push(validCell);
                 }
 
                 index++;
@@ -72,7 +82,24 @@ void ThData::magistrallWayCreate(Unit *unit, MagistralClaster *finalMc)
         }
     }
 
-    unit->targetData.magistralWay.push(unit->cell);
-    console.log(to_string(iter));
+    
+    td.magistralWay.push(unit->cell);
+    td.prevMagCell = unit->cell;
+    td.nextMagCellIndex = td.magistralWay.length - 2;
+    td.nextMagCell = td.magistralWay.getItem(td.nextMagCellIndex);
+    td.saveClickedCell = td.clicckedCell;
+    td.saveUnit = td.unit;
+    td.clicckedCell = td.nextMagCell;
+
+    unit->isOnGetPotentialWayGetTarget = [unit](Cell *c){
+
+        if (c->mc == unit->targetData.clicckedCell->mc) {
+            return true;
+        }
+
+        return false;
+    };
+
+  //  console.log("MAG iter = " + to_string(iter));
     // unit->targetData.magistralWay.push(unit->targetData.clicckedCell);
 }

@@ -28,4 +28,6 @@ void ThData::potentialWayCreate(Unit *unit, Cell *finalCell) {
       unit->wayIndex = unit->way.length;
       unit->isPotentialWayComplite = true;
       unit->isIgetMyTarget = false;
+
+    //  console.log("CLASSIC iter = " + to_string(iter));
 };

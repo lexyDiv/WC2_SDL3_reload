@@ -7,7 +7,7 @@ void MobileGroundUnit::goWay()
     {
         this->isBlocked = this->isBlockedd(this);
 
-        if (//this->isPotentialWayComplite &&
+        if ( // this->isPotentialWayComplite &&
             this->wayIndex > 0)
         {
 
@@ -19,6 +19,7 @@ void MobileGroundUnit::goWay()
             bool isCrox = this->crox();
             if (this->isNextCellFreeToGoWay(nc) && !isNeedHold && !isCrox)
             {
+                this->selectNextMagCell();
                 this->needHolTimer = 0;
                 this->wayIndex--;
                 this->x = this->cell->x;
@@ -46,11 +47,9 @@ void MobileGroundUnit::goWay()
             else if (isNeedHold)
             {
 
-                if (this->iNeedFreeWay
-                     && this->nextCell->groundUnit && !this->nextCell->groundUnit->isActive
-                    ) {
+                if (this->iNeedFreeWay && this->nextCell->groundUnit && !this->nextCell->groundUnit->isActive)
+                {
                     this->stepToTheSide();
-                
                 }
 
                 this->needHolTimer++;
@@ -64,13 +63,20 @@ void MobileGroundUnit::goWay()
             {
                 this->iNeedFreeWay = !this->personalCaseDeep ? true : false; // <<<<<<<<<<<<< ON
                 this->stendOnCell();
-                if (this->profession != "")
+                if (this->targetData.magistralWay.length)
                 {
-                    this->orderOnWay.go(this->profession, this->personalCaseDeep);
+                    this->goToNextMagCell();
                 }
-                else if (this->targetData.clicckedCell)
+                else
                 {
-                    this->orderOnWay.go(this->targetData.clicckedCell, this->personalCaseDeep);
+                    if (this->profession != "")
+                    {
+                        this->orderOnWay.go(this->profession, this->personalCaseDeep);
+                    }
+                    else if (this->targetData.clicckedCell)
+                    {
+                        this->orderOnWay.go(this->targetData.clicckedCell, this->personalCaseDeep);
+                    }
                 }
             }
         }

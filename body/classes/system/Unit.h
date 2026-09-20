@@ -109,6 +109,8 @@ public:
   virtual void stressControl() {};
   virtual void targetObjControl() {};
   virtual void continueMagistral() {};
+  virtual void goToNextMagCell() {};
+  virtual void selectNextMagCell() {};
 
   int deleteTimer = 50;
   Array<Cell *> myCells;

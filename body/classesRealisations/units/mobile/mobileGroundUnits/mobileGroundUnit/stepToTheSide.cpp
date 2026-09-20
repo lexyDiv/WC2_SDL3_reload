@@ -1,5 +1,5 @@
 #include "isNeedFreeWay.cpp"
-//=>out
+//=>selectNextMagCell
 
 void MobileGroundUnit::stepToTheSide()
 {

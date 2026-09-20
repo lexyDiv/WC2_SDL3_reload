@@ -22,6 +22,8 @@ class MobileGroundUnit : public Unit {
     bool crox() override;
     virtual bool isNeedFreeWay();
     void stepToTheSide() override;
+   virtual void goToNextMagCell() override;
+   virtual void selectNextMagCell() override;
 };
 
 MobileGroundUnit::MobileGroundUnit(){};

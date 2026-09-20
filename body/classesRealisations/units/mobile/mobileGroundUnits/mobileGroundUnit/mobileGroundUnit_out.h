@@ -1,3 +1,3 @@
-#include "stepToTheSide.cpp"
+#include "goToNextMagCell.cpp"
 //=>units
 

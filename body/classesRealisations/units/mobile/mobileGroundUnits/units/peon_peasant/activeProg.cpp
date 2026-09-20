@@ -11,6 +11,14 @@ void Peon_peasant::activeProg()
     return;
   }
 
+  TargetData &td = this->targetData;
+  if (td.saveClickedCell || td.saveUnit) {
+    td.clicckedCell = td.saveClickedCell;
+    td.unit = td.saveUnit;
+    td.saveClickedCell = nullptr;
+    td.saveUnit = nullptr;
+  }
+
 
     if (!this->personalCaseDeep && this->iNeedFreeWay && !this->wayIndex == 1 && this->frashWayCheckNeed)
     {

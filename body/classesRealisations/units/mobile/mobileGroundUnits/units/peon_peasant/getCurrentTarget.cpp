@@ -8,7 +8,7 @@ void Peon_peasant::getCurrentTarget()
     this->game->unitsOnWay.push(this);
     this->game->unitsOnWayMT.unlock();
 
-    this->potentialWay.clear();
+    this->way.clear();
     this->wayIndex = 0;
 
     this->isPotentialWayComplite = false;

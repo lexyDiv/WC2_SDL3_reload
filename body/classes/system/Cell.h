@@ -29,6 +29,11 @@ public:
     bool isActual = false;
     Array<Cell *> basicWay;
     Array<Cell *> magistralWay;
+    Cell *prevMagCell = nullptr;
+    Cell *nextMagCell = nullptr;
+    int nextMagCellIndex = -1;
+    Cell *saveClickedCell = nullptr;
+    Unit *saveUnit = nullptr;
 
     void clear()
     {

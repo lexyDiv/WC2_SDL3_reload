@@ -60,10 +60,11 @@ void ThData::PWProcess()
         if (!unit->isPotentialWayComplite && unit->cell && unit->hp)
         {
            // Uint64 before = SDL_GetTicks();
-           // if (!unit->targetData.magistralWay.length)
-           // {
-             //   this->createMagistralWay(unit);
-           // }
+            if (!unit->targetData.magistralWay.length)
+            {
+                //console.log("num = " + to_string(this->num));
+               this->createMagistralWay(unit);
+            }
             this->createPotentialWay(unit);
             unit->isPotentialWayComplite = true;
            // Uint64 past = SDL_GetTicks();

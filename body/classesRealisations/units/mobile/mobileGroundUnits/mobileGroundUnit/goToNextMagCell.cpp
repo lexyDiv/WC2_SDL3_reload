@@ -15,14 +15,14 @@ void MobileGroundUnit::goToNextMagCell() {
     this->wayIndex = 0;
     this->isPotentialWayComplite = false;
 
-    this->isOnGetPotentialWayGetTarget = [this](Cell *c){
+   //  this->isOnGetPotentialWayGetTarget = [this](Cell *c){
  
-        if (c == this->targetData.nextMagCell) {
-           return true;
-        }
+   //      if (c == this->targetData.nextMagCell) {
+   //         return true;
+   //      }
          
-        return false;
-    };
+   //      return false;
+   //  };
 
    }
 }

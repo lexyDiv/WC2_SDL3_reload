@@ -104,19 +104,19 @@ void Game::draw()
             td.magistralWay
                 .forEach([&drawDeltaX, &drawDeltaY, this](Cell *c, int i)
                          {
-                             ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "black", 50);
+                             ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "black", 150);
                              // ctx.StrokeRect(c->x + drawDeltaX, c->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "blue", 50);
                              //  ctx.DrawText(mc->x + 40 + i + drawDeltaX, mc->y + 40 + i + drawDeltaY, 20, to_string(i));
                          });
 
         if (td.prevMagCell) {
             Cell *c = td.prevMagCell;
-            ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "red", 50);
+            ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "red", 150);
         }
 
          if (td.nextMagCell) {
             Cell *c = td.nextMagCell;
-            ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "blue", 50);
+            ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "blue", 150);
         }
 
         }
@@ -175,19 +175,19 @@ void Game::draw()
 
         ///////////////////////////////////////////////////////////////////////////////////// => CLASSIC way
 
-        if (this->gf->focusUnit)
-        {
-            Unit *u = this->gf->focusUnit;
-            // u->way
-           // u->way
-           u->targetData.magistralWay
-                .forEach([&drawDeltaX, &drawDeltaY, this](Cell *c, int i)
-                         {
-                             ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "black");
-                             // ctx.StrokeRect(c->x + drawDeltaX, c->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "blue", 50);
-                             //  ctx.DrawText(mc->x + 40 + i + drawDeltaX, mc->y + 40 + i + drawDeltaY, 20, to_string(i));
-                         });
-        }
+        // if (this->gf->focusUnit)
+        // {
+        //     Unit *u = this->gf->focusUnit;
+        //     // u->way
+        //    // u->way
+        //    u->targetData.magistralWay
+        //         .forEach([&drawDeltaX, &drawDeltaY, this](Cell *c, int i)
+        //                  {
+        //                      ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "black");
+        //                      // ctx.StrokeRect(c->x + drawDeltaX, c->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "blue", 50);
+        //                      //  ctx.DrawText(mc->x + 40 + i + drawDeltaX, mc->y + 40 + i + drawDeltaY, 20, to_string(i));
+        //                  });
+        // }
 
 //         // this->allMagistralClasters.forEach([&drawDeltaX, &drawDeltaY, this](Array<MagistralClaster> &mca)
 //         //                                    { mca.forEach([&drawDeltaX, &drawDeltaY, this](MagistralClaster &mc)

@@ -4,9 +4,16 @@
 void MobileGroundUnit::selectNextMagCell()
 {
     TargetData &td = this->targetData;
-    if (//this->wayIndex <= 1 &&
+
+            if (td.nextMagCellIndex == 1) {
+                td.nextMagCellIndex = 0;
+                td.magistralWay.clear();
+                return;
+            }
+
+    if (this->wayIndex <= 5 &&
         td.magistralWay.length &&
-        td.nextMagCellIndex && this->orderOnWay.isComplite)
+        td.nextMagCellIndex > 1 && this->orderOnWay.isComplite)
     {
        // console.log("here");
         if (this->nextCell->mc == td.nextMagCell->mc)
@@ -17,6 +24,9 @@ void MobileGroundUnit::selectNextMagCell()
             td.clicckedCell = td.nextMagCell;
            // console.log("select ok");
             this->goToNextMagCell();
+            // if (this->focus) {
+            //     console.log("easy go");
+            // }
         }
         else
         {

@@ -4,10 +4,11 @@
 void ThData::magistrallWayCreate(Unit *unit, MagistralClaster *finalMc)
 {
 
-            if (!finalMc) {
-              //  cout << "no final mc = " + to_string(iter) << endl;
-                return;
-            }
+    if (!finalMc)
+    {
+        //  cout << "no final mc = " + to_string(iter) << endl;
+        return;
+    }
 
     // console.log("CREATE");
     // Cell *uc = unit->cell;
@@ -31,7 +32,7 @@ void ThData::magistrallWayCreate(Unit *unit, MagistralClaster *finalMc)
         // console.log("CREATE");
         // Cell *nextCell = finalCell;
         MagistralClaster *nextMc = finalMc;
-        
+
         // unit->way.push(nextCell);
         // unit->targetData.magistralWay.push(nextMc);
 
@@ -39,7 +40,6 @@ void ThData::magistrallWayCreate(Unit *unit, MagistralClaster *finalMc)
 
         while (true)
         {
-
 
             //  iter++;
             if (nextMc->thwd_mag.getItemPtr(this->num)->wayFather &&
@@ -82,29 +82,26 @@ void ThData::magistrallWayCreate(Unit *unit, MagistralClaster *finalMc)
         }
     }
 
-    
-    td.magistralWay.push(unit->cell);
-    td.prevMagCell = unit->cell;
-    td.nextMagCellIndex = td.magistralWay.length - 2;
-    td.nextMagCell = td.magistralWay.getItem(td.nextMagCellIndex);
-    td.saveClickedCell = td.clicckedCell;
-    td.saveUnit = td.unit;
-    td.clicckedCell = td.nextMagCell;
+    if (td.magistralWay.length >= 2)
+    {
+        td.magistralWay.push(unit->cell);
+        td.prevMagCell = unit->cell;
+        td.nextMagCellIndex = td.magistralWay.length - 2;
+        td.nextMagCell = td.magistralWay.getItem(td.nextMagCellIndex);
+        td.saveClickedCell = td.clicckedCell;
+        td.saveUnit = td.unit;
+        td.clicckedCell = td.nextMagCell;
+    }
+    else
+    {
+        td.magistralWay.clear();
+    }
 
-    unit->isOnGetPotentialWayGetTarget = [unit](Cell *c){
-
-        if (c->mc == unit->targetData.clicckedCell->mc) {
-            return true;
-        }
-
-        return false;
-    };
-
-
-    if (unit->focus) {
+    if (unit->focus)
+    {
         console.log("MAG iter = " + to_string(iter));
     }
 
-  //  
+    //
     // unit->targetData.magistralWay.push(unit->targetData.clicckedCell);
 }

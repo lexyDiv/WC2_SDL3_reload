@@ -29,5 +29,9 @@ void ThData::potentialWayCreate(Unit *unit, Cell *finalCell) {
       unit->isPotentialWayComplite = true;
       unit->isIgetMyTarget = false;
 
+         if (unit->focus)
+    {
+        console.log("CLASSIC iter = " + to_string(iter));
+    }
     //  console.log("CLASSIC iter = " + to_string(iter));
 };

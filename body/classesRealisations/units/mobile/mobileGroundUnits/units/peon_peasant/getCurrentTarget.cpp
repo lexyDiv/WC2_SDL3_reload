@@ -24,12 +24,16 @@ void Peon_peasant::getCurrentTarget()
         {
             this->isOnGetPotentialWayGetTarget = [this](Cell *c)
             {
+                if (this->focus) {
+                    console.log("index = " + to_string(this->targetData.nextMagCellIndex) + " length = " + to_string(this->targetData.magistralWay.length));
+                }
                 Unit *gu = c->groundUnit;
                 if (
-                    gu && gu->name == "tree" && !gu->lesorub)
+                    (gu && gu->name == "tree" && !gu->lesorub) ||
+                (this->targetData.magistralWay.length && c->mc == this->targetData.clicckedCell->mc && this->targetData.nextMagCellIndex > 0))
                 {
                     this->targetData.unit = gu;
-                    this->targetData.clicckedCell = gu->cell;
+                    this->targetData.clicckedCell = gu ? gu->cell : this->targetData.clicckedCell;
 
                     return true;
                 }
@@ -59,7 +63,9 @@ void Peon_peasant::getCurrentTarget()
                      gu->outHoldTimer ||
                      (gu->fraction && gu->fraction->unionCase != this->fraction->unionCase &&
                       gu->isWarrior) ||
-                     (gu->name == "tree" && !gu->lesorub)))
+                     (gu->name == "tree" && !gu->lesorub) ||
+                     (!this->targetData.magistralWay.length && gu->type == "life")
+                    ))
                 {
 
                     return true;
@@ -74,7 +80,8 @@ void Peon_peasant::getCurrentTarget()
             {
                 Unit *gu = c->groundUnit;
                 if ( // cell == this->targetCell ||
-                    gu && gu == this->targetData.unit)
+                    (gu && gu == this->targetData.unit) ||
+                (this->targetData.magistralWay.length && c->mc == this->targetData.clicckedCell->mc))
                 {
                     return true;
                 }
@@ -95,7 +102,8 @@ void Peon_peasant::getCurrentTarget()
                     (!gu ||
                         (gu->type == "life" && (iter >= 300 || this->iNeedFreeWay)) ||
                      gu->wayIndex ||
-                     gu == this->targetData.unit))
+                     gu == this->targetData.unit  ||
+                     (!this->targetData.magistralWay.length && gu->type == "life")))
                 {
                     return true;
                 }
@@ -109,7 +117,8 @@ void Peon_peasant::getCurrentTarget()
         {
             if (
                 // cell == this->targetCell
-                c == this->targetData.clicckedCell)
+                (c == this->targetData.clicckedCell) ||
+                (this->targetData.magistralWay.length && c->mc == this->targetData.clicckedCell->mc))
             {
                 return true;
             }
@@ -128,7 +137,8 @@ void Peon_peasant::getCurrentTarget()
                 c->plane == tc->plane &&
                 (!gu || c == this->targetData.clicckedCell ||
                     (gu->type == "life" && (iter >= 300 || this->iNeedFreeWay)) ||
-                 gu->wayIndex))
+                 gu->wayIndex ||
+                     (!this->targetData.magistralWay.length && gu->type == "life")))
             {
                 return true;
             }

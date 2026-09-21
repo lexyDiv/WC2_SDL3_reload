@@ -37,20 +37,25 @@ bool Peon_peasant::isNeedHoldGoWay()
     }
 
     if (gu && gu->type == "life" 
-       // && gu->profession == ""
-         && !gu->isActive && this->iNeedFreeWay)
+         && !gu->isActive 
+        )
     {
-
-        return true;
+       this->iNeedFreeWay = !this->personalCaseDeep  ? true : false; // <<<<<<<<<<<<< ON
+        if (this->iNeedFreeWay) {
+            return true;
+        }
     }
 
     if (
-        gu && gu->isActive && gu->wayIndex && (this->wayIndex > 5) && (
-           // this->wayIndex >= 5 ||
-             gu->inSave || !this->isPotentialWayComplite || this->isBlocked || gu->way.length || gu->wayIndex || !gu->orderOnWay.isComplite
-                                               //  || (gu->type == "life" && gu->profession == "" && !gu->isActive)
-                                               ) &&
-        !isLoop(this))
+        gu && gu->isActive && (this->wayIndex > 5 || this->iNeedFreeWay) && (
+             gu->inSave ||
+              !this->isPotentialWayComplite 
+              || this->isBlocked 
+              || gu->way.length 
+              || gu->wayIndex 
+              || !gu->isPotentialWayComplite
+              || !gu->orderOnWay.isComplite
+                                               ) &&!isLoop(this))
     {
         return true;
     }

@@ -219,4 +219,6 @@ public:
   virtual void stepToTheSide() {};
   int personalCaseDeep = 0;
   bool frashWayCheckNeed = false;
+
+ 
 };

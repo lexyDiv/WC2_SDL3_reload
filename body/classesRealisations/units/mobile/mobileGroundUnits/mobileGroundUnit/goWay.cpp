@@ -7,7 +7,7 @@ void MobileGroundUnit::goWay()
     {
         this->isBlocked = this->isBlockedd(this);
 
-        if (//this->isPotentialWayComplite &&
+        if ( // this->isPotentialWayComplite &&
             this->wayIndex > 0)
         {
 
@@ -46,13 +46,10 @@ void MobileGroundUnit::goWay()
             else if (isNeedHold)
             {
 
-                if (this->iNeedFreeWay
-                     && this->nextCell->groundUnit && !this->nextCell->groundUnit->isActive
-                    ) {
-
+                if (this->iNeedFreeWay && this->nextCell->groundUnit && !this->nextCell->groundUnit->isActive)
+                {
 
                     this->stepToTheSide();
-                
                 }
 
                 this->needHolTimer++;
@@ -64,10 +61,6 @@ void MobileGroundUnit::goWay()
             }
             else
             {
-
-
-                this->iNeedFreeWay = !this->personalCaseDeep  ? true : false; // <<<<<<<<<<<<< ON
-
 
                 this->stendOnCell();
                 if (this->profession != "")

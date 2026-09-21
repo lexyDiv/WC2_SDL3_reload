@@ -5,15 +5,16 @@ void MobileGroundUnit::selectNextMagCell()
 {
     TargetData &td = this->targetData;
 
-            if (td.nextMagCellIndex == 1) {
-                td.nextMagCellIndex = 0;
-                td.magistralWay.clear();
-                return;
-            }
+            // if (td.nextMagCellIndex == 1) {
+            //     td.nextMagCellIndex = 0;
+            //     td.magistralWay.clear();
+            //     return;
+            // }
 
-    if (this->wayIndex <= 5 &&
+    if (!this->wayIndex  &&
         td.magistralWay.length &&
-        td.nextMagCellIndex > 1 && this->orderOnWay.isComplite)
+        td.nextMagCellIndex > 1 && 
+        this->orderOnWay.isComplite)
     {
        // console.log("here");
         if (this->nextCell->mc == td.nextMagCell->mc)
@@ -49,5 +50,9 @@ void MobileGroundUnit::selectNextMagCell()
                 this->goToNextMagCell();
             }
         }
+    } 
+    else if (td.nextMagCellIndex == 1) {
+        td.nextMagCellIndex = -1;
+        td.magistralWay.clear();
     }
 }

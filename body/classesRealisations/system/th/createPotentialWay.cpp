@@ -4,22 +4,14 @@
 void ThData::createPotentialWay(Unit *unit)
 {
 
-     if (!unit->targetData.clicckedCell) {
-        console.log("save " + to_string(unit->targetData.saveClickedCell->persNum) + " PIZDA !");
-        unit->targetData.clear();
-        return;
-     }
-
-
-    int currentDeep = unit->personalCaseDeep ? unit->personalCaseDeep : this->deep;
-
-    // if (this->frash)
-    // {
-        this->frash = false;
-
     unit->way.clear();
-  //  int currentDeep = unit->personalCaseDeep ? unit->personalCaseDeep : this->deep;
+    int currentDeep = unit->personalCaseDeep ? unit->personalCaseDeep : this->deep;
     this->iter = 0;
+
+    if (unit->targetData.magistralWay.length) {
+        currentDeep = 150;
+    }
+
 
     Td_way_data *td_way_data = unit->cell->thwd.length ? unit->cell->thwd.getItemPtr(this->num) : nullptr;
 
@@ -31,12 +23,10 @@ void ThData::createPotentialWay(Unit *unit)
     }
     td_way_data->createCountData = this->createCount;
     this->openArr.clear();
-   // this->bu.clear();
     this->min_F_cell = unit->cell;
     this->min_F_cell->thwd.getItemPtr(this->num)->F = 0;
     this->min_F_cell->thwd.getItemPtr(this->num)->H = 0;
     this->min_F_cell->thwd.getItemPtr(this->num)->G = 0;
-    this->openArr.push(this->min_F_cell);
     this->globalMin_H_cell = nullptr;
 
     ///////////////////////////  poka tak!
@@ -50,18 +40,18 @@ void ThData::createPotentialWay(Unit *unit)
                 cell->thwd.getItemPtr(this->num)->explored = this->createCount;
             } });
 
-      //  }
-
     while (true)
     {
 
-    //    if (this->nextStap)
-    // {
-
-        this->nextStap = false;
         this->iter++;
 
         MinData md;
+
+        for (int i = 0; i < this->min_F_cell->aroundCells.length; i++)
+        {
+            Cell *pc = this->min_F_cell->aroundCells.getItem(i);
+            this->exploreNewCellAndAddToOpenArr(unit, this->min_F_cell, pc);
+        }
 
         if (this->openArr.length && this->iter < currentDeep)
         {
@@ -75,19 +65,17 @@ void ThData::createPotentialWay(Unit *unit)
                 {
                     md.cell = cell;
                     md.index = i;
-                    // if (cell->thwd.getItemPtr(this->num)->F < this->min_F_cell->thwd.getItemPtr(this->num)->F)
-                    // {
-                    //     break;
-                    // }
+                    if (cell->thwd.getItemPtr(this->num)->F < this->min_F_cell->thwd.getItemPtr(this->num)->F)
+                    {
+                        break;
+                    }
                 }
             }
             this->openArr.splice(md.index, 1);
 
             this->min_F_cell = md.cell;
-          //  this->bu.push(md.cell);
-           // this->min_F_cell->thwd.getItemPtr(this->num)->explored = this->createCount;
-            if (this->min_F_cell->thwd.getItemPtr(this->num)->F &&
-                (!this->globalMin_H_cell || (this->globalMin_H_cell->thwd.getItemPtr(this->num)->H > this->min_F_cell->thwd.getItemPtr(this->num)->H)))
+            this->min_F_cell->thwd.getItemPtr(this->num)->explored = this->createCount;
+            if (!this->globalMin_H_cell || this->globalMin_H_cell->thwd.getItemPtr(this->num)->H > this->min_F_cell->thwd.getItemPtr(this->num)->H)
             {
                 this->globalMin_H_cell = this->min_F_cell;
             }
@@ -100,32 +88,27 @@ void ThData::createPotentialWay(Unit *unit)
             else
             {
                 this->potentialWayCreate(unit, this->globalMin_H_cell);
-                // console.log("MAXIMUM !!! = " + to_string(this->iter));
-               // console.log("CLASSIC BAD ITER = " + to_string(iter));
-            //    if (iter >= 300) {
-            //                    if (unit->iNeedFreeWay) {
-            //     console.log("CLASSIC BAD ITER need F W = " + to_string(iter));
-            //    } else {
-            //     console.log("CLASSIC = " + to_string(iter));
-            //    }
-            //    }
-                if (!unit->personalCaseDeep
-                    //&& unit->way.length && unit->way.getItem(unit->wayIndex - 1)->groundUnit
-                    // && !unit->way.getItem(unit->wayIndex - 1)->groundUnit->isActive
-                )
-                {
+                //console.log("MAXIMUM !!! = " + to_string(this->iter));
+                bool nextUnitIsNoActive = false;
+                // for (int i = unit->way.length - 1; i >= 0; i--) {
+                //      Cell *c = unit->way.getItem(i);
+                //      if (c->groundUnit) {
+                //         if (c->groundUnit->type == "life" && !c->groundUnit->isActive) {
+                //             nextUnitIsNoActive = true;
+                //         }
+                //         break;
+                //      }
+                // }
+
+                if (!unit->personalCaseDeep 
+                    //&& unit->way.length && unit->way.getItem(unit->wayIndex - 1)->groundUnit 
+               // && !unit->way.getItem(unit->wayIndex - 1)->groundUnit->isActive
+            ) {
                     unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON
                     unit->frashWayCheckNeed = true;
                 }
             }
             return;
-        }
-
-        for (int i = 0; i < this->min_F_cell->aroundCells.length; i++)
-        {
-            Cell *pc = this->min_F_cell->aroundCells.getItem(i);
-            this->exploreNewCellAndAddToOpenArr(unit, this->min_F_cell, pc);
-            this->min_F_cell->thwd.getItemPtr(this->num)->explored = this->createCount;
         }
 
         ///////////////////////////////////////////////////////
@@ -134,9 +117,7 @@ void ThData::createPotentialWay(Unit *unit)
         {
             this->potentialWayCreate(unit, this->min_F_cell);
             unit->isPotentialWayComplite = true;
-           // console.log("CLASSIC ITER = " + to_string(iter));
-          //  break;
-          return;
+            break;
         }
     }
 };

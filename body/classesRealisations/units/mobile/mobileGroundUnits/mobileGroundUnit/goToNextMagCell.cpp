@@ -14,6 +14,7 @@ void MobileGroundUnit::goToNextMagCell() {
     this->way.clear();
     this->wayIndex = 0;
     this->isPotentialWayComplite = false;
+    //this->personalCaseDeep = 150;
 
    //  this->isOnGetPotentialWayGetTarget = [this](Cell *c){
  

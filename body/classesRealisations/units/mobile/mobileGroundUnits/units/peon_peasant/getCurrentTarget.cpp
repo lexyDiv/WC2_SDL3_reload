@@ -56,7 +56,7 @@ void Peon_peasant::getCurrentTarget()
                 if (tc &&
                     c->plane == tc->plane &&
                     (!gu ||
-                     (gu->type == "life" && (iter >= 300 || this->iNeedFreeWay)) ||
+                     (gu->type == "life" && (iter >= 30 || this->iNeedFreeWay)) ||
                      gu->way.length ||
                      gu->needHolTimer ||
                      !gu->isPotentialWayComplite ||
@@ -100,7 +100,7 @@ void Peon_peasant::getCurrentTarget()
                 if (tc &&
                     c->plane == tc->plane &&
                     (!gu ||
-                        (gu->type == "life" && (iter >= 300 || this->iNeedFreeWay)) ||
+                        (gu->type == "life" && (iter >= 30 || this->iNeedFreeWay)) ||
                      gu->wayIndex ||
                      gu == this->targetData.unit  ||
                      (!this->targetData.magistralWay.length && gu->type == "life")))
@@ -136,7 +136,7 @@ void Peon_peasant::getCurrentTarget()
             if (tc &&
                 c->plane == tc->plane &&
                 (!gu || c == this->targetData.clicckedCell ||
-                    (gu->type == "life" && (iter >= 300 || this->iNeedFreeWay)) ||
+                    (gu->type == "life" && (iter >= 30 || this->iNeedFreeWay)) ||
                  gu->wayIndex ||
                      (!this->targetData.magistralWay.length && gu->type == "life")))
             {

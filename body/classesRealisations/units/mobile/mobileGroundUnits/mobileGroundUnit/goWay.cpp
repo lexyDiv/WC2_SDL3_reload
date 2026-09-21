@@ -19,7 +19,6 @@ void MobileGroundUnit::goWay()
             bool isCrox = this->crox();
             if (this->isNextCellFreeToGoWay(nc) && !isNeedHold && !isCrox)
             {
-                this->selectNextMagCell();
                 this->needHolTimer = 0;
                 this->wayIndex--;
                 this->x = this->cell->x;
@@ -31,6 +30,8 @@ void MobileGroundUnit::goWay()
                 this->cell->groundUnit = this;
                 this->isGetMyCell = false;
                 this->iAmHere();
+
+                this->selectNextMagCell();
 
                 if (saveSpeedTale)
                 {

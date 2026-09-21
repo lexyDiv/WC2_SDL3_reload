@@ -23,18 +23,21 @@ void veer(Unit *unit, ThData *td)
                }
           if (thwdAc->createCountData != td->createCount &&
               ac->mc == mc &&
-              (unit->isNewCellOnGetWayValide(ac, td->iter) || ac->groundUnit == unit)) {
+              (unit->isNewCellOnGetWayValide(ac, td->iter) 
+             // || ac->groundUnit == unit
+            )) {
                 thwdAc->createCountData = td->createCount;
                 cells.push(ac);
               }
           }); });
-    mc->validCellsToFather.clear();
-    mc->validCellsToFather.copy(cells);
+    thwdMc->validCellsToFather.clear();
+   // cout << " cells,length = " + to_string(cells.length) << endl;
+    thwdMc->validCellsToFather.copy(cells);
 }
 
 void addToSonValidCellsToFather(Unit *unit, ThData *td, MagistralClaster *son)
 {
-    son->validCellsToFather.forEach([td, son, unit](Cell *cell)
+    son->thwd_mag.getItemPtr(td->num)->validCellsToFather.forEach([td, son, unit](Cell *cell)
                                     { cell->aroundCells.forEach([td, son, unit](Cell *ac)
                                                                 {
                     Td_way_data *thwd_ac = ac->thwd.getItemPtr(td->num);
@@ -46,7 +49,7 @@ void addToSonValidCellsToFather(Unit *unit, ThData *td, MagistralClaster *son)
             ac->mc == son &&
             (unit->isNewCellOnGetWayValide(ac, 0))) {
                thwd_ac->createCountData = td->createCount;
-               son->validCellsToFather.push(ac);
+               son->thwd_mag.getItemPtr(td->num)->validCellsToFather.push(ac);
         } }); });
 }
 
@@ -86,13 +89,36 @@ void ThData::createMagistralWay(Unit *unit)
 
         if (this->magOK)
         {
-            console.log("special create");
+          //  console.log("special create");
             this->magOK = false;
-            unit->targetData.magistralWay.push(unit->targetData.clicckedCell);
-            unit->targetData.magistralWay.push(unit->cell);
-           // this->magistrallWayCreate(unit, this->min_F_mc);
-            unit->isPotentialWayComplite = true;
-            // console.log("good iter = " + to_string(iter));
+
+            return;
+
+           // unit->targetData.magistralWay.push(unit->targetData.clicckedCell);
+           // unit->targetData.magistralWay.push(unit->cell);
+
+                ////////////////////////////////////
+    //             TargetData &td = unit->targetData;
+    // td.magistralWay.push(unit->targetData.clicckedCell);            
+    // td.magistralWay.push(unit->cell);
+    // td.prevMagCell = unit->cell;
+    // td.nextMagCellIndex = td.magistralWay.length - 2;
+    // td.nextMagCell = td.magistralWay.getItem(td.nextMagCellIndex);
+    // td.saveClickedCell = td.clicckedCell;
+    // td.saveUnit = td.unit;
+    // td.clicckedCell = td.nextMagCell;
+
+    // unit->isOnGetPotentialWayGetTarget = [unit](Cell *c){
+
+    //     if (c->mc == unit->targetData.clicckedCell->mc) {
+    //         return true;
+    //     }
+
+    //     return false;
+    // };
+                ////////////////////////////////
+
+
             return;
         }
   //  }
@@ -110,7 +136,7 @@ void ThData::createMagistralWay(Unit *unit)
 
 
         if (this->openArrMag.length
-             && this->iter < 15000
+             && this->iter < 1500
         )
         {
             int index = this->openArrMag.length - 1;

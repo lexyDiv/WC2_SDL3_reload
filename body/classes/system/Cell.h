@@ -27,7 +27,7 @@ public:
    // Cell *targetCell = nullptr;
     string profession = "";
     bool isActual = false;
-    Array<Cell *> basicWay;
+    //Array<Cell *> basicWay;
     Array<Cell *> magistralWay;
     Cell *prevMagCell = nullptr;
     Cell *nextMagCell = nullptr;
@@ -45,6 +45,12 @@ public:
        // targetCell = nullptr;
         profession = "";
         isActual = false;
+    prevMagCell = nullptr;
+    nextMagCell = nullptr;
+     nextMagCellIndex = -1;
+    saveClickedCell = nullptr;
+    saveUnit = nullptr;
+    magistralWay.clear();
         //basicWay.clear();
     };
 };

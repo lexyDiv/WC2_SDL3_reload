@@ -37,6 +37,7 @@ public:
     Array();
     ~Array();
     //  T &operator[] (int i) { return this->vec[i]; }
+    void reserv(int res);
     T getItem(int i);
     T getItem(int i, string str);
     T getItem2(int i);
@@ -96,6 +97,13 @@ inline Array<T>::~Array()
 }
 
 template <typename T>
+inline void Array<T>::reserv(int res)
+{
+    this->vec.reserve(res);
+    this->length = this->vec.size();
+}
+
+template <typename T>
 inline T Array<T>::getItem(int i)
 {
     return this->vec.at(i);
@@ -119,7 +127,7 @@ inline T Array<T>::getItem2(int i)
 
 template <typename T>
 inline T &Array<T>::getItemLnk(int i)
-{
+{ 
     T &item = this->vec[i];
     return item;
 }

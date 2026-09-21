@@ -5,7 +5,7 @@ void ThData::magistrallWayCreate(Unit *unit, MagistralClaster *finalMc)
 {
 
             if (!finalMc) {
-                cout << "no final mc = " + to_string(iter) << endl;
+              //  cout << "no final mc = " + to_string(iter) << endl;
                 return;
             }
 
@@ -100,6 +100,11 @@ void ThData::magistrallWayCreate(Unit *unit, MagistralClaster *finalMc)
         return false;
     };
 
-  //  console.log("MAG iter = " + to_string(iter));
+
+    if (unit->focus) {
+        console.log("MAG iter = " + to_string(iter));
+    }
+
+  //  
     // unit->targetData.magistralWay.push(unit->targetData.clicckedCell);
 }

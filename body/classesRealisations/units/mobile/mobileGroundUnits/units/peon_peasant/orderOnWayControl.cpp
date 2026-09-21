@@ -21,6 +21,7 @@ void Peon_peasant::orderOnWayControl()
             //     console.log("RE FRASH");
             // }
 
+this->targetData.clear();
 
         Cell *oCell = this->orderOnWay.cell;
         if (this->orderOnWay.profession == "")
@@ -33,7 +34,7 @@ void Peon_peasant::orderOnWayControl()
                 this->orderOnWay.mt.unlock();
                 return;
             }
-            this->targetData.clear();
+            
             Unit *ocu = oCell->groundUnit;
             if (ocu)
             {

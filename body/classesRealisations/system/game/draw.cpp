@@ -175,18 +175,19 @@ void Game::draw()
 
         ///////////////////////////////////////////////////////////////////////////////////// => CLASSIC way
 
-        // if (this->gf->focusUnit)
-        // {
-        //     Unit *u = this->gf->focusUnit;
-        //     // u->way
-        //     u->way
-        //         .forEach([&drawDeltaX, &drawDeltaY, this](Cell *c, int i)
-        //                  {
-        //                      ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "black");
-        //                      // ctx.StrokeRect(c->x + drawDeltaX, c->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "blue", 50);
-        //                      //  ctx.DrawText(mc->x + 40 + i + drawDeltaX, mc->y + 40 + i + drawDeltaY, 20, to_string(i));
-        //                  });
-        // }
+        if (this->gf->focusUnit)
+        {
+            Unit *u = this->gf->focusUnit;
+            // u->way
+           // u->way
+           u->targetData.magistralWay
+                .forEach([&drawDeltaX, &drawDeltaY, this](Cell *c, int i)
+                         {
+                             ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "black");
+                             // ctx.StrokeRect(c->x + drawDeltaX, c->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "blue", 50);
+                             //  ctx.DrawText(mc->x + 40 + i + drawDeltaX, mc->y + 40 + i + drawDeltaY, 20, to_string(i));
+                         });
+        }
 
 //         // this->allMagistralClasters.forEach([&drawDeltaX, &drawDeltaY, this](Array<MagistralClaster> &mca)
 //         //                                    { mca.forEach([&drawDeltaX, &drawDeltaY, this](MagistralClaster &mc)

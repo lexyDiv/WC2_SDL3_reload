@@ -3,7 +3,7 @@
 
 void getVCTF(MagistralClaster *son, Array<Cell *> *contactToSonCells, Unit *unit, ThData *td)
 {
-    son->validCellsToFather.clear();
+    son->thwd_mag.getItemPtr(td->num)->validCellsToFather.clear();
 
     for (int i = 0; i < contactToSonCells->length; i++)
     {
@@ -19,7 +19,7 @@ void getVCTF(MagistralClaster *son, Array<Cell *> *contactToSonCells, Unit *unit
                     unit->isNewCellOnGetWayValide(sc, iter))
                 {
                     sc_thwd->createCountData = td->createCount;
-                    son->validCellsToFather.push(sc);
+                    son->thwd_mag.getItemPtr(td->num)->validCellsToFather.push(sc);
                 }
             }
         }
@@ -92,7 +92,7 @@ void ThData::exploreNewMagClasterAndAddToOpenArr(Unit *unit, MagistralClaster *s
         {
             getVCTF(son, contactToSonCells, unit, this);
 
-            if (son->validCellsToFather.length)
+            if (son->thwd_mag.getItemPtr(this->num)->validCellsToFather.length)
             {
 
                 thwd_mag_son->wayFather = mcFather;

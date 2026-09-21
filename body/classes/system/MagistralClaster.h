@@ -4,7 +4,9 @@
 class Td_way_data_magistral
 {
 public:
-    //  Td_way_data(){};
+    Td_way_data_magistral(){
+      validCellsToFather.reserv(9);
+    };
     double createCountData = 0;
     float F = 0.0F;
     float H = 0.0F;
@@ -14,7 +16,7 @@ public:
     MagistralClaster *wayFather = nullptr;
     bool addOnWay = false;
     float last_G = 0;
-    Array<Cell *> validCellsForWayFather;
+    Array<Cell *> validCellsToFather;
 
     Array<Td_way_data_magistral *> bad;
 };
@@ -28,6 +30,7 @@ class MagistralClaster {
         this->x = cell->x - cell->gf->cellSize;
         this->y = cell->y - cell->gf->cellSize;
         this->gabarit = cell->gf->cellSize * 3;
+        thwd_mag.reserv(10);
     };
     float x = 0;
     float y = 0;
@@ -36,7 +39,7 @@ class MagistralClaster {
     int gabarit = 0;
     Cell *centralCell = nullptr;
     Array<Cell *> cells;
-    Array<Cell *> validCellsToFather;
+    
     MagistralClaster *up = nullptr;
     MagistralClaster *upLeft = nullptr;
     MagistralClaster *upRight = nullptr;

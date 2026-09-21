@@ -4,6 +4,13 @@
 void ThData::createPotentialWay(Unit *unit)
 {
 
+     if (!unit->targetData.clicckedCell) {
+        console.log("save " + to_string(unit->targetData.saveClickedCell->persNum) + " PIZDA !");
+        unit->targetData.clear();
+        return;
+     }
+
+
     int currentDeep = unit->personalCaseDeep ? unit->personalCaseDeep : this->deep;
 
     // if (this->frash)

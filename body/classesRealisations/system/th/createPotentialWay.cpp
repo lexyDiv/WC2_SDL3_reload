@@ -6,6 +6,9 @@ void ThData::createPotentialWay(Unit *unit)
 
     unit->way.clear();
     int currentDeep = unit->personalCaseDeep ? unit->personalCaseDeep : this->deep;
+    // if (unit->iNeedFreeWay) {
+    //     currentDeep = 100;
+    // }
     this->iter = 0;
 
 
@@ -100,8 +103,8 @@ void ThData::createPotentialWay(Unit *unit)
                     //&& unit->way.length && unit->way.getItem(unit->wayIndex - 1)->groundUnit 
                // && !unit->way.getItem(unit->wayIndex - 1)->groundUnit->isActive
             ) {
-                    unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON
-                    unit->frashWayCheckNeed = true;
+                  //  unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON
+                  //  unit->frashWayCheckNeed = true;
                 }
             }
             return;

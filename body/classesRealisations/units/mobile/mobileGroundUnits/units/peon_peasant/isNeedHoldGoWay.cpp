@@ -25,7 +25,9 @@ bool Peon_peasant::isNeedHoldGoWay()
     Cell *guNextCell = gu ? gu->nextCell : nullptr;
     Unit *gutdu = gu ? gu->targetData.unit : nullptr;
 
-    if (this->needHolTimer >= this->wayIndex * 10)
+    int needHoldIndex = !this->iNeedFreeWay ? 10 : 500;
+
+    if (this->needHolTimer >= this->wayIndex * needHoldIndex)
     {
         if (!this->isBlocked) {
             this->updateCurrentTarget();
@@ -34,7 +36,9 @@ bool Peon_peasant::isNeedHoldGoWay()
         return false;
     }
 
-    if (gu && gu->type == "life" && gu->profession == "" && !gu->isActive && this->iNeedFreeWay)
+    if (gu && gu->type == "life" 
+       // && gu->profession == ""
+         && !gu->isActive && this->iNeedFreeWay)
     {
 
         return true;

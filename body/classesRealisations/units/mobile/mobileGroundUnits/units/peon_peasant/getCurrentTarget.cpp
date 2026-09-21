@@ -8,6 +8,11 @@ void Peon_peasant::getCurrentTarget()
     this->game->unitsOnWay.push(this);
     this->game->unitsOnWayMT.unlock();
 
+    // if (this->game->unitsOnWay.length >= 5) {
+    //     this->personalCaseDeep = 40;
+    //    // console.log("here");
+    // } 
+
     this->potentialWay.clear();
     this->wayIndex = 0;
 
@@ -52,7 +57,8 @@ void Peon_peasant::getCurrentTarget()
                 if (tc &&
                     c->plane == tc->plane &&
                     (!gu ||
-                     (gu->type == "life" && (iter >= 300 || this->iNeedFreeWay)) ||
+                     (gu->type == "life" && (iter >= 30 || 
+                        this->iNeedFreeWay)) ||
                      gu->way.length ||
                      gu->needHolTimer ||
                      !gu->isPotentialWayComplite ||
@@ -93,7 +99,8 @@ void Peon_peasant::getCurrentTarget()
                 if (tc &&
                     c->plane == tc->plane &&
                     (!gu ||
-                        (gu->type == "life" && (iter >= 300 || this->iNeedFreeWay)) ||
+                        (gu->type == "life" && (iter >= 30 || 
+                            this->iNeedFreeWay)) ||
                      gu->wayIndex ||
                      gu == this->targetData.unit))
                 {
@@ -127,7 +134,8 @@ void Peon_peasant::getCurrentTarget()
             if (tc &&
                 c->plane == tc->plane &&
                 (!gu || c == this->targetData.clicckedCell ||
-                    (gu->type == "life" && (iter >= 300 || this->iNeedFreeWay)) ||
+                    (gu->type == "life" && (iter >= 30 || 
+                        this->iNeedFreeWay)) ||
                  gu->wayIndex))
             {
                 return true;

@@ -5,9 +5,9 @@
 void Fraction::controller()
 {
     
-    int ordinar = 1000;
+    int ordinar = 1;
     this->controlTimer++;
-    if (this->controlTimer == 1)
+    if (this->controlTimer == 5)
     {
         this->controlTimer = 0;
 
@@ -29,9 +29,10 @@ void Fraction::controller()
                 !peon->isBlockedd(peon)
                )
             {
+               // console.log("here");
                 current++;
-                peon->orderOnWay.go(peon->profession);
-                peon->isActive = true;
+              //  peon->orderOnWay.go(peon->profession);
+              //  peon->isActive = true;
 
             }
             if (current == ordinar)

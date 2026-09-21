@@ -9,7 +9,7 @@ void MobileGroundUnit::stepToTheSide()
         // Array<Unit *> units;
         Unit *valU = nullptr;
         if (ncgu && !ncgu->isActive 
-            && ncgu->profession == ""
+           // && ncgu->profession == ""
              && !ncgu->isBlockedd(ncgu))
         {
             valU = ncgu;
@@ -67,8 +67,12 @@ void MobileGroundUnit::stepToTheSide()
         //     console.log("cells = " + to_string(validCells.length) + " valU = " + to_string((bool)valU));
         // }
 
+
+        
+
         if (validCells.length && valU)
         {
+
             //  units.forEach([&validCells](Unit *u)
             //          {
             int rand = intRand(0, validCells.length);

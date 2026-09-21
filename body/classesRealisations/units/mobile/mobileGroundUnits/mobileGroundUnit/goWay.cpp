@@ -49,6 +49,8 @@ void MobileGroundUnit::goWay()
                 if (this->iNeedFreeWay
                      && this->nextCell->groundUnit && !this->nextCell->groundUnit->isActive
                     ) {
+
+
                     this->stepToTheSide();
                 
                 }
@@ -62,7 +64,11 @@ void MobileGroundUnit::goWay()
             }
             else
             {
-                this->iNeedFreeWay = !this->personalCaseDeep ? true : false; // <<<<<<<<<<<<< ON
+
+
+                this->iNeedFreeWay = !this->personalCaseDeep  ? true : false; // <<<<<<<<<<<<< ON
+
+
                 this->stendOnCell();
                 if (this->profession != "")
                 {

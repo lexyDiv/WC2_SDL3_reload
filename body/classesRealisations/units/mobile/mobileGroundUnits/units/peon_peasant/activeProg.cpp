@@ -12,19 +12,19 @@ void Peon_peasant::activeProg()
   }
 
 
-    if (!this->personalCaseDeep && this->iNeedFreeWay && !this->wayIndex == 1 && this->frashWayCheckNeed)
-    {
-      this->frashWayCheckNeed = false;
-        if (this->profession != "")
-        {
-          this->orderOnWay.go(this->profession);
-        }
-        else if (this->targetData.clicckedCell)
-        {
-          this->orderOnWay.go(this->targetData.clicckedCell);
-        }
+    // if (!this->personalCaseDeep && this->iNeedFreeWay && !this->wayIndex == 1 && this->frashWayCheckNeed)
+    // {
+    //   this->frashWayCheckNeed = false;
+    //     if (this->profession != "")
+    //     {
+    //       this->orderOnWay.go(this->profession);
+    //     }
+    //     else if (this->targetData.clicckedCell)
+    //     {
+    //       this->orderOnWay.go(this->targetData.clicckedCell);
+    //     }
 
-    }
+    // }
 
 
   if (!this->wayTakts &&

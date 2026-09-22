@@ -75,6 +75,8 @@ void MobileGroundUnit::goWay()
         }
         else
         {
+
+
             this->iNeedFreeWay = false;
             this->nextCell = nullptr;
             this->flipCell = nullptr;

@@ -10,11 +10,12 @@ void Peon_peasant::orderOnWayControl()
     )
     {
 
+        this->personalCaseDeep = this->orderOnWay.pcd;
         Cell *oCell = this->orderOnWay.cell;
         if (this->orderOnWay.profession == "")
         {
             Cell *finishCell = this->way.length ? this->way.getItem(0) : nullptr;
-            Unit *tdu =  this->targetData.unit;
+            Unit *tdu = this->targetData.unit;
             if (!this->cell || oCell->plane != this->cell->plane || oCell->groundUnit == this || finishCell == oCell || (tdu && tdu == oCell->groundUnit && this->way.length))
             { // click on old obj or cell
                 this->orderOnWay.isComplite = true;
@@ -23,7 +24,7 @@ void Peon_peasant::orderOnWayControl()
             }
             this->targetData.clear();
             Unit *ocu = oCell->groundUnit;
-            if (ocu)
+            if (ocu && ocu->type != "life")
             {
                 if (ocu->name == "tree")
                 {
@@ -82,6 +83,7 @@ void Peon_peasant::orderOnWayControl()
                         this->targetData.profession = "";
                         this->profession = "";
                         this->targetData.isActual = true;
+                        // console.log("here");
                     }
                 }
                 else if (ocu->name == "lamberMill")
@@ -102,6 +104,7 @@ void Peon_peasant::orderOnWayControl()
                         this->targetData.unitPersNum = ocu->persNum;
                         this->targetData.profession = "";
                         this->profession = "";
+                        // console.log("here 2");
                         this->targetData.isActual = true;
                     }
                 }
@@ -140,17 +143,24 @@ void Peon_peasant::orderOnWayControl()
                     this->targetData.unitPersNum = ocu->persNum;
                     this->targetData.profession = "";
                     this->profession = "";
+                    // console.log("here 3");
                     this->targetData.isActual = true;
                 }
             }
             else
             {
+                //               if (this->focus)
+                // {
+                //     console.log("order else before: prof = " + this->profession + " d = " + to_string(this->personalCaseDeep));
+                // }
                 this->targetData.clicckedCell = this->orderOnWay.cell;
                 this->targetData.unit = nullptr;
                 this->targetData.unitPersNum = 0;
                 this->targetData.profession = "";
-                this->profession = this->personalCaseDeep ? this->profession : "";
+                this->profession = this->personalCaseDeep == 3 ? this->profession : "";
+                // console.log("here 4 " + this->profession + " " + to_string((bool)this->metka));
                 this->targetData.isActual = true;
+                // this->metka = false;
             }
         }
         else
@@ -195,6 +205,7 @@ void Peon_peasant::orderOnWayControl()
                     {
                         this->profession = "";
                         this->targetData.clear();
+                        // console.log("here 5");
                     }
                 }
             }
@@ -234,11 +245,13 @@ void Peon_peasant::orderOnWayControl()
                 }
             }
         }
-           if (this->targetData.clicckedCell && !this->isBlocked) {
+        if (this->targetData.clicckedCell && !this->isBlocked)
+        {
             this->getCurrentTarget();
-           }
-        this->personalCaseDeep = this->orderOnWay.pcd;
+        }
+        // this->personalCaseDeep = this->orderOnWay.pcd;
         this->orderOnWay.isComplite = true;
+
     }
 
     this->orderOnWay.mt.unlock();

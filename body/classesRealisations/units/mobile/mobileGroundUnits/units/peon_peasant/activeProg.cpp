@@ -4,13 +4,13 @@
 void Peon_peasant::activeProg()
 {
 
+
   if (!this->isActiveCheck() || this->holdTimerControl()
 
   )
   {
     return;
   }
-
 
     // if (!this->personalCaseDeep && this->iNeedFreeWay && !this->wayIndex == 1 && this->frashWayCheckNeed)
     // {
@@ -25,6 +25,7 @@ void Peon_peasant::activeProg()
     //     }
 
     // }
+
 
 
   if (!this->wayTakts &&

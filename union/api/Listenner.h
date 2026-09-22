@@ -3,6 +3,7 @@
 
 
 bool nextMove = false;
+bool globalPause = false;
 SDL_Event e;
 
 Array<float> tiks;
@@ -23,6 +24,7 @@ void listenner(bool &quit)
             if (e.key.key == 13)
             {
                 nextMove = !nextMove;
+                globalPause = true;
                 // console.log("eneter");
                 //  game->speed++;
                 //  game->pause = false;

@@ -22,17 +22,13 @@ void loadDrawFn()
     ctx.DrawText(30, 30, 50, "loading");
 }
 
-
-
-
-
 int main()
 {
 
     Array<int> deltas;
 
     for (int i = 0; i //< 1;
-       < th_count;
+                    < th_count;
          i++)
     {
         ThData *td = new ThData(i);
@@ -49,7 +45,7 @@ int main()
             {
                 th_create_game = new thread(th_create);
             }
-            
+
             loadingDraw();
 
             if (game->isGFComplite)
@@ -63,14 +59,19 @@ int main()
         {
             game->startTick = SDL_GetTicks();
 
-            basicDo();
+           if (!globalPause) {
+             basicDo();
+           }
 
             basicDraw();
 
-            for (auto &t : threads)
-            {
-                t.join();
-            }
+           // if (!globalPause)
+           // {
+                for (auto &t : threads)
+                {
+                    t.join();
+                }
+          //  }
 
             game->unitsOnWay.clear();
 
@@ -85,16 +86,16 @@ int main()
             }
             else
             {
-                 
-              // console.log("hold = " + to_string(deltaTime));
+
+                // console.log("hold = " + to_string(deltaTime));
             }
 
             deltas.push(deltaTime);
-            if (deltas.length == 10000) {
+            if (deltas.length == 10000)
+            {
                 int acc = 0;
-                deltas.forEach([&acc](int d){
-                    acc += d;
-                });
+                deltas.forEach([&acc](int d)
+                               { acc += d; });
                 int res = acc / 10000;
                 console.log("mid = " + to_string(res));
                 deltas.clear();

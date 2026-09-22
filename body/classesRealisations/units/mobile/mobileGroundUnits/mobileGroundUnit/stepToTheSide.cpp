@@ -7,8 +7,7 @@ void MobileGroundUnit::stepToTheSide()
     {
         Unit *ncgu = this->nextCell->groundUnit;
         Unit *valU = nullptr;
-        if (ncgu && !ncgu->isActive 
-             && !ncgu->isBlockedd(ncgu))
+        if (ncgu && ncgu->profession == "" && !ncgu->isActive && !ncgu->isBlockedd(ncgu) && ncgu->type == "life")
         {
             valU = ncgu;
         }
@@ -26,8 +25,12 @@ void MobileGroundUnit::stepToTheSide()
                 {
                     Cell *c = cell->aroundCells.getItem(k);
                     Unit *cu = c->groundUnit;
-                    if (cu && cu != this && !cu->isActive && cu->type == "life"
-                         && !cu->isBlockedd(cu))
+                    if (cu &&
+                         cu != this &&
+                         cu->profession == "" &&
+                         !cu->isActive &&
+                          cu->type == "life" &&
+                           !cu->isBlockedd(cu))
                     {
                         valU = cu;
                         break;
@@ -48,13 +51,24 @@ void MobileGroundUnit::stepToTheSide()
                     validCells.push(c);
                 } });
 
-
         if (validCells.length && valU)
         {
             int rand = intRand(0, validCells.length);
-            valU->orderOnWay.go(validCells.getItem(rand), 10);
-            valU->metka = true;
-            valU->isActive = true;
+       
+                valU->orderOnWay.go(validCells.getItem(rand), 3);
+                valU->isActive = true;
+
+                // if (this->focus) {
+                //     console.log("here");
+                // }
+                
+            // if (!this->game->gf->focusUnit) {
+            //     this->game->gf->focusUnit = valU;
+            //     valU->focus = true;
+            //    // valU->personalCaseDeep = 10;
+            //     console.log("prof = " + valU->profession + " act = " + to_string(valU->isActive));
+            // }
+      
         }
     }
     else

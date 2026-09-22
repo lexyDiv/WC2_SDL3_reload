@@ -5,9 +5,9 @@
 void Fraction::controller()
 {
     
-    int ordinar = 1;
+    int ordinar = 10;
     this->controlTimer++;
-    if (this->controlTimer == 5)
+    if (this->controlTimer == 1)
     {
         this->controlTimer = 0;
 
@@ -30,9 +30,11 @@ void Fraction::controller()
                )
             {
                // console.log("here");
+   
+
                 current++;
-              //  peon->orderOnWay.go(peon->profession);
-              //  peon->isActive = true;
+                peon->orderOnWay.go(peon->profession);
+                peon->isActive = true;
 
             }
             if (current == ordinar)

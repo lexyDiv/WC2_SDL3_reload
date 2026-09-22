@@ -11,7 +11,6 @@ void ThData::createPotentialWay(Unit *unit)
     // }
     this->iter = 0;
 
-
     Td_way_data *td_way_data = unit->cell->thwd.length ? unit->cell->thwd.getItemPtr(this->num) : nullptr;
 
     this->createCount += 0.001;
@@ -30,14 +29,17 @@ void ThData::createPotentialWay(Unit *unit)
 
     ///////////////////////////  poka tak!
 
-    unit->cell->aroundCells.forEach([this, unit](Cell *cell)
-                                    {
+    if (!unit->iNeedFreeWay)
+    {
+        unit->cell->aroundCells.forEach([this, unit](Cell *cell)
+                                        {
             Unit *gu = cell->groundUnit;
             if (gu
             && gu != unit->targetData.unit //unit->targetCell->groundUnit
             ) {
                 cell->thwd.getItemPtr(this->num)->explored = this->createCount;
             } });
+    } 
 
     while (true)
     {
@@ -87,7 +89,7 @@ void ThData::createPotentialWay(Unit *unit)
             else
             {
                 this->potentialWayCreate(unit, this->globalMin_H_cell);
-                //console.log("MAXIMUM !!! = " + to_string(this->iter));
+                // console.log("MAXIMUM !!! = " + to_string(this->iter));
                 bool nextUnitIsNoActive = false;
                 // for (int i = unit->way.length - 1; i >= 0; i--) {
                 //      Cell *c = unit->way.getItem(i);
@@ -99,12 +101,13 @@ void ThData::createPotentialWay(Unit *unit)
                 //      }
                 // }
 
-                if (!unit->personalCaseDeep 
-                    //&& unit->way.length && unit->way.getItem(unit->wayIndex - 1)->groundUnit 
-               // && !unit->way.getItem(unit->wayIndex - 1)->groundUnit->isActive
-            ) {
-                  //  unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON
-                  //  unit->frashWayCheckNeed = true;
+                if (!unit->personalCaseDeep
+                    //&& unit->way.length && unit->way.getItem(unit->wayIndex - 1)->groundUnit
+                    // && !unit->way.getItem(unit->wayIndex - 1)->groundUnit->isActive
+                )
+                {
+                    //  unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON
+                    //  unit->frashWayCheckNeed = true;
                 }
             }
             return;

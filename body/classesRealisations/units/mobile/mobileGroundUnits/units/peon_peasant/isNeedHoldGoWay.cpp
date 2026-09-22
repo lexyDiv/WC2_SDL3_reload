@@ -40,7 +40,7 @@ bool Peon_peasant::isNeedHoldGoWay()
          && !gu->isActive && gu->profession == ""
         )
     {
-       this->iNeedFreeWay = this->personalCaseDeep != 3  ? true : false; // <<<<<<<<<<<<< ON
+       this->iNeedFreeWay = this->personalCaseDeep != 3  ? true : false; // <<<<<<<<<<<<< ON 1/2
         if (this->iNeedFreeWay) {
 
             return true;

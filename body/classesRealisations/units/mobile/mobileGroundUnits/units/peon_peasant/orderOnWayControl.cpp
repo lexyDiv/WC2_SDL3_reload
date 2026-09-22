@@ -9,6 +9,10 @@ void Peon_peasant::orderOnWayControl()
         //&& !this->wayTakts
     )
     {
+        if (this->isBlocked) {
+            this->iNeedFreeWay = true; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! <= ON !!! 2/2
+           // console.log("on");
+        }
 
         this->personalCaseDeep = this->orderOnWay.pcd;
         Cell *oCell = this->orderOnWay.cell;
@@ -245,7 +249,7 @@ void Peon_peasant::orderOnWayControl()
                 }
             }
         }
-        if (this->targetData.clicckedCell && !this->isBlocked)
+        if (this->targetData.clicckedCell && (!this->isBlocked || this->iNeedFreeWay))
         {
             this->getCurrentTarget();
         }

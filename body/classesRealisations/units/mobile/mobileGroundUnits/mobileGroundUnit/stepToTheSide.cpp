@@ -58,20 +58,10 @@ void MobileGroundUnit::stepToTheSide()
                 valU->orderOnWay.go(validCells.getItem(rand), 3);
                 valU->isActive = true;
 
-                // if (this->focus) {
-                //     console.log("here");
-                // }
-                
-            // if (!this->game->gf->focusUnit) {
-            //     this->game->gf->focusUnit = valU;
-            //     valU->focus = true;
-            //    // valU->personalCaseDeep = 10;
-            //     console.log("prof = " + valU->profession + " act = " + to_string(valU->isActive));
-            // }
-      
         }
     }
     else
     {
+        
     }
 }

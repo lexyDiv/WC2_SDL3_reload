@@ -4,29 +4,55 @@
 void Peon_peasant::orderOnWayControl()
 {
 
+
     this->orderOnWay.mt.lock();
     if (!this->orderOnWay.isComplite
         //&& !this->wayTakts
     )
     {
-        if (this->isBlocked) {
-            this->iNeedFreeWay = true; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! <= ON !!! 2/2
-           // console.log("on");
+
+
+
+        if (this->isBlocked)
+        {
+            this->iNeedFreeWay = true; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! <= ON !!! 2/3
+                                       // console.log("on");
         }
 
         this->personalCaseDeep = this->orderOnWay.pcd;
         Cell *oCell = this->orderOnWay.cell;
+        Cell *finishCell = this->way.length ? this->way.getItem(0) : nullptr;
+        Unit *tdu = this->targetData.unit;
+
+        if ((tdu && tdu != oCell->groundUnit) ||
+            (this->targetData.clicckedCell && this->targetData.clicckedCell != oCell))
+        {
+            this->iNeedFreeWay = false;
+        }
+
         if (this->orderOnWay.profession == "")
         {
-            Cell *finishCell = this->way.length ? this->way.getItem(0) : nullptr;
-            Unit *tdu = this->targetData.unit;
-            if (!this->cell || oCell->plane != this->cell->plane || oCell->groundUnit == this || finishCell == oCell || (tdu && tdu == oCell->groundUnit && this->way.length))
-            { // click on old obj or cell
+            if (!this->cell ||
+                oCell->plane != this->cell->plane ||
+                oCell->groundUnit == this ||
+                finishCell == oCell ||
+                (tdu && !this->iNeedFreeWay && (tdu == oCell->groundUnit || (tdu->name == "tree" && oCell->groundUnit->name == "tree" && !oCell->groundUnit->lesorub)) &&
+                 this->way.length))
+            {
+                if (this->focus)
+                {
+                    console.log("order return");
+                }
                 this->orderOnWay.isComplite = true;
                 this->orderOnWay.mt.unlock();
                 return;
             }
-            this->targetData.clear();
+
+            if (!this->targetData.forNeedFreeWayCount)
+            {
+                this->targetData.clear();
+            }
+
             Unit *ocu = oCell->groundUnit;
             if (ocu && ocu->type != "life")
             {
@@ -169,11 +195,12 @@ void Peon_peasant::orderOnWayControl()
         }
         else
         {
-            // if (this->profession == this->orderOnWay.profession)
-            // {
-            //     this->orderOnWay.isComplite = true;
-            //     return;
-            // }
+
+            if (!this->targetData.forNeedFreeWayCount)
+            {
+                this->targetData.clear();
+            }
+
             if (this->orderOnWay.profession == "w")
             {
                 if (this->wood)
@@ -255,7 +282,6 @@ void Peon_peasant::orderOnWayControl()
         }
         // this->personalCaseDeep = this->orderOnWay.pcd;
         this->orderOnWay.isComplite = true;
-
     }
 
     this->orderOnWay.mt.unlock();

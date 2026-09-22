@@ -46,7 +46,10 @@ void Peon_peasant::draw()
                    // ctx.DrawText(c->x + drawDeltaX, c->y + drawDeltaY, 20, to_string(i));
                    });
 
-   // ctx.FillRect(this->cell->x + drawDeltaX, this->cell->y + drawDeltaY, this->cell->game->gf->cellSize, this->cell->game->gf->cellSize, "blue", 100);
+             Cell *c = this->targetData.clicckedCell;
+           if (c) {
+            ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, this->cell->game->gf->cellSize, this->cell->game->gf->cellSize, "green");
+           }
         }
 
   //       if (this->metka) {

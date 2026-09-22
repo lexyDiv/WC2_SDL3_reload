@@ -4,7 +4,6 @@
 void Peon_peasant::activeProg()
 {
 
-
   if (!this->isActiveCheck() || this->holdTimerControl()
 
   )
@@ -12,19 +11,25 @@ void Peon_peasant::activeProg()
     return;
   }
 
-    // if (!this->personalCaseDeep && this->iNeedFreeWay && !this->wayIndex == 1 && this->frashWayCheckNeed)
-    // {
-    //   this->frashWayCheckNeed = false;
-    //     if (this->profession != "")
-    //     {
-    //       this->orderOnWay.go(this->profession);
-    //     }
-    //     else if (this->targetData.clicckedCell)
-    //     {
-    //       this->orderOnWay.go(this->targetData.clicckedCell);
-    //     }
 
-    // }
+
+  if (this->frashWayCheckNeed)
+  {
+    console.log("-----------------------------------------------------------");
+    this->frashWayCheckNeed = false;
+    if (this->profession != "")
+    {
+      this->orderOnWay.go(this->profession);
+    }
+    else if (this->targetData.clicckedCell)
+    {
+      this->orderOnWay.go(this->targetData.clicckedCell);
+    }
+      else if (this->targetData.unit && this->targetData.unit->cell)
+    {
+      this->orderOnWay.go(this->targetData.unit->cell);
+    }
+  }
 
 
 

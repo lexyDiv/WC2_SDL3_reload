@@ -27,9 +27,12 @@ public:
     string profession = "";
     bool isActual = false;
     Array<Cell *> basicWay;
+    int forNeedFreeWayCount = 0;
 
     void clear()
     {
+        
+        forNeedFreeWayCount = 0;
         unit = nullptr;
         unitPersNum = 0;
         clicckedCell = nullptr;

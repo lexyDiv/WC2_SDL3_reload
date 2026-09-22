@@ -5,6 +5,11 @@ void MobileGroundUnit::goWay()
 {
     if (!this->wayTakts)
     {
+
+        //  if (this->focus) {
+        //     console.log("");
+        //   }
+
         this->isBlocked = this->isBlockedd(this);
 
         if ( // this->isPotentialWayComplite &&
@@ -45,10 +50,11 @@ void MobileGroundUnit::goWay()
             }
             else if (isNeedHold)
             {
-
-                if (this->iNeedFreeWay && this->nextCell->groundUnit && !this->nextCell->groundUnit->isActive)
+  
+                if (this->iNeedFreeWay && this->nextCell->groundUnit 
+                   // && !this->nextCell->groundUnit->isActive
+                )
                 {
-
                     this->stepToTheSide();
                 }
 
@@ -61,22 +67,25 @@ void MobileGroundUnit::goWay()
             }
             else
             {
-
+                  if (this->focus) {
+                    console.log("goWay not hold");
+                  }
                 this->stendOnCell();
-                if (this->profession != "")
+                if (this->orderOnWay.isComplite)
                 {
-                    this->orderOnWay.go(this->profession, this->personalCaseDeep);
-                }
-                else if (this->targetData.clicckedCell)
-                {
-                    this->orderOnWay.go(this->targetData.clicckedCell, this->personalCaseDeep);
+                    if (this->profession != "")
+                    {
+                        this->orderOnWay.go(this->profession, this->personalCaseDeep);
+                    }
+                    else if (this->targetData.clicckedCell)
+                    {
+                        this->orderOnWay.go(this->targetData.clicckedCell, this->personalCaseDeep);
+                    }
                 }
             }
         }
         else
         {
-
-
             this->iNeedFreeWay = false;
             this->nextCell = nullptr;
             this->flipCell = nullptr;

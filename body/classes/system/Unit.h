@@ -57,6 +57,7 @@ public:
   virtual bool isGetTarget() { return false; };
   virtual bool isTargetObjValide() { return false; };
   virtual bool isBlockedd(Unit *unit) { return false; };
+  virtual bool isBlockedd_full(Unit *unit) { return false; };
   virtual void iAmHere() {};
   virtual void iSeeYou(Unit *unit) {};
 
@@ -219,6 +220,8 @@ public:
   virtual void stepToTheSide() {};
   int personalCaseDeep = 0;
   bool frashWayCheckNeed = false;
-
+ ThData * thd = nullptr;
  
+
+
 };

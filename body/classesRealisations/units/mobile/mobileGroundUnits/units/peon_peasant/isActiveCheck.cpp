@@ -25,7 +25,6 @@ bool Peon_peasant::isActiveCheck()
         this->isActive = true;
         return true;
     }
-
     this->isActive = false;
     this->targetData.clear();
     return false;

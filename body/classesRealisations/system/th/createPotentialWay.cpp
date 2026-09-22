@@ -39,7 +39,7 @@ void ThData::createPotentialWay(Unit *unit)
             ) {
                 cell->thwd.getItemPtr(this->num)->explored = this->createCount;
             } });
-    } 
+    }
 
     while (true)
     {
@@ -89,8 +89,15 @@ void ThData::createPotentialWay(Unit *unit)
             else
             {
                 this->potentialWayCreate(unit, this->globalMin_H_cell);
+
+                if (iter < currentDeep && unit->personalCaseDeep != 3)
+                {
+                    unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON 3/3
+                    unit->frashWayCheckNeed = true;
+                }
+
                 // console.log("MAXIMUM !!! = " + to_string(this->iter));
-                bool nextUnitIsNoActive = false;
+                // bool nextUnitIsNoActive = false;
                 // for (int i = unit->way.length - 1; i >= 0; i--) {
                 //      Cell *c = unit->way.getItem(i);
                 //      if (c->groundUnit) {
@@ -101,14 +108,15 @@ void ThData::createPotentialWay(Unit *unit)
                 //      }
                 // }
 
-                if (!unit->personalCaseDeep
-                    //&& unit->way.length && unit->way.getItem(unit->wayIndex - 1)->groundUnit
-                    // && !unit->way.getItem(unit->wayIndex - 1)->groundUnit->isActive
-                )
-                {
-                    //  unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON
-                    //  unit->frashWayCheckNeed = true;
-                }
+                // if (unit->personalCaseDeep != 3
+                //     && unit->way.length && unit->way.getItem(unit->wayIndex - 1)->groundUnit
+                //     && !unit->way.getItem(unit->wayIndex - 1)->groundUnit->isActive
+                // )
+                // {
+                //      unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON
+                //      unit->frashWayCheckNeed = true;
+                //      console.log("here");
+                // }
             }
             return;
         }

@@ -16,6 +16,17 @@ struct MinData
     Unit *unit = nullptr;
 };
 
+struct MinDataC
+{
+    int index = 0;
+    double min = 0;
+    int i = 0;
+    int k = 0;
+    // double dis = 0;
+    Cell *cell = nullptr;
+
+};
+
 mutex savePushMT;
 
 template <typename T>
@@ -60,6 +71,7 @@ public:
     Array<Unit *> mapU(function<Unit *(T &item)> fn);
     MinData getMinData(function<double(Cell *item)> fn);
     MinData getMinDataU(function<double(Unit *item)> fn);
+    MinDataC getMinDataC(function<double(Cell *item)> fn);
 
     void copy(Array<T> &arr);
 
@@ -460,6 +472,29 @@ inline MinData Array<T>::getMinDataU(function<double(Unit *item)> fn)
                 md.index = i;
                 md.min = current;
                 md.unit = e;
+            }
+        }
+    }
+    return md;
+}
+
+template <typename T>
+inline MinDataC Array<T>::getMinDataC(function<double(Cell *item)> fn)
+{
+        MinDataC md;
+    if (this->length)
+    {
+        md.cell = this->getItem(0);
+        md.min = fn(md.cell);
+        for (int i = 1; i < this->length; i++)
+        {
+            Cell *e = this->vec[i];
+            double current = fn(e);
+            if (md.min > current)
+            {
+                md.index = i;
+                md.min = current;
+                md.cell = e;
             }
         }
     }

@@ -20,6 +20,7 @@ void ThData::process()
                                && ver <= this->finishIndex) {
                               if (unit->isActive) {
                                 unit->thSpin = this->game->thSpin;
+                                unit->thd = this;
                                  unit->activeProg();
                               }
                            } else if (ver >= this->dopStartIndex
@@ -39,6 +40,7 @@ void ThData::process()
                                if (unit->thSpin != this->game->thSpin) {
                                         if (unit->isActive) {
                                 unit->thSpin = this->game->thSpin;
+                                unit->thd = this;
                                  unit->activeProg();
                               }
                                } });

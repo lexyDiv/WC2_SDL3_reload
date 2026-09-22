@@ -81,6 +81,7 @@ void GameField::offsetControl()
               if (this->focusUnit) {
                 this->focusUnit->orderOnWay.go(tc);
                 this->focusUnit->isActive = true;
+                console.log("CLICK  = " + to_string(this->focusUnit->orderOnWay.cell->persNum) + " !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
               }
      }
     }
@@ -90,7 +91,7 @@ void GameField::offsetControl()
      int cy = y - drawDeltaY;
      int xIndex = cx / this->cellSize;
      int yIndex = cy / this->cellSize;
-     if (xIndex < this->gabarit && yIndex < this->gabarit) {
+     if (xIndex < this->gabarit && yIndex < this->gabarit && x < 721) {
         Cell *tc = this->field.getItemPtr(yIndex)->getItem(xIndex);
         if (tc->groundUnit && tc->groundUnit->type == "life") {
             if (this->focusUnit) {

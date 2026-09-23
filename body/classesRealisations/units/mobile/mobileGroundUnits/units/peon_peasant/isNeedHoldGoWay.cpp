@@ -27,7 +27,7 @@ bool Peon_peasant::isNeedHoldGoWay()
 
     int needHoldIndex = !this->iNeedFreeWay ? 10 : 50;
 
-    if (this->needHolTimer >= this->wayIndex * needHoldIndex)
+    if (!this->targetUnit && this->needHolTimer >= this->wayIndex * needHoldIndex)
     {
         if (!this->isBlocked) {
             this->updateCurrentTarget();
@@ -52,7 +52,7 @@ bool Peon_peasant::isNeedHoldGoWay()
         }
     }
 
-    if ((this->iNeedFreeWay && gu && gu->type == "life")) {
+    if ((this->iNeedFreeWay && gu && gu->type == "life") && !isLoop(this)) {
         return true;
     }
 

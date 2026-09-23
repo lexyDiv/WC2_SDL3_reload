@@ -14,4 +14,13 @@ void Peon_peasant::stendOnCell()
     this->animTimer = 0;
     this->animY = 0;
     this->needHolTimer = 0;
+
+    ///////////////////////////////
+        if (this->targetUnit)
+        {
+            this->targetUnit->orderOnWay.go(this->targetUnit->cell);
+            this->targetData.blockedFreeWayHoldTimer = 0;
+            this->targetUnit = nullptr;
+            this->freeCell = nullptr;
+        }
 };

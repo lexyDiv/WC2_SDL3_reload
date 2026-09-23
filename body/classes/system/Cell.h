@@ -28,10 +28,11 @@ public:
     bool isActual = false;
     Array<Cell *> basicWay;
     int forNeedFreeWayCount = 0;
+    int blockedFreeWayHoldTimer = 0;
 
     void clear()
     {
-        
+      //  blockedFreeWayHoldTimer = 0;
         forNeedFreeWayCount = 0;
         unit = nullptr;
         unitPersNum = 0;

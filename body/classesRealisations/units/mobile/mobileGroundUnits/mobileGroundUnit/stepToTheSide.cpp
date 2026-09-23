@@ -3,16 +3,26 @@
 
 void MobileGroundUnit::stepToTheSide()
 {
+
     if (
-        !this->isBlockedd_full(this)
-        // !this->isBlocked
-    )
+        // !this->isBlockedd_full(this) &&
+        //! this->targetData.blockedFreeWayHoldTimer
+        !this->isBlocked)
     {
 
-        if (this->focus)
-        {
-            console.log("FREE");
-        }
+        // if (this->targetUnit)
+        // {
+        //     this->targetUnit->orderOnWay.go(this->targetUnit->cell);
+        //     this->targetData.blockedFreeWayHoldTimer = 0;
+        //     this->targetUnit = nullptr;
+        //     this->freeCell = nullptr;
+
+        // }
+
+        // if (this->focus)
+        // {
+        //     console.log("FREE = ");
+        // }
 
         Unit *ncgu = this->nextCell->groundUnit;
         Unit *valU = nullptr;
@@ -66,6 +76,11 @@ void MobileGroundUnit::stepToTheSide()
 
             valU->orderOnWay.go(validCells.getItem(rand), 3);
             valU->isActive = true;
+
+            if (this->focus)
+            {
+                console.log("FREE = go");
+            }
         }
     }
 
@@ -73,9 +88,39 @@ void MobileGroundUnit::stepToTheSide()
     else
     {
 
-        if (this->focus)
+        // if (this->targetUnit && this->targetUnit->iNeedFreeWay) {
+
+        // if (this->focus)
+        // {
+        //     console.log("blocked = RETURN BY targetUnit" );
+        // }
+
+        //     return;
+        // }
+
+        if (this->targetUnit &&
+            this->targetUnit->hp &&
+            this->targetUnit->cell &&
+            this->targetUnit->iNeedFreeWay &&
+            this->targetUnit->targetData.clicckedCell == this->freeCell)
         {
-            console.log("blocked");
+
+            // if (this->focus)
+            // {
+            //     console.log("return by target unit");
+            // }
+            return;
+        }
+
+        // if (this->focus)
+        // {
+        //     console.log("blocked = " + to_string(this->targetData.blockedFreeWayHoldTimer));
+        // }
+
+        if (this->targetData.blockedFreeWayHoldTimer)
+        {
+            this->targetData.blockedFreeWayHoldTimer--;
+            return;
         }
 
         Array<Cell *> scs;
@@ -95,8 +140,9 @@ void MobileGroundUnit::stepToTheSide()
                  (nextCellGU->isActive && (!nextCellGU->orderOnWay.isComplite ||
                                            nextCellGU->way.length))) &&
                 currentCellGU &&
+                currentCellGU->type == "life" &&
                 !currentCellGU->isActive &&
-                currentCellGU->type == "life")
+                currentCellGU->profession == "")
             {
                 targetUnit = currentCellGU;
                 break;
@@ -105,10 +151,10 @@ void MobileGroundUnit::stepToTheSide()
 
         if (targetUnit)
         {
-            if (this->focus)
-            {
-                console.log("easey target unit");
-            }
+            // if (this->focus)
+            // {
+            //     console.log("easey target unit" + to_string(this->targetData.blockedFreeWayHoldTimer));
+            // }
             Array<Cell *> validCells;
             targetUnit->cell->panicCells.forEach([&validCells](Cell *c)
                                                  {
@@ -123,7 +169,14 @@ void MobileGroundUnit::stepToTheSide()
 
                 targetUnit->orderOnWay.go(validCells.getItem(rand), 3);
                 targetUnit->isActive = true;
-                return;
+                // this->targetUnit = targetUnit;
+
+                this->targetData.blockedFreeWayHoldTimer = 15;
+
+                if (this->focus)
+                {
+                    console.log("easy unit step");
+                }
             }
         }
         else
@@ -140,7 +193,7 @@ void MobileGroundUnit::stepToTheSide()
             {
                 Cell *c = this->cell->aroundCells.getItem(i);
                 Unit *cgu = c->groundUnit;
-                if (cgu->profession == "" && !cgu->isActive && cgu->type == "life")
+                if (cgu->type == "life" && cgu->profession == "" && !cgu->isActive)
                 {
                     targetUnit = cgu;
                     break;
@@ -149,16 +202,16 @@ void MobileGroundUnit::stepToTheSide()
 
             if (targetUnit)
             {
-                if (this->focus)
-                {
-                    console.log("hard target unit");
-                }
-                 int iter = 0;
+                // if (this->focus)
+                // {
+                //     console.log("hard target unit");
+                // }
+                int iter = 0;
                 while (!freeCell
                        // && iter < 1000
                 )
                 {
-                     iter ++;
+                    iter++;
                     // MinDataC md = expCells.getMinDataC([this](Cell *cell)
                     //                                    {
                     //                     PointF pointThis = {x : this->cell->x, y : this->cell->y};
@@ -169,20 +222,19 @@ void MobileGroundUnit::stepToTheSide()
                     //                             return dis; });
 
                     MinDataC md;
-                    expCells.forEach([&md, this](Cell *c, int i){
+                    expCells.forEach([&md, this](Cell *c, int i)
+                                     {
 
                        PointF pointThis = {x : this->cell->x, y : this->cell->y};
                        PointF pointLM = {x : c->x, y : c->y};
                        Delta delta = getDeltas(&pointThis, &pointLM);
                        double dis = getDis(&delta);
 
-                       if (!md.cell || md.dis > dis) {
+                       if (!md.cell || md.dis < dis) {
                         md.cell = c;
                         md.i = i;
                         md.dis = dis;
-                       }
-                    });
-
+                       } });
 
                     Cell *mdc = md.cell;
 
@@ -199,7 +251,7 @@ void MobileGroundUnit::stepToTheSide()
                                                  {
              Unit *cgu = c->groundUnit;                                       
         if (c->thwd.getItemPtr(this->thd->num)->createCountData != this->thd->createCount &&
-            (!cgu || (cgu->type == "life"))
+            (!cgu || (cgu->type == "life" && cgu->profession == ""))
         )
                 {
                         c->thwd.getItemPtr(this->thd->num)->createCountData = this->thd->createCount;
@@ -208,22 +260,23 @@ void MobileGroundUnit::stepToTheSide()
                     } });
                     }
                 }
-                if (this->focus) {
-                    console.log(to_string(iter));
-                }
+                // if (this->focus) {
+                //     console.log(to_string(iter));
+                // }
                 targetUnit->orderOnWay.go(freeCell);
                 targetUnit->isActive = true;
-                
+                targetUnit->targetData.blockedFreeWayHoldTimer = 15;
+                this->targetData.blockedFreeWayHoldTimer = 15;
 
-                if (freeCell)
-                {
-                    this->targetUnit = targetUnit;
-                    this->freeCell = freeCell;
-                }
+                //  if (freeCell)
+                //  {
+                this->targetUnit = targetUnit;
+                this->freeCell = freeCell;
+                // }
 
                 if (this->focus)
                 {
-                    console.log("hard target unit GOOOOOOOO");
+                    console.log("hard target unit step");
                 }
             }
         }

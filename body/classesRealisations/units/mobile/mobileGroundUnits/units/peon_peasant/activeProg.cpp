@@ -15,7 +15,6 @@ void Peon_peasant::activeProg()
 
   if (this->frashWayCheckNeed)
   {
-    console.log("-----------------------------------------------------------");
     this->frashWayCheckNeed = false;
     if (this->profession != "")
     {

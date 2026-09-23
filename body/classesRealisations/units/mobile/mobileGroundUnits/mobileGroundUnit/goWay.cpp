@@ -52,7 +52,7 @@ void MobileGroundUnit::goWay()
             {
   
                 if (this->iNeedFreeWay && this->nextCell->groundUnit 
-                   // && !this->nextCell->groundUnit->isActive
+                    && !this->nextCell->groundUnit->isActive
                 )
                 {
                     this->stepToTheSide();

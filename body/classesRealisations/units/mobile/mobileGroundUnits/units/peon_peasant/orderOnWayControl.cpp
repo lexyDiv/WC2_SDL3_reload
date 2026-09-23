@@ -4,16 +4,21 @@
 void Peon_peasant::orderOnWayControl()
 {
 
-
     this->orderOnWay.mt.lock();
     if (!this->orderOnWay.isComplite
         //&& !this->wayTakts
     )
     {
 
+        if (this->targetUnit)
+        {
+            this->targetUnit->orderOnWay.go(this->targetUnit->cell);
+            this->targetData.blockedFreeWayHoldTimer = 0;
+            this->targetUnit = nullptr;
+            this->freeCell = nullptr;
+        }
 
-
-        if (this->isBlocked)
+        if (this->isBlocked && this->personalCaseDeep != 3)
         {
             this->iNeedFreeWay = true; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! <= ON !!! 2/3
                                        // console.log("on");

@@ -1,35 +1,7 @@
 #include "Th.h"
 //=>system out
 
-// class RefactorWayData
-// {
-// public:
-//  // Array<Cell *> basicWay;
-  
-//   RefactorWayData() {};
 
-//   Cell *saveClickedCell = nullptr;
-//   Array<Cell *> dopWay;
-//   Array<Cell *> saveWay;
-//   Unit *saveUnit = nullptr;
-//   int minIndex = 0;
-//   int targetCellIndex = -1;
-//   string saveProfession = "";
-//   bool isActual = false;
-
-//   void clear()
-//   {
-//     isActual = false;
-//     saveClickedCell = nullptr;
-//     dopWay.clear();
-//     saveWay.clear();
-//     saveUnit = nullptr;
-//     minIndex = 0;
-//     saveProfession = "";
-
-//     targetCellIndex = -1;
-//   }
-// };
 
 class Unit
 {
@@ -109,15 +81,16 @@ public:
   virtual void standOnCell() {};
   virtual void stressControl() {};
   virtual void targetObjControl() {};
+  
 
   int deleteTimer = 50;
   Array<Cell *> myCells;
   Array<Cell *> contactCells;
-  Array<Cell *> exitCells;
-  Array<Unit *> clients;
-  Array<Unit *> outClients;
-  Array<MinData> wellComeCells;
-  Array<Unit *> potentialClients;
+   Array<Cell *> exitCells;
+  // Array<Unit *> clients;
+  // Array<Unit *> outClients;
+   Array<MinData> wellComeCells;
+  // Array<Unit *> potentialClients;
   Array<Cell *> potentialWay;
   Array<Cell *> way;
   Array<Unit *> orderedTrees;

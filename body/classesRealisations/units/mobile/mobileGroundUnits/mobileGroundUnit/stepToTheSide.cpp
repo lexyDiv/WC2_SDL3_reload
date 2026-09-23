@@ -5,13 +5,14 @@ void MobileGroundUnit::stepToTheSide()
 {
     if (
         !this->isBlockedd_full(this)
-       // !this->isBlocked
+        // !this->isBlocked
     )
     {
 
-            //        if (this->focus) {
-            //     console.log("FREE");
-            // }
+        if (this->focus)
+        {
+            console.log("FREE");
+        }
 
         Unit *ncgu = this->nextCell->groundUnit;
         Unit *valU = nullptr;
@@ -72,9 +73,10 @@ void MobileGroundUnit::stepToTheSide()
     else
     {
 
-                   if (this->focus) {
-                console.log("blocked");
-            }
+        if (this->focus)
+        {
+            console.log("blocked");
+        }
 
         Array<Cell *> scs;
         // scs.push(this->nextCell);
@@ -91,7 +93,7 @@ void MobileGroundUnit::stepToTheSide()
 
             if ((!nextCellGU ||
                  (nextCellGU->isActive && (!nextCellGU->orderOnWay.isComplite ||
-                nextCellGU->way.length))) &&
+                                           nextCellGU->way.length))) &&
                 currentCellGU &&
                 !currentCellGU->isActive &&
                 currentCellGU->type == "life")
@@ -126,7 +128,6 @@ void MobileGroundUnit::stepToTheSide()
         }
         else
         {
-            // console.log("here");
 
             this->thd->createCount += 0.001;
             Cell *freeCell = nullptr;
@@ -152,20 +153,37 @@ void MobileGroundUnit::stepToTheSide()
                 {
                     console.log("hard target unit");
                 }
-                // int iter = 0;
+                 int iter = 0;
                 while (!freeCell
                        // && iter < 1000
                 )
                 {
-                    // iter ++;
-                    MinDataC md = expCells.getMinDataC([this](Cell *cell)
-                                                       {
-                                        PointF pointThis = {x : this->cell->x, y : this->cell->y};
-                                        PointF pointLM = {x : cell->x, y : cell->y};
-                                        Delta delta = getDeltas(&pointThis, &pointLM);
-                                        double resDis = getDis(&delta);
-                                        double dis = resDis ? resDis : 1000000;
-                                                return dis; });
+                     iter ++;
+                    // MinDataC md = expCells.getMinDataC([this](Cell *cell)
+                    //                                    {
+                    //                     PointF pointThis = {x : this->cell->x, y : this->cell->y};
+                    //                     PointF pointLM = {x : cell->x, y : cell->y};
+                    //                     Delta delta = getDeltas(&pointThis, &pointLM);
+                    //                     double resDis = getDis(&delta);
+                    //                     double dis = resDis ? resDis : 100000;
+                    //                             return dis; });
+
+                    MinDataC md;
+                    expCells.forEach([&md, this](Cell *c, int i){
+
+                       PointF pointThis = {x : this->cell->x, y : this->cell->y};
+                       PointF pointLM = {x : c->x, y : c->y};
+                       Delta delta = getDeltas(&pointThis, &pointLM);
+                       double dis = getDis(&delta);
+
+                       if (!md.cell || md.dis > dis) {
+                        md.cell = c;
+                        md.i = i;
+                        md.dis = dis;
+                       }
+                    });
+
+
                     Cell *mdc = md.cell;
 
                     expCells.splice(md.index, 1);
@@ -179,28 +197,33 @@ void MobileGroundUnit::stepToTheSide()
                     {
                         mdc->aroundCells.forEach([&expCells, this](Cell *c)
                                                  {
-                            if (c->thwd.getItemPtr(this->thd->num)->createCountData != this->thd->createCount)
-                                {
-                                                        c->thwd.getItemPtr(this->thd->num)->createCountData = this->thd->createCount;
-                                                         expCells.push(c);
-                                                     } });
+             Unit *cgu = c->groundUnit;                                       
+        if (c->thwd.getItemPtr(this->thd->num)->createCountData != this->thd->createCount &&
+            (!cgu || (cgu->type == "life"))
+        )
+                {
+                        c->thwd.getItemPtr(this->thd->num)->createCountData = this->thd->createCount;
+                        expCells.push(c);
+                                                    
+                    } });
                     }
                 }
-                targetUnit->orderOnWay.go(freeCell, 4);
+                if (this->focus) {
+                    console.log(to_string(iter));
+                }
+                targetUnit->orderOnWay.go(freeCell);
                 targetUnit->isActive = true;
+                
 
-
-               if (this->focus)
+                if (freeCell)
                 {
-                    console.log("hard target unit GOOOOOOOO");
+                    this->targetUnit = targetUnit;
+                    this->freeCell = freeCell;
                 }
 
-            }
-            else
-            {
                 if (this->focus)
                 {
-                    console.log("here 1");
+                    console.log("hard target unit GOOOOOOOO");
                 }
             }
         }

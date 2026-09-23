@@ -22,10 +22,14 @@ bool MobileGroundUnit::isBlockedd_full(Unit *unit)
     {
         Cell *ac = this->cell->aroundCells.getItem(i);
         if (!ac->groundUnit ||
-            ac->groundUnit->wayIndex > 0 ||
+           (
+            // !ac->groundUnit->iNeedFreeWay && 
+             (ac->groundUnit->wayIndex > 0 ||
             ac->groundUnit->way.length ||
             !ac->groundUnit->orderOnWay.isComplite ||
-            ac->groundUnit == unit)
+            ac->groundUnit == unit
+            ))
+        )
         {
             return false;
         }

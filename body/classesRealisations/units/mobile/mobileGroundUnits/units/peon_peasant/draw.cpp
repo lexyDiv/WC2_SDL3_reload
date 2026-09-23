@@ -38,29 +38,45 @@ void Peon_peasant::draw()
         100,
         100);
 
-        if (this->focus && this->cell) {
+    if (this->focus && this->cell)
+    {
 
-                   this->way.forEach([&drawDeltaX, &drawDeltaY](Cell *c, int i){
-                    ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, c->game->gf->cellSize, c->game->gf->cellSize, "violet", 100);
-                   // ctx.StrokeRect(c->x + drawDeltaX, c->y + drawDeltaY, c->game->gf->cellSize, c->game->gf->cellSize, "black", 100);
-                   // ctx.DrawText(c->x + drawDeltaX, c->y + drawDeltaY, 20, to_string(i));
-                   });
+      this->way.forEach([&drawDeltaX, &drawDeltaY](Cell *c, int i)
+                        {
+                          ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, c->game->gf->cellSize, c->game->gf->cellSize, "violet", 100);
+                          // ctx.StrokeRect(c->x + drawDeltaX, c->y + drawDeltaY, c->game->gf->cellSize, c->game->gf->cellSize, "black", 100);
+                          // ctx.DrawText(c->x + drawDeltaX, c->y + drawDeltaY, 20, to_string(i));
+                        });
+      Cell *fc = this->freeCell;
+      Unit *tu = this->targetUnit;
 
-             Cell *c = this->targetData.clicckedCell;
-           if (c) {
-            ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, this->cell->game->gf->cellSize, this->cell->game->gf->cellSize, "green");
-           }
-        }
+      if (fc)
+      {
+        ctx.FillRect(fc->x + drawDeltaX, fc->y + drawDeltaY, this->cell->game->gf->cellSize, this->cell->game->gf->cellSize, "green");
+      }
 
-  //       if (this->metka) {
-  //         ctx.FillRect(this->cell->x + drawDeltaX, this->cell->y + drawDeltaY, this->cell->game->gf->cellSize, this->cell->game->gf->cellSize, "blue", 100);
-  //       }
+      if (tu)
+      {
+        ctx.FillRect(tu->x + drawDeltaX, tu->y + drawDeltaY, this->cell->game->gf->cellSize, this->cell->game->gf->cellSize, "black");
+        // tu->way.forEach([&drawDeltaX, &drawDeltaY](Cell *c){
+        //   ctx.StrokeRect(c->x + drawDeltaX, c->y + drawDeltaY, c->game->gf->cellSize, c->game->gf->cellSize, "blue");
+        // });
+      }
+    }
 
-  //       if (this->targetData.clicckedCell 
-  //        // && this->focus
-  //       ) {
-  //         ctx.FillRect(this->targetData.clicckedCell->x + drawDeltaX, this->targetData.clicckedCell->y + drawDeltaY, this->cell->game->gf->cellSize, this->cell->game->gf->cellSize, "yellow", 100);
-  //       }
+    if (this->iNeedFreeWay) {
+      ctx.DrawText(this->x + drawDeltaX + 10, this->y + drawDeltaY + 10, 25, "F");
+    }
+
+    //       if (this->metka) {
+    //         ctx.FillRect(this->cell->x + drawDeltaX, this->cell->y + drawDeltaY, this->cell->game->gf->cellSize, this->cell->game->gf->cellSize, "blue", 100);
+    //       }
+
+    //       if (this->targetData.clicckedCell
+    //        // && this->focus
+    //       ) {
+    //         ctx.FillRect(this->targetData.clicckedCell->x + drawDeltaX, this->targetData.clicckedCell->y + drawDeltaY, this->cell->game->gf->cellSize, this->cell->game->gf->cellSize, "yellow", 100);
+    //       }
 
     // ctx.DrawText(this->x + drawDeltaX + 10,
     //              this->y + drawDeltaY + 10,
@@ -70,7 +86,7 @@ void Peon_peasant::draw()
     //      ctx.DrawText(this->x + drawDeltaX + 10,
     //              this->y + drawDeltaY + 25,
     //              14,
-    //              this->profession);            
+    //              this->profession);
 
     // if (this->persNum == 1)
     // {

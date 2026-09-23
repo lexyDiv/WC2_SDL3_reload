@@ -221,7 +221,10 @@ public:
   int personalCaseDeep = 0;
   bool frashWayCheckNeed = false;
  ThData * thd = nullptr;
- 
+ ////////////////////////// => debug
+ Unit *targetUnit = nullptr;
+ Cell *freeCell = nullptr;
+////////////////////////// <= debug
 
 
 };

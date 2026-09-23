@@ -22,7 +22,7 @@ struct MinDataC
     double min = 0;
     int i = 0;
     int k = 0;
-    // double dis = 0;
+    double dis = 0;
     Cell *cell = nullptr;
 
 };

@@ -11,7 +11,7 @@ void Peon_peasant::getCurrentTarget()
     // if (this->game->unitsOnWay.length >= 5) {
     //     this->personalCaseDeep = 40;
     //    // console.log("here");
-    // } 
+    // }
 
     this->potentialWay.clear();
     this->wayIndex = 0;
@@ -20,67 +20,90 @@ void Peon_peasant::getCurrentTarget()
 
     Unit *tdu = this->targetData.unit;
 
-    if (tdu)
+    if (this->iNeedFreeWay)
     {
-
-        if (
-
-            tdu->name == "tree")
+        
+        if (tdu)
         {
-            this->isOnGetPotentialWayGetTarget = [this](Cell *c)
+
+            if (
+
+                tdu->name == "tree")
             {
-                Unit *gu = c->groundUnit;
-                if (
-                    gu && gu->name == "tree" && !gu->lesorub)
+                this->isOnGetPotentialWayGetTarget = [this](Cell *c)
                 {
-                    this->targetData.unit = gu;
-                    this->targetData.clicckedCell = gu->cell;
+                    Unit *gu = c->groundUnit;
+                    if (
+                        gu && gu->name == "tree" && !gu->lesorub)
+                    {
+                        this->targetData.unit = gu;
+                        this->targetData.clicckedCell = gu->cell;
 
-                    return true;
-                }
-                return false;
-            };
-
-            // if (!this->iNeedFreeWay)
-            // {
-            this->isNewCellOnGetWayValide = [this](Cell *c, int iter)
-            {
-                Unit *gu = c->groundUnit;
-
-                Cell *tc = this->cell;
-
-                if (gu && gu->needHolTimer)
-                {
+                        return true;
+                    }
                     return false;
-                }
+                };
 
-                if (tc &&
-                    c->plane == tc->plane &&
-                    (!gu ||
-                     (gu->type == "life" && (iter >= 30 || 
-                        this->iNeedFreeWay)) ||
-                     gu->way.length ||
-                     gu->needHolTimer ||
-                     !gu->isPotentialWayComplite ||
-                     gu->outHoldTimer ||
-                     (gu->fraction && gu->fraction->unionCase != this->fraction->unionCase &&
-                      gu->isWarrior) ||
-                     (gu->name == "tree" && !gu->lesorub)))
+                // if (!this->iNeedFreeWay)
+                // {
+                this->isNewCellOnGetWayValide = [this](Cell *c, int iter)
                 {
+                    Unit *gu = c->groundUnit;
 
-                    return true;
-                }
+                    Cell *tc = this->cell;
 
-                return false;
-            };
+                    if (
+                        c->plane == tc->plane &&
+                        (!gu ||
+                         (gu->type == "life" && !gu->inFight && 
+                        (!gu->isActive || !gu->needHolTimer || !gu->isPotentialWayComplite)) ||
+                         (gu->name == "tree" && !gu->lesorub)))
+                    {
+
+                        return true;
+                    }
+
+                    return false;
+                };
+            }
+            else
+            {
+                this->isOnGetPotentialWayGetTarget = [this](Cell *c)
+                {
+                    Unit *gu = c->groundUnit;
+                    if ( // cell == this->targetCell ||
+                        gu && gu == this->targetData.unit)
+                    {
+                        return true;
+                    }
+                    return false;
+                };
+
+                this->isNewCellOnGetWayValide = [this](Cell *c, int iter)
+                {
+                    Unit *gu = c->groundUnit;
+                    Cell *tc = this->cell;
+
+                    if (
+                        c->plane == tc->plane &&
+                        (!gu ||
+                         (gu->type == "life" && !gu->inFight && 
+                        (!gu->isActive || !gu->needHolTimer || !gu->isPotentialWayComplite)) ||
+                         gu == this->targetData.unit))
+                    {
+                        return true;
+                    }
+                    return false;
+                };
+            }
         }
         else
         {
             this->isOnGetPotentialWayGetTarget = [this](Cell *c)
             {
-                Unit *gu = c->groundUnit;
-                if ( // cell == this->targetCell ||
-                    gu && gu == this->targetData.unit)
+                if (
+                    // cell == this->targetCell
+                    c == this->targetData.clicckedCell)
                 {
                     return true;
                 }
@@ -92,17 +115,13 @@ void Peon_peasant::getCurrentTarget()
                 Unit *gu = c->groundUnit;
                 Cell *tc = this->cell;
 
-                if (gu && gu->needHolTimer && (iter < 100 && ! this->iNeedFreeWay))
-                {
-                    return false;
-                }
-                if (tc &&
+                if (
                     c->plane == tc->plane &&
                     (!gu ||
-                        (gu->type == "life" && (iter >= 30 || 
-                            this->iNeedFreeWay)) ||
-                     gu->wayIndex ||
-                     gu == this->targetData.unit))
+                     c == this->targetData.clicckedCell ||
+                     (gu->type == "life" && !gu->inFight && 
+                        (!gu->isActive || !gu->needHolTimer || !gu->isPotentialWayComplite))
+                     ))
                 {
                     return true;
                 }
@@ -112,35 +131,121 @@ void Peon_peasant::getCurrentTarget()
     }
     else
     {
-        this->isOnGetPotentialWayGetTarget = [this](Cell *c)
+        if (tdu)
         {
-            if (
-                // cell == this->targetCell
-                c == this->targetData.clicckedCell)
-            {
-                return true;
-            }
-            return false;
-        };
 
-        this->isNewCellOnGetWayValide = [this](Cell *c, int iter)
+            if (
+
+                tdu->name == "tree")
+            {
+                this->isOnGetPotentialWayGetTarget = [this](Cell *c)
+                {
+                    Unit *gu = c->groundUnit;
+                    if (
+                        gu && gu->name == "tree" && !gu->lesorub)
+                    {
+                        this->targetData.unit = gu;
+                        this->targetData.clicckedCell = gu->cell;
+
+                        return true;
+                    }
+                    return false;
+                };
+
+                // if (!this->iNeedFreeWay)
+                // {
+                this->isNewCellOnGetWayValide = [this](Cell *c, int iter)
+                {
+                    Unit *gu = c->groundUnit;
+
+                    Cell *tc = this->cell;
+
+                    if (gu && gu->needHolTimer)
+                    {
+                        return false;
+                    }
+
+                    if (tc &&
+                        c->plane == tc->plane &&
+                        (!gu ||
+                         (gu->type == "life" && (iter >= 30)) ||
+                         gu->way.length ||
+                         !gu->isPotentialWayComplite ||
+                         (gu->name == "tree" && !gu->lesorub)))
+                    {
+
+                        return true;
+                    }
+
+                    return false;
+                };
+            }
+            else
+            {
+                this->isOnGetPotentialWayGetTarget = [this](Cell *c)
+                {
+                    Unit *gu = c->groundUnit;
+                    if ( // cell == this->targetCell ||
+                        gu && gu == this->targetData.unit)
+                    {
+                        return true;
+                    }
+                    return false;
+                };
+
+                this->isNewCellOnGetWayValide = [this](Cell *c, int iter)
+                {
+                    Unit *gu = c->groundUnit;
+                    Cell *tc = this->cell;
+
+                    if (gu && gu->needHolTimer)
+                    {
+                        return false;
+                    }
+                    if (
+                        c->plane == tc->plane &&
+                        (!gu ||
+                         (gu->type == "life" && (iter >= 30)) ||
+                         gu->wayIndex ||
+                         gu == this->targetData.unit))
+                    {
+                        return true;
+                    }
+                    return false;
+                };
+            }
+        }
+        else
         {
-            Unit *gu = c->groundUnit;
-            Cell *tc = this->cell;
-            if (gu && gu->needHolTimer && (iter < 100 && ! this->iNeedFreeWay))
+            this->isOnGetPotentialWayGetTarget = [this](Cell *c)
             {
+                if (
+                    // cell == this->targetCell
+                    c == this->targetData.clicckedCell)
+                {
+                    return true;
+                }
                 return false;
-            }
-            if (tc &&
-                c->plane == tc->plane &&
-                (!gu || c == this->targetData.clicckedCell ||
-                    (gu->type == "life" && (iter >= 30 || 
-                        this->iNeedFreeWay)) ||
-                 gu->wayIndex))
+            };
+
+            this->isNewCellOnGetWayValide = [this](Cell *c, int iter)
             {
-                return true;
-            }
-            return false;
-        };
+                Unit *gu = c->groundUnit;
+                Cell *tc = this->cell;
+                if (gu && gu->needHolTimer)
+                {
+                    return false;
+                }
+                if (
+                    c->plane == tc->plane &&
+                    (!gu || c == this->targetData.clicckedCell ||
+                     (gu->type == "life" && (iter >= 30)) ||
+                     gu->wayIndex))
+                {
+                    return true;
+                }
+                return false;
+            };
+        }
     }
 }

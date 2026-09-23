@@ -81,7 +81,7 @@ void GameField::offsetControl()
               if (this->focusUnit) {
                 this->focusUnit->orderOnWay.go(tc);
                 this->focusUnit->isActive = true;
-                console.log("CLICK  = " + to_string(this->focusUnit->orderOnWay.cell->persNum) + " !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+               // console.log("CLICK  = " + to_string(this->focusUnit->orderOnWay.cell->persNum) + " !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
               }
      }
     }

@@ -11,8 +11,6 @@ void Peon_peasant::activeProg()
     return;
   }
 
-
-
   if (this->frashWayCheckNeed)
   {
     this->frashWayCheckNeed = false;
@@ -73,5 +71,6 @@ void Peon_peasant::activeProg()
   {
     this->goWay();
     this->orderOnWayControl();
+  
   }
 }

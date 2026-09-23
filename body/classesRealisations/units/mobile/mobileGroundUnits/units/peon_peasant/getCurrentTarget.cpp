@@ -22,6 +22,8 @@ void Peon_peasant::getCurrentTarget()
 
     if (this->iNeedFreeWay)
     {
+
+        
         
         if (tdu)
         {
@@ -30,6 +32,7 @@ void Peon_peasant::getCurrentTarget()
 
                 tdu->name == "tree")
             {
+                
                 this->isOnGetPotentialWayGetTarget = [this](Cell *c)
                 {
                     Unit *gu = c->groundUnit;
@@ -129,6 +132,7 @@ void Peon_peasant::getCurrentTarget()
             };
         }
     }
+    /////////////////////////////////////////////////////////////////////////////////////////
     else
     {
         if (tdu)
@@ -138,6 +142,7 @@ void Peon_peasant::getCurrentTarget()
 
                 tdu->name == "tree")
             {
+
                 this->isOnGetPotentialWayGetTarget = [this](Cell *c)
                 {
                     Unit *gu = c->groundUnit;

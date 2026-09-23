@@ -5,24 +5,8 @@ void MobileGroundUnit::stepToTheSide()
 {
 
     if (
-        // !this->isBlockedd_full(this) &&
-        //! this->targetData.blockedFreeWayHoldTimer
         !this->isBlocked)
     {
-
-        // if (this->targetUnit)
-        // {
-        //     this->targetUnit->orderOnWay.go(this->targetUnit->cell);
-        //     this->targetData.blockedFreeWayHoldTimer = 0;
-        //     this->targetUnit = nullptr;
-        //     this->freeCell = nullptr;
-
-        // }
-
-        // if (this->focus)
-        // {
-        //     console.log("FREE = ");
-        // }
 
         Unit *ncgu = this->nextCell->groundUnit;
         Unit *valU = nullptr;
@@ -77,10 +61,7 @@ void MobileGroundUnit::stepToTheSide()
             valU->orderOnWay.go(validCells.getItem(rand), 3);
             valU->isActive = true;
 
-            if (this->focus)
-            {
-                console.log("FREE = go");
-            }
+
         }
     }
 
@@ -88,34 +69,14 @@ void MobileGroundUnit::stepToTheSide()
     else
     {
 
-        // if (this->targetUnit && this->targetUnit->iNeedFreeWay) {
-
-        // if (this->focus)
-        // {
-        //     console.log("blocked = RETURN BY targetUnit" );
-        // }
-
-        //     return;
-        // }
-
         if (this->targetUnit &&
             this->targetUnit->hp &&
             this->targetUnit->cell &&
             this->targetUnit->iNeedFreeWay &&
             this->targetUnit->targetData.clicckedCell == this->freeCell)
         {
-
-            // if (this->focus)
-            // {
-            //     console.log("return by target unit");
-            // }
             return;
         }
-
-        // if (this->focus)
-        // {
-        //     console.log("blocked = " + to_string(this->targetData.blockedFreeWayHoldTimer));
-        // }
 
         if (this->targetData.blockedFreeWayHoldTimer)
         {
@@ -124,7 +85,6 @@ void MobileGroundUnit::stepToTheSide()
         }
 
         Array<Cell *> scs;
-        // scs.push(this->nextCell);
         scs.push(this->cell);
         int count = 0;
         Unit *targetUnit = nullptr;
@@ -151,10 +111,6 @@ void MobileGroundUnit::stepToTheSide()
 
         if (targetUnit)
         {
-            // if (this->focus)
-            // {
-            //     console.log("easey target unit" + to_string(this->targetData.blockedFreeWayHoldTimer));
-            // }
             Array<Cell *> validCells;
             targetUnit->cell->panicCells.forEach([&validCells](Cell *c)
                                                  {
@@ -169,14 +125,8 @@ void MobileGroundUnit::stepToTheSide()
 
                 targetUnit->orderOnWay.go(validCells.getItem(rand), 3);
                 targetUnit->isActive = true;
-                // this->targetUnit = targetUnit;
-
                 this->targetData.blockedFreeWayHoldTimer = 15;
 
-                if (this->focus)
-                {
-                    console.log("easy unit step");
-                }
             }
         }
         else
@@ -202,24 +152,8 @@ void MobileGroundUnit::stepToTheSide()
 
             if (targetUnit)
             {
-                // if (this->focus)
-                // {
-                //     console.log("hard target unit");
-                // }
-                int iter = 0;
-                while (!freeCell
-                       // && iter < 1000
-                )
+                while (!freeCell)
                 {
-                    iter++;
-                    // MinDataC md = expCells.getMinDataC([this](Cell *cell)
-                    //                                    {
-                    //                     PointF pointThis = {x : this->cell->x, y : this->cell->y};
-                    //                     PointF pointLM = {x : cell->x, y : cell->y};
-                    //                     Delta delta = getDeltas(&pointThis, &pointLM);
-                    //                     double resDis = getDis(&delta);
-                    //                     double dis = resDis ? resDis : 100000;
-                    //                             return dis; });
 
                     MinDataC md;
                     expCells.forEach([&md, this](Cell *c, int i)
@@ -260,24 +194,12 @@ void MobileGroundUnit::stepToTheSide()
                     } });
                     }
                 }
-                // if (this->focus) {
-                //     console.log(to_string(iter));
-                // }
                 targetUnit->orderOnWay.go(freeCell);
                 targetUnit->isActive = true;
                 targetUnit->targetData.blockedFreeWayHoldTimer = 15;
                 this->targetData.blockedFreeWayHoldTimer = 15;
-
-                //  if (freeCell)
-                //  {
                 this->targetUnit = targetUnit;
                 this->freeCell = freeCell;
-                // }
-
-                if (this->focus)
-                {
-                    console.log("hard target unit step");
-                }
             }
         }
     }

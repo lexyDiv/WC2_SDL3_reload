@@ -16,11 +16,16 @@ void Peon_peasant::stendOnCell()
     this->needHolTimer = 0;
 
     ///////////////////////////////
-        if (this->targetUnit)
-        {
-            this->targetUnit->orderOnWay.go(this->targetUnit->cell);
-            this->targetData.blockedFreeWayHoldTimer = 0;
-            this->targetUnit = nullptr;
-            this->freeCell = nullptr;
-        }
+    if (this->targetUnit &&
+        this->targetUnit->isActive &&
+        this->targetUnit->hp &&
+        this->targetUnit->cell &&
+        this->targetUnit->targetData.clicckedCell == this->freeCell)
+    {
+        this->targetUnit->orderOnWay.go();
+        this->targetData.blockedFreeWayHoldTimer = 0;
+        this->targetUnit = nullptr;
+        this->freeCell = nullptr;
+
+    }
 };

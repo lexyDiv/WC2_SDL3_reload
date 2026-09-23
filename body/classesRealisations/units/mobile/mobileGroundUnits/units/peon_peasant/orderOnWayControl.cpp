@@ -9,10 +9,30 @@ void Peon_peasant::orderOnWayControl()
         //&& !this->wayTakts
     )
     {
+        // if (this->focus) {
+        //     if (this->orderOnWay.cell) {
+        //         console.log("c.cell start = " + to_string(this->orderOnWay.cell->persNum));
+        //     }
+        // }
 
-        if (this->targetUnit)
+        if (this->orderOnWay.stop)
         {
-            this->targetUnit->orderOnWay.go(this->targetUnit->cell);
+            this->targetData.clear();
+            this->way.clear();
+            this->wayIndex = 0;
+            this->orderOnWay.isComplite = true;
+            this->orderOnWay.stop = false;
+            this->orderOnWay.mt.unlock();
+            return;
+        }
+
+        if (this->targetUnit &&
+            this->targetUnit->isActive &&
+            this->targetUnit->hp &&
+            this->targetUnit->cell &&
+            this->targetUnit->targetData.clicckedCell == this->freeCell)
+        {
+            this->targetUnit->orderOnWay.go();
             this->targetData.blockedFreeWayHoldTimer = 0;
             this->targetUnit = nullptr;
             this->freeCell = nullptr;
@@ -29,29 +49,29 @@ void Peon_peasant::orderOnWayControl()
         Cell *finishCell = this->way.length ? this->way.getItem(0) : nullptr;
         Unit *tdu = this->targetData.unit;
 
-        if ((tdu && tdu != oCell->groundUnit) ||
-            (this->targetData.clicckedCell && this->targetData.clicckedCell != oCell))
-        {
-            this->iNeedFreeWay = false;
-        }
+        // if ((tdu && oCell && tdu != oCell->groundUnit) ||
+        //     (this->targetData.clicckedCell && this->targetData.clicckedCell != oCell))
+        // {
+        //     this->iNeedFreeWay = false;
+        // }
 
         if (this->orderOnWay.profession == "")
         {
-            if (!this->cell ||
-                oCell->plane != this->cell->plane ||
-                oCell->groundUnit == this ||
-                finishCell == oCell ||
-                (tdu && !this->iNeedFreeWay && (tdu == oCell->groundUnit || (tdu->name == "tree" && oCell->groundUnit->name == "tree" && !oCell->groundUnit->lesorub)) &&
-                 this->way.length))
-            {
-                if (this->focus)
-                {
-                    console.log("order return");
-                }
-                this->orderOnWay.isComplite = true;
-                this->orderOnWay.mt.unlock();
-                return;
-            }
+            // if (oCell && (!this->cell ||
+            //     oCell->plane != this->cell->plane ||
+            //     oCell->groundUnit == this ||
+            //     finishCell == oCell ||
+            //     (tdu && !this->iNeedFreeWay && (tdu == oCell->groundUnit || (tdu->name == "tree" && oCell->groundUnit->name == "tree" && !oCell->groundUnit->lesorub)) &&
+            //      this->way.length)))
+            // {
+            //     if (this->focus)
+            //     {
+            //         console.log("order return");
+            //     }
+            //     this->orderOnWay.isComplite = true;
+            //     this->orderOnWay.mt.unlock();
+            //     return;
+            // }
 
             if (!this->targetData.forNeedFreeWayCount)
             {
@@ -281,6 +301,13 @@ void Peon_peasant::orderOnWayControl()
                 }
             }
         }
+
+        // if (this->focus) {
+        //     if (this->targetData.clicckedCell) {
+        //         console.log("td.cell finish = " + to_string(this->targetData.clicckedCell->persNum));
+        //     }
+        // }
+
         if (this->targetData.clicckedCell && (!this->isBlocked || this->iNeedFreeWay))
         {
             this->getCurrentTarget();

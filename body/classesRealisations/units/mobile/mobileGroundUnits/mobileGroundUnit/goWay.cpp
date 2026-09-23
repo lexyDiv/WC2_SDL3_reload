@@ -38,7 +38,7 @@ void MobileGroundUnit::goWay()
 
                 if (saveSpeedTale)
                 {
-                    this->x += cos(this->conor) * saveSpeedTale;
+                    this->x += cos(this->conor) * saveSpeedTale; // => ZARANIE NEED !!!! (sin & cos)
                     this->y += sin(this->conor) * saveSpeedTale;
                 }
 
@@ -67,9 +67,6 @@ void MobileGroundUnit::goWay()
             }
             else
             {
-                  if (this->focus) {
-                    console.log("goWay not hold");
-                  }
                 this->stendOnCell();
                 if (this->orderOnWay.isComplite)
                 {

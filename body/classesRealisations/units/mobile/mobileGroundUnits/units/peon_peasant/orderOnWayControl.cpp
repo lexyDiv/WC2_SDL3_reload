@@ -34,9 +34,9 @@ void Peon_peasant::orderOnWayControl()
         {
             this->targetUnit->orderOnWay.go();
             this->targetData.blockedFreeWayHoldTimer = 0;
+        }
             this->targetUnit = nullptr;
             this->freeCell = nullptr;
-        }
 
         if (this->isBlocked && this->personalCaseDeep != 3)
         {

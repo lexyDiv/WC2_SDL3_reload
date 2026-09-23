@@ -126,7 +126,6 @@ void MobileGroundUnit::stepToTheSide()
                 targetUnit->orderOnWay.go(validCells.getItem(rand), 3);
                 targetUnit->isActive = true;
                 this->targetData.blockedFreeWayHoldTimer = 15;
-
             }
         }
         else

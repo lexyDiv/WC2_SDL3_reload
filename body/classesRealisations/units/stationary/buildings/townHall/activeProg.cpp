@@ -22,7 +22,7 @@ void TownHall::activeProg()
             peon->createInside(this->cell);
             int ran = intRand(0, 10);
             this->outClients.push(peon);
-           // peon->orderOnWay.go("w");
+            peon->orderOnWay.go("w");
             // peon->orderOnWay.profession = "w";
             // peon->orderOnWay.isComplite = false;
             
@@ -33,7 +33,7 @@ void TownHall::activeProg()
           //  peon->orderOnWay.profession = "w";
           //  peon->orderOnWay.isComplite = false;
 
-            if (this->fraction->peons.length < 1000) // 6000 crash 3000
+            if (this->fraction->peons.length < 10000) // 6000 crash 3000
             {
                 this->createTimer = 1;
             }

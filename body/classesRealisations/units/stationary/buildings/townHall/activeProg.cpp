@@ -22,7 +22,11 @@ void TownHall::activeProg()
             peon->createInside(this->cell);
             int ran = intRand(0, 10);
             this->outClients.push(peon);
-            peon->orderOnWay.go("w");
+           // if (!peon->isBlockedd(peon)) {
+              //  peon->orderOnWay.go("w");
+           // } else {
+                peon->profession = "w";
+           // }
             // peon->orderOnWay.profession = "w";
             // peon->orderOnWay.isComplite = false;
             
@@ -121,7 +125,7 @@ void TownHall::activeProg()
                 peon->inOutMashtabCount = (1 - peon->inOutMashtabMin) / peon->inOutCount;
                 peon->image = peon->fraction->peon.img_1;
                 oc->groundUnit = peon;
-                /////// fake way
+                
             }
             else
             {
@@ -158,6 +162,11 @@ void TownHall::activeProg()
             peon->stendOnCell();
             peon->outHoldTimer = 30;
             peon->isActive = true;
+
+            if (peon->profession != "") {
+                peon->orderOnWay.go(peon->profession);
+            }
+
             // peon->fraction->activeUnits.push(peon);
         }
     };

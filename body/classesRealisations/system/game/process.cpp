@@ -32,7 +32,6 @@ void Game::process()
 
     threads.clear();
 
-  
     thDatas.forEach([](ThData *td)
                     { threads.emplace_back(&ThData::PWProcess, td); });
 

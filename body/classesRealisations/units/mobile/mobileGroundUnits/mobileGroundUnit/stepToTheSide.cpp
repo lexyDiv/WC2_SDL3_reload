@@ -60,8 +60,6 @@ void MobileGroundUnit::stepToTheSide()
 
             valU->orderOnWay.go(validCells.getItem(rand), 3);
             valU->isActive = true;
-
-
         }
     }
 
@@ -171,17 +169,19 @@ void MobileGroundUnit::stepToTheSide()
 
                     Cell *mdc = md.cell;
 
-                    expCells.splice(md.index, 1);
-                    mdc->thwd.getItemPtr(this->thd->num)->createCountData = this->thd->createCount;
+                    if (mdc)
+                    {
+                        expCells.splice(md.index, 1);
+                        mdc->thwd.getItemPtr(this->thd->num)->createCountData = this->thd->createCount;
 
-                    if (!mdc->groundUnit)
-                    {
-                        freeCell = mdc;
-                    }
-                    else
-                    {
-                        mdc->aroundCells.forEach([&expCells, this](Cell *c)
-                                                 {
+                        if (!mdc->groundUnit)
+                        {
+                            freeCell = mdc;
+                        }
+                        else
+                        {
+                            mdc->aroundCells.forEach([&expCells, this](Cell *c)
+                                                     {
              Unit *cgu = c->groundUnit;                                       
         if (c->thwd.getItemPtr(this->thd->num)->createCountData != this->thd->createCount &&
             (!cgu || (cgu->type == "life" && cgu->profession == ""))
@@ -191,14 +191,22 @@ void MobileGroundUnit::stepToTheSide()
                         expCells.push(c);
                                                     
                     } });
+                        }
+                    }
+                    else
+                    {
+                        break;
                     }
                 }
-                targetUnit->orderOnWay.go(freeCell);
-                targetUnit->isActive = true;
-                targetUnit->targetData.blockedFreeWayHoldTimer = 15;
-                this->targetData.blockedFreeWayHoldTimer = 15;
-                this->targetUnit = targetUnit;
-                this->freeCell = freeCell;
+                if (freeCell)
+                {
+                    targetUnit->orderOnWay.go(freeCell);
+                    targetUnit->isActive = true;
+                    targetUnit->targetData.blockedFreeWayHoldTimer = 15;
+                    this->targetData.blockedFreeWayHoldTimer = 15;
+                    this->targetUnit = targetUnit;
+                    this->freeCell = freeCell;
+                }
             }
         }
     }

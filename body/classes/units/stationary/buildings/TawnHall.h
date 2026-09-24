@@ -25,6 +25,7 @@ public:
     Array<Unit *> potentialClients;
 
     mutex potentialClientsMT;
+    mutex mt;
 };
 
 // void TownHall::draw() {};

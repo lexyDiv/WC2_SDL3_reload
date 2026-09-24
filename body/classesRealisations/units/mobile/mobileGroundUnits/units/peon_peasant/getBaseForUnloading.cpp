@@ -9,9 +9,9 @@ Unit * Peon_peasant::getBaseForUnloading() {
                                                 { mix.push(th); });
     if (mix.length)
     {
-        mix.filterSelf([this](Unit * base){
-            return base->isBlockedd(this);
-        });
+        // mix.filterSelf([this](Unit * base){
+        //     return base->isBlockedd(this);
+        // });
         MinData md = mix.getMinDataU([this](Unit *item)
                                     {
                                                         PointF pointThis = {x : this->cell->x, y : this->cell->y};

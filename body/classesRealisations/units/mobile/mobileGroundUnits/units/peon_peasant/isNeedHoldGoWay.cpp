@@ -29,17 +29,23 @@ bool Peon_peasant::isNeedHoldGoWay()
 
     int needHoldIndex = !this->iNeedFreeWay ? 10 : 50;
 
-    if ((!this->targetUnit) && this->needHolTimer >= this->wayIndex * needHoldIndex)
+    if ( (this->needHolTimer >= 100 
+        && (!this->targetUnit || this->needHolTimer >= 1000)
+    )
+        //(!this->targetUnit || this->needHolTimer >= 100) && this->needHolTimer >= this->wayIndex * needHoldIndex
+)
     {
         if (!this->isBlocked) {
             this->updateCurrentTarget();
         }
         this->needHolTimer = 0;
+        this->iNeedFreeWay = false;
+        
         return false;
     }
 
     if (gu && gu->type == "life" 
-         && !gu->isActive && gu->profession == ""
+         && !gu->isActive //&& gu->profession == ""
         )
     {
        this->targetData.forNeedFreeWayCount ++;
@@ -61,8 +67,18 @@ bool Peon_peasant::isNeedHoldGoWay()
         return true;
     }
 
+
+    if (gu && (this->wood || this->gold) && !gu->wood && !gu->gold) {
+        return false;
+    }
+
     if (
-        gu && gu->isActive && !gu->iNeedFreeWay && (this->wayIndex > 5) && (
+        gu &&
+         gu->isActive &&
+          !gu->iNeedFreeWay &&
+           (this->wayIndex > 15) //&&
+          // ((this->wood && gu->wood) || (this->gold && gu->gold) || (!this->wood && !gu->wood) || (!this->gold && !gu->gold))
+           && (
              gu->inSave ||
               !this->isPotentialWayComplite 
               || this->isBlocked 

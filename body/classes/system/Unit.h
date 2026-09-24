@@ -199,6 +199,7 @@ public:
  Cell *freeCell = nullptr;
  ////////////////////////// => debug
  bool freeSpetial = false;
+ int freeGoWayTimer = 0;
 ////////////////////////// <= debug
 
 

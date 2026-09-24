@@ -15,6 +15,14 @@ void Peon_peasant::orderOnWayControl()
         //     }
         // }
 
+
+        if (this->inSave) {
+            this->orderOnWay.isComplite = true;
+            this->orderOnWay.mt.unlock();
+            console.log("inSave with order");
+            return;
+        }
+
         if (this->orderOnWay.stop)
         {
             this->targetData.clear();
@@ -27,6 +35,7 @@ void Peon_peasant::orderOnWayControl()
         }
 
         if (this->targetUnit &&
+            !this->targetUnit->inSave &&
             this->targetUnit->isActive &&
             this->targetUnit->hp &&
             this->targetUnit->cell &&
@@ -167,7 +176,7 @@ void Peon_peasant::orderOnWayControl()
                         this->targetData.unitPersNum = ocu->persNum;
                         this->targetData.profession = "";
                         this->profession = "";
-                        // console.log("here 2");
+                       //  console.log("here 2");
                         this->targetData.isActual = true;
                     }
                 }
@@ -220,7 +229,7 @@ void Peon_peasant::orderOnWayControl()
                 this->targetData.unit = nullptr;
                 this->targetData.unitPersNum = 0;
                 this->targetData.profession = "";
-                this->profession = this->personalCaseDeep == 3 ? this->profession : "";
+                this->profession = (this->personalCaseDeep == 3 || this->personalCaseDeep == 300) ? this->profession : "";
                 // console.log("here 4 " + this->profession + " " + to_string((bool)this->metka));
                 this->targetData.isActual = true;
                 // this->metka = false;

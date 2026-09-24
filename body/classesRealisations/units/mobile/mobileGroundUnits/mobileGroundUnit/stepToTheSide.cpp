@@ -20,7 +20,12 @@ void MobileGroundUnit::stepToTheSide()
 
         Unit *ncgu = this->nextCell->groundUnit;
         Unit *valU = nullptr;
-        if (ncgu && ncgu->profession == "" && !ncgu->isActive && !ncgu->isBlockedd(ncgu) && ncgu->type == "life")
+        if (ncgu
+            // && ncgu->profession == ""
+            && !ncgu->isActive &&
+              ncgu->type == "life" &&
+              !ncgu->inSave &&
+             !ncgu->isBlockedd(ncgu))
         {
             valU = ncgu;
         }
@@ -40,8 +45,9 @@ void MobileGroundUnit::stepToTheSide()
                     Unit *cu = c->groundUnit;
                     if (cu &&
                         cu != this &&
-                        cu->profession == "" &&
+                        // cu->profession == "" &&
                         !cu->isActive &&
+                        !cu->inSave &&
                         cu->type == "life" &&
                         !cu->isBlockedd(cu))
                     {
@@ -70,6 +76,14 @@ void MobileGroundUnit::stepToTheSide()
 
             valU->orderOnWay.go(validCells.getItem(rand), 3);
             valU->isActive = true;
+        }
+        else
+        {
+           // this->iNeedFreeWay = false;
+            // if (this->focus)
+            // {
+            //     console.log("here");
+            // }
         }
     }
 
@@ -124,8 +138,10 @@ void MobileGroundUnit::stepToTheSide()
                                            nextCellGU->way.length))) &&
                 currentCellGU &&
                 currentCellGU->type == "life" &&
-                !currentCellGU->isActive &&
-                currentCellGU->profession == "")
+                !currentCellGU->inSave &&
+                !currentCellGU->isActive //&&
+                                         //  currentCellGU->profession == ""
+            )
             {
                 targetUnit = currentCellGU;
                 break;
@@ -154,6 +170,14 @@ void MobileGroundUnit::stepToTheSide()
                 targetUnit->isActive = true;
                 this->targetData.blockedFreeWayHoldTimer = 15;
             }
+            else
+            {
+               // this->iNeedFreeWay = false;
+            //                 if (this->focus)
+            // {
+            //     console.log("here 2");
+            // }
+            }
         }
         else
         {
@@ -173,7 +197,11 @@ void MobileGroundUnit::stepToTheSide()
             {
                 Cell *c = this->cell->aroundCells.getItem(i);
                 Unit *cgu = c->groundUnit;
-                if (cgu->type == "life" && cgu->profession == "" && !cgu->isActive)
+                if (cgu->type == "life"
+                    // && cgu->profession == ""
+                    &&
+                    !cgu->inSave &&
+                    !cgu->isActive)
                 {
                     targetUnit = cgu;
                     break;
@@ -223,7 +251,9 @@ void MobileGroundUnit::stepToTheSide()
                                                      {
              Unit *cgu = c->groundUnit;                                       
         if (c->thwd.getItemPtr(this->thd->num)->createCountData != this->thd->createCount &&
-            (!cgu || (cgu->type == "life" && cgu->profession == ""))
+            (!cgu || (cgu->type == "life" && !cgu->isActive && !cgu->inSave //&&
+              //  && cgu->profession == ""
+            ))
         )
                 {
                         c->thwd.getItemPtr(this->thd->num)->createCountData = this->thd->createCount;
@@ -239,10 +269,10 @@ void MobileGroundUnit::stepToTheSide()
                 }
                 if (freeCell)
                 {
-        //                     if (this->focus) {
-        //     console.log("hard 7");
-        // }
-                    targetUnit->orderOnWay.go(freeCell);
+                    //                     if (this->focus) {
+                    //     console.log("hard 7");
+                    // }
+                    targetUnit->orderOnWay.go(freeCell, 300);
                     targetUnit->isActive = true;
                     targetUnit->iNeedFreeWay = true;
                     targetUnit->freeSpetial = true;
@@ -251,6 +281,22 @@ void MobileGroundUnit::stepToTheSide()
                     this->targetUnit = targetUnit;
                     this->freeCell = freeCell;
                 }
+                else
+                {
+                  //  this->iNeedFreeWay = false;
+            //                     if (this->focus)
+            // {
+            //     console.log("here 3");
+            // }
+                }
+            }
+            else
+            {
+               // this->iNeedFreeWay = false;
+            //                 if (this->focus)
+            // {
+            //     console.log("here 4");
+            // }
             }
         }
     }

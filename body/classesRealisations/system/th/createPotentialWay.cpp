@@ -37,6 +37,7 @@ void ThData::createPotentialWay(Unit *unit)
                                         {
             Unit *gu = cell->groundUnit;
             if (gu
+                
             && gu != unit->targetData.unit //unit->targetCell->groundUnit
             ) {
                 cell->thwd.getItemPtr(this->num)->explored = this->createCount;

@@ -55,14 +55,19 @@ void TownHall::activeProg()
                                        }
                                        else
                                        {
-
+                                          this->mt.lock();
                                            this->clients.push(peon);
                                            
     
                                             Cell *pc = peon->cell;
                                       
-                                            peon->cell->groundUnit = nullptr;
+                                           
+                                           if (pc && pc->groundUnit == peon) {
+                                            pc->groundUnit = nullptr;
                                             peon->cell = nullptr;
+                                           } else {
+                                            console.log("townHall on peon cell");
+                                           }
 
                                            peon->inOutTimer = 0;
                                            peon->animMashtab = peon->inOutMashtabMin;
@@ -78,6 +83,7 @@ void TownHall::activeProg()
                                            }
                                            peon->wood = 0;
                                            peon->gold = 0;
+                                           this->mt.unlock();
                                        } });
 
     this->potentialClients.filterSelf([](Unit *peon)

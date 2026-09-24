@@ -16,7 +16,9 @@ void Peon_peasant::stendOnCell()
     this->needHolTimer = 0;
 
     ///////////////////////////////
+
     if (this->targetUnit &&
+        !this->targetUnit->inSave &&
         this->targetUnit->isActive &&
         this->targetUnit->hp &&
         this->targetUnit->cell &&

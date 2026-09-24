@@ -11,6 +11,10 @@ void Peon_peasant::activeProg()
     return;
   }
 
+  // if (this->focus) {
+  //   console.log("timer = " + to_string(this->needHolTimer));
+  // }
+
 
   if (this->frashWayCheckNeed)
   {

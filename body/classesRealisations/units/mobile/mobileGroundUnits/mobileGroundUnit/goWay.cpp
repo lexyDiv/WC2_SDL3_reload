@@ -22,7 +22,7 @@ void MobileGroundUnit::goWay()
             this->flipCell = flipCellIndex >= 0 ? this->way.getItem(flipCellIndex) : nullptr;
             bool isNeedHold = this->isNeedHoldGoWay();
             bool isCrox = this->crox();
-            if (this->isNextCellFreeToGoWay(nc) && !isNeedHold && !isCrox)
+            if (this->isNextCellFreeToGoWay(nc) && !isNeedHold && !isCrox && !this->inSave)
             {
                 this->needHolTimer = 0;
                 this->wayIndex--;
@@ -43,6 +43,11 @@ void MobileGroundUnit::goWay()
                 }
 
                 this->drawIndexY = this->y;
+                this->freeGoWayTimer ++;
+                if (this->freeGoWayTimer == 3) {
+                    this->freeGoWayTimer = 0;
+                    this->iNeedFreeWay = false;
+                }
             }
             else if (isCrox)
             {
@@ -53,17 +58,19 @@ void MobileGroundUnit::goWay()
   
                 if (this->iNeedFreeWay && this->nextCell->groundUnit 
                     && !this->nextCell->groundUnit->isActive
-                    && this->nextCell->groundUnit->profession == ""
+                   // && this->nextCell->groundUnit->profession == ""
                 )
                 {
                     this->stepToTheSide();
                 }
 
                 this->needHolTimer++;
+                this->freeGoWayTimer = 0;
                 this->stendOnCellWait();
                 if (this->needHolTimer % 200 == 0 && !isTargetObjValide())
                 {
                     updateCurrentTarget();
+                    this->iNeedFreeWay = false;
                 }
             }
             else
@@ -87,6 +94,7 @@ void MobileGroundUnit::goWay()
 
             if (!this->freeSpetial) {
                 this->iNeedFreeWay = false;
+                
             }
             this->freeSpetial = false;
             this->nextCell = nullptr;

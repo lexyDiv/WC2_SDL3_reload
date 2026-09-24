@@ -5,7 +5,7 @@
 void Fraction::controller()
 {
     
-    int ordinar = 1000;
+    int ordinar = 100;
     this->controlTimer++;
     if (this->controlTimer == 1)
     {

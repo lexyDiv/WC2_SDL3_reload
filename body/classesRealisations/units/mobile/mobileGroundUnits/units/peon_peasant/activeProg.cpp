@@ -11,6 +11,7 @@ void Peon_peasant::activeProg()
     return;
   }
 
+
   if (this->frashWayCheckNeed)
   {
     this->frashWayCheckNeed = false;
@@ -22,13 +23,11 @@ void Peon_peasant::activeProg()
     {
       this->orderOnWay.go(this->targetData.clicckedCell);
     }
-      else if (this->targetData.unit && this->targetData.unit->cell)
+    else if (this->targetData.unit && this->targetData.unit->cell)
     {
       this->orderOnWay.go(this->targetData.unit->cell);
     }
   }
-
-
 
   if (!this->wayTakts &&
       (this->wayIndex <= 15) &&
@@ -69,8 +68,10 @@ void Peon_peasant::activeProg()
   }
   else
   {
+
     this->goWay();
+
     this->orderOnWayControl();
-  
+
   }
 }

@@ -38,13 +38,18 @@ void Peon_peasant::orderOnWayControl()
             this->targetUnit = nullptr;
             this->freeCell = nullptr;
 
-        if (this->isBlockedd_full(this) && this->personalCaseDeep != 3)
+        if ((this->isBlockedd_full(this)) && this->personalCaseDeep != 3)
         {
             // this->cell->aroundCells.forEach([](Cell *c){
 
             // });
             this->iNeedFreeWay = true; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! <= ON !!! 2/3
                                        // console.log("on");
+        //     if (this->focus) {
+
+        //     console.log("on order by blocked");
+        // }
+
         }
 
         this->personalCaseDeep = this->orderOnWay.pcd;

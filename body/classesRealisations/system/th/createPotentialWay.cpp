@@ -11,6 +11,8 @@ void ThData::createPotentialWay(Unit *unit)
     // }
     this->iter = 0;
 
+    bool tryChecked = false;
+
     Td_way_data *td_way_data = unit->cell->thwd.length ? unit->cell->thwd.getItemPtr(this->num) : nullptr;
 
     this->createCount += 0.001;
@@ -88,9 +90,13 @@ void ThData::createPotentialWay(Unit *unit)
             }
             else
             {
+                
                 this->potentialWayCreate(unit, this->globalMin_H_cell);
 
-                if (iter < currentDeep && unit->personalCaseDeep != 3)
+              // console.log("open.length = " + to_string(openArr.length) + " iter = " + to_string(iter));
+               
+
+                if (iter < 30 && unit->personalCaseDeep != 3)
                 {
                     unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON 3/3
                     unit->frashWayCheckNeed = true;

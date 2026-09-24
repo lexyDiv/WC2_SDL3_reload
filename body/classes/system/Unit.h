@@ -198,7 +198,7 @@ public:
   Unit *targetUnit = nullptr;
  Cell *freeCell = nullptr;
  ////////////////////////// => debug
-
+ bool freeSpetial = false;
 ////////////////////////// <= debug
 
 

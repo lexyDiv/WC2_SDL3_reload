@@ -163,9 +163,9 @@ void TownHall::activeProg()
             peon->outHoldTimer = 30;
             peon->isActive = true;
 
-            if (peon->profession != "") {
-                peon->orderOnWay.go(peon->profession);
-            }
+            // if (peon->profession != "" && !peon->isBlockedd(peon)) {
+            //     peon->orderOnWay.go(peon->profession);
+            // }
 
             // peon->fraction->activeUnits.push(peon);
         }

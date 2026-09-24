@@ -4,9 +4,19 @@
 void MobileGroundUnit::stepToTheSide()
 {
 
+    // if (this->focus)
+    // {
+    //     console.log("--------------------------------------------------------------------");
+    // }
+
     if (
         !this->isBlocked)
     {
+
+        // if (this->focus)
+        // {
+        //     console.log("easy");
+        // }
 
         Unit *ncgu = this->nextCell->groundUnit;
         Unit *valU = nullptr;
@@ -63,9 +73,14 @@ void MobileGroundUnit::stepToTheSide()
         }
     }
 
-    /////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     else
     {
+
+        // if (this->focus)
+        // {
+        //     console.log("hard");
+        // }
 
         if (this->targetUnit &&
             this->targetUnit->hp &&
@@ -76,11 +91,21 @@ void MobileGroundUnit::stepToTheSide()
             return;
         }
 
+        // if (this->focus)
+        // {
+        //     console.log("hard 2");
+        // }
+
         if (this->targetData.blockedFreeWayHoldTimer)
         {
             this->targetData.blockedFreeWayHoldTimer--;
             return;
         }
+
+        // if (this->focus)
+        // {
+        //     console.log("hard 3");
+        // }
 
         Array<Cell *> scs;
         scs.push(this->cell);
@@ -109,6 +134,10 @@ void MobileGroundUnit::stepToTheSide()
 
         if (targetUnit)
         {
+            // if (this->focus)
+            // {
+            //     console.log("hard 4");
+            // }
             Array<Cell *> validCells;
             targetUnit->cell->panicCells.forEach([&validCells](Cell *c)
                                                  {
@@ -129,6 +158,10 @@ void MobileGroundUnit::stepToTheSide()
         else
         {
 
+            // if (this->focus)
+            // {
+            //     console.log("hard 5");
+            // }
             this->thd->createCount += 0.001;
             Cell *freeCell = nullptr;
             Array<Cell *> expCells;
@@ -149,6 +182,12 @@ void MobileGroundUnit::stepToTheSide()
 
             if (targetUnit)
             {
+
+                // if (this->focus)
+                // {
+                //     console.log("hard 6");
+                // }
+
                 while (!freeCell)
                 {
 
@@ -200,8 +239,13 @@ void MobileGroundUnit::stepToTheSide()
                 }
                 if (freeCell)
                 {
+        //                     if (this->focus) {
+        //     console.log("hard 7");
+        // }
                     targetUnit->orderOnWay.go(freeCell);
                     targetUnit->isActive = true;
+                    targetUnit->iNeedFreeWay = true;
+                    targetUnit->freeSpetial = true;
                     targetUnit->targetData.blockedFreeWayHoldTimer = 15;
                     this->targetData.blockedFreeWayHoldTimer = 15;
                     this->targetUnit = targetUnit;

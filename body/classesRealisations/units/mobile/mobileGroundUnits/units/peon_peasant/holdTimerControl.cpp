@@ -12,5 +12,14 @@ int Peon_peasant::holdTimerControl()
     {
         this->outHoldTimer--;
     }
+
+     if (this->outHoldTimer == 1)
+    {
+        if (this->profession != "")
+        {
+            this->orderOnWay.go(this->profession);
+        }
+    }
+
     return this->outHoldTimer;
 };

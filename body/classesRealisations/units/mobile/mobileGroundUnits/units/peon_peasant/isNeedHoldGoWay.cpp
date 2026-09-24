@@ -17,6 +17,8 @@ bool isLoop(Unit *self)
     return true;
 };
 
+////////////////////////////////////////////////////////////////////////////////
+
 bool Peon_peasant::isNeedHoldGoWay()
 {
     Cell *nc = this->nextCell;
@@ -27,7 +29,7 @@ bool Peon_peasant::isNeedHoldGoWay()
 
     int needHoldIndex = !this->iNeedFreeWay ? 10 : 50;
 
-    if (!this->targetUnit && this->needHolTimer >= this->wayIndex * needHoldIndex)
+    if ((!this->targetUnit) && this->needHolTimer >= this->wayIndex * needHoldIndex)
     {
         if (!this->isBlocked) {
             this->updateCurrentTarget();
@@ -41,10 +43,10 @@ bool Peon_peasant::isNeedHoldGoWay()
         )
     {
        this->targetData.forNeedFreeWayCount ++;
-      // console.log(to_string(this->targetData.forNeedFreeWayCount));
        if (this->targetData.forNeedFreeWayCount >= 3) {
         this->iNeedFreeWay = this->personalCaseDeep != 3  ? true : false; // <<<<<<<<<<<<< ON 1/3
         this->targetData.forNeedFreeWayCount = 0;
+
        }
         if (this->iNeedFreeWay) {
 
@@ -52,7 +54,10 @@ bool Peon_peasant::isNeedHoldGoWay()
         }
     }
 
-    if ((this->iNeedFreeWay && gu && gu->type == "life") && !isLoop(this)) {
+    if ((this->iNeedFreeWay &&
+         gu &&
+         gu->type == "life" &&
+        !gu->inFight) && !isLoop(this)) {
         return true;
     }
 

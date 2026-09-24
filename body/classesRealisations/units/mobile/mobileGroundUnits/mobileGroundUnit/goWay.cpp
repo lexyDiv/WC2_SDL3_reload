@@ -53,6 +53,7 @@ void MobileGroundUnit::goWay()
   
                 if (this->iNeedFreeWay && this->nextCell->groundUnit 
                     && !this->nextCell->groundUnit->isActive
+                    && this->nextCell->groundUnit->profession == ""
                 )
                 {
                     this->stepToTheSide();
@@ -83,7 +84,11 @@ void MobileGroundUnit::goWay()
         }
         else
         {
-            this->iNeedFreeWay = false;
+
+            if (!this->freeSpetial) {
+                this->iNeedFreeWay = false;
+            }
+            this->freeSpetial = false;
             this->nextCell = nullptr;
             this->flipCell = nullptr;
             this->stendOnCell();

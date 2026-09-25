@@ -38,18 +38,18 @@ void Peon_peasant::orderOnWayControl()
             return;
         }
 
-        if (this->targetUnit &&
-            !this->targetUnit->inSave &&
-            this->targetUnit->isActive &&
-            this->targetUnit->hp &&
-            this->targetUnit->cell &&
-            this->targetUnit->targetData.clicckedCell == this->freeCell)
-        {
-            this->targetUnit->orderOnWay.go();
-            this->targetData.blockedFreeWayHoldTimer = 0;
-        }
-            this->targetUnit = nullptr;
-            this->freeCell = nullptr;
+        // if (this->targetUnit &&
+        //     !this->targetUnit->inSave &&
+        //     this->targetUnit->isActive &&
+        //     this->targetUnit->hp &&
+        //     this->targetUnit->cell &&
+        //     this->targetUnit->targetData.clicckedCell == this->freeCell)
+        // {
+        //     this->targetUnit->orderOnWay.go();
+        //     this->targetData.blockedFreeWayHoldTimer = 0;
+        // }
+        //     this->targetUnit = nullptr;
+        //     this->freeCell = nullptr;
 
         if ((this->isBlockedd_full(this)) && this->personalCaseDeep != 3 && this->orderOnWay.specialFreeG0)
         {

@@ -48,20 +48,14 @@ void Peon_peasant::draw()
                           // ctx.DrawText(c->x + drawDeltaX, c->y + drawDeltaY, 20, to_string(i));
                         });
       Cell *fc = this->freeCell;
-      Unit *tu = this->targetUnit;
+     // Unit *tu = this->targetUnit;
 
       if (fc)
       {
         ctx.FillRect(fc->x + drawDeltaX, fc->y + drawDeltaY, this->cell->game->gf->cellSize, this->cell->game->gf->cellSize, "green");
       }
 
-      if (tu)
-      {
-        ctx.FillRect(tu->x + drawDeltaX, tu->y + drawDeltaY, this->cell->game->gf->cellSize, this->cell->game->gf->cellSize, "black");
-        // tu->way.forEach([&drawDeltaX, &drawDeltaY](Cell *c){
-        //   ctx.StrokeRect(c->x + drawDeltaX, c->y + drawDeltaY, c->game->gf->cellSize, c->game->gf->cellSize, "blue");
-        // });
-      }
+
     }
 
     if (this->iNeedFreeWay) {

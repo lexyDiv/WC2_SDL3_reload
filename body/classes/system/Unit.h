@@ -195,7 +195,7 @@ public:
   int personalCaseDeep = 0;
   bool frashWayCheckNeed = false;
  ThData * thd = nullptr;
-  Unit *targetUnit = nullptr;
+ // Unit *targetUnit = nullptr;
  Cell *freeCell = nullptr;
  ////////////////////////// => debug
 // bool freeSpetial = false;

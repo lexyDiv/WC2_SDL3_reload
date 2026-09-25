@@ -98,14 +98,14 @@ void MobileGroundUnit::stepToTheSide()
             console.log("hard");
         }
 
-        if (this->targetUnit &&
-            this->targetUnit->hp &&
-            this->targetUnit->cell &&
-            this->targetUnit->iNeedFreeWay &&
-            this->targetUnit->targetData.clicckedCell == this->freeCell)
-        {
-            return;
-        }
+        // if (this->targetUnit &&
+        //     this->targetUnit->hp &&
+        //     this->targetUnit->cell &&
+        //     this->targetUnit->iNeedFreeWay &&
+        //     this->targetUnit->targetData.clicckedCell == this->freeCell)
+        // {
+        //     return;
+        // }
 
         // if (this->focus)
         // {
@@ -280,7 +280,7 @@ void MobileGroundUnit::stepToTheSide()
                    // targetUnit->freeSpetial = true;
                     targetUnit->targetData.blockedFreeWayHoldTimer = 15;
                     this->targetData.blockedFreeWayHoldTimer = 15;
-                    this->targetUnit = targetUnit;
+                   // this->targetUnit = targetUnit;
                     this->freeCell = freeCell;
                 }
                 else

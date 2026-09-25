@@ -57,7 +57,7 @@ bool Peon_peasant::isNeedHoldGoWay()
     if ((this->iNeedFreeWay &&
          gu &&
          gu->type == "life" &&
-        !gu->inFight) && !isLoop(this)) {
+        !gu->inFight && !gu->iNeedFreeWay) && !isLoop(this)) {
         return true;
     }
 
@@ -66,7 +66,7 @@ bool Peon_peasant::isNeedHoldGoWay()
         gu &&
         gu->isActive &&
         // !gu->iNeedFreeWay &&
-        (this->wayIndex > 5) //&&
+        (this->wayIndex > 5 && this->way.length) //&&
                              // ((this->wood && gu->wood) || (this->gold && gu->gold) || (!this->wood && !gu->wood) || (!this->gold && !gu->gold))
         && (gu->inSave       //||
                              // !this->isPotentialWayComplite

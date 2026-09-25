@@ -56,13 +56,13 @@ void MobileGroundUnit::goWay()
             else if (isNeedHold)
             {
   
-                if (this->iNeedFreeWay && this->nextCell->groundUnit 
-                    && (!this->nextCell->groundUnit->isActive || this->nextCell->groundUnit->iNeedFreeWay)
+               // if (this->iNeedFreeWay && this->nextCell->groundUnit 
+                //    && (!this->nextCell->groundUnit->isActive || this->nextCell->groundUnit->iNeedFreeWay)
                    // && this->nextCell->groundUnit->profession == ""
-                )
-                {
+               // )
+               // {
                     this->stepToTheSide();
-                }
+               // }
 
                 this->needHolTimer++;
                 this->freeGoWayTimer = 0;

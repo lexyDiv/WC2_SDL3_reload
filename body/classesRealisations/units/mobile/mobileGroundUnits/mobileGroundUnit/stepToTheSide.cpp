@@ -23,9 +23,9 @@ void MobileGroundUnit::stepToTheSide()
         if (ncgu
             // && ncgu->profession == ""
             && !ncgu->isActive &&
-              ncgu->type == "life" &&
-              !ncgu->inSave &&
-             !ncgu->isBlockedd(ncgu))
+            ncgu->type == "life" &&
+            !ncgu->inSave &&
+            !ncgu->isBlockedd(ncgu))
         {
             valU = ncgu;
         }
@@ -79,20 +79,21 @@ void MobileGroundUnit::stepToTheSide()
         }
         else
         {
-           // this->iNeedFreeWay = false;
+            // this->iNeedFreeWay = false;
             // if (this->focus)
             // {
             //     console.log("here");
             // }
         }
-    } else if (this->isBlocked && !this->targetData.specialFreeG0) {
+    }
+    else if (this->isBlocked && !this->targetData.specialFreeG0)
+    {
         this->iNeedFreeWay = false;
-        
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     else if (this->targetData.specialFreeG0
-       //  && this->isBlocked
-        )
+             //  && this->isBlocked
+    )
     {
 
         if (this->focus)
@@ -101,8 +102,6 @@ void MobileGroundUnit::stepToTheSide()
         }
 
         int caseBlock = 0;
-
-
 
         // if (this->targetUnit &&
         //     this->targetUnit->hp &&
@@ -257,7 +256,7 @@ void MobileGroundUnit::stepToTheSide()
         //                 {
         //                     mdc->aroundCells.forEach([&expCells, this](Cell *c)
         //                                              {
-        //      Unit *cgu = c->groundUnit;                                       
+        //      Unit *cgu = c->groundUnit;
         // if (c->thwd.getItemPtr(this->thd->num)->createCountData != this->thd->createCount &&
         //     (!cgu || (cgu->type == "life" && !cgu->isActive && !cgu->inSave //&&
         //       //  && cgu->profession == ""
@@ -266,7 +265,7 @@ void MobileGroundUnit::stepToTheSide()
         //         {
         //                 c->thwd.getItemPtr(this->thd->num)->createCountData = this->thd->createCount;
         //                 expCells.push(c);
-                                                    
+
         //             } });
         //                 }
         //             }
@@ -307,5 +306,5 @@ void MobileGroundUnit::stepToTheSide()
         //     // }
         //     }
         // }
-    } 
+    }
 }

@@ -12,7 +12,9 @@ void Peon_peasant::getCurrentTarget()
         this->personalCaseDeep = 0;
     }
 
-    if (this->game->unitsOnWay.length >= 15 && (!this->personalCaseDeep || this->personalCaseDeep > this->thd->lowDeep)) {
+    if (this->game->unitsOnWay.length >= 15 &&
+        !this->iNeedFreeWay && 
+        (!this->personalCaseDeep || this->personalCaseDeep > this->thd->lowDeep)) {
         this->personalCaseDeep = this->thd->lowDeep;
       //  console.log("here");
     }
@@ -62,7 +64,7 @@ void Peon_peasant::getCurrentTarget()
                     if (
                         c->plane == tc->plane &&
                         (!gu ||
-                         (gu->type == "life" && !gu->inFight && 
+                         (gu->type == "life" && !gu->inFight && !gu->iNeedFreeWay &&
                         (!gu->isActive || !gu->needHolTimer || !gu->isPotentialWayComplite)) ||
                          (gu->name == "tree" && !gu->lesorub)))
                     {
@@ -94,7 +96,7 @@ void Peon_peasant::getCurrentTarget()
                     if (
                         c->plane == tc->plane &&
                         (!gu ||
-                         (gu->type == "life" && !gu->inFight && 
+                         (gu->type == "life" && !gu->inFight && !gu->iNeedFreeWay &&
                         (!gu->isActive || !gu->needHolTimer || !gu->isPotentialWayComplite)) ||
                          gu == this->targetData.unit))
                     {
@@ -126,7 +128,7 @@ void Peon_peasant::getCurrentTarget()
                     c->plane == tc->plane &&
                     (!gu ||
                      c == this->targetData.clicckedCell ||
-                     (gu->type == "life" && !gu->inFight && 
+                     (gu->type == "life" && !gu->inFight && !gu->iNeedFreeWay &&
                         (!gu->isActive || !gu->needHolTimer || !gu->isPotentialWayComplite))
                      ))
                 {

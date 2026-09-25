@@ -85,8 +85,10 @@ void MobileGroundUnit::stepToTheSide()
             //     console.log("here");
             // }
         }
+    } else if (this->isBlocked && !this->targetData.specialFreeG0) {
+        this->iNeedFreeWay = false;
+        
     }
-
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     else if (this->targetData.specialFreeG0
        //  && this->isBlocked
@@ -97,6 +99,10 @@ void MobileGroundUnit::stepToTheSide()
         {
             console.log("hard");
         }
+
+        int caseBlock = 0;
+
+
 
         // if (this->targetUnit &&
         //     this->targetUnit->hp &&
@@ -112,196 +118,194 @@ void MobileGroundUnit::stepToTheSide()
         //     console.log("hard 2");
         // }
 
-        if (this->targetData.blockedFreeWayHoldTimer)
-        {
-            this->targetData.blockedFreeWayHoldTimer--;
-            return;
-        }
+        // if (this->targetData.blockedFreeWayHoldTimer)
+        // {
+        //     this->targetData.blockedFreeWayHoldTimer--;
+        //     return;
+        // }
 
         // if (this->focus)
         // {
         //     console.log("hard 3");
         // }
 
-        Array<Cell *> scs;
-        scs.push(this->cell);
-        int count = 0;
-        Unit *targetUnit = nullptr;
+        // Array<Cell *> scs;
+        // scs.push(this->cell);
+        // int count = 0;
+        // Unit *targetUnit = nullptr;
 
-        for (int i = this->way.length - 1, k = this->way.length - 2; k >= 0; k--, i--)
-        {
-            Cell *currentCell = this->way.getItem(i);
-            Unit *currentCellGU = currentCell->groundUnit;
-            Cell *nextCell = this->way.getItem(k);
-            Unit *nextCellGU = nextCell->groundUnit;
+        // for (int i = this->way.length - 1, k = this->way.length - 2; k >= 0; k--, i--)
+        // {
+        //     Cell *currentCell = this->way.getItem(i);
+        //     Unit *currentCellGU = currentCell->groundUnit;
+        //     Cell *nextCell = this->way.getItem(k);
+        //     Unit *nextCellGU = nextCell->groundUnit;
 
-            if ((!nextCellGU ||
-                 (nextCellGU->isActive && (!nextCellGU->orderOnWay.isComplite ||
-                                           nextCellGU->way.length))) &&
-                currentCellGU &&
-                currentCellGU->type == "life" &&
-                !currentCellGU->inSave &&
-                !currentCellGU->isActive //&&
-                                         //  currentCellGU->profession == ""
-            )
-            {
-                targetUnit = currentCellGU;
-                break;
-            }
-        }
+        //     if ((!nextCellGU ||
+        //          (nextCellGU->isActive && (!nextCellGU->orderOnWay.isComplite ||
+        //                                    nextCellGU->way.length))) &&
+        //         currentCellGU &&
+        //         currentCellGU->type == "life" &&
+        //         !currentCellGU->inSave &&
+        //         !currentCellGU->isActive //&&
+        //                                  //  currentCellGU->profession == ""
+        //     )
+        //     {
+        //         targetUnit = currentCellGU;
+        //         break;
+        //     }
+        // }
 
-        if (targetUnit)
-        {
-            // if (this->focus)
-            // {
-            //     console.log("hard 4");
-            // }
-            Array<Cell *> validCells;
-            targetUnit->cell->panicCells.forEach([&validCells](Cell *c)
-                                                 {
-                if (!c->groundUnit) {
-                    validCells.push(c);
-                } });
+        // if (targetUnit)
+        // {
+        //     // if (this->focus)
+        //     // {
+        //     //     console.log("hard 4");
+        //     // }
+        //     Array<Cell *> validCells;
+        //     targetUnit->cell->panicCells.forEach([&validCells](Cell *c)
+        //                                          {
+        //         if (!c->groundUnit) {
+        //             validCells.push(c);
+        //         } });
 
-            if (validCells.length)
-            {
-                count++;
-                int rand = intRand(0, validCells.length);
+        //     if (validCells.length)
+        //     {
+        //         count++;
+        //         int rand = intRand(0, validCells.length);
 
-                targetUnit->orderOnWay.go(validCells.getItem(rand), 3);
-                targetUnit->isActive = true;
-                this->targetData.blockedFreeWayHoldTimer = 15;
-            }
-            else
-            {
-               // this->iNeedFreeWay = false;
-            //                 if (this->focus)
-            // {
-            //     console.log("here 2");
-            // }
-            }
-        }
-        else
-        {
+        //         targetUnit->orderOnWay.go(validCells.getItem(rand), 3);
+        //         targetUnit->isActive = true;
+        //         this->targetData.blockedFreeWayHoldTimer = 15;
+        //     }
+        //     else
+        //     {
+        //        // this->iNeedFreeWay = false;
+        //     //                 if (this->focus)
+        //     // {
+        //     //     console.log("here 2");
+        //     // }
+        //     }
+        // }
+        // else
+        // {
 
-            // if (this->focus)
-            // {
-            //     console.log("hard 5");
-            // }
-            this->thd->createCount += 0.001;
-            Cell *freeCell = nullptr;
-            Array<Cell *> expCells;
-            expCells.push(this->cell);
-            this->cell->thwd.getItemPtr(this->thd->num)->createCountData = this->thd->createCount;
+        //     // if (this->focus)
+        //     // {
+        //     //     console.log("hard 5");
+        //     // }
+        //     this->thd->createCount += 0.001;
+        //     Cell *freeCell = nullptr;
+        //     Array<Cell *> expCells;
+        //     expCells.push(this->cell);
+        //     this->cell->thwd.getItemPtr(this->thd->num)->createCountData = this->thd->createCount;
 
-            // targetUnit = nullptr;
-            for (int i = 0; i < this->cell->aroundCells.length; i++)
-            {
-                Cell *c = this->cell->aroundCells.getItem(i);
-                Unit *cgu = c->groundUnit;
-                if (cgu->type == "life"
-                    // && cgu->profession == ""
-                    &&
-                    !cgu->inSave &&
-                    !cgu->isActive)
-                {
-                    targetUnit = cgu;
-                    break;
-                }
-            }
+        //     // targetUnit = nullptr;
+        //     for (int i = 0; i < this->cell->aroundCells.length; i++)
+        //     {
+        //         Cell *c = this->cell->aroundCells.getItem(i);
+        //         Unit *cgu = c->groundUnit;
+        //         if (cgu->type == "life"
+        //             // && cgu->profession == ""
+        //             &&
+        //             !cgu->inSave &&
+        //             !cgu->isActive)
+        //         {
+        //             targetUnit = cgu;
+        //             break;
+        //         }
+        //     }
 
-            if (targetUnit)
-            {
+        //     if (targetUnit)
+        //     {
 
-                // if (this->focus)
-                // {
-                //     console.log("hard 6");
-                // }
+        //         // if (this->focus)
+        //         // {
+        //         //     console.log("hard 6");
+        //         // }
 
-                while (!freeCell)
-                {
+        //         while (!freeCell)
+        //         {
 
-                    MinDataC md;
-                    expCells.forEach([&md, this](Cell *c, int i)
-                                     {
+        //             MinDataC md;
+        //             expCells.forEach([&md, this](Cell *c, int i)
+        //                              {
 
-                       PointF pointThis = {x : this->cell->x, y : this->cell->y};
-                       PointF pointLM = {x : c->x, y : c->y};
-                       Delta delta = getDeltas(&pointThis, &pointLM);
-                       double dis = getDis(&delta);
+        //                PointF pointThis = {x : this->cell->x, y : this->cell->y};
+        //                PointF pointLM = {x : c->x, y : c->y};
+        //                Delta delta = getDeltas(&pointThis, &pointLM);
+        //                double dis = getDis(&delta);
 
-                       if (!md.cell || md.dis < dis) {
-                        md.cell = c;
-                        md.i = i;
-                        md.dis = dis;
-                       } });
+        //                if (!md.cell || md.dis < dis) {
+        //                 md.cell = c;
+        //                 md.i = i;
+        //                 md.dis = dis;
+        //                } });
 
-                    Cell *mdc = md.cell;
+        //             Cell *mdc = md.cell;
 
-                    if (mdc)
-                    {
-                        expCells.splice(md.index, 1);
-                        mdc->thwd.getItemPtr(this->thd->num)->createCountData = this->thd->createCount;
+        //             if (mdc)
+        //             {
+        //                 expCells.splice(md.index, 1);
+        //                 mdc->thwd.getItemPtr(this->thd->num)->createCountData = this->thd->createCount;
 
-                        if (!mdc->groundUnit)
-                        {
-                            freeCell = mdc;
-                        }
-                        else
-                        {
-                            mdc->aroundCells.forEach([&expCells, this](Cell *c)
-                                                     {
-             Unit *cgu = c->groundUnit;                                       
-        if (c->thwd.getItemPtr(this->thd->num)->createCountData != this->thd->createCount &&
-            (!cgu || (cgu->type == "life" && !cgu->isActive && !cgu->inSave //&&
-              //  && cgu->profession == ""
-            ))
-        )
-                {
-                        c->thwd.getItemPtr(this->thd->num)->createCountData = this->thd->createCount;
-                        expCells.push(c);
+        //                 if (!mdc->groundUnit)
+        //                 {
+        //                     freeCell = mdc;
+        //                 }
+        //                 else
+        //                 {
+        //                     mdc->aroundCells.forEach([&expCells, this](Cell *c)
+        //                                              {
+        //      Unit *cgu = c->groundUnit;                                       
+        // if (c->thwd.getItemPtr(this->thd->num)->createCountData != this->thd->createCount &&
+        //     (!cgu || (cgu->type == "life" && !cgu->isActive && !cgu->inSave //&&
+        //       //  && cgu->profession == ""
+        //     ))
+        // )
+        //         {
+        //                 c->thwd.getItemPtr(this->thd->num)->createCountData = this->thd->createCount;
+        //                 expCells.push(c);
                                                     
-                    } });
-                        }
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-                if (freeCell)
-                {
-                    //                     if (this->focus) {
-                    //     console.log("hard 7");
-                    // }
-                    targetUnit->orderOnWay.go(freeCell, 0, true);
-                    targetUnit->isActive = true;
-                    targetUnit->iNeedFreeWay = true;
-                   // targetUnit->freeSpetial = true;
-                    targetUnit->targetData.blockedFreeWayHoldTimer = 15;
-                    this->targetData.blockedFreeWayHoldTimer = 15;
-                   // this->targetUnit = targetUnit;
-                    this->freeCell = freeCell;
-                }
-                else
-                {
-                  //  this->iNeedFreeWay = false;
-            //                     if (this->focus)
-            // {
-            //     console.log("here 3");
-            // }
-                }
-            }
-            else
-            {
-               // this->iNeedFreeWay = false;
-            //                 if (this->focus)
-            // {
-            //     console.log("here 4");
-            // }
-            }
-        }
-    } else {
-       //this->iNeedFreeWay = false;
-    }
+        //             } });
+        //                 }
+        //             }
+        //             else
+        //             {
+        //                 break;
+        //             }
+        //         }
+        //         if (freeCell)
+        //         {
+        //             //                     if (this->focus) {
+        //             //     console.log("hard 7");
+        //             // }
+        //             targetUnit->orderOnWay.go(freeCell, 0, true);
+        //             targetUnit->isActive = true;
+        //             targetUnit->iNeedFreeWay = true;
+        //            // targetUnit->freeSpetial = true;
+        //             targetUnit->targetData.blockedFreeWayHoldTimer = 15;
+        //             this->targetData.blockedFreeWayHoldTimer = 15;
+        //            // this->targetUnit = targetUnit;
+        //             this->freeCell = freeCell;
+        //         }
+        //         else
+        //         {
+        //           //  this->iNeedFreeWay = false;
+        //     //                     if (this->focus)
+        //     // {
+        //     //     console.log("here 3");
+        //     // }
+        //         }
+        //     }
+        //     else
+        //     {
+        //        // this->iNeedFreeWay = false;
+        //     //                 if (this->focus)
+        //     // {
+        //     //     console.log("here 4");
+        //     // }
+        //     }
+        // }
+    } 
 }

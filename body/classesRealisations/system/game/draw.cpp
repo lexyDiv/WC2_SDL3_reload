@@ -61,8 +61,8 @@ ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "green");
                                 }); });
 
 
-  if (this->gf->focusUnit) {
-     Unit *u = this->gf->focusUnit;
+       Unit *u = this->gf->focusUnit;                         
+  if (u && u->cell) {
     // console.log(to_string(u->needHolTimer));
      ctx.FillRect(u->x + drawDeltaX, u->y + drawDeltaY, u->cell->gabX, u->cell->gabY, "blue", 100);
     }

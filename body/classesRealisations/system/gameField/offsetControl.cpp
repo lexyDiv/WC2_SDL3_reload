@@ -79,8 +79,10 @@ void GameField::offsetControl()
      if (xIndex < this->gabarit && yIndex < this->gabarit) {
         Cell *tc = this->field.getItemPtr(yIndex)->getItem(xIndex);
               if (this->focusUnit) {
-                this->focusUnit->orderOnWay.go(tc);
+                this->focusUnit->orderOnWay.go(tc, 0, true);
                 this->focusUnit->isActive = true;
+
+               // this->focusUnit->specialFreeGo = true;
                // console.log("CLICK  = " + to_string(this->focusUnit->orderOnWay.cell->persNum) + " !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
               }
      }

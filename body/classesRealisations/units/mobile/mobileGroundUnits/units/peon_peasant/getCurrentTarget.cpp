@@ -8,12 +8,12 @@ void Peon_peasant::getCurrentTarget()
     this->game->unitsOnWay.push(this);
     this->game->unitsOnWayMT.unlock();
 
-    if (this->personalCaseDeep == 40) {
+    if (this->personalCaseDeep == this->thd->lowDeep) {
         this->personalCaseDeep = 0;
     }
 
-    if (this->game->unitsOnWay.length >= 10 && (!this->personalCaseDeep || this->personalCaseDeep > 40)) {
-        this->personalCaseDeep = 40;
+    if (this->game->unitsOnWay.length >= 15 && (!this->personalCaseDeep || this->personalCaseDeep > this->thd->lowDeep)) {
+        this->personalCaseDeep = this->thd->lowDeep;
       //  console.log("here");
     }
 

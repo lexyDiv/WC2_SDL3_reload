@@ -5,7 +5,7 @@
 void Fraction::controller()
 {
     
-    int ordinar = 1000;
+    int ordinar = 100;
     this->controlTimer++;
     if (this->controlTimer == 1)
     {
@@ -26,7 +26,7 @@ void Fraction::controller()
                 !peon->isActive &&
                 peon->profession != "" &&
                 peon->orderOnWay.isComplite &&
-                !peon->isBlockedd(peon)
+                !peon->isBlockedd_full(peon)
                )
             {
                // console.log("here");

@@ -92,11 +92,11 @@ void MobileGroundUnit::goWay()
         else
         {
 
-            if (!this->freeSpetial) {
+            // if (!this->freeSpetial) {
                 this->iNeedFreeWay = false;
                 
-            }
-            this->freeSpetial = false;
+            // }
+            // this->freeSpetial = false;
             this->nextCell = nullptr;
             this->flipCell = nullptr;
             this->stendOnCell();

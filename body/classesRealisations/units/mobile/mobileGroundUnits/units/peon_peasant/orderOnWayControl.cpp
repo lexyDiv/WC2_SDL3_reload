@@ -15,6 +15,10 @@ void Peon_peasant::orderOnWayControl()
         //     }
         // }
 
+        // if (this->orderOnWay.specialFreeG0) {
+        //     this->targetData.specialFreeG0 = true;
+        // }
+
 
         if (this->inSave) {
             this->orderOnWay.isComplite = true;
@@ -47,7 +51,7 @@ void Peon_peasant::orderOnWayControl()
             this->targetUnit = nullptr;
             this->freeCell = nullptr;
 
-        if ((this->isBlockedd_full(this)) && this->personalCaseDeep != 3)
+        if ((this->isBlockedd_full(this)) && this->personalCaseDeep != 3 && this->orderOnWay.specialFreeG0)
         {
             // this->cell->aroundCells.forEach([](Cell *c){
 
@@ -93,6 +97,7 @@ void Peon_peasant::orderOnWayControl()
             if (!this->targetData.forNeedFreeWayCount)
             {
                 this->targetData.clear();
+                this->targetData.specialFreeG0 = this->orderOnWay.specialFreeG0;
             }
 
             Unit *ocu = oCell->groundUnit;
@@ -241,6 +246,7 @@ void Peon_peasant::orderOnWayControl()
             if (!this->targetData.forNeedFreeWayCount)
             {
                 this->targetData.clear();
+                this->targetData.specialFreeG0 = this->orderOnWay.specialFreeG0;
             }
 
             if (this->orderOnWay.profession == "w")
@@ -278,6 +284,7 @@ void Peon_peasant::orderOnWayControl()
                     {
                         this->profession = "";
                         this->targetData.clear();
+                        this->targetData.specialFreeG0 = this->orderOnWay.specialFreeG0;
                         // console.log("here 5");
                     }
                 }

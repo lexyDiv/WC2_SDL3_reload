@@ -29,6 +29,7 @@ public:
     Array<Cell *> basicWay;
     int forNeedFreeWayCount = 0;
     int blockedFreeWayHoldTimer = 0;
+    bool specialFreeG0 = false;
 
     void clear()
     {
@@ -42,6 +43,7 @@ public:
        // targetCell = nullptr;
         profession = "";
         isActual = false;
+        specialFreeG0 = false;
         //basicWay.clear();
     };
 };

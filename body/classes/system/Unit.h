@@ -198,8 +198,9 @@ public:
   Unit *targetUnit = nullptr;
  Cell *freeCell = nullptr;
  ////////////////////////// => debug
- bool freeSpetial = false;
+// bool freeSpetial = false;
  int freeGoWayTimer = 0;
+// bool specialFreeGo = false;
 ////////////////////////// <= debug
 
 

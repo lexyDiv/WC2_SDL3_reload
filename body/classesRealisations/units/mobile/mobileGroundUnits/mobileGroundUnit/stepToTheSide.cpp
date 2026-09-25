@@ -88,13 +88,15 @@ void MobileGroundUnit::stepToTheSide()
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-    else
+    else if (this->targetData.specialFreeG0
+       //  && this->isBlocked
+        )
     {
 
-        // if (this->focus)
-        // {
-        //     console.log("hard");
-        // }
+        if (this->focus)
+        {
+            console.log("hard");
+        }
 
         if (this->targetUnit &&
             this->targetUnit->hp &&
@@ -272,10 +274,10 @@ void MobileGroundUnit::stepToTheSide()
                     //                     if (this->focus) {
                     //     console.log("hard 7");
                     // }
-                    targetUnit->orderOnWay.go(freeCell, 300);
+                    targetUnit->orderOnWay.go(freeCell, 0, true);
                     targetUnit->isActive = true;
                     targetUnit->iNeedFreeWay = true;
-                    targetUnit->freeSpetial = true;
+                   // targetUnit->freeSpetial = true;
                     targetUnit->targetData.blockedFreeWayHoldTimer = 15;
                     this->targetData.blockedFreeWayHoldTimer = 15;
                     this->targetUnit = targetUnit;
@@ -299,5 +301,7 @@ void MobileGroundUnit::stepToTheSide()
             // }
             }
         }
+    } else {
+       //this->iNeedFreeWay = false;
     }
 }

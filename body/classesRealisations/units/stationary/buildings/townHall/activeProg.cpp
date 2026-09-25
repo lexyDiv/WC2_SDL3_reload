@@ -25,7 +25,7 @@ void TownHall::activeProg()
            // if (!peon->isBlockedd(peon)) {
               //  peon->orderOnWay.go("w");
            // } else {
-                peon->profession = "w";
+              //  peon->profession = "w";
            // }
             // peon->orderOnWay.profession = "w";
             // peon->orderOnWay.isComplite = false;
@@ -37,7 +37,7 @@ void TownHall::activeProg()
           //  peon->orderOnWay.profession = "w";
           //  peon->orderOnWay.isComplite = false;
 
-            if (this->fraction->peons.length < 10000) // 6000 crash 3000
+            if (this->fraction->peons.length < 1000) // 6000 crash 3000
             {
                 this->createTimer = 1;
             }
@@ -55,7 +55,7 @@ void TownHall::activeProg()
                                        }
                                        else
                                        {
-                                          this->mt.lock();
+                                         // this->mt.lock();
                                            this->clients.push(peon);
                                            
     
@@ -83,7 +83,7 @@ void TownHall::activeProg()
                                            }
                                            peon->wood = 0;
                                            peon->gold = 0;
-                                           this->mt.unlock();
+                                          // this->mt.unlock();
                                        } });
 
     this->potentialClients.filterSelf([](Unit *peon)

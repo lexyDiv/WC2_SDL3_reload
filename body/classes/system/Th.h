@@ -14,7 +14,9 @@ public:
     int dopStartIndex = 0;
     int dopFinishIndex = 0;
     int hold = 0;
-    int deep = 30000;
+    int deep = 10000;
+    int lowDeep = 40;
+
     int iter = 0;
 
     double createCount = 0;

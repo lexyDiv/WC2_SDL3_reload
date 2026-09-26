@@ -83,11 +83,13 @@ void MobileGroundUnit::stepToTheSide()
             valU->orderOnWay.go(validCells.getItem(rand), 3);
             valU->isActive = true;
         }
-        else
+        else if(this->blockedData.isBlocked && this->blockedData.type == 'f')
         {
-             this->iNeedFreeWay = false;
+            // this->iNeedFreeWay = false;
 
-            
+            if (this->focus) {
+                console.log("hard");
+            }
 
         }
    // }

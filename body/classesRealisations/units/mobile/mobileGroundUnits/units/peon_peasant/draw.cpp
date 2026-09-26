@@ -55,6 +55,16 @@ void Peon_peasant::draw()
         ctx.FillRect(fc->x + drawDeltaX, fc->y + drawDeltaY, this->cell->game->gf->cellSize, this->cell->game->gf->cellSize, "green");
       }
 
+      //       if (this->valU)
+      // {
+      //   ctx.FillRect(this->valU->x + drawDeltaX, this->valU->y + drawDeltaY, this->cell->game->gf->cellSize, this->cell->game->gf->cellSize, "black", 150);
+      // }
+
+      //             if (this->nextCell && this->nextCell->groundUnit)
+      // {
+      //   ctx.StrokeRect(this->nextCell->groundUnit->x + drawDeltaX, this->nextCell->groundUnit->y + drawDeltaY, this->cell->game->gf->cellSize, this->cell->game->gf->cellSize, "blue");
+      // }
+
 
     }
 

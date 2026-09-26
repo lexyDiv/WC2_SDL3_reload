@@ -1,38 +1,66 @@
 #include "iAmHere.cpp"
 //=>getConor
 
-bool MobileGroundUnit::isBlockedd(Unit *unit)
+BlockedData MobileGroundUnit::blockedCheck(Unit *unit)
 {
-    for (int i = 0; i < this->cell->aroundCells.length; i++)
-    {
-        Cell *ac = this->cell->aroundCells.getItem(i);
-        if (!ac->groundUnit //||
-           // (ac->groundUnit->wayIndex && !ac->groundUnit->needHolTimer && !ac->groundUnit->outHoldTimer) ||
-           || ac->groundUnit == unit)
-        {
-            return false;
-        }
-    }
-    return true;
-};
+    BlockedData bd;
 
-bool MobileGroundUnit::isBlockedd_full(Unit *unit)
-{
-    for (int i = 0; i < this->cell->aroundCells.length; i++)
+    if (this->cell)
     {
-        Cell *ac = this->cell->aroundCells.getItem(i);
-        if (!ac->groundUnit ||
-           (
-            // !ac->groundUnit->iNeedFreeWay && 
-             (ac->groundUnit->wayIndex > 0 ||
-            ac->groundUnit->way.length ||
-            !ac->groundUnit->orderOnWay.isComplite ||
-            ac->groundUnit == unit
-            ))
-        )
+
+        for (int i = 0; i < this->cell->aroundCells.length; i++)
         {
-            return false;
+            Cell *ac = this->cell->aroundCells.getItem(i);
+            if (!ac->groundUnit)
+            {
+                return bd;
+            }
+            if (
+                ((ac->groundUnit->wayIndex > 0 ||
+                  ac->groundUnit->way.length ||
+                  !ac->groundUnit->orderOnWay.isComplite ||
+                  ac->groundUnit == unit)))
+            {
+                bd.type = 'c';
+            }
         }
     }
-    return true;
-};
+    bd.isBlocked = true;
+    return bd;
+}
+
+// bool MobileGroundUnit::isBlockedd(Unit *unit)
+// {
+//     for (int i = 0; i < this->cell->aroundCells.length; i++)
+//     {
+//         Cell *ac = this->cell->aroundCells.getItem(i);
+//         if (!ac->groundUnit //||
+//            // (ac->groundUnit->wayIndex && !ac->groundUnit->needHolTimer && !ac->groundUnit->outHoldTimer) ||
+//            || ac->groundUnit == unit)
+//         {
+//             return false;
+//         }
+//     }
+//     return true;
+// };
+
+// bool MobileGroundUnit::isBlockedd_full(Unit *unit)
+// {
+//     for (int i = 0; i < this->cell->aroundCells.length; i++)
+//     {
+//         Cell *ac = this->cell->aroundCells.getItem(i);
+//         if (!ac->groundUnit ||
+//            (
+//             // !ac->groundUnit->iNeedFreeWay &&
+//              (ac->groundUnit->wayIndex > 0 ||
+//             ac->groundUnit->way.length ||
+//             !ac->groundUnit->orderOnWay.isComplite ||
+//             ac->groundUnit == unit
+//             ))
+//         )
+//         {
+//             return false;
+//         }
+//     }
+//     return true;
+// };

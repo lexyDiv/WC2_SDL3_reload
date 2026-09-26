@@ -26,7 +26,7 @@ void Fraction::controller()
                 !peon->isActive &&
                 peon->profession != "" &&
                 peon->orderOnWay.isComplite &&
-                !peon->isBlockedd_full(peon)
+                !peon->blockedCheck(peon).isBlocked //!peon->isBlockedd_full(peon)
                )
             {
                // console.log("here");

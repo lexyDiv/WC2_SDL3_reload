@@ -31,7 +31,9 @@ bool Peon_peasant::isNeedHoldGoWay()
 
     if (this->needHolTimer >= this->wayIndex * needHoldIndex && !this->targetData.specialFreeG0)
     {
-        if (!this->isBlocked)
+        if (
+           this->blockedData.isBlocked //!this->isBlocked
+        )
         {
             this->updateCurrentTarget();
         }
@@ -70,7 +72,9 @@ bool Peon_peasant::isNeedHoldGoWay()
                              // ((this->wood && gu->wood) || (this->gold && gu->gold) || (!this->wood && !gu->wood) || (!this->gold && !gu->gold))
         && (gu->inSave       //||
                              // !this->isPotentialWayComplite
-            || this->isBlocked || gu->way.length || gu->wayIndex || !gu->isPotentialWayComplite || !gu->orderOnWay.isComplite
+            || 
+          (this->blockedData.isBlocked && this->blockedData.type == 'c') // this->isBlocked
+             || gu->way.length || gu->wayIndex || !gu->isPotentialWayComplite || !gu->orderOnWay.isComplite
             // || (iNeedFreeWay && gu && gu->type == "life")
 
             ) &&

@@ -10,7 +10,7 @@ void MobileGroundUnit::goWay()
         //     console.log("");
         //   }
 
-        this->isBlocked = this->isBlockedd(this);
+       this->blockedData = this->blockedCheck(this);  // this->isBlocked = this->isBlockedd(this);
 
         if ( // this->isPotentialWayComplite &&
             this->wayIndex > 0)

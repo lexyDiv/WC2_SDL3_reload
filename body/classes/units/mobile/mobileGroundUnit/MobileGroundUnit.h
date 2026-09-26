@@ -14,8 +14,9 @@ class MobileGroundUnit : public Unit {
     bool isNeedHoldGoWay() override;
     bool isGetTarget() override;
     bool isTargetObjValide() override;
-    bool isBlockedd(Unit *unit) override;
-    bool isBlockedd_full(Unit *unit) override;
+   // bool isBlockedd(Unit *unit) override;
+   // bool isBlockedd_full(Unit *unit) override;
+    BlockedData blockedCheck(Unit *unit) override;
     void iAmHere() override;
     void getDeltasXY(Cell *nextCell) override;
     void getConor(Cell *cell) override;

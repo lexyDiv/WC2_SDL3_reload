@@ -51,7 +51,9 @@ void Peon_peasant::orderOnWayControl()
         //     this->targetUnit = nullptr;
         //     this->freeCell = nullptr;
 
-        if ((this->isBlockedd_full(this)) && this->personalCaseDeep != 3 && this->orderOnWay.specialFreeG0)
+        if (
+          (this->blockedData.isBlocked && this->blockedData.type == 'f') // this->isBlockedd_full(this)
+             && this->personalCaseDeep != 3 && this->orderOnWay.specialFreeG0)
         {
             // this->cell->aroundCells.forEach([](Cell *c){
 
@@ -332,7 +334,9 @@ void Peon_peasant::orderOnWayControl()
         //     }
         // }
 
-        if (this->targetData.clicckedCell && (!this->isBlocked || this->iNeedFreeWay))
+        if (this->targetData.clicckedCell && (
+           !this->blockedData.isBlocked //!this->isBlocked
+             || this->iNeedFreeWay))
         {
             this->getCurrentTarget();
         }

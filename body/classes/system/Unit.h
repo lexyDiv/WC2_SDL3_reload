@@ -1,7 +1,10 @@
 #include "Th.h"
 //=>system out
 
-
+struct BlockedData {
+  bool isBlocked = false;
+  char type = 'f';
+};
 
 class Unit
 {
@@ -28,8 +31,9 @@ public:
   virtual bool isNeedHoldGoWay() { return false; };
   virtual bool isGetTarget() { return false; };
   virtual bool isTargetObjValide() { return false; };
-  virtual bool isBlockedd(Unit *unit) { return false; };
-  virtual bool isBlockedd_full(Unit *unit) { return false; };
+ //  virtual bool isBlockedd(Unit *unit) { return false; };
+  // virtual bool isBlockedd_full(Unit *unit) { return false; };
+  virtual BlockedData blockedCheck(Unit *unit) { BlockedData bd; return bd; };
   virtual void iAmHere() {};
   virtual void iSeeYou(Unit *unit) {};
 
@@ -188,7 +192,8 @@ public:
 
  // RefactorWayData rwd;
   void getRefactorCell();
-  bool isBlocked = false;
+  BlockedData blockedData;
+ // bool isBlocked = false;
  // bool metka = false;
 
   virtual void stepToTheSide() {};
@@ -200,6 +205,7 @@ public:
  ////////////////////////// => debug
 // bool freeSpetial = false;
  int freeGoWayTimer = 0;
+// Unit *valU = nullptr;
 // bool specialFreeGo = false;
 ////////////////////////// <= debug
 

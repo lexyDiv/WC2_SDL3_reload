@@ -61,8 +61,12 @@ void MobileGroundUnit::goWay()
                    // && this->nextCell->groundUnit->profession == ""
                // )
                // {
-                    this->stepToTheSide();
+                   // this->stepToTheSide();
                // }
+
+               if (this->iNeedFreeWay) {
+                this->stepToTheSide();
+               }
 
                 this->needHolTimer++;
                 this->freeGoWayTimer = 0;

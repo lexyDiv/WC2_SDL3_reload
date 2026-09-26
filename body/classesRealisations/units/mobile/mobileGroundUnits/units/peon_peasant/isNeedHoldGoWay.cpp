@@ -44,6 +44,7 @@ bool Peon_peasant::isNeedHoldGoWay()
     }
 
 
+
     if (gu && gu->type == "life"
          && !gu->isActive //&& gu->profession == ""
         )
@@ -73,7 +74,9 @@ bool Peon_peasant::isNeedHoldGoWay()
         && (gu->inSave       //||
                              // !this->isPotentialWayComplite
             || 
-          (this->blockedData.isBlocked && this->blockedData.type == 'c') // this->isBlocked
+          (this->blockedData.isBlocked 
+          //  && this->blockedData.type == 'c'
+        ) // this->isBlocked
              || gu->way.length || gu->wayIndex || !gu->isPotentialWayComplite || !gu->orderOnWay.isComplite
             // || (iNeedFreeWay && gu && gu->type == "life")
 

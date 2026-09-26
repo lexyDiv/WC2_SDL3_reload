@@ -24,9 +24,10 @@ void MobileGroundUnit::stepToTheSide()
         Unit *valU = nullptr;
        // valU = nullptr;
 
-        if (ncgu
-            // && ncgu->profession == ""
-            && !ncgu->isActive &&
+        if (ncgu &&
+             // ncgu->profession == "" &&
+            
+            !ncgu->isActive &&
             ncgu->type == "life" &&
             !ncgu->inSave &&
             !ncgu->blockedCheck(ncgu).isBlocked // !ncgu->isBlockedd(ncgu)
@@ -50,7 +51,8 @@ void MobileGroundUnit::stepToTheSide()
                     Unit *cu = c->groundUnit;
                     if (cu &&
                         cu != this &&
-                        // cu->profession == "" &&
+                       // (cu->profession == "" || cu->blockedCheck(cu).isBlocked) &&
+                      // ncgu->profession == "" &&
                         !cu->isActive &&
                         !cu->inSave &&
                         cu->type == "life" &&
@@ -83,7 +85,10 @@ void MobileGroundUnit::stepToTheSide()
             valU->orderOnWay.go(validCells.getItem(rand), 3);
             valU->isActive = true;
         }
-        else if(this->blockedData.isBlocked && this->blockedData.type == 'f')
+        //////////////////////////////////////////////////////////////////////////////////// => HARD
+        else if(this->blockedData.isBlocked && this->blockedData.type == 'f' 
+            && this->orderOnWay.specialFreeG0 && this->needHolTimer
+        )
         {
             // this->iNeedFreeWay = false;
 
@@ -91,7 +96,15 @@ void MobileGroundUnit::stepToTheSide()
                 console.log("hard");
             }
 
-        }
+        } 
+        
+        // else if (!this->orderOnWay.specialFreeG0) {
+        //      this->iNeedFreeWay = false;
+        //    // this->stendOnCell();
+        //                 if (this->focus) {
+        //         console.log("in hard");
+        //     }
+        // }
    // }
     // else if (
     //     this->blockedData.isBlocked //this->isBlocked

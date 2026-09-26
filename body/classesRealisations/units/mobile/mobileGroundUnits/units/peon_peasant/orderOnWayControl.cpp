@@ -19,21 +19,28 @@ void Peon_peasant::orderOnWayControl()
         //     this->targetData.specialFreeG0 = true;
         // }
 
-
-        if (this->inSave) {
+        if (this->inSave)
+        {
             this->orderOnWay.isComplite = true;
             this->orderOnWay.mt.unlock();
             console.log("inSave with order");
             return;
         }
 
-        if (this->orderOnWay.stop)
+        this->personalCaseDeep = this->orderOnWay.pcd;
+        Cell *oCell = this->orderOnWay.cell;
+        Unit *oCellGU = oCell ? oCell->groundUnit : nullptr;
+        //Cell *finishCell = this->way.length ? this->way.getItem(0) : nullptr;
+       // Unit *tdu = this->targetData.unit;
+
+        if (this->orderOnWay.stop || oCellGU == this)
         {
             this->targetData.clear();
             this->way.clear();
             this->wayIndex = 0;
             this->orderOnWay.isComplite = true;
             this->orderOnWay.stop = false;
+            this->profession = "";
             this->orderOnWay.mt.unlock();
             return;
         }
@@ -52,25 +59,20 @@ void Peon_peasant::orderOnWayControl()
         //     this->freeCell = nullptr;
 
         if (
-          (this->blockedData.isBlocked && this->blockedData.type == 'f') // this->isBlockedd_full(this)
-             && this->personalCaseDeep != 3 && this->orderOnWay.specialFreeG0)
+            (this->blockedData.isBlocked && this->blockedData.type == 'f') // this->isBlockedd_full(this)
+            && this->personalCaseDeep != 3                                 //&& this->orderOnWay.specialFreeG0
+        )
         {
             // this->cell->aroundCells.forEach([](Cell *c){
 
             // });
             this->iNeedFreeWay = true; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! <= ON !!! 2/3
                                        // console.log("on");
-        //     if (this->focus) {
+            //     if (this->focus) {
 
-        //     console.log("on order by blocked");
-        // }
-
+            //     console.log("on order by blocked");
+            // }
         }
-
-        this->personalCaseDeep = this->orderOnWay.pcd;
-        Cell *oCell = this->orderOnWay.cell;
-        Cell *finishCell = this->way.length ? this->way.getItem(0) : nullptr;
-        Unit *tdu = this->targetData.unit;
 
         // if ((tdu && oCell && tdu != oCell->groundUnit) ||
         //     (this->targetData.clicckedCell && this->targetData.clicckedCell != oCell))
@@ -183,7 +185,7 @@ void Peon_peasant::orderOnWayControl()
                         this->targetData.unitPersNum = ocu->persNum;
                         this->targetData.profession = "";
                         this->profession = "";
-                       //  console.log("here 2");
+                        //  console.log("here 2");
                         this->targetData.isActual = true;
                     }
                 }
@@ -334,9 +336,8 @@ void Peon_peasant::orderOnWayControl()
         //     }
         // }
 
-        if (this->targetData.clicckedCell && (
-           !this->blockedData.isBlocked //!this->isBlocked
-             || this->iNeedFreeWay))
+        if (this->targetData.clicckedCell && (!this->blockedData.isBlocked //! this->isBlocked
+                                              || this->iNeedFreeWay))
         {
             this->getCurrentTarget();
         }

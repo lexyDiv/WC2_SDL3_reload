@@ -104,10 +104,18 @@ void Game::draw()
             td.magistralWay
                 .forEach([&drawDeltaX, &drawDeltaY, this](Cell *c, int i)
                          {
-                             ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "black", 150);
+                             ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "black");
                              // ctx.StrokeRect(c->x + drawDeltaX, c->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "blue", 50);
                              //  ctx.DrawText(mc->x + 40 + i + drawDeltaX, mc->y + 40 + i + drawDeltaY, 20, to_string(i));
                          });
+
+            u->way
+                .forEach([&drawDeltaX, &drawDeltaY, this](Cell *c, int i)
+                         {
+                             ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "violet", 100);
+                             // ctx.StrokeRect(c->x + drawDeltaX, c->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "blue", 50);
+                             //  ctx.DrawText(mc->x + 40 + i + drawDeltaX, mc->y + 40 + i + drawDeltaY, 20, to_string(i));
+                         });       
 
         if (td.prevMagCell) {
             Cell *c = td.prevMagCell;
@@ -118,6 +126,8 @@ void Game::draw()
             Cell *c = td.nextMagCell;
             ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "blue", 150);
         }
+
+        ctx.StrokeRect(u->x + drawDeltaX, u->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "green");
 
         }
 

@@ -5,7 +5,7 @@ void ThData::createPotentialWay(Unit *unit)
 {
 
     unit->way.clear();
-    int currentDeep = unit->personalCaseDeep ? unit->personalCaseDeep : this->deep;
+    int currentDeep = this->deep; //unit->personalCaseDeep ? unit->personalCaseDeep : this->deep;
     this->iter = 0;
 
     if (unit->targetData.magistralWay.length) {
@@ -31,7 +31,8 @@ void ThData::createPotentialWay(Unit *unit)
 
     ///////////////////////////  poka tak!
 
-    unit->cell->aroundCells.forEach([this, unit](Cell *cell)
+ // if (!unit->needHolTimer) {
+        unit->cell->aroundCells.forEach([this, unit](Cell *cell)
                                     {
             Unit *gu = cell->groundUnit;
             if (gu
@@ -39,6 +40,7 @@ void ThData::createPotentialWay(Unit *unit)
             ) {
                 cell->thwd.getItemPtr(this->num)->explored = this->createCount;
             } });
+ // }
 
     while (true)
     {

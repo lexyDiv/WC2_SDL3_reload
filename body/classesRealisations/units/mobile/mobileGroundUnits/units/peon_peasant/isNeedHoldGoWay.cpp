@@ -41,7 +41,8 @@ bool Peon_peasant::isNeedHoldGoWay()
     }
 
     if (
-        gu && gu->isActive && gu->wayIndex && (this->wayIndex > 5) && (
+        gu && gu->isActive && gu->wayIndex// && (this->wayIndex > 5)
+         && (
            // this->wayIndex >= 5 ||
              gu->inSave || !this->isPotentialWayComplite || this->isBlocked || gu->way.length || gu->wayIndex || !gu->orderOnWay.isComplite
                                                //  || (gu->type == "life" && gu->profession == "" && !gu->isActive)

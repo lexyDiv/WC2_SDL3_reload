@@ -20,7 +20,9 @@ Unit *Peon_peasant::getAnyTree()
         {
             Unit *tree = base->orderedTrees.getItem(i);
             if (tree->hp > 0 &&
-                !tree->lesorub)
+                !tree->lesorub //&&
+              //  !tree->blockedCheck(this).isBlocked
+            )
             {
                 return tree;
             }
@@ -36,7 +38,9 @@ Unit *Peon_peasant::getAnyTree()
                                                         Delta delta = getDeltas(&pointThis, &pointLM);
                                                         double dis = !item->lesorub && item->hp > 0 ? getDis(&delta) : 10000000;
                                                         return dis; });
-        Unit *minDisTree = md.unit && md.unit->hp > 0 && !md.unit->lesorub ? md.unit : nullptr;
+        Unit *minDisTree = md.unit && md.unit->hp > 0 && !md.unit->lesorub 
+       // && !md.unit->blockedCheck(this).isBlocked 
+        ? md.unit : nullptr;
         return minDisTree;
     }
     // this->plane->trees.clear();

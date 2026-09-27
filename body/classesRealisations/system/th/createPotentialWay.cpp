@@ -5,9 +5,13 @@ void ThData::createPotentialWay(Unit *unit)
 {
 
     unit->way.clear();
-    int currentDeep = this->deep;
-    int iter = 0;
+    int currentDeep = unit->personalCaseDeep ? unit->personalCaseDeep : this->deep;
+    // if (unit->iNeedFreeWay) {
+    //     currentDeep = 100;
+    // }
+    this->iter = 0;
 
+    bool tryChecked = false;
 
     Td_way_data *td_way_data = unit->cell->thwd.length ? unit->cell->thwd.getItemPtr(this->num) : nullptr;
 
@@ -27,19 +31,23 @@ void ThData::createPotentialWay(Unit *unit)
 
     ///////////////////////////  poka tak!
 
-    unit->cell->aroundCells.forEach([this, unit](Cell *cell)
-                                    {
+    if (!unit->iNeedFreeWay)
+    {
+        unit->cell->aroundCells.forEach([this, unit](Cell *cell)
+                                        {
             Unit *gu = cell->groundUnit;
             if (gu
+                
             && gu != unit->targetData.unit //unit->targetCell->groundUnit
             ) {
                 cell->thwd.getItemPtr(this->num)->explored = this->createCount;
             } });
+    }
 
     while (true)
     {
 
-        iter++;
+        this->iter++;
 
         MinData md;
 
@@ -49,7 +57,7 @@ void ThData::createPotentialWay(Unit *unit)
             this->exploreNewCellAndAddToOpenArr(unit, this->min_F_cell, pc);
         }
 
-        if (this->openArr.length && iter < currentDeep)
+        if (this->openArr.length && this->iter < currentDeep)
         {
             int index = this->openArr.length - 1;
             md.cell = this->openArr.getItem(this->openArr.length - 1);
@@ -83,7 +91,39 @@ void ThData::createPotentialWay(Unit *unit)
             }
             else
             {
+                
                 this->potentialWayCreate(unit, this->globalMin_H_cell);
+
+              // console.log("open.length = " + to_string(openArr.length) + " iter = " + to_string(iter));
+               
+
+                if (iter < 30 && unit->personalCaseDeep != 3 && currentDeep != this->lowDeep)
+                {
+                    unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON 3/3
+                    unit->frashWayCheckNeed = true;
+                }
+
+                // console.log("MAXIMUM !!! = " + to_string(this->iter));
+                // bool nextUnitIsNoActive = false;
+                // for (int i = unit->way.length - 1; i >= 0; i--) {
+                //      Cell *c = unit->way.getItem(i);
+                //      if (c->groundUnit) {
+                //         if (c->groundUnit->type == "life" && !c->groundUnit->isActive) {
+                //             nextUnitIsNoActive = true;
+                //         }
+                //         break;
+                //      }
+                // }
+
+                // if (unit->personalCaseDeep != 3
+                //     && unit->way.length && unit->way.getItem(unit->wayIndex - 1)->groundUnit
+                //     && !unit->way.getItem(unit->wayIndex - 1)->groundUnit->isActive
+                // )
+                // {
+                //      unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON
+                //      unit->frashWayCheckNeed = true;
+                //      console.log("here");
+                // }
             }
             return;
         }

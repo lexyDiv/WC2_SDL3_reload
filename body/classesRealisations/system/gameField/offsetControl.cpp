@@ -70,14 +70,32 @@ void GameField::offsetControl()
     float drawDeltaY = this->drawDeltaY;
 
 
-   if (clickLeft) {
-     int cx = x - drawDeltaX;
+    ////////////////////////////////////////////////////////////////// => VREMENNO DEBUG !!!!
+    if (clickRight) {
+           int cx = x - drawDeltaX;
      int cy = y - drawDeltaY;
      int xIndex = cx / this->cellSize;
      int yIndex = cy / this->cellSize;
      if (xIndex < this->gabarit && yIndex < this->gabarit) {
         Cell *tc = this->field.getItemPtr(yIndex)->getItem(xIndex);
-        if (tc->groundUnit) {
+              if (this->focusUnit) {
+                this->focusUnit->orderOnWay.go(tc, 0, true);
+                this->focusUnit->isActive = true;
+
+               // this->focusUnit->specialFreeGo = true;
+               // console.log("CLICK  = " + to_string(this->focusUnit->orderOnWay.cell->persNum) + " !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+              }
+     }
+    }
+
+   if (clickLeft) {
+     int cx = x - drawDeltaX;
+     int cy = y - drawDeltaY;
+     int xIndex = cx / this->cellSize;
+     int yIndex = cy / this->cellSize;
+     if (xIndex < this->gabarit && yIndex < this->gabarit && x < 721) {
+        Cell *tc = this->field.getItemPtr(yIndex)->getItem(xIndex);
+        if (tc->groundUnit && tc->groundUnit->type == "life") {
             if (this->focusUnit) {
                 this->focusUnit->focus = false;
             }

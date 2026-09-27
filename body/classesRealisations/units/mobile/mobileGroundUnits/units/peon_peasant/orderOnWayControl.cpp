@@ -9,21 +9,103 @@ void Peon_peasant::orderOnWayControl()
         //&& !this->wayTakts
     )
     {
+        // if (this->focus) {
+        //     if (this->orderOnWay.cell) {
+        //         console.log("c.cell start = " + to_string(this->orderOnWay.cell->persNum));
+        //     }
+        // }
 
+        // if (this->orderOnWay.specialFreeG0) {
+        //     this->targetData.specialFreeG0 = true;
+        // }
+
+        if (this->inSave)
+        {
+            this->orderOnWay.isComplite = true;
+            this->orderOnWay.mt.unlock();
+            console.log("inSave with order");
+            return;
+        }
+
+        this->personalCaseDeep = this->orderOnWay.pcd;
         Cell *oCell = this->orderOnWay.cell;
+        Unit *oCellGU = oCell ? oCell->groundUnit : nullptr;
+        //Cell *finishCell = this->way.length ? this->way.getItem(0) : nullptr;
+       // Unit *tdu = this->targetData.unit;
+
+        if (this->orderOnWay.stop || oCellGU == this)
+        {
+            this->targetData.clear();
+            this->way.clear();
+            this->wayIndex = 0;
+            this->orderOnWay.isComplite = true;
+            this->orderOnWay.stop = false;
+            this->profession = "";
+            this->orderOnWay.mt.unlock();
+            return;
+        }
+
+        // if (this->targetUnit &&
+        //     !this->targetUnit->inSave &&
+        //     this->targetUnit->isActive &&
+        //     this->targetUnit->hp &&
+        //     this->targetUnit->cell &&
+        //     this->targetUnit->targetData.clicckedCell == this->freeCell)
+        // {
+        //     this->targetUnit->orderOnWay.go();
+        //     this->targetData.blockedFreeWayHoldTimer = 0;
+        // }
+        //     this->targetUnit = nullptr;
+        //     this->freeCell = nullptr;
+
+        if (
+            (this->blockedData.isBlocked && this->blockedData.type == 'f') // this->isBlockedd_full(this)
+            && this->personalCaseDeep != 3                                 //&& this->orderOnWay.specialFreeG0
+        )
+        {
+            // this->cell->aroundCells.forEach([](Cell *c){
+
+            // });
+            this->iNeedFreeWay = true; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! <= ON !!! 2/3
+                                       // console.log("on");
+            //     if (this->focus) {
+
+            //     console.log("on order by blocked");
+            // }
+        }
+
+        // if ((tdu && oCell && tdu != oCell->groundUnit) ||
+        //     (this->targetData.clicckedCell && this->targetData.clicckedCell != oCell))
+        // {
+        //     this->iNeedFreeWay = false;
+        // }
+
         if (this->orderOnWay.profession == "")
         {
-            Cell *finishCell = this->way.length ? this->way.getItem(0) : nullptr;
-            Unit *tdu =  this->targetData.unit;
-            if (!this->cell || oCell->plane != this->cell->plane || oCell->groundUnit == this || finishCell == oCell || (tdu && tdu == oCell->groundUnit && this->way.length))
-            { // click on old obj or cell
-                this->orderOnWay.isComplite = true;
-                this->orderOnWay.mt.unlock();
-                return;
+            // if (oCell && (!this->cell ||
+            //     oCell->plane != this->cell->plane ||
+            //     oCell->groundUnit == this ||
+            //     finishCell == oCell ||
+            //     (tdu && !this->iNeedFreeWay && (tdu == oCell->groundUnit || (tdu->name == "tree" && oCell->groundUnit->name == "tree" && !oCell->groundUnit->lesorub)) &&
+            //      this->way.length)))
+            // {
+            //     if (this->focus)
+            //     {
+            //         console.log("order return");
+            //     }
+            //     this->orderOnWay.isComplite = true;
+            //     this->orderOnWay.mt.unlock();
+            //     return;
+            // }
+
+            if (!this->targetData.forNeedFreeWayCount)
+            {
+                this->targetData.clear();
+                this->targetData.specialFreeG0 = this->orderOnWay.specialFreeG0;
             }
-            this->targetData.clear();
+
             Unit *ocu = oCell->groundUnit;
-            if (ocu)
+            if (ocu && ocu->type != "life")
             {
                 if (ocu->name == "tree")
                 {
@@ -82,6 +164,7 @@ void Peon_peasant::orderOnWayControl()
                         this->targetData.profession = "";
                         this->profession = "";
                         this->targetData.isActual = true;
+                        // console.log("here");
                     }
                 }
                 else if (ocu->name == "lamberMill")
@@ -102,6 +185,7 @@ void Peon_peasant::orderOnWayControl()
                         this->targetData.unitPersNum = ocu->persNum;
                         this->targetData.profession = "";
                         this->profession = "";
+                        //  console.log("here 2");
                         this->targetData.isActual = true;
                     }
                 }
@@ -140,26 +224,35 @@ void Peon_peasant::orderOnWayControl()
                     this->targetData.unitPersNum = ocu->persNum;
                     this->targetData.profession = "";
                     this->profession = "";
+                    // console.log("here 3");
                     this->targetData.isActual = true;
                 }
             }
             else
             {
+                //               if (this->focus)
+                // {
+                //     console.log("order else before: prof = " + this->profession + " d = " + to_string(this->personalCaseDeep));
+                // }
                 this->targetData.clicckedCell = this->orderOnWay.cell;
                 this->targetData.unit = nullptr;
                 this->targetData.unitPersNum = 0;
                 this->targetData.profession = "";
-                this->profession = "";
+                this->profession = (this->personalCaseDeep == 3 || this->personalCaseDeep == 300) ? this->profession : "";
+                // console.log("here 4 " + this->profession + " " + to_string((bool)this->metka));
                 this->targetData.isActual = true;
+                // this->metka = false;
             }
         }
         else
         {
-            // if (this->profession == this->orderOnWay.profession)
-            // {
-            //     this->orderOnWay.isComplite = true;
-            //     return;
-            // }
+
+            if (!this->targetData.forNeedFreeWayCount)
+            {
+                this->targetData.clear();
+                this->targetData.specialFreeG0 = this->orderOnWay.specialFreeG0;
+            }
+
             if (this->orderOnWay.profession == "w")
             {
                 if (this->wood)
@@ -195,6 +288,8 @@ void Peon_peasant::orderOnWayControl()
                     {
                         this->profession = "";
                         this->targetData.clear();
+                        this->targetData.specialFreeG0 = this->orderOnWay.specialFreeG0;
+                        // console.log("here 5");
                     }
                 }
             }
@@ -234,9 +329,19 @@ void Peon_peasant::orderOnWayControl()
                 }
             }
         }
-           if (this->targetData.clicckedCell && !this->isBlocked) {
+
+        // if (this->focus) {
+        //     if (this->targetData.clicckedCell) {
+        //         console.log("td.cell finish = " + to_string(this->targetData.clicckedCell->persNum));
+        //     }
+        // }
+
+        if (this->targetData.clicckedCell && (!this->blockedData.isBlocked //! this->isBlocked
+                                              || this->iNeedFreeWay))
+        {
             this->getCurrentTarget();
-           }
+        }
+        // this->personalCaseDeep = this->orderOnWay.pcd;
         this->orderOnWay.isComplite = true;
     }
 

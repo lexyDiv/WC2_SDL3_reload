@@ -60,7 +60,7 @@ bool Peon_peasant::isGetTarget()
         else
         {
             if (this->cell == this->targetData.clicckedCell || 
-                (this->wayIndex == 1 &&
+                (this->wayIndex == 1 && this->way.length &&
                  this->way.getItem(0)->groundUnit))
             {
                 this->iNeedFreeWay = false;

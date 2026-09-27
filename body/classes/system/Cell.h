@@ -27,9 +27,14 @@ public:
     string profession = "";
     bool isActual = false;
     Array<Cell *> basicWay;
+    int forNeedFreeWayCount = 0;
+   // int blockedFreeWayHoldTimer = 0;
+    bool specialFreeG0 = false;
 
     void clear()
     {
+      //  blockedFreeWayHoldTimer = 0;
+        forNeedFreeWayCount = 0;
         unit = nullptr;
         unitPersNum = 0;
         clicckedCell = nullptr;
@@ -38,6 +43,7 @@ public:
        // targetCell = nullptr;
         profession = "";
         isActual = false;
+        specialFreeG0 = false;
         //basicWay.clear();
     };
 };
@@ -140,6 +146,7 @@ public:
     Array<Cell *> aroundCells;
     Array<Cell *> maxAroundCells;
     Array<double> maxAroundCellsDis;
+    Array<Cell *> panicCells;
     Array<Cell *> drawCells;
     Array<Array<Cell *>> cellsOnDraw;
 

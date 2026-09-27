@@ -61,6 +61,12 @@ ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "green");
                                 }); });
 
 
+       Unit *u = this->gf->focusUnit;                         
+  if (u && u->cell) {
+    // console.log(to_string(u->needHolTimer));
+     ctx.FillRect(u->x + drawDeltaX, u->y + drawDeltaY, u->cell->gabX, u->cell->gabY, "blue", 100);
+    }
+
                     //                     dc->cellsOnDraw.forEach([drawDeltaY, &DA, &max, this](Array<Cell *> &drawLine)
                     //                             { drawLine.forEach([drawDeltaY, &DA, &max, this](Cell *cell)
                     //                                                {

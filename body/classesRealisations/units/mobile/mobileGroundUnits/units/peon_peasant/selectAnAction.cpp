@@ -34,7 +34,10 @@ void Peon_peasant::selectAnAction()
             }
             else
             {
+               // if (this->wood || this->gold){
+
                 gu->wellCome(this);
+               // }
             }
         }
         // else

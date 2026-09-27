@@ -10,7 +10,9 @@ Unit *Peon_peasant::getTreeNear()
         if (obj &&
             obj->name == "tree" &&
             !obj->lesorub &&
-            obj->hp > 0)
+            obj->hp > 0 ////&&
+            //!obj->blockedCheck(this).isBlocked
+        )
         {
             ft.push(obj);
         }

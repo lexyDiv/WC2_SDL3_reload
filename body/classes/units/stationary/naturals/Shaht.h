@@ -18,4 +18,9 @@ public:
    // bool isIValideOnWay(Unit *unit) override;
    // bool isActiveCheck() override;
    // MinData getPeonOutCell() override;
+
+
+  Array<Unit *> clients;
+  Array<Unit *> outClients;
+  Array<Unit *> potentialClients;
 };

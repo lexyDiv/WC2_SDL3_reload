@@ -126,7 +126,7 @@ if (this->color == "red") {
 
        townHall = new TownHall;
    townHall->fraction = this;
-   townHall->create(game->gf->field.getItem(225).getItem(220));
+   townHall->create(game->gf->field.getItem(230).getItem(220));
    this->fTownHoll.level_1_townHollsCount++;
    this->fTownHoll.townHolls.push(townHall);
    townHall->isComplite = true;

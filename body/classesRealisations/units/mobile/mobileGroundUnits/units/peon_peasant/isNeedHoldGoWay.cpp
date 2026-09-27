@@ -17,6 +17,8 @@ bool isLoop(Unit *self)
     return true;
 };
 
+////////////////////////////////////////////////////////////////////////////////
+
 bool Peon_peasant::isNeedHoldGoWay()
 {
     Cell *nc = this->nextCell;
@@ -25,22 +27,63 @@ bool Peon_peasant::isNeedHoldGoWay()
     Cell *guNextCell = gu ? gu->nextCell : nullptr;
     Unit *gutdu = gu ? gu->targetData.unit : nullptr;
 
-    if (this->needHolTimer >= this->wayIndex * 100
-    )
+    int needHoldIndex = !this->iNeedFreeWay ? 10 : 150;
+
+    if (this->needHolTimer >= this->wayIndex * needHoldIndex && (!this->targetData.specialFreeG0))
     {
-        this->updateCurrentTarget();
+        // if (
+
+        //    //!this->blockedData.isBlocked //||
+        //    //(this->blockedData.isBlocked && this->blockedData.type == 'c') //!this->isBlocked
+        // )
+        // {
+        //     this->updateCurrentTarget();
+        // }
         this->needHolTimer = 0;
+        this->iNeedFreeWay = false;
+
         return false;
     }
 
+
+
+    if (gu && gu->type == "life"
+         && !gu->isActive //&& gu->profession == ""
+        )
+    {
+       //this->targetData.forNeedFreeWayCount ++;
+      // if (this->targetData.forNeedFreeWayCount >= 3) {
+        this->iNeedFreeWay = this->personalCaseDeep != 3  ? true : false; // <<<<<<<<<<<<< ON 1/3
+       // this->targetData.forNeedFreeWayCount = 0;
+
+      // }
+    }
+
+    if ((this->iNeedFreeWay &&
+         gu &&
+         gu->type == "life" &&
+        !gu->inFight && !gu->iNeedFreeWay) && !isLoop(this)) {
+        return true;
+    }
+
+
     if (
-        gu
-        && gu->isActive
-        && gu->wayIndex 
-        && (this->wayIndex >= 5 ||
-             gu->inSave || !this->isPotentialWayComplite 
-            || this->isBlocked
-        ) && !isLoop(this))
+        gu &&
+        gu->isActive &&
+        // !gu->iNeedFreeWay &&
+        (this->wayIndex > 5 && this->way.length) //&&
+                             // ((this->wood && gu->wood) || (this->gold && gu->gold) || (!this->wood && !gu->wood) || (!this->gold && !gu->gold))
+        && (gu->inSave       //||
+                             // !this->isPotentialWayComplite
+            || 
+          (this->blockedData.isBlocked 
+          //  && this->blockedData.type == 'c'
+        ) // this->isBlocked
+             || gu->way.length || gu->wayIndex || !gu->isPotentialWayComplite || !gu->orderOnWay.isComplite
+            // || (iNeedFreeWay && gu && gu->type == "life")
+
+            ) &&
+        !isLoop(this))
     {
         return true;
     }

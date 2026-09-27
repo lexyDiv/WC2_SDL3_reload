@@ -20,7 +20,8 @@ Unit *Peon_peasant::getAnyTree()
         {
             Unit *tree = base->orderedTrees.getItem(i);
             if (tree->hp > 0 &&
-                !tree->lesorub)
+                !tree->lesorub &&
+                !tree->blockedCheck(this).isBlocked)
             {
                 return tree;
             }

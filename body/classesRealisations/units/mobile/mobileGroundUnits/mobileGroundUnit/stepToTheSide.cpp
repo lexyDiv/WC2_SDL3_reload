@@ -98,13 +98,13 @@ void MobileGroundUnit::stepToTheSide()
 
         } 
         
-        // else if (!this->orderOnWay.specialFreeG0) {
-        //      this->iNeedFreeWay = false;
-        //    // this->stendOnCell();
-        //                 if (this->focus) {
-        //         console.log("in hard");
-        //     }
-        // }
+        else if (!this->orderOnWay.specialFreeG0) {
+             this->iNeedFreeWay = false;
+           // this->stendOnCell();
+                        if (this->focus) {
+                console.log("in hard");
+            }
+        }
    // }
     // else if (
     //     this->blockedData.isBlocked //this->isBlocked

@@ -11,15 +11,17 @@ BlockedData MobileGroundUnit::blockedCheck(Unit *unit)
         for (int i = 0; i < this->cell->aroundCells.length; i++)
         {
             Cell *ac = this->cell->aroundCells.getItem(i);
-            if (!ac->groundUnit && ac->plane == this->cell->plane)
+            if ((!ac->groundUnit || ac->groundUnit == unit) &&
+             ac->plane == this->cell->plane)
             {
                 return bd;
             }
             if (ac->groundUnit &&
                 ((ac->groundUnit->wayIndex > 0 ||
                   ac->groundUnit->way.length ||
-                  !ac->groundUnit->orderOnWay.isComplite ||
-                  ac->groundUnit == unit)))
+                  !ac->groundUnit->orderOnWay.isComplite //||
+                //  ac->groundUnit == unit
+                )))
             {
                 bd.type = 'c';
             }

@@ -80,9 +80,14 @@ void MobileGroundUnit::stepToTheSide()
 
     if (validCells.length && valU)
     {
+        // this->targetData.specialFreeG0 = false; // ?????????????????????????????????????????????
         int rand = intRand(0, validCells.length);
 
-        valU->orderOnWay.go(validCells.getItem(rand), 3);
+        if (valU->profession != "") {
+            valU->orderOnWay.go(valU->profession);
+        } else {
+            valU->orderOnWay.go(validCells.getItem(rand), 3);
+        }
         valU->isActive = true;
     }
     //////////////////////////////////////////////////////////////////////////////////// => HARD
@@ -100,29 +105,63 @@ void MobileGroundUnit::stepToTheSide()
         this->cell->maxAroundCells.forEach([&md, this](Cell *c, int i)
                                            {
                 Unit *cu = c->groundUnit;
+   
                 if (cu && c->plane == this->cell->plane) {
-                Unit *tu = cu->type == "life" && !cu->blockedCheck(cu).isBlocked && !cu->isActive && !cu->inSave ? cu : nullptr;
+                Unit *tu = cu->type == "life" &&
+                 !cu->isActive &&
+                 !cu->inSave &&
+                 cu->cell
+                  ? cu : nullptr;
                 if (tu) {
+
+                     bool ok = false;
+
+                     for (int i = 0; i < c->aroundCells.length; i++) {
+                        Cell *cac = c->aroundCells.getItem(i);
+                        if (!cac->groundUnit) {
+                            ok = true;
+                            break;
+                        }
+                     }
+
+                if (ok) {
                    double dis = this->cell->maxAroundCellsDis.getItem(i);
                    if (!md.unit || md.dis > dis) {
                     md.unit = tu;
                     md.dis = dis;
                    }
+                     }
+
                    }
                 } });
 
-                Unit *validU = md.unit;
-               // this->valU = validU;
-                if (validU) {
-                    for (int i = 0; i < validU->cell->panicCells.length; i++) {
-                        Cell *pc = validU->cell->panicCells.getItem(i);
-                        if (!pc->groundUnit) {
-                            validU->orderOnWay.go(pc, 3);
-                            validU->isActive = true;
-                            break;
-                        }
+        Unit *validU = md.unit;
+        // this->valU = validU;
+        if (validU)
+        {
+            for (int i = 0; i < validU->cell->panicCells.length; i++)
+            {
+                Cell *pc = validU->cell->panicCells.getItem(i);
+                if (!pc->groundUnit)
+                {
+                    if (validU->profession != "")
+                    {
+                        validU->orderOnWay.go(validU->profession);
                     }
+                    else
+                    {
+                        validU->orderOnWay.go(pc, 3);
+                    }
+                    validU->isActive = true;
+                    break;
                 }
+            }
+        }
+        else
+        {
+            this->targetData.specialFreeG0 = false;
+            this->iNeedFreeWay = false;
+        }
     }
 
     else if (!this->orderOnWay.specialFreeG0)

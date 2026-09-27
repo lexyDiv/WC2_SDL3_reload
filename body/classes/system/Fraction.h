@@ -83,5 +83,6 @@ class Fraction {
     int controlTimer = 0;
     int unitCount = 0;
     int hold = 0;
+    int hardCount = 0;
 
 };

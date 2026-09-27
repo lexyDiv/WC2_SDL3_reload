@@ -4,23 +4,22 @@
 BlockedData MobileGroundUnit::blockedCheck(Unit *unit)
 {
     BlockedData bd;
-
-    if (this->cell)
+    Cell *tc = this->cell;
+    if (tc)
     {
 
-        for (int i = 0; i < this->cell->aroundCells.length; i++)
+        for (int i = 0; i < tc->aroundCells.length; i++)
         {
-            Cell *ac = this->cell->aroundCells.getItem(i);
+            Cell *ac = tc->aroundCells.getItem(i);
             if ((!ac->groundUnit || ac->groundUnit == unit) &&
-             ac->plane == this->cell->plane)
+             ac->plane == tc->plane)
             {
                 return bd;
             }
             if (ac->groundUnit &&
                 ((ac->groundUnit->wayIndex > 0 ||
                   ac->groundUnit->way.length ||
-                  !ac->groundUnit->orderOnWay.isComplite //||
-                //  ac->groundUnit == unit
+                  !ac->groundUnit->orderOnWay.isComplite
                 )))
             {
                 bd.type = 'c';

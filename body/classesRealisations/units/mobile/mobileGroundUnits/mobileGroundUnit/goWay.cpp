@@ -11,7 +11,9 @@ void MobileGroundUnit::goWay()
         //   }
 
        this->blockedData = this->blockedCheck(this);  // this->isBlocked = this->isBlockedd(this);
-
+        // if (!this->blockedData.isBlocked || (this->blockedData.isBlocked && this->blockedData.type == 'c')) {
+        //     this->targetData.specialFreeG0 = false;
+        // }
         if ( // this->isPotentialWayComplite &&
             this->wayIndex > 0)
         {
@@ -24,6 +26,7 @@ void MobileGroundUnit::goWay()
             bool isCrox = this->crox();
             if (this->isNextCellFreeToGoWay(nc) && !isNeedHold && !isCrox && !this->inSave)
             {
+                this->targetData.specialFreeG0 = false;
                 this->needHolTimer = 0;
                 this->wayIndex--;
                 this->x = this->cell->x;

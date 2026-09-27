@@ -27,16 +27,18 @@ bool Peon_peasant::isNeedHoldGoWay()
     Cell *guNextCell = gu ? gu->nextCell : nullptr;
     Unit *gutdu = gu ? gu->targetData.unit : nullptr;
 
-    int needHoldIndex = !this->iNeedFreeWay ? 10 : 50;
+    int needHoldIndex = !this->iNeedFreeWay ? 10 : 150;
 
-    if (this->needHolTimer >= this->wayIndex * needHoldIndex && !this->targetData.specialFreeG0)
+    if (this->needHolTimer >= this->wayIndex * needHoldIndex && (!this->targetData.specialFreeG0))
     {
-        if (
-           this->blockedData.isBlocked //!this->isBlocked
-        )
-        {
-            this->updateCurrentTarget();
-        }
+        // if (
+
+        //    //!this->blockedData.isBlocked //||
+        //    //(this->blockedData.isBlocked && this->blockedData.type == 'c') //!this->isBlocked
+        // )
+        // {
+        //     this->updateCurrentTarget();
+        // }
         this->needHolTimer = 0;
         this->iNeedFreeWay = false;
 

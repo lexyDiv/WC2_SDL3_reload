@@ -4,6 +4,11 @@
 void Fraction::controller()
 {
 
+   this->hardCount++;
+   if (this->hardCount == 30) {
+    this->hardCount = 0;
+   }
+
     int ordinar = 100;
     this->controlTimer++;
     if (this->controlTimer == 1)
@@ -13,13 +18,18 @@ void Fraction::controller()
         int current = 0;
         // Array<Unit *> onHard;
         // bool isOne = false;
-
+Array<Unit *> onHard;
         for (int i = this->hold; i < this->peons.length; i++)
         {
 
             this->hold = i;
             Unit *peon = this->peons.getItem(i);
             bool isBlocked = peon->blockedCheck(peon).isBlocked;
+            
+
+            if (peon->profession != "" && !this->hardCount) {
+                onHard.push(peon);
+            }
 
             if (peon->hp &&
                 !peon->inSave &&
@@ -32,7 +42,7 @@ void Fraction::controller()
                 // console.log("here");
 
                 current++;
-                peon->orderOnWay.go(peon->profession);
+                peon->orderOnWay.go(peon->profession, 0, true);
                 peon->isActive = true;
             }
             if (current == ordinar)
@@ -42,19 +52,21 @@ void Fraction::controller()
         };
 
         //////////////////////////
-        // if (this->peons.length)
-        // {
-        //     int rand = intRand(0, this->peons.length);
-        //     Unit *randUnit = this->peons.getItem(rand);
-        //     if (randUnit->blockedCheck(randUnit).isBlocked &&
-        //         !randUnit->isActive &&
-        //         randUnit->profession != "" && !randUnit->inSave)
-        //     {
-        //         randUnit->orderOnWay.go(randUnit->profession);
-        //         randUnit->isActive = true;
-        //        // console.log("hard go");
-        //     }
-        // }
+        if (onHard.length)
+        {
+            int rand = intRand(0, onHard.length);
+            Unit *randUnit = onHard.getItem(rand);
+            BlockedData bd = randUnit->blockedCheck(randUnit);
+            if (bd.isBlocked && bd.type == 'f' &&
+                !randUnit->isActive &&
+                randUnit->profession != "" &&
+                 !randUnit->inSave)
+            {
+                randUnit->orderOnWay.go(randUnit->profession);
+                randUnit->isActive = true;
+               // console.log("hard go");
+            }
+        }
         ////////////////////////////////////////
 
         if (this->hold >= this->peons.length - 1)
@@ -77,4 +89,5 @@ void Fraction::controller()
             if (building->isActive) {
                 building->activeProg();
             } });
+            
 };

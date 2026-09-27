@@ -15,97 +15,125 @@ void MobileGroundUnit::stepToTheSide()
     // )
     // {
 
-        // if (this->focus)
-        // {
-        //     console.log("easy");
-        // }
+    // if (this->focus)
+    // {
+    //     console.log("easy");
+    // }
 
-        Unit *ncgu = this->nextCell->groundUnit;
-        Unit *valU = nullptr;
-       // valU = nullptr;
+    Unit *ncgu = this->nextCell->groundUnit;
+    Unit *valU = nullptr;
+    // valU = nullptr;
 
-        if (ncgu &&
-             // ncgu->profession == "" &&
-            
-            !ncgu->isActive &&
-            ncgu->type == "life" &&
-            !ncgu->inSave &&
-            !ncgu->blockedCheck(ncgu).isBlocked // !ncgu->isBlockedd(ncgu)
-        )
+    if (ncgu &&
+        // ncgu->profession == "" &&
+
+        !ncgu->isActive &&
+        ncgu->type == "life" &&
+        !ncgu->inSave &&
+        !ncgu->blockedCheck(ncgu).isBlocked // !ncgu->isBlockedd(ncgu)
+    )
+    {
+        valU = ncgu;
+    }
+
+    Array<Cell *> scs;
+    scs.push(this->nextCell);
+    scs.push(this->cell);
+
+    if (!valU)
+    {
+        for (int i = 0; i < scs.length; i++)
         {
-            valU = ncgu;
-        }
-
-        Array<Cell *> scs;
-        scs.push(this->nextCell);
-        scs.push(this->cell);
-
-        if (!valU)
-        {
-            for (int i = 0; i < scs.length; i++)
+            Cell *cell = scs.getItem(i);
+            for (int k = 0; k < cell->aroundCells.length; k++)
             {
-                Cell *cell = scs.getItem(i);
-                for (int k = 0; k < cell->aroundCells.length; k++)
+                Cell *c = cell->aroundCells.getItem(k);
+                Unit *cu = c->groundUnit;
+                if (cu &&
+                    cu != this &&
+                    // (cu->profession == "" || cu->blockedCheck(cu).isBlocked) &&
+                    // ncgu->profession == "" &&
+                    !cu->isActive &&
+                    !cu->inSave &&
+                    cu->type == "life" &&
+                    !cu->blockedCheck(cu).isBlocked // !cu->isBlockedd(cu)
+                )
                 {
-                    Cell *c = cell->aroundCells.getItem(k);
-                    Unit *cu = c->groundUnit;
-                    if (cu &&
-                        cu != this &&
-                       // (cu->profession == "" || cu->blockedCheck(cu).isBlocked) &&
-                      // ncgu->profession == "" &&
-                        !cu->isActive &&
-                        !cu->inSave &&
-                        cu->type == "life" &&
-                        !cu->blockedCheck(cu).isBlocked // !cu->isBlockedd(cu)
-                    )
-                    {
-                        valU = cu;
-                        break;
-                    }
-                }
-                if (valU)
-                {
+                    valU = cu;
                     break;
                 }
             }
+            if (valU)
+            {
+                break;
+            }
         }
+    }
 
-        Array<Cell *> validCells;
+    Array<Cell *> validCells;
 
-        this->cell->panicCells.forEach([&validCells](Cell *c)
-                                       {
+    this->cell->panicCells.forEach([&validCells](Cell *c)
+                                   {
                 if (!c->groundUnit) {
                     validCells.push(c);
                 } });
 
-        if (validCells.length && valU)
-        {
-            int rand = intRand(0, validCells.length);
+    if (validCells.length && valU)
+    {
+        int rand = intRand(0, validCells.length);
 
-            valU->orderOnWay.go(validCells.getItem(rand), 3);
-            valU->isActive = true;
-        }
-        //////////////////////////////////////////////////////////////////////////////////// => HARD
-        else if(this->blockedData.isBlocked && this->blockedData.type == 'f' 
-            && this->orderOnWay.specialFreeG0 && this->needHolTimer
-        )
-        {
-            // this->iNeedFreeWay = false;
+        valU->orderOnWay.go(validCells.getItem(rand), 3);
+        valU->isActive = true;
+    }
+    //////////////////////////////////////////////////////////////////////////////////// => HARD
+    else if (this->blockedData.isBlocked && this->blockedData.type == 'f' && this->orderOnWay.specialFreeG0 && this->needHolTimer)
+    {
+        // this->iNeedFreeWay = false;
 
-            if (this->focus) {
-                console.log("hard");
-            }
+        // if (this->focus)
+        // {
+        //     console.log("hard");
+        // }
 
-        } 
-        
-        else if (!this->orderOnWay.specialFreeG0) {
-             this->iNeedFreeWay = false;
-           // this->stendOnCell();
-                        if (this->focus) {
-                console.log("in hard");
-            }
-        }
-   // }
+        // Unit *tu = nullptr;
+        MinData md;
+        this->cell->maxAroundCells.forEach([&md, this](Cell *c, int i)
+                                           {
+                Unit *cu = c->groundUnit;
+                if (cu && c->plane == this->cell->plane) {
+                Unit *tu = cu->type == "life" && !cu->blockedCheck(cu).isBlocked && !cu->isActive && !cu->inSave ? cu : nullptr;
+                if (tu) {
+                   double dis = this->cell->maxAroundCellsDis.getItem(i);
+                   if (!md.unit || md.dis > dis) {
+                    md.unit = tu;
+                    md.dis = dis;
+                   }
+                   }
+                } });
+
+                Unit *validU = md.unit;
+               // this->valU = validU;
+                if (validU) {
+                    for (int i = 0; i < validU->cell->panicCells.length; i++) {
+                        Cell *pc = validU->cell->panicCells.getItem(i);
+                        if (!pc->groundUnit) {
+                            validU->orderOnWay.go(pc, 3);
+                            validU->isActive = true;
+                            break;
+                        }
+                    }
+                }
+    }
+
+    else if (!this->orderOnWay.specialFreeG0)
+    {
+        this->iNeedFreeWay = false;
+        // this->stendOnCell();
+        //             if (this->focus) {
+        //     console.log("in hard");
+        // }
+    }
+    // }
     // else if (
     //     this->blockedData.isBlocked //this->isBlocked
     //      && !this->targetData.specialFreeG0)

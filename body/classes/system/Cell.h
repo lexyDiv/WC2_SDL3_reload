@@ -32,6 +32,8 @@ public:
     Cell *prevCell = nullptr;
     Cell *nextCell = nullptr;
     int nextCellIndex = 0;
+    int magistrlLoop = 0;
+   // Cell *saveNextCell = nullptr;
 
     void clear()
     {
@@ -50,6 +52,8 @@ public:
         prevCell = nullptr;
         nextCell = nullptr;
         nextCellIndex = 0;
+        magistrlLoop = 0;
+        //saveNextCell = nullptr;
     };
 };
 

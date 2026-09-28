@@ -40,7 +40,7 @@ void Peon_peasant::orderOnWayControl()
             && this->personalCaseDeep != 3                                 //&& this->orderOnWay.specialFreeG0
         )
         {
-          //  this->iNeedFreeWay = true; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! <= ON !!! 2/3
+            this->iNeedFreeWay = true; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! <= ON !!! 2/3
         }
 
         if (this->orderOnWay.profession == "")

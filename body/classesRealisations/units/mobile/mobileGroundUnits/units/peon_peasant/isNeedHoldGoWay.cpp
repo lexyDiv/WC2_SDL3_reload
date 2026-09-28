@@ -27,7 +27,7 @@ bool Peon_peasant::isNeedHoldGoWay()
     Cell *guNextCell = gu ? gu->nextCell : nullptr;
     Unit *gutdu = gu ? gu->targetData.unit : nullptr;
 
-    int needHoldIndex = !this->iNeedFreeWay ? 50 : 150;
+    int needHoldIndex = !this->iNeedFreeWay ? 10 : 50;
 
     if (this->needHolTimer >= this->wayIndex * needHoldIndex && (!this->targetData.specialFreeG0))
     {
@@ -53,7 +53,7 @@ bool Peon_peasant::isNeedHoldGoWay()
     {
        //this->targetData.forNeedFreeWayCount ++;
       // if (this->targetData.forNeedFreeWayCount >= 3) {
-       // this->iNeedFreeWay = this->personalCaseDeep != 3  ? true : false; // <<<<<<<<<<<<< ON 1/3
+        this->iNeedFreeWay = this->personalCaseDeep != 3  ? true : false; // <<<<<<<<<<<<< ON 1/3
        // this->targetData.forNeedFreeWayCount = 0;
 
       // }

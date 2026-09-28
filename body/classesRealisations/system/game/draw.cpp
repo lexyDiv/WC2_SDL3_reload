@@ -85,6 +85,10 @@ ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "green");
         ctx.FillRect(td.nextCell->x + drawDeltaX, td.nextCell->y + drawDeltaY, td.nextCell->gabX, td.nextCell->gabY, "blue");
     }
 
+     if (td.clicckedCell) {
+        ctx.FillRect(td.clicckedCell->x + drawDeltaX, td.clicckedCell->y + drawDeltaY, td.clicckedCell->gabX, td.clicckedCell->gabY, "yellow");
+     }
+
     }
 
                     //                     dc->cellsOnDraw.forEach([drawDeltaY, &DA, &max, this](Array<Cell *> &drawLine)

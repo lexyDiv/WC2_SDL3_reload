@@ -59,9 +59,16 @@ bool Peon_peasant::isGetTarget()
         }
         else
         {
+            //                 if (this->focus) {
+            //     console.log("-----------------------------");
+            //     console.log("!this->wayIndex = " + to_string(this->wayIndex == 1));
+            //     console.log("!this->targetData.unit = " + to_string(!this->targetData.unit));
+            //     console.log("!this->targetData.nextCell = " + to_string(!this->targetData.nextCell));
+            // }
             if (this->cell == this->targetData.clicckedCell || 
+               // ( this->wayIndex == 1) ||
                 (this->wayIndex == 1 && this->way.length &&
-                 this->way.getItem(0)->groundUnit))
+                 this->way.getItem(0)->groundUnit) )
             {
                 this->iNeedFreeWay = false;
                 this->isIgetMyTarget = true;

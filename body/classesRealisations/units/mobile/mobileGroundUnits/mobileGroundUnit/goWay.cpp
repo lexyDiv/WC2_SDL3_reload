@@ -10,7 +10,7 @@ void MobileGroundUnit::goWay()
         //     console.log("");
         //   }
 
-       this->blockedData = this->blockedCheck(this);  // this->isBlocked = this->isBlockedd(this);
+        this->blockedData = this->blockedCheck(this); // this->isBlocked = this->isBlockedd(this);
         // if (!this->blockedData.isBlocked || (this->blockedData.isBlocked && this->blockedData.type == 'c')) {
         //     this->targetData.specialFreeG0 = false;
         // }
@@ -46,14 +46,31 @@ void MobileGroundUnit::goWay()
                 }
 
                 this->drawIndexY = this->y;
-                this->freeGoWayTimer ++;
-                if (this->freeGoWayTimer == 3) {
+                this->freeGoWayTimer++;
+                if (this->freeGoWayTimer == 3)
+                {
                     this->freeGoWayTimer = 0;
                     this->iNeedFreeWay = false;
                 }
 
-                if (this->targetData.nextCell) {
+                if (this->targetData.nextCell)
+                {
                     this->checkNextMagistralCell();
+                }
+                if (!this->wayIndex)
+                {
+                    if (this->orderOnWay.isComplite)
+                    {
+
+                        if (this->profession != "")
+                        {
+                            this->orderOnWay.go(this->profession, this->personalCaseDeep);
+                        }
+                        else if (this->targetData.clicckedCell)
+                        {
+                            this->orderOnWay.go(this->targetData.clicckedCell, this->personalCaseDeep);
+                        }
+                    }
                 }
             }
             else if (isCrox)
@@ -62,18 +79,19 @@ void MobileGroundUnit::goWay()
             }
             else if (isNeedHold)
             {
-  
-               // if (this->iNeedFreeWay && this->nextCell->groundUnit 
-                //    && (!this->nextCell->groundUnit->isActive || this->nextCell->groundUnit->iNeedFreeWay)
-                   // && this->nextCell->groundUnit->profession == ""
-               // )
-               // {
-                   // this->stepToTheSide();
-               // }
 
-               if (this->iNeedFreeWay) {
-                this->stepToTheSide();
-               }
+                // if (this->iNeedFreeWay && this->nextCell->groundUnit
+                //    && (!this->nextCell->groundUnit->isActive || this->nextCell->groundUnit->iNeedFreeWay)
+                // && this->nextCell->groundUnit->profession == ""
+                // )
+                // {
+                // this->stepToTheSide();
+                // }
+
+                if (this->iNeedFreeWay)
+                {
+                    this->stepToTheSide();
+                }
 
                 this->needHolTimer++;
                 this->freeGoWayTimer = 0;
@@ -89,19 +107,13 @@ void MobileGroundUnit::goWay()
                 this->stendOnCell();
                 if (this->orderOnWay.isComplite)
                 {
-                     
+
                     if (this->profession != "")
                     {
-                        // if (this->focus) {
-                        //     console.log("in goWay on profession");
-                        // }
                         this->orderOnWay.go(this->profession, this->personalCaseDeep);
                     }
                     else if (this->targetData.clicckedCell)
                     {
-                        //                         if (this->focus) {
-                        //     console.log("in goWay on clickedCell");
-                        // }
                         this->orderOnWay.go(this->targetData.clicckedCell, this->personalCaseDeep);
                     }
                 }
@@ -111,8 +123,8 @@ void MobileGroundUnit::goWay()
         {
 
             // if (!this->freeSpetial) {
-                this->iNeedFreeWay = false;
-                
+            this->iNeedFreeWay = false;
+
             // }
             // this->freeSpetial = false;
             this->nextCell = nullptr;

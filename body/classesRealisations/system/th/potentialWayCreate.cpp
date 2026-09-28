@@ -31,8 +31,8 @@ void ThData::potentialWayCreate(Unit *unit, Cell *finalCell)
     unit->isIgetMyTarget = false;
 
 
-    if (unit->focus)
-    {
+  //  if (unit->focus)
+  //  {
         TargetData &td = unit->targetData;
         if (unit->way.length >= 10 && !td.magistral.length && !this->isMagistral)
         {
@@ -53,7 +53,7 @@ void ThData::potentialWayCreate(Unit *unit, Cell *finalCell)
         // {
         //     console.log("iter = " + to_string(iter));
         // }
-    }
+   // }
 
 
     this->isMagistral = false;

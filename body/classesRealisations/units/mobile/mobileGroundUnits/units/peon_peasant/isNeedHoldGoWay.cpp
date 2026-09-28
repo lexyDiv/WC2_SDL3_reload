@@ -27,7 +27,7 @@ bool Peon_peasant::isNeedHoldGoWay()
     Cell *guNextCell = gu ? gu->nextCell : nullptr;
     Unit *gutdu = gu ? gu->targetData.unit : nullptr;
 
-    int needHoldIndex = !this->iNeedFreeWay ? 10 : 150;
+    int needHoldIndex = !this->iNeedFreeWay ? 50 : 150;
 
     if (this->needHolTimer >= this->wayIndex * needHoldIndex && (!this->targetData.specialFreeG0))
     {

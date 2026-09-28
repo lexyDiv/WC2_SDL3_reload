@@ -16,6 +16,8 @@ void Peon_peasant::activeProg()
   // }
 
 
+
+
   if (this->frashWayCheckNeed)
   {
     this->frashWayCheckNeed = false;

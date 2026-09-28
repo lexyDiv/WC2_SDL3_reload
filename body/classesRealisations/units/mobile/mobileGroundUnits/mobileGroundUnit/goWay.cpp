@@ -85,13 +85,19 @@ void MobileGroundUnit::goWay()
                 this->stendOnCell();
                 if (this->orderOnWay.isComplite)
                 {
-
+                     
                     if (this->profession != "")
                     {
+                        // if (this->focus) {
+                        //     console.log("in goWay on profession");
+                        // }
                         this->orderOnWay.go(this->profession, this->personalCaseDeep);
                     }
                     else if (this->targetData.clicckedCell)
                     {
+                        //                         if (this->focus) {
+                        //     console.log("in goWay on clickedCell");
+                        // }
                         this->orderOnWay.go(this->targetData.clicckedCell, this->personalCaseDeep);
                     }
                 }

@@ -85,8 +85,14 @@ void MobileGroundUnit::stepToTheSide()
 
         if (valU->profession != "") {
             valU->orderOnWay.go(valU->profession);
+            // if (this->focus) {
+            //     console.log("in step 1");
+            // }
         } else {
             valU->orderOnWay.go(validCells.getItem(rand), 3);
+            //             if (this->focus) {
+            //     console.log("in step 2");
+            // }
         }
         valU->isActive = true;
     }
@@ -147,10 +153,16 @@ void MobileGroundUnit::stepToTheSide()
                     if (validU->profession != "")
                     {
                         validU->orderOnWay.go(validU->profession);
+            //                         if (this->focus) {
+            //     console.log("in step 3");
+            // }
                     }
                     else
                     {
                         validU->orderOnWay.go(pc, 3);
+            //                         if (this->focus) {
+            //     console.log("in step 4");
+            // }
                     }
                     validU->isActive = true;
                     break;

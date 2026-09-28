@@ -16,6 +16,7 @@ public:
     int hold = 0;
     int deep = 10000;
     int lowDeep = 40;
+    bool isMagistral = false;
 
     int iter = 0;
 

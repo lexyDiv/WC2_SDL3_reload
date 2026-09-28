@@ -29,6 +29,9 @@ void Peon_peasant::orderOnWayControl()
             this->orderOnWay.stop = false;
             this->profession = "";
             this->orderOnWay.mt.unlock();
+            if (this->focus) {
+                console.log("STOP");
+            }
             return;
         }
 
@@ -44,6 +47,9 @@ void Peon_peasant::orderOnWayControl()
         {
 
             this->targetData.clear();
+            if (this->focus) {
+                console.log("NO Prof in order");
+            }
             this->targetData.specialFreeG0 = this->orderOnWay.specialFreeG0;
 
             Unit *ocu = oCell->groundUnit;
@@ -207,6 +213,16 @@ void Peon_peasant::orderOnWayControl()
                     if (!(td.unit && (td.unit->name == "greatHall" || td.unit->name == "lamberMill") &&
                           this->isTargetObjValide()))
                     {
+
+                        //        if (this->focus) {
+                        //     console.log("-----------------------------------");
+                        //     console.log("td.unit = " + to_string((bool)td.unit));
+                        //     if (td.unit) {
+                        //     console.log("g || l = " + to_string((td.unit->name == "greatHall" || td.unit->name == "lamberMill")));
+                        //     }
+                        //     console.log("valid = " + to_string(this->isTargetObjValide()));
+                        //     console.log("-----------------------------------");
+                        // }
                         td.clear();
 
                         Unit *unloadingUnit = this->getBaseForUnloading();
@@ -224,6 +240,9 @@ void Peon_peasant::orderOnWayControl()
                         }
                     } else {
                      //console.log("old townHall");
+                            if (this->focus) {
+                         //   console.log("in order on profession NO CLEAR");
+                        }
                     }
                 }
                 else
@@ -234,6 +253,7 @@ void Peon_peasant::orderOnWayControl()
                     {
 
                         td.clear();
+
 
                         Unit *tree = this->getAnyTree();
                         if (tree)
@@ -290,6 +310,8 @@ void Peon_peasant::orderOnWayControl()
                     {
 
                         td.clear();
+
+
 
                         Unit *shaht = this->getAnyShaht();
                         if (shaht)

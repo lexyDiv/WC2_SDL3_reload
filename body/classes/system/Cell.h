@@ -24,14 +24,18 @@ public:
     Cell *unitOldCell = nullptr;
     string profession = "";
     bool isActual = false;
-    Array<Cell *> basicWay;
     bool specialFreeG0 = false;
+    
+    /////////////////////////////////// => magistral
     Array<Cell *> magistral;
     bool checkMagistral = false;
+    Cell *prevCell = nullptr;
+    Cell *nextCell = nullptr;
+    int nextCellIndex = 0;
 
     void clear()
     {
-        magistral.clear();
+        
         unit = nullptr;
         unitPersNum = 0;
         clicckedCell = nullptr;
@@ -39,6 +43,13 @@ public:
         profession = "";
         isActual = false;
         specialFreeG0 = false;
+        
+        /////////////////////////////////// => magistral
+        checkMagistral = false;
+        magistral.clear();
+        prevCell = nullptr;
+        nextCell = nullptr;
+        nextCellIndex = 0;
     };
 };
 

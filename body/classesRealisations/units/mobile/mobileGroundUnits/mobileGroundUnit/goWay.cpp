@@ -51,6 +51,10 @@ void MobileGroundUnit::goWay()
                     this->freeGoWayTimer = 0;
                     this->iNeedFreeWay = false;
                 }
+
+                if (this->targetData.nextCell) {
+                    this->checkNextMagistralCell();
+                }
             }
             else if (isCrox)
             {

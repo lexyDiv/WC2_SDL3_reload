@@ -28,9 +28,6 @@ void Peon_peasant::getCurrentTarget()
 
     if (this->iNeedFreeWay)
     {
-
-        
-        
         if (tdu)
         {
 

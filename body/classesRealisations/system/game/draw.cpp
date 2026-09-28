@@ -75,6 +75,16 @@ ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "green");
     ctx.DrawText(c->x +drawDeltaX + 5, c->y + drawDeltaY + 5, 10, to_string(i));
     });
 
+    TargetData &td = u->targetData;
+
+    if (td.prevCell) {
+       ctx.FillRect(td.prevCell->x + drawDeltaX, td.prevCell->y + drawDeltaY, td.prevCell->gabX, td.prevCell->gabY, "red");
+    }
+
+    if (td.nextCell) {
+        ctx.FillRect(td.nextCell->x + drawDeltaX, td.nextCell->y + drawDeltaY, td.nextCell->gabX, td.nextCell->gabY, "blue");
+    }
+
     }
 
                     //                     dc->cellsOnDraw.forEach([drawDeltaY, &DA, &max, this](Array<Cell *> &drawLine)

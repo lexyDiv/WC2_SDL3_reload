@@ -208,6 +208,7 @@ public:
 // Unit *valU = nullptr;
 // bool specialFreeGo = false;
 ////////////////////////// <= debug
-
+ 
+virtual void checkNextMagistralCell() {};
 
 };

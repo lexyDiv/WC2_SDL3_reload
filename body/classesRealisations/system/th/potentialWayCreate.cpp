@@ -33,13 +33,16 @@ void ThData::potentialWayCreate(Unit *unit, Cell *finalCell)
 
     if (unit->focus)
     {
-
-        if (unit->way.length >= 10 && !unit->targetData.magistral.length && !this->isMagistral)
+        TargetData &td = unit->targetData;
+        if (unit->way.length >= 10 && !td.magistral.length && !this->isMagistral)
         {
             for (int i = 0; i < unit->way.length; i+= 5) {
                 Cell *c = unit->way.getItem(i);
-                unit->targetData.magistral.push(c);
+                td.magistral.push(c);
             }
+            td.prevCell = td.magistral.getItem(td.magistral.length - 1);
+            td.nextCell = td.magistral.getItem(td.magistral.length - 2);
+            td.nextCellIndex = td.magistral.length - 2;
             // if (unit->focus)
             // {
             //     console.log("create magistral = " + to_string(unit->targetData.unit->persNum));

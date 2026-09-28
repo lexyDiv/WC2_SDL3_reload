@@ -6,9 +6,14 @@ void ThData::createPotentialWay(Unit *unit)
 
     unit->way.clear();
     int currentDeep = unit->personalCaseDeep ? unit->personalCaseDeep : this->deep;
+    this->targetCell = unit->targetData.nextCell ? unit->targetData.nextCell : unit->targetData.clicckedCell;
     // if (unit->iNeedFreeWay) {
     //     currentDeep = 100;
     // }
+      if (unit->targetData.nextCell) {
+        currentDeep = 5;
+      }
+
     this->iter = 0;
 
     bool tryChecked = false;
@@ -97,11 +102,11 @@ void ThData::createPotentialWay(Unit *unit)
               // console.log("open.length = " + to_string(openArr.length) + " iter = " + to_string(iter));
                
 
-                if (iter < 30 && unit->personalCaseDeep != 3 && currentDeep != this->lowDeep)
-                {
-                    unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON 3/3
-                    unit->frashWayCheckNeed = true;
-                }
+                // if (iter < 30 && unit->personalCaseDeep != 3 && currentDeep != this->lowDeep)
+                // {
+                //     unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON 3/3
+                //     unit->frashWayCheckNeed = true;
+                // }
 
                 // console.log("MAXIMUM !!! = " + to_string(this->iter));
                 // bool nextUnitIsNoActive = false;

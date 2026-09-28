@@ -53,7 +53,7 @@ bool Peon_peasant::isNeedHoldGoWay()
     {
        //this->targetData.forNeedFreeWayCount ++;
       // if (this->targetData.forNeedFreeWayCount >= 3) {
-        this->iNeedFreeWay = this->personalCaseDeep != 3  ? true : false; // <<<<<<<<<<<<< ON 1/3
+       // this->iNeedFreeWay = this->personalCaseDeep != 3  ? true : false; // <<<<<<<<<<<<< ON 1/3
        // this->targetData.forNeedFreeWayCount = 0;
 
       // }
@@ -71,7 +71,7 @@ bool Peon_peasant::isNeedHoldGoWay()
         gu &&
         gu->isActive &&
         // !gu->iNeedFreeWay &&
-        (this->wayIndex > 5 && this->way.length) //&&
+        ((this->wayIndex > 5 || this->targetData.nextCell) && this->way.length) //&&
                              // ((this->wood && gu->wood) || (this->gold && gu->gold) || (!this->wood && !gu->wood) || (!this->gold && !gu->gold))
         && (gu->inSave       //||
                              // !this->isPotentialWayComplite

@@ -48,6 +48,8 @@ public:
 
     int get_G(Cell *fatherCell, Cell *potentialCell);
     int get_H(Cell *potentialCell, Cell *finishCell);
+
+    Cell *targetCell = nullptr;
 };
 
 Array<ThData *> thDatas;

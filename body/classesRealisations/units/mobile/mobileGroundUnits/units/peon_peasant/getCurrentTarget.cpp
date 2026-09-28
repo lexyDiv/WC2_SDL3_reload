@@ -179,7 +179,7 @@ void Peon_peasant::getCurrentTarget()
                     if (tc &&
                         c->plane == tc->plane &&
                         (!gu ||
-                         (gu->type == "life" && (iter >= 30)) ||
+                         (gu->type == "life" && !gu->inFight && (iter >= 30)) ||
                          gu->way.length ||
                          !gu->isPotentialWayComplite ||
                          (gu->name == "tree" && !gu->lesorub)))
@@ -216,7 +216,7 @@ void Peon_peasant::getCurrentTarget()
                     if (
                         c->plane == tc->plane &&
                         (!gu ||
-                         (gu->type == "life" && (iter >= 30)) ||
+                         (gu->type == "life" && !gu->inFight && (iter >= 30)) ||
                          gu->wayIndex ||
                          gu == this->targetData.unit))
                     {

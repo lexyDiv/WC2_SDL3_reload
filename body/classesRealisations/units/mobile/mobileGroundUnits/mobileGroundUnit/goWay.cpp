@@ -85,6 +85,7 @@ void MobileGroundUnit::goWay()
                 this->stendOnCell();
                 if (this->orderOnWay.isComplite)
                 {
+
                     if (this->profession != "")
                     {
                         this->orderOnWay.go(this->profession, this->personalCaseDeep);

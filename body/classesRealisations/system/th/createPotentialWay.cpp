@@ -88,6 +88,8 @@ void ThData::createPotentialWay(Unit *unit)
             {
                 this->globalMin_H_cell = this->min_F_cell;
             }
+
+
         }
         else
         {
@@ -102,7 +104,8 @@ void ThData::createPotentialWay(Unit *unit)
               // console.log("open.length = " + to_string(openArr.length) + " iter = " + to_string(iter));
                
 
-                if (iter < 30 && currentDeep != 5 && unit->personalCaseDeep != 3 && currentDeep != this->lowDeep)
+                if (//iter < 30 && 
+                    currentDeep != 5 && unit->personalCaseDeep != 3 && currentDeep != this->lowDeep)
                 {
                     unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON 3/3
                     unit->frashWayCheckNeed = true;

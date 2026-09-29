@@ -22,14 +22,12 @@ bool isLoop(Unit *self)
 bool Peon_peasant::isNeedHoldGoWay()
 {
     Cell *nc = this->nextCell;
-
     Unit *gu = nc ? nc->groundUnit : nullptr;
-    Cell *guNextCell = gu ? gu->nextCell : nullptr;
-    Unit *gutdu = gu ? gu->targetData.unit : nullptr;
+
 
     int needHoldIndex = !this->iNeedFreeWay ? 10 : 50;
 
-    if (this->needHolTimer >= this->wayIndex * needHoldIndex && (!this->targetData.specialFreeG0))
+    if (this->needHolTimer >= this->wayIndex * needHoldIndex && (!this->targetData.specialFreeG0 || this->needHolTimer >= 2000))
     {
         // if (
 
@@ -42,22 +40,23 @@ bool Peon_peasant::isNeedHoldGoWay()
         this->needHolTimer = 0;
         this->iNeedFreeWay = false;
 
+
         return false;
     }
 
 
 
-    if (gu && gu->type == "life"
-         && !gu->isActive //&& gu->profession == ""
-        )
-    {
-       //this->targetData.forNeedFreeWayCount ++;
-      // if (this->targetData.forNeedFreeWayCount >= 3) {
-        this->iNeedFreeWay = this->personalCaseDeep != 3  ? true : false; // <<<<<<<<<<<<< ON 1/3
-       // this->targetData.forNeedFreeWayCount = 0;
+    // if (gu && gu->type == "life"
+    //      && !gu->isActive //&& gu->profession == ""
+    //     )
+    // {
+    //    this->targetData.forNeedFreeWayCount ++;
+    //    if (this->targetData.forNeedFreeWayCount >= 3) {
+    //     this->iNeedFreeWay = this->personalCaseDeep != 3  ? true : false; // <<<<<<<<<<<<< ON 1/3
+    //     this->targetData.forNeedFreeWayCount = 0;
 
-      // }
-    }
+    //    }
+    // }
 
     if ((this->iNeedFreeWay &&
          gu &&

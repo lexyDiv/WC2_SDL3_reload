@@ -172,13 +172,13 @@ void MobileGroundUnit::stepToTheSide()
         else
         {
             this->targetData.specialFreeG0 = false;
-            this->iNeedFreeWay = false;
+           // this->iNeedFreeWay = false;
         }
     }
 
     else if (!this->orderOnWay.specialFreeG0)
     {
-        this->iNeedFreeWay = false;
+       // this->iNeedFreeWay = false;
         // this->stendOnCell();
         //             if (this->focus) {
         //     console.log("in hard");

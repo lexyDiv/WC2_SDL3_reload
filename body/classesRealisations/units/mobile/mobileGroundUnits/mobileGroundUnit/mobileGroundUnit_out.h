@@ -13,8 +13,11 @@ void MobileGroundUnit::checkNextMagistralCell()
         td.nextCell = td.magistral.getItem(td.nextCellIndex);
         td.magistrlLoop = 0;
     }
-    else if((td.nextCell && !td.nextCellIndex) || td.magistrlLoop >= 30)
+    else if((td.nextCell && !td.nextCellIndex) 
+    || td.magistrlLoop >= 50
+)
     {
+        td.magistrlLoop = 0;
         td.nextCell = nullptr;
         td.prevCell = nullptr;
         td.nextCellIndex = 0;

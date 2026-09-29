@@ -47,9 +47,9 @@ void Peon_peasant::orderOnWayControl()
         {
 
             this->targetData.clear();
-            if (this->focus) {
-                console.log("NO Prof in order");
-            }
+            // if (this->focus) {
+            //     console.log("NO Prof in order");
+            // }
             this->targetData.specialFreeG0 = this->orderOnWay.specialFreeG0;
 
             Unit *ocu = oCell->groundUnit;

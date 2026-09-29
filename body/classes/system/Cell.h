@@ -25,6 +25,7 @@ public:
     string profession = "";
     bool isActual = false;
     bool specialFreeG0 = false;
+    int forNeedFreeWayCount = 0;
     
     /////////////////////////////////// => magistral
     Array<Cell *> magistral;

@@ -15,13 +15,6 @@ void ThData::createPotentialWay(Unit *unit)
 
       if (utd.nextCell) {
         currentDeep = 5;
-        if (unit->focus) {
-            console.log("currentDepp = " + to_string(currentDeep));
-        }
-      } else {
-        if (unit->focus) {
-            console.log("nextCell = " + to_string((bool)utd.nextCell) + " unit.td = " + to_string((bool)unit->targetData.nextCell));
-        }
       }
 
     this->iter = 0;

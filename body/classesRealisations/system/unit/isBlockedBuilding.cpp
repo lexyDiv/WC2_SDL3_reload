@@ -69,7 +69,7 @@ bool Unit::isBlockedBuilding(Unit *u, ThData *td)
         {
             Cell *exploredCell = md.cell;
 
-            this->tt = exploredCell;
+           // this->tt = exploredCell;
             ngu->isIexplored = true;
             ngu->cell = exploredCell;
             ngu->targetData.clicckedCell = this->cell;
@@ -96,7 +96,7 @@ bool Unit::isBlockedBuilding(Unit *u, ThData *td)
 
             td->createPotentialWay(ngu);
             // console.log("length = " + to_string(ngu->way.length));
-            if (ngu->way.length)
+            if (ngu->way.length >= 5)
             {
                 if (ngu->way.getItem(0)->groundUnit == this)
                 {

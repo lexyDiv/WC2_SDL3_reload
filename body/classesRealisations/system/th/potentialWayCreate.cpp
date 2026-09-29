@@ -43,16 +43,16 @@ void ThData::potentialWayCreate(Unit *unit, Cell *finalCell)
             td.prevCell = td.magistral.getItem(td.magistral.length - 1);
             td.nextCell = td.magistral.getItem(td.magistral.length - 2);
             td.nextCellIndex = td.magistral.length - 2;
-            if (unit->focus)
-            {
-                console.log("create magistral = ");
-            }
+            // if (unit->focus)
+            // {
+            //     console.log("create magistral = ");
+            // }
         }
 
-        if (unit->focus)
-        {
-            console.log("iter = " + to_string(iter));
-        }
+        // // if (unit->focus)
+        // // {
+        //      console.log("iter = " + to_string(iter));
+        // // }
    // }
 
         //    if (unit->isIexplored)

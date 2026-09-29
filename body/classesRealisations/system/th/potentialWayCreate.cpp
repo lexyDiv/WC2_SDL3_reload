@@ -49,10 +49,10 @@ void ThData::potentialWayCreate(Unit *unit, Cell *finalCell)
             // }
         }
 
-        // // if (unit->focus)
-        // // {
-        //      console.log("iter = " + to_string(iter));
-        // // }
+         if (unit->focus)
+         {
+             console.log("iter = " + to_string(iter));
+         }
    // }
 
         //    if (unit->isIexplored)

@@ -22,5 +22,6 @@ void MobileGroundUnit::checkNextMagistralCell()
         td.prevCell = nullptr;
         td.nextCellIndex = 0;
         td.magistral.clear();
+        td.isNeedMagistralFinish = true;
     }
 }

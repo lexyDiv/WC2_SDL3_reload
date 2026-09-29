@@ -47,7 +47,7 @@ void MobileGroundUnit::goWay()
 
                 this->drawIndexY = this->y;
                 this->freeGoWayTimer++;
-                if (this->freeGoWayTimer == 3)
+                if (this->freeGoWayTimer == 3)  //<= ///////////////////////??????????????????????????????????????????????????
                 {
                     this->freeGoWayTimer = 0;
                     this->iNeedFreeWay = false;
@@ -57,6 +57,7 @@ void MobileGroundUnit::goWay()
                 {
                     this->checkNextMagistralCell();
                 }
+
                 if (!this->wayIndex && this->targetData.nextCell)
                 {
                     if (this->orderOnWay.isComplite)
@@ -122,21 +123,35 @@ void MobileGroundUnit::goWay()
         else
         {
 
+            if (!this->wayIndex && this->targetData.isNeedMagistralFinish)
+            {
+                this->targetData.isNeedMagistralFinish = false;
+                if (this->profession != "")
+                {
+                    this->orderOnWay.go(this->profession, this->personalCaseDeep);
+                }
+                else if (this->targetData.clicckedCell)
+                {
+                    this->orderOnWay.go(this->targetData.clicckedCell, this->personalCaseDeep);
+                }
+            } else {
+
             // if (this->profession == "")
             // {
-                // if (!this->freeSpetial) {
-                this->iNeedFreeWay = false;
+            // if (!this->freeSpetial) {
+            this->iNeedFreeWay = false;
 
-                // }
-                // this->freeSpetial = false;
-                this->nextCell = nullptr;
-                this->flipCell = nullptr;
-                this->stendOnCell();
+            // }
+            // this->freeSpetial = false;
+            this->nextCell = nullptr;
+            this->flipCell = nullptr;
+            this->stendOnCell();
             // } else {
             //     this->orderOnWay.go(this->profession);
             //     this->stendOnCellWait();
             //     this->iNeedFreeWay = false;
             // }
+            }
         }
     }
     else if (this->wayTakts)

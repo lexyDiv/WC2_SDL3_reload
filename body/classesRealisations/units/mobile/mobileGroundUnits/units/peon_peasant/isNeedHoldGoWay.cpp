@@ -60,10 +60,12 @@ bool Peon_peasant::isNeedHoldGoWay()
       // }
     }
 
-    if ((this->iNeedFreeWay &&
+    if (this->iNeedFreeWay &&
          gu &&
          gu->type == "life" &&
-        !gu->inFight && !gu->iNeedFreeWay) && !isLoop(this)) {
+        !gu->inFight 
+       // && !gu->iNeedFreeWay
+         && !isLoop(this)) {
         return true;
     }
 

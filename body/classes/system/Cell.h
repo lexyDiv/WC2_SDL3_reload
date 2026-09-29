@@ -34,6 +34,8 @@ public:
     Cell *nextCell = nullptr;
     int nextCellIndex = 0;
     int magistrlLoop = 0;
+   // bool saveTargetIsBlocked = false; // not cleard
+    bool isNeedMagistralFinish = false;
    // Cell *saveNextCell = nullptr;
 
     void clear()
@@ -54,6 +56,7 @@ public:
         nextCell = nullptr;
         nextCellIndex = 0;
         magistrlLoop = 0;
+        isNeedMagistralFinish = false;
         //saveNextCell = nullptr;
     };
 };

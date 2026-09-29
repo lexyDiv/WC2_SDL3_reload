@@ -3,10 +3,14 @@
 
 void ThData::createPotentialWay(Unit *unit)
 {
+
+
     TargetData &utd = unit->targetData;
 
-    if (utd.unit && utd.unit->type == "building" && !unit->isIexplored && !utd.nextCell) {
+    if (utd.unit && utd.unit->type == "building" &&
+         !unit->isIexplored && !utd.nextCell) {
         unit->iNeedFreeWay = utd.unit->isBlockedBuilding(unit, this);
+       // utd.saveTargetIsBlocked = unit->iNeedFreeWay;
     }
 
     unit->way.clear();
@@ -19,7 +23,7 @@ void ThData::createPotentialWay(Unit *unit)
 
     this->iter = 0;
 
-    bool tryChecked = false;
+   // bool tryChecked = false;
 
     Td_way_data *td_way_data = unit->cell->thwd.length ? unit->cell->thwd.getItemPtr(this->num) : nullptr;
 
@@ -39,7 +43,9 @@ void ThData::createPotentialWay(Unit *unit)
 
     ///////////////////////////  poka tak!
 
-    if (!unit->iNeedFreeWay)
+    if (!unit->iNeedFreeWay &&
+         !(unit->blockedData.isBlocked && unit->blockedData.type == 'f')
+        )
     {
         unit->cell->aroundCells.forEach([this, unit, utd](Cell *cell)
                                         {
@@ -109,7 +115,7 @@ void ThData::createPotentialWay(Unit *unit)
 
                 if (//iter < 30 && 
                     (currentDeep != 5 
-                        || (utd.nextCell && iter < 5)
+                        //|| (utd.nextCell && iter < 5)
                     ) && unit->personalCaseDeep != 3 && currentDeep != this->lowDeep)
                 {
                     unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON 3/3
@@ -121,28 +127,6 @@ void ThData::createPotentialWay(Unit *unit)
                 if (currentDeep == 3) {
                     utd.clicckedCell = this->globalMin_H_cell;
                 }
-
-                // console.log("MAXIMUM !!! = " + to_string(this->iter));
-                // bool nextUnitIsNoActive = false;
-                // for (int i = unit->way.length - 1; i >= 0; i--) {
-                //      Cell *c = unit->way.getItem(i);
-                //      if (c->groundUnit) {
-                //         if (c->groundUnit->type == "life" && !c->groundUnit->isActive) {
-                //             nextUnitIsNoActive = true;
-                //         }
-                //         break;
-                //      }
-                // }
-
-                // if (unit->personalCaseDeep != 3
-                //     && unit->way.length && unit->way.getItem(unit->wayIndex - 1)->groundUnit
-                //     && !unit->way.getItem(unit->wayIndex - 1)->groundUnit->isActive
-                // )
-                // {
-                //      unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON
-                //      unit->frashWayCheckNeed = true;
-                //      console.log("here");
-                // }
             }
             return;
         }

@@ -17,7 +17,7 @@ void GameField::offsetControl()
     else if (mx >= ctx.SCREEN_WIDTH - 1)
     {
         this->offsetX += this->offsetStep;
-    } 
+    }
 
     if (my <= 0)
     {
@@ -52,11 +52,9 @@ void GameField::offsetControl()
     int offsetIndexX = (this->drawOffsetX) / this->cellSize;
     int offsetIndexY = (this->drawOffsetY - this->y) / this->cellSize;
 
-
     this->drawCell = this->field.getItem(offsetIndexY).getItem(offsetIndexX);
     this->drawDeltaX = this->x - this->offsetX;
     this->drawDeltaY = this->y - this->offsetY;
-
 
     ////////////////////////////////////////////////////////////////////////////////
     bool clickLeft = mouse.leftKeyDown;
@@ -69,46 +67,57 @@ void GameField::offsetControl()
     float drawDeltaX = this->drawDeltaX;
     float drawDeltaY = this->drawDeltaY;
 
-
     ////////////////////////////////////////////////////////////////// => VREMENNO DEBUG !!!!
-    if (clickRight) {
-           int cx = x - drawDeltaX;
-     int cy = y - drawDeltaY;
-     int xIndex = cx / this->cellSize;
-     int yIndex = cy / this->cellSize;
-     if (xIndex < this->gabarit && yIndex < this->gabarit) {
-        Cell *tc = this->field.getItemPtr(yIndex)->getItem(xIndex);
-              if (this->focusUnit) {
-                this->focusUnit->orderOnWay.go(tc, 0);
+    if (clickRight)
+    {
+        int cx = x - drawDeltaX;
+        int cy = y - drawDeltaY;
+        int xIndex = cx / this->cellSize;
+        int yIndex = cy / this->cellSize;
+        if (xIndex < this->gabarit && yIndex < this->gabarit)
+        {
+            Cell *tc = this->field.getItemPtr(yIndex)->getItem(xIndex);
+            if (this->focusUnit)
+            {
+                this->focusUnit->orderOnWay.go(tc, 0
+                                               // , true
+                );
                 this->focusUnit->isActive = true;
 
-               // this->focusUnit->specialFreeGo = true;
-               // console.log("CLICK  = " + to_string(this->focusUnit->orderOnWay.cell->persNum) + " !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-              }
-     }
+                // this->focusUnit->specialFreeGo = true;
+                // console.log("CLICK  = " + to_string(this->focusUnit->orderOnWay.cell->persNum) + " !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            }
+        }
     }
 
-   if (clickLeft) {
-     int cx = x - drawDeltaX;
-     int cy = y - drawDeltaY;
-     int xIndex = cx / this->cellSize;
-     int yIndex = cy / this->cellSize;
-     if (xIndex < this->gabarit && yIndex < this->gabarit && x < 721) {
-        Cell *tc = this->field.getItemPtr(yIndex)->getItem(xIndex);
-        if (tc->groundUnit && tc->groundUnit->type == "life") {
-            if (this->focusUnit) {
-                this->focusUnit->focus = false;
+    if (clickLeft)
+    {
+        int cx = x - drawDeltaX;
+        int cy = y - drawDeltaY;
+        int xIndex = cx / this->cellSize;
+        int yIndex = cy / this->cellSize;
+        if (xIndex < this->gabarit && yIndex < this->gabarit && x < 721)
+        {
+            Cell *tc = this->field.getItemPtr(yIndex)->getItem(xIndex);
+            if (tc->groundUnit && tc->groundUnit->type == "life")
+            {
+                if (this->focusUnit)
+                {
+                    this->focusUnit->focus = false;
+                }
+                tc->groundUnit->focus = true;
+                this->focusUnit = tc->groundUnit;
             }
-            tc->groundUnit->focus = true;
-            this->focusUnit = tc->groundUnit;
-        } else {
-                if (this->focusUnit) {
-                this->focusUnit->focus = false;
+            else
+            {
+                if (this->focusUnit)
+                {
+                    this->focusUnit->focus = false;
+                }
+                this->focusUnit = nullptr;
             }
-            this->focusUnit = nullptr;
         }
-     }
-   }
+    }
 
     //////////////////////////////////////////////////////////////////
     // iter++;

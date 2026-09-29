@@ -4,10 +4,10 @@
 void Fraction::controller()
 {
 
-//    this->hardCount++;
-//    if (this->hardCount == 30) {
-//     this->hardCount = 0;
-//    }
+   this->hardCount++;
+   if (this->hardCount == 30) {
+    this->hardCount = 0;
+   }
 
     int ordinar = 100;
     this->controlTimer++;
@@ -27,9 +27,9 @@ Array<Unit *> onHard;
             bool isBlocked = peon->blockedCheck(peon).isBlocked;
             
 
-            // if (peon->profession != "" && !this->hardCount) {
-            //     onHard.push(peon);
-            // }
+            if (peon->profession != "" && !this->hardCount) {
+                onHard.push(peon);
+            }
 
             if (peon->hp &&
                 !peon->inSave &&
@@ -52,21 +52,21 @@ Array<Unit *> onHard;
         };
 
         //////////////////////////
-        // if (onHard.length)
-        // {
-        //     int rand = intRand(0, onHard.length);
-        //     Unit *randUnit = onHard.getItem(rand);
-        //     BlockedData bd = randUnit->blockedCheck(randUnit);
-        //     if (bd.isBlocked && bd.type == 'f' &&
-        //         !randUnit->isActive &&
-        //         randUnit->profession != "" &&
-        //          !randUnit->inSave)
-        //     {
-        //         randUnit->orderOnWay.go(randUnit->profession);
-        //         randUnit->isActive = true;
-        //        // console.log("hard go");
-        //     }
-        // }
+        if (onHard.length)
+        {
+            int rand = intRand(0, onHard.length);
+            Unit *randUnit = onHard.getItem(rand);
+            BlockedData bd = randUnit->blockedCheck(randUnit);
+            if (bd.isBlocked && bd.type == 'f' &&
+                !randUnit->isActive &&
+                randUnit->profession != "" &&
+                 !randUnit->inSave)
+            {
+                randUnit->orderOnWay.go(randUnit->profession, 0, true);
+                randUnit->isActive = true;
+               // console.log("hard go");
+            }
+        }
         ////////////////////////////////////////
 
         if (this->hold >= this->peons.length - 1)

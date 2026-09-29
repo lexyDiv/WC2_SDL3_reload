@@ -4,26 +4,27 @@
 void ThData::createPotentialWay(Unit *unit)
 {
 
-
     TargetData &utd = unit->targetData;
 
     if (utd.unit && utd.unit->type == "building" &&
-         !unit->isIexplored && !utd.nextCell) {
+        !unit->isIexplored && !utd.nextCell)
+    {
         unit->iNeedFreeWay = utd.unit->isBlockedBuilding(unit, this);
-       // utd.saveTargetIsBlocked = unit->iNeedFreeWay;
+        // utd.saveTargetIsBlocked = unit->iNeedFreeWay;
     }
 
     unit->way.clear();
     int currentDeep = unit->personalCaseDeep ? unit->personalCaseDeep : this->deep;
     this->targetCell = utd.nextCell ? utd.nextCell : utd.clicckedCell;
 
-      if (utd.nextCell) {
+    if (utd.nextCell)
+    {
         currentDeep = 5;
-      }
+    }
 
     this->iter = 0;
 
-   // bool tryChecked = false;
+    // bool tryChecked = false;
 
     Td_way_data *td_way_data = unit->cell->thwd.length ? unit->cell->thwd.getItemPtr(this->num) : nullptr;
 
@@ -43,16 +44,15 @@ void ThData::createPotentialWay(Unit *unit)
 
     ///////////////////////////  poka tak!
 
-    if (!unit->iNeedFreeWay &&
-         !(unit->blockedData.isBlocked && unit->blockedData.type == 'f')
-        )
+    if ( //! unit->iNeedFreeWay &&
+         !(unit->blockedData.isBlocked && unit->blockedData.type == 'f') &&
+        !utd.nextCell)
     {
         unit->cell->aroundCells.forEach([this, unit, utd](Cell *cell)
                                         {
             Unit *gu = cell->groundUnit;
-            if (gu
-                
-            && gu != utd.unit //unit->targetCell->groundUnit
+            if (gu &&
+                 gu != utd.unit
             ) {
                 cell->thwd.getItemPtr(this->num)->explored = this->createCount;
             } });
@@ -97,8 +97,6 @@ void ThData::createPotentialWay(Unit *unit)
             {
                 this->globalMin_H_cell = this->min_F_cell;
             }
-
-
         }
         else
         {
@@ -107,24 +105,30 @@ void ThData::createPotentialWay(Unit *unit)
             }
             else
             {
-                
+
                 this->potentialWayCreate(unit, this->globalMin_H_cell);
 
-              // console.log("open.length = " + to_string(openArr.length) + " iter = " + to_string(iter));
-               
+                // console.log("open.length = " + to_string(openArr.length) + " iter = " + to_string(iter));
 
-                if (//iter < 30 && 
-                    (currentDeep != 5 
-                        //|| (utd.nextCell && iter < 5)
-                    ) && unit->personalCaseDeep != 3 && currentDeep != this->lowDeep)
+                if ( // iter < 30 &&
+                    (currentDeep != 5
+                     //|| (utd.nextCell && iter < 5)
+                     ) &&
+                    unit->personalCaseDeep != 3 && currentDeep != this->lowDeep)
                 {
                     unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON 3/3
                     unit->frashWayCheckNeed = true;
-                } else if (currentDeep == 5) {
-                       utd.magistrlLoop ++;
+                    // if (unit->focus) {
+                    //     console.log("way ON");
+                    // }
+                }
+                else if (currentDeep == 5)
+                {
+                    utd.magistrlLoop++;
                 }
 
-                if (currentDeep == 3) {
+                if (currentDeep == 3)
+                {
                     utd.clicckedCell = this->globalMin_H_cell;
                 }
             }

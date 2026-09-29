@@ -98,7 +98,10 @@ void MobileGroundUnit::stepToTheSide()
         valU->isActive = true;
     }
     //////////////////////////////////////////////////////////////////////////////////// => HARD
-    else if (this->blockedData.isBlocked && this->blockedData.type == 'f' && this->orderOnWay.specialFreeG0 && this->needHolTimer)
+    else if (this->blockedData.isBlocked && this->blockedData.type == 'f'
+        // && this->orderOnWay.specialFreeG0
+          && this->needHolTimer
+        )
     {
         // this->iNeedFreeWay = false;
 
@@ -174,7 +177,9 @@ void MobileGroundUnit::stepToTheSide()
         else
         {
             this->targetData.specialFreeG0 = false;
-           // this->iNeedFreeWay = false;
+            this->iNeedFreeWay = false;
+            this->orderOnWay.go(this->cell);
+            //this->targetData.clear();
         }
     }
 

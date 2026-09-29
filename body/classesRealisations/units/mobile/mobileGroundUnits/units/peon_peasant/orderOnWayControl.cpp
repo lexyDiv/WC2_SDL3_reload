@@ -22,7 +22,7 @@ void Peon_peasant::orderOnWayControl()
 
         if (this->orderOnWay.stop || oCellGU == this)
         {
-            console.log("S = " + to_string(this->orderOnWay.stop) + " == " + to_string(oCellGU == this));
+           // console.log("S = " + to_string(this->orderOnWay.stop) + " == " + to_string(oCellGU == this));
             this->targetData.clear();
             this->way.clear();
             this->wayIndex = 0;
@@ -30,9 +30,9 @@ void Peon_peasant::orderOnWayControl()
             this->orderOnWay.stop = false;
             this->profession = "";
             this->orderOnWay.mt.unlock();
-            if (this->focus) {
-                console.log("STOP");
-            }
+            // if (this->focus) {
+            //     console.log("STOP");
+            // }
             return;
         }
 

@@ -79,7 +79,7 @@ void GameField::offsetControl()
      if (xIndex < this->gabarit && yIndex < this->gabarit) {
         Cell *tc = this->field.getItemPtr(yIndex)->getItem(xIndex);
               if (this->focusUnit) {
-                this->focusUnit->orderOnWay.go(tc, 0, true);
+                this->focusUnit->orderOnWay.go(tc, 0);
                 this->focusUnit->isActive = true;
 
                // this->focusUnit->specialFreeGo = true;

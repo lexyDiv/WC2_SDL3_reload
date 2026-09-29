@@ -21,22 +21,22 @@ bool Unit::isBlockedBuilding(Unit *u, ThData *td)
 
         if (isNear)
         {
-          //  console.log("here");
+            //  console.log("here");
             return false;
         }
 
         if (!freeContactCellsCount)
         {
 
-           // console.log("here 2");
+            // console.log("here 2");
             return true;
         }
 
         int freeMaxCellsCount = 0;
 
         MinData md;
-        Peon_peasant ng(this->fraction);
-        Unit *ngu = &ng; //new Peon_peasant(this->fraction);
+        // Peon_peasant ng(this->fraction);
+        Unit *ngu = new Peon_peasant(this->fraction);
 
         this->cell->maxAroundCells.forEach([&md, this, &freeMaxCellsCount, ngu](Cell *mac, int i)
                                            {
@@ -54,53 +54,65 @@ bool Unit::isBlockedBuilding(Unit *u, ThData *td)
             }
         } });
 
+        ngu->cell = nullptr;
+
+
         if (freeMaxCellsCount == freeContactCellsCount)
         {
-           // console.log("here 3");
+            // console.log("here 3");
+            delete ngu;
+            ngu = nullptr;
             return true;
         }
 
-        Cell *exploredCell = md.cell;
-
-        this->tt = exploredCell;
-        ngu->isIexplored = true;
-        ngu->cell = exploredCell;
-        ngu->targetData.clicckedCell = this->cell;
-        ngu->targetData.unit = this;
-        ngu->personalCaseDeep = 100;
-
-        ngu->isNewCellOnGetWayValide = [ngu](Cell *c, int iter)
+        if (md.cell)
         {
-            if (!c->groundUnit || c->groundUnit == ngu->targetData.unit)
-            {
-                return true;
-            }
-            return false;
-        };
+            Cell *exploredCell = md.cell;
 
-        ngu->isOnGetPotentialWayGetTarget = [ngu](Cell *c)
-        {
-            if (c->groundUnit == ngu->targetData.unit)
-            {
-                return true;
-            }
-            return false;
-        };
+            this->tt = exploredCell;
+            ngu->isIexplored = true;
+            ngu->cell = exploredCell;
+            ngu->targetData.clicckedCell = this->cell;
+            ngu->targetData.unit = this;
+            ngu->personalCaseDeep = 100;
 
-        td->createPotentialWay(ngu);
-       // console.log("length = " + to_string(ngu->way.length));
-        if (ngu->way.length)
-        {
-            if (ngu->way.getItem(0)->groundUnit == this)
+            ngu->isNewCellOnGetWayValide = [ngu](Cell *c, int iter)
             {
-  
-                //console.log("here 4");
+                if (!c->groundUnit || c->groundUnit == ngu->targetData.unit)
+                {
+                    return true;
+                }
                 return false;
+            };
+
+            ngu->isOnGetPotentialWayGetTarget = [ngu](Cell *c)
+            {
+                if (c->groundUnit == ngu->targetData.unit)
+                {
+                    return true;
+                }
+                return false;
+            };
+
+            td->createPotentialWay(ngu);
+            // console.log("length = " + to_string(ngu->way.length));
+            if (ngu->way.length)
+            {
+                if (ngu->way.getItem(0)->groundUnit == this)
+                {
+
+                    // console.log("here 4");
+                    delete ngu;
+                    ngu = nullptr;
+                    return false;
+                }
             }
         }
-       // console.log("here 5"); //here
+        // console.log("here 5"); //here
+        delete ngu;
+        ngu = nullptr;
         return true;
     }
-   //console.log("here 6");
+    // console.log("here 6");
     return false;
 }

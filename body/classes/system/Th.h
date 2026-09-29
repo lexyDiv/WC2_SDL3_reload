@@ -50,6 +50,8 @@ public:
     int get_H(Cell *potentialCell, Cell *finishCell);
 
     Cell *targetCell = nullptr;
+    //Unit exploredUnit = Peon_peasant(nullptr);
+
 };
 
 Array<ThData *> thDatas;

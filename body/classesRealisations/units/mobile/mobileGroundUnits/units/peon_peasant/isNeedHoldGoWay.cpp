@@ -47,7 +47,7 @@ bool Peon_peasant::isNeedHoldGoWay()
 
 
     // if (gu && gu->type == "life"
-    //      && !gu->isActive //&& gu->profession == ""
+    //     // && !gu->isActive //&& gu->profession == ""
     //     )
     // {
     //    this->targetData.forNeedFreeWayCount ++;

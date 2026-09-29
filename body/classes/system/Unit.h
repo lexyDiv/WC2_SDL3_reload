@@ -210,5 +210,6 @@ public:
 ////////////////////////// <= debug
  
 virtual void checkNextMagistralCell() {};
+virtual bool isBlockedBuilding(Unit *u) {};
 
 };

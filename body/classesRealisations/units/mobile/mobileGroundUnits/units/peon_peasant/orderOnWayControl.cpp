@@ -28,7 +28,7 @@ void Peon_peasant::orderOnWayControl()
             this->wayIndex = 0;
             this->orderOnWay.isComplite = true;
             this->orderOnWay.stop = false;
-            this->profession = "";
+           // this->profession = "";
             this->orderOnWay.mt.unlock();
             if (this->focus) {
                 console.log("STOP");
@@ -41,7 +41,7 @@ void Peon_peasant::orderOnWayControl()
             && this->personalCaseDeep != 3                                 //&& this->orderOnWay.specialFreeG0
         )
         {
-            //this->iNeedFreeWay = true; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! <= ON !!! 2/3
+            this->iNeedFreeWay = true; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! <= ON !!! 2/3
         }
 
         if (this->orderOnWay.profession == "")
@@ -217,7 +217,7 @@ void Peon_peasant::orderOnWayControl()
                 {
 
                     if (!(td.unit && (td.unit->name == "greatHall" || td.unit->name == "lamberMill") &&
-                          this->isTargetObjValide()))
+                          (this->isTargetObjValide() || td.nextCell)))
                     {
 
                         //        if (this->focus) {
@@ -288,7 +288,7 @@ void Peon_peasant::orderOnWayControl()
                 {
 
                     if (!(td.unit && (td.unit->name == "greatHall") &&
-                          this->isTargetObjValide()))
+                          (this->isTargetObjValide() || td.nextCell)))
                     {
 
                         td.clear();

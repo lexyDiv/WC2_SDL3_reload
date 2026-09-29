@@ -61,8 +61,9 @@ void Peon_peasant::getCurrentTarget()
                     if (
                         c->plane == tc->plane &&
                         (!gu ||
-                         (gu->type == "life" && !gu->inFight && !gu->iNeedFreeWay &&
-                        (!gu->isActive || !gu->needHolTimer || !gu->isPotentialWayComplite)) ||
+                         (gu->type == "life" && !gu->inFight// && !gu->iNeedFreeWay &&
+                       // (!gu->isActive || !gu->needHolTimer || !gu->isPotentialWayComplite)
+                    ) ||
                          (gu->name == "tree" && !gu->lesorub)))
                     {
 
@@ -93,8 +94,9 @@ void Peon_peasant::getCurrentTarget()
                     if (
                         c->plane == tc->plane &&
                         (!gu ||
-                         (gu->type == "life" && !gu->inFight && !gu->iNeedFreeWay &&
-                        (!gu->isActive || !gu->needHolTimer || !gu->isPotentialWayComplite)) ||
+                         (gu->type == "life" && !gu->inFight //&& !gu->iNeedFreeWay &&
+                        //(!gu->isActive || !gu->needHolTimer || !gu->isPotentialWayComplite)
+                    ) ||
                          gu == this->targetData.unit))
                     {
                         return true;
@@ -125,8 +127,9 @@ void Peon_peasant::getCurrentTarget()
                     c->plane == tc->plane &&
                     (!gu ||
                      c == this->targetData.clicckedCell ||
-                     (gu->type == "life" && !gu->inFight && !gu->iNeedFreeWay &&
-                        (!gu->isActive || !gu->needHolTimer || !gu->isPotentialWayComplite))
+                     (gu->type == "life" && !gu->inFight //&& !gu->iNeedFreeWay &&
+                       // (!gu->isActive || !gu->needHolTimer || !gu->isPotentialWayComplite)
+                    )
                      ))
                 {
                     return true;
@@ -176,7 +179,9 @@ void Peon_peasant::getCurrentTarget()
                     if (tc &&
                         c->plane == tc->plane &&
                         (!gu ||
-                         (gu->type == "life" && !gu->inFight && !gu->isActive && this->iNeedFreeWay) ||
+                         (gu->type == "life" && !gu->inFight && (this->iNeedFreeWay || iter >= 1000)
+                            // !gu->isActive && this->iNeedFreeWay
+                            ) ||
                          gu->way.length ||
                          !gu->isPotentialWayComplite ||
                          (gu->name == "tree" && !gu->lesorub)))
@@ -213,7 +218,9 @@ void Peon_peasant::getCurrentTarget()
                     if (
                         c->plane == tc->plane &&
                         (!gu ||
-                         (gu->type == "life" && !gu->inFight && !gu->isActive && this->iNeedFreeWay) ||
+                         (gu->type == "life" && !gu->inFight && (this->iNeedFreeWay || iter >= 1000)
+                            // !gu->isActive && this->iNeedFreeWay
+                            ) ||
                          gu->wayIndex ||
                          gu == this->targetData.unit))
                     {
@@ -247,7 +254,9 @@ void Peon_peasant::getCurrentTarget()
                 if (
                     c->plane == tc->plane &&
                     (!gu || c == this->targetData.clicckedCell ||
-                     (gu->type == "life" && !gu->inFight && !gu->isActive && this->iNeedFreeWay) ||
+                     (gu->type == "life" && !gu->inFight && (this->iNeedFreeWay || iter >= 1000)
+                       // !gu->isActive && this->iNeedFreeWay
+                    ) ||
                      gu->wayIndex))
                 {
                     return true;

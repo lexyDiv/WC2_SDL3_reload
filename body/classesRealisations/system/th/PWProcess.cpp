@@ -4,7 +4,7 @@
 
 void ThData::PWProcess()
 {
-    this->deep = 10000;
+    //this->deep = 10000;
     int length = this->game->unitsOnWay.length;
     for (int i = this->num; i < length; i += this->thds->length)
     {

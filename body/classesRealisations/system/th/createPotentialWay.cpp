@@ -6,7 +6,7 @@ void ThData::createPotentialWay(Unit *unit)
     TargetData &utd = unit->targetData;
 
     if (utd.unit && utd.unit->type == "building" && !unit->isIexplored && !utd.nextCell) {
-      //  unit->iNeedFreeWay = utd.unit->isBlockedBuilding(unit, this);
+        unit->iNeedFreeWay = utd.unit->isBlockedBuilding(unit, this);
     }
 
     unit->way.clear();
@@ -108,10 +108,12 @@ void ThData::createPotentialWay(Unit *unit)
                
 
                 if (//iter < 30 && 
-                    (currentDeep != 5 || (utd.nextCell && iter < 5)) && unit->personalCaseDeep != 3 && currentDeep != this->lowDeep)
+                    (currentDeep != 5 
+                        || (utd.nextCell && iter < 5)
+                    ) && unit->personalCaseDeep != 3 && currentDeep != this->lowDeep)
                 {
-                   // unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON 3/3
-                  //  unit->frashWayCheckNeed = true;
+                    unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON 3/3
+                    unit->frashWayCheckNeed = true;
                 } else if (currentDeep == 5) {
                        utd.magistrlLoop ++;
                 }

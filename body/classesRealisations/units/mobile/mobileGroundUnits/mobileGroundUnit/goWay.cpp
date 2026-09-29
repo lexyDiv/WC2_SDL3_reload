@@ -122,14 +122,21 @@ void MobileGroundUnit::goWay()
         else
         {
 
-            // if (!this->freeSpetial) {
-            this->iNeedFreeWay = false;
+            // if (this->profession == "")
+            // {
+                // if (!this->freeSpetial) {
+                this->iNeedFreeWay = false;
 
+                // }
+                // this->freeSpetial = false;
+                this->nextCell = nullptr;
+                this->flipCell = nullptr;
+                this->stendOnCell();
+            // } else {
+            //     this->orderOnWay.go(this->profession);
+            //     this->stendOnCellWait();
+            //     this->iNeedFreeWay = false;
             // }
-            // this->freeSpetial = false;
-            this->nextCell = nullptr;
-            this->flipCell = nullptr;
-            this->stendOnCell();
         }
     }
     else if (this->wayTakts)

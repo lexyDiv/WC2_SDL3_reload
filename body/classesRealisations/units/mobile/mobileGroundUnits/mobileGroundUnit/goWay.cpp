@@ -57,7 +57,7 @@ void MobileGroundUnit::goWay()
                 {
                     this->checkNextMagistralCell();
                 }
-                if (!this->wayIndex)
+                if (!this->wayIndex && this->targetData.nextCell)
                 {
                     if (this->orderOnWay.isComplite)
                     {

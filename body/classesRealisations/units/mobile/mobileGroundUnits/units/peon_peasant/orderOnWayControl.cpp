@@ -22,6 +22,7 @@ void Peon_peasant::orderOnWayControl()
 
         if (this->orderOnWay.stop || oCellGU == this)
         {
+            console.log("S = " + to_string(this->orderOnWay.stop) + " == " + to_string(oCellGU == this));
             this->targetData.clear();
             this->way.clear();
             this->wayIndex = 0;

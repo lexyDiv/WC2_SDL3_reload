@@ -55,6 +55,11 @@ void ThData::potentialWayCreate(Unit *unit, Cell *finalCell)
         }
    // }
 
+        //    if (unit->isIexplored)
+        // {
+        //     console.log("iter ex = " + to_string(iter) + " length = " + to_string(unit->way.length));
+        // }
+
 
     this->isMagistral = false;
 };

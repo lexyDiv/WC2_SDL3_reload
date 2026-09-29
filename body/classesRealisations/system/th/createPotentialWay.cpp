@@ -3,14 +3,17 @@
 
 void ThData::createPotentialWay(Unit *unit)
 {
+    TargetData &utd = unit->targetData;
+
+    if (utd.unit && utd.unit->type == "building" && !unit->isIexplored) {
+        unit->iNeedFreeWay = utd.unit->isBlockedBuilding(unit, this);
+    }
 
     unit->way.clear();
     int currentDeep = unit->personalCaseDeep ? unit->personalCaseDeep : this->deep;
-    this->targetCell = unit->targetData.nextCell ? unit->targetData.nextCell : unit->targetData.clicckedCell;
-    // if (unit->iNeedFreeWay) {
-    //     currentDeep = 100;
-    // }
-      if (unit->targetData.nextCell) {
+    this->targetCell = utd.nextCell ? utd.nextCell : utd.clicckedCell;
+
+      if (utd.nextCell) {
         currentDeep = 5;
       }
 
@@ -38,12 +41,12 @@ void ThData::createPotentialWay(Unit *unit)
 
     if (!unit->iNeedFreeWay)
     {
-        unit->cell->aroundCells.forEach([this, unit](Cell *cell)
+        unit->cell->aroundCells.forEach([this, unit, utd](Cell *cell)
                                         {
             Unit *gu = cell->groundUnit;
             if (gu
                 
-            && gu != unit->targetData.unit //unit->targetCell->groundUnit
+            && gu != utd.unit //unit->targetCell->groundUnit
             ) {
                 cell->thwd.getItemPtr(this->num)->explored = this->createCount;
             } });
@@ -110,11 +113,11 @@ void ThData::createPotentialWay(Unit *unit)
                     unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON 3/3
                     unit->frashWayCheckNeed = true;
                 } else if (currentDeep == 5) {
-                       unit->targetData.magistrlLoop ++;
+                       utd.magistrlLoop ++;
                 }
 
                 if (currentDeep == 3) {
-                    unit->targetData.clicckedCell = this->globalMin_H_cell;
+                    utd.clicckedCell = this->globalMin_H_cell;
                 }
 
                 // console.log("MAXIMUM !!! = " + to_string(this->iter));

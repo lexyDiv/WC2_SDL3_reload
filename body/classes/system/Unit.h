@@ -205,11 +205,13 @@ public:
  ////////////////////////// => debug
 // bool freeSpetial = false;
  int freeGoWayTimer = 0;
+ bool isIexplored = false;
+ Cell *tt = nullptr;
 // Unit *valU = nullptr;
 // bool specialFreeGo = false;
 ////////////////////////// <= debug
  
 virtual void checkNextMagistralCell() {};
-virtual bool isBlockedBuilding(Unit *u) {};
+bool isBlockedBuilding(Unit *u, ThData *td);
 
 };

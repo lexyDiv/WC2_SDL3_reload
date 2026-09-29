@@ -9,7 +9,7 @@ void Tree::create(Cell *cell)
     this->cell = cell;
     this->getContactCells();
     this->name = "tree";
-    this->type = "building";
+    this->type = "tree";
     this->mapColor = {R : 0, G : 150, B : 0};
     int randGY = intRand(0, 50);
     this->drawGabaritX = 40 + randGY;

@@ -30,9 +30,9 @@ void Peon_peasant::orderOnWayControl()
             this->orderOnWay.stop = false;
             this->profession = "";
             this->orderOnWay.mt.unlock();
-            // if (this->focus) {
-            //     console.log("STOP");
-            // }
+            if (this->focus) {
+                console.log("STOP");
+            }
             return;
         }
 
@@ -47,7 +47,12 @@ void Peon_peasant::orderOnWayControl()
         if (this->orderOnWay.profession == "")
         {
 
-            this->targetData.clear();
+            if ((!this->targetData.unit && this->orderOnWay.cell != this->targetData.clicckedCell) ||
+                (this->targetData.unit && this->orderOnWay.cell->groundUnit != this->targetData.unit)) {
+                this->targetData.clear();
+            }
+
+
             // if (this->focus) {
             //     console.log("NO Prof in order");
             // }

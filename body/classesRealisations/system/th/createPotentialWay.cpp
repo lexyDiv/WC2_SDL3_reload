@@ -106,6 +106,12 @@ void ThData::createPotentialWay(Unit *unit)
             else
             {
 
+                if (currentDeep == 30000 && unit->targetData.unit) {
+                    console.log("MAX = " + unit->targetData.unit->name);
+                } else if (currentDeep == 30000) {
+                    console.log("MAX no target unit");
+                }
+
                 this->potentialWayCreate(unit, this->globalMin_H_cell);
 
                 // console.log("open.length = " + to_string(openArr.length) + " iter = " + to_string(iter));

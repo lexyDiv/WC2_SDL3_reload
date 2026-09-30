@@ -83,6 +83,7 @@ void GameField::offsetControl()
                                                // , true
                 );
                 this->focusUnit->isActive = true;
+               // this->focusUnit->iNeedFreeWay = true;
 
                 // this->focusUnit->specialFreeGo = true;
                 // console.log("CLICK  = " + to_string(this->focusUnit->orderOnWay.cell->persNum) + " !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");

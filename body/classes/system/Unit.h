@@ -207,6 +207,7 @@ public:
  int freeGoWayTimer = 0;
  bool isIexplored = false;
  bool isLoopNextCellUnit = false;
+ bool deepMetka = false;
  //Cell *tt = nullptr;
 // Unit *valU = nullptr;
 // bool specialFreeGo = false;

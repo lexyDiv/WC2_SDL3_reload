@@ -4,6 +4,8 @@
 void ThData::createPotentialWay(Unit *unit)
 {
 
+
+
     TargetData &utd = unit->targetData;
 
     if (utd.unit && utd.unit->type == "building" &&
@@ -44,22 +46,27 @@ void ThData::createPotentialWay(Unit *unit)
 
     ///////////////////////////  poka tak!
 
-    if ( //! unit->iNeedFreeWay &&
-         !(unit->blockedData.isBlocked && unit->blockedData.type == 'f') &&
-        (!utd.nextCell || unit->isLoopNextCellUnit))
-    {
+
+   // if ( //! unit->iNeedFreeWay &&
+    //     !(unit->blockedData.isBlocked && unit->blockedData.type == 'f') &&
+   //     (!utd.nextCell || unit->isLoopNextCellUnit))
+   // {
         unit->cell->aroundCells.forEach([this, unit, utd](Cell *cell)
                                         {
             Unit *gu = cell->groundUnit;
-            if (gu &&
-                 gu != utd.unit
+            if (
+                (gu && gu != utd.unit) ||
+                (cell->plane != unit->cell->plane)
             ) {
                 cell->thwd.getItemPtr(this->num)->explored = this->createCount;
             } });
-    }
+
+   // }
 
     while (true)
     {
+
+
 
         this->iter++;
 
@@ -107,7 +114,17 @@ void ThData::createPotentialWay(Unit *unit)
             {
 
                 if (currentDeep == 30000 && unit->targetData.unit) {
-                    console.log("MAX = " + unit->targetData.unit->name);
+                    console.log("================================================================");
+                    //console.log("MAX = " + unit->targetData.unit->name + " free " + to_string(unit->iNeedFreeWay) + " nextC = " + to_string((bool)utd.nextCell));
+                    console.log("NAME = " + unit->targetData.unit->name);
+                    console.log("wayIndex = " + to_string(unit->wayIndex));
+                    console.log("wayTakts = " + to_string(unit->wayTakts));
+                    console.log("iNeedFreeWay = " + to_string(unit->iNeedFreeWay));
+                    console.log("isBlocked = " + to_string(unit->blockedData.isBlocked));
+                    console.log("utd.nextCell = " + to_string((bool)utd.nextCell));
+                    console.log("unitIsLoopNextCellUnit = " + to_string(unit->isLoopNextCellUnit));
+
+                    unit->targetData.unit->deepMetka = true;
                 } else if (currentDeep == 30000) {
                     console.log("MAX no target unit");
                 }

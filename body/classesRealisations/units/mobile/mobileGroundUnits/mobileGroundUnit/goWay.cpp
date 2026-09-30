@@ -10,7 +10,7 @@ void MobileGroundUnit::goWay()
         //     console.log("");
         //   }
 
-        this->blockedData = this->blockedCheck(this); // this->isBlocked = this->isBlockedd(this);
+       // this->blockedData = this->blockedCheck(this); // this->isBlocked = this->isBlockedd(this);
         // if (!this->blockedData.isBlocked || (this->blockedData.isBlocked && this->blockedData.type == 'c')) {
         //     this->targetData.specialFreeG0 = false;
         // }

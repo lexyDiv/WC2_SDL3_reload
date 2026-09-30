@@ -32,6 +32,10 @@ void Tree::draw() {
     }
 
   }
+
+  if (this->deepMetka) {
+    ctx.FillRect(cell->x + drawDeltaX, cell->y + drawDeltaY, cell->gabX, cell->gabY, "red");
+  }
   // ProtoObj *cell = this->myCells.getItem(0);
   // ctx.StrokeRect(cell->x + drawDeltaX, cell->y + drawDeltaY, cell->gabX, cell->gabY);
 }

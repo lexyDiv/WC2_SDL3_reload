@@ -171,7 +171,9 @@ void Peon_peasant::getCurrentTarget()
 
                     Cell *tc = this->cell;
 
-                    // if (gu && gu->needHolTimer)
+                    // if (gu 
+                    //    // && gu->needHolTimer
+                    //      && (gu->wood || gu->gold) && iter < 300)
                     // {
                     //     return false;
                     // }
@@ -211,7 +213,10 @@ void Peon_peasant::getCurrentTarget()
                     Unit *gu = c->groundUnit;
                     Cell *tc = this->cell;
 
-                    // if (gu && gu->needHolTimer)
+                    // if (gu &&
+                    //    // && gu->needHolTimer
+                    //    !(gu->wood || gu->gold) && iter < 300
+                    // )
                     // {
                     //     return false;
                     // }
@@ -247,7 +252,10 @@ void Peon_peasant::getCurrentTarget()
             {
                 Unit *gu = c->groundUnit;
                 Cell *tc = this->cell;
-                if (gu && gu->needHolTimer)
+                if (gu &&
+                    //(gu->wood || gu->gold) && iter < 2000
+                     gu->needHolTimer
+                    )
                 {
                     return false;
                 }

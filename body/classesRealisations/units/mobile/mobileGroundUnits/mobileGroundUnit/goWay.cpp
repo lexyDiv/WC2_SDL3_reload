@@ -97,7 +97,7 @@ void MobileGroundUnit::goWay()
                 this->needHolTimer++;
                 this->freeGoWayTimer = 0;
                 this->stendOnCellWait();
-                if (this->needHolTimer % 200 == 0 && !isTargetObjValide())
+                if (this->needHolTimer % 20 == 0 && !isTargetObjValide())
                 {
                     updateCurrentTarget();
                     this->iNeedFreeWay = false;

@@ -26,7 +26,7 @@ bool Peon_peasant::isNeedHoldGoWay()
 
     this->isLoopNextCellUnit = isLoop(this);
 
-    int needHoldIndex = !this->iNeedFreeWay ? 10 : 5;
+    int needHoldIndex = !this->iNeedFreeWay ? 5 : 5;
 
     if (this->needHolTimer >= this->wayIndex * needHoldIndex 
         //&& (!this->targetData.specialFreeG0 || this->needHolTimer >= 2000)

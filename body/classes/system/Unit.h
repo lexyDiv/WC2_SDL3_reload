@@ -206,6 +206,7 @@ public:
 // bool freeSpetial = false;
  int freeGoWayTimer = 0;
  bool isIexplored = false;
+ bool isLoopNextCellUnit = false;
  //Cell *tt = nullptr;
 // Unit *valU = nullptr;
 // bool specialFreeGo = false;

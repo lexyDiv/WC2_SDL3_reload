@@ -24,6 +24,7 @@ bool Peon_peasant::isNeedHoldGoWay()
     Cell *nc = this->nextCell;
     Unit *gu = nc ? nc->groundUnit : nullptr;
 
+    this->isLoopNextCellUnit = isLoop(this);
 
     int needHoldIndex = !this->iNeedFreeWay ? 10 : 5;
 
@@ -65,7 +66,7 @@ bool Peon_peasant::isNeedHoldGoWay()
          gu->type == "life" &&
         !gu->inFight 
        // && !gu->iNeedFreeWay
-         && !isLoop(this)) {
+         && !this->isLoopNextCellUnit) {
         return true;
     }
 
@@ -86,7 +87,7 @@ bool Peon_peasant::isNeedHoldGoWay()
             // || (iNeedFreeWay && gu && gu->type == "life")
 
             ) &&
-        !isLoop(this))
+        !this->isLoopNextCellUnit)
     {
         return true;
     }

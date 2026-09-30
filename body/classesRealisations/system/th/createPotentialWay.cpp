@@ -46,7 +46,7 @@ void ThData::createPotentialWay(Unit *unit)
 
     if ( //! unit->iNeedFreeWay &&
          !(unit->blockedData.isBlocked && unit->blockedData.type == 'f') &&
-        !utd.nextCell)
+        (!utd.nextCell || unit->isLoopNextCellUnit))
     {
         unit->cell->aroundCells.forEach([this, unit, utd](Cell *cell)
                                         {
@@ -114,7 +114,8 @@ void ThData::createPotentialWay(Unit *unit)
                     (currentDeep != 5
                      //|| (utd.nextCell && iter < 5)
                      ) &&
-                    unit->personalCaseDeep != 3 && currentDeep != this->lowDeep)
+                    unit->personalCaseDeep != 3 && (currentDeep != this->lowDeep || currentDeep < this->lowDeep)
+                )
                 {
                     unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON 3/3
                     unit->frashWayCheckNeed = true;

@@ -21,7 +21,7 @@ void ThData::createPotentialWay(Unit *unit)
 
     if (utd.nextCell)
     {
-        currentDeep = 5;
+        currentDeep = 7;
     }
 
     this->iter = 0;
@@ -46,6 +46,9 @@ void ThData::createPotentialWay(Unit *unit)
 
     ///////////////////////////  poka tak!
 
+    //  if (unit->focus) {
+    //     console.log("loop = " + to_string(unit->isLoopNextCellUnit));
+    //  }
 
     if ( //! unit->iNeedFreeWay &&
          !(unit->blockedData.isBlocked && unit->blockedData.type == 'f') &&
@@ -147,7 +150,7 @@ void ThData::createPotentialWay(Unit *unit)
                 // console.log("open.length = " + to_string(openArr.length) + " iter = " + to_string(iter));
 
                 if ( // iter < 30 &&
-                    (currentDeep != 5
+                    (currentDeep != 7
                      //|| (utd.nextCell && iter < 5)
                      ) &&
                     unit->personalCaseDeep != 3 && (currentDeep != this->lowDeep || iter < this->lowDeep)
@@ -159,7 +162,7 @@ void ThData::createPotentialWay(Unit *unit)
                     //     console.log("way ON");
                     // }
                 }
-                else if (currentDeep == 5)
+                else if (currentDeep == 7)
                 {
                     utd.magistrlLoop++;
                 }
@@ -174,7 +177,8 @@ void ThData::createPotentialWay(Unit *unit)
 
         ///////////////////////////////////////////////////////
 
-        if (unit->isOnGetPotentialWayGetTarget(this->min_F_cell))
+        if (unit->isOnGetPotentialWayGetTarget(this->min_F_cell) || 
+        (currentDeep == 7 && this->min_F_cell == this->targetCell))
         {
             this->potentialWayCreate(unit, this->min_F_cell);
             unit->isPotentialWayComplite = true;

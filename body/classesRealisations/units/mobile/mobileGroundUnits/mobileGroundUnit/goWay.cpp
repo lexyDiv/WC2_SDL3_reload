@@ -91,7 +91,7 @@ void MobileGroundUnit::goWay()
 
                 if (this->iNeedFreeWay)
                 {
-                    this->stepToTheSide();
+                   // this->stepToTheSide();
                 }
 
                 this->needHolTimer++;

@@ -19,7 +19,8 @@ void Peon_peasant::activeProg()
   //   console.log("timer = " + to_string(this->needHolTimer));
   // }
 
-
+    this->iNeedFreeWay = true;
+  
 
 
   if (this->frashWayCheckNeed)
@@ -82,6 +83,10 @@ void Peon_peasant::activeProg()
     this->goWay();
 
     this->orderOnWayControl();
+
+ 
+    this->iNeedFreeWay = true;
+ 
 
   }
 }

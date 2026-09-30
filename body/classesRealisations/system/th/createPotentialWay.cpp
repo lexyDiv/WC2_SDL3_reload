@@ -145,7 +145,7 @@ void ThData::createPotentialWay(Unit *unit)
                     (currentDeep != 5
                      //|| (utd.nextCell && iter < 5)
                      ) &&
-                    unit->personalCaseDeep != 3 && (currentDeep != this->lowDeep || currentDeep < this->lowDeep)
+                    unit->personalCaseDeep != 3 && (currentDeep != this->lowDeep || iter < this->lowDeep)
                 )
                 {
                     unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON 3/3

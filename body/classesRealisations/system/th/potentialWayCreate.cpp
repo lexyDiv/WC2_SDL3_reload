@@ -51,7 +51,7 @@ void ThData::potentialWayCreate(Unit *unit, Cell *finalCell)
 
         //  if (unit->focus)
         //  {
-             // console.log("iter = " + to_string(iter));
+              console.log("iter = " + to_string(iter));
         //  }
    // }
 

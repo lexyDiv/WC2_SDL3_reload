@@ -80,7 +80,7 @@ void GameField::offsetControl()
             if (this->focusUnit)
             {
                 this->focusUnit->orderOnWay.go(tc, 0
-                                               // , true
+                                              //  , true
                 );
                 this->focusUnit->isActive = true;
                // this->focusUnit->iNeedFreeWay = true;

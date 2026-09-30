@@ -55,9 +55,14 @@ void ThData::createPotentialWay(Unit *unit)
         unit->cell->aroundCells.forEach([this, unit, utd](Cell *cell)
                                         {
             Unit *gu = cell->groundUnit;
-            if (
-                (gu && gu != utd.unit) ||
-                (cell->plane != unit->cell->plane)
+            if ( cell->plane != unit->cell->plane ||
+                (gu && gu != utd.unit && utd.clicckedCell != cell) //||
+                
+
+          
+                // (gu && gu != utd.unit) &&
+                // (cell->plane != unit->cell->plane) &&
+                // (gu && gu != utd.unit)
             ) {
                 cell->thwd.getItemPtr(this->num)->explored = this->createCount;
                 cell->thwd.getItemPtr(this->num)->createCountData = this->createCount;

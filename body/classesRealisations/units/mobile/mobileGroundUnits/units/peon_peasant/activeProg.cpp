@@ -40,7 +40,7 @@ void Peon_peasant::activeProg()
   }
 
   if (!this->wayTakts &&
-      (this->wayIndex <= 15) &&
+     // (this->wayIndex <= 15) &&
       this->isPotentialWayComplite &&
       this->orderOnWay.isComplite &&
       this->way.length &&

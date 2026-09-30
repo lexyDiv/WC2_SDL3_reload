@@ -14,7 +14,7 @@ void MobileGroundUnit::checkNextMagistralCell()
         td.magistrlLoop = 0;
     }
     else if((td.nextCell && !td.nextCellIndex) 
-    || td.magistrlLoop >= 50
+    || td.magistrlLoop >= 20
 )
     {
         td.magistrlLoop = 0;

@@ -171,10 +171,10 @@ void Peon_peasant::getCurrentTarget()
 
                     Cell *tc = this->cell;
 
-                    if (gu && gu->needHolTimer)
-                    {
-                        return false;
-                    }
+                    // if (gu && gu->needHolTimer)
+                    // {
+                    //     return false;
+                    // }
 
                     if (tc &&
                         c->plane == tc->plane &&
@@ -211,10 +211,10 @@ void Peon_peasant::getCurrentTarget()
                     Unit *gu = c->groundUnit;
                     Cell *tc = this->cell;
 
-                    if (gu && gu->needHolTimer)
-                    {
-                        return false;
-                    }
+                    // if (gu && gu->needHolTimer)
+                    // {
+                    //     return false;
+                    // }
                     if (
                         c->plane == tc->plane &&
                         (!gu ||

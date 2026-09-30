@@ -49,7 +49,8 @@ void ThData::createPotentialWay(Unit *unit)
 
     if ( //! unit->iNeedFreeWay &&
          !(unit->blockedData.isBlocked && unit->blockedData.type == 'f') &&
-        (!utd.nextCell || unit->isLoopNextCellUnit))
+        !(utd.nextCell && unit->isLoopNextCellUnit)
+    )
     {
         unit->cell->aroundCells.forEach([this, unit, utd](Cell *cell)
                                         {

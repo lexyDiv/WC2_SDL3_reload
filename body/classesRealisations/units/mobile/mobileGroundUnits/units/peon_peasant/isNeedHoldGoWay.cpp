@@ -28,7 +28,7 @@ bool Peon_peasant::isNeedHoldGoWay()
 
     int needHoldIndex = !this->iNeedFreeWay ? 5 : 5;
 
-    if (this->needHolTimer >= this->wayIndex * needHoldIndex 
+    if (this->needHolTimer >= this->wayIndex * needHoldIndex
         //&& (!this->targetData.specialFreeG0 || this->needHolTimer >= 2000)
     )
     {
@@ -43,49 +43,41 @@ bool Peon_peasant::isNeedHoldGoWay()
         this->needHolTimer = 0;
         this->iNeedFreeWay = false;
 
-
         return false;
     }
 
-
-
-    if (gu && gu->type == "life"
-         && !gu->isActive //&& gu->profession == ""
-        )
+    if (gu && gu->type == "life" && !gu->isActive //&& gu->profession == ""
+    )
     {
-       this->targetData.forNeedFreeWayCount ++;
-       if (this->targetData.forNeedFreeWayCount >= 3) {
-        this->iNeedFreeWay = this->personalCaseDeep != 3  ? true : false; // <<<<<<<<<<<<< ON 1/3
-        this->targetData.forNeedFreeWayCount = 0;
-
-       }
+        this->targetData.forNeedFreeWayCount++;
+        if (this->targetData.forNeedFreeWayCount >= 3)
+        {
+            this->iNeedFreeWay = this->personalCaseDeep != 3 ? true : false; // <<<<<<<<<<<<< ON 1/3
+            this->targetData.forNeedFreeWayCount = 0;
+        }
     }
 
     if (this->iNeedFreeWay &&
-         gu &&
-         gu->type == "life" &&
-        !gu->inFight 
-       // && !gu->iNeedFreeWay
-         && !this->isLoopNextCellUnit) {
+        gu &&
+        gu->type == "life" &&
+        !gu->inFight
+        // && !gu->iNeedFreeWay
+        && !this->isLoopNextCellUnit)
+    {
         return true;
     }
-
 
     if (
         gu &&
         gu->isActive &&
-        // !gu->iNeedFreeWay &&
-        ((this->wayIndex > 5 || this->targetData.nextCell) && this->way.length) //&&
-                             // ((this->wood && gu->wood) || (this->gold && gu->gold) || (!this->wood && !gu->wood) || (!this->gold && !gu->gold))
-        && (gu->inSave       //||
-                             // !this->isPotentialWayComplite
-            || 
-          (this->blockedData.isBlocked 
-          //  && this->blockedData.type == 'c'
-        ) // this->isBlocked
-             || gu->way.length || gu->wayIndex || !gu->isPotentialWayComplite || !gu->orderOnWay.isComplite
-            // || (iNeedFreeWay && gu && gu->type == "life")
+        ((this->wayIndex > 5 || this->targetData.nextCell) && this->way.length)
 
+        && (gu->inSave ||
+            (this->blockedData.isBlocked) ||
+            ((gu->way.length || gu->wayIndex || !gu->isPotentialWayComplite || !gu->orderOnWay.isComplite)// &&
+            //  (((this->wood || this->gold) && (gu->wood || gu->gold)) ||
+            //   (!(this->wood || this->gold) && !(gu->wood || gu->gold)))
+            )
             ) &&
         !this->isLoopNextCellUnit)
     {

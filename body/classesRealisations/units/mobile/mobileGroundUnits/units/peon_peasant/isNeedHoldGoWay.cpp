@@ -22,67 +22,115 @@ bool isLoop(Unit *self)
 bool Peon_peasant::isNeedHoldGoWay()
 {
     Cell *nc = this->nextCell;
-    Unit *gu = nc ? nc->groundUnit : nullptr;
+    Unit *ncgu = nc ? nc->groundUnit : nullptr;
 
-    this->isLoopNextCellUnit = isLoop(this);
 
-    int needHoldIndex = !this->iNeedFreeWay ? 5 : 5;
+    if (ncgu) {
 
-    if (this->needHolTimer >= this->wayIndex * needHoldIndex
-        //&& (!this->targetData.specialFreeG0 || this->needHolTimer >= 2000)
-    )
-    {
-        // if (
+        console.log("------------------------------------------");
+        console.log("count th = ", this->thd->count);
+        console.log(this->persNum); // =>2
 
-        //    //!this->blockedData.isBlocked //||
-        //    //(this->blockedData.isBlocked && this->blockedData.type == 'c') //!this->isBlocked
-        // )
-        // {
-        //     this->updateCurrentTarget();
+            TargetData &td = this->targetData;
+
+      this->isLoopNextCellUnit = isLoop(this);
+
+       int needHoldIndex = !this->iNeedFreeWay ? 5 : 5;
+
+      // if (this->needHolTimer >= this->wayIndex * needHoldIndex
+      // )
+      // {
+      //     this->needHolTimer = 0;
+      //     this->iNeedFreeWay = false;
+      //     console.log("No needHoldTimer");
+      //     return false;
+      // }
+
+
+
+      // if (gu && ncgu->type == "life" && !ncgu->isActive //&& ncgu->profession == ""
+      // )
+      // {
+      //     this->targetData.forNeedFreeWayCount++;
+      //     if (this->targetData.forNeedFreeWayCount >= 3)
+      //     {
+      //         this->iNeedFreeWay = this->personalCaseDeep != 3 ? true : false; // <<<<<<<<<<<<< ON 1/3
+      //         this->targetData.forNeedFreeWayCount = 0;
+      //     }
+      // }
+
+      // if (this->iNeedFreeWay &&
+      //     gu &&
+      //     ncgu->type == "life" &&
+      //     !ncgu->inFight
+      //     // && !ncgu->iNeedFreeWay
+      //     && !this->isLoopNextCellUnit)
+      // {
+      //     return true;
+      // }
+
+       // if (
+       //     gu &&
+       //     ncgu->isActive &&
+       //     ((this->wayIndex > 5 || this->targetData.nextCell) && this->way.length)
+
+       //     && (ncgu->inSave ||
+       //         (this->blockedData.isBlocked) ||
+       //         ((ncgu->way.length || ncgu->wayIndex || !ncgu->isPotentialWayComplite || !ncgu->orderOnWay.isComplite)// &&
+
+       //         )
+       //         ) &&
+       //     !this->isLoopNextCellUnit)
+       // {
+       //     return true;
+       // }
+
+         bool isMyFrontalCollision = ncgu->nextCell && 
+         ncgu->nextCell->groundUnit && 
+         ncgu->nextCell->groundUnit->persNum == this->persNum;
+
+        //  bool isNcguFrontalCollision = ncgu->ncgu->nextCell && 
+        //  ncgu->nextCell->groundUnit && 
+        //  ncgu->nextCell->groundUnit->persNum == this->persNum;
+        // bool isNcguFrontalCollision = ncgu->nextCell->groundUnit->persNum == this->persNum;
+
+       //if (this->persNum == 1) {
+          console.log("ncgu->isActive = ", ncgu->isActive);
+          console.log("this->wayIndex > 5 = ", this->wayIndex > 5);
+          console.log("this->isLoopNextCellUnit = ", this->isLoopNextCellUnit);
+          console.log("ncgu->orderOnWay.isComplite = ", ncgu->orderOnWay.isComplite);
+         // console.log("isFrontalCollision = ", isMyFrontalCollision);
+      // }
+
+      
+
+
+
+       // 8 ok // 7 ok => without magistral & without free
+       if ( 
+         ncgu->isActive && 
+          (
+            !this->isLoopNextCellUnit ||
+            !ncgu->isPotentialWayComplite
+          ) 
+          &&
+          (
+           !ncgu->isPotentialWayComplite ||
+           (ncgu->way.length && (td.nextCell || !ncgu->needHolTimer || this->wayTakts > 5))
+          )
+        
+        ) 
+         {
+            console.log("hold");
+           return true;
+         }
+
+       // if (this->persNum == 1) {
+        console.log("no hold");
         // }
-        this->needHolTimer = 0;
-        this->iNeedFreeWay = false;
 
-        return false;
     }
 
-    if (gu && gu->type == "life" && !gu->isActive //&& gu->profession == ""
-    )
-    {
-        this->targetData.forNeedFreeWayCount++;
-        if (this->targetData.forNeedFreeWayCount >= 3)
-        {
-            this->iNeedFreeWay = this->personalCaseDeep != 3 ? true : false; // <<<<<<<<<<<<< ON 1/3
-            this->targetData.forNeedFreeWayCount = 0;
-        }
-    }
-
-    if (this->iNeedFreeWay &&
-        gu &&
-        gu->type == "life" &&
-        !gu->inFight
-        // && !gu->iNeedFreeWay
-        && !this->isLoopNextCellUnit)
-    {
-        return true;
-    }
-
-    if (
-        gu &&
-        gu->isActive &&
-        ((this->wayIndex > 5 || this->targetData.nextCell) && this->way.length)
-
-        && (gu->inSave ||
-            (this->blockedData.isBlocked) ||
-            ((gu->way.length || gu->wayIndex || !gu->isPotentialWayComplite || !gu->orderOnWay.isComplite)// &&
-            //  (((this->wood || this->gold) && (gu->wood || gu->gold)) ||
-            //   (!(this->wood || this->gold) && !(gu->wood || gu->gold)))
-            )
-            ) &&
-        !this->isLoopNextCellUnit)
-    {
-        return true;
-    }
 
     return false;
 }

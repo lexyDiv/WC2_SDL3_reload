@@ -15,11 +15,13 @@ void Peon_peasant::activeProg()
     return;
   }
 
+
+
   // if (this->focus) {
   //   console.log("timer = " + to_string(this->needHolTimer));
   // }
 
-    this->iNeedFreeWay = true;
+   // this->iNeedFreeWay = true;
   
 
 
@@ -80,12 +82,15 @@ void Peon_peasant::activeProg()
   else
   {
      this->blockedData = this->blockedCheck(this);
-    this->goWay();
+   
+     if (this->way.length) {
+       this->goWay();
+     }
 
     this->orderOnWayControl();
 
  
-    this->iNeedFreeWay = true;
+   // this->iNeedFreeWay = true;
  
 
   }

@@ -18,13 +18,13 @@ void MobileGroundUnit::goWay()
             this->wayIndex > 0)
         {
 
-            Cell *nc = this->way.getItem(this->wayIndex - 1);
-            this->nextCell = nc;
+            this->nextCell = this->way.getItem(this->wayIndex - 1);
+            
             int flipCellIndex = this->wayIndex - 2;
             this->flipCell = flipCellIndex >= 0 ? this->way.getItem(flipCellIndex) : nullptr;
             bool isNeedHold = this->isNeedHoldGoWay();
             bool isCrox = this->crox();
-            if (this->isNextCellFreeToGoWay(nc) && !isNeedHold && !isCrox && !this->inSave)
+            if (this->isNextCellFreeToGoWay(this->nextCell) && !isNeedHold && !isCrox && !this->inSave)
             {
                 this->targetData.specialFreeG0 = false;
                 this->needHolTimer = 0;
@@ -32,9 +32,10 @@ void MobileGroundUnit::goWay()
                 this->x = this->cell->x;
                 this->y = this->cell->y;
                 double saveSpeedTale = this->speedTale;
-                this->getDeltasXY(nc);
+                this->getDeltasXY(this->nextCell);
                 this->cell->groundUnit = nullptr;
-                this->cell = nc;
+                this->cell = this->nextCell;
+                this->nextCell = this->wayIndex ? this->way.getItem(this->wayIndex - 1) : nullptr;
                 this->cell->groundUnit = this;
                 this->isGetMyCell = false;
                 this->iAmHere();
@@ -56,6 +57,7 @@ void MobileGroundUnit::goWay()
                 if (this->targetData.nextCell)
                 {
                     this->checkNextMagistralCell();
+                   // console.log("here");
                 }
 
                 if (!this->wayIndex && this->targetData.nextCell)
@@ -77,17 +79,14 @@ void MobileGroundUnit::goWay()
             else if (isCrox)
             {
                 this->stendOnCellWait();
+    //                 if (this->persNum == 1) {
+    //     console.log("i have crox");
+    // }
             }
             else if (isNeedHold)
             {
 
-                // if (this->iNeedFreeWay && this->nextCell->groundUnit
-                //    && (!this->nextCell->groundUnit->isActive || this->nextCell->groundUnit->iNeedFreeWay)
-                // && this->nextCell->groundUnit->profession == ""
-                // )
-                // {
-                // this->stepToTheSide();
-                // }
+
 
                 if (this->iNeedFreeWay)
                 {
@@ -136,21 +135,16 @@ void MobileGroundUnit::goWay()
                 }
             } else {
 
-            // if (this->profession == "")
-            // {
-            // if (!this->freeSpetial) {
-            this->iNeedFreeWay = false;
 
-            // }
-            // this->freeSpetial = false;
+            this->iNeedFreeWay = false;
             this->nextCell = nullptr;
             this->flipCell = nullptr;
             this->stendOnCell();
-            // } else {
-            //     this->orderOnWay.go(this->profession);
-            //     this->stendOnCellWait();
-            //     this->iNeedFreeWay = false;
-            // }
+
+        //    if (this->persNum == 2) {
+              console.log("OFF in goWay");
+        //    }
+
             }
         }
     }

@@ -52,6 +52,8 @@ public:
     Cell *targetCell = nullptr;
     //Unit exploredUnit = Peon_peasant(nullptr);
 
+    int count = 0;
+
 };
 
 Array<ThData *> thDatas;

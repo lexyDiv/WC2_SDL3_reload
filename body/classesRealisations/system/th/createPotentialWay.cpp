@@ -51,15 +51,20 @@ void ThData::createPotentialWay(Unit *unit)
     //  }
 
     if ( //! unit->iNeedFreeWay &&
-         !(unit->blockedData.isBlocked && unit->blockedData.type == 'f') &&
-        !(utd.nextCell && unit->isLoopNextCellUnit)
+         !(unit->blockedData.isBlocked && unit->blockedData.type == 'f') //&&
+       // !(utd.nextCell && unit->isLoopNextCellUnit)
     )
     {
         unit->cell->aroundCells.forEach([this, unit, utd](Cell *cell)
                                         {
             Unit *gu = cell->groundUnit;
             if ( cell->plane != unit->cell->plane ||
-                (gu && gu != utd.unit && utd.clicckedCell != cell) //||
+                (
+                    (gu && gu != utd.unit) &&
+                    (utd.clicckedCell != cell) &&
+                    !(unit->profession == "w" && gu->name == "tree" && !gu->lesorub && gu->hp) &&
+                    gu->orderOnWay.isComplite
+                ) 
                 
 
           
@@ -70,12 +75,14 @@ void ThData::createPotentialWay(Unit *unit)
                 cell->thwd.getItemPtr(this->num)->explored = this->createCount;
                 cell->thwd.getItemPtr(this->num)->createCountData = this->createCount;
             } else {
-                //cell->thwd.getItemPtr(this->num)->createCountData = this->createCount;
+               // cell->thwd.getItemPtr(this->num)->createCountData = this->createCount;
                 this->exploreNewCellAndAddToOpenArr(unit, unit->cell, cell);
             }
         });
 
     }
+
+    this->openArr.push(this->min_F_cell);
 
     Array<Cell *> all;
 

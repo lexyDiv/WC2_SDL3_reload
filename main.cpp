@@ -24,6 +24,7 @@ void loadDrawFn()
 
 int main()
 {
+  // console.log("papa ", 1 == 1);
 
     Array<int> deltas;
 

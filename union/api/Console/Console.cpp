@@ -33,6 +33,80 @@ void Console::log(string str)
     this->mute.unlock();
 }
 
+void Console::log(int item)
+{
+    this->mute.lock();
+    this->preLog(to_string(item));
+    this->mute.unlock();
+}
+
+void Console::log(float item)
+{
+    this->mute.lock();
+    this->preLog(to_string(item));
+    this->mute.unlock();
+}
+
+void Console::log(double item)
+{
+    this->mute.lock();
+    this->preLog(to_string(item));
+    this->mute.unlock();
+}
+
+void Console::log(bool item)
+{
+
+    string res = item ? "true" : "false";
+
+    this->mute.lock();
+    this->preLog(res);
+    this->mute.unlock();
+}
+
+void Console::log(const char *value)
+{
+    string res = (string)value;
+   this->log(res);
+}
+
+void Console::log(string str, bool item)
+{
+    string b = item ? "true" : "false";
+    string res = str + b;
+    this->mute.lock();
+    this->preLog(res);
+    this->mute.unlock();
+}
+
+void Console::log(string str, int item)
+{
+    string res = str + to_string(item);
+
+    this->mute.lock();
+    this->preLog(res);
+    this->mute.unlock();
+
+}
+
+void Console::log(string str, float item)
+{
+        string res = str + to_string(item);
+
+    this->mute.lock();
+    this->preLog(res);
+    this->mute.unlock();
+}
+
+void Console::log(string str, double item)
+{
+        string res = str + to_string(item);
+
+    this->mute.lock();
+    this->preLog(res);
+    this->mute.unlock();
+}
+
 void Console::preLog(string str)
 {
         int l = this->strArr.length;

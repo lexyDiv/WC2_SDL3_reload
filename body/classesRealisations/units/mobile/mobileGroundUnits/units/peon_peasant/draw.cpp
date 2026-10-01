@@ -82,10 +82,10 @@ void Peon_peasant::draw()
     //         ctx.FillRect(this->targetData.clicckedCell->x + drawDeltaX, this->targetData.clicckedCell->y + drawDeltaY, this->cell->game->gf->cellSize, this->cell->game->gf->cellSize, "yellow", 100);
     //       }
 
-    // ctx.DrawText(this->x + drawDeltaX + 10,
-    //              this->y + drawDeltaY + 10,
-    //              14,
-    //              to_string(this->persNum));
+    ctx.DrawText(this->x + drawDeltaX + 10,
+                 this->y + drawDeltaY + 10,
+                 14,
+                 to_string(this->persNum));
 
     //      ctx.DrawText(this->x + drawDeltaX + 10,
     //              this->y + drawDeltaY + 25,

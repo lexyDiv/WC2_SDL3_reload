@@ -49,9 +49,9 @@ void ThData::potentialWayCreate(Unit *unit, Cell *finalCell)
             // }
         }
 
-        //  if (unit->focus)
+        //  if (unit->persNum == 1)
         //  {
-            //  console.log("iter = " + to_string(iter));
+        //      console.log("iter = " + to_string(iter));
         //  }
    // }
 

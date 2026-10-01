@@ -21,7 +21,7 @@ void Peon_peasant::activeProg()
   //   console.log("timer = " + to_string(this->needHolTimer));
   // }
 
-   // this->iNeedFreeWay = true;
+    
   
 
 
@@ -90,7 +90,7 @@ void Peon_peasant::activeProg()
     this->orderOnWayControl();
 
  
-   // this->iNeedFreeWay = true;
+
  
 
   }

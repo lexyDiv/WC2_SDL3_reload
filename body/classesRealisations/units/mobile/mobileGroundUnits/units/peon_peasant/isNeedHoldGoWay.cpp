@@ -37,37 +37,37 @@ bool Peon_peasant::isNeedHoldGoWay()
 
        int needHoldIndex = !this->iNeedFreeWay ? 5 : 5;
 
-      // if (this->needHolTimer >= this->wayIndex * needHoldIndex
-      // )
-      // {
-      //     this->needHolTimer = 0;
-      //     this->iNeedFreeWay = false;
-      //     console.log("No needHoldTimer");
-      //     return false;
-      // }
+      if (this->needHolTimer >= this->wayIndex * needHoldIndex
+      )
+      {
+          this->needHolTimer = 0;
+          this->iNeedFreeWay = false;
+          
+          return false;
+      }
 
 
 
-      // if (gu && ncgu->type == "life" && !ncgu->isActive //&& ncgu->profession == ""
-      // )
-      // {
-      //     this->targetData.forNeedFreeWayCount++;
-      //     if (this->targetData.forNeedFreeWayCount >= 3)
-      //     {
-      //         this->iNeedFreeWay = this->personalCaseDeep != 3 ? true : false; // <<<<<<<<<<<<< ON 1/3
-      //         this->targetData.forNeedFreeWayCount = 0;
-      //     }
-      // }
+      if (ncgu && ncgu->type == "life" && !ncgu->isActive //&& ncgu->profession == ""
+      )
+      {
+          this->targetData.forNeedFreeWayCount++;
+          if (this->targetData.forNeedFreeWayCount >= 3)
+          {
+              this->iNeedFreeWay = this->personalCaseDeep != 3 ? true : false; // <<<<<<<<<<<<< ON 1/3
+              this->targetData.forNeedFreeWayCount = 0;
+          }
+      }
 
-      // if (this->iNeedFreeWay &&
-      //     gu &&
-      //     ncgu->type == "life" &&
-      //     !ncgu->inFight
-      //     // && !ncgu->iNeedFreeWay
-      //     && !this->isLoopNextCellUnit)
-      // {
-      //     return true;
-      // }
+    //   if (this->iNeedFreeWay &&   // => down
+    //      // ncgu &&
+    //       ncgu->type == "life" &&
+    //       !ncgu->inFight
+    //       // && !ncgu->iNeedFreeWay
+    //       && !this->isLoopNextCellUnit)
+    //   {
+    //       return true;
+    //   }
 
        // if (
        //     gu &&
@@ -85,9 +85,9 @@ bool Peon_peasant::isNeedHoldGoWay()
        //     return true;
        // }
 
-         bool isMyFrontalCollision = ncgu->nextCell && 
-         ncgu->nextCell->groundUnit && 
-         ncgu->nextCell->groundUnit->persNum == this->persNum;
+        //  bool isMyFrontalCollision = ncgu->nextCell && 
+        //  ncgu->nextCell->groundUnit && 
+        //  ncgu->nextCell->groundUnit->persNum == this->persNum;
 
         //  bool isNcguFrontalCollision = ncgu->ncgu->nextCell && 
         //  ncgu->nextCell->groundUnit && 
@@ -122,7 +122,8 @@ bool Peon_peasant::isNeedHoldGoWay()
           &&
           (
            !ncgu->isPotentialWayComplite ||
-           (ncgu->way.length && (td.nextCell || !ncgu->needHolTimer || this->wayTakts > 5))
+           (ncgu->way.length && (td.nextCell || !ncgu->needHolTimer || this->wayTakts > 5)) ||
+           (this->iNeedFreeWay && ncgu->type == "life" && !ncgu->isActive)
           )
         
         ) 

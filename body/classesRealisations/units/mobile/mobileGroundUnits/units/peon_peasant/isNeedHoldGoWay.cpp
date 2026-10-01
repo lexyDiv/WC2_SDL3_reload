@@ -27,9 +27,9 @@ bool Peon_peasant::isNeedHoldGoWay()
 
     if (ncgu) {
 
-        console.log("------------------------------------------");
-        console.log("count th = ", this->thd->count);
-        console.log(this->persNum); // =>2
+      //  console.log("------------------------------------------");
+       // console.log("count th = ", this->thd->count);
+       // console.log(this->persNum); // =>2
 
             TargetData &td = this->targetData;
 
@@ -94,15 +94,21 @@ bool Peon_peasant::isNeedHoldGoWay()
         //  ncgu->nextCell->groundUnit->persNum == this->persNum;
         // bool isNcguFrontalCollision = ncgu->nextCell->groundUnit->persNum == this->persNum;
 
-       //if (this->persNum == 1) {
-          console.log("ncgu->isActive = ", ncgu->isActive);
-          console.log("this->wayIndex > 5 = ", this->wayIndex > 5);
-          console.log("this->isLoopNextCellUnit = ", this->isLoopNextCellUnit);
-          console.log("ncgu->orderOnWay.isComplite = ", ncgu->orderOnWay.isComplite);
-         // console.log("isFrontalCollision = ", isMyFrontalCollision);
-      // }
 
-      
+        //   console.log("ncgu->isActive = ", ncgu->isActive);
+        //   console.log("this->wayIndex > 5 = ", this->wayIndex > 5);
+        //   console.log("this->isLoopNextCellUnit = ", this->isLoopNextCellUnit);
+        //   console.log("ncgu->orderOnWay.isComplite = ", ncgu->orderOnWay.isComplite);
+         // console.log("isFrontalCollision = ", isMyFrontalCollision);
+
+
+    //   if (thd->count == 212 && this->persNum == 2) {
+    //       console.log("persNum = ", this->persNum);
+    //       console.log("ncgu->isActive = ", ncgu->isActive);
+    //       console.log("this->wayIndex > 5 = ", this->wayIndex > 5);
+    //       console.log("this->isLoopNextCellUnit = ", this->isLoopNextCellUnit);
+    //       console.log("ncgu->orderOnWay.isComplite = ", ncgu->orderOnWay.isComplite);
+    //   }
 
 
 
@@ -121,12 +127,16 @@ bool Peon_peasant::isNeedHoldGoWay()
         
         ) 
          {
-            console.log("hold");
+        //    if (thd->count == 212 && this->persNum == 2) {
+        //     console.log("hold");
+        //    }
            return true;
          }
 
        // if (this->persNum == 1) {
-        console.log("no hold");
+    //    if (thd->count == 212 && this->persNum == 2) {
+    //     console.log("no hold");
+    //    }
         // }
 
     }

@@ -49,6 +49,7 @@ void Peon_peasant::orderOnWayControl()
             if ((!this->targetData.unit && this->orderOnWay.cell != this->targetData.clicckedCell) ||
                 (this->targetData.unit && this->orderOnWay.cell->groundUnit != this->targetData.unit)) {
                 this->targetData.clear();
+                
             }
 
 
@@ -183,6 +184,7 @@ void Peon_peasant::orderOnWayControl()
             }
             else
             {
+                
                 //               if (this->focus)
                 // {
                 //     console.log("order else before: prof = " + this->profession + " d = " + to_string(this->personalCaseDeep));
@@ -347,6 +349,7 @@ void Peon_peasant::orderOnWayControl()
         if (this->targetData.clicckedCell && (!this->blockedData.isBlocked //! this->isBlocked
                                               || this->iNeedFreeWay))
         {
+            
             this->getCurrentTarget();
         }
         // this->personalCaseDeep = this->orderOnWay.pcd;

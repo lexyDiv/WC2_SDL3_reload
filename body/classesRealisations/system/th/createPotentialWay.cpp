@@ -3,9 +3,6 @@
 
 void ThData::createPotentialWay(Unit *unit)
 {
-
-
-
     TargetData &utd = unit->targetData;
 
     if (utd.unit && utd.unit->type == "building" &&
@@ -37,6 +34,7 @@ void ThData::createPotentialWay(Unit *unit)
         console.log("default");
     }
     td_way_data->createCountData = this->createCount;
+    td_way_data->explored = this->createCount;
     this->openArr.clear();
     this->min_F_cell = unit->cell;
     this->min_F_cell->thwd.getItemPtr(this->num)->F = 0;
@@ -58,7 +56,9 @@ void ThData::createPotentialWay(Unit *unit)
         unit->cell->aroundCells.forEach([this, unit, utd](Cell *cell)
                                         {
             Unit *gu = cell->groundUnit;
-            if ( cell->plane != unit->cell->plane ||
+            if ( 
+
+                cell->plane != unit->cell->plane ||
                 (
                     (gu && gu != utd.unit) &&
                     (utd.clicckedCell != cell) &&
@@ -66,11 +66,6 @@ void ThData::createPotentialWay(Unit *unit)
                     gu->orderOnWay.isComplite
                 ) 
                 
-
-          
-                // (gu && gu != utd.unit) &&
-                // (cell->plane != unit->cell->plane) &&
-                // (gu && gu != utd.unit)
             ) {
                 cell->thwd.getItemPtr(this->num)->explored = this->createCount;
                 cell->thwd.getItemPtr(this->num)->createCountData = this->createCount;
@@ -81,8 +76,6 @@ void ThData::createPotentialWay(Unit *unit)
         });
 
     }
-
-    this->openArr.push(this->min_F_cell);
 
     Array<Cell *> all;
 

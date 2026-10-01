@@ -79,9 +79,7 @@ void MobileGroundUnit::goWay()
             else if (isCrox)
             {
                 this->stendOnCellWait();
-    //                 if (this->persNum == 1) {
-    //     console.log("i have crox");
-    // }
+
             }
             else if (isNeedHold)
             {
@@ -104,6 +102,8 @@ void MobileGroundUnit::goWay()
             }
             else
             {
+
+
                 this->stendOnCell();
                 if (this->orderOnWay.isComplite)
                 {
@@ -142,7 +142,7 @@ void MobileGroundUnit::goWay()
             this->stendOnCell();
 
         //    if (this->persNum == 2) {
-              console.log("OFF in goWay");
+              //console.log("OFF in goWay");
         //    }
 
             }

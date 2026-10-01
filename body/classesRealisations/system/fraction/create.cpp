@@ -21,18 +21,18 @@ if (this->color == "red") {
 
     Unit *peon = new Peon_peasant(this);
     peon->persNum = 2;
-    peon->create(game->gf->field.getItem(10).getItem(3));
+    peon->create(game->gf->field.getItem(10).getItem(5));
     this->game->allLifeUnitsPtr.push(peon);
     this->AllLifeUnits.push(peon);
 
-    peon->orderOnWay.cell = this->game->gf->field.getItem(10).getItem(8);
+    peon->orderOnWay.cell = this->game->gf->field.getItem(10).getItem(18);
     peon->orderOnWay.isComplite = false;
     peon->isActive = true;
 
    Unit *peon2 = new Peon_peasant(this);
    peon2->persNum = 1;
    peon2->fraction = this;
-   peon2->create(game->gf->field.getItem(10).getItem(7)); // 8 // 7
+   peon2->create(game->gf->field.getItem(10).getItem(9)); // 8 // 7 => magistral 17 ok 18 ok 19 ok
     this->game->allLifeUnitsPtr.push(peon2);
      this->AllLifeUnits.push(peon2);
 

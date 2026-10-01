@@ -4,10 +4,10 @@
 void MobileGroundUnit::stepToTheSide()
 {
 
-    // if (this->focus)
-    // {
-    //     console.log("--------------------------------------------------------------------");
-    // }
+    if (this->focus)
+    {
+        console.log("--------------------------------------------------------------------");
+    }
 
     // if (
     //    // !this->isBlocked

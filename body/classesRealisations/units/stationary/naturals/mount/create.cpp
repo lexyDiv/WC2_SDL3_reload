@@ -23,6 +23,6 @@ void Mount::create(Cell *cell)
     this->gf = cell->gf;
 
     this->name = "mount";
-    this->type = "building";
+    this->type = "land";
     this->mapColor = {R : 127, G : 0, B : 255};
 }

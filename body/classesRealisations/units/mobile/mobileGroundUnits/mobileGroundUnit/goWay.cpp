@@ -7,7 +7,7 @@ void MobileGroundUnit::goWay()
     {
 
         //  if (this->focus) {
-        //     console.log("");
+        //     console.log("goWay");
         //   }
 
        // this->blockedData = this->blockedCheck(this); // this->isBlocked = this->isBlockedd(this);
@@ -84,11 +84,13 @@ void MobileGroundUnit::goWay()
             else if (isNeedHold)
             {
 
-
+        //  if (this->focus) {
+        //     console.log("hold");
+        //   }
 
                 if (this->iNeedFreeWay)
                 {
-                   // this->stepToTheSide();
+                    this->stepToTheSide();
                 }
 
                 this->needHolTimer++;

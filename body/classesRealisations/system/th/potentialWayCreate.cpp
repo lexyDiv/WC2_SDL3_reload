@@ -56,10 +56,10 @@ void ThData::potentialWayCreate(Unit *unit, Cell *finalCell)
    // }
 
 
-            if (unit->focus)
-            {
-                console.log("create = ", unit->way.length);
-            }
+            // if (unit->focus)
+            // {
+            //     console.log("create = ", iter);
+            // }
 
 
 

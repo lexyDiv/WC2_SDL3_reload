@@ -4,6 +4,10 @@
 void Peon_peasant::activeProg()
 {
 
+  // if (this->focus) {
+  //   console.log("active");
+  // }
+
   if (!this->isActiveCheck() || this->holdTimerControl()
 
   )
@@ -11,9 +15,14 @@ void Peon_peasant::activeProg()
     return;
   }
 
+
+
   // if (this->focus) {
   //   console.log("timer = " + to_string(this->needHolTimer));
   // }
+
+    
+  
 
 
   if (this->frashWayCheckNeed)
@@ -72,10 +81,17 @@ void Peon_peasant::activeProg()
   }
   else
   {
+     this->blockedData = this->blockedCheck(this);
+   
 
-    this->goWay();
+       this->goWay();
+ 
 
     this->orderOnWayControl();
+
+ 
+
+ 
 
   }
 }

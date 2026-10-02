@@ -14,8 +14,9 @@ public:
     int dopStartIndex = 0;
     int dopFinishIndex = 0;
     int hold = 0;
-    int deep = 10000;
+    int deep = 30000;
     int lowDeep = 40;
+    bool isMagistral = false;
 
     int iter = 0;
 
@@ -47,6 +48,12 @@ public:
 
     int get_G(Cell *fatherCell, Cell *potentialCell);
     int get_H(Cell *potentialCell, Cell *finishCell);
+
+    Cell *targetCell = nullptr;
+    //Unit exploredUnit = Peon_peasant(nullptr);
+
+    int count = 0;
+
 };
 
 Array<ThData *> thDatas;

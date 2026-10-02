@@ -62,7 +62,7 @@ Array<Unit *> onHard;
                 randUnit->profession != "" &&
                  !randUnit->inSave)
             {
-                randUnit->orderOnWay.go(randUnit->profession);
+                randUnit->orderOnWay.go(randUnit->profession, 0, true);
                 randUnit->isActive = true;
                // console.log("hard go");
             }

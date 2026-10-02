@@ -3,15 +3,27 @@
 
 void ThData::createPotentialWay(Unit *unit)
 {
+    TargetData &utd = unit->targetData;
+
+    if (utd.unit && utd.unit->type == "building" &&
+        !unit->isIexplored && !utd.nextCell)
+    {
+        unit->iNeedFreeWay = utd.unit->isBlockedBuilding(unit, this);
+        // utd.saveTargetIsBlocked = unit->iNeedFreeWay;
+    }
 
     unit->way.clear();
     int currentDeep = unit->personalCaseDeep ? unit->personalCaseDeep : this->deep;
-    // if (unit->iNeedFreeWay) {
-    //     currentDeep = 100;
-    // }
+    this->targetCell = utd.nextCell ? utd.nextCell : utd.clicckedCell;
+
+    if (utd.nextCell)
+    {
+        currentDeep = 7;
+    }
+
     this->iter = 0;
 
-    bool tryChecked = false;
+    // bool tryChecked = false;
 
     Td_way_data *td_way_data = unit->cell->thwd.length ? unit->cell->thwd.getItemPtr(this->num) : nullptr;
 
@@ -22,6 +34,7 @@ void ThData::createPotentialWay(Unit *unit)
         console.log("default");
     }
     td_way_data->createCountData = this->createCount;
+    td_way_data->explored = this->createCount;
     this->openArr.clear();
     this->min_F_cell = unit->cell;
     this->min_F_cell->thwd.getItemPtr(this->num)->F = 0;
@@ -31,21 +44,45 @@ void ThData::createPotentialWay(Unit *unit)
 
     ///////////////////////////  poka tak!
 
-    if (!unit->iNeedFreeWay)
+    //  if (unit->focus) {
+    //     console.log("loop = " + to_string(unit->isLoopNextCellUnit));
+    //  }
+
+    if ( //! unit->iNeedFreeWay &&
+         !(unit->blockedData.isBlocked && unit->blockedData.type == 'f') //&&
+       // !(utd.nextCell && unit->isLoopNextCellUnit)
+    )
     {
-        unit->cell->aroundCells.forEach([this, unit](Cell *cell)
+        unit->cell->aroundCells.forEach([this, unit, utd](Cell *cell)
                                         {
             Unit *gu = cell->groundUnit;
-            if (gu
+            if ( 
+
+                cell->plane != unit->cell->plane ||
+                (
+                    (gu && gu != utd.unit) &&
+                    (utd.clicckedCell != cell) &&
+                    !(unit->profession == "w" && gu->name == "tree" && !gu->lesorub && gu->hp) &&
+                    gu->orderOnWay.isComplite
+                ) 
                 
-            && gu != unit->targetData.unit //unit->targetCell->groundUnit
             ) {
                 cell->thwd.getItemPtr(this->num)->explored = this->createCount;
-            } });
+                cell->thwd.getItemPtr(this->num)->createCountData = this->createCount;
+            } else {
+               // cell->thwd.getItemPtr(this->num)->createCountData = this->createCount;
+                this->exploreNewCellAndAddToOpenArr(unit, unit->cell, cell);
+            }
+        });
+
     }
+
+    Array<Cell *> all;
 
     while (true)
     {
+
+
 
         this->iter++;
 
@@ -91,46 +128,57 @@ void ThData::createPotentialWay(Unit *unit)
             }
             else
             {
-                
+
+                // if (iter == 30000 && unit->targetData.unit) {
+                //     console.log("================================================================");
+                //     //console.log("MAX = " + unit->targetData.unit->name + " free " + to_string(unit->iNeedFreeWay) + " nextC = " + to_string((bool)utd.nextCell));
+                //     console.log("NAME = " + unit->targetData.unit->name);
+                //     console.log("wayIndex = " + to_string(unit->wayIndex));
+                //     console.log("wayTakts = " + to_string(unit->wayTakts));
+                //     console.log("iNeedFreeWay = " + to_string(unit->iNeedFreeWay));
+                //     console.log("isBlocked = " + to_string(unit->blockedData.isBlocked));
+                //     console.log("utd.nextCell = " + to_string((bool)utd.nextCell));
+                //     console.log("unitIsLoopNextCellUnit = " + to_string(unit->isLoopNextCellUnit));
+
+                //     unit->targetData.unit->deepMetka = true;
+                // } else if (iter == 30000) {
+                //     console.log("MAX no target unit");
+                // }
+
                 this->potentialWayCreate(unit, this->globalMin_H_cell);
 
-              // console.log("open.length = " + to_string(openArr.length) + " iter = " + to_string(iter));
-               
+                // console.log("open.length = " + to_string(openArr.length) + " iter = " + to_string(iter));
 
-                if (iter < 30 && unit->personalCaseDeep != 3 && currentDeep != this->lowDeep)
+                if ( // iter < 30 &&
+                    (currentDeep != 7
+                     //|| (utd.nextCell && iter < 5)
+                     ) &&
+                    unit->personalCaseDeep != 3 && (currentDeep != this->lowDeep || iter < this->lowDeep)
+                )
                 {
                     unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON 3/3
                     unit->frashWayCheckNeed = true;
+                    // if (unit->focus) {
+                    //     console.log("way ON");
+                    // }
+                }
+                else if (currentDeep == 7)
+                {
+                    utd.magistrlLoop++;
                 }
 
-                // console.log("MAXIMUM !!! = " + to_string(this->iter));
-                // bool nextUnitIsNoActive = false;
-                // for (int i = unit->way.length - 1; i >= 0; i--) {
-                //      Cell *c = unit->way.getItem(i);
-                //      if (c->groundUnit) {
-                //         if (c->groundUnit->type == "life" && !c->groundUnit->isActive) {
-                //             nextUnitIsNoActive = true;
-                //         }
-                //         break;
-                //      }
-                // }
-
-                // if (unit->personalCaseDeep != 3
-                //     && unit->way.length && unit->way.getItem(unit->wayIndex - 1)->groundUnit
-                //     && !unit->way.getItem(unit->wayIndex - 1)->groundUnit->isActive
-                // )
-                // {
-                //      unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON
-                //      unit->frashWayCheckNeed = true;
-                //      console.log("here");
-                // }
+                if (currentDeep == 3)
+                {
+                    utd.clicckedCell = this->globalMin_H_cell;
+                }
             }
             return;
         }
 
         ///////////////////////////////////////////////////////
 
-        if (unit->isOnGetPotentialWayGetTarget(this->min_F_cell))
+        if (unit->isOnGetPotentialWayGetTarget(this->min_F_cell) || 
+        (currentDeep == 7 && this->min_F_cell == this->targetCell))
         {
             this->potentialWayCreate(unit, this->min_F_cell);
             unit->isPotentialWayComplite = true;

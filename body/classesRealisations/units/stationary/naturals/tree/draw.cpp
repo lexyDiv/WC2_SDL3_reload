@@ -32,6 +32,8 @@ void Tree::draw() {
     }
 
   }
+
+
   // ProtoObj *cell = this->myCells.getItem(0);
   // ctx.StrokeRect(cell->x + drawDeltaX, cell->y + drawDeltaY, cell->gabX, cell->gabY);
 }

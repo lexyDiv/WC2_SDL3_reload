@@ -38,35 +38,35 @@ void Peon_peasant::draw()
         100,
         100);
 
-    if (this->focus && this->cell)
-    {
+    // if (this->focus && this->cell)
+    // {
 
-      this->way.forEach([&drawDeltaX, &drawDeltaY](Cell *c, int i)
-                        {
-                          ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, c->game->gf->cellSize, c->game->gf->cellSize, "violet", 100);
-                          // ctx.StrokeRect(c->x + drawDeltaX, c->y + drawDeltaY, c->game->gf->cellSize, c->game->gf->cellSize, "black", 100);
-                          // ctx.DrawText(c->x + drawDeltaX, c->y + drawDeltaY, 20, to_string(i));
-                        });
-      Cell *fc = this->freeCell;
-     // Unit *tu = this->targetUnit;
+    //   this->way.forEach([&drawDeltaX, &drawDeltaY](Cell *c, int i)
+    //                     {
+    //                       ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, c->game->gf->cellSize, c->game->gf->cellSize, "violet", 100);
+    //                       // ctx.StrokeRect(c->x + drawDeltaX, c->y + drawDeltaY, c->game->gf->cellSize, c->game->gf->cellSize, "black", 100);
+    //                       // ctx.DrawText(c->x + drawDeltaX, c->y + drawDeltaY, 20, to_string(i));
+    //                     });
+    //   Cell *fc = this->freeCell;
+    //  // Unit *tu = this->targetUnit;
 
-      if (fc)
-      {
-        ctx.FillRect(fc->x + drawDeltaX, fc->y + drawDeltaY, this->cell->game->gf->cellSize, this->cell->game->gf->cellSize, "green");
-      }
+    //   if (fc)
+    //   {
+    //     ctx.FillRect(fc->x + drawDeltaX, fc->y + drawDeltaY, this->cell->game->gf->cellSize, this->cell->game->gf->cellSize, "green");
+    //   }
 
-      //       if (this->valU)
-      // {
-      //   ctx.FillRect(this->valU->x + drawDeltaX, this->valU->y + drawDeltaY, this->cell->game->gf->cellSize, this->cell->game->gf->cellSize, "black", 150);
-      // }
+    //   //       if (this->valU)
+    //   // {
+    //   //   ctx.FillRect(this->valU->x + drawDeltaX, this->valU->y + drawDeltaY, this->cell->game->gf->cellSize, this->cell->game->gf->cellSize, "black", 150);
+    //   // }
 
-      //             if (this->nextCell && this->nextCell->groundUnit)
-      // {
-      //   ctx.StrokeRect(this->nextCell->groundUnit->x + drawDeltaX, this->nextCell->groundUnit->y + drawDeltaY, this->cell->game->gf->cellSize, this->cell->game->gf->cellSize, "blue");
-      // }
+    //   //             if (this->nextCell && this->nextCell->groundUnit)
+    //   // {
+    //   //   ctx.StrokeRect(this->nextCell->groundUnit->x + drawDeltaX, this->nextCell->groundUnit->y + drawDeltaY, this->cell->game->gf->cellSize, this->cell->game->gf->cellSize, "blue");
+    //   // }
 
 
-    }
+    // }
 
     if (this->iNeedFreeWay) {
       ctx.DrawText(this->x + drawDeltaX + 10, this->y + drawDeltaY + 10, 25, "F");

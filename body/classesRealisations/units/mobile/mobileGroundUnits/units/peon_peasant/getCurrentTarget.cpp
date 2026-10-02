@@ -12,7 +12,7 @@ void Peon_peasant::getCurrentTarget()
         this->personalCaseDeep = 0;
     }
 
-    if (this->game->unitsOnWay.length >= 15 &&
+    if (this->game->unitsOnWay.length >= 20 &&
         !this->iNeedFreeWay && 
         (!this->personalCaseDeep || this->personalCaseDeep > this->thd->lowDeep)) {
         this->personalCaseDeep = this->thd->lowDeep;
@@ -28,9 +28,6 @@ void Peon_peasant::getCurrentTarget()
 
     if (this->iNeedFreeWay)
     {
-
-        
-        
         if (tdu)
         {
 
@@ -64,8 +61,9 @@ void Peon_peasant::getCurrentTarget()
                     if (
                         c->plane == tc->plane &&
                         (!gu ||
-                         (gu->type == "life" && !gu->inFight && !gu->iNeedFreeWay &&
-                        (!gu->isActive || !gu->needHolTimer || !gu->isPotentialWayComplite)) ||
+                         (gu->type == "life" && !gu->inFight// && !gu->iNeedFreeWay &&
+                       // (!gu->isActive || !gu->needHolTimer || !gu->isPotentialWayComplite)
+                    ) ||
                          (gu->name == "tree" && !gu->lesorub)))
                     {
 
@@ -96,8 +94,9 @@ void Peon_peasant::getCurrentTarget()
                     if (
                         c->plane == tc->plane &&
                         (!gu ||
-                         (gu->type == "life" && !gu->inFight && !gu->iNeedFreeWay &&
-                        (!gu->isActive || !gu->needHolTimer || !gu->isPotentialWayComplite)) ||
+                         (gu->type == "life" && !gu->inFight //&& !gu->iNeedFreeWay &&
+                        //(!gu->isActive || !gu->needHolTimer || !gu->isPotentialWayComplite)
+                    ) ||
                          gu == this->targetData.unit))
                     {
                         return true;
@@ -128,8 +127,9 @@ void Peon_peasant::getCurrentTarget()
                     c->plane == tc->plane &&
                     (!gu ||
                      c == this->targetData.clicckedCell ||
-                     (gu->type == "life" && !gu->inFight && !gu->iNeedFreeWay &&
-                        (!gu->isActive || !gu->needHolTimer || !gu->isPotentialWayComplite))
+                     (gu->type == "life" && !gu->inFight //&& !gu->iNeedFreeWay &&
+                       // (!gu->isActive || !gu->needHolTimer || !gu->isPotentialWayComplite)
+                    )
                      ))
                 {
                     return true;
@@ -171,15 +171,21 @@ void Peon_peasant::getCurrentTarget()
 
                     Cell *tc = this->cell;
 
-                    if (gu && gu->needHolTimer)
-                    {
-                        return false;
-                    }
+                    // if (gu 
+                    //    // && gu->needHolTimer
+                    //      && (gu->wood || gu->gold) && iter < 300)
+                    // {
+                    //     return false;
+                    // }
 
                     if (tc &&
                         c->plane == tc->plane &&
                         (!gu ||
-                         (gu->type == "life" && (iter >= 30)) ||
+                         (gu->type == "life" && !gu->inFight && (this->iNeedFreeWay || iter >= 30 //|| 
+                           // (this->targetData.nextCell && iter > 4)
+                        )
+                            // !gu->isActive && this->iNeedFreeWay
+                            ) ||
                          gu->way.length ||
                          !gu->isPotentialWayComplite ||
                          (gu->name == "tree" && !gu->lesorub)))
@@ -209,14 +215,21 @@ void Peon_peasant::getCurrentTarget()
                     Unit *gu = c->groundUnit;
                     Cell *tc = this->cell;
 
-                    if (gu && gu->needHolTimer)
-                    {
-                        return false;
-                    }
+                    // if (gu &&
+                    //    // && gu->needHolTimer
+                    //    !(gu->wood || gu->gold) && iter < 300
+                    // )
+                    // {
+                    //     return false;
+                    // }
                     if (
                         c->plane == tc->plane &&
                         (!gu ||
-                         (gu->type == "life" && (iter >= 30)) ||
+                         (gu->type == "life" && !gu->inFight && (this->iNeedFreeWay || iter >= 30 //|| 
+                           //(this->targetData.nextCell && iter > 4)
+                        )
+                            // !gu->isActive && this->iNeedFreeWay
+                            ) ||
                          gu->wayIndex ||
                          gu == this->targetData.unit))
                     {
@@ -243,14 +256,21 @@ void Peon_peasant::getCurrentTarget()
             {
                 Unit *gu = c->groundUnit;
                 Cell *tc = this->cell;
-                if (gu && gu->needHolTimer)
+                if (gu &&
+                    //(gu->wood || gu->gold) && iter < 2000
+                     gu->needHolTimer
+                    )
                 {
                     return false;
                 }
                 if (
                     c->plane == tc->plane &&
                     (!gu || c == this->targetData.clicckedCell ||
-                     (gu->type == "life" && (iter >= 30)) ||
+                     (gu->type == "life" && !gu->inFight && (this->iNeedFreeWay || iter >= 30 //|| 
+                        //(this->targetData.nextCell && iter > 4)
+                    )
+                       // !gu->isActive && this->iNeedFreeWay
+                    ) ||
                      gu->wayIndex))
                 {
                     return true;

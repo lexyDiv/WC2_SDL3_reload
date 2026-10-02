@@ -23,7 +23,8 @@ void Cell::draw()
   //  if (this->cellImage)
   //  {
            if (this->litera != 'w') {
-                  ctx.DrawImage(this->cellImage,
+              if (this->cellImage) {
+                                  ctx.DrawImage(this->cellImage,
                     this->animX,
                     this->animY,
                     this->animGabX,
@@ -32,6 +33,7 @@ void Cell::draw()
                     this->y + drawDeltaY - 35,
                     this->drawGabaritX, this->drawGabaritY);
 
+              }
                     // if (this->thwd.getItemPtr(0)->dopWayIndex >= 0) {
                     //   ctx.StrokeRect(this->x + drawDeltaX, this->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "black");
                     //   ctx.DrawText(this->x + drawDeltaX, this->y + drawDeltaY, 20, to_string(this->thwd.getItemPtr(0)->dopWayIndex));

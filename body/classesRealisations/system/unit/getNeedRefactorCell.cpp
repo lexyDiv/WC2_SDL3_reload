@@ -1,5 +1,5 @@
 #include "getWellComeCells.cpp"
-//=>out
+//=>isBlockedBuilding
 
 void Unit::getRefactorCell()
 {

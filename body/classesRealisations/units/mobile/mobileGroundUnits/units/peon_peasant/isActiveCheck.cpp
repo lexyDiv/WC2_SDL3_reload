@@ -18,14 +18,18 @@ bool Peon_peasant::isActiveCheck()
          this->way.length                 // 0
          || this->iNeedFreeWay
         // || this->targetData.clicckedCell
-         //||
-        // this->profession != ""
+        // || this->profession != ""
         ))
     {
         this->isActive = true;
         return true;
     }
     this->isActive = false;
-    this->targetData.clear();
+    if (!this->isTargetObjValide() || !this->targetData.unit) {
+        this->targetData.clear();
+        // if (this->focus) {
+        //     console.log("clear in activeCheck");
+        // }
+    }
     return false;
 };

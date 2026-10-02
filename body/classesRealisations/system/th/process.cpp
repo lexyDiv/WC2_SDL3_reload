@@ -6,6 +6,10 @@ void ThData::process()
     this->isBasicActiveProgComplite = false;
     if (this->game->isGFComplite)
     {
+
+         this->count = this->count < 10000 ? this->count + 1 : 0;
+
+
         this->dopUnits.clear();
         this->game->fractions.forEach([this](Fraction *fr)
                                       { fr->AllLifeUnits.forEach([this](Unit *unit)

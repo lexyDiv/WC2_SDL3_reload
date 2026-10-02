@@ -26,6 +26,10 @@ public:
 
     mutex potentialClientsMT;
     mutex mt;
+
+    ///////////////////////// => debug
+    
+    ///////////////////////// <= debug
 };
 
 // void TownHall::draw() {};

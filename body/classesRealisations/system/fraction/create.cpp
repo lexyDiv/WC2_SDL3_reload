@@ -19,26 +19,26 @@ if (this->color == "red") {
    this->game = game;
 
 
-//     Unit *peon = new Peon_peasant(this);
-//     peon->persNum = 2;
-//     peon->create(game->gf->field.getItem(10).getItem(3));
-//     this->game->allLifeUnitsPtr.push(peon);
-//     this->AllLifeUnits.push(peon);
+  //   Unit *peon = new Peon_peasant(this);
+  //   peon->persNum = 2;
+  //   peon->create(game->gf->field.getItem(10).getItem(9));
+  //   this->game->allLifeUnitsPtr.push(peon);
+  //   this->AllLifeUnits.push(peon);
 
-//     peon->orderOnWay.cell = this->game->gf->field.getItem(10).getItem(13);
-//     peon->orderOnWay.isComplite = false;
-//     peon->isActive = true;
+  //   peon->orderOnWay.cell = this->game->gf->field.getItem(10).getItem(18);
+  //   peon->orderOnWay.isComplite = false;
+  //   peon->isActive = true;
 
-//    Unit *peon2 = new Peon_peasant(this);
-//    peon2->persNum = 1;
-//    peon2->fraction = this;
-//    peon2->create(game->gf->field.getItem(10).getItem(12));
-//     this->game->allLifeUnitsPtr.push(peon2);
-//      this->AllLifeUnits.push(peon2);
+  //  Unit *peon2 = new Peon_peasant(this);
+  //  peon2->persNum = 1;
+  //  peon2->fraction = this;
+  //  peon2->create(game->gf->field.getItem(10).getItem(19)); // 8 // 7 => magistral 17 ok 18 ok 19 ok
+  //   this->game->allLifeUnitsPtr.push(peon2);
+  //    this->AllLifeUnits.push(peon2);
 
-//     peon2->orderOnWay.cell = this->game->gf->field.getItem(10).getItem(0);
-//     peon2->orderOnWay.isComplite = false;
-//     peon2->isActive = true;
+  //   peon2->orderOnWay.cell = this->game->gf->field.getItem(10).getItem(3);
+  //   peon2->orderOnWay.isComplite = false;
+  //   peon2->isActive = true;
 
 
    ////////////////// townHall

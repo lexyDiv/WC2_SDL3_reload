@@ -9,23 +9,21 @@ Unit * Peon_peasant::getBaseForUnloading() {
                                                 { mix.push(th); });
     if (mix.length)
     {
-        // mix.filterSelf([this](Unit * base){
-        //     return base->isBlockedd(this);
-        // });
-        // MinData md = mix.getMinDataU([this](Unit *item)
-        //                             {
-        //                                                 PointF pointThis = {x : this->cell->x, y : this->cell->y};
-        //                                                 PointF pointLM = {x : item->cell->x, y : item->cell->y};
-        //                                                 Delta delta = getDeltas(&pointThis, &pointLM);
-        //                                                 double dis = getDis(&delta);
-        //                                                 return dis; });
 
-        int rand = intRand(0, mix.length);
-        Unit *rBase = mix.getItem(rand);
+        MinData md = mix.getMinDataU([this](Unit *item)
+                                    {
+                                                        PointF pointThis = {x : this->cell->x, y : this->cell->y};
+                                                        PointF pointLM = {x : item->cell->x, y : item->cell->y};
+                                                        Delta delta = getDeltas(&pointThis, &pointLM);
+                                                        double dis = getDis(&delta);
+                                                        return dis; });
+
+        // int rand = intRand(0, mix.length);
+       //  Unit *rBase = mix.getItem(rand);
 
         Unit *minDisBase = 
-        rBase;
-        // md.unit;
+       // rBase;
+         md.unit;
         return minDisBase;
     }
     return nullptr;

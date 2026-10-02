@@ -23,6 +23,17 @@ public:
     Console(int length);
     void clear();
     void log(string str);
+    void log(int item);
+    void log(float item);
+    void log(double item);
+    void log(bool item);
+    void log(const char* value);
+    void log(string str, bool item);
+    void log(string str, int item);
+    void log(string str, float item);
+    void log(string str, double item);
+
+
     void preLog(string str);
     void proc(float mX, float mY, bool pressed);
     void draw();

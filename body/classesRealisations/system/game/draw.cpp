@@ -64,7 +64,31 @@ ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "green");
        Unit *u = this->gf->focusUnit;                         
   if (u && u->cell) {
     // console.log(to_string(u->needHolTimer));
-     ctx.FillRect(u->x + drawDeltaX, u->y + drawDeltaY, u->cell->gabX, u->cell->gabY, "blue", 100);
+     ctx.StrokeRect(u->x + drawDeltaX, u->y + drawDeltaY, u->cell->gabX, u->cell->gabY, "blue");
+
+    u->way.forEach([this, &drawDeltaX, &drawDeltaY](Cell *c){
+    ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, c->gabX, c->gabY, "violet", 100);
+    });
+
+        u->targetData.magistral.forEach([this, &drawDeltaX, &drawDeltaY](Cell *c, int i){
+    ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, c->gabX, c->gabY, "black", 100);
+    ctx.DrawText(c->x +drawDeltaX + 5, c->y + drawDeltaY + 5, 10, to_string(i));
+    });
+
+    TargetData &td = u->targetData;
+
+    if (td.prevCell) {
+       ctx.FillRect(td.prevCell->x + drawDeltaX, td.prevCell->y + drawDeltaY, td.prevCell->gabX, td.prevCell->gabY, "red");
+    }
+
+    if (td.nextCell) {
+        ctx.FillRect(td.nextCell->x + drawDeltaX, td.nextCell->y + drawDeltaY, td.nextCell->gabX, td.nextCell->gabY, "blue");
+    }
+
+     if (td.clicckedCell) {
+        ctx.FillRect(td.clicckedCell->x + drawDeltaX, td.clicckedCell->y + drawDeltaY, td.clicckedCell->gabX, td.clicckedCell->gabY, "yellow");
+     }
+
     }
 
                     //                     dc->cellsOnDraw.forEach([drawDeltaY, &DA, &max, this](Array<Cell *> &drawLine)

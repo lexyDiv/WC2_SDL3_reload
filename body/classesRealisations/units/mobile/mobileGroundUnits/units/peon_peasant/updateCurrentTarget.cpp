@@ -7,6 +7,7 @@ void Peon_peasant::updateCurrentTarget()
     if (this->profession != "")
     {
         this->orderOnWay.go(this->profession);
+
     }
     // else if (this->targetData.clicckedCell)
     // {
@@ -25,6 +26,9 @@ void Peon_peasant::updateCurrentTarget()
         this->profession = "";
         this->targetData.unit = nullptr;
         this->targetData.clear();
+        //         if (this->focus) {
+        //     console.log("clear in updateCurrentTarget");
+        // }
     }
 
     // if (this->profession == "w")

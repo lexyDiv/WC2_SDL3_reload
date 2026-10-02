@@ -21,43 +21,50 @@ public:
     Unit *unit = nullptr;
     int unitPersNum = 0;
     Cell *clicckedCell = nullptr;
-
     Cell *unitOldCell = nullptr;
-   // Cell *targetCell = nullptr;
     string profession = "";
     bool isActual = false;
-    Array<Cell *> basicWay;
-    int forNeedFreeWayCount = 0;
-   // int blockedFreeWayHoldTimer = 0;
     bool specialFreeG0 = false;
+    int forNeedFreeWayCount = 0;
+    
+    /////////////////////////////////// => magistral
+    Array<Cell *> magistral;
+    bool checkMagistral = false;
+    Cell *prevCell = nullptr;
+    Cell *nextCell = nullptr;
+    int nextCellIndex = 0;
+    int magistrlLoop = 0;
+   // bool saveTargetIsBlocked = false; // not cleard
+    bool isNeedMagistralFinish = false;
+   // Cell *saveNextCell = nullptr;
 
     void clear()
     {
-      //  blockedFreeWayHoldTimer = 0;
-        forNeedFreeWayCount = 0;
+        
         unit = nullptr;
         unitPersNum = 0;
         clicckedCell = nullptr;
-
         unitOldCell = nullptr;
-       // targetCell = nullptr;
         profession = "";
         isActual = false;
         specialFreeG0 = false;
-        //basicWay.clear();
+        
+        /////////////////////////////////// => magistral
+        checkMagistral = false;
+        magistral.clear();
+        prevCell = nullptr;
+        nextCell = nullptr;
+        nextCellIndex = 0;
+        magistrlLoop = 0;
+        isNeedMagistralFinish = false;
+        //saveNextCell = nullptr;
     };
 };
 
-// struct UnitPack
-// {
-//     Unit *unit = nullptr;
-//     int bornCount = 0;
-// };
 
 class Td_way_data
 {
 public:
-    //  Td_way_data(){};
     double createCountData = 0;
     int F = 0.0F;
     int H = 0.0F;
@@ -65,9 +72,7 @@ public:
     double explored = 0;
     double procCurr = 0;
     Cell *wayFather = nullptr;
-
-   // int dopWayIndex = -1;
-    //bool touch = false;
+    int magistralIndex = 0;
 };
 
 class Cell
@@ -77,42 +82,7 @@ public:
 
     int activeZoneIndex = 0;
 
-    // int G = 0;
-    // int F = 0;
-    // int H = 0;
-    // Cell *wayFather = nullptr;
-    // void getCurrentTargetCell();
     double createCountData = 0.0;
-    // double explored = 0.0;
-
-    // int G2 = 0;
-    // int F2 = 0;
-    // int H2 = 0;
-    // Cell *wayFather2 = nullptr;
-    // double createCountData2 = 0.0;
-    //  void getCurrentTargetCell2() {};
-    // double explored2 = 0.0;
-    // double procCurr2 = 0;
-
-    // int G3 = 0;
-    // int F3 = 0;
-    // int H3 = 0;
-    // Cell *wayFather3 = nullptr;
-    // double createCountData3 = 0.0;
-    //  void getCurrentTargetCell3() {};
-    // double explored3 = 0.0;
-    // double procCurr3 = 0;
-
-    // int G4 = 0;
-    // int F4 = 0;
-    // int H4 = 0;
-    // Cell *wayFather4 = nullptr;
-    // double createCountData4 = 0.0;
-    //  void getCurrentTargetCell4() {};
-    // double explored4 = 0.0;
-    // double procCurr4 = 0;
-
-    /////////////////////////////////////////////////////////////////////////////////////////////////
 
     bool isClosed = false;
 

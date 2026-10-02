@@ -61,6 +61,8 @@ bool Peon_peasant::isNeedHoldGoWay()
             }
         }
 
+
+        
         //   if (this->iNeedFreeWay &&   // => down
         //      // ncgu &&
         //       ncgu->type == "life" &&

@@ -15,17 +15,17 @@ public:
     BlockedData blockedCheck(Unit* unit) override;
 };
 
-BlockedData Tree::blockedCheck(Unit *unit) {
+// BlockedData Tree::blockedCheck(Unit *unit) {
 
-   BlockedData bd;
+//    BlockedData bd;
 
-   for (int i = 0; i < this->cell->aroundCells.length; i++) {
-    Cell *ac = this->cell->aroundCells.getItem(i);
-     if (ac->plane == this->cell->plane && (!ac->groundUnit || ac->groundUnit == unit)) {
-        break;
-     }
-   }
+//    for (int i = 0; i < this->cell->aroundCells.length; i++) {
+//     Cell *ac = this->cell->aroundCells.getItem(i);
+//      if (ac->plane == this->cell->plane && (!ac->groundUnit || ac->groundUnit == unit)) {
+//         break;
+//      }
+//    }
 
  
-    return bd;
-}
+//     return bd;
+// }

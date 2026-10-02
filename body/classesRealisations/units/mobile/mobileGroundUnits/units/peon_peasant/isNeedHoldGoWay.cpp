@@ -37,9 +37,9 @@ bool Peon_peasant::isNeedHoldGoWay()
 
         int needHoldIndex = !this->iNeedFreeWay ? 10 : 5;
 
-        if (td.nextCell) {
-            needHoldIndex = 50;
-        }
+        // if (td.nextCell) {
+        //     needHoldIndex = 50;
+        // }
 
         if (this->needHolTimer >= this->wayIndex * needHoldIndex)
         {

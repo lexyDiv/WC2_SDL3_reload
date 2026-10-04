@@ -144,6 +144,9 @@ public:
     int cellDrawIndex = 0;
     Array<Water> waters;
     Image *cellImage = nullptr;
+    ////////////////////////////////=> clasters
+    Claster * claster = nullptr;
+    Zone *zone = nullptr;
 
 private:
 };

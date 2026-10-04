@@ -160,14 +160,10 @@ public:
 
     FieldClick *fieldClickPoint = nullptr;
 
-    // Array<Cell *> openArr;
-    // Array<Cell *> openArr2;
-    // Array<Cell *> openArr3;
-    // Array<Cell *> openArr4;
-    Array<Array<Cell *>> exp;
-
-    // bool isQuick = false;
-    //   void potentialWayCreate2(ProtoObj *unit, ProtoObj *finalCell) {};
+  ////////////////////////// => clasters
+  Array<Array<Claster>> clasters;
+  //Array<Zone *> zones;
+  int clasterGabarit = 3;
 
 private:
 };

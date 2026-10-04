@@ -113,16 +113,15 @@ ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "green");
         //                                                             }); });
 
 
-        // /////////////// zone
-        // FieldClick *fcp = this->gf->fieldClickPoint;
-        // if (fcp)
-        // {
-        //     ctx.StrokeRect(
-        //         fcp->firstX + drawDeltaX,
-        //         fcp->firstY + drawDeltaY,
-        //         fcp->gabX, fcp->gabY, "red");
-        // }
-        // /////////////// zone
+    //    this->gf->clasters.forEach([drawDeltaX, drawDeltaY](Claster &cl){
+    //        ctx.StrokeRect(cl.x + drawDeltaX, cl.y + drawDeltaY, cl.size, cl.size, "red");
+    //    });
+
+    this->gf->clasters.forEach([drawDeltaX, drawDeltaY](Array<Claster> &line){
+        line.forEach([drawDeltaX, drawDeltaY](Claster &cl){
+            ctx.StrokeRect(cl.x + drawDeltaX, cl.y + drawDeltaY, cl.size, cl.size, "red");
+        });
+    });
      
 
     ctx.CreateDrawZone(0, 0, this->gf->screenWidth, ctx.SCREEN_HEIGHT - this->gf->screenHeight);

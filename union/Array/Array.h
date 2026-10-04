@@ -45,6 +45,8 @@ public:
     void push(T el);
     void savePush(T el);
 
+    void reserv(int res);
+
     void unshift(T el);
     T pop();
     T &pop2();
@@ -145,6 +147,12 @@ inline void Array<T>::savePush(T el)
     this->vec.push_back(el);
     this->length = vec.size();
     savePushMT.unlock();
+}
+
+template <typename T>
+inline void Array<T>::reserv(int res)
+{
+    this->vec.reserve(res);
 }
 
 template <typename T>

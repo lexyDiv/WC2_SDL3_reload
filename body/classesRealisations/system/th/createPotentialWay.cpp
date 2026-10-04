@@ -77,6 +77,10 @@ void ThData::createPotentialWay(Unit *unit)
 
     }
 
+    // this->openArr.forEach([this](Cell *c){
+    //     console.log("F = ", c->thwd.getItemPtr(this->num)->F);
+    // });
+
     Array<Cell *> all;
 
     while (true)

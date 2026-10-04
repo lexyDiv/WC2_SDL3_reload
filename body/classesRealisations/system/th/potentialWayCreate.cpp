@@ -1,6 +1,7 @@
 #include "get_H.cpp"
 //=>out
 
+
 void ThData::potentialWayCreate(Unit *unit, Cell *finalCell)
 {
     Cell *uc = unit->cell;
@@ -61,8 +62,27 @@ void ThData::potentialWayCreate(Unit *unit, Cell *finalCell)
             //     console.log("create = ", iter);
             // }
 
-
-
-
     this->isMagistral = false;
+
+
+    Uint64 resTime = SDL_GetTicks();
+   // int delta = resTime - this->timeBeforeUnitWay;
+    Uint64 deltaU = resTime - this->timeBeforeUnitWay;
+    Uint64 timePerIter = deltaU;
+
+    double h = (deltaU * 1000000) / (Uint64)iter;
+
+    if (this->num == 0 ) {
+        // one = false;
+        // console.log("iter = ", iter);
+        // console.log(to_string(resTime));
+        // console.log(to_string(this->timeBeforeUnitWay));
+        // console.log("delta = ", delta);
+        // console.log("? = ", (double)hz);
+        // console.log("--------------------------");
+
+        console.log("? = ", h / 1000000);
+       
+    }
+
 };

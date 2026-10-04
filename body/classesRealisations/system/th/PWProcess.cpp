@@ -10,6 +10,8 @@ void ThData::PWProcess()
     {
         Unit *unit = this->game->unitsOnWay.getItem(i);
 
+        this->timeBeforeUnitWay = SDL_GetTicks();
+
         if (!unit->isPotentialWayComplite && unit->cell && unit->hp)
         {
             this->createPotentialWay(unit);

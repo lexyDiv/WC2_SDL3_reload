@@ -53,6 +53,8 @@ public:
     //Unit exploredUnit = Peon_peasant(nullptr);
 
     int count = 0;
+    Uint64 timeBeforeUnitWay = 0;
+
 
 };
 

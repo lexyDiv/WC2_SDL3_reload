@@ -25,7 +25,7 @@ void TownHall::activeProg()
            // if (!peon->isBlockedd(peon)) {
               //  peon->orderOnWay.go("w");
            // } else {
-             // peon->profession = "w";
+              peon->profession = "w";
            // }
             // peon->orderOnWay.profession = "w";
             // peon->orderOnWay.isComplite = false;

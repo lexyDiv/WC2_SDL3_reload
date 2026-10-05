@@ -10,7 +10,7 @@ void GameField::cellsIteration(function<void(Cell *cell)> fn)
 
 void GameField::clasterIteration(function<void(Claster *cl)> fn)
 {
-    this->clasters.forEach([fn](Array<Claster> &arr)
-                        { arr.forEach([fn](Claster &cl)
-                                      { fn(&cl); }); });
+    this->clasters.forEach([fn](Array<Claster *> &arr)
+                        { arr.forEach([fn](Claster *cl)
+                                      { fn(cl); }); });
 };

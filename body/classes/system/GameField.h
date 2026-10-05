@@ -84,6 +84,7 @@ public:
      void fieldClick();
      void fieldClickRight();
      void getPathes(string *path, int type);
+     void createClasters();
 
     double getMinCellsDis(Cell *cell, Cell *cell2);
 
@@ -163,7 +164,7 @@ public:
     FieldClick *fieldClickPoint = nullptr;
 
   ////////////////////////// => clasters
-  Array<Array<Claster>> clasters;
+  Array<Array<Claster *>> clasters;
   //Array<Zone *> zones;
   int clasterGabarit = 3;
 

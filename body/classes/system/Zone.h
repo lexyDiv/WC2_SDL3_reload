@@ -3,6 +3,8 @@
 
 class Zone {
     public:
+    Zone() {};
+    ~Zone() {};
     Array<Cell *> cells;
     Array<Td_way_data_z> thwd;
     Array<Zone *> contactZones;

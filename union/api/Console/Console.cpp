@@ -395,4 +395,4 @@ Console::~Console()
     // this->strArr = nullptr;
 };
 
-Console console(10000);
+Console console(30000);

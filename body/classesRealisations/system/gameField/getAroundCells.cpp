@@ -46,7 +46,7 @@ void GameField::getAroundClasters(int wing, bool selfCell, function<void(Claster
             hor >= 0 &&
             hor < this->clasters.length) {
                 bool isPush = false;
-                Claster *pushedClaster = this->clasters.getItemLnk(ver).getItemPtr(hor);
+                Claster *pushedClaster = this->clasters.getItemLnk(ver).getItem(hor);
                 if (!selfCell) {
                     if (cl != pushedClaster) {
                       fn(cl, pushedClaster);

@@ -1,5 +1,5 @@
 #include "miniMapUpdate.cpp"
-//=>out
+//=>createClasters
 
 void GameField::trupsControl()
 {

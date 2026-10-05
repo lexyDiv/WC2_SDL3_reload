@@ -161,7 +161,8 @@ public:
     Claster * claster = nullptr;
     Zone *zone = nullptr;
     Array<Cell *> clasterCells;
-    bool ok = false;
+   // bool ok = false;
+  //  bool hz = false;
 
 private:
 };

@@ -13,6 +13,12 @@ void Claster::getZones()
 
    Array<Cell *> validCells;
 
+   this->zones.forEach([](Zone *z){
+     if (z) {
+            delete z;
+      z = nullptr;
+     }
+   });
    this->zones.clear();
 
    this->cells.forEach([&validCells, this](Cell *c)
@@ -25,13 +31,17 @@ void Claster::getZones()
    Zone *cz = nullptr;
    validCells.forEach([this, &cz](Cell *c)
                       {
-                         c->ok = true;
+                        // c->ok = true;
                          if (!c->zone)
                          {
-                            Zone zone;
-                            this->zones.push(zone);
-                            cz = this->zones.getItemPtr(this->zones.length - 1);
-                            // console.log("push");
+                           cz = new Zone;
+                            this->zones.push(cz);
+
+                            thDatas.forEach([cz](ThData *td){
+                              Td_way_data_z thwd;
+                              cz->thwd.push(thwd);
+                            });
+                  
                             cz->cells.push(c);
                             c->zone = cz;
                             cz->cl = this;

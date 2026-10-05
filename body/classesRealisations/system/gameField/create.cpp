@@ -136,10 +136,12 @@ void GameField::create()
       this->clasters.push(lineClasters);
    }
 
-   this->clasters.forEach([](Array<Claster> &line, int ver)
-                          { line.forEach([](Claster &cl, int hor) {
 
-                            }); });
+    this->getAroundClasters(1, false, [](Claster &focusClaster, Claster &pushedClaster)
+                        { focusClaster.aroundClasters.push(&pushedClaster); });
+
+
+    console.log(this->clasters.getItemLnk(0).getItem(0).aroundClasters.length);                    
 
    this->init = true;
 };

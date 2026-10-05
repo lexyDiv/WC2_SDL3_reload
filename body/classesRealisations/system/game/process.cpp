@@ -32,6 +32,12 @@ void Game::process()
 
     threads.clear();
 
+    // this->gf->clasters.forEach([](Array<Claster> &line){
+    //     line.forEach([](Claster *cl){
+    //         cl->getZones();
+    //     });
+    // });
+
     thDatas.forEach([](ThData *td)
                     { threads.emplace_back(&ThData::PWProcess, td); });
 

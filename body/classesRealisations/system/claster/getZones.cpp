@@ -34,6 +34,7 @@ void Claster::getZones()
                             // console.log("push");
                             cz->cells.push(c);
                             c->zone = cz;
+                            cz->cl = this;
                          }
 
                          c->aroundCells.forEach([this, cz](Cell *ac)

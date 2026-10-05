@@ -154,5 +154,15 @@ void GameField::create()
                         { 
                            focusClaster->aroundClasters.push(pushedClaster);
                          });
+
+     this->clasters.forEach([](Array<Claster> &line){
+      line.forEach([](Claster &cl){
+         cl.zones.forEach([](Zone &z){
+            z.getAroundZones();
+         });
+      });
+     });                    
+    
+
    this->init = true;
 };

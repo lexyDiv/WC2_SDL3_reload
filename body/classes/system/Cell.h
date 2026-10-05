@@ -77,6 +77,19 @@ public:
     int magistralIndex = 0;
 };
 
+class Td_way_data_z
+{
+public:
+    double createCountData = 0;
+    int F = 0.0F;
+    int H = 0.0F;
+    int G = 0.0F;
+    double explored = 0;
+    double procCurr = 0;
+    Zone *wayFather = nullptr;
+    int magistralIndex = 0;
+};
+
 class Cell
 {
 public:

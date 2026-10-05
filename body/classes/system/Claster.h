@@ -17,5 +17,6 @@ class Claster {
     Game *game = nullptr;
     GameField *gf = nullptr;
     Array<Claster *> aroundClasters;
+    Array<int> aroundClasters_G;
 
 };

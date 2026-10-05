@@ -125,28 +125,36 @@ void GameField::create()
    int startIndex = (this->clasterGabarit - 1) / 2;
    int step = this->clasterGabarit;
    int length = this->field.length;
-
+   int iterVer = 0;
+   int iterHor = 0;
    for (int ver = startIndex; ver < length; ver += step)
    {
       Array<Cell *> &line = this->field.getItemLnk(ver);
       Array<Claster> lineClasters;
       lineClasters.reserv(linesCount);
+      iterHor = 0;
       for (int hor = startIndex; hor < length; hor += step)
       {
          // console.log("hor = ", hor);
          Cell *c = line.getItem(hor);
          Claster claster(c, this->game);
+         claster.ver = iterVer;
+         claster.hor = iterHor;
          lineClasters.push(claster);
+         iterHor++;
       }
       this->clasters.push(lineClasters);
+      iterVer++;
    }
 
 
-    this->getAroundClasters(1, false, [](Claster &focusClaster, Claster &pushedClaster)
-                        { focusClaster.aroundClasters.push(&pushedClaster); });
+    this->getAroundClasters(1, false, [](Claster *focusClaster, Claster *pushedClaster)
+                        { 
+                           focusClaster->aroundClasters.push(pushedClaster);
+                         });
 
 
-    console.log(this->clasters.getItemLnk(0).getItem(0).cells.length);                    
+    console.log(this->clasters.getItemLnk(1).getItem(1).hor);                    
 
    this->init = true;
 };

@@ -117,10 +117,23 @@ ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "green");
     //        ctx.StrokeRect(cl.x + drawDeltaX, cl.y + drawDeltaY, cl.size, cl.size, "red");
     //    });
 
-    this->gf->clasters.forEach([drawDeltaX, drawDeltaY](Array<Claster> &line){
-        line.forEach([drawDeltaX, drawDeltaY](Claster &cl){
-            ctx.StrokeRect(cl.x + drawDeltaX, cl.y + drawDeltaY, cl.size, cl.size, "red");
-        });
+    // this->gf->clasters.forEach([drawDeltaX, drawDeltaY](Array<Claster> &line){
+    //     line.forEach([drawDeltaX, drawDeltaY](Claster &cl){
+    //         ctx.StrokeRect(cl.x + drawDeltaX, cl.y + drawDeltaY, cl.size, cl.size, "red");
+    //     });
+    // });
+
+    Claster *cl = this->gf->clasters.getItemLnk(1).getItemPtr(1);
+
+   //  console.log("g = ", cl->aroundClasters_G.length);
+    // console.log("length = ", cl->aroundClasters.length);
+
+    ctx.FillRect(cl->x + drawDeltaX, cl->y + drawDeltaY, cl->size, cl->size, "violet");
+
+    cl->aroundClasters.forEach([&drawDeltaX, &drawDeltaY, cl](Claster *acl, int i){
+        ctx.StrokeRect(acl->x + drawDeltaX, acl->y + drawDeltaY, acl->size, acl->size, "red");
+        int num = cl->aroundClasters_G.getItem(i);
+        ctx.DrawText(acl->cell->x + drawDeltaX, acl->cell->y + drawDeltaY, 20, to_string(num));
     });
      
 

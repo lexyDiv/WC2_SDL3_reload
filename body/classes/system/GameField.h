@@ -69,9 +69,9 @@ public:
      void miniMapUpdate();
      void miniMapDraw();
      void cellsIteration(function<void(Cell *cell)> fn);
-     void clasterIteration(function<void(Claster &cl)> fn);
+     void clasterIteration(function<void(Claster *cl)> fn);
      void getAroundCells(int wing, bool selfCell, function<void(Cell *focusCell, Cell *cellToPush)> fn);
-     void getAroundClasters(int wing, bool selfCell, function<void(Claster &focusClaster, Claster &clasterToPush)> fn);
+     void getAroundClasters(int wing, bool selfCell, function<void(Claster *focusClaster, Claster *clasterToPush)> fn);
      void offsetControl();
      void miniMapMouseControl();
      void miniMapHoldLeftMouseKey();

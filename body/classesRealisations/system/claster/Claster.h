@@ -1,5 +1,5 @@
 #include "in.h"
-//=>out
+//=>getZones
 
 Claster::Claster(Cell *cell, Game *game)
 {

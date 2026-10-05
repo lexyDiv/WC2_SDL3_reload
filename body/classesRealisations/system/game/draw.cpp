@@ -128,13 +128,13 @@ ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "green");
    //  console.log("g = ", cl->aroundClasters_G.length);
     // console.log("length = ", cl->aroundClasters.length);
 
-    ctx.FillRect(cl->x + drawDeltaX, cl->y + drawDeltaY, cl->size, cl->size, "violet");
+    ctx.StrokeRect(cl->x + drawDeltaX, cl->y + drawDeltaY, cl->size, cl->size, "violet");
 
-    cl->aroundClasters.forEach([&drawDeltaX, &drawDeltaY, cl](Claster *acl, int i){
-        ctx.StrokeRect(acl->x + drawDeltaX, acl->y + drawDeltaY, acl->size, acl->size, "red");
-        int num = cl->aroundClasters_G.getItem(i);
-        ctx.DrawText(acl->cell->x + drawDeltaX, acl->cell->y + drawDeltaY, 20, to_string(num));
-    });
+    // cl->aroundClasters.forEach([&drawDeltaX, &drawDeltaY, cl](Claster *acl, int i){
+    //     ctx.StrokeRect(acl->x + drawDeltaX, acl->y + drawDeltaY, acl->size, acl->size, "red");
+    //     int num = cl->aroundClasters_G.getItem(i);
+    //     ctx.DrawText(acl->cell->x + drawDeltaX, acl->cell->y + drawDeltaY, 20, to_string(num));
+    // });
      
 
     ctx.CreateDrawZone(0, 0, this->gf->screenWidth, ctx.SCREEN_HEIGHT - this->gf->screenHeight);

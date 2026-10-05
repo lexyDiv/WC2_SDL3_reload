@@ -19,4 +19,6 @@ class Claster {
     Array<Claster *> aroundClasters;
     Array<int> aroundClasters_G;
 
+    void getZones();
+
 };

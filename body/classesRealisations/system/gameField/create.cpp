@@ -142,6 +142,7 @@ void GameField::create()
          claster.hor = iterHor;
          lineClasters.push(claster);
          iterHor++;
+         claster.getZones();
       }
       this->clasters.push(lineClasters);
       iterVer++;
@@ -154,7 +155,7 @@ void GameField::create()
                          });
 
 
-    console.log(this->clasters.getItemLnk(1).getItem(1).hor);                    
+   // console.log(this->clasters.getItemLnk(1).getItem(1).hor);                    
 
    this->init = true;
 };

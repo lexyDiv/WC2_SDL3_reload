@@ -135,27 +135,24 @@ void GameField::create()
       iterHor = 0;
       for (int hor = startIndex; hor < length; hor += step)
       {
-         // console.log("hor = ", hor);
          Cell *c = line.getItem(hor);
-         Claster claster(c, this->game);
-         claster.ver = iterVer;
-         claster.hor = iterHor;
+         Claster claster(c, this->game, iterVer, iterHor);
+
          lineClasters.push(claster);
+
+            Claster *cl = lineClasters.getItemPtr(lineClasters.length - 1);
+            cl->create();
+            cl->getZones();
+
          iterHor++;
-         claster.getZones();
       }
       this->clasters.push(lineClasters);
       iterVer++;
    }
 
-
     this->getAroundClasters(1, false, [](Claster *focusClaster, Claster *pushedClaster)
                         { 
                            focusClaster->aroundClasters.push(pushedClaster);
                          });
-
-
-   // console.log(this->clasters.getItemLnk(1).getItem(1).hor);                    
-
    this->init = true;
 };

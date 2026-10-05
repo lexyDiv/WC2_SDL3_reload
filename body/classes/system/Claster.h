@@ -6,8 +6,8 @@ class Claster {
     public:
     int gab = 0;
     int size = 0;
-    Claster(Cell *cell, Game *game);
-    Array<Zone *> zones;
+    Claster(Cell *cell, Game *game, int ver, int hor);
+    Array<Zone> zones;
     Array<Cell *> cells;
     Cell *cell = nullptr;
     int ver = 0;
@@ -18,7 +18,9 @@ class Claster {
     GameField *gf = nullptr;
     Array<Claster *> aroundClasters;
     Array<int> aroundClasters_G;
+    ThData *td = thDatas.getItem(0); // ??????????????????????
 
     void getZones();
+    void create();
 
 };

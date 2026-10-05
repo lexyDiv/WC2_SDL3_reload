@@ -148,6 +148,7 @@ public:
     Claster * claster = nullptr;
     Zone *zone = nullptr;
     Array<Cell *> clasterCells;
+    bool ok = false;
 
 private:
 };

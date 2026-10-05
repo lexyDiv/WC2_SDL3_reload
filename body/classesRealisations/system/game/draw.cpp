@@ -118,17 +118,63 @@ ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "green");
     //    });
 
     // this->gf->clasters.forEach([drawDeltaX, drawDeltaY](Array<Claster> &line){
-    //     line.forEach([drawDeltaX, drawDeltaY](Claster &cl){
-    //         ctx.StrokeRect(cl.x + drawDeltaX, cl.y + drawDeltaY, cl.size, cl.size, "red");
+    //     line.forEach([drawDeltaX, drawDeltaY](Claster *cl){
+    //         ctx.StrokeRect(cl->x + drawDeltaX, cl->y + drawDeltaY, cl->size, cl->size, "red");
+    //         //console.log("cl.length = ", cl->zones.length);
+    //             cl->zones.forEach([&drawDeltaX, &drawDeltaY](Zone *z, int i){
+    //     string color = "";
+    //     if (!i) {
+    //         color = "red";
+    //     } else if (i == 1) {
+    //         color = "green";
+    //     } else if (i == 2) {
+    //         color = "yellow";
+    //     } else if (i == 3) {
+    //         color = "blie";
+    //     } else if (i == 4) {
+    //         color = "black";
+    //     }
+    //     z->cells.forEach([&drawDeltaX, &drawDeltaY, &color](Cell *c){
+    //         ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, c->gabX, c->gabX, color, 100);
+    //     });
+    // });
     //     });
     // });
 
-    Claster *cl = this->gf->clasters.getItemLnk(1).getItemPtr(1);
 
-   //  console.log("g = ", cl->aroundClasters_G.length);
-    // console.log("length = ", cl->aroundClasters.length);
+    
+//      Claster *cl = this->gf->clasters.getItemLnk(1).getItemPtr(1);
 
-    ctx.StrokeRect(cl->x + drawDeltaX, cl->y + drawDeltaY, cl->size, cl->size, "violet");
+// //    //  console.log("g = ", cl->aroundClasters_G.length);
+// //     // console.log("length = ", cl->aroundClasters.length);
+
+//     ctx.StrokeRect(cl->x + drawDeltaX, cl->y + drawDeltaY, cl->size, cl->size, "violet");
+
+//    // console.log("z.length = ", cl->zones.length);
+//     cl->zones.forEach([&drawDeltaX, &drawDeltaY](Zone *z, int i){
+//         string color = "";
+//         if (!i) {
+//             color = "red";
+//         } else if (i == 1) {
+//             color = "green";
+//         } else if (i == 2) {
+//             color = "yellow";
+//         } else if (i == 3) {
+//             color = "blie";
+//         } else if (i == 4) {
+//             color = "black";
+//         }
+//         z->cells.forEach([&drawDeltaX, &drawDeltaY, &color](Cell *c){
+//             ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, c->gabX, c->gabX, color, 100);
+//         });
+//     });
+
+    // cl->cells.forEach([&drawDeltaX, &drawDeltaY](Cell *c, int i){
+    //     if (c->ok) {
+    //         ctx.StrokeRect(c->x + drawDeltaX, c->y + drawDeltaY, c->gabX, c->gabX, "black");
+    //         ctx.DrawText(c->x + drawDeltaX, c->y + drawDeltaY, 20, to_string(i));
+    //     }
+    // });
 
     // cl->aroundClasters.forEach([&drawDeltaX, &drawDeltaY, cl](Claster *acl, int i){
     //     ctx.StrokeRect(acl->x + drawDeltaX, acl->y + drawDeltaY, acl->size, acl->size, "red");

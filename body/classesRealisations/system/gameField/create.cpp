@@ -93,8 +93,13 @@ void GameField::create()
 
    this->mapInit(array);
 
+   int wing = (clasterGabarit - 1) / 2;
+
+   this->getAroundCells(wing, true, [](Cell *focusCell, Cell *pushedCell)
+                        { focusCell->clasterCells.push(pushedCell); });
+
    this->getAroundCells(1, false, [](Cell *focusCell, Cell *pushedCell)
-                        { focusCell->aroundCells.push(pushedCell); });
+                        { focusCell->aroundCells.push(pushedCell); });                     
    this->getAroundCells(9, true, [](Cell *focusCell, Cell *pushedCell)
                         { focusCell->drawCells.push(pushedCell); });
    this->getAroundCells(11, false, [](Cell *focusCell, Cell *pushedCell)
@@ -141,7 +146,7 @@ void GameField::create()
                         { focusClaster.aroundClasters.push(&pushedClaster); });
 
 
-    console.log(this->clasters.getItemLnk(0).getItem(0).aroundClasters.length);                    
+    console.log(this->clasters.getItemLnk(0).getItem(0).cells.length);                    
 
    this->init = true;
 };

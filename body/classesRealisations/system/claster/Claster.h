@@ -11,9 +11,6 @@ Claster::Claster(Cell *cell, Game *game)
     this->x = cell->x - gf->cellSize * ((this->gab - 1) / 2);
     this->y = cell->y - gf->cellSize * ((this->gab - 1) / 2);
 
-    if (this->gab == 3)
-    {
-        this->cells.copy(this->cell->aroundCells);
-        this->cells.push(this->cell);
-    }
+    this->cells.copy(this->cell->clasterCells);
+    this->cell->clasterCells.clear();
 }

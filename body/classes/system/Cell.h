@@ -147,6 +147,7 @@ public:
     ////////////////////////////////=> clasters
     Claster * claster = nullptr;
     Zone *zone = nullptr;
+    Array<Cell *> clasterCells;
 
 private:
 };

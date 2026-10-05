@@ -55,6 +55,12 @@ public:
     int count = 0;
     Uint64 timeBeforeUnitWay = 0;
 
+    //////////////////////////////// => clasters
+    void byCl_createPW(Unit *unit);
+    void byCl_exploreNewZone(Unit *unit, Zone *fatherZone, Zone *sonZone);
+    int byCl_get_G(Zone *fatherZone, int index);
+    int byCl_get_H(Zone *fatherZone, Zone *sonZone);
+    void byCl_potentialWayCreate(Unit *unit);
 
 };
 

@@ -35,32 +35,7 @@ void GameField::mapInit(Array<string> &array)
         } 
         this->field.push(arr); });
 
-    /////////////////////////////////////////////////////////////////////////////////////=> clasters
 
-    int linesCount = (this->gabarit / this->clasterGabarit);
-
-    // console.log("clastarsCount = ", clastersCount);
-
-    this->clasters.reserv(linesCount);
-
-    int startIndex = (this->clasterGabarit - 1) / 2;
-    int step = this->clasterGabarit;
-    int length = this->field.length;
-
-    for (int ver = startIndex; ver < length; ver += step)
-    {
-        Array<Cell *> &line = this->field.getItemLnk(ver);
-        Array<Claster> lineClasters;
-        lineClasters.reserv(linesCount);
-        for (int hor = startIndex; hor < length; hor += step)
-        {
-            // console.log("hor = ", hor);
-            Cell *c = line.getItem(hor);
-            Claster claster(c, this->game);
-            lineClasters.push(claster);
-        }
-        this->clasters.push(lineClasters);
-    }
 
     // console.log("length = ", this->clasters.length);
 }

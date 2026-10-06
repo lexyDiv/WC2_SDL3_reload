@@ -141,7 +141,7 @@ ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "green");
 
 
     
-    //    Claster *cl = this->gf->clasters.getItemLnk(0).getItem(1);
+    //    Claster *cl = this->gf->clasters.getItemLnk(0).getItem(0);
 
     //  ctx.StrokeRect(cl->x + drawDeltaX, cl->y + drawDeltaY, cl->size, cl->size, "violet");
 

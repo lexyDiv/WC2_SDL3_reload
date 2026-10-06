@@ -10,6 +10,7 @@ bool isCellValide(Cell *c)
 
 void getAllZoneCells(Cell *cell, ThData *td)
 {
+    td->createCount += 0.001;
   Zone *z = cell->zone;
   for (int i = 0; i < z->cells.length; i++)
   {
@@ -26,12 +27,20 @@ void getAllZoneCells(Cell *cell, ThData *td)
                 z->cells.push(azac);
                }
               
-                 if (azac->groundUnit && 
-                     azac->groundUnit->name == "tree") 
+                 if (azac->groundUnit) 
                      {
-                          z->isTeesNear = true;      
-                     }
-              });
+                      Td_xploredData *td_exp = azac->groundUnit->thwd.length ? 
+                      azac->groundUnit->thwd.getItemPtr(td->num)
+                      : nullptr;
+                      if (azac->groundUnit->name == "tree") 
+                      {
+                        z->isTeesNear = true;  
+                      } else if (td_exp &&
+                                 td_exp->explored != td->createCount) {
+                              td_exp->explored = td->createCount;
+                              z->buildingsNear.push(azac->groundUnit);
+                      }  
+                     } });
   }
 };
 
@@ -53,37 +62,34 @@ void Claster::getZones()
   Zone *cz = nullptr;
   this->cells.forEach([this, &cz](Cell *c)
                       {
-                         if (!c->zone && isCellValide(c))
-                         {
-                           cz = new Zone;
-                            this->zones.push(cz);
+                        if (!c->zone && isCellValide(c))
+                        {
+                          cz = new Zone;
+                          this->zones.push(cz);
 
-                            thDatas.forEach([cz](ThData *td){
+                          thDatas.forEach([cz](ThData *td)
+                                          {
                               Td_way_data_z thwd;
-                              cz->thwd.push(thwd);
-                            });
-                  
-                            cz->cells.push(c);
-                            c->zone = cz;
-                            cz->cl = this;
+                              cz->thwd.push(thwd); });
 
-                            getAllZoneCells(c, td);
-///////////////////////////////////////////////////////////// => get cell
-                            MinDataC md;
-                            md.cell = cz->cells.getItem(0);
-                            md.dis = this->td->get_H(md.cell, this->cell);
-                            cz->cells.forEach([this, &md](Cell *c, int i){
+                          cz->cells.push(c);
+                          c->zone = cz;
+                          cz->cl = this;
+
+                          getAllZoneCells(c, td);
+                          ///////////////////////////////////////////////////////////// => get cell
+                          MinDataC md;
+                          md.cell = cz->cells.getItem(0);
+                          md.dis = this->td->get_H(md.cell, this->cell);
+                          cz->cells.forEach([this, &md](Cell *c, int i)
+                                            {
                               int res = this->td->get_H(c, this->cell);
                               if (res < md.dis) {
                                  md.cell = c;
                                  md.dis = res;
               
-                              }
-                            });
-                            cz->cell = md.cell;
-///////////////////////////////////////////////////////// <= get cell
-
-                         }
-
-                        });
+                              } });
+                          cz->cell = md.cell;
+                          ///////////////////////////////////////////////////////// <= get cell
+                        } });
 }

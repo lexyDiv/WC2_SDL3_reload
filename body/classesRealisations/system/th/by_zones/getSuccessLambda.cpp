@@ -22,8 +22,21 @@ void ThData::getSuccessLambda(Unit *unit)
                 }
                 return false;
             };
-        } else if (td->unit->type == "building") {
-            
+        }
+        else if (td->unit->type == "building")
+        {
+            this->successWay = [this, td](Zone *z)
+            {
+                for (int i = 0; i < z->buildingsNear.length; i++)
+                {
+                    Unit *zBuilding = z->buildingsNear.getItem(i);
+                    if (td->unit == zBuilding)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            };
         }
     }
 }

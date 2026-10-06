@@ -24,7 +24,14 @@ void getAllZoneCells(Cell *cell, ThData *td)
                 isCellValide(azac)) {
                 azac->zone = z;
                 z->cells.push(azac);
-               } });
+               }
+              
+                 if (azac->groundUnit && 
+                     azac->groundUnit->name == "tree") 
+                     {
+                          z->isTeesNear = true;      
+                     }
+              });
   }
 };
 
@@ -76,5 +83,7 @@ void Claster::getZones()
                             cz->cell = md.cell;
 ///////////////////////////////////////////////////////// <= get cell
 
-                         } });
+                         }
+
+                        });
 }

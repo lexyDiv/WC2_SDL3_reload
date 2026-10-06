@@ -4,6 +4,7 @@
 void ThData::byCl_createPW(Unit *unit)
 {
 
+    this->getSuccessLambda(unit);
 
     this->createCount += 0.001;
     if (this->createCount >= 100000000)
@@ -141,9 +142,8 @@ void ThData::byCl_createPW(Unit *unit)
         ///////////////////////////////////////////////////////
 
         if (
-            this->min_F_zone == unit->targetData.clicckedCell->zone
-            // unit->isOnGetPotentialWayGetTarget(this->min_F_cell) ||    ///// ??????????????????
-            // (currentDeep == 7 && this->min_F_cell == this->targetCell)
+            this->min_F_zone == unit->targetData.clicckedCell->zone ||
+            this->successWay(this->min_F_zone)
         )
         {
             this->byCl_potentialWayCreate(unit, this->min_F_zone);

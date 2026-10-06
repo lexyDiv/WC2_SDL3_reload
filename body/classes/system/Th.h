@@ -61,7 +61,7 @@ public:
     int byCl_get_G(Zone *fatherZone, Zone *sonZone);
     int byCl_get_H(Zone *exploredZone, Claster *cl);
     void byCl_potentialWayCreate(Unit *unit, Zone *finalZone);
-    void getSuccessLambda();
+    void getSuccessLambda(Unit *unit);
     Array<Zone *> openArr_z;
 
     Zone *min_F_zone = nullptr;

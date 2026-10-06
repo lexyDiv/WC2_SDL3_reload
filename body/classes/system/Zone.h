@@ -10,6 +10,7 @@ class Zone {
     Array<Zone *> contactZones;
     Claster *cl = nullptr;
     Cell *cell = nullptr;
+    bool isTeesNear = false;
 
     void getAroundZones();
 };

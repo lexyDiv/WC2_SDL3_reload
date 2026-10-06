@@ -16,7 +16,7 @@ void ThData::createPotentialWay(Unit *unit)
     int currentDeep = unit->personalCaseDeep ? unit->personalCaseDeep : this->deep;
     this->targetCell = utd.nextCell ? utd.nextCell : utd.clicckedCell;
 
-    int shortDeep = 30;
+    int shortDeep = 200;
     if (utd.nextCell)
     {
         currentDeep = shortDeep;
@@ -185,7 +185,7 @@ void ThData::createPotentialWay(Unit *unit)
         if (
               unit->isOnGetPotentialWayGetTarget(this->min_F_cell) || 
               (currentDeep == shortDeep && this->min_F_cell == this->targetCell) ||
-              this->min_F_cell->claster == this->targetCell->claster 
+              (this->min_F_cell->zone == this->targetCell->zone && utd.nextCell) 
           )
         {
             this->potentialWayCreate(unit, this->min_F_cell);

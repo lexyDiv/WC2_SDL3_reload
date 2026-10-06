@@ -30,11 +30,13 @@ void ThData::byCl_potentialWayCreate(Unit *unit, Zone *finalZone) {
             td.prevCell = td.magistral.getItem(td.magistral.length - 1);
             td.nextCell = td.magistral.getItem(td.magistral.length - 2);
             td.nextCellIndex = td.magistral.length - 2;
+           // td.isNeedClasterMagistral = false;
+           // console.log("Create Claster = ", iter);
           } else {
             td.magistral.clear();
           }
 
 
-            unit->way.push(unit->cell->aroundCells.getItem(0));
-            console.log("Create Claster = ", iter);
+            //unit->way.push(unit->cell->aroundCells.getItem(0));
+            
 }

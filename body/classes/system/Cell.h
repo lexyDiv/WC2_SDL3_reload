@@ -37,12 +37,12 @@ public:
     int nextCellIndex = 0;
     int magistrlLoop = 0;
     bool isNeedMagistralFinish = false;
-    bool isNeedClasterMagistral = true;
+  //  bool isNeedClasterMagistral = true;
 
 
     void clear()
     {
-        isNeedClasterMagistral = true;
+       // isNeedClasterMagistral = true;
         unit = nullptr;
         unitPersNum = 0;
         clicckedCell = nullptr;

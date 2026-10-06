@@ -44,5 +44,5 @@ void ThData::potentialWayCreate(Unit *unit, Cell *finalCell)
             td.nextCellIndex = td.magistral.length - 2;
         }
     this->isMagistral = false;
-    console.log("create ", iter);
+   // console.log("create ", iter);
 };

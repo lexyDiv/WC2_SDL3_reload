@@ -15,7 +15,7 @@ int ThData::get_H(Cell *potentialCell, Cell *finishCell)
 
     double xCat = potentialCell->hor - finishCell->hor;
     double yCat = potentialCell->ver - finishCell->ver;
-    double res = sqrt(xCat * xCat + yCat * yCat) * 20;
+    double res = sqrt(xCat * xCat + yCat * yCat) * 10;
 
     //console.log("H = ", res);
     return res; //* 10;

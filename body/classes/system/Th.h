@@ -57,10 +57,14 @@ public:
 
     //////////////////////////////// => clasters
     void byCl_createPW(Unit *unit);
-    void byCl_exploreNewZone(Unit *unit, Zone *fatherZone, Zone *sonZone);
+    void byCl_exploreNewZone(Unit *unit, Zone *fatherZone, Zone *sonZone, int i);
     int byCl_get_G(Zone *fatherZone, int index);
-    int byCl_get_H(Zone *fatherZone, Zone *sonZone);
-    void byCl_potentialWayCreate(Unit *unit);
+    int byCl_get_H(Zone *exploredZone, Zone *finishZone);
+    void byCl_potentialWayCreate(Unit *unit, Zone *finalZone);
+    Array<Zone *> openArr_z;
+
+    Zone *min_F_zone = nullptr;
+    Zone *globalMin_H_zone = nullptr;
 
 };
 

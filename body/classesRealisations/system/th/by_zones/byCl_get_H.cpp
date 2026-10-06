@@ -1,7 +1,17 @@
 #include "byCl_get_G.cpp"
 //=>byCl_potentialWayCreate
 
-int ThData::byCl_get_H(Zone *fatherZone, Zone *sonZone) {
+int ThData::byCl_get_H(Zone *exploredZone, Zone *finishZone) {
 
-    return 0;
+    int finVer = finishZone->cl->ver;
+    int finHor = finishZone->cl->hor;
+    int pVer = exploredZone->cl->ver;
+    int pHor = exploredZone->cl->hor;
+
+    int deltaHor = abs(finHor - pHor);
+    int deltaVer = abs(finVer - pVer);
+       
+    return (deltaHor + deltaVer) * 10;
+
+   // return 0;
 }

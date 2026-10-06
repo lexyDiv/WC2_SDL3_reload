@@ -4,6 +4,17 @@ using namespace std;
 
 class Cell;
 class Unit;
+class Zone;
+
+struct MinData_z
+{
+    int index = 0;
+    double min = 0;
+    int i = 0;
+    int k = 0;
+    double dis = 0;
+    Zone *zone = nullptr;
+};
 
 struct MinData
 {

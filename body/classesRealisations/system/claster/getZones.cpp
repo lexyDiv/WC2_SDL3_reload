@@ -8,36 +8,25 @@ bool isCellValide(Cell *c)
            c->groundUnit->type == "life"));
 };
 
-
-void getAllZoneCells(Cell *cell, ThData *td) {
-    Array<Cell *> allZoneCells;
-    Zone *z = cell->zone;
-    allZoneCells.push(cell);
-   // Cell *nextCell = cell;
-    
-   // while(nextCell) {
-      for (int i = 0; i < allZoneCells.length; i++) {
-        Cell *az = allZoneCells.getItem(i);
-        Td_way_data *thwd_az = az->thwd.getItemPtr(td->num);
-        thwd_az->explored = td->createCount;
-        az->aroundCells.forEach([td, z, az, &allZoneCells](Cell *azac){
+void getAllZoneCells(Cell *cell, ThData *td)
+{
+  Zone *z = cell->zone;
+  for (int i = 0; i < z->cells.length; i++)
+  {
+    Cell *az = z->cells.getItem(i);
+    Td_way_data *thwd_az = az->thwd.getItemPtr(td->num);
+    thwd_az->explored = td->createCount;
+    az->aroundCells.forEach([td, z, az](Cell *azac)
+                            {
            if (!azac->zone &&
                azac->claster == az->claster &&
                azac->thwd.getItemPtr(td->num)->explored != td->createCount &&
                 isCellValide(azac)) {
                 azac->zone = z;
                 z->cells.push(azac);
-                allZoneCells.push(azac);
-               }
-        });
-        // if (thwd_az->explored != td->createCount) {
-
-        // }
-      }
-     // nextCell = nullptr;
-    //}
+               } });
+  }
 };
-
 
 void Claster::getZones()
 {
@@ -54,19 +43,9 @@ void Claster::getZones()
 
   this->zones.clear();
 
-
-
-  // this->cells.forEach([&validCells, this](Cell *c)
-  //                     {
-  //          if (isCellValide(c)) 
-  //           {
-  //             validCells.push(c);
-  //           } });
-
   Zone *cz = nullptr;
   this->cells.forEach([this, &cz](Cell *c)
-                     {
-                        // c->ok = true;
+                      {
                          if (!c->zone && isCellValide(c))
                          {
                            cz = new Zone;
@@ -97,20 +76,5 @@ void Claster::getZones()
                             cz->cell = md.cell;
 ///////////////////////////////////////////////////////// <= get cell
 
-                         }
-
-                  //        c->aroundCells.forEach([this, cz](Cell *ac)
-                  //                               {
-                    
-                  //  if (ac->claster == this &&
-                  //      isCellValide(ac) &&
-                  //      !ac->zone
-                  //     ) 
-                  //     {
-                  //       ac->zone = cz;
-                  //       cz->cells.push(ac);
-                  //     } });
-
-
-                     });
+                         } });
 }

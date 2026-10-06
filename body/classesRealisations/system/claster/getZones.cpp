@@ -45,6 +45,23 @@ void Claster::getZones()
                             cz->cells.push(c);
                             c->zone = cz;
                             cz->cl = this;
+
+                            MinDataC md;
+                            md.cell = cz->cells.getItem(0);
+                            //md.index = 0;
+                            md.dis = this->td->get_H(md.cell, this->cell);
+                            cz->cells.forEach([this, &md](Cell *c, int i){
+                              int res = this->td->get_H(c, this->cell);
+                              if (res < md.dis) {
+                                 md.cell = c;
+                                 md.dis = res;
+                                 //md.index = 
+                              }
+                            });
+
+                            cz->cell = md.cell;
+
+
                          }
 
                          c->aroundCells.forEach([this, cz](Cell *ac)

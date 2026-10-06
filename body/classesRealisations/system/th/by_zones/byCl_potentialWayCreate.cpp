@@ -8,9 +8,14 @@ void ThData::byCl_potentialWayCreate(Unit *unit, Zone *finalZone) {
         Zone *nextZone = finalZone;
         TargetData &td = unit->targetData;
        // unit->way.push(nextCell);
-
+        int tt = 0;
         while (true)
         {
+          tt++;
+          if (tt >= 1000) {
+            console.log("create LOOP");
+            return;
+          }
             //  iter++;
             if (nextZone->thwd.getItemPtr(this->num)->wayFather &&
                 nextZone->thwd.getItemPtr(this->num)->wayFather != unit->cell->zone)

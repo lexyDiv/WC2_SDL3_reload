@@ -20,6 +20,7 @@ class Claster {
     Array<Claster *> aroundClasters;
     Array<int> aroundClasters_G;
     ThData *td = thDatas.getItem(0); // ??????????????????????
+    bool addOnUpdate = false;
 
     void getZones();
     void create();

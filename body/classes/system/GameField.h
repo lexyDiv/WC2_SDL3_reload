@@ -167,6 +167,10 @@ public:
   Array<Array<Claster *>> clasters;
   //Array<Zone *> zones;
   int clasterGabarit = 7;
+ // mutex muteUpdateClasters;
+  Array<Claster *> clastersOnUpdate;
+  void addClasterOnUpdate(Claster *claster);
+  void updateClasters();
 
 
 private:

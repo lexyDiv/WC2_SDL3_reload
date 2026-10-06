@@ -4,6 +4,13 @@
 void ThData::byCl_createPW(Unit *unit)
 {
 
+    if (!unit->cell->zone) {
+        console.log("no unit cell zone");
+        return;
+    } else if (!unit->targetData.clicckedCell->zone && !unit->targetData.unit) {
+        console.log("!unit->targetData.clicckedCell->zone");
+    }
+
 TargetData &utd = unit->targetData;
 
     if (//!utd.isNeedClasterMagistral ||

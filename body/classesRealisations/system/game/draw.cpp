@@ -143,7 +143,7 @@ void Game::draw()
     //    // console.log("----------------------------------");
     // }); }); });
 
-    //     Claster *cl = this->gf->clasters.getItemLnk(0).getItem(0);
+    //     Claster *cl = this->gf->clasters.getItemLnk(0).getItem(3);
 
     //     ctx.StrokeRect(cl->x + drawDeltaX, cl->y + drawDeltaY, cl->size, cl->size, "violet");
 

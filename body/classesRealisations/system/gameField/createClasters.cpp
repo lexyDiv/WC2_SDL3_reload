@@ -1,5 +1,5 @@
 #include "trupsControl.cpp"
-//=>out
+//=>addClasterOnUpdate
 
 void GameField::createClasters()
 {

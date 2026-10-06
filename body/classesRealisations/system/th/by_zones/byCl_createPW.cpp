@@ -4,6 +4,14 @@
 void ThData::byCl_createPW(Unit *unit)
 {
 
+TargetData &utd = unit->targetData;
+
+    if (!utd.isNeedClasterMagistral //||
+       // (utd.clicckedCell && utd.clicckedCell->zone == unit->cell->zone)
+    ) {
+        return;
+    }
+
     this->getSuccessLambda(unit);
 
     this->createCount += 0.001;
@@ -12,7 +20,7 @@ void ThData::byCl_createPW(Unit *unit)
         this->createCount = 0;
         console.log("default");
     }
-    TargetData &utd = unit->targetData;
+    
 
     // if (utd.unit && utd.unit->type == "building" &&
     //     !unit->isIexplored && !utd.nextCell)
@@ -22,6 +30,8 @@ void ThData::byCl_createPW(Unit *unit)
     // }
 
     unit->way.clear();
+    utd.magistral.clear();
+
     int currentDeep = 30000; // unit->personalCaseDeep ? unit->personalCaseDeep : this->deep;
     this->targetCell = utd.clicckedCell; //utd.nextCell ? utd.nextCell : utd.clicckedCell;
 
@@ -44,6 +54,7 @@ void ThData::byCl_createPW(Unit *unit)
     this->globalMin_H_zone = nullptr;
 
 
+    this->openArr_z.push(this->min_F_zone);
     while (true)
     {
 

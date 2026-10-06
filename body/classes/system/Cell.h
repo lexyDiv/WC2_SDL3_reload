@@ -36,13 +36,13 @@ public:
     Cell *nextCell = nullptr;
     int nextCellIndex = 0;
     int magistrlLoop = 0;
-   // bool saveTargetIsBlocked = false; // not cleard
     bool isNeedMagistralFinish = false;
-   // Cell *saveNextCell = nullptr;
+    bool isNeedClasterMagistral = true;
+
 
     void clear()
     {
-        
+        isNeedClasterMagistral = true;
         unit = nullptr;
         unitPersNum = 0;
         clicckedCell = nullptr;

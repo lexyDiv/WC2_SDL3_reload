@@ -13,10 +13,14 @@ void MobileGroundUnit::checkNextMagistralCell()
         td.nextCell = td.magistral.getItem(td.nextCellIndex);
         td.magistrlLoop = 0;
     }
-    else if((td.nextCell && !td.nextCellIndex) 
-    || (td.magistrlLoop >= 20 && !this->blockedData.isBlocked)
-)
+    else if ((td.nextCell && !td.nextCellIndex) || (td.magistrlLoop >= 20 && !this->blockedData.isBlocked))
     {
+
+        if (td.nextCell && !td.nextCellIndex)
+        {
+            td.isNeedClasterMagistral = false;
+        }
+
         td.magistrlLoop = 0;
         td.nextCell = nullptr;
         td.prevCell = nullptr;

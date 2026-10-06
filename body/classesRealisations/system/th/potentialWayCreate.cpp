@@ -32,8 +32,6 @@ void ThData::potentialWayCreate(Unit *unit, Cell *finalCell)
     unit->isIgetMyTarget = false;
 
 
-  //  if (unit->focus)
-  //  {
         TargetData &td = unit->targetData;
         if (unit->way.length >= 10 && !td.magistral.length && !this->isMagistral)
         {
@@ -44,45 +42,7 @@ void ThData::potentialWayCreate(Unit *unit, Cell *finalCell)
             td.prevCell = td.magistral.getItem(td.magistral.length - 1);
             td.nextCell = td.magistral.getItem(td.magistral.length - 2);
             td.nextCellIndex = td.magistral.length - 2;
-            // if (unit->focus)
-            // {
-            //     console.log("create magistral = ");
-            // }
         }
-
-        //  if (unit->persNum == 1)
-        //  {
-        //      console.log("iter = " + to_string(iter));
-        //  }
-   // }
-
-
-            // if (unit->focus)
-            // {
-            //     console.log("create = ", iter);
-            // }
-
     this->isMagistral = false;
-
-
-//     Uint64 resTime = SDL_GetTicks();
-//    // int delta = resTime - this->timeBeforeUnitWay;
-//     Uint64 deltaU = resTime - this->timeBeforeUnitWay;
-//     Uint64 timePerIter = deltaU;
-
-//     double h = (deltaU * 1000000) / (Uint64)iter;
-
-//     if (this->num == 0 ) {
-//         // one = false;
-//         // console.log("iter = ", iter);
-//         // console.log(to_string(resTime));
-//         // console.log(to_string(this->timeBeforeUnitWay));
-//         // console.log("delta = ", delta);
-//         // console.log("? = ", (double)hz);
-//         // console.log("--------------------------");
-
-//         console.log("? = ", h / 1000000);
-       
-//     }
-
+    console.log("create ", iter);
 };

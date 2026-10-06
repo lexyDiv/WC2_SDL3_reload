@@ -6,6 +6,10 @@ struct BlockedData {
   char type = 'f';
 };
 
+struct Td_xploredData {
+  double explored = 0;
+};
+
 class Unit
 {
 public:
@@ -216,5 +220,7 @@ public:
  
 virtual void checkNextMagistralCell() {};
 bool isBlockedBuilding(Unit *u, ThData *td);
+
+Array<Td_xploredData> thwd;
 
 };

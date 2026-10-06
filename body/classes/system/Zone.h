@@ -11,6 +11,7 @@ class Zone {
     Claster *cl = nullptr;
     Cell *cell = nullptr;
     bool isTeesNear = false;
+    Array<Unit *> buildingsNear;
 
     void getAroundZones();
 };

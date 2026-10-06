@@ -21,6 +21,7 @@ public:
     int iter = 0;
 
     double createCount = 0;
+    double ccs = 0.001;
     double procCurr = 0;
 
 

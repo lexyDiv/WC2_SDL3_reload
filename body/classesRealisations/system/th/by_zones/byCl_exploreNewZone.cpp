@@ -10,7 +10,7 @@ void ThData::byCl_exploreNewZone(Unit *unit, Zone *fatherZone, Zone *sonZone, in
     {
         if (sonZone_thwd->createCountData == this->createCount)
         {
-            int G = this->byCl_get_G(fatherZone, i) + fatherZone_thwd->G;
+            int G = this->byCl_get_G(fatherZone, sonZone) + fatherZone_thwd->G;
             int F = G + sonZone_thwd->H;
             if (sonZone_thwd->F > F)
             {
@@ -26,7 +26,7 @@ void ThData::byCl_exploreNewZone(Unit *unit, Zone *fatherZone, Zone *sonZone, in
             sonZone_thwd->wayFather = fatherZone;
 
             sonZone_thwd->createCountData = this->createCount;
-            int G = this->byCl_get_G(fatherZone, i);
+            int G = this->byCl_get_G(fatherZone, sonZone);
             int H = this->byCl_get_H(sonZone,
                                 // unit->targetCell
                                 // unit->targetData.clicckedCell

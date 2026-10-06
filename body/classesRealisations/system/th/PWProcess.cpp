@@ -14,8 +14,8 @@ void ThData::PWProcess()
 
         if (!unit->isPotentialWayComplite && unit->cell && unit->hp)
         {
-            this->createPotentialWay(unit);
-           //this->byCl_createPW(unit);
+           // this->createPotentialWay(unit);
+           this->byCl_createPW(unit);
             unit->isPotentialWayComplite = true;
         }
        Uint64 currentTime = SDL_GetTicks();

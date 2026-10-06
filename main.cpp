@@ -1,3 +1,5 @@
+// https://github.com/lexyDiv/WC2_SDL3_reload.git
+
 // gdb ./prog core
 // export DEBUGINFOD_URLS="https://debuginfod.archlinux.org"
 // g++ -g -O0 main.cpp -I./include -fmax-include-depth=5000 -o prog -L./sdl3-sample/build -lSDL3 -lSDL3_image

@@ -65,6 +65,10 @@ public:
 
     Zone *min_F_zone = nullptr;
     Zone *globalMin_H_zone = nullptr;
+    
+    function<bool(Zone *zone)> successWay = [this](Zone *zone){
+        return false;
+    };
 
 };
 

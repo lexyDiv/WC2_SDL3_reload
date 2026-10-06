@@ -1,5 +1,5 @@
 #include "byCl_get_H.cpp"
-//=>out
+//=>getSuccessLambda
 
 void ThData::byCl_potentialWayCreate(Unit *unit, Zone *finalZone) {
     

@@ -166,7 +166,7 @@ public:
   ////////////////////////// => clasters
   Array<Array<Claster *>> clasters;
   //Array<Zone *> zones;
-  int clasterGabarit = 5;
+  int clasterGabarit = 7;
 
 
 private:

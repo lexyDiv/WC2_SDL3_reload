@@ -43,5 +43,6 @@ void ThData::byCl_potentialWayCreate(Unit *unit, Zone *finalZone) {
 
 
             //unit->way.push(unit->cell->aroundCells.getItem(0));
+            console.log("iter = ", iter);
             
 }

@@ -172,6 +172,8 @@ public:
   void addClasterOnUpdate(Claster *claster);
   void updateClasters();
 
+  Claster *focusClaster = nullptr;
+
 
 private:
 };

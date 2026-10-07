@@ -14,7 +14,8 @@ void ThData::byCl_createPW(Unit *unit)
 TargetData &utd = unit->targetData;
 
     if (//!utd.isNeedClasterMagistral ||
-        (utd.clicckedCell && utd.clicckedCell->zone == unit->cell->zone)
+        (utd.clicckedCell && utd.clicckedCell->zone == unit->cell->zone) ||
+        (!unit->cell->zone->contactZones.length)
     ) {
         return;
     }

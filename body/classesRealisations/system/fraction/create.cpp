@@ -21,7 +21,7 @@ if (this->color == "red") {
 
     Unit *peon = new Peon_peasant(this);
     peon->persNum = 2;
-    peon->create(game->gf->field.getItem(5).getItem(9));
+    peon->create(game->gf->field.getItem(0).getItem(0));
     this->game->allLifeUnitsPtr.push(peon);
     this->AllLifeUnits.push(peon);
 
@@ -45,13 +45,13 @@ if (this->color == "red") {
 
 
 
-    Unit *townHall = new TownHall;
-    townHall->fraction = this;
-    townHall->create(game->gf->field.getItem(2).getItem(20));
-    this->fTownHoll.townHolls.push(townHall);
-    townHall->isComplite = true;
-    townHall->createTimer = 100;
-    townHall->isActive = true;
+    // Unit *townHall = new TownHall;
+    // townHall->fraction = this;
+    // townHall->create(game->gf->field.getItem(2).getItem(20));
+    // this->fTownHoll.townHolls.push(townHall);
+    // townHall->isComplite = true;
+    // townHall->createTimer = 100;
+    // townHall->isActive = true;
 
 
 

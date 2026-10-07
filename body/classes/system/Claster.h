@@ -8,6 +8,7 @@ class Claster {
     int size = 0;
     Claster(Cell *cell, Game *game, int ver, int hor);
     ~Claster();
+    Array<Zone> allZones;
     Array<Zone *> zones;
     Array<Cell *> cells;
     Cell *cell = nullptr;

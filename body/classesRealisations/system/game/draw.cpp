@@ -95,7 +95,6 @@ void Game::draw()
 if (this->gf->focusClaster) {
     Claster *cl = this->gf->focusClaster;
 
-            ctx.StrokeRect(cl->x + drawDeltaX, cl->y + drawDeltaY, cl->size, cl->size, "black");
 
         cl->zones.forEach([&drawDeltaX, &drawDeltaY](Zone *z, int i)
                           {
@@ -116,27 +115,27 @@ if (this->gf->focusClaster) {
                               {
                                   color = "blue";
                               }
-                            //   else if (i == 4)
-                            //   {
-                            //       color = "black";
-                            //   }
+ 
+                              z->cells.forEach([&drawDeltaX, &drawDeltaY, &color](Cell *c, int i)
+                                               { 
+            ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, c->gabX, c->gabX, color, 100); 
+            ctx.DrawText(c->x + drawDeltaX, c->y + drawDeltaY, 20, to_string(i));
+                                            });
 
-                              z->cells.forEach([&drawDeltaX, &drawDeltaY, &color](Cell *c)
-                                               { ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, c->gabX, c->gabX, color, 100); });
+    //                           z->contactZones.forEach([&drawDeltaX, &drawDeltaY, &color](Zone *cz, int i)
+    //                                                   {
 
-                              z->contactZones.forEach([&drawDeltaX, &drawDeltaY, &color](Zone *cz, int i)
-                                                      {
-            //console.log(cz->cells.length);
-           // ctx.DrawText(c->x + drawDeltaX, c->y + drawDeltaY, 20, to_string(i));
-           cz->cells.forEach([&drawDeltaX, &drawDeltaY, &i, &color](Cell *c, int k){
-            ctx.DrawText(c->x + drawDeltaX, c->y + drawDeltaY, 20, to_string(k));
-            ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, c->gabX, c->gabX, color, 100);
-           });
-    ctx.FillRect(cz->cell->x + drawDeltaX, cz->cell->y + drawDeltaY, cz->cell->gabX, cz->cell->gabX, "black"); });
-                              // console.log("----------------------------------");
+                                                        
+    //        cz->cells.forEach([&drawDeltaX, &drawDeltaY, &i, &color](Cell *c, int k){
+    //         ctx.DrawText(c->x + drawDeltaX, c->y + drawDeltaY, 20, to_string(k));
+    //         ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, c->gabX, c->gabX, color, 100);
+    //        });
+    // ctx.FillRect(cz->cell->x + drawDeltaX, cz->cell->y + drawDeltaY, cz->cell->gabX, cz->cell->gabX, "black"); });
+
+    
                           });
 
-
+ctx.StrokeRect(cl->x + drawDeltaX, cl->y + drawDeltaY, cl->size, cl->size, "black"); // contur
 }
 
 

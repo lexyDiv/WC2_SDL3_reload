@@ -6,12 +6,12 @@ Claster::~Claster()
     //console.log("clastyer destroy");
   //  if (this->zones.length)
    // {
-        this->zones.forEach([](Zone *z)
-                            {
-           if (z) {
-            delete z;
-            z = nullptr;
-           } });
+        // this->zones.forEach([](Zone *z)
+        //                     {
+        //    if (z) {
+        //     delete z;
+        //     z = nullptr;
+        //    } });
        // this->zones.clear();
    // }
 };
@@ -27,6 +27,11 @@ Claster::Claster(Cell *cell, Game *game, int ver, int hor)
     this->size = this->gab * gf->cellSize;
     this->x = cell->x - gf->cellSize * ((this->gab - 1) / 2);
     this->y = cell->y - gf->cellSize * ((this->gab - 1) / 2);
+
+    for (int i = 0; i < this->gab * this->gab; i++) {
+        Zone z;
+        this->allZones.push(z);
+    }
 }
 
 void Claster::create()

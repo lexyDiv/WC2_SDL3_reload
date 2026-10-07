@@ -6,13 +6,13 @@ bool isCellValide(Cell *c)
   return (c->plane->type != "sea" &&
           (!c->groundUnit ||
            c->groundUnit->type == "life" //||
-          // !c->groundUnit->hp
-          ));
+           // !c->groundUnit->hp
+           ));
 };
 
 void getAllZoneCells(Cell *cell, ThData *td)
 {
-    td->createCount += 0.001;
+  td->createCount += 0.001;
   Zone *z = cell->zone;
   for (int i = 0; i < z->cells.length; i++)
   {
@@ -51,21 +51,12 @@ void Claster::getZones()
 
   this->td->createCount += 0.001;
 
-
-
-  this->zones.forEach([](Zone *z)
-                      {
-      z->cells.forEach([](Cell *c){
-        c->zone = nullptr;
-      });
-      z->cells.clear(); 
-      z->cell = nullptr;                 
-     //if (z) {
-            delete z;
-      z = nullptr;
-    // } 
-    });
-
+  // this->cells.forEach([this](Cell *c)
+  //                     {
+  //   c->thwd.getItemPtr(this->td->num)->explored = 0;
+  //   c->zone = nullptr; });
+  this->allZones.forEach([](Zone &z)
+                         { z.restart(); });
   this->zones.clear();
 
   Zone *cz = nullptr;
@@ -73,13 +64,16 @@ void Claster::getZones()
                       {
                         if (!c->zone && isCellValide(c))
                         {
-                          cz = new Zone;
+                         // cz = new Zone;
+                         for (int i = 0; i < this->allZones.length; i++) {
+                          cz = this->allZones.getItemPtr(i);
+                          if (!cz->isActive) {
+                            break;
+                          }
+                         }
+
                           this->zones.push(cz);
 
-                          thDatas.forEach([cz](ThData *td)
-                                          {
-                              Td_way_data_z thwd;
-                              cz->thwd.push(thwd); });
 
                           cz->cells.push(c);
                           c->zone = cz;

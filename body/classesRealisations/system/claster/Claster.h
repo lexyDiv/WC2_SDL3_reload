@@ -35,7 +35,7 @@ void Claster::create()
                                      {
                                          c->claster = this;
                                          this->cells.push(c); });
-    this->cell->clasterCells.clear();
+   // this->cell->clasterCells.clear();
 
     // Zone *z = new Zone;
     // this->zones.push(z);

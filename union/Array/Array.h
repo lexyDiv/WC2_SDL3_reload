@@ -56,7 +56,7 @@ public:
     void push(T el);
     void savePush(T el);
 
-    void reserv(int res);
+   
 
     void unshift(T el);
     T pop();
@@ -160,11 +160,7 @@ inline void Array<T>::savePush(T el)
     savePushMT.unlock();
 }
 
-template <typename T>
-inline void Array<T>::reserv(int res)
-{
-    this->vec.reserve(res);
-}
+
 
 template <typename T>
 inline void Array<T>::unshift(T el)

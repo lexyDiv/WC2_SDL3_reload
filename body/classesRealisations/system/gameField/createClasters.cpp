@@ -7,7 +7,7 @@ void GameField::createClasters()
 
     // console.log("clastarsCount = ", clastersCount);
 
-    this->clasters.reserv(linesCount);
+
 
     int startIndex = (this->clasterGabarit - 1) / 2;
     int step = this->clasterGabarit;
@@ -18,7 +18,7 @@ void GameField::createClasters()
     {
         Array<Cell *> &line = this->field.getItemLnk(ver);
         Array<Claster *> lineClasters;
-        lineClasters.reserv(linesCount);
+
         iterHor = 0;
         for (int hor = startIndex; hor < length; hor += step)
         {

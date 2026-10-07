@@ -8,8 +8,8 @@ void MobileGroundUnit::checkNextMagistralCell()
     int nextCellDis = this->thd->get_H(td.nextCell, this->cell);
     if (
         nextCellDis < prevCellDis && td.nextCellIndex &&
-        td.nextCell &&
-        ((td.nextCell->claster != td.prevCell->claster))
+        td.nextCell //&&
+        //((td.nextCell->claster != td.prevCell->claster))
         )
     {
         td.nextCellIndex--;

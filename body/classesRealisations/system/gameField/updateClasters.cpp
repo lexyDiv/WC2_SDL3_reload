@@ -1,5 +1,5 @@
 #include "addClasterOnUpdate.cpp"
-//=>out
+//=>savePushOnTrups
 
 void GameField::updateClasters()
 {

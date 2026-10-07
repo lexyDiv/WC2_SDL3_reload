@@ -162,7 +162,7 @@ public:
     //////////////// <= fieldClick
 
     FieldClick *fieldClickPoint = nullptr;
-
+   void savePushOnTrups(Unit *unit);
   ////////////////////////// => clasters
   Array<Array<Claster *>> clasters;
   //Array<Zone *> zones;

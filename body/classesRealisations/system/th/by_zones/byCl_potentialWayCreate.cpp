@@ -13,7 +13,9 @@ void ThData::byCl_potentialWayCreate(Unit *unit, Zone *finalZone) {
         {
           tt++;
           if (tt >= 1000) {
-            console.log("create LOOP");
+            console.log("create LOOP, iter = ", iter);
+            console.log("wayFathr->isActive = ", nextZone->thwd.getItemPtr(this->num)->wayFather->isActive);
+            this->game->gf->focusClaster = nextZone->thwd.getItemPtr(this->num)->wayFather->cl;
             return;
           }
             //  iter++;
@@ -43,6 +45,6 @@ void ThData::byCl_potentialWayCreate(Unit *unit, Zone *finalZone) {
 
 
             //unit->way.push(unit->cell->aroundCells.getItem(0));
-            console.log("iter = ", iter);
+          //  console.log("iter = ", iter);
             
 }

@@ -33,4 +33,6 @@ void Zone::restart() {
         c->zone = nullptr;
     });
     this->cells.clear();
+    buildingsNear.clear();
+    isTeesNear = false;
 }

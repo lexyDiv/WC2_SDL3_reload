@@ -30,9 +30,9 @@ void GameField::updateClasters()
 
             cou->zones.forEach([](Zone *z){
                 z->getAroundZones();
-                if (!z->contactZones.length) {
-                    console.log("no z->co"); // => impoasble
-                }
+                // if (!z->contactZones.length) {
+                //     console.log("no z->co"); // => impoasble
+                // }
                 z->contactZones.forEach([z](Zone *zcz){
                     zcz->contactZones.push(z);
                 });

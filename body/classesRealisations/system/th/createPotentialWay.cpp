@@ -154,20 +154,21 @@ void ThData::createPotentialWay(Unit *unit)
 
                 // console.log("open.length = " + to_string(openArr.length) + " iter = " + to_string(iter));
 
-                if ( // iter < 30 &&
-                    (currentDeep != shortDeep
-                     //|| (utd.nextCell && iter < 5)
-                     ) &&
-                    unit->personalCaseDeep != 3 && (currentDeep != this->lowDeep || iter < this->lowDeep)
-                )
-                {
+              //  if ( // iter < 30 &&
+                  //  (currentDeep != shortDeep
+                  //   || (utd.nextCell && iter < shortDeep)
+                //     ) &&
+                 //   unit->personalCaseDeep != 3 && (currentDeep != this->lowDeep || iter < this->lowDeep)
+               // )
+               // {
                     unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON 3/3
                     unit->frashWayCheckNeed = true;
                     // if (unit->focus) {
                     //     console.log("way ON");
                     // }
-                }
-                else if (currentDeep == shortDeep)
+               // }
+               // else 
+                if (currentDeep == shortDeep)
                 {
                     utd.magistrlLoop++;
                 }

@@ -92,56 +92,56 @@ void Game::draw()
 //////////////////////////////////////////////////////////////////////////// => focusClaster
 
 
-if (this->gf->focusClaster) {
-    Claster *cl = this->gf->focusClaster;
+// if (this->gf->focusClaster) {
+//     Claster *cl = this->gf->focusClaster;
 
 
-        cl->zones.forEach([&drawDeltaX, &drawDeltaY](Zone *z, int i)
-                          {
-                              string color = "";
-                              if (!i)
-                              {
-                                  color = "red";
-                              }
-                              else if (i == 1)
-                              {
-                                  color = "violet";
-                              }
-                              else if (i == 2)
-                              {
-                                  color = "yellow";
-                              }
-                              else if (i == 3)
-                              {
-                                  color = "blue";
-                              }
-              ctx.DrawText(z->cell->x + drawDeltaX, z->cell->y + drawDeltaY, 20, to_string(i)); // index of zone
-                              z->cells.forEach([&drawDeltaX, &drawDeltaY, &color](Cell *c, int i)
-                                               { 
-            ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, c->gabX, c->gabX, color, 100); 
-           // ctx.DrawText(c->x + drawDeltaX, c->y + drawDeltaY, 20, to_string(i));
-                                            });
+//         cl->zones.forEach([&drawDeltaX, &drawDeltaY](Zone *z, int i)
+//                           {
+//                               string color = "";
+//                               if (!i)
+//                               {
+//                                   color = "red";
+//                               }
+//                               else if (i == 1)
+//                               {
+//                                   color = "violet";
+//                               }
+//                               else if (i == 2)
+//                               {
+//                                   color = "yellow";
+//                               }
+//                               else if (i == 3)
+//                               {
+//                                   color = "blue";
+//                               }
+//               ctx.DrawText(z->cell->x + drawDeltaX, z->cell->y + drawDeltaY, 20, to_string(i)); // index of zone
+//                               z->cells.forEach([&drawDeltaX, &drawDeltaY, &color](Cell *c, int i)
+//                                                { 
+//             ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, c->gabX, c->gabX, color, 100); 
+//            // ctx.DrawText(c->x + drawDeltaX, c->y + drawDeltaY, 20, to_string(i));
+//                                             });
 
-                              z->contactZones.forEach([&drawDeltaX, &drawDeltaY, &color](Zone *cz, int i)
-                                                      {
+//                               z->contactZones.forEach([&drawDeltaX, &drawDeltaY, &color](Zone *cz, int i)
+//                                                       {
 
                                                         
-           cz->cells.forEach([&drawDeltaX, &drawDeltaY, &i, &color](Cell *c, int k){
-            //ctx.DrawText(c->x + drawDeltaX, c->y + drawDeltaY, 20, to_string(k));
-            ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, c->gabX, c->gabX, color, 100);
-           });
-   // ctx.FillRect(cz->cell->x + drawDeltaX, cz->cell->y + drawDeltaY, cz->cell->gabX, cz->cell->gabX, "black"); 
-  // ctx.DrawText(cz->cell->x + drawDeltaX, cz->cell->y + drawDeltaY, 20, to_string(i));
-       string isActive = cz->isActive ? "active" : "NO ACTIVE !";
-    ctx.DrawText(cz->cell->x + drawDeltaX, cz->cell->y + drawDeltaY, 20, isActive);
-});
+//            cz->cells.forEach([&drawDeltaX, &drawDeltaY, &i, &color](Cell *c, int k){
+//             //ctx.DrawText(c->x + drawDeltaX, c->y + drawDeltaY, 20, to_string(k));
+//             ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, c->gabX, c->gabX, color, 100);
+//            });
+//    // ctx.FillRect(cz->cell->x + drawDeltaX, cz->cell->y + drawDeltaY, cz->cell->gabX, cz->cell->gabX, "black"); 
+//   // ctx.DrawText(cz->cell->x + drawDeltaX, cz->cell->y + drawDeltaY, 20, to_string(i));
+//        string isActive = cz->isActive ? "active" : "NO ACTIVE !";
+//     ctx.DrawText(cz->cell->x + drawDeltaX, cz->cell->y + drawDeltaY, 20, isActive);
+// });
 
-    string isActive = z->isActive ? "active" : "NO ACTIVE !";
-    ctx.DrawText(z->cell->x + drawDeltaX, z->cell->y + drawDeltaY, 20, isActive);
-                          });
+//     string isActive = z->isActive ? "active" : "NO ACTIVE !";
+//     ctx.DrawText(z->cell->x + drawDeltaX, z->cell->y + drawDeltaY, 20, isActive);
+//                           });
 
-ctx.StrokeRect(cl->x + drawDeltaX, cl->y + drawDeltaY, cl->size, cl->size, "black"); // contur
-}
+// ctx.StrokeRect(cl->x + drawDeltaX, cl->y + drawDeltaY, cl->size, cl->size, "black"); // contur
+// }
 
 
 //////////////////////////////////////////////////////////////////////////// <= focusClaster

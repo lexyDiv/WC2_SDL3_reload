@@ -90,7 +90,7 @@ int main()
             else
             {
 
-                // console.log("hold = " + to_string(deltaTime));
+                // console.log("hold = " + to_string(game->optimalDeltaTime - deltaTime));
             }
 
             deltas.push(deltaTime);

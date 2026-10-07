@@ -20,11 +20,6 @@ GameField::~GameField()
         delete plane;
         plane = nullptr; });
 
-    this->clasters.forEach([](Array<Claster *> &line){
-        line.forEach([](Claster *cl){
-            delete cl;
-            cl = nullptr;
-        });
-    });
+
 
 }

@@ -52,6 +52,7 @@ void Claster::getZones()
   this->td->createCount += 0.001;
 
 
+
   this->zones.forEach([](Zone *z)
                       {
       z->cells.forEach([](Cell *c){

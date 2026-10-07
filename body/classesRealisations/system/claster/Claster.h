@@ -3,7 +3,7 @@
 
 Claster::~Claster()
 {
-    console.log("clastyer destroy");
+    //console.log("clastyer destroy");
   //  if (this->zones.length)
    // {
         this->zones.forEach([](Zone *z)

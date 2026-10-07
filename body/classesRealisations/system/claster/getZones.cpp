@@ -51,10 +51,6 @@ void Claster::getZones()
 
   this->td->createCount += 0.001;
 
-  // this->cells.forEach([this](Cell *c)
-  //                     {
-  //   c->thwd.getItemPtr(this->td->num)->explored = 0;
-  //   c->zone = nullptr; });
   this->allZones.forEach([](Zone &z)
                          { z.restart(); });
   this->zones.clear();
@@ -68,6 +64,7 @@ void Claster::getZones()
                          for (int i = 0; i < this->allZones.length; i++) {
                           cz = this->allZones.getItemPtr(i);
                           if (!cz->isActive) {
+                            cz->isActive = true;
                             break;
                           }
                          }

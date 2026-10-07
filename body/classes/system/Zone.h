@@ -32,4 +32,5 @@ void Zone::restart() {
         c->thwd.getItemPtr(0)->explored = 0;
         c->zone = nullptr;
     });
+    this->cells.clear();
 }

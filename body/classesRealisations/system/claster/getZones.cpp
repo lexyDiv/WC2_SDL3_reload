@@ -5,8 +5,9 @@ bool isCellValide(Cell *c)
 {
   return (c->plane->type != "sea" &&
           (!c->groundUnit ||
-           c->groundUnit->type == "life" ||
-           !c->groundUnit->hp));
+           c->groundUnit->type == "life" //||
+          // !c->groundUnit->hp
+          ));
 };
 
 void getAllZoneCells(Cell *cell, ThData *td)
@@ -49,7 +50,7 @@ void Claster::getZones()
 {
 
   this->td->createCount += 0.001;
-  Array<Cell *> validCells;
+
 
   this->zones.forEach([](Zone *z)
                       {

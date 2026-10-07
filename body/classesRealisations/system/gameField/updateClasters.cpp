@@ -5,30 +5,41 @@ void GameField::updateClasters()
 {
     if (this->clastersOnUpdate.length)
     {
-       // console.log("tipa update");
-        this->clastersOnUpdate.forEach([](Claster *cl)
-                                       {
-                                           cl->getZones();
-                                        //    cl->aroundClasters.forEach([](Claster *acl)
-                                        //                               {
-                                        //                                   if (!acl->addOnUpdate)
-                                        //                                   {
-                                        //                                       acl->getZones();
-                                        //                                   }
-                                        //                               });
-                                       });
+       
+        this->clastersOnUpdate.forEach([](Claster *cou){
+            cou->addOnUpdate = false;
+            ///////////////////////////////// => delete around
+            cou->zones.forEach([](Zone *couZone){
+                couZone->contactZones.forEach([couZone](Zone *z){
+                    int zIndex = z->contactZones.indexOf(couZone); // ok
+                    // if (zIndex < 0) {
+                    //     cout << "sub-zero" << endl;
+                    //     console.log("sub-zero");
+                    // }
+                    z->contactZones.splice(zIndex, 1);
+                });
+            });
 
-        this->clastersOnUpdate.forEach([](Claster *cl)
-                                       { 
-                                    cl->zones.forEach([](Zone *z)
-                                                       { z->getAroundZones(); });
-                                                       
-                                    cl->aroundClasters.forEach([](Claster *acl){
-                                               acl->zones.forEach([](Zone *z)
-                                                       { z->getAroundZones(); });
-                                                      
-                                    }); 
-                                cl->addOnUpdate = false; });
+            ///////////////////////////////// <= delete around
+
+            cou->getZones();
+
+            if (!cou->zones.length) {
+                console.log("no new zones");
+            }
+
+            cou->zones.forEach([](Zone *z){
+                z->getAroundZones();
+                if (!z->contactZones.length) {
+                    console.log("no z->co");
+                }
+                z->contactZones.forEach([z](Zone *zcz){
+                    zcz->contactZones.push(z);
+                });
+            });
+
+        });
+
 
         this->clastersOnUpdate.clear();
     }

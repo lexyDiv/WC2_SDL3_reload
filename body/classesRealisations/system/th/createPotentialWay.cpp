@@ -121,7 +121,9 @@ void ThData::createPotentialWay(Unit *unit)
 
             this->min_F_cell = md.cell;
             this->min_F_cell->thwd.getItemPtr(this->num)->explored = this->createCount;
-            if (!this->globalMin_H_cell || this->globalMin_H_cell->thwd.getItemPtr(this->num)->H > this->min_F_cell->thwd.getItemPtr(this->num)->H)
+            if (
+                !this->globalMin_H_cell || this->globalMin_H_cell->thwd.getItemPtr(this->num)->H > this->min_F_cell->thwd.getItemPtr(this->num)->H
+               )
             {
                 this->globalMin_H_cell = this->min_F_cell;
             }

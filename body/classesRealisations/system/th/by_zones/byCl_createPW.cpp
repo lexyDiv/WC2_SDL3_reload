@@ -137,7 +137,7 @@ void ThData::byCl_createPW(Unit *unit)
             }
             else
             {
-                console.log("deep");
+               // console.log("deep");
                 this->byCl_potentialWayCreate(unit, this->globalMin_H_zone);
             }
             return;
@@ -148,7 +148,7 @@ void ThData::byCl_createPW(Unit *unit)
             this->min_F_zone == unit->targetData.clicckedCell->zone ||
             this->successWay(this->min_F_zone))
         {
-            console.log("classic");
+          // console.log("classic");
             this->byCl_potentialWayCreate(unit, this->min_F_zone);
             unit->isPotentialWayComplite = true;
             break;

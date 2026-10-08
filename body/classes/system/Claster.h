@@ -29,7 +29,7 @@ class Claster {
 
     /////////////////////////// => debug
 
-    bool isUpdated = false;
-    bool isTouchUpdated = false;
+   // bool isUpdated = false;
+   // bool isTouchUpdated = false;
 
 };

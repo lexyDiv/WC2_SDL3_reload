@@ -25,22 +25,22 @@ void ThData::byCl_createPW(Unit *unit)
       
            // console.log("wayFather->isActive = ", nextZone->thwd.getItemPtr(this->num)->wayFather->isActive);
           //  console.log("wayFather num = ", nextZone->thwd.getItemPtr(this->num)->wayFather->num);
-            console.log("unit vell claster num = ", unit->cell->claster->num);
-            console.log("wayFather cl isUpdated = ", unit->cell->claster->isUpdated);
-            console.log("wayFather cl isTouch = ", unit->cell->claster->isTouchUpdated);
-            console.log("------------------------------------------------------------------");
+            // console.log("unit vell claster num = ", unit->cell->claster->num);
+            // console.log("wayFather cl isUpdated = ", unit->cell->claster->isUpdated);
+            // console.log("wayFather cl isTouch = ", unit->cell->claster->isTouchUpdated);
+            // console.log("------------------------------------------------------------------");
 
-            this->game->gf->focusClaster = unit->cell->claster;
+            // this->game->gf->focusClaster = unit->cell->claster;
         return;
     }
     else if (unit->targetData.clicckedCell && !unit->targetData.clicckedCell->zone && !unit->targetData.unit)
     {
-            console.log("!unit->targetData.clicckedCell->zone");
-            console.log("unit vell claster num = ", utd.clicckedCell->claster->num);
-            console.log("wayFather cl isUpdated = ", utd.clicckedCell->claster->isUpdated);
-            console.log("wayFather cl isTouch = ", utd.clicckedCell->claster->isTouchUpdated);
-            console.log("------------------------------------------------------------------");
-            this->game->gf->focusClaster = utd.clicckedCell->claster;
+            // console.log("!unit->targetData.clicckedCell->zone");
+            // console.log("unit vell claster num = ", utd.clicckedCell->claster->num);
+            // console.log("wayFather cl isUpdated = ", utd.clicckedCell->claster->isUpdated);
+            // console.log("wayFather cl isTouch = ", utd.clicckedCell->claster->isTouchUpdated);
+            // console.log("------------------------------------------------------------------");
+            // this->game->gf->focusClaster = utd.clicckedCell->claster;
             return;
     }
 

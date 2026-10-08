@@ -19,7 +19,14 @@ void Peon_peasant::orderOnWayControl()
         Cell *oCell = this->orderOnWay.cell;
         Unit *oCellGU = oCell ? oCell->groundUnit : nullptr;
 
-        if (this->orderOnWay.stop || oCellGU == this)
+        if (
+            this->orderOnWay.stop ||
+             oCellGU == this ||
+            (
+                this->orderOnWay.cell &&
+                (this->orderOnWay.cell->plane != this->cell->plane)
+            )
+           )
         {
            // console.log("S = " + to_string(this->orderOnWay.stop) + " == " + to_string(oCellGU == this));
             this->targetData.clear();

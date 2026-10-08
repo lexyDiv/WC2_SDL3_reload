@@ -15,7 +15,7 @@ void Peon_peasant::activeProg()
     return;
   }
 
-
+  //this->gf->focusClaster = this->cell->claster;
 
   // if (this->focus) {
   //   console.log("timer = " + to_string(this->needHolTimer));

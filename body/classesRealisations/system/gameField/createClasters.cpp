@@ -12,6 +12,7 @@ void GameField::createClasters()
     int length = this->field.length;
     int iterVer = 0;
     int iterHor = 0;
+    int iter = 0;
     for (int ver = startIndex; ver < length; ver += step)
     {
         Array<Cell *> &line = this->field.getItemLnk(ver);
@@ -22,16 +23,11 @@ void GameField::createClasters()
         {
             Cell *c = line.getItem(hor);
             Claster claster = Claster(c, this->game, iterVer, iterHor);
-
             lineClasters.push(claster);
-
-            // Claster *cl = lineClasters.getItem(lineClasters.length - 1);
-            // cl->create();
-            // // if (iterVer == 1 && iterHor == 1) {
-            // cl->getZones();
-            // // }
+            lineClasters.getItemPtr(lineClasters.length - 1)->num = iter;
 
             iterHor++;
+            iter ++;
         }
         this->clasters.push(lineClasters);
         iterVer++;

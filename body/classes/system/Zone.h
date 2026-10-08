@@ -18,6 +18,7 @@ class Zone {
     bool isTeesNear = false;
     Array<Unit *> buildingsNear;
     bool isActive = false;
+    int num = 0;
 
     void getAroundZones();
     void restart();
@@ -35,4 +36,5 @@ void Zone::restart() {
     this->cells.clear();
     buildingsNear.clear();
     isTeesNear = false;
+    num = 0;
 }

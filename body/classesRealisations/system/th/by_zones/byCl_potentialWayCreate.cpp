@@ -15,7 +15,8 @@ void ThData::byCl_potentialWayCreate(Unit *unit, Zone *finalZone) {
           if (tt >= 1000) {
             console.log("create LOOP, iter = ", iter);
             console.log("wayFathr->isActive = ", nextZone->thwd.getItemPtr(this->num)->wayFather->isActive);
-           // console.log();
+            console.log("wayFather num = ", nextZone->thwd.getItemPtr(this->num)->wayFather->num);
+            console.log("wayFather claster num = ", nextZone->thwd.getItemPtr(this->num)->wayFather->cl->num);
             this->game->gf->focusClaster = nextZone->thwd.getItemPtr(this->num)->wayFather->cl;
             return;
           }

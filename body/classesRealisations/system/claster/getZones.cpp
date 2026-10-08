@@ -56,7 +56,8 @@ void Claster::getZones()
   this->zones.clear();
 
   Zone *cz = nullptr;
-  this->cells.forEach([this, &cz](Cell *c)
+  int iter = 0;
+  this->cells.forEach([this, &cz, &iter](Cell *c)
                       {
                         if (!c->zone && isCellValide(c))
                         {
@@ -65,6 +66,8 @@ void Claster::getZones()
                           cz = this->allZones.getItemPtr(i);
                           if (!cz->isActive) {
                             cz->isActive = true;
+                            cz->num = iter;
+                            iter++;
                             break;
                           }
                          }

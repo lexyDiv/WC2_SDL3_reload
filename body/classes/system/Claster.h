@@ -6,6 +6,7 @@ class Claster {
     public:
     int gab = 0;
     int size = 0;
+    int num = 0;
     Claster(Cell *cell, Game *game, int ver, int hor);
     ~Claster();
     Array<Zone> allZones;

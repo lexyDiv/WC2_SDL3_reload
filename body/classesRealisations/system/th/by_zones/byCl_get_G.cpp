@@ -3,6 +3,19 @@
 
 int ThData::byCl_get_G(Zone *fatherZone, Zone *sonZone)
 { // 10/ 14
+
+
+    // int finVer = fatherZone->cell->ver;
+    // int finHor = fatherZone->cell->hor;
+    // int pVer = sonZone->cell->ver;
+    // int pHor = sonZone->cell->hor;
+
+    // int deltaHor = abs(finHor - pHor);
+    // int deltaVer = abs(finVer - pVer);
+       
+    // return (deltaHor + deltaVer); //* 10;
+
+
     Claster *fcl = fatherZone->cl;
     Claster *scl = sonZone->cl;
 

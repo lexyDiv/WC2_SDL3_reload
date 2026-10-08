@@ -23,7 +23,7 @@ void ThData::PWProcess()
        Uint64 currentTime = SDL_GetTicks();
        int deltaTime = int(currentTime) - int(this->game->startTick);
 
-     //  console.log("time = ", deltaTime);
+       console.log("time = ", deltaTime);
     //     if (deltaTime >= this->game->optimalDeltaTime - 10)
     //     {
     //        // this->hold = i;

@@ -25,7 +25,7 @@ void Peon_peasant::activeProg()
   
 
 
-  if (this->frashWayCheckNeed)
+  if (this->frashWayCheckNeed && this->orderOnWay.isComplite)
   {
     this->frashWayCheckNeed = false;
     if (this->profession != "")

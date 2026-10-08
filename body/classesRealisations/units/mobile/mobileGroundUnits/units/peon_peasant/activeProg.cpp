@@ -15,7 +15,7 @@ void Peon_peasant::activeProg()
     return;
   }
 
-
+  //this->gf->focusClaster = this->cell->claster;
 
   // if (this->focus) {
   //   console.log("timer = " + to_string(this->needHolTimer));
@@ -25,7 +25,7 @@ void Peon_peasant::activeProg()
   
 
 
-  if (this->frashWayCheckNeed)
+  if (this->frashWayCheckNeed && this->orderOnWay.isComplite)
   {
     this->frashWayCheckNeed = false;
     if (this->profession != "")

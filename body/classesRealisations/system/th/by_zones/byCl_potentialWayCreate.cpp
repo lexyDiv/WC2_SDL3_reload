@@ -53,5 +53,8 @@ void ThData::byCl_potentialWayCreate(Unit *unit, Zone *finalZone) {
 
             //unit->way.push(unit->cell->aroundCells.getItem(0));
           //  console.log("iter = ", iter);
-            
+
+          // console.log("zone way length = ", unit->targetData.magistral.length);
+          // console.log("zone way iter = ", iter);
+          //    console.log("------------------------------------------------------");
 }

@@ -91,6 +91,14 @@ void Game::draw()
 
 //////////////////////////////////////////////////////////////////////////// => focusClaster
 
+// ThData *th = thDatas.getItem(0);
+// th->openArr_z.forEach([&drawDeltaX, &drawDeltaY](Zone *z){
+//     Td_way_data_z *thwd = z->thwd.getItemPtr(0);
+//     ctx.DrawText(z->cell->x + drawDeltaX, z->cell->y + drawDeltaY, 20, to_string(thwd->H));
+//     ctx.StrokeRect(z->cell->x + drawDeltaX, z->cell->y + drawDeltaY, z->cell->gabX, z->cell->gabX, "blue");
+// });
+
+
 
 // if (this->gf->focusClaster) {
 //     Claster *cl = this->gf->focusClaster;
@@ -116,6 +124,7 @@ void Game::draw()
 //                                   color = "blue";
 //                               }
 //               ctx.DrawText(z->cell->x + drawDeltaX, z->cell->y + drawDeltaY, 20, to_string(i)); // index of zone
+//               ctx.FillRect(z->cell->x + drawDeltaX, z->cell->y + drawDeltaY, z->cell->gabX, z->cell->gabX, "black");
 //                               z->cells.forEach([&drawDeltaX, &drawDeltaY, &color](Cell *c, int i)
 //                                                { 
 //             ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, c->gabX, c->gabX, color, 100); 
@@ -130,7 +139,7 @@ void Game::draw()
 //             //ctx.DrawText(c->x + drawDeltaX, c->y + drawDeltaY, 20, to_string(k));
 //             ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, c->gabX, c->gabX, color, 100);
 //            });
-//    // ctx.FillRect(cz->cell->x + drawDeltaX, cz->cell->y + drawDeltaY, cz->cell->gabX, cz->cell->gabX, "black"); 
+//     ctx.FillRect(cz->cell->x + drawDeltaX, cz->cell->y + drawDeltaY, cz->cell->gabX, cz->cell->gabX, "black"); 
 //   // ctx.DrawText(cz->cell->x + drawDeltaX, cz->cell->y + drawDeltaY, 20, to_string(i));
 //        string isActive = cz->isActive ? "active " : "NO ACTIVE ! ";
 //     ctx.DrawText(cz->cell->x + drawDeltaX, cz->cell->y + drawDeltaY, 20, isActive + to_string(cz->num));

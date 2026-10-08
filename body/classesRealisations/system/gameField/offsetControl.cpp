@@ -127,7 +127,7 @@ void GameField::offsetControl()
             }
 
             if (!this->focusUnit && !tc->groundUnit) {
-                // this->focusClaster = tc->claster;
+                 this->focusClaster = tc->claster;
                 // console.log("claster zones.length = ", this->focusClaster->zones.length);
                 // this->focusClaster->zones.forEach([this](Zone *z){
                 //     console.log("claster zone.cells.length = ", z->cells.length);

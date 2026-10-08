@@ -121,7 +121,9 @@ void ThData::createPotentialWay(Unit *unit)
 
             this->min_F_cell = md.cell;
             this->min_F_cell->thwd.getItemPtr(this->num)->explored = this->createCount;
-            if (!this->globalMin_H_cell || this->globalMin_H_cell->thwd.getItemPtr(this->num)->H > this->min_F_cell->thwd.getItemPtr(this->num)->H)
+            if (
+                !this->globalMin_H_cell || this->globalMin_H_cell->thwd.getItemPtr(this->num)->H > this->min_F_cell->thwd.getItemPtr(this->num)->H
+               )
             {
                 this->globalMin_H_cell = this->min_F_cell;
             }
@@ -135,7 +137,7 @@ void ThData::createPotentialWay(Unit *unit)
             {
 
                 this->potentialWayCreate(unit, this->globalMin_H_cell);
-
+               // console.log("deep");
 
                if (unit->personalCaseDeep != 3) {
                     unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON 3/3
@@ -160,9 +162,17 @@ void ThData::createPotentialWay(Unit *unit)
         if (
               unit->isOnGetPotentialWayGetTarget(this->min_F_cell) || 
               (currentDeep == shortDeep && this->min_F_cell == this->targetCell) ||
-              (this->min_F_cell->zone == this->targetCell->zone && utd.nextCell) 
+              (
+                // this->min_F_cell->zone == this->targetCell->zone && 
+                // utd.nextCell &&
+                // unit->cell->zone == this->targetCell->zone
+                utd.nextCell &&
+                 this->min_F_cell->zone == this->targetCell->zone &&
+                 unit->cell->claster != utd.nextCell->claster
+              ) // <= problem
           )
         {
+           // console.log("classic");
             this->potentialWayCreate(unit, this->min_F_cell);
             unit->isPotentialWayComplite = true;
             break;

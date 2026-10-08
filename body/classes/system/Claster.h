@@ -27,4 +27,9 @@ class Claster {
     void getZones();
     void create();
 
+    /////////////////////////// => debug
+
+    bool isUpdated = false;
+    bool isTouchUpdated = false;
+
 };

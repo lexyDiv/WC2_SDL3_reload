@@ -134,40 +134,14 @@ void ThData::createPotentialWay(Unit *unit)
             else
             {
 
-                // if (iter == 30000 && unit->targetData.unit) {
-                //     console.log("================================================================");
-                //     //console.log("MAX = " + unit->targetData.unit->name + " free " + to_string(unit->iNeedFreeWay) + " nextC = " + to_string((bool)utd.nextCell));
-                //     console.log("NAME = " + unit->targetData.unit->name);
-                //     console.log("wayIndex = " + to_string(unit->wayIndex));
-                //     console.log("wayTakts = " + to_string(unit->wayTakts));
-                //     console.log("iNeedFreeWay = " + to_string(unit->iNeedFreeWay));
-                //     console.log("isBlocked = " + to_string(unit->blockedData.isBlocked));
-                //     console.log("utd.nextCell = " + to_string((bool)utd.nextCell));
-                //     console.log("unitIsLoopNextCellUnit = " + to_string(unit->isLoopNextCellUnit));
-
-                //     unit->targetData.unit->deepMetka = true;
-                // } else if (iter == 30000) {
-                //     console.log("MAX no target unit");
-                // }
-
                 this->potentialWayCreate(unit, this->globalMin_H_cell);
 
-                // console.log("open.length = " + to_string(openArr.length) + " iter = " + to_string(iter));
 
-              //  if ( // iter < 30 &&
-                  //  (currentDeep != shortDeep
-                  //   || (utd.nextCell && iter < shortDeep)
-                //     ) &&
-                 //   unit->personalCaseDeep != 3 && (currentDeep != this->lowDeep || iter < this->lowDeep)
-               // )
-               // {
+               if (unit->personalCaseDeep != 3) {
                     unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON 3/3
                     unit->frashWayCheckNeed = true;
-                    // if (unit->focus) {
-                    //     console.log("way ON");
-                    // }
-               // }
-               // else 
+               }
+ 
                 if (currentDeep == shortDeep)
                 {
                     utd.magistrlLoop++;

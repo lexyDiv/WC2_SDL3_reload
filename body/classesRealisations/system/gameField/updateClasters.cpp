@@ -7,15 +7,12 @@ void GameField::updateClasters()
     {
        
         this->clastersOnUpdate.forEach([](Claster *cou){
+            cou->isUpdated = true;
             cou->addOnUpdate = false;
             ///////////////////////////////// => delete around
             cou->zones.forEach([](Zone *couZone){
                 couZone->contactZones.forEach([couZone](Zone *z){
                     int zIndex = z->contactZones.indexOf(couZone); // ok
-                    // if (zIndex < 0) {
-                    //     cout << "sub-zero" << endl;
-                    //     console.log("sub-zero");
-                    // }
                     z->contactZones.splice(zIndex, 1);
                 });
             });
@@ -24,17 +21,12 @@ void GameField::updateClasters()
 
             cou->getZones();
 
-            if (!cou->zones.length) {
-                console.log("no new zones");
-            }
 
             cou->zones.forEach([](Zone *z){
                 z->getAroundZones();
-                // if (!z->contactZones.length) {
-                //     console.log("no z->co"); // => impoasble
-                // }
                 z->contactZones.forEach([z](Zone *zcz){
                     zcz->contactZones.push(z);
+                    zcz->cl->isTouchUpdated = true;
                 });
             });
 

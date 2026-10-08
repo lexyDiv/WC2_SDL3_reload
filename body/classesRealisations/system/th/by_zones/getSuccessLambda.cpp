@@ -1,6 +1,7 @@
 #include "byCl_potentialWayCreate.cpp"
 //=>out
 
+
 void ThData::getSuccessLambda(Unit *unit)
 {
 
@@ -27,15 +28,7 @@ void ThData::getSuccessLambda(Unit *unit)
         {
             this->successWay = [this, td](Zone *z)
             {
-                for (int i = 0; i < z->buildingsNear.length; i++)
-                {
-                    Unit *zBuilding = z->buildingsNear.getItem(i);
-                    if (td->unit == zBuilding)
-                    {
-                        return true;
-                    }
-                }
-                return false;
+                return isMyBuildingNeare(z, td);
             };
         }
     }

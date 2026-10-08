@@ -14,6 +14,8 @@ struct AnimLines;
 class Game;
 class ToOtherPlane;
 class Nation;
+class Claster;
+class Zone;
 
 class TargetData
 {
@@ -34,13 +36,13 @@ public:
     Cell *nextCell = nullptr;
     int nextCellIndex = 0;
     int magistrlLoop = 0;
-   // bool saveTargetIsBlocked = false; // not cleard
     bool isNeedMagistralFinish = false;
-   // Cell *saveNextCell = nullptr;
+  //  bool isNeedClasterMagistral = true;
+
 
     void clear()
     {
-        
+       // isNeedClasterMagistral = true;
         unit = nullptr;
         unitPersNum = 0;
         clicckedCell = nullptr;
@@ -72,6 +74,19 @@ public:
     double explored = 0;
     double procCurr = 0;
     Cell *wayFather = nullptr;
+    int magistralIndex = 0;
+};
+
+class Td_way_data_z
+{
+public:
+    double createCountData = 0;
+    int F = 0.0F;
+    int H = 0.0F;
+    int G = 0.0F;
+    double explored = 0;
+    double procCurr = 0;
+    Zone *wayFather = nullptr;
     int magistralIndex = 0;
 };
 
@@ -142,6 +157,12 @@ public:
     int cellDrawIndex = 0;
     Array<Water> waters;
     Image *cellImage = nullptr;
+    ////////////////////////////////=> clasters
+    Claster * claster = nullptr;
+    Zone *zone = nullptr;
+    Array<Cell *> clasterCells;
+   // bool ok = false;
+  //  bool hz = false;
 
 private:
 };

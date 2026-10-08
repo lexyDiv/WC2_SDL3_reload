@@ -3,7 +3,7 @@
 
 bool MobileGroundUnit::isNextCellFreeToGoWay(Cell *nextCell)
 {
-    if (!nextCell->groundUnit)
+    if (!nextCell->groundUnit && nextCell->zone)
     {
         return true;
     }

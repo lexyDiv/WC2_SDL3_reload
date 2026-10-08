@@ -14,4 +14,5 @@ void th_create()
                         Td_way_data twd;
                         cell->thwd.push(twd);
                      } }); });
+    game->gf->createClasters();                 
 };

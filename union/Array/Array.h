@@ -4,6 +4,17 @@ using namespace std;
 
 class Cell;
 class Unit;
+class Zone;
+
+struct MinData_z
+{
+    int index = 0;
+    double min = 0;
+    int i = 0;
+    int k = 0;
+    double dis = 0;
+    Zone *zone = nullptr;
+};
 
 struct MinData
 {
@@ -44,6 +55,8 @@ public:
 
     void push(T el);
     void savePush(T el);
+
+   
 
     void unshift(T el);
     T pop();
@@ -146,6 +159,8 @@ inline void Array<T>::savePush(T el)
     this->length = vec.size();
     savePushMT.unlock();
 }
+
+
 
 template <typename T>
 inline void Array<T>::unshift(T el)

@@ -93,8 +93,13 @@ void GameField::create()
 
    this->mapInit(array);
 
+   int wing = (clasterGabarit - 1) / 2;
+
+   this->getAroundCells(wing, true, [](Cell *focusCell, Cell *pushedCell)
+                        { focusCell->clasterCells.push(pushedCell); });
+
    this->getAroundCells(1, false, [](Cell *focusCell, Cell *pushedCell)
-                        { focusCell->aroundCells.push(pushedCell); });
+                        { focusCell->aroundCells.push(pushedCell); });                     
    this->getAroundCells(9, true, [](Cell *focusCell, Cell *pushedCell)
                         { focusCell->drawCells.push(pushedCell); });
    this->getAroundCells(11, false, [](Cell *focusCell, Cell *pushedCell)
@@ -108,5 +113,15 @@ void GameField::create()
    this->getToOtherPlaneCellsNumber();
    this->getToTreeCellLineNumber();
    this->getCellImageCellDrawIndexCellUnitInit();
+
+   /////////////////////////////////////////////////////////////////////////////////////=> clasters
+
+
+     
+   //   Claster *cl = this->clasters.getItemLnk(1).getItemPtr(1);
+   //   Zone *z = cl->zones.getItem(0);
+   //   console.log("length = ", z->contactZones.length);
+    
+
    this->init = true;
 };

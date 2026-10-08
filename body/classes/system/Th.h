@@ -21,6 +21,7 @@ public:
     int iter = 0;
 
     double createCount = 0;
+    double ccs = 0.001;
     double procCurr = 0;
 
 
@@ -55,6 +56,21 @@ public:
     int count = 0;
     Uint64 timeBeforeUnitWay = 0;
 
+    //////////////////////////////// => clasters
+    void byCl_createPW(Unit *unit);
+    void byCl_exploreNewZone(Unit *unit, Zone *fatherZone, Zone *sonZone, int i);
+    int byCl_get_G(Zone *fatherZone, Zone *sonZone);
+    int byCl_get_H(Zone *exploredZone, Claster *cl);
+    void byCl_potentialWayCreate(Unit *unit, Zone *finalZone);
+    void getSuccessLambda(Unit *unit);
+    Array<Zone *> openArr_z;
+
+    Zone *min_F_zone = nullptr;
+    Zone *globalMin_H_zone = nullptr;
+
+    function<bool(Zone *zone)> successWay = [this](Zone *zone){
+        return false;
+    };
 
 };
 

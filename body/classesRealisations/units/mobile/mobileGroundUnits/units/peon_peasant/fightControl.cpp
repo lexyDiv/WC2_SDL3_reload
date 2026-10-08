@@ -14,7 +14,11 @@ void Peon_peasant::fightControl()
             gu->hp -= 5;
             if (gu->hp <= 0)
             {
-                this->cell->gf->trupsOnDelete.push(gu);
+
+                // //// <=  ????????????????????????????????????? MUTEX !!!!!!
+                this->gf->savePushOnTrups(gu);
+                
+
             }
         }
         if (this->inFightTimer == 70)

@@ -10,6 +10,22 @@ void Game::process()
 
     this->fractionsControl();
     this->gf->activeShahtsControl();
+    this->gf->trupsControl();
+    this->gf->updateClasters();
+
+//    this->gf->clasters.forEach([](Array<Claster *> &line){
+//     line.forEach([](Claster *cl){
+//         cl->getZones();
+//     });
+//    });
+
+//       this->gf->clasters.forEach([](Array<Claster *> &line){
+//     line.forEach([](Claster *cl){
+//         cl->zones.forEach([](Zone *z){
+//             z->getAroundZones();
+//         });
+//     });
+//    });
 
     this->thSpin = !this->thSpin;
 
@@ -32,11 +48,12 @@ void Game::process()
 
     threads.clear();
 
+    
+
     thDatas.forEach([](ThData *td)
                     { threads.emplace_back(&ThData::PWProcess, td); });
 
 
-    this->gf->trupsControl();
 
     this->preDraw();
 }

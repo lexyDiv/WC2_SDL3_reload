@@ -7,6 +7,12 @@ void Shaht::create(Cell *cell)
    // this->createUnitMenu();
     //////////////////
 
+    this->thwd.clear();
+    for (int i = 0; i < thDatas.length; i ++) {
+        Td_xploredData tapd;
+        this->thwd.push(tapd);
+    }
+
 
     this->get3x3myCells(cell);
 

@@ -69,7 +69,9 @@ public:
      void miniMapUpdate();
      void miniMapDraw();
      void cellsIteration(function<void(Cell *cell)> fn);
+    //  void clasterIteration(function<void(Claster &cl)> fn);
      void getAroundCells(int wing, bool selfCell, function<void(Cell *focusCell, Cell *cellToPush)> fn);
+    //  void getAroundClasters(int wing, bool selfCell, function<void(Claster *focusClaster, Claster *clasterToPush)> fn);
      void offsetControl();
      void miniMapMouseControl();
      void miniMapHoldLeftMouseKey();
@@ -82,6 +84,7 @@ public:
      void fieldClick();
      void fieldClickRight();
      void getPathes(string *path, int type);
+     void createClasters();
 
     double getMinCellsDis(Cell *cell, Cell *cell2);
 
@@ -159,15 +162,18 @@ public:
     //////////////// <= fieldClick
 
     FieldClick *fieldClickPoint = nullptr;
+   void savePushOnTrups(Unit *unit);
+  ////////////////////////// => clasters
+  Array<Array<Claster>> clasters;
+  //Array<Zone *> zones;
+  int clasterGabarit = 7;
+ // mutex muteUpdateClasters;
+  Array<Claster *> clastersOnUpdate;
+  void addClasterOnUpdate(Claster *claster);
+  void updateClasters();
 
-    // Array<Cell *> openArr;
-    // Array<Cell *> openArr2;
-    // Array<Cell *> openArr3;
-    // Array<Cell *> openArr4;
-    Array<Array<Cell *>> exp;
+  Claster *focusClaster = nullptr;
 
-    // bool isQuick = false;
-    //   void potentialWayCreate2(ProtoObj *unit, ProtoObj *finalCell) {};
 
 private:
 };

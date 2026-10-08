@@ -19,10 +19,10 @@ Unit * Peon_peasant::getBaseForUnloading() {
                                                         return dis; });
 
         // int rand = intRand(0, mix.length);
-       //  Unit *rBase = mix.getItem(rand);
+        // Unit *rBase = mix.getItem(rand);
 
         Unit *minDisBase = 
-       // rBase;
+        //rBase;
          md.unit;
         return minDisBase;
     }

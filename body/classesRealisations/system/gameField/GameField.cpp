@@ -19,4 +19,7 @@ GameField::~GameField()
                          {
         delete plane;
         plane = nullptr; });
+
+
+
 }

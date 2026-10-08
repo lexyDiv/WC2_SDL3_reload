@@ -127,7 +127,7 @@ bool Peon_peasant::isNeedHoldGoWay()
               (
                 !ncgu->isPotentialWayComplite ||
                (ncgu->way.length && (td.nextCell 
-               // || !ncgu->needHolTimer
+                || !ncgu->needHolTimer
                  || this->wayTakts > 5))
               )
              )

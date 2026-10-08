@@ -12,16 +12,16 @@ void ThData::byCl_potentialWayCreate(Unit *unit, Zone *finalZone) {
         while (true)
         {
           tt++;
-          if (tt >= 1000) {
-            console.log("create LOOP, iter = ", iter);
-            console.log("wayFather->isActive = ", nextZone->thwd.getItemPtr(this->num)->wayFather->isActive);
-            console.log("wayFather num = ", nextZone->thwd.getItemPtr(this->num)->wayFather->num);
-            console.log("wayFather claster num = ", nextZone->thwd.getItemPtr(this->num)->wayFather->cl->num);
-            console.log("wayFather cl isUpdated = ", nextZone->thwd.getItemPtr(this->num)->wayFather->cl->isUpdated);
-            console.log("wayFather cl isTouch = ", nextZone->thwd.getItemPtr(this->num)->wayFather->cl->isTouchUpdated);
-            console.log("------------------------------------------------------------------");
+          if (tt >= 3000) {
+             console.log("create LOOP, iter = ", iter);
+            // console.log("wayFather->isActive = ", nextZone->thwd.getItemPtr(this->num)->wayFather->isActive);
+            // console.log("wayFather num = ", nextZone->thwd.getItemPtr(this->num)->wayFather->num);
+            // console.log("wayFather claster num = ", nextZone->thwd.getItemPtr(this->num)->wayFather->cl->num);
+            // console.log("wayFather cl isUpdated = ", nextZone->thwd.getItemPtr(this->num)->wayFather->cl->isUpdated);
+            // console.log("wayFather cl isTouch = ", nextZone->thwd.getItemPtr(this->num)->wayFather->cl->isTouchUpdated);
+            // console.log("------------------------------------------------------------------");
 
-            this->game->gf->focusClaster = nextZone->thwd.getItemPtr(this->num)->wayFather->cl;
+            // this->game->gf->focusClaster = nextZone->thwd.getItemPtr(this->num)->wayFather->cl;
 
             return;
           }

@@ -11,6 +11,7 @@ void TownHall::wellCome(Unit *peon)
         MinData wellComeCell = index != -1 ? this->wellComeCells.getItem(index) : wellComeCell;
         if (wellComeCell.cell)
         {
+           // peon->targetData.clear(); // ????????
             peon->getDeltasXY(wellComeCell.cell);
             //peon->inSave = true;
             peon->inOutCount = ceil(wellComeCell.min / peon->fraction->peon.speed);

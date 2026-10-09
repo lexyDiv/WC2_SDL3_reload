@@ -37,6 +37,7 @@ public:
     int nextCellIndex = 0;
     int magistrlLoop = 0;
     bool isNeedMagistralFinish = false;
+    bool isZones = false;
   //  bool isNeedClasterMagistral = true;
 
 
@@ -52,6 +53,7 @@ public:
         specialFreeG0 = false;
         
         /////////////////////////////////// => magistral
+        isZones = false;
         checkMagistral = false;
         magistral.clear();
         prevCell = nullptr;

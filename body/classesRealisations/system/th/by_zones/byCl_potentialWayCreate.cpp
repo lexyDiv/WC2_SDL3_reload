@@ -40,15 +40,22 @@ void ThData::byCl_potentialWayCreate(Unit *unit, Zone *finalZone) {
             }
         } 
 
+             td.magistral.push(unit->cell);
           if (td.magistral.length >= 2) {
             td.prevCell = td.magistral.getItem(td.magistral.length - 1);
             td.nextCell = td.magistral.getItem(td.magistral.length - 2);
             td.nextCellIndex = td.magistral.length - 2;
+            td.isZones = true;
            // td.isNeedClasterMagistral = false;
            // console.log("Create Claster = ", iter);
+           
           } else {
             td.magistral.clear();
           }
+
+    //           if (unit->focus) {
+    //     console.log("in magistral ", td.magistral.length);
+    // }
 
 
             //unit->way.push(unit->cell->aroundCells.getItem(0));

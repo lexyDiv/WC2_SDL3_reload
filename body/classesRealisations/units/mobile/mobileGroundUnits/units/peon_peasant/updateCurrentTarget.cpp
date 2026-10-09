@@ -6,6 +6,10 @@ void Peon_peasant::updateCurrentTarget()
 
     if (this->profession != "")
     {
+        // if (this->focus) {
+        //     console.log("update & td.clear()");
+        // }
+       // this->targetData.clear();
         this->orderOnWay.go(this->profession);
 
     }

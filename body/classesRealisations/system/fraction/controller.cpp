@@ -40,7 +40,9 @@ Array<Unit *> onHard;
             )
             {
                 // console.log("here");
-
+                if (peon->focus) {
+                    console.log("go in fraction");
+                }
                 current++;
                 peon->orderOnWay.go(peon->profession, 0, true);
                 peon->isActive = true;

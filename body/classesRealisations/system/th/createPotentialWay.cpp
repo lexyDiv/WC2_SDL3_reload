@@ -10,6 +10,7 @@ void ThData::createPotentialWay(Unit *unit)
     {
         unit->iNeedFreeWay = utd.unit->isBlockedBuilding(unit, this);
         // utd.saveTargetIsBlocked = unit->iNeedFreeWay;
+        //console.log("free = ", unit->iNeedFreeWay);
     }
 
     unit->way.clear();
@@ -138,7 +139,8 @@ void ThData::createPotentialWay(Unit *unit)
                     unit->personalCaseDeep != 3 &&
                     (
                         (utd.nextCell && iter < shortDeep) ||
-                        (iter >= this->deep)
+                        (iter <= this->deep) ||
+                        (utd.unit && utd.unit->type == "building")
                     )
                    )
                 {

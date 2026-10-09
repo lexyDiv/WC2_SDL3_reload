@@ -215,6 +215,10 @@ public:
  //Cell *tt = nullptr;
 // Unit *valU = nullptr;
 // bool specialFreeGo = false;
+bool canGiveTree = false;
+bool canGiveGold = false;
+bool canTakeWood = false;
+bool canTakeGold = false;
 
 ////////////////////////// <= debug
  

@@ -40,7 +40,7 @@ void getAllZoneCells(Cell *cell, ThData *td)
                       azac->groundUnit->thwd.getItemPtr(td->num)
                       : nullptr;
                       if (
-                        azac->claster == z->cl &&
+                       // azac->claster == z->cl &&
                         azac->groundUnit->canGiveTree &&
                           azac->groundUnit->hp > 0
                         ) 

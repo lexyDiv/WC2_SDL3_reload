@@ -17,7 +17,7 @@ void ThData::getSuccessLambda(Unit *unit)
         {
             this->successWay = [this, unit](Zone *z)
             {
-                if (z->isTeesNear)
+                if (z->isTeesNear && iter > 1)
                 {
                     for (int i = 0; i < z->cells.length; i++) {
                         Cell *c = z->cells.getItem(i);
@@ -27,7 +27,7 @@ void ThData::getSuccessLambda(Unit *unit)
                             if (u && u->canGiveTree && !u->lesorub && u->hp > 0) {
                                 unit->targetData.unit = u;
                                 unit->targetData.clicckedCell = u->cell;
-                                console.log("here");
+                               // console.log("here");
                                 return true;
                             }
                         }

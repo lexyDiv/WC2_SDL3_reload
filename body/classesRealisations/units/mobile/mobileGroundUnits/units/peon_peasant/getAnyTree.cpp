@@ -41,6 +41,8 @@ Unit *Peon_peasant::getAnyTree()
         Unit *minDisTree = md.unit && md.unit->hp > 0 && !md.unit->lesorub 
        // && !md.unit->blockedCheck(this).isBlocked 
         ? md.unit : nullptr;
+        this->targetData.unit = minDisTree;
+        this->targetData.clicckedCell = minDisTree->cell;
         return minDisTree;
     }
     // this->plane->trees.clear();

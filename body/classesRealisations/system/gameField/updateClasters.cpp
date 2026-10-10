@@ -8,7 +8,7 @@ void GameField::updateClasters()
        
         this->clastersOnUpdate.forEach([](Claster *cou){
             //cou->isUpdated = true;
-            cou->addOnUpdate = false;
+           // cou->addOnUpdate = false;
             ///////////////////////////////// => delete around
             cou->zones.forEach([](Zone *couZone){
                 couZone->contactZones.forEach([couZone](Zone *z){
@@ -29,6 +29,8 @@ void GameField::updateClasters()
                    // zcz->cl->isTouchUpdated = true;
                 });
             });
+
+            cou->addOnUpdate = false;
 
         });
 

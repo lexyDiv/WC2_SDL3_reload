@@ -5,9 +5,11 @@
 void ThData::potentialWayCreate(Unit *unit, Cell *finalCell)
 {
     Cell *uc = unit->cell;
+    TargetData &td = unit->targetData;
     if (uc &&
         uc != finalCell)
     {
+        
         Cell *nextCell = finalCell;
         unit->way.push(nextCell);
 
@@ -22,6 +24,7 @@ void ThData::potentialWayCreate(Unit *unit, Cell *finalCell)
             }
             else
             {
+               // td.magistral.push(unit->cell);
                 unit->isPotentialWayComplite = true;
                 break;
             }
@@ -34,14 +37,14 @@ void ThData::potentialWayCreate(Unit *unit, Cell *finalCell)
 
 
         
-        TargetData &td = unit->targetData;
-        if (unit->way.length >= 10 && !td.magistral.length && !this->isMagistral)
+        
+        if (unit->way.length >= 8 && !td.magistral.length && !this->isMagistral)
         {
-            for (int i = 0; i < unit->way.length; i+= 5) {
+            for (int i = 0; i < unit->way.length; i+= 4) {
                 Cell *c = unit->way.getItem(i);
                 td.magistral.push(c);
             }
-            td.magistral.push(unit->cell);
+            
             td.prevCell = td.magistral.getItem(td.magistral.length - 1);
             td.nextCell = td.magistral.getItem(td.magistral.length - 2);
             td.nextCellIndex = td.magistral.length - 2;

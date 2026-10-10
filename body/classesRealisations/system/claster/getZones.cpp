@@ -14,6 +14,11 @@ void getAllZoneCells(Cell *cell, ThData *td)
 {
   td->createCount += 0.001;
   Zone *z = cell->zone;
+
+                        // if (z->cl->addOnUpdate) {
+                        //   console.log("in trees = ", z->isTeesNear);
+                        // }
+
   for (int i = 0; i < z->cells.length; i++)
   {
     Cell *az = z->cells.getItem(i);
@@ -34,8 +39,15 @@ void getAllZoneCells(Cell *cell, ThData *td)
                       Td_xploredData *td_exp = azac->groundUnit->thwd.length ? 
                       azac->groundUnit->thwd.getItemPtr(td->num)
                       : nullptr;
-                      if (azac->groundUnit->name == "tree") 
+                      if (
+                        azac->claster == z->cl &&
+                        azac->groundUnit->canGiveTree &&
+                          azac->groundUnit->hp > 0
+                        ) 
                       {
+                        // if (z->cl->addOnUpdate) {
+                        //   console.log("here");
+                        // }
                         z->isTeesNear = true;  
                       } else if (td_exp &&
                                  td_exp->explored != td->createCount) {

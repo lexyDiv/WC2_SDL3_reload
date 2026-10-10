@@ -84,7 +84,7 @@ void Peon_peasant::activeProg()
      this->blockedData = this->blockedCheck(this);
    
 
-       this->goWay();
+      this->goWay();
  
 
     this->orderOnWayControl();

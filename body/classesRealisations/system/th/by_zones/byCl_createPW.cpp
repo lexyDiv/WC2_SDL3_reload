@@ -17,19 +17,16 @@ bool isMyBuildingNeare(Zone *z, TargetData *td)
 
 bool isTreeNeare(Unit *u, TargetData &utd)
 {
-    Zone *z = u->cell->zone;
-    for (int i = 0; i < z->cells.length; i++)
+    Zone *unitZone = u->cell->zone;
+    for (int i = 0; i < unitZone->cells.length; i++)
     {
-        Cell *c = z->cells.getItem(i);
+        Cell *c = unitZone->cells.getItem(i);
         for (int k = 0; k < c->aroundCells.length; k++)
         {
             Cell *ac = c->aroundCells.getItem(k);
             Unit *acu = ac->groundUnit;
             if (acu &&
-                utd.unit->cell->claster == ac->claster &&
-                acu->canGiveTree && 
-                acu->hp > 0 &&
-                !acu->lesorub)
+                acu == utd.unit)
             {
                 return true;
             }
@@ -75,8 +72,7 @@ void ThData::byCl_createPW(Unit *unit)
     if ( 
         (utd.clicckedCell && utd.clicckedCell->zone == unit->cell->zone) ||
 
-        (utd.unit && utd.unit->name == "tree" && isTreeNeare(unit, utd)// && unit->cell->zone->isTeesNear
-       ) ||
+        (utd.unit && utd.unit->name == "tree" && isTreeNeare(unit, utd)) ||
 
 
         (utd.unit && utd.unit->type == "building" && isMyBuildingNeare(unit->cell->zone, &utd)) ||

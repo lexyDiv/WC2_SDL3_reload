@@ -152,11 +152,10 @@ void Peon_peasant::getCurrentTarget()
                 {
                     Unit *gu = c->groundUnit;
                     if (
-                        gu && gu->name == "tree" && !gu->lesorub)
+                        gu && gu->canGiveTree && !gu->lesorub)
                     {
                         this->targetData.unit = gu;
                         this->targetData.clicckedCell = gu->cell;
-
                         return true;
                     }
                     return false;

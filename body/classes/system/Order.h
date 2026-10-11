@@ -1,7 +1,6 @@
 #include "Cell.h"
 //=>Imager
 
-
 // class PreOrder
 // {
 // public:
@@ -33,8 +32,13 @@ public:
     mutex mt;
 };
 
-void Order::go(Cell *cell, int pcd, bool specialFreeG0) {
+void Order::go(Cell *cell, int pcd, bool specialFreeG0)
+{
     this->mt.lock();
+    if (!unit->cell || unit->inSave || unit->hp <= 0)
+    {
+        return;
+    }
     this->cell = cell;
     this->isComplite = false;
     this->profession = "";
@@ -44,8 +48,13 @@ void Order::go(Cell *cell, int pcd, bool specialFreeG0) {
     this->mt.unlock();
 }
 
-void Order::go(string profession, int pcd, bool specialFreeG0) {
+void Order::go(string profession, int pcd, bool specialFreeG0)
+{
     this->mt.lock();
+    if (!unit->cell || unit->inSave || unit->hp <= 0)
+    {
+        return;
+    }
     this->profession = profession;
     this->isComplite = false;
     this->cell = nullptr; //=> ???
@@ -55,9 +64,14 @@ void Order::go(string profession, int pcd, bool specialFreeG0) {
     this->mt.unlock();
 }
 
-void Order::go() {
-   this->mt.lock();
-   this->stop = true;
-   this->isComplite = false;
-   this->mt.unlock();
+void Order::go()
+{
+    this->mt.lock();
+    if (!unit->cell || unit->inSave || unit->hp <= 0)
+    {
+        return;
+    }
+    this->stop = true;
+    this->isComplite = false;
+    this->mt.unlock();
 }

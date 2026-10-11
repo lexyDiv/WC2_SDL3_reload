@@ -61,13 +61,15 @@ void TownHall::activeProg()
     
                                             Cell *pc = peon->cell;
                                       
-                                           
-                                           if (pc && pc->groundUnit == peon) {
-                                            pc->groundUnit = nullptr;
-                                            peon->cell = nullptr;
-                                           } else {
-                                            console.log("townHall on peon cell");
-                                           }
+                                             peon->cell = nullptr;
+                                        //    if (pc && pc->groundUnit == peon) {
+                                        //     pc->groundUnit = nullptr;
+                                        //     peon->cell = nullptr;
+                                        //    } else {
+                                        //     console.log("townHall on peon cell");
+                                        //    }
+
+                                            
 
                                            peon->inOutTimer = 0;
                                            peon->animMashtab = peon->inOutMashtabMin;

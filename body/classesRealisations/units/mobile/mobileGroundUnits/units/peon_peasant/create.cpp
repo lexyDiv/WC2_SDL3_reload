@@ -29,4 +29,5 @@ void Peon_peasant::create(Cell *cell)
   this->animX = intRand(0, 8) * 100;
   this->animY = 0;
   this->hp = this->fraction->peon.hpMax;
+  this->orderOnWay.unit = this;
 };

@@ -21,7 +21,7 @@ if (this->color == "red") {
 
     Unit *peon = new Peon_peasant(this);
     peon->persNum = 2;
-    peon->create(game->gf->field.getItem(0).getItem(14));
+    peon->create(game->gf->field.getItem(1).getItem(14));
     this->game->allLifeUnitsPtr.push(peon);
     this->AllLifeUnits.push(peon);
 
@@ -29,12 +29,12 @@ if (this->color == "red") {
     // peon->orderOnWay.isComplite = false;
     // peon->isActive = true;
 
-  //  Unit *peon2 = new Peon_peasant(this);
-  //  peon2->persNum = 1;
-  //  peon2->fraction = this;
-  //  peon2->create(game->gf->field.getItem(10).getItem(19)); // 8 // 7 => magistral 17 ok 18 ok 19 ok
-  //   this->game->allLifeUnitsPtr.push(peon2);
-  //    this->AllLifeUnits.push(peon2);
+   Unit *peon2 = new Peon_peasant(this);
+   peon2->persNum = 1;
+   peon2->fraction = this;
+   peon2->create(game->gf->field.getItem(230).getItem(220)); // 8 // 7 => magistral 17 ok 18 ok 19 ok
+    this->game->allLifeUnitsPtr.push(peon2);
+     this->AllLifeUnits.push(peon2);
 
   //   peon2->orderOnWay.cell = this->game->gf->field.getItem(10).getItem(3);
   //   peon2->orderOnWay.isComplite = false;

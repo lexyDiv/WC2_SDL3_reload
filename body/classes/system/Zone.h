@@ -21,6 +21,7 @@ class Zone {
     int num = 0;
 
     void getAroundZones();
+    void checkContactUnits();
     void restart();
 };
 

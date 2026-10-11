@@ -27,10 +27,7 @@ void ThData::byCl_exploreNewZone(Unit *unit, Zone *fatherZone, Zone *sonZone, in
 
             sonZone_thwd->createCountData = this->createCount;
             int G = this->byCl_get_G(fatherZone, sonZone);
-            int H = this->byCl_get_H(sonZone,
-                                // unit->targetCell
-                                // unit->targetData.clicckedCell
-                                this->targetCell->claster);
+            int H = this->byCl_get_H(sonZone);
 
             sonZone_thwd->G = fatherZone ? G + fatherZone_thwd->G : G;
             sonZone_thwd->H = H;

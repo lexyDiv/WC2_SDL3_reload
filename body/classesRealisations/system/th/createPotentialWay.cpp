@@ -10,6 +10,7 @@ void ThData::createPotentialWay(Unit *unit)
     {
         unit->iNeedFreeWay = utd.unit->isBlockedBuilding(unit, this);
         // utd.saveTargetIsBlocked = unit->iNeedFreeWay;
+        //console.log("free = ", unit->iNeedFreeWay);
     }
 
     unit->way.clear();
@@ -49,9 +50,9 @@ void ThData::createPotentialWay(Unit *unit)
     //     console.log("loop = " + to_string(unit->isLoopNextCellUnit));
     //  }
 
-    if ( //! unit->iNeedFreeWay &&
-         !(unit->blockedData.isBlocked && unit->blockedData.type == 'f') //&&
-       // !(utd.nextCell && unit->isLoopNextCellUnit)
+    if (                                                                //! unit->iNeedFreeWay &&
+        !(unit->blockedData.isBlocked && unit->blockedData.type == 'f') //&&
+                                                                        // !(utd.nextCell && unit->isLoopNextCellUnit)
     )
     {
         unit->cell->aroundCells.forEach([this, unit, utd](Cell *cell)
@@ -73,9 +74,7 @@ void ThData::createPotentialWay(Unit *unit)
             } else {
                // cell->thwd.getItemPtr(this->num)->createCountData = this->createCount;
                 this->exploreNewCellAndAddToOpenArr(unit, unit->cell, cell);
-            }
-        });
-
+            } });
     }
 
     // this->openArr.forEach([this](Cell *c){
@@ -86,8 +85,6 @@ void ThData::createPotentialWay(Unit *unit)
 
     while (true)
     {
-
-
 
         this->iter++;
 
@@ -122,8 +119,7 @@ void ThData::createPotentialWay(Unit *unit)
             this->min_F_cell = md.cell;
             this->min_F_cell->thwd.getItemPtr(this->num)->explored = this->createCount;
             if (
-                !this->globalMin_H_cell || this->globalMin_H_cell->thwd.getItemPtr(this->num)->H > this->min_F_cell->thwd.getItemPtr(this->num)->H
-               )
+                !this->globalMin_H_cell || this->globalMin_H_cell->thwd.getItemPtr(this->num)->H > this->min_F_cell->thwd.getItemPtr(this->num)->H)
             {
                 this->globalMin_H_cell = this->min_F_cell;
             }
@@ -137,13 +133,21 @@ void ThData::createPotentialWay(Unit *unit)
             {
 
                 this->potentialWayCreate(unit, this->globalMin_H_cell);
-               // console.log("deep");
+                // console.log("deep");
 
-               if (unit->personalCaseDeep != 3) {
+                if (
+                    unit->personalCaseDeep != 3 &&
+                    (
+                        (utd.nextCell && iter < shortDeep) ||
+                        (iter <= this->deep) ||
+                        (utd.unit && utd.unit->type == "building")
+                    )
+                   )
+                {
                     unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON 3/3
                     unit->frashWayCheckNeed = true;
-               }
- 
+                }
+
                 if (currentDeep == shortDeep)
                 {
                     utd.magistrlLoop++;
@@ -160,19 +164,18 @@ void ThData::createPotentialWay(Unit *unit)
         ///////////////////////////////////////////////////////
 
         if (
-              unit->isOnGetPotentialWayGetTarget(this->min_F_cell) || 
-              (currentDeep == shortDeep && this->min_F_cell == this->targetCell) ||
-              (
-                // this->min_F_cell->zone == this->targetCell->zone && 
+            unit->isOnGetPotentialWayGetTarget(this->min_F_cell) ||
+            (currentDeep == shortDeep && this->min_F_cell == this->targetCell) ||
+            (
+                // this->min_F_cell->zone == this->targetCell->zone &&
                 // utd.nextCell &&
                 // unit->cell->zone == this->targetCell->zone
                 utd.nextCell &&
-                 this->min_F_cell->zone == this->targetCell->zone &&
-                 unit->cell->claster != utd.nextCell->claster
-              ) // <= problem
-          )
+                this->min_F_cell->zone == this->targetCell->zone &&
+                unit->cell->claster != utd.nextCell->claster) // <= problem
+        )
         {
-           // console.log("classic");
+            // console.log("classic");
             this->potentialWayCreate(unit, this->min_F_cell);
             unit->isPotentialWayComplite = true;
             break;

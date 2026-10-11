@@ -89,13 +89,13 @@ void GameField::offsetControl()
                 // console.log("CLICK  = " + to_string(this->focusUnit->orderOnWay.cell->persNum) + " !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             }
             //this->focusClaster = nullptr;
-            if (tc->groundUnit && tc->groundUnit->name == "tree") {
-                this->savePushOnTrups(tc->groundUnit);
-                // Unit *hz = this->field.getItemLnk(tc->ver).getItem(tc->hor + 6)->groundUnit;
-                // if (hz) {
-                //     this->savePushOnTrups(hz);
-                // }
-            }
+            // if (tc->groundUnit && tc->groundUnit->name == "tree") {
+            //     this->savePushOnTrups(tc->groundUnit);
+            //     // Unit *hz = this->field.getItemLnk(tc->ver).getItem(tc->hor + 6)->groundUnit;
+            //     // if (hz) {
+            //     //     this->savePushOnTrups(hz);
+            //     // }
+            // }
         }
     }
 

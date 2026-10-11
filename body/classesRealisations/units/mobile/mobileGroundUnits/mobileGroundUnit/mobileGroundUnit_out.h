@@ -18,8 +18,9 @@ void MobileGroundUnit::checkNextMagistralCell()
         td.magistrlLoop = 0;
     }
     else if (
-        (td.nextCell && !td.nextCellIndex) || (td.magistrlLoop >= 20 && !this->blockedData.isBlocked)
-    )
+             (td.nextCell && !td.nextCellIndex && nextCellDis < prevCellDis) || 
+             (td.magistrlLoop >= 20 && !this->blockedData.isBlocked)
+            )
     {
 
         if (td.nextCell && !td.nextCellIndex)

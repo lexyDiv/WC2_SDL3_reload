@@ -60,7 +60,7 @@ public:
     void byCl_createPW(Unit *unit);
     void byCl_exploreNewZone(Unit *unit, Zone *fatherZone, Zone *sonZone, int i);
     int byCl_get_G(Zone *fatherZone, Zone *sonZone);
-    int byCl_get_H(Zone *exploredZone, Claster *cl);
+    int byCl_get_H(Zone *exploredZone);
     void byCl_potentialWayCreate(Unit *unit, Zone *finalZone);
     void getSuccessLambda(Unit *unit);
     Array<Zone *> openArr_z;

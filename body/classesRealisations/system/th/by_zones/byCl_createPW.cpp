@@ -14,6 +14,29 @@ bool isMyBuildingNeare(Zone *z, TargetData *td)
     return false;
 }
 
+
+bool isTreeNeare(Unit *u, TargetData &utd)
+{
+    Zone *unitZone = u->cell->zone;
+    for (int i = 0; i < unitZone->cells.length; i++)
+    {
+        Cell *c = unitZone->cells.getItem(i);
+        for (int k = 0; k < c->aroundCells.length; k++)
+        {
+            Cell *ac = c->aroundCells.getItem(k);
+            Unit *acu = ac->groundUnit;
+            if (acu &&
+                acu == utd.unit)
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+
+
 void ThData::byCl_createPW(Unit *unit)
 {
 
@@ -48,11 +71,18 @@ void ThData::byCl_createPW(Unit *unit)
 
     if ( 
         (utd.clicckedCell && utd.clicckedCell->zone == unit->cell->zone) ||
-        (utd.unit && utd.unit->name == "tree" && unit->cell->zone->isTeesNear) ||
+
+        (utd.unit && utd.unit->name == "tree" && isTreeNeare(unit, utd)) ||
+
+
         (utd.unit && utd.unit->type == "building" && isMyBuildingNeare(unit->cell->zone, &utd)) ||
+
         (!unit->cell->zone->contactZones.length)
        )
     {
+        if (unit->focus && utd.unit && utd.unit->name == "tree") {
+            console.log("return by tree = ", isTreeNeare(unit, utd));
+        }
         return;
     }
 

@@ -60,28 +60,34 @@ void Game::draw()
         Unit *u = this->gf->focusUnit;
         if (u && u->cell)
         {
+            string m = u->targetData.isZones ? "M" : "";
             // console.log(to_string(u->needHolTimer));
             ctx.StrokeRect(u->x + drawDeltaX, u->y + drawDeltaY, u->cell->gabX, u->cell->gabY, "blue");
 
             u->way.forEach([this, &drawDeltaX, &drawDeltaY](Cell *c)
                            { ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, c->gabX, c->gabY, "violet", 100); });
 
-            u->targetData.magistral.forEach([this, &drawDeltaX, &drawDeltaY](Cell *c, int i)
+            u->targetData.magistral.forEach([this, &drawDeltaX, &drawDeltaY, &m](Cell *c, int i)
                                             {
     ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, c->gabX, c->gabY, "black", 100);
-    ctx.DrawText(c->x +drawDeltaX + 5, c->y + drawDeltaY + 5, 10, to_string(i)); });
+
+        
+    ctx.DrawText(c->x +drawDeltaX + 5, c->y + drawDeltaY + 5, 10, m);
+});
 
             TargetData &td = u->targetData;
 
-            if (td.prevCell)
-            {
-                ctx.FillRect(td.prevCell->x + drawDeltaX, td.prevCell->y + drawDeltaY, td.prevCell->gabX, td.prevCell->gabY, "red");
-            }
+            // if (td.prevCell)
+            // {
+            //     ctx.FillRect(td.prevCell->x + drawDeltaX, td.prevCell->y + drawDeltaY, td.prevCell->gabX, td.prevCell->gabY, "red");
+            //     ctx.DrawText(td.prevCell->x +drawDeltaX + 5, td.prevCell->y + drawDeltaY + 5, 10, m);
+            // }
 
-            if (td.nextCell)
-            {
-                ctx.FillRect(td.nextCell->x + drawDeltaX, td.nextCell->y + drawDeltaY, td.nextCell->gabX, td.nextCell->gabY, "blue");
-            }
+            // if (td.nextCell)
+            // {
+            //     ctx.FillRect(td.nextCell->x + drawDeltaX, td.nextCell->y + drawDeltaY, td.nextCell->gabX, td.nextCell->gabY, "blue");
+            //     ctx.DrawText(td.nextCell->x +drawDeltaX + 5, td.nextCell->y + drawDeltaY + 5, 10, m);
+            // }
 
             if (td.clicckedCell)
             {
@@ -91,67 +97,62 @@ void Game::draw()
 
 //////////////////////////////////////////////////////////////////////////// => focusClaster
 
-// ThData *th = thDatas.getItem(0);
-// th->openArr_z.forEach([&drawDeltaX, &drawDeltaY](Zone *z){
-//     Td_way_data_z *thwd = z->thwd.getItemPtr(0);
-//     ctx.DrawText(z->cell->x + drawDeltaX, z->cell->y + drawDeltaY, 20, to_string(thwd->H));
-//     ctx.StrokeRect(z->cell->x + drawDeltaX, z->cell->y + drawDeltaY, z->cell->gabX, z->cell->gabX, "blue");
-// });
 
 
 
-// if (this->gf->focusClaster) {
-//     Claster *cl = this->gf->focusClaster;
+
+if (this->gf->focusClaster) {
+    Claster *cl = this->gf->focusClaster;
 
 
-//         cl->zones.forEach([&drawDeltaX, &drawDeltaY](Zone *z, int i)
-//                           {
-//                               string color = "";
-//                               if (!i)
-//                               {
-//                                   color = "red";
-//                               }
-//                               else if (i == 1)
-//                               {
-//                                   color = "violet";
-//                               }
-//                               else if (i == 2)
-//                               {
-//                                   color = "yellow";
-//                               }
-//                               else if (i == 3)
-//                               {
-//                                   color = "blue";
-//                               }
-//               ctx.DrawText(z->cell->x + drawDeltaX, z->cell->y + drawDeltaY, 20, to_string(i)); // index of zone
-//               ctx.FillRect(z->cell->x + drawDeltaX, z->cell->y + drawDeltaY, z->cell->gabX, z->cell->gabX, "black");
-//                               z->cells.forEach([&drawDeltaX, &drawDeltaY, &color](Cell *c, int i)
-//                                                { 
-//             ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, c->gabX, c->gabX, color, 100); 
-//            // ctx.DrawText(c->x + drawDeltaX, c->y + drawDeltaY, 20, to_string(i));
-//                                             });
+        cl->zones.forEach([&drawDeltaX, &drawDeltaY](Zone *z, int i)
+                          {
+                              string color = "";
+                              if (!i)
+                              {
+                                  color = "red";
+                              }
+                              else if (i == 1)
+                              {
+                                  color = "violet";
+                              }
+                              else if (i == 2)
+                              {
+                                  color = "yellow";
+                              }
+                              else if (i == 3)
+                              {
+                                  color = "blue";
+                              }
+              ctx.DrawText(z->cell->x + drawDeltaX, z->cell->y + drawDeltaY, 20, to_string(i)); // index of zone
+              //ctx.FillRect(z->cell->x + drawDeltaX, z->cell->y + drawDeltaY, z->cell->gabX, z->cell->gabX, "black");
+                              z->cells.forEach([&drawDeltaX, &drawDeltaY, &color](Cell *c, int i)
+                                               { 
+            ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, c->gabX, c->gabX, color, 100); 
+           // ctx.DrawText(c->x + drawDeltaX, c->y + drawDeltaY, 20, to_string(i));
+                                            });
 
-//                               z->contactZones.forEach([&drawDeltaX, &drawDeltaY, &color](Zone *cz, int i)
-//                                                       {
+                              z->contactZones.forEach([&drawDeltaX, &drawDeltaY, &color](Zone *cz, int i)
+                                                      {
 
                                                         
-//            cz->cells.forEach([&drawDeltaX, &drawDeltaY, &i, &color](Cell *c, int k){
-//             //ctx.DrawText(c->x + drawDeltaX, c->y + drawDeltaY, 20, to_string(k));
-//             ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, c->gabX, c->gabX, color, 100);
-//            });
-//     ctx.FillRect(cz->cell->x + drawDeltaX, cz->cell->y + drawDeltaY, cz->cell->gabX, cz->cell->gabX, "black"); 
-//   // ctx.DrawText(cz->cell->x + drawDeltaX, cz->cell->y + drawDeltaY, 20, to_string(i));
-//        string isActive = cz->isActive ? "active " : "NO ACTIVE ! ";
-//     ctx.DrawText(cz->cell->x + drawDeltaX, cz->cell->y + drawDeltaY, 20, isActive + to_string(cz->num));
-// });
+           cz->cells.forEach([&drawDeltaX, &drawDeltaY, &i, &color](Cell *c, int k){
+            //ctx.DrawText(c->x + drawDeltaX, c->y + drawDeltaY, 20, to_string(k));
+            ctx.FillRect(c->x + drawDeltaX, c->y + drawDeltaY, c->gabX, c->gabX, color, 100);
+           });
+    //ctx.FillRect(cz->cell->x + drawDeltaX, cz->cell->y + drawDeltaY, cz->cell->gabX, cz->cell->gabX, "black"); 
+  // ctx.DrawText(cz->cell->x + drawDeltaX, cz->cell->y + drawDeltaY, 20, to_string(i));
+       string isActive = cz->isTeesNear ? "have tree" : "NO trees ! ";
+    ctx.DrawText(cz->cell->x + drawDeltaX, cz->cell->y + drawDeltaY, 20, isActive + to_string(cz->num));
+});
 
-//     string isActive = z->isActive ? "active " : "NO ACTIVE ! ";
-//     ctx.DrawText(z->cell->x + drawDeltaX, z->cell->y + drawDeltaY, 20, isActive + to_string(z->num));
-//                           });
+    string isActive = z->isTeesNear ? "have tree " : "NO trees ! ";
+    ctx.DrawText(z->cell->x + drawDeltaX, z->cell->y + drawDeltaY, 20, isActive + to_string(z->num));
+                          });
 
-// ctx.StrokeRect(cl->x + drawDeltaX, cl->y + drawDeltaY, cl->size, cl->size, "black"); // contur
-// ctx.DrawText(cl->x + drawDeltaX, cl->y + drawDeltaY + 30, 20, "num = " + to_string(cl->num));
-// }
+ctx.StrokeRect(cl->x + drawDeltaX, cl->y + drawDeltaY, cl->size, cl->size, "black"); // contur
+ctx.DrawText(cl->x + drawDeltaX, cl->y + drawDeltaY + 30, 20, "num = " + to_string(cl->num));
+}
 
 
 //////////////////////////////////////////////////////////////////////////// <= focusClaster

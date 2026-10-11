@@ -22,7 +22,7 @@ public:
     Array<Unit *> clients;
     Array<Unit *> outClients;
  
-    Array<Unit *> potentialClients;
+    
 
     mutex potentialClientsMT;
     mutex mt;

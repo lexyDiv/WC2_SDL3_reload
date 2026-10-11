@@ -37,7 +37,7 @@ void TownHall::activeProg()
           //  peon->orderOnWay.profession = "w";
           //  peon->orderOnWay.isComplite = false;
 
-            if (this->fraction->peons.length < 0) // 6000 crash 3000
+            if (this->fraction->peons.length < 10000) // 6000 crash 3000
             {
                 this->createTimer = 1;
             }
@@ -62,6 +62,9 @@ void TownHall::activeProg()
                                             Cell *pc = peon->cell;
                                       
                                              peon->cell = nullptr;
+                                             int index = peon->myDoorCell->groundUnitOnDraw.indexOf(peon);
+                                             peon->myDoorCell->groundUnitOnDraw.splice(index, 1);
+                                             peon->myDoorCell = nullptr;
                                         //    if (pc && pc->groundUnit == peon) {
                                         //     pc->groundUnit = nullptr;
                                         //     peon->cell = nullptr;

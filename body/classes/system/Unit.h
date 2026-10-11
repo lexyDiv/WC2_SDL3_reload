@@ -103,6 +103,8 @@ public:
   Array<Cell *> way;
   Array<Unit *> orderedTrees;
   Array<Unit *> orderedShahts;
+  Array<Unit *> potentialClients;
+  Cell *myDoorCell = nullptr;
 
   string name = "tree";
   string type = "building";
@@ -169,7 +171,7 @@ public:
   bool isPotentialWayComplite = true;
   bool isIgetMyTarget = true;
   bool iNeedFreeWay = false;
-  Order orderOnWay;
+  Order orderOnWay= Order(this);
   TargetData targetData;
   // Cell *targetCell = nullptr;
   // Cell *preTargetCell = nullptr;

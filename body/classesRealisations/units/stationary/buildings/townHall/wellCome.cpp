@@ -21,6 +21,8 @@ void TownHall::wellCome(Unit *peon)
             // this->gold -= 100;
 
             this->potentialClients.push(peon);
+            peon->cell->groundUnitOnDraw.push(peon);
+            peon->myDoorCell = peon->cell;
             peon->cell->groundUnit = nullptr; //// <=
             if (!this->isActive)
             {

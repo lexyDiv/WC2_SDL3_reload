@@ -13,14 +13,14 @@ bool Peon_peasant::isGetTarget()
 
         if (to)
         {
-            if (to->name == "tree")
+            if (to->canGiveTree)
             {
                 Unit *valideTree = nullptr;
                 for (int i = 0; i < this->cell->aroundCells.length; i++)
                 {
                     Cell *cell = this->cell->aroundCells.getItem(i);
                     if (cell->groundUnit &&
-                        cell->groundUnit->name == "tree" &&
+                        cell->groundUnit->canGiveTree &&
                         !cell->groundUnit->lesorub)
                     {
                         if (cell->groundUnit == to)

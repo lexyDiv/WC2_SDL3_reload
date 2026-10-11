@@ -40,7 +40,6 @@ void getAllZoneCells(Cell *cell, ThData *td)
                       azac->groundUnit->thwd.getItemPtr(td->num)
                       : nullptr;
                       if (
-                       // azac->claster == z->cl &&
                         azac->groundUnit->canGiveTree &&
                           azac->groundUnit->hp > 0
                         ) 
@@ -54,7 +53,8 @@ void getAllZoneCells(Cell *cell, ThData *td)
                               td_exp->explored = td->createCount;
                               z->buildingsNear.push(azac->groundUnit);
                       }  
-                     } });
+                     } 
+                    });
   }
 };
 

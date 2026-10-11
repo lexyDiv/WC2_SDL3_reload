@@ -26,6 +26,7 @@ void GameField::updateClasters()
                 z->getAroundZones();
                 z->contactZones.forEach([z](Zone *zcz){
                     zcz->contactZones.push(z);
+                    zcz->checkContactUnits();
                    // zcz->cl->isTouchUpdated = true;
                 });
             });

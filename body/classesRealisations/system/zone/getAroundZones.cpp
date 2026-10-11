@@ -1,5 +1,5 @@
 #include "in.h"
-//=>out
+//=>checkContactUnits
 
 void Zone::getAroundZones() {
     

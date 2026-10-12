@@ -105,7 +105,9 @@ void MobileGroundUnit::stepToTheSide()
         valU->isActive = true;
     }
     //////////////////////////////////////////////////////////////////////////////////// => HARD
-    else if (this->blockedData.isBlocked && this->blockedData.type == 'f' && this->orderOnWay.specialFreeG0 && this->needHolTimer)
+    else if (this->blockedData.isBlocked && this->blockedData.type == 'f' 
+        && this->orderOnWay.specialFreeG0 
+        && this->needHolTimer)
     {
         // this->iNeedFreeWay = false;
 
@@ -186,7 +188,7 @@ void MobileGroundUnit::stepToTheSide()
         {
             this->targetData.specialFreeG0 = false;
             this->iNeedFreeWay = false;
-           // this->orderOnWay.go(this->cell);
+            this->orderOnWay.go(this->cell);
             // this->targetData.clear();
             // if (this->focus)
             // {
@@ -197,7 +199,7 @@ void MobileGroundUnit::stepToTheSide()
     else if (!this->needHolTimer && !this->targetData.specialFreeG0)
     {
         this->iNeedFreeWay = false;
-       // this->orderOnWay.go(this->cell);
+        this->orderOnWay.go(this->cell);
 
             //             if (this->focus) {
             //     console.log("hard final");

@@ -36,9 +36,9 @@ void Peon_peasant::orderOnWayControl()
             this->orderOnWay.stop = false;
            // this->profession = "";
             this->orderOnWay.mt.unlock();
-            if (this->focus) {
-                console.log("STOP");
-            }
+            // if (this->focus) {
+            //     console.log("STOP");
+            // }
             return;
         }
 
@@ -75,7 +75,9 @@ void Peon_peasant::orderOnWayControl()
                         Unit *unloadingUnit = this->getBaseForUnloading();
                         if (unloadingUnit)
                         {
-                            this->targetData.clicckedCell = unloadingUnit->cell;
+                            int rand = intRand(0, unloadingUnit->myCells.length);
+                            Cell *ulc = unloadingUnit->myCells.getItem(rand);
+                            this->targetData.clicckedCell = ulc;
                             this->targetData.unit = unloadingUnit;
                             this->targetData.unitPersNum = unloadingUnit->persNum;
                             this->targetData.profession = "w";
@@ -157,7 +159,9 @@ void Peon_peasant::orderOnWayControl()
                         Unit *unloadingUnit = this->getBaseForUnloadingGold();
                         if (unloadingUnit)
                         {
-                            this->targetData.clicckedCell = unloadingUnit->cell;
+                            int rand = intRand(0, unloadingUnit->myCells.length);
+                            Cell *ulc = unloadingUnit->myCells.getItem(rand);
+                            this->targetData.clicckedCell = ulc;
                             this->targetData.unit = unloadingUnit;
                             this->targetData.unitPersNum = unloadingUnit->persNum;
                             this->targetData.profession = "g";
@@ -242,7 +246,9 @@ void Peon_peasant::orderOnWayControl()
                         Unit *unloadingUnit = this->getBaseForUnloading();
                         if (unloadingUnit)
                         {
-                            this->targetData.clicckedCell = unloadingUnit->cell;
+                            int rand = intRand(0, unloadingUnit->myCells.length);
+                            Cell *ulc = unloadingUnit->myCells.getItem(rand);
+                            this->targetData.clicckedCell = ulc;
                             this->targetData.unit = unloadingUnit;
                             this->targetData.unitPersNum = unloadingUnit->persNum;
                             this->targetData.profession = "w";
@@ -304,7 +310,9 @@ void Peon_peasant::orderOnWayControl()
                         Unit *unloadingUnit = this->getBaseForUnloading();
                         if (unloadingUnit)
                         {
-                            this->targetData.clicckedCell = unloadingUnit->cell;
+                            int rand = intRand(0, unloadingUnit->myCells.length);
+                            Cell *ulc = unloadingUnit->myCells.getItem(rand);
+                            this->targetData.clicckedCell = ulc;
                             this->targetData.unit = unloadingUnit;
                             this->targetData.unitPersNum = unloadingUnit->persNum;
                             this->targetData.profession = "g";

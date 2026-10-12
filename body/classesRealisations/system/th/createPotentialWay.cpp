@@ -58,16 +58,53 @@ void ThData::createPotentialWay(Unit *unit)
         unit->cell->aroundCells.forEach([this, unit, utd](Cell *cell)
                                         {
             Unit *gu = cell->groundUnit;
-            if ( 
 
+
+            // if (unit->focus && utd.nextCell && gu) {
+            //     console.log("utd.unit = ", utd.unit);
+            //     console.log("gu->targetData.unit = ", gu->targetData.unit);
+            //     console.log("targetData.unit == utd.unit = ", gu->targetData.unit == utd.unit);
+            //     console.log("gu->way.length = ", gu->way.length);
+            //     console.log("!gu->needHolTimer = ", !gu->needHolTimer);
+            //     console.log("gu->nextCell = ", gu->nextCell);
+            //     console.log("gu->nextCell != unit->cell = ", gu->nextCell != unit->cell);
+            //     console.log("all = ", (!utd.nextCell || 
+            //             !(
+            //                 utd.unit && 
+            //                 gu->targetData.unit &&
+            //                 gu->targetData.unit == utd.unit &&
+            //                 gu->way.length &&
+            //                 !gu->needHolTimer &&
+            //                 gu->nextCell &&
+            //                 gu->nextCell != unit->cell
+            //             )
+            //         ));
+            //     console.log("----------------------------------------------");
+            // }
+            
+
+            if ( 
+                
+                
                 cell->plane != unit->cell->plane ||
                 (
                     (gu && gu != utd.unit) &&
                     (utd.clicckedCell != cell) &&
                     !(unit->profession == "w" && gu->name == "tree" && !gu->lesorub && gu->hp) &&
-                    gu->orderOnWay.isComplite
+                    gu->orderOnWay.isComplite &&
+                    (!utd.nextCell || 
+                        !(
+                            utd.unit && 
+                            gu->targetData.unit &&
+                            gu->targetData.unit == utd.unit &&
+                            gu->way.length &&
+                            !gu->needHolTimer &&
+                            gu->nextCell &&
+                            gu->nextCell != unit->cell
+                        )
+                    )
                 ) 
-                
+               
             ) {
                 cell->thwd.getItemPtr(this->num)->explored = this->createCount;
                 cell->thwd.getItemPtr(this->num)->createCountData = this->createCount;
@@ -76,7 +113,8 @@ void ThData::createPotentialWay(Unit *unit)
                 this->exploreNewCellAndAddToOpenArr(unit, unit->cell, cell);
             } });
     }
-
+   // unit->goodNextCellUnit = nullptr;
+// (unit->goodNextCellUnit && unit->goodNextCellUnit != gu)
     // this->openArr.forEach([this](Cell *c){
     //     console.log("F = ", c->thwd.getItemPtr(this->num)->F);
     // });
@@ -144,8 +182,11 @@ void ThData::createPotentialWay(Unit *unit)
                     )
                    )
                 {
+                    if (!unit->iNeedFreeWay) {
+                        unit->frashWayCheckNeed = true;
+                    }
                     unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON 3/3
-                    unit->frashWayCheckNeed = true;
+                    
                 }
 
                 if (currentDeep == shortDeep)

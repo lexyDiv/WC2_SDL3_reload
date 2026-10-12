@@ -182,9 +182,9 @@ void ThData::createPotentialWay(Unit *unit)
                     )
                    )
                 {
-                    if (!unit->iNeedFreeWay) {
+                   // if (!unit->iNeedFreeWay) {
                         unit->frashWayCheckNeed = true;
-                    }
+                   // }
                     unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON 3/3
                     
                 }

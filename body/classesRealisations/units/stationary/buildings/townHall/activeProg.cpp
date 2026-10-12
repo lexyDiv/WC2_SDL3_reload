@@ -59,7 +59,7 @@ void TownHall::activeProg()
                                            this->clients.push(peon);
                                            
     
-                                            Cell *pc = peon->cell;
+                                           // Cell *pc = peon->cell;
                                       
                                              peon->cell = nullptr;
                                              int index = peon->myDoorCell->groundUnitOnDraw.indexOf(peon);

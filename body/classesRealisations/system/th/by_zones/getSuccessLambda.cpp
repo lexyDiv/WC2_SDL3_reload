@@ -25,14 +25,14 @@ void ThData::getSuccessLambda(Unit *unit)
                             Cell *ac = c->aroundCells.getItem(k);
                             Unit *u = ac->groundUnit;
                             if (u && u->canGiveTree && !u->lesorub && u->hp > 0) {
-                                unit->targetData.unit = u;
-                                unit->targetData.clicckedCell = u->cell;
+                                // unit->targetData.unit = u;
+                                // unit->targetData.clicckedCell = u->cell;
                                // console.log("here");
                                 return true;
                             }
                         }
                     }
-                    return true;
+                   // return true;
                 }
                 return false;
             };

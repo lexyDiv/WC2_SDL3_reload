@@ -14,7 +14,8 @@ void ThData::byCl_potentialWayCreate(Unit *unit, Zone *finalZone)
     td.magistral.push(td.clicckedCell);
   }
    else if (td.unit->canGiveTree) {
-        td.magistral.push(td.unit->cell);
+       // td.magistral.push(td.unit->cell);
+       td.magistral.push(nextZone->cell);
   }
 
   while (true)

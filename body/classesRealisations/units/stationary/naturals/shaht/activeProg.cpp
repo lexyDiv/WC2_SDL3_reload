@@ -102,6 +102,7 @@ void Shaht::activeProg()
                 peon->inOutMashtabCount = (1 - peon->inOutMashtabMin) / peon->inOutCount;
                 peon->image = peon->fraction->peon.img_3;
                 oc->groundUnit = peon;
+                peon->hp = peon->hp > 0 ? peon->hp : 1;
             }
             else
             {
@@ -115,6 +116,7 @@ void Shaht::activeProg()
                 peon->inOutMashtabCount = 1;
                 peon->image = peon->fraction->peon.img_3;
                 oc->groundUnit = peon;
+                peon->hp = peon->hp > 0 ? peon->hp : 1;
             }
         }
 

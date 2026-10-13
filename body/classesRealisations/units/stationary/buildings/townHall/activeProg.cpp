@@ -19,6 +19,8 @@ void TownHall::activeProg()
         {
             this->fraction->unitCount++;
             Unit *peon = new Peon_peasant(this->fraction);
+
+            peon->persNum = this->fraction->unitCount;
             peon->createInside(this->cell);
             int ran = intRand(0, 10);
             this->outClients.push(peon);
@@ -161,7 +163,7 @@ void TownHall::activeProg()
             peon->y += peon->wayDeltaY;
             peon->drawIndexY = peon->y;
             peon->animMashtab += peon->inOutMashtabCount;
-
+         
             peon->inOutTimer++;
         }
         else

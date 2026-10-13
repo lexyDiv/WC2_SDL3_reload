@@ -108,7 +108,9 @@ void GameField::offsetControl()
         if (xIndex < this->gabarit && yIndex < this->gabarit && x < 721)
         {
             Cell *tc = this->field.getItemPtr(yIndex)->getItem(xIndex);
-            if (tc->groundUnit && tc->groundUnit->type == "life")
+            if (tc->groundUnit 
+               // && tc->groundUnit->type == "life"
+            )
             {
                 if (this->focusUnit)
                 {

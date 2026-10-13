@@ -4,10 +4,11 @@
 void Fraction::controller()
 {
 
-   this->hardCount++;
-   if (this->hardCount == 30) {
-    this->hardCount = 0;
-   }
+    this->hardCount++;
+    if (this->hardCount == 30)
+    {
+        this->hardCount = 0;
+    }
 
     int ordinar = 100;
     this->controlTimer++;
@@ -18,16 +19,29 @@ void Fraction::controller()
         int current = 0;
         // Array<Unit *> onHard;
         // bool isOne = false;
-Array<Unit *> onHard;
+        Array<Unit *> onHard;
+
+        /////////////////////////// => test kill
+        if (this->peons.length)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                int rand = intRand(0, this->peons.length);
+                Unit *u = this->peons.getItem(rand);
+                u->takeDamage(1000);
+            }
+        }
+        /////////////////////////// <= test kill
+
         for (int i = this->hold; i < this->peons.length; i++)
         {
 
             this->hold = i;
             Unit *peon = this->peons.getItem(i);
             bool isBlocked = peon->blockedCheck(peon).isBlocked;
-            
 
-            if (peon->profession != "" && !this->hardCount) {
+            if (peon->profession != "" && !this->hardCount)
+            {
                 onHard.push(peon);
             }
 
@@ -62,11 +76,11 @@ Array<Unit *> onHard;
             if (bd.isBlocked && bd.type == 'f' &&
                 !randUnit->isActive &&
                 randUnit->profession != "" &&
-                 !randUnit->inSave)
+                !randUnit->inSave)
             {
                 randUnit->orderOnWay.go(randUnit->profession, 0, true);
                 randUnit->isActive = true;
-               // console.log("hard go");
+                // console.log("hard go");
             }
         }
         ////////////////////////////////////////
@@ -76,11 +90,12 @@ Array<Unit *> onHard;
             // console.log("obnul");
             this->peons.filterSelf([](Unit *peon)
                                    {
-            if (peon) {
+            if (!peon->isDelete) {
                 return false;
             }
             return true; });
             this->hold = 0;
+           // console.log("peons length = ", this->peons.length);
         }
     }
 
@@ -91,5 +106,4 @@ Array<Unit *> onHard;
             if (building->isActive) {
                 building->activeProg();
             } });
-            
 };

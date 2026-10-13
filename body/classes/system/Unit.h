@@ -76,7 +76,7 @@ public:
   virtual void stendOnCellWait() {};
   virtual void selectAnAction() {};
   virtual void fightControl() {};
-  virtual void createInside(Cell *c) {};
+  virtual void createInside(Cell *c, bool isNew = false) {};
   virtual Unit *getAnyTree() { return nullptr; };
   virtual Unit *getAnyShaht() { return nullptr; };
   virtual Unit *getTreeNear() { return nullptr; };

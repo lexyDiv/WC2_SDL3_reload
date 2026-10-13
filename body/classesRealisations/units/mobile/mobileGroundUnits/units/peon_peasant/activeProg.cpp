@@ -4,9 +4,9 @@
 void Peon_peasant::activeProg()
 {
 
-  if (this->focus) {
-    console.log("hp = ", this->hp);
-  }
+  // if (this->focus) {
+  //   console.log("hp = ", this->hp);
+  // }
 
 
 

@@ -109,7 +109,7 @@ void GameField::offsetControl()
         {
             Cell *tc = this->field.getItemPtr(yIndex)->getItem(xIndex);
             if (tc->groundUnit 
-               // && tc->groundUnit->type == "life"
+                && tc->groundUnit->type == "life"
             )
             {
                 if (this->focusUnit)
@@ -118,8 +118,8 @@ void GameField::offsetControl()
                 }
                 tc->groundUnit->focus = true;
                 this->focusUnit = tc->groundUnit;
-                // this->focusUnit->takeDamage(1000);
-                // this->focusUnit->isActive = true;
+                 this->focusUnit->takeDamage(1000);
+
             }
             else
             {

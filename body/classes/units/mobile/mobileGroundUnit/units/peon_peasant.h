@@ -22,7 +22,7 @@ public:
      bool isTargetObjValide() override;
      void selectAnAction() override;
      void fightControl() override;
-     void createInside(Cell *c) override;
+     void createInside(Cell *c, bool isNew) override;
 
      Unit *getAnyTree() override;
      Unit *getAnyShaht() override;

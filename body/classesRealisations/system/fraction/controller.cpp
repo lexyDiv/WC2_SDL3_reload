@@ -20,9 +20,9 @@ void Fraction::controller()
             }
             return false; });
 
-    int ordinar = 100;
+
     this->controlTimer++;
-    if (this->controlTimer == 1)
+    if (this->controlTimer == 3)
     {
         this->controlTimer = 0;
 
@@ -42,7 +42,7 @@ void Fraction::controller()
         //     }
         // }
         // /////////////////////////// <= test kill
-        // console.log("length = ", this->peons.length);
+
 
         int activeCount = 0;
         for (int i = 0; i < this->peons.length; i++)

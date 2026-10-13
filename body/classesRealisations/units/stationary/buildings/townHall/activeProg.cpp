@@ -6,10 +6,18 @@ bool ok = false;
 
 void TownHall::activeProg()
 {
-    this->isActive = this->isActiveCheck();
+    this->isActive = true; //this->isActiveCheck();
     if (!this->isActive)
     {
         return;
+    }
+
+    if (!this->outClients.length)
+    {
+        if (this->fraction->peons.length < 10000) // 6000 crash 3000
+        {
+            this->createTimer = 1;
+        }
     }
 
     if (this->createTimer)
@@ -17,29 +25,32 @@ void TownHall::activeProg()
         this->createTimer--;
         if (!this->createTimer)
         {
-            // if (this->focus) {
-            //     console.log("length = ", this->fraction->peons.length);
-            // }
-            this->fraction->unitCount++;
-            Unit *peon = new Peon_peasant(this->fraction);
-            peon->persNum = this->fraction->unitCount;
-            peon->createInside(this->cell);
-            int ran = intRand(0, 10);
-            this->outClients.push(peon);
-           // if (!peon->isBlockedd(peon)) {
-              //  peon->orderOnWay.go("w");
-           // } else {
-             // peon->profession = "w";
-           // }
-            // peon->orderOnWay.profession = "w";
-            // peon->orderOnWay.isComplite = false;
-            
-           // peon->profession = "w";
-            peon->outHoldTimer = 30;
-             peon->profession = ran >= 1 ? "w" : "g";
 
-          //  peon->orderOnWay.profession = "w";
-          //  peon->orderOnWay.isComplite = false;
+            Unit *peon = this->game->unitsBufer.find([](Unit *u)
+                                                     {
+              if (u->inBufer) {
+                u->inBufer = false;
+                return true;
+              }
+              return false; });
+
+
+            if (peon) {
+                peon->createInside(this->cell);
+            } else {
+                peon = new Peon_peasant(this->fraction);
+                peon->createInside(this->cell);
+            }
+
+            
+
+            this->fraction->unitCount++;
+            peon->persNum = this->fraction->unitCount;
+            this->outClients.push(peon);
+            peon->outHoldTimer = 30;
+
+            int rand = intRand(0, 10);
+            peon->profession = rand >= 1 ? "w" : "g";
 
             if (this->fraction->peons.length < 10000) // 6000 crash 3000
             {
@@ -176,7 +187,7 @@ void TownHall::activeProg()
             peon->y += peon->wayDeltaY;
             peon->drawIndexY = peon->y;
             peon->animMashtab += peon->inOutMashtabCount;
-         
+
             peon->inOutTimer++;
         }
         else

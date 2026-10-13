@@ -4,7 +4,7 @@
 void Peon_peasant::draw()
 {
 
-  if (this->hp > 0)
+  if (this->cell)
   {
     this->preDraw();
     float drawDeltaX = this->gf->drawDeltaX;

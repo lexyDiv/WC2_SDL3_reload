@@ -43,9 +43,9 @@ if (this->color == "red") {
 
    ////////////////// townHall
 
+Unit *townHall = nullptr;
 
-
-    Unit *townHall = new TownHall;
+    townHall = new TownHall;
     townHall->fraction = this;
     townHall->create(game->gf->field.getItem(2).getItem(20));
     this->fTownHoll.townHolls.push(townHall);

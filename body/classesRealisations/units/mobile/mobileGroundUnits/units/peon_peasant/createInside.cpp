@@ -33,7 +33,7 @@ void Peon_peasant::createInside(Cell *c)
     this->animMashtab = this->startAnimMashtab;
     c->game->AllUnitsPtr.push(this);
    // c->game->allLifeUnitsPtr.push(this);
-   // this->fraction->peons.push(this);
+    this->fraction->peons.push(this);
     this->fraction->AllLifeUnits.push(this);
 
     canGiveTree = false;

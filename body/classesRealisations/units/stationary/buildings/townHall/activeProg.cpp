@@ -17,9 +17,11 @@ void TownHall::activeProg()
         this->createTimer--;
         if (!this->createTimer)
         {
+            // if (this->focus) {
+            //     console.log("length = ", this->fraction->peons.length);
+            // }
             this->fraction->unitCount++;
             Unit *peon = new Peon_peasant(this->fraction);
-
             peon->persNum = this->fraction->unitCount;
             peon->createInside(this->cell);
             int ran = intRand(0, 10);
@@ -139,6 +141,12 @@ void TownHall::activeProg()
                 peon->image = peon->fraction->peon.img_1;
                 oc->groundUnit = peon;
                 peon->hp = peon->hp > 0 ? peon->hp : 1;
+                // if (peon->cell == this->cell) {
+                //     console.log("outCell");
+                // }
+                if (!peon->inSave) {
+                    console.log("No inSave");
+                }
             }
             else
             {
@@ -153,6 +161,9 @@ void TownHall::activeProg()
                 peon->image = peon->fraction->peon.img_1;
                 oc->groundUnit = peon;
                 peon->hp = peon->hp > 0 ? peon->hp : 1;
+                //                 if (peon->cell == this->cell) {
+                //     console.log("extrime outCell");
+                // }
             }
         }
 
@@ -185,8 +196,11 @@ void TownHall::activeProg()
         }
     };
 
-    this->outClients.filterSelf([](Unit *peon)
+    this->outClients.filterSelf([this](Unit *peon)
                                 {
+            if (peon->cell == this->cell) {
+                    console.log("MY CELL");
+                }
             if (!peon->inOutTimer) {
             return true;
         }

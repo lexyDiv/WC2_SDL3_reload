@@ -1,5 +1,5 @@
 #include "updateClasters.cpp"
-//=>out
+//=>activeShahtsControl
 
 void GameField::savePushOnTrups(Unit *unit) {
     mutex mt;

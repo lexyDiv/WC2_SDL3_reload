@@ -25,19 +25,19 @@ void TownHall::activeProg()
            // if (!peon->isBlockedd(peon)) {
               //  peon->orderOnWay.go("w");
            // } else {
-              peon->profession = "w";
+             // peon->profession = "w";
            // }
             // peon->orderOnWay.profession = "w";
             // peon->orderOnWay.isComplite = false;
             
            // peon->profession = "w";
             peon->outHoldTimer = 30;
-            // peon->profession = ran ? "w" : "g";
+             peon->profession = ran >= 3 ? "w" : "g";
 
           //  peon->orderOnWay.profession = "w";
           //  peon->orderOnWay.isComplite = false;
 
-            if (this->fraction->peons.length < 10000) // 6000 crash 3000
+            if (this->fraction->peons.length < 2000) // 6000 crash 3000
             {
                 this->createTimer = 1;
             }

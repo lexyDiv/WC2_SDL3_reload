@@ -18,12 +18,7 @@ public:
     MinData getPeonOutCell() override;
     MinData getPeonExtrimeOutCell() override;
 
-
-    Array<Unit *> clients;
-    Array<Unit *> outClients;
- 
-    
-
+  
     mutex potentialClientsMT;
     mutex mt;
 

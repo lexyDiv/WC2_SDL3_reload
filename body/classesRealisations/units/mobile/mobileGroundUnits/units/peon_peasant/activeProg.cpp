@@ -5,7 +5,7 @@ void Peon_peasant::activeProg()
 {
 
   // if (this->focus) {
-  //   console.log("active");
+  //   console.log("dold = ", this->gold);
   // }
 
   if (!this->isActiveCheck() || this->holdTimerControl()

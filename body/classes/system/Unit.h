@@ -96,15 +96,19 @@ public:
   Array<Cell *> contactCells;
    Array<Cell *> exitCells;
   // Array<Unit *> clients;
-  // Array<Unit *> outClients;
+ //  Array<Unit *> outClients;
    Array<MinData> wellComeCells;
   // Array<Unit *> potentialClients;
   Array<Cell *> potentialWay;
   Array<Cell *> way;
   Array<Unit *> orderedTrees;
   Array<Unit *> orderedShahts;
-  Array<Unit *> potentialClients;
+ // Array<Unit *> potentialClients;
   Cell *myDoorCell = nullptr;
+
+    Array<Unit *> potentialClients;
+    Array<Unit *> clients;
+    Array<Unit *> outClients;
 
   string name = "tree";
   string type = "building";

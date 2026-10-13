@@ -103,7 +103,9 @@ void Peon_peasant::orderOnWayControl()
                 {
                     if (this->wood)
                     {
-                        this->targetData.clicckedCell = ocu->cell;
+                            int rand = intRand(0, ocu->myCells.length);
+                            Cell *ulc = ocu->myCells.getItem(rand);
+                        this->targetData.clicckedCell = ulc;
                         this->targetData.unit = ocu;
                         this->targetData.unitPersNum = ocu->persNum;
                         this->targetData.profession = "w";
@@ -112,7 +114,9 @@ void Peon_peasant::orderOnWayControl()
                     }
                     else if (this->gold)
                     {
-                        this->targetData.clicckedCell = ocu->cell;
+                            int rand = intRand(0, ocu->myCells.length);
+                            Cell *ulc = ocu->myCells.getItem(rand);
+                        this->targetData.clicckedCell = ulc;
                         this->targetData.unit = ocu;
                         this->targetData.unitPersNum = ocu->persNum;
                         this->targetData.profession = "g";
@@ -134,7 +138,9 @@ void Peon_peasant::orderOnWayControl()
                 {
                     if (this->wood)
                     {
-                        this->targetData.clicckedCell = ocu->cell;
+                            int rand = intRand(0, ocu->myCells.length);
+                            Cell *ulc = ocu->myCells.getItem(rand);
+                        this->targetData.clicckedCell = ulc;
                         this->targetData.unit = ocu;
                         this->targetData.unitPersNum = ocu->persNum;
                         this->targetData.profession = "w";
@@ -143,6 +149,7 @@ void Peon_peasant::orderOnWayControl()
                     }
                     else
                     {
+
                         this->targetData.clicckedCell = ocu->cell;
                         this->targetData.unit = ocu;
                         this->targetData.unitPersNum = ocu->persNum;
@@ -174,7 +181,9 @@ void Peon_peasant::orderOnWayControl()
                     }
                     else
                     {
-                        this->targetData.clicckedCell = ocu->cell;
+                        int rand = intRand(0, ocu->myCells.length);
+                        Cell *ulc = ocu->myCells.getItem(rand);
+                        this->targetData.clicckedCell = ulc;
                         this->targetData.unit = ocu;
                         this->targetData.unitPersNum = ocu->persNum;
                         this->targetData.profession = "g";
@@ -184,6 +193,7 @@ void Peon_peasant::orderOnWayControl()
                 }
                 else
                 {
+
                     this->targetData.clicckedCell = ocu->cell;
                     this->targetData.unit = ocu;
                     this->targetData.unitPersNum = ocu->persNum;
@@ -338,7 +348,9 @@ void Peon_peasant::orderOnWayControl()
                         Unit *shaht = this->getAnyShaht();
                         if (shaht)
                         {
-                            this->targetData.clicckedCell = shaht->cell;
+                            int rand = intRand(0, shaht->myCells.length);
+                            Cell *ulc = shaht->myCells.getItem(rand);
+                            this->targetData.clicckedCell = ulc;
                             this->targetData.unit = shaht;
                             this->targetData.unitPersNum = shaht->persNum;
                             this->targetData.profession = "g";

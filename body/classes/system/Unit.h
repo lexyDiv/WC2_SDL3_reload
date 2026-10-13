@@ -238,4 +238,5 @@ bool isBlockedBuilding(Unit *u, ThData *td);
 Array<Td_xploredData> thwd;
 mutex potentialClientsMT;
 
+
 };

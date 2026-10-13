@@ -141,12 +141,13 @@ void TownHall::activeProg()
                 peon->image = peon->fraction->peon.img_1;
                 oc->groundUnit = peon;
                 peon->hp = peon->hp > 0 ? peon->hp : 1;
+
                 // if (peon->cell == this->cell) {
                 //     console.log("outCell");
                 // }
-                if (!peon->inSave) {
-                    console.log("No inSave");
-                }
+                // if (!peon->inSave) {
+                //     console.log("No inSave");
+                // }
             }
             else
             {
@@ -161,6 +162,7 @@ void TownHall::activeProg()
                 peon->image = peon->fraction->peon.img_1;
                 oc->groundUnit = peon;
                 peon->hp = peon->hp > 0 ? peon->hp : 1;
+
                 //                 if (peon->cell == this->cell) {
                 //     console.log("extrime outCell");
                 // }

@@ -31,51 +31,79 @@ void Fraction::controller()
         // bool isOne = false;
         Array<Unit *> onHard;
 
-        /////////////////////////// => test kill
-        if (this->peons.length)
-        {
-            for (int i = 0; i < 5; i++)
-            {
-                int rand = intRand(0, this->peons.length);
-                Unit *u = this->peons.getItem(rand);
-                u->takeDamage(1000);
-            }
-        }
-        /////////////////////////// <= test kill
+        // /////////////////////////// => test kill
+        // if (this->peons.length)
+        // {
+        //     for (int i = 0; i < 5; i++)
+        //     {
+        //         int rand = intRand(0, this->peons.length);
+        //         Unit *u = this->peons.getItem(rand);
+        //         u->takeDamage(1000);
+        //     }
+        // }
+        // /////////////////////////// <= test kill
+        // console.log("length = ", this->peons.length);
 
-        for (int i = this->hold; i < this->peons.length; i++)
+        int activeCount = 0;
+        for (int i = 0; i < this->peons.length; i++)
         {
-
-            this->hold = i;
             Unit *peon = this->peons.getItem(i);
             bool isBlocked = peon->blockedCheck(peon).isBlocked;
-
-            // if (peon->profession != "" && !this->hardCount)
-            // {
-            //     onHard.push(peon);
-            // }
-
             if (peon->hp &&
                 !peon->inSave &&
                 !peon->isActive &&
                 peon->profession != "" &&
                 peon->orderOnWay.isComplite &&
-                !isBlocked //! peon->isBlockedd_full(peon)
-            )
-            {
-                // console.log("here");
-                // if (peon->focus) {
-                //     console.log("go in fraction");
-                // }
-                current++;
+                !isBlocked 
+               )
+               {
+                activeCount++;
                 peon->orderOnWay.go(peon->profession, 0, true);
                 peon->isActive = true;
-            }
-            if (current == ordinar)
-            {
+               }
+
+               if (activeCount == 1000) {
                 break;
-            }
-        };
+               }
+        }
+
+        // for (int i = this->hold; i < this->peons.length; i++)
+        // {
+
+        //     this->hold = i;
+        //     Unit *peon = this->peons.getItem(i);
+        //     bool isBlocked = peon->blockedCheck(peon).isBlocked;
+
+        //     // if (peon->profession != "" && !this->hardCount)
+        //     // {
+        //     //     onHard.push(peon);
+        //     // }
+
+        //      if(peon->focus) {
+        //         console.log("here");
+        //      }
+
+        //     if (peon->hp &&
+        //         !peon->inSave &&
+        //         !peon->isActive &&
+        //         peon->profession != "" &&
+        //         peon->orderOnWay.isComplite &&
+        //         !isBlocked //! peon->isBlockedd_full(peon)
+        //     )
+        //     {
+        //         // console.log("here");
+        //         // if (peon->focus) {
+        //         //     console.log("go in fraction");
+        //         // }
+        //         current++;
+        //         peon->orderOnWay.go(peon->profession, 0, true);
+        //         peon->isActive = true;
+        //     }
+        //     if (current == ordinar)
+        //     {
+        //         break;
+        //     }
+        // };
 
         //////////////////////////
         // if (onHard.length)
@@ -109,9 +137,9 @@ void Fraction::controller()
         //     }
     }
 
-    // this->allBuildings.forEach([](Unit *building)
-    //                            {
-    //         if (building->isActive) {
-    //             building->activeProg();
-    //         } });
+    this->allBuildings.forEach([](Unit *building)
+                               {
+            if (building->isActive) {
+                building->activeProg();
+            } });
 };

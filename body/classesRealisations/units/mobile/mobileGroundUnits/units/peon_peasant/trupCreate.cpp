@@ -1,22 +1,25 @@
 #include "getBaseForUnloading.cpp"
 //=>targetObjControl
 
-void Peon_peasant::trupCreate() {
+void Peon_peasant::trupCreate()
+{
 
-    if (!this->isDelete) {
+   if (!this->isDelete)
+   {
       this->isDelete = true;
       this->cell->ripUnits.push(this);
       this->animY = 1000;
-      
+
       if (this->targetData.unit &&
           this->targetData.unit->lesorub &&
-          this->targetData.unit->lesorub == this) {
-            this->targetData.unit->lesorub = nullptr;
-          }
-    //  console.log("add to cell");
-    }
+          this->targetData.unit->lesorub == this)
+      {
+         this->targetData.unit->lesorub = nullptr;
+      }
+      //  console.log("add to cell");
+   }
 
-       this->deleteTimer--;
+   this->deleteTimer--;
    if (this->deleteTimer % 10 == 0 && this->animY < 1200)
    {
       this->animY += 100;
@@ -28,12 +31,12 @@ void Peon_peasant::trupCreate() {
       this->game->unitsBufer.push(this);
 
       this->deleteTimer = 0;
-     // console.log("add to bufer");
+      // console.log("add to bufer");
    }
    else if (this->deleteTimer < 2970 && this->deleteTimer % 6 == 0)
    {
-      this->alpha --;
-     // console.log("alpha --");
+      this->alpha--;
+      // console.log("alpha --");
    }
    else if (this->deleteTimer == 2970)
    {

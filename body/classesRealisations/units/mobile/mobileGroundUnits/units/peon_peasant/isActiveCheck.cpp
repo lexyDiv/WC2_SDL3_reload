@@ -25,7 +25,9 @@ bool Peon_peasant::isActiveCheck()
         return true;
     }
     this->isActive = false;
-    if (!this->isTargetObjValide() || !this->targetData.unit) {
+    if (
+       // this->hp <= 0 || 
+        !this->isTargetObjValide() || !this->targetData.unit) {
         this->targetData.clear();
         // if (this->focus) {
         //     console.log("clear in activeCheck");

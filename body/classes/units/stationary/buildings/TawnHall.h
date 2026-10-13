@@ -19,8 +19,8 @@ public:
     MinData getPeonExtrimeOutCell() override;
 
   
-    mutex potentialClientsMT;
-    mutex mt;
+    
+   // mutex mt;
 
     ///////////////////////// => debug
     

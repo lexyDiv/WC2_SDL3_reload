@@ -32,9 +32,9 @@ public:
      void preDraw() override;
      void updateCurrentTarget() override;
      void inFightAnimation() override;
-    // void takeDamage(int damage) override;
+     void takeDamage(int damage) override;
      void trupCreate() override;
-    // void drawTrup() override;
+     void drawTrup() override;
     void targetObjControl() override;
     int holdTimerControl();
 

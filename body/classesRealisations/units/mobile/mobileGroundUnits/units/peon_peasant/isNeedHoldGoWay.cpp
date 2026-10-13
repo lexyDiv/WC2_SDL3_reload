@@ -1,5 +1,5 @@
 #include "orderOnWayControl.cpp"
-//=>out
+//=>takeDamage
 
 bool isLoop(Unit *self)
 {

@@ -53,7 +53,14 @@ public:
 
    Array<Unit *> allLifeUnitsPtr;
 
-   Array<Unit *> allMobileActiveUnits;
+
+    Array<Unit *> unitsBufer;
+
+    void addToAllUnitsPtr(Unit *unit);
+    void addToUnitsBufer(Unit *unit);
+  //  void addToUnitsBufer(Unit *unit);
+
+   //Array<Unit *> allMobileActiveUnits;
   
   ///////////////////////////////////////////////////
   Array<Cell> allCells;

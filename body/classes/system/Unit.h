@@ -21,6 +21,7 @@ public:
   virtual void create(Cell *) {};
   virtual void getContactCells();
   virtual void draw() {};
+  virtual void drawTrup() {};
   virtual void get2x2myCells(Cell *cell);
   virtual void get3x3myCells(Cell *cell);
   virtual void get4x4myCells(Cell *cell);
@@ -85,7 +86,7 @@ public:
   virtual void updateCurrentTarget() {};
   virtual void takeDamage(int damage) {};
   virtual void trupCreate() {};
-  virtual void drawTrup() {};
+ 
   virtual void standOnCell() {};
   virtual void stressControl() {};
   virtual void targetObjControl() {};
@@ -227,11 +228,14 @@ bool canGiveGold = false;
 bool canTakeWood = false;
 bool canTakeGold = false;
 
+bool inBufer = false;
+
 ////////////////////////// <= debug
  
 virtual void checkNextMagistralCell() {};
 bool isBlockedBuilding(Unit *u, ThData *td);
 
 Array<Td_xploredData> thwd;
+mutex potentialClientsMT;
 
 };

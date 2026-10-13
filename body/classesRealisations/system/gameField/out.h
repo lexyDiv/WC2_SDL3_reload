@@ -1,4 +1,4 @@
-#include "activeShahtsControl.cpp"
+#include "addToTrupsOnDelete.cpp"
 //=>imager
 
 

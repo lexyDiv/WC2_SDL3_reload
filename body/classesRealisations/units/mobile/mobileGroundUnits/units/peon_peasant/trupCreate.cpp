@@ -2,6 +2,12 @@
 //=>targetObjControl
 
 void Peon_peasant::trupCreate() {
+
+    if (!this->isDelete) {
+      this->isDelete = true;
+      this->cell->ripUnits.push(this);
+    }
+
        this->deleteTimer--;
    if (this->deleteTimer % 10 == 0 && this->animY < 1200)
    {
@@ -11,8 +17,7 @@ void Peon_peasant::trupCreate() {
    if (!this->deleteTimer)
    {
       this->cell->ripUnits.splice(this->cell->ripUnits.indexOf(this), 1);
-      this->isDelete = true;
-     // console.log("deleted");
+      this->game->unitsBufer.push(this);
    }
    else if (this->deleteTimer < 2950)
    {

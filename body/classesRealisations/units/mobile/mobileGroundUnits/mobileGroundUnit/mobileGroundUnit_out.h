@@ -1,4 +1,4 @@
-#include "stepToTheSide.cpp"
+#include "takeDamage.cpp"
 //=>units
 
 void MobileGroundUnit::checkNextMagistralCell()

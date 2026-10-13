@@ -1,5 +1,5 @@
 #include "isNeedFreeWay.cpp"
-//=>out
+//=>takeDamage
 
 void MobileGroundUnit::stepToTheSide()
 {

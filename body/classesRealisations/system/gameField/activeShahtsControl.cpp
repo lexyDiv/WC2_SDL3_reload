@@ -1,5 +1,5 @@
 #include "savePushOnTrups.cpp"
-//=>out
+//=>addToTrupsOnDelete
 
 void GameField::activeShahtsControl()
 {

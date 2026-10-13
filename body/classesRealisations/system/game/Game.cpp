@@ -39,3 +39,18 @@ Game::~Game()
     // delete nationsHub;
     // nationsHub = nullptr;   // opredelit chto eto !!!
 }
+
+
+void Game::addToAllUnitsPtr(Unit *unit) {
+    mutex mt;
+    mt.lock();
+    this->AllUnitsPtr.push(unit);
+    mt.unlock();
+}
+
+void Game::addToUnitsBufer(Unit *unit) {
+    mutex mt;
+    mt.lock();
+    this->unitsBufer.push(unit);
+    mt.unlock();
+}

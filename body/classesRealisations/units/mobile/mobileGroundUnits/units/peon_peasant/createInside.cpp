@@ -35,4 +35,20 @@ void Peon_peasant::createInside(Cell *c)
     c->game->allLifeUnitsPtr.push(this);
     this->fraction->peons.push(this);
     this->fraction->AllLifeUnits.push(this);
+
+    canGiveTree = false;
+    canGiveGold = false;
+    canTakeWood = false;
+    canTakeGold = false;
+
+    ////////////////////////////// reset
+    this->isPotentialWayComplite = true;
+    this->orderOnWay.isComplite = true;
+    this->isGetMyCell = true;
+    this->inFight = false;
+    this->outHoldTimer = 0;
+    this->way.clear();
+    this->iNeedFreeWay = false;
+    this->targetData.clear();
+    this->isDelete = false;
 }

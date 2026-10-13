@@ -9,6 +9,13 @@ void Game::process()
 {
 
     this->fractionsControl();
+    this->fractions.forEach([](Fraction *f){
+            f->allBuildings.forEach([](Unit *building)
+                               {
+            if (building->isActive) {
+                building->activeProg();
+            } });
+    });
     this->gf->activeShahtsControl();
     this->gf->trupsControl();
     this->gf->updateClasters();

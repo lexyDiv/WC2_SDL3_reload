@@ -4,11 +4,21 @@
 void Fraction::controller()
 {
 
-    this->hardCount++;
-    if (this->hardCount == 30)
-    {
-        this->hardCount = 0;
-    }
+    // this->hardCount++;
+    // if (this->hardCount == 30)
+    // {
+    //     this->hardCount = 0;
+    // }
+
+    this->peons.clear();
+
+    this->AllLifeUnits.filterSelf([this](Unit *u)
+                                  {
+                    if (!u->isDelete) {
+                        this->peons.push(u);
+                return false;
+            }
+            return false; });
 
     int ordinar = 100;
     this->controlTimer++;
@@ -40,10 +50,10 @@ void Fraction::controller()
             Unit *peon = this->peons.getItem(i);
             bool isBlocked = peon->blockedCheck(peon).isBlocked;
 
-            if (peon->profession != "" && !this->hardCount)
-            {
-                onHard.push(peon);
-            }
+            // if (peon->profession != "" && !this->hardCount)
+            // {
+            //     onHard.push(peon);
+            // }
 
             if (peon->hp &&
                 !peon->inSave &&
@@ -68,42 +78,40 @@ void Fraction::controller()
         };
 
         //////////////////////////
-        if (onHard.length)
-        {
-            int rand = intRand(0, onHard.length);
-            Unit *randUnit = onHard.getItem(rand);
-            BlockedData bd = randUnit->blockedCheck(randUnit);
-            if (bd.isBlocked && bd.type == 'f' &&
-                !randUnit->isActive &&
-                randUnit->profession != "" &&
-                !randUnit->inSave)
-            {
-                randUnit->orderOnWay.go(randUnit->profession, 0, true);
-                randUnit->isActive = true;
-                // console.log("hard go");
-            }
-        }
+        // if (onHard.length)
+        // {
+        //     int rand = intRand(0, onHard.length);
+        //     Unit *randUnit = onHard.getItem(rand);
+        //     BlockedData bd = randUnit->blockedCheck(randUnit);
+        //     if (bd.isBlocked && bd.type == 'f' &&
+        //         !randUnit->isActive &&
+        //         randUnit->profession != "" &&
+        //         !randUnit->inSave)
+        //     {
+        //         randUnit->orderOnWay.go(randUnit->profession, 0, true);
+        //         randUnit->isActive = true;
+        //         // console.log("hard go");
+        //     }
+        // }
         ////////////////////////////////////////
 
-        if (this->hold >= this->peons.length - 1)
-        {
-            // console.log("obnul");
-            this->peons.filterSelf([](Unit *peon)
-                                   {
-            if (!peon->isDelete) {
-                return false;
-            }
-            return true; });
-            this->hold = 0;
-           // console.log("peons length = ", this->peons.length);
-        }
+        //     if (this->hold >= this->peons.length - 1)
+        //     {
+        //         // console.log("obnul");
+        //         this->peons.filterSelf([](Unit *peon)
+        //                                {
+        //         if (!peon->isDelete) {
+        //             return false;
+        //         }
+        //         return true; });
+        //         this->hold = 0;
+        //        // console.log("peons length = ", this->peons.length);
+        //     }
     }
 
-    //  this->activeUnitsControl();
-
-    this->allBuildings.forEach([](Unit *building)
-                               {
-            if (building->isActive) {
-                building->activeProg();
-            } });
+    // this->allBuildings.forEach([](Unit *building)
+    //                            {
+    //         if (building->isActive) {
+    //             building->activeProg();
+    //         } });
 };

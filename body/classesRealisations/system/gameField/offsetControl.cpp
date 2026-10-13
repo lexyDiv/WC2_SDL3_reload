@@ -116,8 +116,8 @@ void GameField::offsetControl()
                 }
                 tc->groundUnit->focus = true;
                 this->focusUnit = tc->groundUnit;
-                this->focusUnit->takeDamage(1000);
-                this->focusUnit->isActive = true;
+                // this->focusUnit->takeDamage(1000);
+                // this->focusUnit->isActive = true;
             }
             else
             {

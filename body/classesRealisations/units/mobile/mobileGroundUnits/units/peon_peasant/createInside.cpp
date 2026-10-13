@@ -51,4 +51,5 @@ void Peon_peasant::createInside(Cell *c)
     this->iNeedFreeWay = false;
     this->targetData.clear();
     this->isDelete = false;
+    this->deleteTimer = 3000;
 }

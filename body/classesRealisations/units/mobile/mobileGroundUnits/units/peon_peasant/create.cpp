@@ -36,6 +36,8 @@ void Peon_peasant::create(Cell *cell)
     canTakeWood = false;
     canTakeGold = false;
 
-    this->game->addToAllUnitsPtr(this);
+    this->deleteTimer = 3000;
 
+    this->game->addToAllUnitsPtr(this);
+   
 };

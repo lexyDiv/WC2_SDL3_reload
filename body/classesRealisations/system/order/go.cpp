@@ -10,6 +10,7 @@ void Order::go(Cell *cell, int pcd, bool specialFreeG0)
     this->mt.lock();
     if (!myUnit->cell || myUnit->inSave || myUnit->hp <= 0)
     {
+        this->mt.unlock();
         return;
     }
     this->cell = cell;
@@ -27,6 +28,7 @@ void Order::go(string profession, int pcd, bool specialFreeG0)
 
     if (!myUnit->cell || myUnit->inSave || myUnit->hp <= 0)
     {
+        this->mt.unlock();
         return;
     }
     this->profession = profession;
@@ -43,6 +45,7 @@ void Order::go()
     this->mt.lock();
     if (!myUnit->cell || myUnit->inSave || myUnit->hp <= 0)
     {
+        this->mt.unlock();
         return;
     }
     this->stop = true;

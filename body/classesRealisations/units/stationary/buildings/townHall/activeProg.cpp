@@ -198,9 +198,9 @@ void TownHall::activeProg()
 
     this->outClients.filterSelf([this](Unit *peon)
                                 {
-            if (peon->cell == this->cell) {
-                    console.log("MY CELL");
-                }
+            // if (peon->cell == this->cell) {
+            //         console.log("MY CELL");
+            //     }
             if (!peon->inOutTimer) {
             return true;
         }

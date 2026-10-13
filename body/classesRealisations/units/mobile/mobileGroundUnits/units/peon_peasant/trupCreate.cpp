@@ -7,6 +7,7 @@ void Peon_peasant::trupCreate() {
       this->isDelete = true;
       this->cell->ripUnits.push(this);
       this->animY = 1000;
+      
       if (this->targetData.unit &&
           this->targetData.unit->lesorub &&
           this->targetData.unit->lesorub == this) {
@@ -29,14 +30,14 @@ void Peon_peasant::trupCreate() {
       this->deleteTimer = 0;
      // console.log("add to bufer");
    }
-   else if (this->deleteTimer < 2930 && this->deleteTimer % 6 == 0)
+   else if (this->deleteTimer < 2970 && this->deleteTimer % 6 == 0)
    {
       this->alpha --;
      // console.log("alpha --");
    }
-   else if (this->deleteTimer == 2930)
+   else if (this->deleteTimer == 2970)
    {
       this->cell->groundUnit = nullptr;
-      
+      this->alpha = 200;
    }
 }

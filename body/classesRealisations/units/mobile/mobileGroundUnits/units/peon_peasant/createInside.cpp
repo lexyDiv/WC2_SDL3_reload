@@ -52,4 +52,5 @@ void Peon_peasant::createInside(Cell *c)
     this->targetData.clear();
     this->isDelete = false;
     this->deleteTimer = 3000;
+    this->alpha = 255;
 }

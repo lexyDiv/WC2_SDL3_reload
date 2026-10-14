@@ -10,6 +10,7 @@ void Peon_peasant::activeProg()
 
 
 
+
   if (!this->isActiveCheck() || this->holdTimerControl()
 
   )
@@ -60,6 +61,7 @@ void Peon_peasant::activeProg()
     {
 
       bool isTOValide = this->isTargetObjValide();
+      
       if (!isTOValide)
       {
         this->stendOnCell();
@@ -90,10 +92,6 @@ void Peon_peasant::activeProg()
  
 
     this->orderOnWayControl();
-
- 
-
- 
 
   }
 }

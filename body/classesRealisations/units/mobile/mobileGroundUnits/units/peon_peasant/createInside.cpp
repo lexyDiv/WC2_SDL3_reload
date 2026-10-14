@@ -33,6 +33,11 @@ void Peon_peasant::createInside(Cell *c, bool isNew = false)
     this->animMashtab = this->startAnimMashtab;
     this->fraction->AllLifeUnits.push(this);
 
+        canGiveTree = false;
+        canGiveGold = false;
+        canTakeWood = false;
+        canTakeGold = false;
+
     if (isNew)
     {
         c->game->AllUnitsPtr.push(this);
@@ -41,11 +46,7 @@ void Peon_peasant::createInside(Cell *c, bool isNew = false)
     else
     {
 
-        canGiveTree = false;
-        canGiveGold = false;
-        canTakeWood = false;
-        canTakeGold = false;
-
+        this->thwd.clear();
         ////////////////////////////// reset
         this->isPotentialWayComplite = true;
         this->orderOnWay.isComplite = true;

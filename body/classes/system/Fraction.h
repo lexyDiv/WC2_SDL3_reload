@@ -16,10 +16,19 @@ class Upgrade {
 };
 
 struct FractionTownHall {
-    Array<Unit *> townHolls;
-    int level_1_townHollsCount = 0;
-    int level_2_townHollsCount = 0;
-    int level_3_townHollsCount = 0;
+    FractionTownHall() {
+        for (int i = 0; i < 3; i++) {
+            Array<Unit *> thbl;
+            this->townHollsByLevel.push(thbl);
+        }
+    }
+    Array<Array<Unit *>> townHollsByLevel;
+    // Array<Unit *> townHolls_level_1;
+    // Array<Unit *> townHolls_level_2;
+    // Array<Unit *> townHolls_level_3;
+    // int level_1_townHollsCount = 0;
+    // int level_2_townHollsCount = 0;
+    // int level_3_townHollsCount = 0;
 };
 
 struct FractionLamberMill {
@@ -53,6 +62,7 @@ class Fraction {
    /////////////////////  union buildings
     FractionTownHall fTownHoll;
     FractionLamberMill fLamberMill;
+
    ////////////////////
 
     string name = "";

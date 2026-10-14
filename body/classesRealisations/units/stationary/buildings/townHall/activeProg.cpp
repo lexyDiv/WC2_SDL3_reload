@@ -91,10 +91,10 @@ void TownHall::activeProg()
 
                                            peon->inOutTimer = 0;
                                            peon->animMashtab = peon->inOutMashtabMin;
-                                           if (this->fraction->fTownHoll.level_3_townHollsCount) {
+                                           if (this->fraction->fTownHoll.townHollsByLevel.getItem(2).length) {
                                             this->fraction->gold = peon->gold ? this->fraction->gold + 150 : this->fraction->gold;
                                             this->fraction->wood = peon->wood ? this->fraction->wood + 150 : this->fraction->wood;
-                                           } else if (this->fraction->fTownHoll.level_2_townHollsCount) {
+                                           } else if (this->fraction->fTownHoll.townHollsByLevel.getItem(1).length) {
                                             this->fraction->gold = peon->gold ? this->fraction->gold + 125 : this->fraction->gold;
                                             this->fraction->wood = peon->wood ? this->fraction->wood + 125 : this->fraction->wood;
                                            } else {

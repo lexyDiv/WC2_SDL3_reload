@@ -254,6 +254,7 @@ void Peon_peasant::orderOnWayControl()
                         td.clear();
 
                         Unit *unloadingUnit = this->getBaseForUnloading();
+                        
                         if (unloadingUnit)
                         {
                             int rand = intRand(0, unloadingUnit->myCells.length);
@@ -267,6 +268,10 @@ void Peon_peasant::orderOnWayControl()
                         }
                         else
                         {
+                   
+                            this->targetData.clear();
+                            this->profession = "";
+
                         }
                     } else {
                      //console.log("old townHall");
@@ -314,10 +319,11 @@ void Peon_peasant::orderOnWayControl()
                     if (!(td.unit && (td.unit->name == "greatHall") &&
                           (this->isTargetObjValide() || td.nextCell)))
                     {
-
+                        
                         td.clear();
 
                         Unit *unloadingUnit = this->getBaseForUnloading();
+                       // console.log("here gold");
                         if (unloadingUnit)
                         {
                             int rand = intRand(0, unloadingUnit->myCells.length);
@@ -331,6 +337,9 @@ void Peon_peasant::orderOnWayControl()
                         }
                         else
                         {
+                           // console.log("here");
+                            this->targetData.clear();
+                            this->profession = "";
                         }
                     }
                 }

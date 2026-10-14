@@ -24,7 +24,9 @@ void Peon_peasant::selectAnAction()
             this->getConor(gu->cell);
             gu->lesorub = this;
         }
-        else if ((gu->fraction == this->fraction || !gu->fraction) &&
+        else if ((gu->fraction == this->fraction 
+            //|| !gu->fraction
+        ) &&
                  gu->type != "life")
         {
            // console.log("here");

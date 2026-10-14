@@ -22,6 +22,12 @@ void Peon_peasant::orderOnWayControl()
         if (
             this->orderOnWay.stop ||
              oCellGU == this ||
+             (
+                oCellGU &&
+                (
+                    oCellGU->fraction != this->fraction
+                )
+             ) ||
             (
                 this->orderOnWay.cell &&
                 (this->orderOnWay.cell->plane != this->cell->plane)

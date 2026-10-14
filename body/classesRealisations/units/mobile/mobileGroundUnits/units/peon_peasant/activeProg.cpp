@@ -33,14 +33,17 @@ void Peon_peasant::activeProg()
     this->frashWayCheckNeed = false;
     if (this->profession != "")
     {
+     // console.log("here");
       this->orderOnWay.go(this->profession);
     }
     else if (this->targetData.clicckedCell)
     {
+     // console.log("here 2");
       this->orderOnWay.go(this->targetData.clicckedCell);
     }
     else if (this->targetData.unit && this->targetData.unit->cell)
     {
+     // console.log("here 3");
       this->orderOnWay.go(this->targetData.unit->cell);
     }
   }
@@ -66,6 +69,7 @@ void Peon_peasant::activeProg()
       {
         this->stendOnCell();
         this->updateCurrentTarget();
+       // console.log("here 4");
       }
     }
     this->isGetTarget();
@@ -75,11 +79,13 @@ void Peon_peasant::activeProg()
       this->stendOnCell();
       this->isIgetMyTarget = false;
       this->selectAnAction();
+      //console.log("here 5");
     }
   }
 
   if (this->inFight)
   {
+   // console.log("here 6");
     this->fightControl(); // maybee HUYNYA refactoring needed !!!
     this->flipCell = nullptr;
   }

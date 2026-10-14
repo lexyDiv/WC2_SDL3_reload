@@ -1,7 +1,7 @@
 #include "Shaht.cpp"
 //=>draw
 
-void Shaht::create(Cell *cell, bool isComplite = false)
+void Shaht::create(Cell *cell, bool isComplite = false, bool isNew = false)
 {
 
    // this->createUnitMenu();

@@ -18,7 +18,7 @@ public:
 
   Cell *cell = nullptr;
   bool focus = false;
-  virtual void create(Cell *c, bool isComplite = false) {};
+  virtual void create(Cell *c, bool isComplite = false, bool isNew = false) {};
   virtual void getContactCells();
   virtual void draw() {};
   virtual void drawTrup() {};

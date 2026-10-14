@@ -1,7 +1,7 @@
 #include "in.h"
 //=>draw
 
-void TownHall::create(Cell *cell, bool isComplite = false)
+void TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
 {
    // console.log("townHall created !!!");
    // this->createUnitMenu();
@@ -47,9 +47,14 @@ void TownHall::create(Cell *cell, bool isComplite = false)
    this->animY = 0;
    this->hpMax = 1200;
    this->hp = 1200;
-   console.log(this->level);
+   ///////////////////////////////////////////////////////////////////////
+    this->createTimer = 0;
+
     canGiveTree = false;
     canGiveGold = false;
     canTakeWood = true;
     canTakeGold = true;
+
+  
+
 }

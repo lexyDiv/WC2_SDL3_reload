@@ -13,7 +13,7 @@ public:
    float linePusherY = 0.0f;    // oil anim
    float linePullerY = -100.0f; // oil anim
 
-   void create(Cell *cell, bool isComplite) override;
+   void create(Cell *cell, bool isComplite, bool isNew) override;
    void draw() override;
    // void createUnitMenu() override;
 };

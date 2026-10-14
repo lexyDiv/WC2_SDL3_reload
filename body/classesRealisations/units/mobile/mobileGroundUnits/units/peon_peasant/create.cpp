@@ -2,7 +2,7 @@
 //=>draw
 
 
-void Peon_peasant::create(Cell *cell, bool isComplite = false)
+void Peon_peasant::create(Cell *cell, bool isComplite = false, bool isNew = false)
 {
 
   //this->unitMenu = unitMenuPack.peon;

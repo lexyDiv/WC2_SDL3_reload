@@ -57,9 +57,17 @@ int main()
                 delete th_create_game;
                 th_create_game = nullptr;
             }
+
+            // console.log("trees = ", game->allTreesPtr.length);
+            // console.log("shahts = ", game->allShahtsPtr.length);
+            // console.log("mounts = ", game->allMountsPtr.length);
+           // console.log("all = ", game->allLifeUnitsPtr.length);
         }
         else // if (!th_create_game)
         {
+
+           // console.log("all = ", game->AllUnitsPtr.length);
+
             game->startTick = SDL_GetTicks();
 
            if (!globalPause) {

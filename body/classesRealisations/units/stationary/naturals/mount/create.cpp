@@ -6,7 +6,7 @@ void Mount::create(Cell *cell)
     this->get2x2myCells(cell);
 
     this->cell = cell->right->bottom;
-    this->cell->game->allMountsPtr.push(this);
+    this->cell->game->AllUnitsPtr.push(this);
     this->getContactCells();
 
     this->x = cell->x + cell->gabX;

@@ -3,33 +3,45 @@
 
 Game::~Game()
 {
-    this->allTreesPtr.forEach([](Unit *tree)
+    int deleteCount = 0;
+
+    this->AllUnitsPtr.forEach([&deleteCount](Unit *u)
                               {
-        if (tree) {
-            delete tree;
-        } });
+        delete u;
+        u = nullptr;
+        deleteCount++; });
+    cout << "delete " + to_string(deleteCount) + " units" << endl;
 
-    this->allMountsPtr.forEach([](Unit *mount)
-                               {
-        if (mount) {
-            delete mount;
-        } });
+    // this->allTreesPtr.forEach([&deleteCount](Unit *tree)
+    //                           {
+    //     if (tree) {
+    //         deleteCount++;
+    //         delete tree;
+    //     } });
 
-    this->allShahtsPtr.forEach([](Unit *shaht)
-                               {
-        if (shaht) {
-            delete shaht;
-        } });
+    //     cout << "delete " + to_string(deleteCount) + " units" << endl;
 
-    this->allOilsPtr.forEach([](Unit *oil)
-                             {
-        if (oil) {
-            delete oil;
-        } });
-    // this->AllUnits.forEach([](Unit *unit)
-    //                        {
-    //     delete unit;
-    //     unit = nullptr; });
+    // this->allMountsPtr.forEach([](Unit *mount)
+    //                            {
+    //     if (mount) {
+    //         delete mount;
+    //     } });
+
+    // this->allShahtsPtr.forEach([](Unit *shaht)
+    //                            {
+    //     if (shaht) {
+    //         delete shaht;
+    //     } });
+
+    // this->allOilsPtr.forEach([](Unit *oil)
+    //                          {
+    //     if (oil) {
+    //         delete oil;
+    //     } });
+    // // this->AllUnits.forEach([](Unit *unit)
+    // //                        {
+    // //     delete unit;
+    // //     unit = nullptr; });
 
     this->fractions.forEach([](Fraction *fr)
                             {
@@ -40,15 +52,16 @@ Game::~Game()
     // nationsHub = nullptr;   // opredelit chto eto !!!
 }
 
-
-void Game::addToAllUnitsPtr(Unit *unit) {
+void Game::addToAllUnitsPtr(Unit *unit)
+{
     mutex mt;
     mt.lock();
     this->AllUnitsPtr.push(unit);
     mt.unlock();
 }
 
-void Game::addToUnitsBufer(Unit *unit) {
+void Game::addToUnitsBufer(Unit *unit)
+{
     mutex mt;
     mt.lock();
     this->unitsBufer.push(unit);

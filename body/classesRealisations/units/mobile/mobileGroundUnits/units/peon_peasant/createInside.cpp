@@ -36,6 +36,7 @@ void Peon_peasant::createInside(Cell *c, bool isNew = false)
     if (isNew)
     {
         c->game->AllUnitsPtr.push(this);
+       // console.log("push");
     }
     else
     {

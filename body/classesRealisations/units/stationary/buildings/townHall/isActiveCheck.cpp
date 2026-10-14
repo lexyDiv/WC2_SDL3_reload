@@ -11,9 +11,9 @@ bool TownHall::isActiveCheck()
         this->potentialClients.length ||
         this->outClients.length ||
         !this->isComplite ||
-       // this->hp != this->hpMax ||
-        this->createTimer //||
-      //  this->updateTimer
+        this->hp != this->hpMax ||
+        this->createTimer ||
+        this->updateTimer
     )
     {
         //console.log("active");

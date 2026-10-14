@@ -27,15 +27,17 @@ void Peon_peasant::selectAnAction()
         else if ((gu->fraction == this->fraction || !gu->fraction) &&
                  gu->type != "life")
         {
+           // console.log("here");
             if (
                 (!gu->isComplite || gu->hp < gu->hpMax))
             {
+               // console.log("here 2");
                 this->inFight = true;
             }
             else
             {
                // if (this->wood || this->gold){
-
+//console.log("here 3");
                 gu->wellCome(this);
                // }
             }

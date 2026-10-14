@@ -24,6 +24,7 @@ void Shaht::wellCome(Unit *peon)
         peon->cell->groundUnitOnDraw.push(peon);
         peon->myDoorCell = peon->cell;
         peon->cell->groundUnit = nullptr; //// <=
+
         if (!this->isActive)
         {
             this->isActive = true;

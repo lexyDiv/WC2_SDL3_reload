@@ -20,6 +20,7 @@ void Shaht::create(Cell *cell, bool isComplite = false)
     Cell *centerCell = cell->bottom_right;
     this->cell = centerCell;
     this->cell->game->AllUnitsPtr.push(this);
+    this->cell->game->allShahtsPtr.push(this);
 
     this->getContactAndExitCells(cell, exitCell, centerCell);
     this->getWellComeCells();

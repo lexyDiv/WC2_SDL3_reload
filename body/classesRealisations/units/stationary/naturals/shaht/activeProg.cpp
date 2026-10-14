@@ -12,6 +12,8 @@ void Shaht::activeProg()
         return;
     }
 
+
+
     this->potentialClients.forEach([this](Unit *peon)
                                    {
                                        if (peon->inOutTimer < peon->inOutCount)

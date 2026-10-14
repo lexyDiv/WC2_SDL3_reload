@@ -21,7 +21,7 @@ if (this->color == "red") {
 
     Unit *peon = new Peon_peasant(this);
     peon->persNum = 2;
-    peon->create(game->gf->field.getItem(1).getItem(14));
+    peon->create(game->gf->field.getItem(0).getItem(14));
     this->game->allLifeUnitsPtr.push(peon);
     this->AllLifeUnits.push(peon);
 
@@ -55,8 +55,8 @@ Unit *townHall = nullptr;
 
 
 
-  // //this->activeBuildings.push(townHall);
-   ////////////////// townHall
+  // // //this->activeBuildings.push(townHall);
+  //  ////////////////// townHall
 
   //   townHall = new TownHall;
   //  townHall->fraction = this;

@@ -7,7 +7,7 @@ public:
     Peon_peasant(Fraction *fraction);
     ~Peon_peasant(){};
      bool isActiveCheck() override;
-     void create(Cell *cell) override;
+     void create(Cell *cell, bool isComplite) override;
      void draw() override;
     // void getHandTarget(Cell *cell) override;
     // void getCurrentTargetCell() override;

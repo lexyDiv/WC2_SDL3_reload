@@ -88,7 +88,7 @@ void GameField::getToTreeCellLineNumber()
                                  shahts.forEach([this](Cell *cell, int i)
                                                 {
                 Shaht *shaht = new Shaht;
-                shaht->create(cell);
+                shaht->create(cell, true);
                 shaht->gold = stoi(this->goldData.getItem(i)); });
                              }
                              else
@@ -101,7 +101,7 @@ void GameField::getToTreeCellLineNumber()
                                   });
                                      oils.forEach([this](Cell * cell, int i){
                                              Oil *oil = new Oil;
-                                             oil->create(cell);
+                                             oil->create(cell, true);
                                              oil->oil = stoi(this->oilData.getItem(i));
 
                                      });

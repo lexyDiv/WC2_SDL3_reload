@@ -1,7 +1,7 @@
 #include "in.h"
 //=>draw
 
-void TownHall::create(Cell *cell)
+void TownHall::create(Cell *cell, bool isComplite = false)
 {
    // console.log("townHall created !!!");
    // this->createUnitMenu();

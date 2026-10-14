@@ -8,7 +8,7 @@ public:
     TownHall() : Unit() {};
     ~TownHall() {};
 
-    void create(Cell *cell) override;
+    void create(Cell *cell, bool isComplite) override;
     void draw() override;
     void wellCome(Unit *peon) override;
     void activeProg() override;

@@ -1,7 +1,7 @@
 #include "in.h"
 //=>draw
 
-void Mount::create(Cell *cell)
+void Mount::create(Cell *cell, bool isComplite = false)
 {
     this->get2x2myCells(cell);
 

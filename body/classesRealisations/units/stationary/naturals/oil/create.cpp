@@ -1,7 +1,7 @@
 #include "Oil.cpp"
 //=>draw
 
-void Oil::create(Cell *cell)
+void Oil::create(Cell *cell, bool isComplite = false)
 {
    // this->createUnitMenu();
     /////////////////////////////

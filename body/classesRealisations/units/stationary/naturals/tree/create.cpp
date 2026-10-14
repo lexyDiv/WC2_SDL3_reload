@@ -1,7 +1,7 @@
 #include "Tree.cpp"
 //=>getContactCells
 
-void Tree::create(Cell *cell)
+void Tree::create(Cell *cell, bool isComplite = false)
 {
     this->deleteTimer = 50;
     cell->groundUnit = this;

@@ -131,6 +131,7 @@ public:
   int hp = 50;
   int hpMax = 0;
   bool isComplite = false;
+  int level = 0;
   int animGabX = 0;
   int animGabY = 0;
   int animStepX = 0;

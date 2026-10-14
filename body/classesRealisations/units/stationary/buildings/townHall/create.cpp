@@ -47,7 +47,7 @@ void TownHall::create(Cell *cell, bool isComplite = false)
    this->animY = 0;
    this->hpMax = 1200;
    this->hp = 1200;
-
+   console.log(this->level);
     canGiveTree = false;
     canGiveGold = false;
     canTakeWood = true;

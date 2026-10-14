@@ -45,13 +45,13 @@ if (this->color == "red") {
 
 Unit *townHall = nullptr;
 
-    townHall = new TownHall;
-    townHall->fraction = this;
-    townHall->create(game->gf->field.getItem(2).getItem(20));
-    this->fTownHoll.townHolls.push(townHall);
-    townHall->isComplite = true;
-    townHall->createTimer = 100;
-    townHall->isActive = true;
+    // townHall = new TownHall;
+    // townHall->fraction = this;
+    // townHall->create(game->gf->field.getItem(2).getItem(20));
+    // this->fTownHoll.townHolls.push(townHall);
+    // townHall->isComplite = true;
+    // townHall->createTimer = 100;
+    // townHall->isActive = true;
 
 
 

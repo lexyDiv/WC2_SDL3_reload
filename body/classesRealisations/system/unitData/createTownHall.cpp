@@ -12,4 +12,7 @@ void UnitData::createTownHall(Fraction *fraction)
            // this->img_3 = imager.peonWithGoldRed;
         }
     }
+    hpByLevel.push(1200);
+    hpByLevel.push(1600);
+    hpByLevel.push(2000);
 };

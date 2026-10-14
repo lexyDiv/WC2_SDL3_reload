@@ -43,4 +43,8 @@ public:
     double conorBottom_right = 0;  // degToRad(45);
     double bottom_rightDeltaX = 0; // cos(conorBottom_right) * this->speed;
     double bottom_rightDeltaY = 0; // sin(conorBottom_right) * this->speed;
+
+    ////////////////////////////
+    int level = 0;
+    Array<int> hpByLevel;
 };

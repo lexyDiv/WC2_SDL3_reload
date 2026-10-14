@@ -22,7 +22,7 @@ public:
      bool isTargetObjValide() override;
      void selectAnAction() override;
      void fightControl() override;
-     void createInside(Cell *c) override;
+     void createInside(Cell *c, bool isNew) override;
 
      Unit *getAnyTree() override;
      Unit *getAnyShaht() override;
@@ -32,9 +32,9 @@ public:
      void preDraw() override;
      void updateCurrentTarget() override;
      void inFightAnimation() override;
-    // void takeDamage(int damage) override;
+     void takeDamage(int damage) override;
      void trupCreate() override;
-    // void drawTrup() override;
+     void drawTrup() override;
     void targetObjControl() override;
     int holdTimerControl();
 

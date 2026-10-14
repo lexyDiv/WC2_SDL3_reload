@@ -1,5 +1,5 @@
 #include "orderOnWayControl.cpp"
-//=>out
+//=>takeDamage
 
 bool isLoop(Unit *self)
 {
@@ -14,6 +14,7 @@ bool isLoop(Unit *self)
     {
         return false;
     }
+
     return true;
 };
 
@@ -61,56 +62,7 @@ bool Peon_peasant::isNeedHoldGoWay()
             }
         }
 
-        //   if (this->iNeedFreeWay &&   // => down
-        //      // ncgu &&
-        //       ncgu->type == "life" &&
-        //       !ncgu->inFight
-        //       // && !ncgu->iNeedFreeWay
-        //       && !this->isLoopNextCellUnit)
-        //   {
-        //       return true;
-        //   }
 
-        // if (
-        //     gu &&
-        //     ncgu->isActive &&
-        //     ((this->wayIndex > 5 || this->targetData.nextCell) && this->way.length)
-
-        //     && (ncgu->inSave ||
-        //         (this->blockedData.isBlocked) ||
-        //         ((ncgu->way.length || ncgu->wayIndex || !ncgu->isPotentialWayComplite || !ncgu->orderOnWay.isComplite)// &&
-
-        //         )
-        //         ) &&
-        //     !this->isLoopNextCellUnit)
-        // {
-        //     return true;
-        // }
-
-        //  bool isMyFrontalCollision = ncgu->nextCell &&
-        //  ncgu->nextCell->groundUnit &&
-        //  ncgu->nextCell->groundUnit->persNum == this->persNum;
-
-        //  bool isNcguFrontalCollision = ncgu->ncgu->nextCell &&
-        //  ncgu->nextCell->groundUnit &&
-        //  ncgu->nextCell->groundUnit->persNum == this->persNum;
-        // bool isNcguFrontalCollision = ncgu->nextCell->groundUnit->persNum == this->persNum;
-
-        //   console.log("ncgu->isActive = ", ncgu->isActive);
-        //   console.log("this->wayIndex > 5 = ", this->wayIndex > 5);
-        //   console.log("this->isLoopNextCellUnit = ", this->isLoopNextCellUnit);
-        //   console.log("ncgu->orderOnWay.isComplite = ", ncgu->orderOnWay.isComplite);
-        // console.log("isFrontalCollision = ", isMyFrontalCollision);
-
-        //   if (thd->count == 212 && this->persNum == 2) {
-        //       console.log("persNum = ", this->persNum);
-        //       console.log("ncgu->isActive = ", ncgu->isActive);
-        //       console.log("this->wayIndex > 5 = ", this->wayIndex > 5);
-        //       console.log("this->isLoopNextCellUnit = ", this->isLoopNextCellUnit);
-        //       console.log("ncgu->orderOnWay.isComplite = ", ncgu->orderOnWay.isComplite);
-        //   }
-
-        // 8 ok // 7 ok => without magistral & without free
         if (
             ncgu->type == "life" &&
             (
@@ -136,17 +88,9 @@ bool Peon_peasant::isNeedHoldGoWay()
 
         )
         {
-            //    if (thd->count == 212 && this->persNum == 2) {
-            //     console.log("hold");
-            //    }
+
             return true;
         }
-
-        // if (this->persNum == 1) {
-        //    if (thd->count == 212 && this->persNum == 2) {
-        //     console.log("no hold");
-        //    }
-        // }
     }
 
     return false;

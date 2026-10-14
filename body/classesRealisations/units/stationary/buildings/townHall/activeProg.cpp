@@ -12,32 +12,47 @@ void TownHall::activeProg()
         return;
     }
 
+    // if (!this->outClients.length)
+    // {
+    //     if (this->fraction->peons.length < 10000) // 6000 crash 3000
+    //     {
+    //         this->createTimer = 1;
+    //     }
+    // }
+
     if (this->createTimer)
     {
         this->createTimer--;
         if (!this->createTimer)
         {
-            this->fraction->unitCount++;
-            Unit *peon = new Peon_peasant(this->fraction);
-            peon->createInside(this->cell);
-            int ran = intRand(0, 10);
-            this->outClients.push(peon);
-           // if (!peon->isBlockedd(peon)) {
-              //  peon->orderOnWay.go("w");
-           // } else {
-              peon->profession = "w";
-           // }
-            // peon->orderOnWay.profession = "w";
-            // peon->orderOnWay.isComplite = false;
+
+            Unit *peon = this->game->unitsBufer.find([](Unit *u)
+                                                     {
+              if (u->inBufer) {
+                u->inBufer = false;
+                return true;
+              }
+              return false; });
+
+
+            if (peon) {
+                peon->createInside(this->cell);
+            } else {
+                peon = new Peon_peasant(this->fraction);
+                peon->createInside(this->cell, true);
+            }
+
             
-           // peon->profession = "w";
+
+            this->fraction->unitCount++;
+            peon->persNum = this->fraction->unitCount;
+            this->outClients.push(peon);
             peon->outHoldTimer = 30;
-            // peon->profession = ran ? "w" : "g";
 
-          //  peon->orderOnWay.profession = "w";
-          //  peon->orderOnWay.isComplite = false;
+            int rand = intRand(0, 10);
+            peon->profession = rand >= 1 ? "w" : "g";
 
-            if (this->fraction->peons.length < 10000) // 6000 crash 3000
+            if (this->fraction->peons.length < 1) // 6000 crash 3000
             {
                 this->createTimer = 1;
             }
@@ -59,15 +74,20 @@ void TownHall::activeProg()
                                            this->clients.push(peon);
                                            
     
-                                            Cell *pc = peon->cell;
+                                           // Cell *pc = peon->cell;
                                       
-                                           
-                                           if (pc && pc->groundUnit == peon) {
-                                            pc->groundUnit = nullptr;
-                                            peon->cell = nullptr;
-                                           } else {
-                                            console.log("townHall on peon cell");
-                                           }
+                                             peon->cell = nullptr;
+                                             int index = peon->myDoorCell->groundUnitOnDraw.indexOf(peon);
+                                             peon->myDoorCell->groundUnitOnDraw.splice(index, 1);
+                                             peon->myDoorCell = nullptr;
+                                        //    if (pc && pc->groundUnit == peon) {
+                                        //     pc->groundUnit = nullptr;
+                                        //     peon->cell = nullptr;
+                                        //    } else {
+                                        //     console.log("townHall on peon cell");
+                                        //    }
+
+                                            
 
                                            peon->inOutTimer = 0;
                                            peon->animMashtab = peon->inOutMashtabMin;
@@ -131,7 +151,14 @@ void TownHall::activeProg()
                 peon->inOutMashtabCount = (1 - peon->inOutMashtabMin) / peon->inOutCount;
                 peon->image = peon->fraction->peon.img_1;
                 oc->groundUnit = peon;
-                
+                peon->hp = peon->hp > 0 ? peon->hp : 1;
+
+                // if (peon->cell == this->cell) {
+                //     console.log("outCell");
+                // }
+                // if (!peon->inSave) {
+                //     console.log("No inSave");
+                // }
             }
             else
             {
@@ -145,6 +172,11 @@ void TownHall::activeProg()
                 peon->inOutMashtabCount = 1;
                 peon->image = peon->fraction->peon.img_1;
                 oc->groundUnit = peon;
+                peon->hp = peon->hp > 0 ? peon->hp : 1;
+
+                //                 if (peon->cell == this->cell) {
+                //     console.log("extrime outCell");
+                // }
             }
         }
 
@@ -177,8 +209,11 @@ void TownHall::activeProg()
         }
     };
 
-    this->outClients.filterSelf([](Unit *peon)
+    this->outClients.filterSelf([this](Unit *peon)
                                 {
+            // if (peon->cell == this->cell) {
+            //         console.log("MY CELL");
+            //     }
             if (!peon->inOutTimer) {
             return true;
         }

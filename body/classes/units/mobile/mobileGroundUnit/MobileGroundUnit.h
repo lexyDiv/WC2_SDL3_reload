@@ -26,6 +26,7 @@ class MobileGroundUnit : public Unit {
     void stepToTheSide() override;
 
     void checkNextMagistralCell() override;
+   // void takeDamage(int damage) override;
 };
 
 MobileGroundUnit::MobileGroundUnit(){};

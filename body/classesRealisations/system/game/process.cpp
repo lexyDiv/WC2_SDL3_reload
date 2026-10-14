@@ -9,23 +9,16 @@ void Game::process()
 {
 
     this->fractionsControl();
+
     this->gf->activeShahtsControl();
     this->gf->trupsControl();
     this->gf->updateClasters();
 
-//    this->gf->clasters.forEach([](Array<Claster *> &line){
-//     line.forEach([](Claster *cl){
-//         cl->getZones();
-//     });
-//    });
+    this->unitsBufer.filterSelf([](Unit *u){
+        return !u->inBufer;
+    });
 
-//       this->gf->clasters.forEach([](Array<Claster *> &line){
-//     line.forEach([](Claster *cl){
-//         cl->zones.forEach([](Zone *z){
-//             z->getAroundZones();
-//         });
-//     });
-//    });
+   // console.log("length = ", this->unitsBufer.length);
 
     this->thSpin = !this->thSpin;
 

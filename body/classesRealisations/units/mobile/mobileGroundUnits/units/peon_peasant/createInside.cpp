@@ -1,7 +1,7 @@
 #include "preDraw.cpp"
 //=>stendOnCell
 
-void Peon_peasant::createInside(Cell *c)
+void Peon_peasant::createInside(Cell *c, bool isNew = false)
 {
 
     this->persNum = this->fraction->unitCount;
@@ -31,8 +31,33 @@ void Peon_peasant::createInside(Cell *c)
     this->inOutTimer = 0;
     this->inSave = true;
     this->animMashtab = this->startAnimMashtab;
-    c->game->AllUnitsPtr.push(this);
-    c->game->allLifeUnitsPtr.push(this);
-    this->fraction->peons.push(this);
     this->fraction->AllLifeUnits.push(this);
+
+    if (isNew)
+    {
+        c->game->AllUnitsPtr.push(this);
+       // console.log("push");
+    }
+    else
+    {
+
+        canGiveTree = false;
+        canGiveGold = false;
+        canTakeWood = false;
+        canTakeGold = false;
+
+        ////////////////////////////// reset
+        this->isPotentialWayComplite = true;
+        this->orderOnWay.isComplite = true;
+        this->isGetMyCell = true;
+        this->inFight = false;
+        this->outHoldTimer = 0;
+        this->way.clear();
+        this->iNeedFreeWay = false;
+        this->targetData.clear();
+        this->isDelete = false;
+        this->deleteTimer = 3000;
+        this->alpha = 255;
+        this->inBufer = false;
+    }
 }

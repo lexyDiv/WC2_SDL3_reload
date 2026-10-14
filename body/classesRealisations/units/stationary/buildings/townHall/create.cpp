@@ -47,4 +47,9 @@ void TownHall::create(Cell *cell)
    this->animY = 0;
    this->hpMax = 1200;
    this->hp = 1200;
+
+    canGiveTree = false;
+    canGiveGold = false;
+    canTakeWood = true;
+    canTakeGold = true;
 }

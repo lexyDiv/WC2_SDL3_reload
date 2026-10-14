@@ -8,7 +8,7 @@ void Peon_peasant::create(Cell *cell)
   //this->unitMenu = unitMenuPack.peon;
 
   this->cell = cell;
-  this->cell->game->AllUnitsPtr.push(this);
+ // this->cell->game->AllUnitsPtr.push(this);
   this->myCells.push(cell);
   this->cell->groundUnit = this;
   this->gf = cell->gf;
@@ -29,4 +29,15 @@ void Peon_peasant::create(Cell *cell)
   this->animX = intRand(0, 8) * 100;
   this->animY = 0;
   this->hp = this->fraction->peon.hpMax;
+  this->orderOnWay.unit = this;
+
+    canGiveTree = false;
+    canGiveGold = false;
+    canTakeWood = false;
+    canTakeGold = false;
+
+    this->deleteTimer = 3000;
+
+    this->game->addToAllUnitsPtr(this);
+   
 };

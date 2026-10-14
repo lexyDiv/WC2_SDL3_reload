@@ -1,5 +1,5 @@
 #include "isNeedFreeWay.cpp"
-//=>out
+//=>takeDamage
 
 void MobileGroundUnit::stepToTheSide()
 {
@@ -87,25 +87,27 @@ void MobileGroundUnit::stepToTheSide()
         // this->targetData.specialFreeG0 = false; // ?????????????????????????????????????????????
         int rand = intRand(0, validCells.length);
 
-        if (valU->profession != "")
-        {
-            valU->orderOnWay.go(valU->profession, 200);
+      //  if (valU->profession != "")
+      //  {
+           // valU->orderOnWay.go(valU->profession, 200);
             // if (this->focus) {
             //     console.log("in step 1");
             // }
-        }
-        else
-        {
+       // }
+      //  else
+      //  {
             valU->orderOnWay.go(validCells.getItem(rand), 3);
             //             if (this->focus) {
             //     console.log("in step 2");
             // }
-        }
+       // }
         // valU->orderOnWay.go(validCells.getItem(rand), 3);
         valU->isActive = true;
     }
     //////////////////////////////////////////////////////////////////////////////////// => HARD
-    else if (this->blockedData.isBlocked && this->blockedData.type == 'f' && this->orderOnWay.specialFreeG0 && this->needHolTimer)
+    else if (this->blockedData.isBlocked && this->blockedData.type == 'f' 
+        && this->orderOnWay.specialFreeG0 
+        && this->needHolTimer)
     {
         // this->iNeedFreeWay = false;
 
@@ -158,20 +160,20 @@ void MobileGroundUnit::stepToTheSide()
                 Cell *pc = validU->cell->panicCells.getItem(i);
                 if (!pc->groundUnit)
                 {
-                    if (validU->profession != "")
-                    {
-                        validU->orderOnWay.go(validU->profession, 200);
+                   // if (validU->profession != "")
+                  //  {
+                      //  validU->orderOnWay.go(validU->profession, 200);
                         //                         if (this->focus) {
                         //     console.log("in step 3");
                         // }
-                    }
-                    else
-                    {
+                   // }
+                   // else
+                    //{
                         validU->orderOnWay.go(pc, 3);
                         //                         if (this->focus) {
                         //     console.log("in step 4");
                         // }
-                    }
+                   // }
                     // validU->orderOnWay.go(pc, 3);
                     validU->isActive = true;
                     break;

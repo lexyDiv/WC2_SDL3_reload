@@ -5,8 +5,10 @@ void Peon_peasant::activeProg()
 {
 
   // if (this->focus) {
-  //   console.log("active");
+  //   console.log("hp = ", this->hp);
   // }
+
+
 
   if (!this->isActiveCheck() || this->holdTimerControl()
 

@@ -13,11 +13,11 @@ void Peon_peasant::selectAnAction()
         //     console.log("--------------------------------------------");
         // }
 
-        if (gu->name == "tree" && this->wood)
+        if (gu->canGiveTree && this->wood)
         {
             return;
         }
-        else if (gu->name == "tree" && !this->wood)
+        else if (gu->canGiveTree && !this->wood)
         {
             this->gold = 0;
             this->inFight = true;

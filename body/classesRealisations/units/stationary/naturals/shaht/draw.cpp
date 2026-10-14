@@ -1,5 +1,5 @@
 #include "create.cpp"
-//=>out
+//=>activeProg
 
 void Shaht::draw() {
     this->isAddOnDraw = false;

@@ -4,92 +4,179 @@
 void Fraction::controller()
 {
 
-   this->hardCount++;
-   if (this->hardCount == 30) {
-    this->hardCount = 0;
-   }
+    // this->hardCount++;
+    // if (this->hardCount == 10)
+    // {
+    //     this->hardCount = 0;
+    // }
 
-    int ordinar = 100;
+    this->peons.clear();
+
+    this->AllLifeUnits.filterSelf([this](Unit *u)
+                                  {
+                    if (!u->isDelete) {
+                        this->peons.push(u);
+                return false;
+            }
+            return true; });
+
+
+    // console.log("length = ", this->AllLifeUnits.length);
+
     this->controlTimer++;
     if (this->controlTimer == 1)
     {
         this->controlTimer = 0;
 
-        int current = 0;
+        // int current = 0;
         // Array<Unit *> onHard;
         // bool isOne = false;
-Array<Unit *> onHard;
-        for (int i = this->hold; i < this->peons.length; i++)
-        {
 
-            this->hold = i;
+
+        // /////////////////////////// => test kill
+        // if (this->peons.length)
+        // {
+        //     for (int i = 0; i < 5; i++)
+        //     {
+        //         int rand = intRand(0, this->peons.length);
+        //         Unit *u = this->peons.getItem(rand);
+        //         u->takeDamage(1000);
+        //     }
+        // }
+        // /////////////////////////// <= test kill
+
+        int activeCount = 0;
+        for (int i = 0; i < this->peons.length; i++)
+        {
             Unit *peon = this->peons.getItem(i);
             bool isBlocked = peon->blockedCheck(peon).isBlocked;
-            
 
-            if (peon->profession != "" && !this->hardCount) {
-                onHard.push(peon);
-            }
+
+            // if (peon->profession != "" && !this->hardCount)
+            // {
+            //     onHard.push(peon);
+            // }
 
             if (peon->hp &&
                 !peon->inSave &&
                 !peon->isActive &&
                 peon->profession != "" &&
                 peon->orderOnWay.isComplite &&
-                !isBlocked //! peon->isBlockedd_full(peon)
-            )
+                !isBlocked)
             {
-                // console.log("here");
-                // if (peon->focus) {
-                //     console.log("go in fraction");
-                // }
-                current++;
+                activeCount++;
                 peon->orderOnWay.go(peon->profession, 0, true);
                 peon->isActive = true;
             }
-            if (current == ordinar)
+
+            if (activeCount == 1000)
             {
                 break;
             }
-        };
+        }
+
+
+
+        // ////////////////////////
+        // if (onHard.length)
+        // {
+        //     int rand = intRand(0, onHard.length);
+        //     Unit *randUnit = onHard.getItem(rand);
+        //     BlockedData bd = randUnit->blockedCheck(randUnit);
+        //     if (bd.isBlocked && bd.type == 'f' &&
+        //         !randUnit->isActive &&
+        //         randUnit->profession != "" &&
+        //         !randUnit->inSave)
+        //     {
+        //         randUnit->orderOnWay.go(randUnit->profession, 0, true);
+        //         randUnit->isActive = true;
+        //         // console.log("hard go");
+        //     }
+        // }
+        // //////////////////////////////////////
+
+
+
+        // for (int i = this->hold; i < this->peons.length; i++)
+        // {
+
+        //     this->hold = i;
+        //     Unit *peon = this->peons.getItem(i);
+        //     bool isBlocked = peon->blockedCheck(peon).isBlocked;
+
+        //     // if (peon->profession != "" && !this->hardCount)
+        //     // {
+        //     //     onHard.push(peon);
+        //     // }
+
+        //      if(peon->focus) {
+        //         console.log("here");
+        //      }
+
+        //     if (peon->hp &&
+        //         !peon->inSave &&
+        //         !peon->isActive &&
+        //         peon->profession != "" &&
+        //         peon->orderOnWay.isComplite &&
+        //         !isBlocked //! peon->isBlockedd_full(peon)
+        //     )
+        //     {
+        //         // console.log("here");
+        //         // if (peon->focus) {
+        //         //     console.log("go in fraction");
+        //         // }
+        //         current++;
+        //         peon->orderOnWay.go(peon->profession, 0, true);
+        //         peon->isActive = true;
+        //     }
+        //     if (current == ordinar)
+        //     {
+        //         break;
+        //     }
+        // };
 
         //////////////////////////
-        if (onHard.length)
-        {
-            int rand = intRand(0, onHard.length);
-            Unit *randUnit = onHard.getItem(rand);
-            BlockedData bd = randUnit->blockedCheck(randUnit);
-            if (bd.isBlocked && bd.type == 'f' &&
-                !randUnit->isActive &&
-                randUnit->profession != "" &&
-                 !randUnit->inSave)
-            {
-                randUnit->orderOnWay.go(randUnit->profession, 0, true);
-                randUnit->isActive = true;
-               // console.log("hard go");
-            }
-        }
+        // if (onHard.length)
+        // {
+        //     int rand = intRand(0, onHard.length);
+        //     Unit *randUnit = onHard.getItem(rand);
+        //     BlockedData bd = randUnit->blockedCheck(randUnit);
+        //     if (bd.isBlocked && bd.type == 'f' &&
+        //         !randUnit->isActive &&
+        //         randUnit->profession != "" &&
+        //         !randUnit->inSave)
+        //     {
+        //         randUnit->orderOnWay.go(randUnit->profession, 0, true);
+        //         randUnit->isActive = true;
+        //         // console.log("hard go");
+        //     }
+        // }
         ////////////////////////////////////////
 
-        if (this->hold >= this->peons.length - 1)
-        {
-            // console.log("obnul");
-            this->peons.filterSelf([](Unit *peon)
-                                   {
-            if (peon) {
+        //     if (this->hold >= this->peons.length - 1)
+        //     {
+        //         // console.log("obnul");
+        //         this->peons.filterSelf([](Unit *peon)
+        //                                {
+        //         if (!peon->isDelete) {
+        //             return false;
+        //         }
+        //         return true; });
+        //         this->hold = 0;
+        //        // console.log("peons length = ", this->peons.length);
+        //     }
+    }
+
+    this->allBuildings.filterSelf([this](Unit *u)
+                                  {
+                            if (!u->isDelete) {
                 return false;
             }
             return true; });
-            this->hold = 0;
-        }
-    }
-
-    //  this->activeUnitsControl();
 
     this->allBuildings.forEach([](Unit *building)
                                {
             if (building->isActive) {
                 building->activeProg();
             } });
-            
 };

@@ -16,12 +16,11 @@ void TownHall::wellCome(Unit *peon)
             //peon->inSave = true;
             peon->inOutCount = ceil(wellComeCell.min / peon->fraction->peon.speed);
             peon->inOutMashtabCount = (1 - peon->inOutMashtabMin) / peon->inOutCount;
-            // peon->gold = 100;
-            // peon->wood = 0;
-            // this->gold -= 100;
 
             this->potentialClients.push(peon);
-
+            peon->cell->groundUnitOnDraw.push(peon);
+            peon->myDoorCell = peon->cell;
+            peon->cell->groundUnit = nullptr; //// <=
             if (!this->isActive)
             {
                 this->isActive = true;

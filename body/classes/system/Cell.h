@@ -136,6 +136,10 @@ public:
     Array<Cell *> panicCells;
     Array<Cell *> drawCells;
     Array<Array<Cell *>> cellsOnDraw;
+    /////////////////////////////////////////////// => draw potentialClients
+    Array<Unit *> groundUnitOnDraw;
+    
+    /////////////////////////////////////////////// <= draw potentialClients
 
     Array<Unit *> ripUnits; // trupy
 

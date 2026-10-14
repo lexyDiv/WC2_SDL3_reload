@@ -53,7 +53,7 @@ void ThData::byCl_createPW(Unit *unit)
             // console.log("wayFather cl isTouch = ", unit->cell->claster->isTouchUpdated);
             // console.log("------------------------------------------------------------------");
 
-            // this->game->gf->focusClaster = unit->cell->claster;
+             this->game->gf->focusClaster = unit->cell->claster;
         return;
     }
     else if (unit->targetData.clicckedCell && !unit->targetData.clicckedCell->zone && !unit->targetData.unit)

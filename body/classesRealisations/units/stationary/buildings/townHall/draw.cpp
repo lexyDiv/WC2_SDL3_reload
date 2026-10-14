@@ -15,6 +15,8 @@ void TownHall::draw()
                   (this->cell->y - 120) + drawDeltaY,
                   285, 290);
 
+   // ctx.DrawText((this->cell->x) + drawDeltaX, (this->cell->y) + drawDeltaY, 40, to_string(this->persNum));              
+
       // if (this->tt) {
       //   ctx.FillRect(this->tt->x + drawDeltaX, this->tt->y + drawDeltaY, this->cell->gabX, this->cell->gabY, "green");
       // }            

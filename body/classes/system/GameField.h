@@ -103,7 +103,8 @@ public:
 
     Array<Unit *> trupsOnDelete;
      void trupsControl();
-     void activeShahtsControl() {};
+     void addToTrupsOnDelete(Unit *unit);
+     void activeShahtsControl();
 
     Image *miniMap = nullptr;
     Cell *drawCell = nullptr;

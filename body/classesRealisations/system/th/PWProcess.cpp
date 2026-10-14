@@ -14,7 +14,7 @@ void ThData::PWProcess()
 
         if (!unit->isPotentialWayComplite && unit->cell && unit->hp)
         {
-            if (!unit->targetData.magistral.length) {
+            if (!unit->targetData.magistral.length && unit->personalCaseDeep != 3) {
                 this->byCl_createPW(unit);
             }
             this->createPotentialWay(unit);

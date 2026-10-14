@@ -1,7 +1,6 @@
 #include "Cell.h"
 //=>Imager
 
-
 // class PreOrder
 // {
 // public:
@@ -17,10 +16,11 @@
 class Order
 {
 public:
-    Order() {};
+    Order(Unit *unit);
     ~Order() {};
     Cell *cell = nullptr;
     Unit *unit = nullptr;
+    Unit *myUnit = nullptr;
     int unitPersNum = 0;
     string profession = "";
     bool isComplite = true;
@@ -33,31 +33,3 @@ public:
     mutex mt;
 };
 
-void Order::go(Cell *cell, int pcd, bool specialFreeG0) {
-    this->mt.lock();
-    this->cell = cell;
-    this->isComplite = false;
-    this->profession = "";
-    this->pcd = pcd;
-    stop = false;
-    this->specialFreeG0 = specialFreeG0;
-    this->mt.unlock();
-}
-
-void Order::go(string profession, int pcd, bool specialFreeG0) {
-    this->mt.lock();
-    this->profession = profession;
-    this->isComplite = false;
-    this->cell = nullptr; //=> ???
-    this->pcd = pcd;
-    stop = false;
-    this->specialFreeG0 = specialFreeG0;
-    this->mt.unlock();
-}
-
-void Order::go() {
-   this->mt.lock();
-   this->stop = true;
-   this->isComplite = false;
-   this->mt.unlock();
-}

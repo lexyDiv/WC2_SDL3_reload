@@ -1,4 +1,4 @@
-#include "stepToTheSide.cpp"
+#include "takeDamage.cpp"
 //=>units
 
 void MobileGroundUnit::checkNextMagistralCell()
@@ -23,10 +23,10 @@ void MobileGroundUnit::checkNextMagistralCell()
             )
     {
 
-        if (td.nextCell && !td.nextCellIndex)
-        {
-           // td.isNeedClasterMagistral = false;
-        }
+        // if (td.nextCell && !td.nextCellIndex)
+        // {
+        //    // td.isNeedClasterMagistral = false;
+        // }
 
         td.magistrlLoop = 0;
         td.nextCell = nullptr;

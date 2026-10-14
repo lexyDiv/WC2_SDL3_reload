@@ -21,6 +21,7 @@ public:
   virtual void create(Cell *) {};
   virtual void getContactCells();
   virtual void draw() {};
+  virtual void drawTrup() {};
   virtual void get2x2myCells(Cell *cell);
   virtual void get3x3myCells(Cell *cell);
   virtual void get4x4myCells(Cell *cell);
@@ -75,7 +76,7 @@ public:
   virtual void stendOnCellWait() {};
   virtual void selectAnAction() {};
   virtual void fightControl() {};
-  virtual void createInside(Cell *c) {};
+  virtual void createInside(Cell *c, bool isNew = false) {};
   virtual Unit *getAnyTree() { return nullptr; };
   virtual Unit *getAnyShaht() { return nullptr; };
   virtual Unit *getTreeNear() { return nullptr; };
@@ -85,7 +86,7 @@ public:
   virtual void updateCurrentTarget() {};
   virtual void takeDamage(int damage) {};
   virtual void trupCreate() {};
-  virtual void drawTrup() {};
+ 
   virtual void standOnCell() {};
   virtual void stressControl() {};
   virtual void targetObjControl() {};
@@ -96,13 +97,19 @@ public:
   Array<Cell *> contactCells;
    Array<Cell *> exitCells;
   // Array<Unit *> clients;
-  // Array<Unit *> outClients;
+ //  Array<Unit *> outClients;
    Array<MinData> wellComeCells;
   // Array<Unit *> potentialClients;
   Array<Cell *> potentialWay;
   Array<Cell *> way;
   Array<Unit *> orderedTrees;
   Array<Unit *> orderedShahts;
+ // Array<Unit *> potentialClients;
+  Cell *myDoorCell = nullptr;
+
+    Array<Unit *> potentialClients;
+    Array<Unit *> clients;
+    Array<Unit *> outClients;
 
   string name = "tree";
   string type = "building";
@@ -169,7 +176,7 @@ public:
   bool isPotentialWayComplite = true;
   bool isIgetMyTarget = true;
   bool iNeedFreeWay = false;
-  Order orderOnWay;
+  Order orderOnWay= Order(this);
   TargetData targetData;
   // Cell *targetCell = nullptr;
   // Cell *preTargetCell = nullptr;
@@ -182,6 +189,7 @@ public:
   bool isDelete = false;
   Cell *flipCell = nullptr;
   Cell *nextCell = nullptr;
+ 
 
   function<bool(Cell *c)> isOnGetPotentialWayGetTarget = [](Cell *c)
   { return false; };
@@ -220,11 +228,15 @@ bool canGiveGold = false;
 bool canTakeWood = false;
 bool canTakeGold = false;
 
+bool inBufer = false;
+
 ////////////////////////// <= debug
  
 virtual void checkNextMagistralCell() {};
 bool isBlockedBuilding(Unit *u, ThData *td);
 
 Array<Td_xploredData> thwd;
+mutex potentialClientsMT;
+
 
 };

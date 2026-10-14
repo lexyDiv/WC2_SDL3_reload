@@ -35,5 +35,6 @@ void Tree::create(Cell *cell)
     this->animTakt = intRand(0, 15);
     this->gf = cell->gf;
     cell->plane->trees.push(this);
+    this->cell->game->AllUnitsPtr.push(this);
     this->canGiveTree = true;
 }

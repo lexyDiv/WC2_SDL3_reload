@@ -47,7 +47,7 @@ Unit *townHall = nullptr;
 
     townHall = new TownHall;
     townHall->fraction = this;
-    townHall->create(game->gf->field.getItem(2).getItem(20), true, true);
+    townHall->create(game->gf->field.getItem(2).getItem(20), false, true);
     //this->fTownHoll.townHolls.push(townHall);
     // townHall->isComplite = true;
     // townHall->createTimer = 100;

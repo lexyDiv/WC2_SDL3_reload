@@ -12,13 +12,13 @@ void TownHall::activeProg()
         return;
     }
 
-    if (!this->outClients.length)
-    {
-        if (this->fraction->peons.length < 10000) // 6000 crash 3000
-        {
-            this->createTimer = 1;
-        }
-    }
+    // if (!this->outClients.length)
+    // {
+    //     if (this->fraction->peons.length < 10000) // 6000 crash 3000
+    //     {
+    //         this->createTimer = 1;
+    //     }
+    // }
 
     if (this->createTimer)
     {
@@ -52,7 +52,7 @@ void TownHall::activeProg()
             int rand = intRand(0, 10);
             peon->profession = rand >= 1 ? "w" : "g";
 
-            if (this->fraction->peons.length < 10000) // 6000 crash 3000
+            if (this->fraction->peons.length < 5000) // 6000 crash 3000
             {
                 this->createTimer = 1;
             }

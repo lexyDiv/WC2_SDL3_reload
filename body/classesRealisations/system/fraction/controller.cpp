@@ -16,6 +16,9 @@ void Fraction::controller()
     this->peonsOnWood.clear();
     this->AllLifeUnits.clear();
     this->damagedAndConstructionBuildings.clear();
+    this->fTownHoll.townHollsByLevel.forEach([](Array<Unit *> &thls){
+        thls.clear();
+    });
 
     this->allUnits.filterSelf([this](Unit *u)
                               {
@@ -36,7 +39,19 @@ void Fraction::controller()
                        this->AllLifeUnits.push(u);
                     } 
                     else if (u->canStandStill) {
-                        if (!u->isComplite || u->hp < u->hpMax) {
+                        if (u->isComplite)
+                        {
+                           if (u->canTakeGold) 
+                           {
+                              this->fTownHoll.townHollsByLevel.getItemPtr(u->level)->push(u);
+                           }
+                        }
+                        else 
+                        {
+                           this->damagedAndConstructionBuildings.push(u);
+                        }
+                        
+                        if (u->hp < u->hpMax) {
                             this->damagedAndConstructionBuildings.push(u);
                         }
                         this->allBuildings.push(u);

@@ -13,6 +13,7 @@ void Order::go(Cell *cell, int pcd, bool specialFreeG0)
         this->mt.unlock();
         return;
     }
+   // console.log("go no prof");
     this->cell = cell;
     this->isComplite = false;
     this->profession = "";
@@ -31,6 +32,7 @@ void Order::go(string profession, int pcd, bool specialFreeG0)
         this->mt.unlock();
         return;
     }
+   // console.log("go prof");
     this->profession = profession;
     this->isComplite = false;
     this->cell = nullptr; //=> ???
@@ -48,6 +50,7 @@ void Order::go()
         this->mt.unlock();
         return;
     }
+    //console.log("go stop");
     this->stop = true;
     this->isComplite = false;
     this->mt.unlock();

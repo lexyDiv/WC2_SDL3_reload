@@ -8,7 +8,7 @@ void Peon_peasant::activeProg()
   //   console.log("hp = ", this->hp);
   // }
 
-
+//console.log("need finish = ", this->targetData.isNeedMagistralFinish);
 
 
   if (!this->isActiveCheck() || this->holdTimerControl()

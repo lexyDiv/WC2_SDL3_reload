@@ -7,9 +7,7 @@ void Peon_peasant::orderOnWayControl()
     this->orderOnWay.mt.lock();
     if (!this->orderOnWay.isComplite)
     {
-
-       console.log("order");
-
+        
         if (this->inSave)
         {
             this->orderOnWay.isComplite = true;
@@ -48,6 +46,7 @@ void Peon_peasant::orderOnWayControl()
             // if (this->focus) {
             //     console.log("STOP");
             // }
+            console.log("here ");
             return;
         }
 
@@ -58,14 +57,16 @@ void Peon_peasant::orderOnWayControl()
         {
             this->iNeedFreeWay = true; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! <= ON !!! 2/3
         }
-
+        //console.log("this->orderOnWay.profession " + this->orderOnWay.profession);
         if (this->orderOnWay.profession == "")
         {
-
+          // console.log("here no prof order");
             if ((!this->targetData.unit && this->orderOnWay.cell != this->targetData.clicckedCell) ||
-                (this->targetData.unit && this->orderOnWay.cell->groundUnit != this->targetData.unit)) {
+                (this->targetData.unit && this->orderOnWay.cell->groundUnit != this->targetData.unit) //||
+               // ()
+            ) {
                 this->targetData.clear();
-                
+               // console.log("no prof td clear");
             }
 
 

@@ -67,7 +67,7 @@ void MobileGroundUnit::goWay()
 
                         if (this->profession != "")
                         {
-                            console.log("here ");
+                            //console.log("here ");
                             this->orderOnWay.go(this->profession, this->personalCaseDeep);
                         }
                         else if (this->targetData.clicckedCell)
@@ -133,12 +133,12 @@ void MobileGroundUnit::goWay()
                 this->targetData.isNeedMagistralFinish = false;
                 if (this->profession != "")
                 {
-                  //  console.log("here 5");
+                    console.log("here 5");
                     this->orderOnWay.go(this->profession, this->personalCaseDeep);
                 }
                 else if (this->targetData.clicckedCell)
                 {
-                  //  console.log("here 6");
+                   // console.log("here 6");
                     this->orderOnWay.go(this->targetData.clicckedCell, this->personalCaseDeep);
                 }
             } else {

@@ -56,6 +56,8 @@ void TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
     else
     {
         this->hp = this->hpMax / 10;
+        this->isActive = true;
+        this->fraction->damagedAndConstructionBuildings.push(this);
     }
     ///////////////////////////////////////////////////////////////////////
     console.log(this->hp);

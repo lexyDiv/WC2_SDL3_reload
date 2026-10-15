@@ -58,12 +58,17 @@ public:
     Image *strongholdOrcRed = new Image("images/images/orc/orc/buildings/summer/stronghold.png");
     Image *fortressOrcRed = new Image("images/images/orc/orc/buildings/summer/fortress.png");
     ////////////////////////////////////////////////////////////// <= red orcs builds
+    Image *land_construction_site = new Image("images/images/neutral/buildings/land_construction_site.png");
+    
 
 ///////////////////////////////////////////////////////////////////////////////  <= red orcs    
 
     Imager() {};
     ~Imager()
     {
+       delete land_construction_site;
+       land_construction_site = nullptr;
+
        delete strongholdOrcRed;
        strongholdOrcRed = nullptr;
         

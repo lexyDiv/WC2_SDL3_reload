@@ -81,7 +81,7 @@ class Fraction {
 
     ///////////////////  reserv
     Array<Unit *> reservPeons;
-    Array<Unit *> reservTownHolls;
+    Array<Unit *> damagedAndConstructionBuildings;
     //////////////////
 
     Nation *nation = nullptr;

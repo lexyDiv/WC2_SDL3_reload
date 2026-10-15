@@ -12,13 +12,12 @@ void TownHall::activeProg()
         return;
     }
 
-    // if (!this->outClients.length)
-    // {
-    //     if (this->fraction->peons.length < 10000) // 6000 crash 3000
-    //     {
-    //         this->createTimer = 1;
-    //     }
-    // }
+   if (!this->isComplite) {
+
+   // console.log("here");
+    return;
+   }
+
 
     if (this->createTimer)
     {

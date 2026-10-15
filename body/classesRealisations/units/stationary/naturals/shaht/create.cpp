@@ -45,5 +45,8 @@ void Shaht::create(Cell *cell, bool isComplite = false, bool isNew = false)
     this->hp = 1000;
     this->isComplite = true;
     cell->plane->shahts.push(this);
+
+
     this->canGiveGold = true;
+    canStandStill = true;
 };

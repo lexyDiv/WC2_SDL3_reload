@@ -3,9 +3,11 @@
 
 void Shaht::wellCome(Unit *peon)
 {
+   // console.log("here");
     this->potentialClientsMT.lock();
     if (!this->gold || peon->gold)
     {
+       // console.log("here 2");
         this->potentialClientsMT.unlock();
         return;
     }
@@ -24,7 +26,7 @@ void Shaht::wellCome(Unit *peon)
         peon->cell->groundUnitOnDraw.push(peon);
         peon->myDoorCell = peon->cell;
         peon->cell->groundUnit = nullptr; //// <=
-
+//console.log("here 3");
         if (!this->isActive)
         {
             this->isActive = true;

@@ -23,7 +23,7 @@ if (this->color == "red") {
     peon->persNum = 2;
     peon->create(game->gf->field.getItem(0).getItem(14));
     this->game->allLifeUnitsPtr.push(peon);
-    this->AllLifeUnits.push(peon);
+    //this->AllLifeUnits.push(peon);
 
   //   // peon->orderOnWay.cell = this->game->gf->field.getItem(10).getItem(18);
   //   // peon->orderOnWay.isComplite = false;

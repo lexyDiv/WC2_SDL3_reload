@@ -31,12 +31,15 @@ void Peon_peasant::createInside(Cell *c, bool isNew = false)
     this->inOutTimer = 0;
     this->inSave = true;
     this->animMashtab = this->startAnimMashtab;
-    this->fraction->AllLifeUnits.push(this);
+    this->fraction->allUnits.push(this);
+    //this->fraction->AllLifeUnits.push(this);
 
         canGiveTree = false;
         canGiveGold = false;
         canTakeWood = false;
         canTakeGold = false;
+        canBuild = true;
+        canMove = true;
 
     if (isNew)
     {

@@ -20,7 +20,7 @@ void TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
     Cell *centerCell = cell->bottom_right;
     this->cell = centerCell;
     this->game = this->cell->game;
-    this->fraction->allBuildings.push(this);
+   // this->fraction->allBuildings.push(this);
 
     this->getContactAndExitCells(cell, exitCell, centerCell);
     this->getWellComeCells();
@@ -47,17 +47,17 @@ void TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
     this->hpMax = this->fraction->townHall.hpByLevel.getItem(this->level); // 1200;
     this->hp = this->hpMax / 10;
     this->isComplite = isComplite;
-
+    this->fraction->allUnits.push(this);
     if (this->isComplite)
     {
-        this->fraction->fTownHoll.townHollsByLevel.getItemPtr(this->level)->push(this);
+       // this->fraction->fTownHoll.townHollsByLevel.getItemPtr(this->level)->push(this);
         this->hp = this->hpMax;
     }
     else
     {
         this->hp = this->hpMax / 10;
         this->isActive = true;
-        this->fraction->damagedAndConstructionBuildings.push(this);
+       // this->fraction->damagedAndConstructionBuildings.push(this);
     }
     ///////////////////////////////////////////////////////////////////////
     console.log(this->hp);
@@ -67,6 +67,7 @@ void TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
     canGiveGold = false;
     canTakeWood = true;
     canTakeGold = true;
+    canStandStill = true;
 
     if (isNew)
     {

@@ -70,7 +70,8 @@ class Fraction {
     string color = "";
     Color mapColor = { R: 255, G: 0, B: 0 };
     int level = 0;
-    Array<Unit *> units;
+   // Array<Unit *> units;
+    Array<Unit *> allUnits;
     Array<Unit *> AllLifeUnits;
     Array<Unit *> allBuildings;
 

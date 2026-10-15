@@ -228,6 +228,18 @@ bool canGiveTree = false;
 bool canGiveGold = false;
 bool canTakeWood = false;
 bool canTakeGold = false;
+bool canBuild = false;
+bool canFight = false;
+bool canDestroyFly = false;
+bool canGuard = false;
+bool canDestroyTowers = false;
+bool canCreateBuilders = false;
+bool canCreateFighters = false;
+bool canOgre = false;
+bool canStandStill = false;
+bool canMove = false;
+
+bool onWood = false;
 
 bool inBufer = false;
 

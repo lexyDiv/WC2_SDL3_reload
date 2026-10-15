@@ -5,7 +5,6 @@ void Shaht::activeProg()
 {
 
 
-
     this->isActive = this->isActiveCheck();
     if (!this->isActive)
     {

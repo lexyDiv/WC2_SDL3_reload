@@ -7,6 +7,9 @@ void Peon_peasant::orderOnWayControl()
     this->orderOnWay.mt.lock();
     if (!this->orderOnWay.isComplite)
     {
+
+       console.log("order");
+
         if (this->inSave)
         {
             this->orderOnWay.isComplite = true;

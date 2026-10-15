@@ -7,46 +7,89 @@ void Peon_peasant::selectAnAction()
 
     if (gu)
     {
-        // if (this->focus) {
-        //     console.log("wood : " + to_string(this->wood));
-        //     console.log("target name : " + gu->name);
-        //     console.log("--------------------------------------------");
-        // }
-
-        if (gu->canGiveTree && this->wood)
+        if (
+            (gu->canGiveTree && this->wood) ||
+            (gu->canGiveGold && this->gold)
+           )
         {
             return;
         }
         else if (gu->canGiveTree && !this->wood)
         {
             this->gold = 0;
+            this->image = this->fraction->peon.img_1;
             this->inFight = true;
             this->getConor(gu->cell);
             gu->lesorub = this;
         }
-        else if ((gu->fraction == this->fraction 
-            //|| !gu->fraction
-        ) &&
-                 gu->type != "life")
+        else if (
+            gu->fraction == this->fraction &&
+            gu->canStandStill)
         {
-           // console.log("here");
-            if (
-                (!gu->isComplite || gu->hp < gu->hpMax))
+            if (!gu->isComplite || gu->hp < gu->hpMax)
             {
-               // console.log("here 2");
-                this->inFight = true;
+                console.log("any do");
             }
-            else
+            else if (
+                (gu->canTakeGold && this->gold) ||
+                (gu->canTakeWood && this->wood))
             {
-               // if (this->wood || this->gold){
-//console.log("here 3");
                 gu->wellCome(this);
-               // }
             }
         }
-        // else
-        // {
-        //     gu->wellCome(this);
-        // }
+        else if (gu->canGiveGold)
+        {
+            gu->wellCome(this);
+        }
     }
+
+    //     if (gu)
+    //     {
+    //         console.log("here");
+    //         // if (this->focus) {
+    //         //     console.log("wood : " + to_string(this->wood));
+    //         //     console.log("target name : " + gu->name);
+    //         //     console.log("--------------------------------------------");
+    //         // }
+
+    //         if (gu->canGiveTree && this->wood)
+    //         {
+    //             console.log("here 2");
+    //             return;
+    //         }
+    //         else if (gu->canGiveTree && !this->wood)
+    //         {
+    //             console.log("here 3");
+    //             this->gold = 0;
+    //             this->inFight = true;
+    //             this->getConor(gu->cell);
+    //             gu->lesorub = this;
+    //         }
+    //         else if ((gu->fraction == this->fraction
+    //             //|| !gu->fraction
+    //         ) &&
+    //                  gu->type != "life")
+    //         {
+    //            console.log("here 4");
+    //             if (
+    //                 (!gu->isComplite || gu->hp < gu->hpMax))
+    //             {
+    //                // console.log("here 2");
+    //                 this->inFight = true;
+    //             }
+    //             else
+    //             {
+    //                // if (this->wood || this->gold){
+    // //console.log("here 3");
+    // console.log("here 5");
+    //                 gu->wellCome(this);
+    //                // }
+    //             }
+    //         }
+    //         // else
+    //         // {
+    //         //     gu->wellCome(this);
+    //         // }
+    //         console.log("here 6");
+    //     }
 };

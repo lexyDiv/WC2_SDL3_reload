@@ -46,7 +46,7 @@ void Peon_peasant::orderOnWayControl()
             // if (this->focus) {
             //     console.log("STOP");
             // }
-            console.log("here ");
+            //console.log("here ");
             return;
         }
 

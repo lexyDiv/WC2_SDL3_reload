@@ -96,7 +96,10 @@ void ThData::createPotentialWay(Unit *unit)
                         !(
                             utd.unit && 
                             gu->targetData.unit &&
-                            gu->targetData.unit == utd.unit &&
+                            (
+                                gu->targetData.unit == utd.unit || 
+                                (gu->targetData.unit->canGiveTree && utd.unit->canGiveTree)
+                            ) &&
                             gu->way.length &&
                             !gu->needHolTimer &&
                             gu->nextCell &&

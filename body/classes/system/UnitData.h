@@ -15,6 +15,9 @@ public:
     Image *img_1 = nullptr;
     Image *img_2 = nullptr;
     Image *img_3 = nullptr;
+    Image *img_4 = nullptr;
+    Image *img_5 = nullptr;
+    
     double sight = 1;
     double speed = 1;
     double hpMax = 5;

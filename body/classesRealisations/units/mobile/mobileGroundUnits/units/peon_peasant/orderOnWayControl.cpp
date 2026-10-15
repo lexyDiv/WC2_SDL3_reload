@@ -24,9 +24,9 @@ void Peon_peasant::orderOnWayControl()
              oCellGU == this ||
              (
                 oCellGU &&
-                (
-                    oCellGU->fraction != this->fraction
-                )
+               (
+                    (oCellGU->fraction != this->fraction && !oCellGU->canGiveGold && !oCellGU->canGiveTree)
+               )
              ) ||
             (
                 this->orderOnWay.cell &&

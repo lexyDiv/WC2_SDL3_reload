@@ -28,6 +28,7 @@ bool Peon_peasant::isGetTarget()
             target = validUnits.getItem(rand);
         }
         td.unit = target;
+       // this->fightTarget = target;
         this->iNeedFreeWay = false;
         this->isIgetMyTarget = true;
         return true;

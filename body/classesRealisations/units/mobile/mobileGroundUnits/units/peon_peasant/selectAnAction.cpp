@@ -18,7 +18,7 @@ void Peon_peasant::selectAnAction()
         {
             this->gold = 0;
             this->image = this->fraction->peon.img_1;
-            this->inFight = true;
+            this->fightTarget = gu;
             this->getConor(gu->cell);
             gu->lesorub = this;
         }

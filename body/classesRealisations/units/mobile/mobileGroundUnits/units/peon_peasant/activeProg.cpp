@@ -66,7 +66,7 @@ void Peon_peasant::activeProg()
 
   if (
       !this->wayTakts &&
-      !this->inFight &&
+      !this->fightTarget &&
       (target ||
        ((this->wayIndex <= 15) &&
         this->way.length &&
@@ -106,7 +106,7 @@ void Peon_peasant::activeProg()
     }
   }
 
-  if (this->inFight)
+  if (this->fightTarget)
   {
     this->fightControl(); // maybee HUYNYA refactoring needed !!!
     this->flipCell = nullptr;

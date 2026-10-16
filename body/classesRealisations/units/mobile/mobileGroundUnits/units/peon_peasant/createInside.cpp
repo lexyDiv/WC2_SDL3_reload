@@ -54,7 +54,7 @@ void Peon_peasant::createInside(Cell *c, bool isNew = false)
         this->isPotentialWayComplite = true;
         this->orderOnWay.isComplite = true;
         this->isGetMyCell = true;
-        this->inFight = false;
+        this->fightTarget = nullptr;
         this->outHoldTimer = 0;
         this->way.clear();
         this->iNeedFreeWay = false;

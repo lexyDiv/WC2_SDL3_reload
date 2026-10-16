@@ -3,9 +3,9 @@
 
 void Peon_peasant::fightControl()
 {
-    Unit *gu = this->targetData.unit;
+    Unit *gu = this->fightTarget; //this->targetData.unit;
     if (gu &&
-        gu->name == "tree")
+        gu->canGiveTree)
     {
         this->inFightTimer += 2;
         if (this->inFightTimer == 50)
@@ -27,7 +27,7 @@ void Peon_peasant::fightControl()
             if (gu->hp <= 0)
             {
                 this->targetData.unit = nullptr;
-                this->inFight = false;
+                this->fightTarget = nullptr;
                 this->animY = 0;
                 this->image = this->fraction->peon.img_2;
                 this->wood = 100;
@@ -36,8 +36,8 @@ void Peon_peasant::fightControl()
             }
             else if (!this->orderOnWay.isComplite)
             {
-               // this->targetData.unit = nullptr;
-                this->inFight = false;
+                this->fightTarget->lesorub = nullptr;
+                this->fightTarget = nullptr;
                 this->animY = 0;
                 // this->profession = "";
                // gu->lesorub = nullptr;

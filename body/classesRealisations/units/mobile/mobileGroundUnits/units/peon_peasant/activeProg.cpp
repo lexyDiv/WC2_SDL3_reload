@@ -61,27 +61,11 @@ void Peon_peasant::activeProg()
 
 ///////////////////////////////////// => fastOrder
 
-// Unit *targetUnit = nullptr;
-// if (!this->orderOnWay.isComplite) {
-//   Cell *oc = this->orderOnWay.cell;
-//   if (oc) {
-//     Unit *ocgu = oc->groundUnit;
-//      if (oc == this->cell) {
-//       this->orderOnWay.isComplite = true;
-//      }
-//      else if (ocgu) {
-//         this->cell->aroundCells.forEach([ocgu, &targetUnit, this](Cell *ac){
-//              Unit *acgu = ac->groundUnit;
-//              if (acgu == ocgu) {
-//               targetUnit = acgu;
-//               targetData.clicckedCell = acgu->cell;
-//               this->orderOnWay.isComplite = true;
-//               this->targetData.unit = acgu;
-//              }
-//         });
-//      }
-//   }
-// }
+Unit *target = this->updateTargetData();
+
+if (target) {
+  console.log("td name " + target->name);
+}
 
 ////////////////////////////////////  <= fastOrder
   
@@ -156,7 +140,7 @@ void Peon_peasant::activeProg()
       this->goWay();
  
 
-    this->orderOnWayControl();
+   // this->orderOnWayControl();
 
   }
 }

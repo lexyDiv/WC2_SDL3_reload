@@ -1,5 +1,5 @@
 #include "drawTrup.cpp"
-//=>out
+//=>updateTargetData
 
 void Peon_peasant::selectGetTargetLambda()
 {

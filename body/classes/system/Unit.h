@@ -198,6 +198,8 @@ public:
   function<bool(Cell *c, int iter)> isNewCellOnGetWayValide = [](Cell *c, int iter)
   { return false; };
 
+  function<bool(Cell *c)> isGetTargetLambda = [](Cell *c){ return false; };
+
   int needHolTimer = 0;
   int needHoldTimerMax = 500;
 
@@ -247,6 +249,9 @@ bool inBufer = false;
  
 virtual void checkNextMagistralCell() {};
 bool isBlockedBuilding(Unit *u, ThData *td);
+
+virtual Unit *updateTargetData() { return nullptr; };
+virtual void selectGetTargetLambda() {};
 
 Array<Td_xploredData> thwd;
 mutex potentialClientsMT;

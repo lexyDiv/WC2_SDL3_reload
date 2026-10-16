@@ -10,10 +10,15 @@ void Peon_peasant::activeProg()
 
   // console.log("need finish = ", this->targetData.isNeedMagistralFinish);
 
-  // if (this->focus)
+ // int num = 22;
+
+
+  // if (this->persNum == num)
   // {
   //   console.log("--------------Active------------");
-    
+  //   console.log("pcd = ", this->personalCaseDeep);
+  //   console.log("profession = " + this->profession);
+ 
   // }
 
   if (!this->isActiveCheck() || this->holdTimerControl()
@@ -38,21 +43,49 @@ void Peon_peasant::activeProg()
     this->frashWayCheckNeed = false;
     if (this->profession != "")
     {
+  //       if (this->persNum == num)
+  // {
+  //   console.log("here 1");
+
+  // }
       this->orderOnWay.go(this->profession);
     }
     else if (this->targetData.clicckedCell)
     {
+
+  //             if (this->persNum == num)
+  // {
+  //   console.log("here 2");
+
+  // }
       this->orderOnWay.go(this->targetData.clicckedCell);
     }
     else if (this->targetData.unit && this->targetData.unit->cell)
     {
+
+  //             if (this->persNum == num)
+  // {
+  //   console.log("here 3");
+
+  // }
       this->orderOnWay.go(this->targetData.unit->cell);
     }
   }
 
+
+  // if (this->persNum == num) {
+  //   console.log("before update pcd = ", this->personalCaseDeep);
+  //       console.log("profession = " + this->profession);
+  // }
+
   ///////////////////////////////////// => fastOrder
 
   Unit *target = this->updateTargetData();
+
+  //   if (this->persNum == num) {
+  //   console.log("past update pcd = ", this->personalCaseDeep);
+  //       console.log("profession = " + this->profession);
+  // }
 
   if (this->focus)
   {
@@ -118,8 +151,23 @@ void Peon_peasant::activeProg()
   {
     this->blockedData = this->blockedCheck(this);
 
+  // if (this->persNum == num) {
+  //   console.log("before goWay pcd = ", this->personalCaseDeep);
+  //       console.log("profession = " + this->profession);
+  // }
+
     this->goWay();
 
+  //     if (this->persNum == num) {
+  //   console.log("past goWay pcd = ", this->personalCaseDeep);
+  //       console.log("profession = " + this->profession);
+  // }
+
      this->orderOnWayControl();
+
+  //      if (this->persNum == num) {
+  //   console.log("past order pcd = ", this->personalCaseDeep);
+  //       console.log("profession = " + this->profession);
+  // }
   }
 }

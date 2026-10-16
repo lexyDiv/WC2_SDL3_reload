@@ -11,6 +11,7 @@ void Peon_peasant::takeDamage(int damage)
         if (this->hp <= 0) {
             this->hp = 0;
             this->gf->addToTrupsOnDelete(this);
+            this->iNeedFreeWay = false;
         }
     }
     mt.unlock();

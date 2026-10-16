@@ -53,7 +53,7 @@ void MobileGroundUnit::stepToTheSide()
                     cu != this &&
                     // (cu->profession == "" || cu->blockedCheck(cu).isBlocked) &&
                     // ncgu->profession == "" &&
-                   // !cu->focus &&
+                    // !cu->focus &&
                     !cu->isActive &&
                     !cu->inSave &&
                     cu->type == "life" &&
@@ -88,17 +88,23 @@ void MobileGroundUnit::stepToTheSide()
         // this->targetData.specialFreeG0 = false; // ?????????????????????????????????????????????
         int rand = intRand(0, validCells.length);
 
-      //  if (valU->profession != "")
-      //  {
-           // valU->orderOnWay.go(valU->profession, 200);
+        //  if (valU->profession != "")
+        //  {
+        // valU->orderOnWay.go(valU->profession, 200);
 
-            valU->orderOnWay.go(validCells.getItem(rand), 3);
+        valU->orderOnWay.go(validCells.getItem(rand), 3);
+           // valU->orderOnWay.com = "pinok 1";
+        // if (!this->gf->focusUnit)
+        // {
+
+        //     this->gf->focusUnit = valU;
+        //     valU->focus = true;
+        //     console.log("step = ", valU->persNum);
+        // }
         valU->isActive = true;
     }
     //////////////////////////////////////////////////////////////////////////////////// => HARD
-    else if (this->blockedData.isBlocked && this->blockedData.type == 'f' 
-        && this->orderOnWay.specialFreeG0 
-        && this->needHolTimer)
+    else if (this->blockedData.isBlocked && this->blockedData.type == 'f' && this->orderOnWay.specialFreeG0 && this->needHolTimer)
     {
         // this->iNeedFreeWay = false;
 
@@ -152,8 +158,16 @@ void MobileGroundUnit::stepToTheSide()
                 Cell *pc = validU->cell->panicCells.getItem(i);
                 if (!pc->groundUnit)
                 {
- 
-                        validU->orderOnWay.go(pc, 3);
+
+                    validU->orderOnWay.go(pc, 3);
+   
+                    // if (!this->gf->focusUnit)
+                    // {
+
+                    //     validU->focus = true;
+                    //     console.log("step 1 = ", validU->persNum);
+
+                    // }
                     validU->isActive = true;
                     break;
                 }
@@ -167,7 +181,11 @@ void MobileGroundUnit::stepToTheSide()
         {
             this->targetData.specialFreeG0 = false;
             this->iNeedFreeWay = false;
-            this->orderOnWay.go(this->cell);
+
+            this->way.clear();
+            this->wayIndex = 0;
+           // this->orderOnWay.go(this->cell, this->personalCaseDeep);
+
             // this->targetData.clear();
             // if (this->focus)
             // {
@@ -178,10 +196,13 @@ void MobileGroundUnit::stepToTheSide()
     else if (!this->needHolTimer && !this->targetData.specialFreeG0)
     {
         this->iNeedFreeWay = false;
-        this->orderOnWay.go(this->cell);
+       // this->orderOnWay.go(this->cell, this->personalCaseDeep);
+        this->way.clear();
+        this->wayIndex = 0;
 
-            //             if (this->focus) {
-            //     console.log("hard final");
-            // }
+
+        //             if (this->focus) {
+        //     console.log("hard final");
+        // }
     }
 }

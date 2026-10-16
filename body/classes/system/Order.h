@@ -24,13 +24,14 @@ public:
     int unitPersNum = 0;
     string profession = "";
     bool isComplite = true;
-    void go(Cell *cell, int pcd = 0, bool specialFreeG0 = false);
-    void go(string profession, int pcd = 0, bool specialFreeG0 = false);
+    void go(Cell *cell, int pcd, bool specialFreeG0);
+    void go(string profession, int pcd, bool specialFreeG0);
     void go();
     int pcd = 0;
     bool stop = false;
     bool specialFreeG0 = false;
     bool isUpdate = false;
+   // string com = "";
     mutex mt;
 };
 

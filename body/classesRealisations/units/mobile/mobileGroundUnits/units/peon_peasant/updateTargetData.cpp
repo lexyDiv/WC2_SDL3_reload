@@ -4,6 +4,8 @@
 Unit *Peon_peasant::updateTargetData()
 {
 
+   // int num = 22;
+
     if (!this->orderOnWay.isComplite &&
         !this->fightTarget)
     {
@@ -15,13 +17,6 @@ Unit *Peon_peasant::updateTargetData()
 
         TargetData newTD;
 
-        // if (
-        //     this->blockedData.isBlocked &&
-        //     this->blockedData.type == 'f' &&
-        //     this->personalCaseDeep != 3)
-        // {
-        //     this->iNeedFreeWay = true; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! <= ON !!! 2/3
-        // }
 
         this->orderOnWay.isUpdate = true;
 
@@ -29,34 +24,57 @@ Unit *Peon_peasant::updateTargetData()
         Cell *oc = this->orderOnWay.cell;
         Unit *ocu = oc ? oc->groundUnit : nullptr;
 
-       // this->targetData.clear();
+
 
         this->targetData.specialFreeG0 = this->orderOnWay.specialFreeG0;
-        this->personalCaseDeep = this->orderOnWay.pcd;
+       // this->personalCaseDeep = this->orderOnWay.pcd;
 
         if (
             oc &&
-                (oc == this->cell ||
-                 oc->plane != this->cell->plane) ||
-            (ocu &&
-             ((!ocu->fraction && !ocu->canGiveGold && !ocu->canGiveTree) ||
-              ocu->canMove)))
+            this->personalCaseDeep != 3 &&
+             (
+                (
+                oc == this->cell ||
+                oc->plane != this->cell->plane
+                ) ||
+            (
+                ocu &&
+             (
+                (!ocu->fraction && !ocu->canGiveGold && !ocu->canGiveTree) ||
+              (ocu->canMove && ocu != this)
+             )
+            )
+             )
+            )
         {
             this->orderOnWay.isComplite = true;
             this->way.clear();
             this->wayIndex = 0;
             this->orderOnWay.stop = false;
-            if (this->profession != "") {
-                console.log("kill prof 1 + pers = ", this->personalCaseDeep);
-                console.log("is target ", targetData.unit);
-                if (this->orderOnWay.cell) {
-                    console.log("order cell gu = ", this->orderOnWay.cell->groundUnit);
-                } else {
-                    console.log("order prof = " + orderOnWay.profession);
-                }
-                console.log("-----------------------------");
-            }
+            // if (this->focus) {
+            //                 if (this->profession != "") {
+            //     console.log("kill prof 1 + pers = ", this->personalCaseDeep);
+            //     console.log("is target ", targetData.unit);
+            //     if (this->orderOnWay.cell && this->orderOnWay.cell->groundUnit) {
+            //         console.log("order cell gu = " + this->orderOnWay.cell->groundUnit->name);
+            //     } else {
+            //         console.log("order prof = " + orderOnWay.profession);
+            //     }
+            //     console.log("-----------------------------");
+            // }
+            // }
+
+            //             if (this->persNum == num) {
+            //    console.log("kill prof 1 here = " + this->profession + " ", this->personalCaseDeep);
+            //   // console.log(this->orderOnWay.com);
+            //    console.log("????????????????????????????????????????????");
+            // }
+
             this->profession = "";
+           // console.log("kill prof 1 = ", this->personalCaseDeep);
+
+
+
 
             // if (this->profession == "") {
             //     console.log("kill prof 1");
@@ -146,12 +164,12 @@ Unit *Peon_peasant::updateTargetData()
                            newTD.unit = ocu;
                         this->targetData.unitPersNum = ocu->persNum;
                         this->targetData.profession = "";
-                                    if (this->profession != "") {
-                console.log("kill prof ssss");
-            }
+
                         this->profession = "";
                         this->targetData.isActual = true;
-                        console.log("kill prof 2");
+            //                         if (this->persNum == num) {
+               // console.log("kill prof 2 = ", this->personalCaseDeep);
+            // }
                     }
                 }
                 else if (ocu->name == "lamberMill")
@@ -178,12 +196,12 @@ Unit *Peon_peasant::updateTargetData()
                            newTD.unit =   ocu;                    
                         this->targetData.unitPersNum = ocu->persNum;
                         this->targetData.profession = "";
-                                    if (this->profession != "") {
-                console.log("kill prof rrrrrrrr");
-            }
+
                         this->profession = "";
                         this->targetData.isActual = true;
-                        console.log("kill prof 3");
+            //                   if (this->persNum == num) {
+               // console.log("kill prof 3 = ", this->personalCaseDeep);
+            // }
                     }
                 }
                 else if (ocu->name == "shaht")
@@ -232,12 +250,12 @@ Unit *Peon_peasant::updateTargetData()
                            newTD.unit =     ocu;              
                     this->targetData.unitPersNum = ocu->persNum;
                     this->targetData.profession = "";
-                                if (this->profession != "") {
-                console.log("kill prof gggggggggggg");
-            }
+
                     this->profession = "";
                     this->targetData.isActual = true;
-                    console.log("kill prof 4");
+            // if (this->persNum == num) {
+               // console.log("kill prof 4 = ", this->personalCaseDeep);
+            // }
                 }
             }
             else
@@ -248,8 +266,22 @@ Unit *Peon_peasant::updateTargetData()
                            newTD.unit =    nullptr;           
                 this->targetData.unitPersNum = 0;
                 this->targetData.profession = "";
-                this->profession = (this->personalCaseDeep == 3 || this->personalCaseDeep == 300) ? this->profession : "";
+
+                string s = this->profession;
+                this->profession = (this->personalCaseDeep == 3) ? this->profession : "";
+
+            //  if (this->profession == "" && s != "") {
+            //     console.log("kill prof 5 = ", this->personalCaseDeep );
+            //  }
+
+
+                // if (this->focus) {
+                //     if (this->profession == "") {
+                //         console.log("new kill perscd = ", this->personalCaseDeep);
+                //     }
+                // }
                 this->targetData.isActual = true;
+                
             }
         }
         else
@@ -276,9 +308,9 @@ Unit *Peon_peasant::updateTargetData()
                     }
                     else
                     {
-                                    if (this->profession != "") {
-                console.log("kill prof ffffffffffffffffffffffffff");
-            }
+            // if (this->persNum == num) {
+              // console.log("kill prof 6 = ", this->personalCaseDeep);
+            // }
                         this->profession = "";
                     }
                 }
@@ -300,10 +332,11 @@ Unit *Peon_peasant::updateTargetData()
                     }
                     else
                     {
-                                    if (this->profession != "") {
-                console.log("kill prof hhhhhhhhhhhhhhhhhhhhh");
-            }
+
                         this->profession = "";
+            //                         if (this->persNum == num) {
+               // console.log("kill prof 7 = ", this->personalCaseDeep);
+            // }
 
                     }
                 }
@@ -330,9 +363,9 @@ Unit *Peon_peasant::updateTargetData()
                     }
                     else
                     {
-                                    if (this->profession != "") {
-                console.log("kill prof vvvvvvvvvvvvvvvvvvvvvvvvv");
-            }
+            // if (this->persNum == num) {
+               // console.log("kill prof 8 = ", this->personalCaseDeep);
+            // }
                         this->profession = "";
 
                     }

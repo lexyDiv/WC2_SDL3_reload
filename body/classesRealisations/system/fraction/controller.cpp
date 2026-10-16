@@ -109,6 +109,7 @@ void Fraction::controller()
                 activeCount++;
                 peon->orderOnWay.go(peon->profession, 0, true);
                 peon->isActive = true;
+               // peon->orderOnWay.com = "controller";
             }
 
             if (activeCount == 1000)

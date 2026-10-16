@@ -10,19 +10,19 @@ void Peon_peasant::selectGetTargetLambda()
         this->profession != "")
     {
 
-        if (this->focus)
-        {
-            console.log("select lambda by prof = ");
-        }
+        // if (this->focus)
+        // {
+        //     console.log("select lambda by prof = ");
+        // }
 
         if (this->personalCaseDeep == 3)
         {
             if (this->wood)
             {
-                if (this->focus)
-                {
-                    console.log("selct lambda 1 = ");
-                }
+                // if (this->focus)
+                // {
+                //     console.log("selct lambda 1 = ");
+                // }
 
                 this->isGetTargetLambda = [this](Cell *c)
                 {
@@ -40,10 +40,10 @@ void Peon_peasant::selectGetTargetLambda()
             else if (this->gold)
             {
 
-                if (this->focus)
-                {
-                    console.log("selct lambda 2 = ");
-                }
+                // if (this->focus)
+                // {
+                //     console.log("selct lambda 2 = ");
+                // }
 
                 this->isGetTargetLambda = [this](Cell *c)
                 {
@@ -59,21 +59,22 @@ void Peon_peasant::selectGetTargetLambda()
                 };
             }
         }
-        else if (td.unit)
+        else 
+        if (td.unit)
         {
 
-            if (this->focus)
-            {
-                console.log("selct lambda 3 = ");
-            }
+            // if (this->focus)
+            // {
+            //     console.log("selct lambda 3 = ");
+            // }
 
             if (td.unit->canTakeGold)
             {
 
-                if (this->focus)
-                {
-                    console.log("selct lambda 4 = " + td.unit->name);
-                }
+                // if (this->focus)
+                // {
+                //     console.log("selct lambda 4 = " + td.unit->name);
+                // }
 
                 this->isGetTargetLambda = [this](Cell *c)
                 {
@@ -90,10 +91,10 @@ void Peon_peasant::selectGetTargetLambda()
             else if (td.unit->canTakeWood)
             {
 
-                if (this->focus)
-                {
-                    console.log("selct lambda 5 = ");
-                }
+                // if (this->focus)
+                // {
+                //     console.log("selct lambda 5 = ");
+                // }
 
                 this->isGetTargetLambda = [this](Cell *c)
                 {
@@ -110,22 +111,22 @@ void Peon_peasant::selectGetTargetLambda()
             else if (td.unit->canGiveTree)
             {
 
-                if (this->focus)
-                {
-                    console.log("selct lambda on tree 6 = ");
-                }
+                // if (this->focus)
+                // {
+                //     console.log("selct lambda on tree 6 = ");
+                // }
 
                 this->isGetTargetLambda = [this](Cell *c)
                 {
                     Unit *cgu = c->groundUnit;
-                    if (this->focus && cgu)
-                    {
-                        console.log("================================");
-                        console.log("cgu = ", cgu);
-                        console.log("cgu->canGiveTree = ", cgu->canGiveTree);
-                        console.log("cgu->hp > 0 = ", cgu->hp > 0);
-                        console.log("!cgu->lesorub = ", !cgu->lesorub);
-                    }
+                    // if (this->focus && cgu)
+                    // {
+                    //     console.log("================================");
+                    //     console.log("cgu = ", cgu);
+                    //     console.log("cgu->canGiveTree = ", cgu->canGiveTree);
+                    //     console.log("cgu->hp > 0 = ", cgu->hp > 0);
+                    //     console.log("!cgu->lesorub = ", !cgu->lesorub);
+                    // }
                     if (
                         cgu &&
                         cgu->canGiveTree &&
@@ -140,10 +141,10 @@ void Peon_peasant::selectGetTargetLambda()
             else if (td.unit->canGiveGold)
             {
 
-                if (this->focus)
-                {
-                    console.log("selct lambda 7 = ");
-                }
+                // if (this->focus)
+                // {
+                //     console.log("selct lambda 7 = ");
+                // }
 
                 this->isGetTargetLambda = [this](Cell *c)
                 {
@@ -165,10 +166,10 @@ void Peon_peasant::selectGetTargetLambda()
         if (td.unit)
         {
 
-            if (this->focus)
-            {
-                console.log("selct lambda 8 = ");
-            }
+            // if (this->focus)
+            // {
+            //     console.log("selct lambda 8 = ");
+            // }
 
             this->isGetTargetLambda = [this, td](Cell *c)
             {
@@ -184,10 +185,10 @@ void Peon_peasant::selectGetTargetLambda()
         else
         {
 
-            if (this->focus)
-            {
-                console.log("selct lambda 9 = ");
-            }
+            // if (this->focus)
+            // {
+            //     console.log("selct lambda 9 = ");
+            // }
 
             this->isGetTargetLambda = [](Cell *c)
             {

@@ -6,6 +6,11 @@ void MobileGroundUnit::goWay()
     if (!this->wayTakts)
     {
 
+       // int num = 22;
+                        //         if (this->persNum == num)
+                        // {
+                        //     console.log("goWay prof = " + this->profession);
+                        // }
         //  if (this->focus) {
         //     console.log("goWay");
         //   }
@@ -67,21 +72,19 @@ void MobileGroundUnit::goWay()
 
                     if (this->profession != "")
                     {
-                        // console.log("here ");
-                        // if (this->focus)
+                        // if (this->persNum == num)
                         // {
-                        //     console.log("9");
+                        //     console.log("go prof = " + this->profession);
                         // }
-                        this->orderOnWay.go(this->profession, this->personalCaseDeep);
+                        this->orderOnWay.go(this->profession);
                     }
                     else if (this->targetData.clicckedCell)
                     {
-                        // if (this->focus)
+                        // if (this->persNum == num)
                         // {
-                        //     console.log("10");
+                        //     console.log("go 2 prof = "  + this->profession);
                         // }
-                        // console.log("here 2");
-                        this->orderOnWay.go(this->targetData.clicckedCell, this->personalCaseDeep);
+                        this->orderOnWay.go(this->targetData.clicckedCell);
                     }
                     // }
                 }
@@ -120,20 +123,18 @@ void MobileGroundUnit::goWay()
 
                 if (this->profession != "")
                 {
-                    // if (this->focus)
-                    // {
-                    //     console.log("11");
-                    // }
-                    // console.log("here 3");
+                        // if (this->persNum == num)
+                        // {
+                        //     console.log("go 3 prof=  "  + this->profession);
+                        // }
                     this->orderOnWay.go(this->profession, this->personalCaseDeep);
                 }
                 else if (this->targetData.clicckedCell)
                 {
-                    // if (this->focus)
-                    // {
-                    //     console.log("12");
-                    // }
-                    // console.log("here 4");
+                        // if (this->persNum == num)
+                        // {
+                        //     console.log("go 4 prof = "  + this->profession);
+                        // }
                     this->orderOnWay.go(this->targetData.clicckedCell, this->personalCaseDeep);
                 }
                 //  }
@@ -147,21 +148,19 @@ void MobileGroundUnit::goWay()
                 this->targetData.isNeedMagistralFinish = false;
                 if (this->profession != "")
                 {
-                    // if (this->focus)
-                    // {
-                    //     console.log("13");
-                    // }
-                    // console.log("here 5");
-                    this->orderOnWay.go(this->profession, this->personalCaseDeep);
+                        // if (this->persNum == num)
+                        // {
+                        //     console.log("go 5 prof = "  + this->profession);
+                        // }
+                    this->orderOnWay.go(this->profession);
                 }
                 else if (this->targetData.clicckedCell)
                 {
-                    // if (this->focus)
-                    // {
-                    //     console.log("14");
-                    // }
-                    // console.log("here 6");
-                    this->orderOnWay.go(this->targetData.clicckedCell, this->personalCaseDeep);
+                        // if (this->persNum == num)
+                        // {
+                        //     console.log("go 6 prof = " + this->profession);
+                        // }
+                    this->orderOnWay.go(this->targetData.clicckedCell);
                 }
             }
             else

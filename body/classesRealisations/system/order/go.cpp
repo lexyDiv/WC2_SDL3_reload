@@ -5,12 +5,13 @@ Order::Order(Unit *unit) {
   this->myUnit = unit;
 }
 
-void Order::go(Cell *cell, int pcd, bool specialFreeG0)
+void Order::go(Cell *cell, int pcd = 0, bool specialFreeG0 = false)
 {
     this->mt.lock();
     if (!myUnit->cell || myUnit->inSave || myUnit->hp <= 0)
     {
         this->mt.unlock();
+        myUnit->personalCaseDeep = pcd;
         return;
     }
    // console.log("go no prof");
@@ -22,16 +23,18 @@ void Order::go(Cell *cell, int pcd, bool specialFreeG0)
     this->specialFreeG0 = specialFreeG0;
     isUpdate = false;
     myUnit->isActive = true;
+    myUnit->personalCaseDeep = pcd;
     this->mt.unlock();
 }
 
-void Order::go(string profession, int pcd, bool specialFreeG0)
+void Order::go(string profession, int pcd = 0, bool specialFreeG0 = false)
 {
     this->mt.lock();
 
     if (!myUnit->cell || myUnit->inSave || myUnit->hp <= 0)
     {
         isUpdate = false;
+        myUnit->personalCaseDeep = pcd;
         this->mt.unlock();
         return;
     }
@@ -44,6 +47,7 @@ void Order::go(string profession, int pcd, bool specialFreeG0)
     this->specialFreeG0 = specialFreeG0;
     isUpdate = false;
     myUnit->isActive = true;
+    myUnit->personalCaseDeep = pcd;
     this->mt.unlock();
 }
 
@@ -53,6 +57,7 @@ void Order::go()
     if (!myUnit->cell || myUnit->inSave || myUnit->hp <= 0)
     {
         isUpdate = false;
+        myUnit->personalCaseDeep = 0;
         this->mt.unlock();
         return;
     }

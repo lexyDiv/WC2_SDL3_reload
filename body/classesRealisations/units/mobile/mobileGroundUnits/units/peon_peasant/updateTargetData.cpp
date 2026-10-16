@@ -14,6 +14,7 @@ Unit *Peon_peasant::updateTargetData()
         Unit *ocu = oc ? oc->groundUnit : nullptr;
 
         this->targetData.clear();
+
         this->targetData.specialFreeG0 = this->orderOnWay.specialFreeG0;
 
         if (

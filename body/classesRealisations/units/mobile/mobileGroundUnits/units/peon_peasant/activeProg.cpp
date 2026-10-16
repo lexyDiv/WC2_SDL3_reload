@@ -102,6 +102,7 @@ void Peon_peasant::activeProg()
       this->isIgetMyTarget = false;
       this->selectAnAction();
       this->orderOnWay.isComplite = true;
+     // console.log("order obnul");
     }
   }
 

@@ -5,7 +5,7 @@ void Peon_peasant::selectGetTargetLambda()
 {
 
     TargetData &td = this->targetData;
-
+    //
     if (
         this->profession != "")
     {
@@ -86,13 +86,12 @@ void Peon_peasant::selectGetTargetLambda()
                         cgu &&
                         cgu->canGiveTree &&
                         cgu->hp > 0 &&
-                        !cgu->lesorub
-                       )
-                       {
+                        !cgu->lesorub)
+                    {
                         return true;
-                       }
+                    }
                     return false;
-                };                
+                };
             }
             else if (td.unit->canGiveGold)
             {
@@ -102,14 +101,37 @@ void Peon_peasant::selectGetTargetLambda()
                     if (
                         cgu &&
                         cgu->canGiveGold &&
-                        cgu->gold
-                       )
-                       {
+                        cgu->gold)
+                    {
                         return true;
-                       }
+                    }
                     return false;
-                };                
-            }            
+                };
+            }
+        }
+    }
+    else
+    {
+        if (td.unit)
+        {
+            this->isGetTargetLambda = [this, td](Cell *c)
+            {
+                Unit *cgu = c->groundUnit;
+                if (cgu &&
+                    cgu == td.unit
+                   )
+                {
+                    return true;
+                }
+                return false;
+            };
+        }
+        else 
+        {
+            this->isGetTargetLambda = [](Cell *c)
+            {
+                return false;
+            };
         }
     }
 }

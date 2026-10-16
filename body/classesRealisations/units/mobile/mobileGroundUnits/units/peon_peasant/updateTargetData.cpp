@@ -7,6 +7,8 @@ Unit *Peon_peasant::updateTargetData()
     if (!this->orderOnWay.isComplite)
     {
 
+      // console.log("update");
+
         this->orderOnWay.mt.lock();
 
         string prof = this->orderOnWay.profession;
@@ -96,6 +98,9 @@ Unit *Peon_peasant::updateTargetData()
                     }
                     else
                     {
+            //                         if (this->focus) {
+            //     console.log("update = ", this->fightTarget);
+            // }
                         this->targetData.clicckedCell = ocu->cell;
                         this->targetData.unit = ocu;
                         this->targetData.unitPersNum = ocu->persNum;

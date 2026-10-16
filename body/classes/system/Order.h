@@ -30,6 +30,7 @@ public:
     int pcd = 0;
     bool stop = false;
     bool specialFreeG0 = false;
+    bool isUpdate = false;
     mutex mt;
 };
 

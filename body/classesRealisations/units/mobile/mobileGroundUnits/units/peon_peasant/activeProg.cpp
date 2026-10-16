@@ -118,6 +118,6 @@ void Peon_peasant::activeProg()
 
     this->goWay();
 
-    // this->orderOnWayControl();
+     this->orderOnWayControl();
   }
 }

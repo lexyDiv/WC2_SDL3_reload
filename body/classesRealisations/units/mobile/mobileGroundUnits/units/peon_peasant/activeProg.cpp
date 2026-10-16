@@ -10,11 +10,18 @@ void Peon_peasant::activeProg()
 
 //console.log("need finish = ", this->targetData.isNeedMagistralFinish);
 
+ if(this->focus) {
+  console.log("--------------Active------------");
+ }
+
 
   if (!this->isActiveCheck() || this->holdTimerControl()
 
   )
   {
+    if (this->focus) {
+      console.log("active return");
+    }
     return;
   }
 
@@ -33,29 +40,65 @@ void Peon_peasant::activeProg()
     this->frashWayCheckNeed = false;
     if (this->profession != "")
     {
-     // console.log("here");
+       if(this->focus) {
+  console.log("1");
+ }
       this->orderOnWay.go(this->profession);
     }
     else if (this->targetData.clicckedCell)
     {
-     // console.log("here 2");
+       if(this->focus) {
+  console.log("2");
+ }
       this->orderOnWay.go(this->targetData.clicckedCell);
     }
     else if (this->targetData.unit && this->targetData.unit->cell)
     {
-     // console.log("here 3");
+      console.log("3");
       this->orderOnWay.go(this->targetData.unit->cell);
     }
   }
 
-  if (!this->wayTakts &&
+///////////////////////////////////// => fastOrder
+
+// Unit *targetUnit = nullptr;
+// if (!this->orderOnWay.isComplite) {
+//   Cell *oc = this->orderOnWay.cell;
+//   if (oc) {
+//     Unit *ocgu = oc->groundUnit;
+//      if (oc == this->cell) {
+//       this->orderOnWay.isComplite = true;
+//      }
+//      else if (ocgu) {
+//         this->cell->aroundCells.forEach([ocgu, &targetUnit, this](Cell *ac){
+//              Unit *acgu = ac->groundUnit;
+//              if (acgu == ocgu) {
+//               targetUnit = acgu;
+//               targetData.clicckedCell = acgu->cell;
+//               this->orderOnWay.isComplite = true;
+//               this->targetData.unit = acgu;
+//              }
+//         });
+//      }
+//   }
+// }
+
+////////////////////////////////////  <= fastOrder
+  
+
+  if (
+       !this->wayTakts && 
+     //  (
       (this->wayIndex <= 15) &&
       this->isPotentialWayComplite &&
-      this->orderOnWay.isComplite &&
+     // this->orderOnWay.isComplite &&
       this->way.length &&
       !this->needHolTimer &&
       !this->inFight &&
-      !this->isIgetMyTarget)
+      !this->isIgetMyTarget
+      // ) //|| 
+      // targetUnit
+    )
   {
 
     Unit *to = this->targetData.unit;
@@ -63,10 +106,17 @@ void Peon_peasant::activeProg()
     if (to)
     {
 
+ if(this->focus) {
+  console.log("4");
+ }
+
       bool isTOValide = this->isTargetObjValide();
       
       if (!isTOValide)
       {
+         if(this->focus) {
+  console.log("5");
+ }
         this->stendOnCell();
         this->updateCurrentTarget();
        // console.log("here 4");
@@ -74,18 +124,27 @@ void Peon_peasant::activeProg()
     }
     this->isGetTarget();
 
+     if(this->focus) {
+  console.log("6");
+ }
     if (this->isIgetMyTarget)
     {
       this->stendOnCell();
       this->isIgetMyTarget = false;
       this->selectAnAction();
       //console.log("here 5");
+       if(this->focus) {
+  console.log("7");
+ }
     }
   }
 
   if (this->inFight)
   {
    // console.log("here 6");
+    if(this->focus) {
+  console.log("8");
+ }
     this->fightControl(); // maybee HUYNYA refactoring needed !!!
     this->flipCell = nullptr;
   }

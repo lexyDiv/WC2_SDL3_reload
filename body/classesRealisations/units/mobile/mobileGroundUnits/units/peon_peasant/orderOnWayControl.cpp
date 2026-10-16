@@ -7,6 +7,9 @@ void Peon_peasant::orderOnWayControl()
     this->orderOnWay.mt.lock();
     if (!this->orderOnWay.isComplite)
     {
+         if(this->focus) {
+  console.log("order");
+ }
         
         if (this->inSave)
         {
@@ -47,6 +50,9 @@ void Peon_peasant::orderOnWayControl()
             //     console.log("STOP");
             // }
             //console.log("here ");
+                     if(this->focus) {
+  console.log("order 2");
+ }
             return;
         }
 
@@ -65,6 +71,9 @@ void Peon_peasant::orderOnWayControl()
                 (this->targetData.unit && this->orderOnWay.cell->groundUnit != this->targetData.unit) //||
                // ()
             ) {
+                         if(this->focus) {
+  console.log("order 3");
+ }
                 this->targetData.clear();
                // console.log("no prof td clear");
             }
@@ -76,6 +85,11 @@ void Peon_peasant::orderOnWayControl()
             this->targetData.specialFreeG0 = this->orderOnWay.specialFreeG0;
 
             Unit *ocu = oCell->groundUnit;
+
+                         if(this->focus) {
+  console.log("order " + ocu->name);
+ }
+
             if (ocu && ocu->type != "life")
             {
                 if (ocu->name == "tree")
@@ -176,6 +190,9 @@ void Peon_peasant::orderOnWayControl()
                         Unit *unloadingUnit = this->getBaseForUnloadingGold();
                         if (unloadingUnit)
                         {
+                                     if(this->focus) {
+  console.log("order 4");
+ }
                             int rand = intRand(0, unloadingUnit->myCells.length);
                             Cell *ulc = unloadingUnit->myCells.getItem(rand);
                             this->targetData.clicckedCell = ulc;
@@ -187,6 +204,9 @@ void Peon_peasant::orderOnWayControl()
                         }
                         else
                         {
+                                     if(this->focus) {
+  console.log("order 5");
+ }
                         }
                     }
                     else

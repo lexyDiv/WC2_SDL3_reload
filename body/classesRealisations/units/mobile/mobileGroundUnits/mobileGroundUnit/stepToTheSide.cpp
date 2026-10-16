@@ -53,6 +53,7 @@ void MobileGroundUnit::stepToTheSide()
                     cu != this &&
                     // (cu->profession == "" || cu->blockedCheck(cu).isBlocked) &&
                     // ncgu->profession == "" &&
+                    !cu->focus &&
                     !cu->isActive &&
                     !cu->inSave &&
                     cu->type == "life" &&
@@ -90,18 +91,8 @@ void MobileGroundUnit::stepToTheSide()
       //  if (valU->profession != "")
       //  {
            // valU->orderOnWay.go(valU->profession, 200);
-            // if (this->focus) {
-            //     console.log("in step 1");
-            // }
-       // }
-      //  else
-      //  {
+
             valU->orderOnWay.go(validCells.getItem(rand), 3);
-            //             if (this->focus) {
-            //     console.log("in step 2");
-            // }
-       // }
-        // valU->orderOnWay.go(validCells.getItem(rand), 3);
         valU->isActive = true;
     }
     //////////////////////////////////////////////////////////////////////////////////// => HARD
@@ -124,6 +115,7 @@ void MobileGroundUnit::stepToTheSide()
    
                 if (cu && c->plane == this->cell->plane) {
                 Unit *tu = cu->type == "life" &&
+                !cu->focus &&
                  !cu->isActive &&
                  !cu->inSave &&
                  cu->cell
@@ -160,21 +152,8 @@ void MobileGroundUnit::stepToTheSide()
                 Cell *pc = validU->cell->panicCells.getItem(i);
                 if (!pc->groundUnit)
                 {
-                   // if (validU->profession != "")
-                  //  {
-                      //  validU->orderOnWay.go(validU->profession, 200);
-                        //                         if (this->focus) {
-                        //     console.log("in step 3");
-                        // }
-                   // }
-                   // else
-                    //{
+ 
                         validU->orderOnWay.go(pc, 3);
-                        //                         if (this->focus) {
-                        //     console.log("in step 4");
-                        // }
-                   // }
-                    // validU->orderOnWay.go(pc, 3);
                     validU->isActive = true;
                     break;
                 }

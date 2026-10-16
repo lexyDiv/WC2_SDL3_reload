@@ -360,6 +360,15 @@ Unit *Peon_peasant::updateTargetData()
         }
         /////////////////////////////////////////////
 
+
+        if (this->targetData.unit != newTD.unit ||
+            (!this->targetData.unit && this->targetData.clicckedCell != newTD.clicckedCell)) {
+            this->targetData.clear();
+        }
+        this->targetData.unit = newTD.unit;
+        this->targetData.clicckedCell = newTD.clicckedCell;
+
+
         if (!this->targetData.clicckedCell && !this->targetData.unit)
         {
             this->orderOnWay.isComplite = true;
@@ -372,12 +381,6 @@ Unit *Peon_peasant::updateTargetData()
             this->selectGetTargetLambda();
         }
 
-        if (this->targetData.unit != newTD.unit ||
-            (!this->targetData.unit && this->targetData.clicckedCell != newTD.clicckedCell)) {
-            this->targetData.clear();
-        }
-        this->targetData.unit = newTD.unit;
-        this->targetData.clicckedCell = newTD.clicckedCell;
          
 
         this->orderOnWay.mt.unlock();

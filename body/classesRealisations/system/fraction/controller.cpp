@@ -95,9 +95,9 @@ void Fraction::controller()
             //     onHard.push(peon);
             // }
 
-            if (peon->focus) {
-                console.log("controller focus unit prof = " + peon->profession);
-            }
+            // if (peon->focus) {
+            //     console.log("controller focus unit prof = " + peon->profession);
+            // }
 
             if (peon->hp &&
                 !peon->inSave &&

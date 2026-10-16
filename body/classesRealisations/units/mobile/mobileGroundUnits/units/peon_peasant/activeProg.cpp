@@ -10,10 +10,11 @@ void Peon_peasant::activeProg()
 
   // console.log("need finish = ", this->targetData.isNeedMagistralFinish);
 
-  if (this->focus)
-  {
-    console.log("--------------Active------------");
-  }
+  // if (this->focus)
+  // {
+  //   console.log("--------------Active------------");
+  //   console.log("order is complite = ", this->orderOnWay.isComplite);
+  // }
 
   if (!this->isActiveCheck() || this->holdTimerControl()
 
@@ -37,23 +38,14 @@ void Peon_peasant::activeProg()
     this->frashWayCheckNeed = false;
     if (this->profession != "")
     {
-      if (this->focus)
-      {
-        console.log("1");
-      }
       this->orderOnWay.go(this->profession);
     }
     else if (this->targetData.clicckedCell)
     {
-      if (this->focus)
-      {
-        console.log("2");
-      }
       this->orderOnWay.go(this->targetData.clicckedCell);
     }
     else if (this->targetData.unit && this->targetData.unit->cell)
     {
-      console.log("3");
       this->orderOnWay.go(this->targetData.unit->cell);
     }
   }
@@ -62,81 +54,59 @@ void Peon_peasant::activeProg()
 
   Unit *target = this->updateTargetData();
 
-  if (this->focus)
-  {
-    if (target)
-    {
-      console.log("td name " + target->name);
-    }
-  }
+  // if (this->focus)
+  // {
+  //   if (target)
+  //   {
+  //     console.log("td name " + target->name);
+  //   }
+  // }
 
   ////////////////////////////////////  <= fastOrder
 
   if (
       !this->wayTakts &&
-      (
-        target ||
-        (
-          (this->wayIndex <= 15) &&
-          this->isPotentialWayComplite &&
-          this->way.length &&
-          !this->needHolTimer &&
-          !this->inFight &&
-          !this->isIgetMyTarget
-        )
-      )
-    )
+      !this->inFight &&
+      (target ||
+       ((this->wayIndex <= 15) &&
+        this->way.length &&
+        !this->needHolTimer &&
+        !this->isIgetMyTarget)))
   {
 
     Unit *to = this->targetData.unit;
 
     if (to)
     {
-
-      if (this->focus)
-      {
-        console.log("4");
-      }
-
       bool isTOValide = this->isTargetObjValide();
 
       if (!isTOValide)
       {
-        if (this->focus)
-        {
-          console.log("5");
-        }
         this->stendOnCell();
         this->updateCurrentTarget();
         // console.log("here 4");
       }
     }
-    this->isGetTarget();
+    this->isIgetMyTarget = this->isGetTarget();
 
-    if (this->focus)
-    {
-      console.log("6");
-    }
     if (this->isIgetMyTarget)
     {
+      // if (this->focus)
+      // {
+      //   if (target)
+      //   {
+      //     console.log("td name " + target->name);
+      //   }
+      // }
       this->stendOnCell();
       this->isIgetMyTarget = false;
       this->selectAnAction();
-      // console.log("here 5");
-      if (this->focus)
-      {
-        console.log("7");
-      }
+      this->orderOnWay.isComplite = true;
     }
   }
 
   if (this->inFight)
   {
-    // console.log("here 6");
-    if (this->focus)
-    {
-      console.log("8");
-    }
     this->fightControl(); // maybee HUYNYA refactoring needed !!!
     this->flipCell = nullptr;
   }

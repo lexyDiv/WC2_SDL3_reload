@@ -77,6 +77,11 @@ void Peon_peasant::selectGetTargetLambda()
                 this->isGetTargetLambda = [this](Cell *c)
                 {
                     Unit *cgu = c->groundUnit;
+                    // console.log("================================");
+                    // console.log("cgu = ", cgu);
+                    // console.log("cgu->canGiveTree = ", cgu->canGiveTree);
+                    // console.log("cgu->hp > 0 = ", cgu->hp > 0);
+                    // console.log("!cgu->lesorub = ", !cgu->lesorub);
                     if (
                         cgu &&
                         cgu->canGiveTree &&

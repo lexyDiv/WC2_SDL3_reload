@@ -41,6 +41,7 @@ void Peon_peasant::fightControl()
                 this->animY = 0;
                 // this->profession = "";
                 gu->lesorub = nullptr;
+                console.log("!lesorub");
             }
         }
         gu->stressControl();

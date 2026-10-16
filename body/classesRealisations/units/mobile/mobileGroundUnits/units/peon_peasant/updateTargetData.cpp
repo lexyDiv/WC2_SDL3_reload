@@ -18,22 +18,21 @@ Unit *Peon_peasant::updateTargetData()
 
         if (
             oc &&
-            (oc == this->cell ||
-             oc->plane != this->cell->plane) ||
-             (
-                ocu &&
-                (
-                    (!ocu->fraction && !ocu->canGiveGold && !ocu->canGiveTree) ||
-                    ocu->canMove
-                )
-             )
-           )
+                (oc == this->cell ||
+                 oc->plane != this->cell->plane) ||
+            (ocu &&
+             ((!ocu->fraction && !ocu->canGiveGold && !ocu->canGiveTree) ||
+              ocu->canMove)))
         {
             this->orderOnWay.isComplite = true;
             this->way.clear();
             this->wayIndex = 0;
             this->orderOnWay.stop = false;
+            this->profession = "";
             this->orderOnWay.mt.unlock();
+            // if (this->focus) {
+            //     console.log("update obnull");
+            // }
             return nullptr;
         }
 
@@ -278,9 +277,12 @@ Unit *Peon_peasant::updateTargetData()
             this->wayIndex = 0;
             this->orderOnWay.stop = false;
         }
+        else
+        {
+            this->selectGetTargetLambda();
+        }
 
         return this->targetData.unit;
-
     }
 
     return nullptr;

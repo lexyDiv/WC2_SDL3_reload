@@ -10,7 +10,7 @@ void MobileGroundUnit::goWay()
         //     console.log("goWay");
         //   }
 
-       // this->blockedData = this->blockedCheck(this); // this->isBlocked = this->isBlockedd(this);
+        // this->blockedData = this->blockedCheck(this); // this->isBlocked = this->isBlockedd(this);
         // if (!this->blockedData.isBlocked || (this->blockedData.isBlocked && this->blockedData.type == 'c')) {
         //     this->targetData.specialFreeG0 = false;
         // }
@@ -19,7 +19,7 @@ void MobileGroundUnit::goWay()
         {
 
             this->nextCell = this->way.getItem(this->wayIndex - 1);
-            
+
             int flipCellIndex = this->wayIndex - 2;
             this->flipCell = flipCellIndex >= 0 ? this->way.getItem(flipCellIndex) : nullptr;
             bool isNeedHold = this->isNeedHoldGoWay();
@@ -57,7 +57,7 @@ void MobileGroundUnit::goWay()
                 if (this->targetData.nextCell)
                 {
                     this->checkNextMagistralCell();
-                   // console.log("here");
+                    // console.log("here");
                 }
 
                 if (!this->wayIndex && this->targetData.nextCell)
@@ -65,36 +65,37 @@ void MobileGroundUnit::goWay()
                     // if (this->orderOnWay.isComplite)
                     // {
 
-                        if (this->profession != "")
-                        {
-                            //console.log("here ");
-                             if(this->focus) {
-  console.log("9");
- }
-                            this->orderOnWay.go(this->profession, this->personalCaseDeep);
-                        }
-                        else if (this->targetData.clicckedCell)
-                        {
-                             if(this->focus) {
-  console.log("10");
- }
-                           // console.log("here 2");
-                            this->orderOnWay.go(this->targetData.clicckedCell, this->personalCaseDeep);
-                        }
-                   // }
+                    if (this->profession != "")
+                    {
+                        // console.log("here ");
+                        // if (this->focus)
+                        // {
+                        //     console.log("9");
+                        // }
+                        this->orderOnWay.go(this->profession, this->personalCaseDeep);
+                    }
+                    else if (this->targetData.clicckedCell)
+                    {
+                        // if (this->focus)
+                        // {
+                        //     console.log("10");
+                        // }
+                        // console.log("here 2");
+                        this->orderOnWay.go(this->targetData.clicckedCell, this->personalCaseDeep);
+                    }
+                    // }
                 }
             }
             else if (isCrox)
             {
                 this->stendOnCellWait();
-
             }
             else if (isNeedHold)
             {
 
-        //  if (this->focus) {
-        //     console.log("hold");
-        //   }
+                //  if (this->focus) {
+                //     console.log("hold");
+                //   }
 
                 if (this->iNeedFreeWay)
                 {
@@ -113,28 +114,29 @@ void MobileGroundUnit::goWay()
             else
             {
 
-
                 this->stendOnCell();
                 // if (this->orderOnWay.isComplite)
                 // {
-                   
-                    if (this->profession != "")
-                    {
-                         if(this->focus) {
-  console.log("11");
- }
-                       // console.log("here 3");
-                        this->orderOnWay.go(this->profession, this->personalCaseDeep);
-                    }
-                    else if (this->targetData.clicckedCell)
-                    {
-                         if(this->focus) {
-  console.log("12");
- }
-                       // console.log("here 4");
-                        this->orderOnWay.go(this->targetData.clicckedCell, this->personalCaseDeep);
-                    }
-              //  }
+
+                if (this->profession != "")
+                {
+                    // if (this->focus)
+                    // {
+                    //     console.log("11");
+                    // }
+                    // console.log("here 3");
+                    this->orderOnWay.go(this->profession, this->personalCaseDeep);
+                }
+                else if (this->targetData.clicckedCell)
+                {
+                    // if (this->focus)
+                    // {
+                    //     console.log("12");
+                    // }
+                    // console.log("here 4");
+                    this->orderOnWay.go(this->targetData.clicckedCell, this->personalCaseDeep);
+                }
+                //  }
             }
         }
         else
@@ -145,35 +147,37 @@ void MobileGroundUnit::goWay()
                 this->targetData.isNeedMagistralFinish = false;
                 if (this->profession != "")
                 {
-                     if(this->focus) {
-  console.log("13");
- }
-                   // console.log("here 5");
+                    // if (this->focus)
+                    // {
+                    //     console.log("13");
+                    // }
+                    // console.log("here 5");
                     this->orderOnWay.go(this->profession, this->personalCaseDeep);
                 }
                 else if (this->targetData.clicckedCell)
                 {
-                     if(this->focus) {
-  console.log("14");
- }
-                   // console.log("here 6");
+                    // if (this->focus)
+                    // {
+                    //     console.log("14");
+                    // }
+                    // console.log("here 6");
                     this->orderOnWay.go(this->targetData.clicckedCell, this->personalCaseDeep);
                 }
-            } else {
+            }
+            else
+            {
 
+                this->iNeedFreeWay = false;
+                this->nextCell = nullptr;
+                this->flipCell = nullptr;
+                this->stendOnCell();
 
-            this->iNeedFreeWay = false;
-            this->nextCell = nullptr;
-            this->flipCell = nullptr;
-            this->stendOnCell();
-
-//              if(this->focus) {
-//   console.log("15");
-//  }
-        //    if (this->persNum == 2) {
-              //console.log("OFF in goWay");
-        //    }
-
+                //              if(this->focus) {
+                //   console.log("15");
+                //  }
+                //    if (this->persNum == 2) {
+                // console.log("OFF in goWay");
+                //    }
             }
         }
     }
@@ -189,5 +193,5 @@ void MobileGroundUnit::goWay()
     {
         this->flipCell = nullptr;
     }
-   // console.log("----------------------------------");
+    // console.log("----------------------------------");
 };

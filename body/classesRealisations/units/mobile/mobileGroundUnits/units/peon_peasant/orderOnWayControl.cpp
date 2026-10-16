@@ -11,13 +11,13 @@ void Peon_peasant::orderOnWayControl()
 
       //  console.log("order");
 
-        // if (
-        //     this->blockedData.isBlocked &&
-        //     this->blockedData.type == 'f' &&
-        //     this->personalCaseDeep != 3)
-        // {
-        //     this->iNeedFreeWay = true; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! <= ON !!! 2/3
-        // }
+        if (
+            this->blockedData.isBlocked &&
+            this->blockedData.type == 'f' &&
+            this->personalCaseDeep != 3)
+        {
+            this->iNeedFreeWay = true; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! <= ON !!! 2/3
+        }
 
         if (this->targetData.clicckedCell && (!this->blockedData.isBlocked //! this->isBlocked
                                               || this->iNeedFreeWay))

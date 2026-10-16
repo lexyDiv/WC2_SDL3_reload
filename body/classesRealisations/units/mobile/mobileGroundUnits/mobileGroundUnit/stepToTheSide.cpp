@@ -53,7 +53,7 @@ void MobileGroundUnit::stepToTheSide()
                     cu != this &&
                     // (cu->profession == "" || cu->blockedCheck(cu).isBlocked) &&
                     // ncgu->profession == "" &&
-                    !cu->focus &&
+                   // !cu->focus &&
                     !cu->isActive &&
                     !cu->inSave &&
                     cu->type == "life" &&
@@ -115,7 +115,7 @@ void MobileGroundUnit::stepToTheSide()
    
                 if (cu && c->plane == this->cell->plane) {
                 Unit *tu = cu->type == "life" &&
-                !cu->focus &&
+                //!cu->focus &&
                  !cu->isActive &&
                  !cu->inSave &&
                  cu->cell

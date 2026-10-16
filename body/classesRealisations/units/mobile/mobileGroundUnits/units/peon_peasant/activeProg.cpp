@@ -10,20 +10,20 @@ void Peon_peasant::activeProg()
 
   // console.log("need finish = ", this->targetData.isNeedMagistralFinish);
 
-  if (this->focus)
-  {
-    console.log("--------------Active------------");
+  // if (this->focus)
+  // {
+  //   console.log("--------------Active------------");
     
-  }
+  // }
 
   if (!this->isActiveCheck() || this->holdTimerControl()
 
   )
   {
-    if (this->focus)
-    {
-      console.log("active return");
-    }
+    // if (this->focus)
+    // {
+    //   console.log("active return");
+    // }
     return;
   }
 
@@ -56,10 +56,10 @@ void Peon_peasant::activeProg()
 
   if (this->focus)
   {
-    if (target)
-    {
-      console.log("td name " + target->name);
-    }
+    // if (target)
+    // {
+    //   console.log("td name " + target->name);
+    // }
   }
 
   ////////////////////////////////////  <= fastOrder
@@ -91,13 +91,13 @@ void Peon_peasant::activeProg()
 
     if (this->isIgetMyTarget)
     {
-      if (this->focus)
-      {
-        if (target)
-        {
-          console.log("i get target : " + target->name);
-        }
-      }
+      // if (this->focus)
+      // {
+      //   if (target)
+      //   {
+      //     console.log("i get target : " + target->name);
+      //   }
+      // }
       this->stendOnCell();
       this->isIgetMyTarget = false;
       this->selectAnAction();
@@ -108,9 +108,9 @@ void Peon_peasant::activeProg()
 
   if (this->fightTarget)
   {
-    if (this->focus) {
-       console.log("have fightTarget");
-    }
+    // if (this->focus) {
+    //    console.log("have fightTarget");
+    // }
     this->fightControl(); // maybee HUYNYA refactoring needed !!!
     this->flipCell = nullptr;
   }

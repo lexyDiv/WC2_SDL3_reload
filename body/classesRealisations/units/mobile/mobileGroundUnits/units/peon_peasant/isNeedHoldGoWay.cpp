@@ -53,13 +53,13 @@ bool Peon_peasant::isNeedHoldGoWay()
         if (ncgu && ncgu->type == "life" && !ncgu->isActive //&& ncgu->profession == ""
         )
         {
-            // this->targetData.forNeedFreeWayCount++;
-            // if (this->targetData.forNeedFreeWayCount >= 3)
-            // {
-            //     this->iNeedFreeWay = this->personalCaseDeep != 3 ? true : false; // <<<<<<<<<<<<< ON 1/3
-            //     this->targetData.forNeedFreeWayCount = 0;
-            //     return true;
-            // }
+            this->targetData.forNeedFreeWayCount++;
+            if (this->targetData.forNeedFreeWayCount >= 3)
+            {
+                this->iNeedFreeWay = this->personalCaseDeep != 3 ? true : false; // <<<<<<<<<<<<< ON 1/3
+                this->targetData.forNeedFreeWayCount = 0;
+                return true;
+            }
         }
 
 

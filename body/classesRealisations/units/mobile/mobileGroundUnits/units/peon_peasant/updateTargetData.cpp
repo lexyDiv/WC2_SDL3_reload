@@ -20,7 +20,14 @@ Unit *Peon_peasant::updateTargetData()
             oc &&
             (oc == this->cell ||
              oc->plane != this->cell->plane) ||
-            (ocu && !ocu->fraction && !ocu->canGiveGold && !ocu->canGiveTree))
+             (
+                ocu &&
+                (
+                    (!ocu->fraction && !ocu->canGiveGold && !ocu->canGiveTree) ||
+                    ocu->canMove
+                )
+             )
+           )
         {
             this->orderOnWay.isComplite = true;
             this->way.clear();

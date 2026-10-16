@@ -8,17 +8,20 @@ Unit *Peon_peasant::updateTargetData()
         !this->fightTarget)
     {
 
-        console.log("update---------------------------------");
+
+        // console.log("update---------------------------------");
 
         this->orderOnWay.mt.lock();
 
-        if (
-            this->blockedData.isBlocked &&
-            this->blockedData.type == 'f' &&
-            this->personalCaseDeep != 3)
-        {
-            this->iNeedFreeWay = true; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! <= ON !!! 2/3
-        }
+        TargetData newTD;
+
+        // if (
+        //     this->blockedData.isBlocked &&
+        //     this->blockedData.type == 'f' &&
+        //     this->personalCaseDeep != 3)
+        // {
+        //     this->iNeedFreeWay = true; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! <= ON !!! 2/3
+        // }
 
         this->orderOnWay.isUpdate = true;
 
@@ -26,7 +29,7 @@ Unit *Peon_peasant::updateTargetData()
         Cell *oc = this->orderOnWay.cell;
         Unit *ocu = oc ? oc->groundUnit : nullptr;
 
-        this->targetData.clear();
+       // this->targetData.clear();
 
         this->targetData.specialFreeG0 = this->orderOnWay.specialFreeG0;
         this->personalCaseDeep = this->orderOnWay.pcd;
@@ -43,7 +46,22 @@ Unit *Peon_peasant::updateTargetData()
             this->way.clear();
             this->wayIndex = 0;
             this->orderOnWay.stop = false;
+            if (this->profession != "") {
+                console.log("kill prof 1 + pers = ", this->personalCaseDeep);
+                console.log("is target ", targetData.unit);
+                if (this->orderOnWay.cell) {
+                    console.log("order cell gu = ", this->orderOnWay.cell->groundUnit);
+                } else {
+                    console.log("order prof = " + orderOnWay.profession);
+                }
+                console.log("-----------------------------");
+            }
             this->profession = "";
+
+            // if (this->profession == "") {
+            //     console.log("kill prof 1");
+            // }
+           // console.log("kill prof 1");
             this->orderOnWay.mt.unlock();
             // if (this->focus) {
             //     console.log("update obnull");
@@ -66,8 +84,11 @@ Unit *Peon_peasant::updateTargetData()
                         {
                             int rand = intRand(0, unloadingUnit->myCells.length);
                             Cell *ulc = unloadingUnit->myCells.getItem(rand);
-                            this->targetData.clicckedCell = ulc;
-                            this->targetData.unit = unloadingUnit;
+                            //this->targetData.clicckedCell = ulc;
+                           // this->targetData.unit = unloadingUnit;
+                           newTD.clicckedCell = ulc;
+                           newTD.unit = unloadingUnit;
+
                             this->targetData.unitPersNum = unloadingUnit->persNum;
                             this->targetData.profession = "w";
                             this->profession = "w";
@@ -76,8 +97,10 @@ Unit *Peon_peasant::updateTargetData()
                     }
                     else
                     {
-                        this->targetData.clicckedCell = ocu->cell;
-                        this->targetData.unit = ocu;
+                       // this->targetData.clicckedCell = ocu->cell;
+                       // this->targetData.unit = ocu;
+                            newTD.clicckedCell = ocu->cell;
+                           newTD.unit = ocu;
                         this->targetData.unitPersNum = ocu->persNum;
                         this->targetData.profession = "w";
                         this->profession = "w";
@@ -90,8 +113,10 @@ Unit *Peon_peasant::updateTargetData()
                     {
                         int rand = intRand(0, ocu->myCells.length);
                         Cell *ulc = ocu->myCells.getItem(rand);
-                        this->targetData.clicckedCell = ulc;
-                        this->targetData.unit = ocu;
+                       // this->targetData.clicckedCell = ulc;
+                        //this->targetData.unit = ocu;
+                            newTD.clicckedCell = ulc;
+                           newTD.unit =  ocu;                      
                         this->targetData.unitPersNum = ocu->persNum;
                         this->targetData.profession = "w";
                         this->profession = "w";
@@ -101,8 +126,10 @@ Unit *Peon_peasant::updateTargetData()
                     {
                         int rand = intRand(0, ocu->myCells.length);
                         Cell *ulc = ocu->myCells.getItem(rand);
-                        this->targetData.clicckedCell = ulc;
-                        this->targetData.unit = ocu;
+                       // this->targetData.clicckedCell = ulc;
+                       // this->targetData.unit = ocu;
+                           newTD.clicckedCell = ulc;
+                           newTD.unit =  ocu;                      
                         this->targetData.unitPersNum = ocu->persNum;
                         this->targetData.profession = "g";
                         this->profession = "g";
@@ -113,12 +140,18 @@ Unit *Peon_peasant::updateTargetData()
                         //                         if (this->focus) {
                         //     console.log("update th ");
                         // }
-                        this->targetData.clicckedCell = ocu->cell;
-                        this->targetData.unit = ocu;
+                       // this->targetData.clicckedCell = ocu->cell;
+                       // this->targetData.unit = ocu;
+                        newTD.clicckedCell = ocu->cell;
+                           newTD.unit = ocu;
                         this->targetData.unitPersNum = ocu->persNum;
                         this->targetData.profession = "";
+                                    if (this->profession != "") {
+                console.log("kill prof ssss");
+            }
                         this->profession = "";
                         this->targetData.isActual = true;
+                        console.log("kill prof 2");
                     }
                 }
                 else if (ocu->name == "lamberMill")
@@ -127,8 +160,10 @@ Unit *Peon_peasant::updateTargetData()
                     {
                         int rand = intRand(0, ocu->myCells.length);
                         Cell *ulc = ocu->myCells.getItem(rand);
-                        this->targetData.clicckedCell = ulc;
-                        this->targetData.unit = ocu;
+                        //this->targetData.clicckedCell = ulc;
+                       // this->targetData.unit = ocu;
+                           newTD.clicckedCell = ulc;
+                           newTD.unit =    ocu;                    
                         this->targetData.unitPersNum = ocu->persNum;
                         this->targetData.profession = "w";
                         this->profession = "w";
@@ -137,12 +172,18 @@ Unit *Peon_peasant::updateTargetData()
                     else
                     {
 
-                        this->targetData.clicckedCell = ocu->cell;
-                        this->targetData.unit = ocu;
+                       // this->targetData.clicckedCell = ocu->cell;
+                       // this->targetData.unit = ocu;
+                            newTD.clicckedCell = ocu->cell;
+                           newTD.unit =   ocu;                    
                         this->targetData.unitPersNum = ocu->persNum;
                         this->targetData.profession = "";
+                                    if (this->profession != "") {
+                console.log("kill prof rrrrrrrr");
+            }
                         this->profession = "";
                         this->targetData.isActual = true;
+                        console.log("kill prof 3");
                     }
                 }
                 else if (ocu->name == "shaht")
@@ -155,8 +196,10 @@ Unit *Peon_peasant::updateTargetData()
 
                             int rand = intRand(0, unloadingUnit->myCells.length);
                             Cell *ulc = unloadingUnit->myCells.getItem(rand);
-                            this->targetData.clicckedCell = ulc;
-                            this->targetData.unit = unloadingUnit;
+                           // this->targetData.clicckedCell = ulc;
+                           // this->targetData.unit = unloadingUnit;
+                            newTD.clicckedCell = ulc;
+                           newTD.unit = unloadingUnit;                          
                             this->targetData.unitPersNum = unloadingUnit->persNum;
                             this->targetData.profession = "g";
                             this->profession = "g";
@@ -170,8 +213,10 @@ Unit *Peon_peasant::updateTargetData()
                     {
                         int rand = intRand(0, ocu->myCells.length);
                         Cell *ulc = ocu->myCells.getItem(rand);
-                        this->targetData.clicckedCell = ulc;
-                        this->targetData.unit = ocu;
+                        //this->targetData.clicckedCell = ulc;
+                       // this->targetData.unit = ocu;
+                            newTD.clicckedCell = ulc;
+                           newTD.unit =   ocu;                    
                         this->targetData.unitPersNum = ocu->persNum;
                         this->targetData.profession = "g";
                         this->profession = "g";
@@ -181,18 +226,26 @@ Unit *Peon_peasant::updateTargetData()
                 else
                 {
 
-                    this->targetData.clicckedCell = ocu->cell;
-                    this->targetData.unit = ocu;
+                   // this->targetData.clicckedCell = ocu->cell;
+                   // this->targetData.unit = ocu;
+                            newTD.clicckedCell = ocu->cell;
+                           newTD.unit =     ocu;              
                     this->targetData.unitPersNum = ocu->persNum;
                     this->targetData.profession = "";
+                                if (this->profession != "") {
+                console.log("kill prof gggggggggggg");
+            }
                     this->profession = "";
                     this->targetData.isActual = true;
+                    console.log("kill prof 4");
                 }
             }
             else
             {
-                this->targetData.clicckedCell = this->orderOnWay.cell;
-                this->targetData.unit = nullptr;
+               // this->targetData.clicckedCell = this->orderOnWay.cell;
+               // this->targetData.unit = nullptr;
+                            newTD.clicckedCell = this->orderOnWay.cell;
+                           newTD.unit =    nullptr;           
                 this->targetData.unitPersNum = 0;
                 this->targetData.profession = "";
                 this->profession = (this->personalCaseDeep == 3 || this->personalCaseDeep == 300) ? this->profession : "";
@@ -212,8 +265,10 @@ Unit *Peon_peasant::updateTargetData()
                     {
                         int rand = intRand(0, unloadingUnit->myCells.length);
                         Cell *ulc = unloadingUnit->myCells.getItem(rand);
-                        this->targetData.clicckedCell = ulc;
-                        this->targetData.unit = unloadingUnit;
+                       // this->targetData.clicckedCell = ulc;
+                       // this->targetData.unit = unloadingUnit;
+                           newTD.clicckedCell = ulc;
+                           newTD.unit =    unloadingUnit;                    
                         this->targetData.unitPersNum = unloadingUnit->persNum;
                         this->targetData.profession = "w";
                         this->profession = "w";
@@ -221,6 +276,9 @@ Unit *Peon_peasant::updateTargetData()
                     }
                     else
                     {
+                                    if (this->profession != "") {
+                console.log("kill prof ffffffffffffffffffffffffff");
+            }
                         this->profession = "";
                     }
                 }
@@ -230,8 +288,11 @@ Unit *Peon_peasant::updateTargetData()
                     Unit *tree = this->getAnyTree();
                     if (tree)
                     {
-                        this->targetData.clicckedCell = tree->cell;
-                        this->targetData.unit = tree;
+                       // this->targetData.clicckedCell = tree->cell;
+                       // this->targetData.unit = tree;
+
+                            newTD.clicckedCell = tree->cell;
+                           newTD.unit =  tree;                     
                         this->targetData.unitPersNum = tree->persNum;
                         this->targetData.profession = "w";
                         this->profession = "w";
@@ -239,7 +300,11 @@ Unit *Peon_peasant::updateTargetData()
                     }
                     else
                     {
+                                    if (this->profession != "") {
+                console.log("kill prof hhhhhhhhhhhhhhhhhhhhh");
+            }
                         this->profession = "";
+
                     }
                 }
             }
@@ -254,8 +319,10 @@ Unit *Peon_peasant::updateTargetData()
                     {
                         int rand = intRand(0, unloadingUnit->myCells.length);
                         Cell *ulc = unloadingUnit->myCells.getItem(rand);
-                        this->targetData.clicckedCell = ulc;
-                        this->targetData.unit = unloadingUnit;
+                       // this->targetData.clicckedCell = ulc;
+                       // this->targetData.unit = unloadingUnit;
+                           newTD.clicckedCell = ulc;
+                           newTD.unit =   unloadingUnit;                     
                         this->targetData.unitPersNum = unloadingUnit->persNum;
                         this->targetData.profession = "g";
                         this->profession = "g";
@@ -263,7 +330,11 @@ Unit *Peon_peasant::updateTargetData()
                     }
                     else
                     {
+                                    if (this->profession != "") {
+                console.log("kill prof vvvvvvvvvvvvvvvvvvvvvvvvv");
+            }
                         this->profession = "";
+
                     }
                 }
                 else
@@ -274,8 +345,11 @@ Unit *Peon_peasant::updateTargetData()
                     {
                         int rand = intRand(0, shaht->myCells.length);
                         Cell *ulc = shaht->myCells.getItem(rand);
-                        this->targetData.clicckedCell = ulc;
-                        this->targetData.unit = shaht;
+                        //this->targetData.clicckedCell = ulc;
+                       // this->targetData.unit = shaht;
+
+                            newTD.clicckedCell = ulc;
+                           newTD.unit =              shaht;         
                         this->targetData.unitPersNum = shaht->persNum;
                         this->targetData.profession = "g";
                         this->profession = "g";
@@ -297,6 +371,14 @@ Unit *Peon_peasant::updateTargetData()
         {
             this->selectGetTargetLambda();
         }
+
+        if (this->targetData.unit != newTD.unit ||
+            (!this->targetData.unit && this->targetData.clicckedCell != newTD.clicckedCell)) {
+            this->targetData.clear();
+        }
+        this->targetData.unit = newTD.unit;
+        this->targetData.clicckedCell = newTD.clicckedCell;
+         
 
         this->orderOnWay.mt.unlock();
 

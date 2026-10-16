@@ -9,7 +9,7 @@ void Peon_peasant::orderOnWayControl()
         this->orderOnWay.isUpdate)
     {
 
-        console.log("order");
+      //  console.log("order");
 
         // if (
         //     this->blockedData.isBlocked &&

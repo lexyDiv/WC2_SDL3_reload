@@ -5,13 +5,13 @@ void ThData::createPotentialWay(Unit *unit)
 {
     TargetData &utd = unit->targetData;
 
-    if (utd.unit && utd.unit->type == "building" &&
-        !unit->isIexplored && !utd.nextCell)
-    {
-        unit->iNeedFreeWay = utd.unit->isBlockedBuilding(unit, this);
-        // utd.saveTargetIsBlocked = unit->iNeedFreeWay;
-        //console.log("free = ", unit->iNeedFreeWay);
-    }
+    // if (utd.unit && utd.unit->type == "building" &&
+    //     !unit->isIexplored && !utd.nextCell)
+    // {
+    //     unit->iNeedFreeWay = utd.unit->isBlockedBuilding(unit, this);
+    //     // utd.saveTargetIsBlocked = unit->iNeedFreeWay;
+    //     //console.log("free = ", unit->iNeedFreeWay);
+    // }
 
     unit->way.clear();
     int currentDeep = unit->personalCaseDeep ? unit->personalCaseDeep : this->deep;
@@ -185,10 +185,10 @@ void ThData::createPotentialWay(Unit *unit)
                     )
                    )
                 {
-                   // if (!unit->iNeedFreeWay) {
-                        unit->frashWayCheckNeed = true;
-                   // }
-                    unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON 3/3
+                //    // if (!unit->iNeedFreeWay) {
+                //         unit->frashWayCheckNeed = true;
+                //    // }
+                //     unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON 3/3
                     
                 }
 

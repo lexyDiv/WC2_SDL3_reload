@@ -62,8 +62,8 @@ void MobileGroundUnit::goWay()
 
                 if (!this->wayIndex && this->targetData.nextCell)
                 {
-                    if (this->orderOnWay.isComplite)
-                    {
+                    // if (this->orderOnWay.isComplite)
+                    // {
 
                         if (this->profession != "")
                         {
@@ -81,7 +81,7 @@ void MobileGroundUnit::goWay()
                            // console.log("here 2");
                             this->orderOnWay.go(this->targetData.clicckedCell, this->personalCaseDeep);
                         }
-                    }
+                   // }
                 }
             }
             else if (isCrox)
@@ -115,8 +115,8 @@ void MobileGroundUnit::goWay()
 
 
                 this->stendOnCell();
-                if (this->orderOnWay.isComplite)
-                {
+                // if (this->orderOnWay.isComplite)
+                // {
                    
                     if (this->profession != "")
                     {
@@ -134,7 +134,7 @@ void MobileGroundUnit::goWay()
                        // console.log("here 4");
                         this->orderOnWay.go(this->targetData.clicckedCell, this->personalCaseDeep);
                     }
-                }
+              //  }
             }
         }
         else

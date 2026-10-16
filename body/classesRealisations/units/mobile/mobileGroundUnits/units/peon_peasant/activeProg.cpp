@@ -10,11 +10,11 @@ void Peon_peasant::activeProg()
 
   // console.log("need finish = ", this->targetData.isNeedMagistralFinish);
 
-  // if (this->focus)
-  // {
-  //   console.log("--------------Active------------");
-  //   console.log("order is complite = ", this->orderOnWay.isComplite);
-  // }
+  if (this->focus)
+  {
+    console.log("--------------Active------------");
+    
+  }
 
   if (!this->isActiveCheck() || this->holdTimerControl()
 

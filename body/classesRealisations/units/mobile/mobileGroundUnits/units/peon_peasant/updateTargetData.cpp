@@ -7,7 +7,7 @@ Unit *Peon_peasant::updateTargetData()
     if (!this->orderOnWay.isComplite)
     {
 
-      // console.log("update");
+        // console.log("update---------------------------------");
 
         this->orderOnWay.mt.lock();
 
@@ -18,6 +18,7 @@ Unit *Peon_peasant::updateTargetData()
         this->targetData.clear();
 
         this->targetData.specialFreeG0 = this->orderOnWay.specialFreeG0;
+        this->personalCaseDeep = this->orderOnWay.pcd;
 
         if (
             oc &&
@@ -98,9 +99,9 @@ Unit *Peon_peasant::updateTargetData()
                     }
                     else
                     {
-            //                         if (this->focus) {
-            //     console.log("update = ", this->fightTarget);
-            // }
+                        //                         if (this->focus) {
+                        //     console.log("update th ");
+                        // }
                         this->targetData.clicckedCell = ocu->cell;
                         this->targetData.unit = ocu;
                         this->targetData.unitPersNum = ocu->persNum;
@@ -274,8 +275,6 @@ Unit *Peon_peasant::updateTargetData()
         }
         /////////////////////////////////////////////
 
-        this->orderOnWay.mt.unlock();
-
         if (!this->targetData.clicckedCell && !this->targetData.unit)
         {
             this->orderOnWay.isComplite = true;
@@ -287,6 +286,25 @@ Unit *Peon_peasant::updateTargetData()
         {
             this->selectGetTargetLambda();
         }
+
+        if (
+            this->blockedData.isBlocked &&
+            this->blockedData.type == 'f' &&
+            this->personalCaseDeep != 3)
+        {
+            this->iNeedFreeWay = true; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! <= ON !!! 2/3
+        }
+
+        if (this->targetData.clicckedCell && (!this->blockedData.isBlocked //! this->isBlocked
+                                              || this->iNeedFreeWay))
+        {
+
+            this->getCurrentTarget();
+        }
+
+        this->orderOnWay.isComplite = true;
+
+        this->orderOnWay.mt.unlock();
 
         return this->targetData.unit;
     }

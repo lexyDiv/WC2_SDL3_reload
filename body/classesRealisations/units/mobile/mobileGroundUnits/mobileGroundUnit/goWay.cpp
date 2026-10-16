@@ -145,17 +145,17 @@ void MobileGroundUnit::goWay()
                 this->targetData.isNeedMagistralFinish = false;
                 if (this->profession != "")
                 {
-//                      if(this->focus) {
-//   console.log("13");
-//  }
+                     if(this->focus) {
+  console.log("13");
+ }
                    // console.log("here 5");
                     this->orderOnWay.go(this->profession, this->personalCaseDeep);
                 }
                 else if (this->targetData.clicckedCell)
                 {
-//                      if(this->focus) {
-//   console.log("14");
-//  }
+                     if(this->focus) {
+  console.log("14");
+ }
                    // console.log("here 6");
                     this->orderOnWay.go(this->targetData.clicckedCell, this->personalCaseDeep);
                 }

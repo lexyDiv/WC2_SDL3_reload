@@ -7,7 +7,7 @@ Unit *Peon_peasant::updateTargetData()
     if (!this->orderOnWay.isComplite)
     {
 
-        // console.log("update---------------------------------");
+         console.log("update---------------------------------");
 
         this->orderOnWay.mt.lock();
 
@@ -287,22 +287,6 @@ Unit *Peon_peasant::updateTargetData()
             this->selectGetTargetLambda();
         }
 
-        if (
-            this->blockedData.isBlocked &&
-            this->blockedData.type == 'f' &&
-            this->personalCaseDeep != 3)
-        {
-            this->iNeedFreeWay = true; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! <= ON !!! 2/3
-        }
-
-        if (this->targetData.clicckedCell && (!this->blockedData.isBlocked //! this->isBlocked
-                                              || this->iNeedFreeWay))
-        {
-
-            this->getCurrentTarget();
-        }
-
-        this->orderOnWay.isComplite = true;
 
         this->orderOnWay.mt.unlock();
 

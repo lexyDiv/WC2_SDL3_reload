@@ -108,6 +108,7 @@ void Peon_peasant::activeProg()
 
   if (this->fightTarget)
   {
+   // console.log("have fightTarget");
     this->fightControl(); // maybee HUYNYA refactoring needed !!!
     this->flipCell = nullptr;
   }

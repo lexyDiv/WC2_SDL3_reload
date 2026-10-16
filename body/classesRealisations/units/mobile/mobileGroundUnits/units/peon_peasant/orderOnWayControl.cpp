@@ -8,24 +8,24 @@ void Peon_peasant::orderOnWayControl()
     if (!this->orderOnWay.isComplite)
     {
 
-       // console.log("order");
+        console.log("order");
 
-        // if (
-        //     this->blockedData.isBlocked &&
-        //     this->blockedData.type == 'f' &&
-        //     this->personalCaseDeep != 3)
-        // {
-        //     this->iNeedFreeWay = true; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! <= ON !!! 2/3
-        // }
+        if (
+            this->blockedData.isBlocked &&
+            this->blockedData.type == 'f' &&
+            this->personalCaseDeep != 3)
+        {
+            this->iNeedFreeWay = true; // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! <= ON !!! 2/3
+        }
 
-        // if (this->targetData.clicckedCell && (!this->blockedData.isBlocked //! this->isBlocked
-        //                                       || this->iNeedFreeWay))
-        // {
+        if (this->targetData.clicckedCell && (!this->blockedData.isBlocked //! this->isBlocked
+                                              || this->iNeedFreeWay))
+        {
 
-        //     this->getCurrentTarget();
-        // }
+            this->getCurrentTarget();
+        }
 
-        //this->orderOnWay.isComplite = true;
+        this->orderOnWay.isComplite = true;
     }
 
     this->orderOnWay.mt.unlock();

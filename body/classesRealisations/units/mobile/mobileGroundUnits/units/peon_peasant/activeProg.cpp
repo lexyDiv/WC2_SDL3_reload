@@ -4,14 +4,17 @@
 void Peon_peasant::activeProg()
 {
 
-  // if (this->focus) {
+
+   int num = 204;
+
+  // if (this->persNum == num) {
   //   console.log("hp = ", this->hp);
   // }
 
 //console.log("need finish = ", this->targetData.isNeedMagistralFinish);
 
-//  if(this->focus) {
-//   console.log("--------------Active------------");
+//  if(this->persNum == num) {
+//   console.log("--------------Active------------  = " + this->profession);
 //  }
 
 
@@ -19,7 +22,7 @@ void Peon_peasant::activeProg()
 
   )
   {
-    // if (this->focus) {
+    // if (this->persNum == num) {
     //   console.log("active return");
     // }
     return;
@@ -27,7 +30,7 @@ void Peon_peasant::activeProg()
 
   //this->gf->focusClaster = this->cell->claster;
 
-  // if (this->focus) {
+  // if (this->persNum == num) {
   //   console.log("timer = " + to_string(this->needHolTimer));
   // }
 
@@ -40,21 +43,23 @@ void Peon_peasant::activeProg()
     this->frashWayCheckNeed = false;
     if (this->profession != "")
     {
-       if(this->focus) {
- // console.log("1");
- }
+//        if(this->persNum == num) {
+//   console.log("1");
+//  }
       this->orderOnWay.go(this->profession);
     }
     else if (this->targetData.clicckedCell)
     {
-       if(this->focus) {
- // console.log("2");
- }
+//        if(this->persNum == num) {
+//   console.log("2");
+//  }
       this->orderOnWay.go(this->targetData.clicckedCell);
     }
     else if (this->targetData.unit && this->targetData.unit->cell)
     {
-     // console.log("3");
+    //       if (this->persNum == num) {
+    //   console.log("3");
+    // }
       this->orderOnWay.go(this->targetData.unit->cell);
     }
   }
@@ -106,16 +111,16 @@ void Peon_peasant::activeProg()
     if (to)
     {
 
-//  if(this->focus) {
-//   console.log("4");
+//  if(this->persNum == num) {
+//   console.log("have targetData.unit = " + to->name);
 //  }
 
       bool isTOValide = this->isTargetObjValide();
       
       if (!isTOValide)
       {
-//          if(this->focus) {
-//   console.log("5");
+//          if(this->persNum == num) {
+//   console.log("!isTOValide");
 //  }
         this->stendOnCell();
         this->updateCurrentTarget();
@@ -124,16 +129,17 @@ void Peon_peasant::activeProg()
     }
     this->isGetTarget();
 
-//      if(this->focus) {
-//   console.log("6");
-//  }
+
     if (this->isIgetMyTarget)
     {
+//                if(this->persNum == num) {
+//   console.log("get target");
+//  }
       this->stendOnCell();
       this->isIgetMyTarget = false;
       this->selectAnAction();
       //console.log("here 5");
-//        if(this->focus) {
+//        if(this->persNum == num) {
 //   console.log("7");
 //  }
     }
@@ -142,7 +148,7 @@ void Peon_peasant::activeProg()
   if (this->inFight)
   {
    // console.log("here 6");
-//     if(this->focus) {
+//     if(this->persNum == num) {
 //   console.log("8");
 //  }
     this->fightControl(); // maybee HUYNYA refactoring needed !!!

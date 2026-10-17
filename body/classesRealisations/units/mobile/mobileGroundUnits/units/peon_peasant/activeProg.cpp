@@ -10,18 +10,18 @@ void Peon_peasant::activeProg()
 
 //console.log("need finish = ", this->targetData.isNeedMagistralFinish);
 
- if(this->focus) {
-  console.log("--------------Active------------");
- }
+//  if(this->focus) {
+//   console.log("--------------Active------------");
+//  }
 
 
   if (!this->isActiveCheck() || this->holdTimerControl()
 
   )
   {
-    if (this->focus) {
-      console.log("active return");
-    }
+    // if (this->focus) {
+    //   console.log("active return");
+    // }
     return;
   }
 
@@ -41,20 +41,20 @@ void Peon_peasant::activeProg()
     if (this->profession != "")
     {
        if(this->focus) {
-  console.log("1");
+ // console.log("1");
  }
       this->orderOnWay.go(this->profession);
     }
     else if (this->targetData.clicckedCell)
     {
        if(this->focus) {
-  console.log("2");
+ // console.log("2");
  }
       this->orderOnWay.go(this->targetData.clicckedCell);
     }
     else if (this->targetData.unit && this->targetData.unit->cell)
     {
-      console.log("3");
+     // console.log("3");
       this->orderOnWay.go(this->targetData.unit->cell);
     }
   }
@@ -106,17 +106,17 @@ void Peon_peasant::activeProg()
     if (to)
     {
 
- if(this->focus) {
-  console.log("4");
- }
+//  if(this->focus) {
+//   console.log("4");
+//  }
 
       bool isTOValide = this->isTargetObjValide();
       
       if (!isTOValide)
       {
-         if(this->focus) {
-  console.log("5");
- }
+//          if(this->focus) {
+//   console.log("5");
+//  }
         this->stendOnCell();
         this->updateCurrentTarget();
        // console.log("here 4");
@@ -124,27 +124,27 @@ void Peon_peasant::activeProg()
     }
     this->isGetTarget();
 
-     if(this->focus) {
-  console.log("6");
- }
+//      if(this->focus) {
+//   console.log("6");
+//  }
     if (this->isIgetMyTarget)
     {
       this->stendOnCell();
       this->isIgetMyTarget = false;
       this->selectAnAction();
       //console.log("here 5");
-       if(this->focus) {
-  console.log("7");
- }
+//        if(this->focus) {
+//   console.log("7");
+//  }
     }
   }
 
   if (this->inFight)
   {
    // console.log("here 6");
-    if(this->focus) {
-  console.log("8");
- }
+//     if(this->focus) {
+//   console.log("8");
+//  }
     this->fightControl(); // maybee HUYNYA refactoring needed !!!
     this->flipCell = nullptr;
   }

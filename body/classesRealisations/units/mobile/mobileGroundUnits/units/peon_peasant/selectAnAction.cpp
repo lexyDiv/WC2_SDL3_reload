@@ -18,7 +18,7 @@ void Peon_peasant::selectAnAction()
         {
             this->gold = 0;
             this->image = this->fraction->peon.img_1;
-            this->inFight = true;
+            this->fightTarget = nullptr;
             this->getConor(gu->cell);
             gu->lesorub = this;
         }
@@ -61,7 +61,7 @@ void Peon_peasant::selectAnAction()
     //         {
     //             console.log("here 3");
     //             this->gold = 0;
-    //             this->inFight = true;
+    //             this->fightTarget = true;
     //             this->getConor(gu->cell);
     //             gu->lesorub = this;
     //         }
@@ -75,7 +75,7 @@ void Peon_peasant::selectAnAction()
     //                 (!gu->isComplite || gu->hp < gu->hpMax))
     //             {
     //                // console.log("here 2");
-    //                 this->inFight = true;
+    //                 this->fightTarget = true;
     //             }
     //             else
     //             {

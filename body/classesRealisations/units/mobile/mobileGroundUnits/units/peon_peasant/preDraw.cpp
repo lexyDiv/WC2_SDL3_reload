@@ -22,7 +22,7 @@ void Peon_peasant::preDraw()
             {
                 this->goWayAnimation();
             }
-            else if (this->inFight)
+            else if (this->fightTarget)
             {
                 this->inFightAnimation();
             }

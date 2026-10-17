@@ -155,7 +155,8 @@ public:
   bool isActive = false;
   int animTimer = 0;
   bool isGetMyCell = true;
-  bool inFight = false;
+ // bool inFight = false;
+  Unit *fightTarget = nullptr;
   int createTimer = 0;
   int persNum = 0;
   string profession = "";

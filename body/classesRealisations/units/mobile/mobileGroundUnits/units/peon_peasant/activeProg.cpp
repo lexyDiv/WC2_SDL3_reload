@@ -99,7 +99,7 @@ void Peon_peasant::activeProg()
      // this->orderOnWay.isComplite &&
       this->way.length &&
       !this->needHolTimer &&
-      !this->inFight &&
+      !this->fightTarget &&
       !this->isIgetMyTarget
       // ) //|| 
       // targetUnit
@@ -145,7 +145,7 @@ void Peon_peasant::activeProg()
     }
   }
 
-  if (this->inFight)
+  if (this->fightTarget)
   {
    // console.log("here 6");
 //     if(this->persNum == num) {

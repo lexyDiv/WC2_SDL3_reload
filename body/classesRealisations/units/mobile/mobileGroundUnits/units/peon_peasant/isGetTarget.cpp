@@ -4,12 +4,6 @@
 bool Peon_peasant::isGetTarget()
 {
     Unit *to = this->targetData.unit;
-    if (!this->needHolTimer &&
-        this->targetData.clicckedCell && !this->wayTakts &&
-        this->way.length &&
-        this->wayIndex <= 5 &&
-        this->isPotentialWayComplite)
-    {
 
         if (to)
         {
@@ -75,6 +69,6 @@ bool Peon_peasant::isGetTarget()
                 return true;
             }
         }
-    }
+    
     return false;
 };

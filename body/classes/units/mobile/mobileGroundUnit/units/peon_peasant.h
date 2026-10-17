@@ -43,6 +43,10 @@ public:
 
      void orderOnWayControl() override;
      bool isNeedHoldGoWay() override;
+
+void selectGetTargetLambda() override;
+void basicActionCheck() override;
+
     //  void goWayAnimation() override;
     // void goWay() override;
     // bool isNextCellFreeToGoWay(ProtoObj *nextCell) override;

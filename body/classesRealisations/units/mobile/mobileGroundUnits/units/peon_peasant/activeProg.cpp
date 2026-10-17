@@ -107,20 +107,13 @@ void Peon_peasant::activeProg()
     if (to)
     {
 
-//  if(this->persNum == num) {
-//   console.log("have targetData.unit = " + to->name);
-//  }
-
       bool isTOValide = this->isTargetObjValide();
       
       if (!isTOValide)
       {
-//          if(this->persNum == num) {
-//   console.log("!isTOValide");
-//  }
+
         this->stendOnCell();
         this->updateCurrentTarget();
-       // console.log("here 4");
       }
     }
     this->isGetTarget();
@@ -128,25 +121,14 @@ void Peon_peasant::activeProg()
 
     if (this->isIgetMyTarget)
     {
-//                if(this->persNum == num) {
-//   console.log("get target");
-//  }
       this->stendOnCell();
       this->isIgetMyTarget = false;
       this->selectAnAction();
-      //console.log("here 5");
-//        if(this->persNum == num) {
-//   console.log("7");
-//  }
     }
   }
 
   if (this->fightTarget)
   {
-   // console.log("here 6");
-//     if(this->persNum == num) {
-//   console.log("8");
-//  }
     this->fightControl(); // maybee HUYNYA refactoring needed !!!
     this->flipCell = nullptr;
   }

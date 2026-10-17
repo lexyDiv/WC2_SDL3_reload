@@ -69,6 +69,9 @@ public:
     cell : nullptr
   }; };
 
+
+  virtual void selectGetTargetLambda() {};
+  virtual void basicActionCheck() {};
   virtual void getCurrentTarget() {};
   virtual void getHandTarget(Cell *cell) {};
   virtual void getCurrentTargetCell() {};
@@ -197,6 +200,9 @@ public:
   { return false; };
 
   function<bool(Cell *c, int iter)> isNewCellOnGetWayValide = [](Cell *c, int iter)
+  { return false; };
+
+    function<bool(Cell *c)> isGetTargetLambda = [](Cell *c)
   { return false; };
 
   int needHolTimer = 0;

@@ -167,7 +167,9 @@ void MobileGroundUnit::stepToTheSide()
         {
             this->targetData.specialFreeG0 = false;
             this->iNeedFreeWay = false;
-            this->orderOnWay.go(this->cell);
+            this->way.clear();
+            this->wayIndex = 0;
+          //  this->orderOnWay.go(this->cell);
             // this->targetData.clear();
             // if (this->focus)
             // {
@@ -178,7 +180,9 @@ void MobileGroundUnit::stepToTheSide()
     else if (!this->needHolTimer && !this->targetData.specialFreeG0)
     {
         this->iNeedFreeWay = false;
-        this->orderOnWay.go(this->cell);
+            this->way.clear();
+            this->wayIndex = 0;
+       // this->orderOnWay.go(this->cell);
 
             //             if (this->focus) {
             //     console.log("hard final");

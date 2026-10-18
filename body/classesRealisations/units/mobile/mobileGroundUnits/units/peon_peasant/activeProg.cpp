@@ -65,3 +65,4 @@ void Peon_peasant::activeProg()
     this->orderOnWayControl();
   }
 }
+

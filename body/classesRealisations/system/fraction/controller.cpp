@@ -102,6 +102,9 @@ void Fraction::controller()
                 peon->orderOnWay.isComplite &&
                 !isBlocked)
             {
+                // if (peon->focus) {
+                //     console.log("go controller");
+                // }
                 activeCount++;
                 peon->orderOnWay.go(peon->profession, 0, true);
                 peon->isActive = true;

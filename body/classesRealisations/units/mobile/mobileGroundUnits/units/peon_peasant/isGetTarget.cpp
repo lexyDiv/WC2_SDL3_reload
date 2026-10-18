@@ -6,20 +6,18 @@ bool Peon_peasant::isGetTarget()
 
     if (this->targetData.unit ||
         (this->personalCaseDeep == 3 &&
-         (
-            this->wood || 
-            this->gold
-         )
-        )
-        )
+         (this->wood ||
+          this->gold)))
     {
+        Array<Cell *> validUnitCells;
         for (int i = 0; i < this->cell->aroundCells.length; i++)
         {
             Cell *ac = this->cell->aroundCells.getItem(i);
             Unit *acgu = ac->groundUnit;
             if (this->isGetTargetLambda(ac))
             {
-                if (acgu)
+                if (acgu &&
+                    acgu == this->targetData.unit)
                 {
                     this->iNeedFreeWay = false;
                     this->isIgetMyTarget = true;
@@ -28,7 +26,23 @@ bool Peon_peasant::isGetTarget()
 
                     return true;
                 }
+                else
+                {
+                    validUnitCells.push(ac);
+                }
             }
+        }
+
+        if (validUnitCells.length)
+        {
+            int rand = intRand(0, validUnitCells.length);
+            Cell *c = validUnitCells.getItem(rand);
+            this->iNeedFreeWay = false;
+            this->isIgetMyTarget = true;
+            this->targetData.clicckedCell = c;
+            this->targetData.unit = c->groundUnit;
+
+            return true;
         }
     }
 

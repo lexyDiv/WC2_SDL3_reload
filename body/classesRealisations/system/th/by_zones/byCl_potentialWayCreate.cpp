@@ -66,11 +66,12 @@ void ThData::byCl_potentialWayCreate(Unit *unit, Zone *finalZone)
     td.magistral.clear();
   }
 
-  if (unit->focus) {
-      // console.log("in magistral ", td.magistral.length);
-   // console.log("zone way iter = ", iter);
-    console.log("---------------------MAGISTRAL--------------------------");
-  }
+  // if (unit->focus) {
+  //     console.log("---------------------MAGISTRAL--------------------------");  
+  //      console.log("magistral length = ", td.magistral.length);
+  //   console.log("iter = ", iter);
+
+  // }
 
   // if (unit->focus)
   // {

@@ -37,10 +37,11 @@ void Peon_peasant::fightControl()
             else if (!this->orderOnWay.isComplite)
             {
                 this->targetData.unit = nullptr;
+                this->fightTarget->lesorub = nullptr;
                 this->fightTarget = nullptr;
                 this->animY = 0;
                 // this->profession = "";
-                gu->lesorub = nullptr;
+                
             }
         }
         gu->stressControl();

@@ -122,9 +122,23 @@ void Peon_peasant::selectGetTargetLambda()
     }
     else // => logic continue here !!!
     {
-        this->isGetTargetLambda = [](Cell *c)
+        if (td.unit)
         {
-            return false;
-        };
+            this->isGetTargetLambda = [td](Cell *c)
+            {
+                if (td.unit == c->groundUnit)
+                {
+                    return true;
+                }
+                return false;
+            };
+        }
+        else
+        {
+            this->isGetTargetLambda = [](Cell *c)
+            {
+                return false;
+            };
+        }
     }
 }

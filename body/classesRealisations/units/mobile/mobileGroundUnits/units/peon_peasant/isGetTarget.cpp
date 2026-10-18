@@ -3,72 +3,118 @@
 
 bool Peon_peasant::isGetTarget()
 {
-    Unit *to = this->targetData.unit;
 
-        if (to)
+    if (this->targetData.unit ||
+        (this->personalCaseDeep == 3 &&
+         (
+            this->wood || 
+            this->gold
+         )
+        )
+        )
+    {
+        for (int i = 0; i < this->cell->aroundCells.length; i++)
         {
-            if (to->canGiveTree)
+            Cell *ac = this->cell->aroundCells.getItem(i);
+            Unit *acgu = ac->groundUnit;
+            if (this->isGetTargetLambda(ac))
             {
-                Unit *valideTree = nullptr;
-                for (int i = 0; i < this->cell->aroundCells.length; i++)
+                if (acgu)
                 {
-                    Cell *cell = this->cell->aroundCells.getItem(i);
-                    if (cell->groundUnit &&
-                        cell->groundUnit->canGiveTree &&
-                        !cell->groundUnit->lesorub)
-                    {
-                        if (cell->groundUnit == to)
-                        {
-                            this->iNeedFreeWay = false;
-                            this->isIgetMyTarget = true;
-                            return true;
-                        }
-                        else
-                        {
-                            valideTree = cell->groundUnit;
-                        }
-                    }
-                }
-                if (valideTree)
-                {
-                    this->targetData.unit = valideTree;
                     this->iNeedFreeWay = false;
                     this->isIgetMyTarget = true;
+                    this->targetData.unit = acgu;
+                    this->targetData.clicckedCell = ac;
+
                     return true;
                 }
             }
-            else
-            {
-                for (int i = 0; i < this->cell->aroundCells.length; i++)
-                {
-                    Cell *cell = this->cell->aroundCells.getItem(i);
-                    if (cell->groundUnit && cell->groundUnit == to)
-                    {
-                        this->iNeedFreeWay = false;
-                        this->isIgetMyTarget = true;
-                        return true;
-                    }
-                }
-            }
         }
-        else
+    }
+
+    if (!this->targetData.unit)
+    {
+        if (this->cell == this->targetData.clicckedCell ||
+            // ( this->wayIndex == 1) ||
+            (this->wayIndex == 1 && this->way.length &&
+             this->way.getItem(0)->groundUnit))
         {
-            //                 if (this->focus) {
-            //     console.log("-----------------------------");
-            //     console.log("!this->wayIndex = " + to_string(this->wayIndex == 1));
-            //     console.log("!this->targetData.unit = " + to_string(!this->targetData.unit));
-            //     console.log("!this->targetData.nextCell = " + to_string(!this->targetData.nextCell));
-            // }
-            if (this->cell == this->targetData.clicckedCell || 
-               // ( this->wayIndex == 1) ||
-                (this->wayIndex == 1 && this->way.length &&
-                 this->way.getItem(0)->groundUnit) )
-            {
-                this->iNeedFreeWay = false;
-                this->isIgetMyTarget = true;
-                return true;
-            }
+            this->iNeedFreeWay = false;
+            this->isIgetMyTarget = true;
+            return true;
         }
-    
+    }
+
     return false;
+
+    ///////////////////////////////////////////////////////////////////////////////////////
+
+    // Unit *to = this->targetData.unit;
+
+    //     if (to)
+    //     {
+    //         if (to->canGiveTree)
+    //         {
+    //             Unit *valideTree = nullptr;
+    //             for (int i = 0; i < this->cell->aroundCells.length; i++)
+    //             {
+    //                 Cell *cell = this->cell->aroundCells.getItem(i);
+    //                 if (cell->groundUnit &&
+    //                     cell->groundUnit->canGiveTree &&
+    //                     !cell->groundUnit->lesorub)
+    //                 {
+    //                     if (cell->groundUnit == to)
+    //                     {
+    //                         this->iNeedFreeWay = false;
+    //                         this->isIgetMyTarget = true;
+    //                         return true;
+    //                     }
+    //                     else
+    //                     {
+    //                         valideTree = cell->groundUnit;
+    //                     }
+    //                 }
+    //             }
+    //             if (valideTree)
+    //             {
+    //                 this->targetData.unit = valideTree;
+    //                 this->iNeedFreeWay = false;
+    //                 this->isIgetMyTarget = true;
+    //                 return true;
+    //             }
+    //         }
+    //         else
+    //         {
+    //             for (int i = 0; i < this->cell->aroundCells.length; i++)
+    //             {
+    //                 Cell *cell = this->cell->aroundCells.getItem(i);
+    //                 if (cell->groundUnit && cell->groundUnit == to)
+    //                 {
+    //                     this->iNeedFreeWay = false;
+    //                     this->isIgetMyTarget = true;
+    //                     return true;
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     else
+    //     {
+    //         //                 if (this->focus) {
+    //         //     console.log("-----------------------------");
+    //         //     console.log("!this->wayIndex = " + to_string(this->wayIndex == 1));
+    //         //     console.log("!this->targetData.unit = " + to_string(!this->targetData.unit));
+    //         //     console.log("!this->targetData.nextCell = " + to_string(!this->targetData.nextCell));
+    //         // }
+    //         if (this->cell == this->targetData.clicckedCell ||
+    //            // ( this->wayIndex == 1) ||
+    //             (this->wayIndex == 1 && this->way.length &&
+    //              this->way.getItem(0)->groundUnit) )
+    //         {
+    //             this->iNeedFreeWay = false;
+    //             this->isIgetMyTarget = true;
+    //             return true;
+    //         }
+    //     }
+
+    // return false;
 };

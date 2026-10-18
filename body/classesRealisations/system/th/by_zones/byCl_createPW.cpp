@@ -80,9 +80,9 @@ void ThData::byCl_createPW(Unit *unit)
         (!unit->cell->zone->contactZones.length)
        )
     {
-        if (unit->focus && utd.unit && utd.unit->name == "tree") {
-            console.log("return by tree = ", isTreeNeare(unit, utd));
-        }
+        // if (unit->focus && utd.unit && utd.unit->name == "tree") {
+        //     console.log("return by tree = ", isTreeNeare(unit, utd));
+        // }
         return;
     }
 

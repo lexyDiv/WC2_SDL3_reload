@@ -52,7 +52,7 @@ void ThData::potentialWayCreate(Unit *unit, Cell *finalCell)
         }
     this->isMagistral = false;
    // console.log("classic create ", unit->way.length);
-   if (unit->focus) {
-    console.log("way, way.length = ", unit->way.length);
-   }
+//    if (unit->focus) {
+//     console.log("way, way.length = ", unit->way.length);
+//    }
 };

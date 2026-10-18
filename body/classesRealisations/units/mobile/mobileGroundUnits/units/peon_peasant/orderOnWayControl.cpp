@@ -359,6 +359,9 @@ void Peon_peasant::orderOnWayControl()
         //     console.log("this->iNeedFreeWay = ", this->iNeedFreeWay);
         // }
 
+       this->selectGetTargetLambda();
+
+
         if (this->targetData.clicckedCell && (!this->blockedData.isBlocked //! this->isBlocked
                                               || this->iNeedFreeWay))
         {

@@ -41,6 +41,13 @@ void Peon_peasant::selectGetTargetLambda()
                     return false;
                 };
             }
+            else
+            {
+                this->isGetTargetLambda = [](Cell *c)
+                {
+                    return false;
+                };
+            }
         }
         else if (td.unit)
         {
@@ -74,6 +81,7 @@ void Peon_peasant::selectGetTargetLambda()
             }
             else if (td.unit->canGiveTree)
             {
+                // console.log("here");
                 this->isGetTargetLambda = [this](Cell *c)
                 {
                     Unit *cgu = c->groundUnit;
@@ -81,13 +89,12 @@ void Peon_peasant::selectGetTargetLambda()
                         cgu &&
                         cgu->canGiveTree &&
                         cgu->hp > 0 &&
-                        !cgu->lesorub
-                       )
-                       {
+                        !cgu->lesorub)
+                    {
                         return true;
-                       }
+                    }
                     return false;
-                };                
+                };
             }
             else if (td.unit->canGiveGold)
             {
@@ -97,14 +104,27 @@ void Peon_peasant::selectGetTargetLambda()
                     if (
                         cgu &&
                         cgu->canGiveGold &&
-                        cgu->gold
-                       )
-                       {
+                        cgu->gold)
+                    {
                         return true;
-                       }
+                    }
                     return false;
-                };                
-            }            
+                };
+            }
         }
+        else
+        {
+            this->isGetTargetLambda = [](Cell *c)
+            {
+                return false;
+            };
+        }
+    }
+    else // => logic continue here !!!
+    {
+        this->isGetTargetLambda = [](Cell *c)
+        {
+            return false;
+        };
     }
 }

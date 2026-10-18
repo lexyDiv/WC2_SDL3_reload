@@ -6,7 +6,7 @@ void Peon_peasant::orderOnWayControl()
 
     if (!this->orderOnWay.isComplite)
     {
-
+       
         // int num = 390;
 
         this->orderOnWay.mt.lock();
@@ -358,16 +358,10 @@ void Peon_peasant::orderOnWayControl()
 
         ///////////////////////////////////////////////////////  => targetData.clear();
 
-       // this->isGetTarget();
-
-
         if (this->personalCaseDeep != 3 &&
-            (
-            currentTD.unit != this->targetData.unit ||
-            (!currentTD.unit && currentTD.clicckedCell && currentTD.clicckedCell != this->targetData.clicckedCell) ||
-            (!currentTD.unit && !currentTD.clicckedCell)
-        )
-        )
+            (currentTD.unit != this->targetData.unit ||
+             (!currentTD.unit && currentTD.clicckedCell && currentTD.clicckedCell != this->targetData.clicckedCell) ||
+             (!currentTD.unit && !currentTD.clicckedCell)))
         {
 
             this->targetData.clear();
@@ -388,11 +382,26 @@ void Peon_peasant::orderOnWayControl()
 
         this->selectGetTargetLambda();
 
-        if (this->targetData.clicckedCell && (!this->blockedData.isBlocked //! this->isBlocked
+        // if (this->focus && targetData.unit) {
+        //     console.log("order before = " + this->targetData.unit->name);
+        // }
+        this->isGetTarget();
+
+        if (this->isIgetMyTarget)
+        {
+           // console.log("here");
+            this->stendOnCell();
+           // this->isIgetMyTarget = false;
+            this->selectAnAction();
+        }
+
+        if (!this->isIgetMyTarget &&
+            this->targetData.clicckedCell && (!this->blockedData.isBlocked //! this->isBlocked
                                               || this->iNeedFreeWay))
         {
             this->getCurrentTarget();
         }
+        this->isIgetMyTarget = false;
         // this->personalCaseDeep = this->orderOnWay.pcd;
         this->orderOnWay.isComplite = true;
 

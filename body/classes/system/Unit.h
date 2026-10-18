@@ -179,7 +179,7 @@ public:
   // int holdWayCount = 0;
   int wayIndex = 0;
   bool isPotentialWayComplite = true;
-  bool isIgetMyTarget = true;
+  bool isIgetMyTarget = false;
   bool iNeedFreeWay = false;
   Order orderOnWay= Order(this);
   TargetData targetData;

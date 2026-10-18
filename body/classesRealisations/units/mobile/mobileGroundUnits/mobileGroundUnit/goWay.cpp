@@ -176,6 +176,10 @@ void MobileGroundUnit::goWay()
                 //    }
             }
         }
+
+      ///// =>
+      this->orderOnWayControl();
+
     }
     else if (this->wayTakts)
     {

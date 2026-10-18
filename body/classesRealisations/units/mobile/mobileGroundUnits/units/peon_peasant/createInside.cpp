@@ -63,5 +63,6 @@ void Peon_peasant::createInside(Cell *c, bool isNew = false)
         this->deleteTimer = 3000;
         this->alpha = 255;
         this->inBufer = false;
+        this->isIgetMyTarget = false;
     }
 }

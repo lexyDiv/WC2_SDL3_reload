@@ -16,6 +16,8 @@ void Peon_peasant::activeProg()
   //   console.log("--------------Active------------  = " + this->profession);
   //  }
 
+  //console.log("active start = ", this->isIgetMyTarget);
+
   if (!this->isActiveCheck() || this->holdTimerControl()
 
   )
@@ -62,7 +64,7 @@ void Peon_peasant::activeProg()
 
     this->goWay();
 
-    this->orderOnWayControl();
+    
   }
 }
 

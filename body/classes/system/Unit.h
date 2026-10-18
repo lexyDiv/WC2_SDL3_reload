@@ -71,7 +71,7 @@ public:
 
 
   virtual void selectGetTargetLambda() {};
-  virtual void basicActionCheck() {};
+  virtual bool basicActionCheck() { return false; };
   virtual void getCurrentTarget() {};
   virtual void getHandTarget(Cell *cell) {};
   virtual void getCurrentTargetCell() {};

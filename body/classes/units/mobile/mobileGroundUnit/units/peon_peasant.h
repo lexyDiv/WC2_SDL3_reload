@@ -45,7 +45,7 @@ public:
      bool isNeedHoldGoWay() override;
 
 void selectGetTargetLambda() override;
-void basicActionCheck() override;
+bool basicActionCheck() override;
 
     //  void goWayAnimation() override;
     // void goWay() override;

@@ -66,22 +66,22 @@ void Peon_peasant::activeProg()
     this->goWay();
 
 
-  if (this->frashWayCheckNeed && this->orderOnWay.isComplite)
-  {
-    this->frashWayCheckNeed = false;
-    if (this->profession != "")
-    {
-      this->orderOnWay.go(this->profession);
-    }
-    else if (this->targetData.clicckedCell)
-    {
-      this->orderOnWay.go(this->targetData.clicckedCell);
-    }
-    else if (this->targetData.unit && this->targetData.unit->cell)
-    {
-      this->orderOnWay.go(this->targetData.unit->cell);
-    }
-  }
+  // if (this->frashWayCheckNeed && this->orderOnWay.isComplite)
+  // {
+  //   this->frashWayCheckNeed = false;
+  //   if (this->profession != "")
+  //   {
+  //     this->orderOnWay.go(this->profession);
+  //   }
+  //   else if (this->targetData.clicckedCell)
+  //   {
+  //     this->orderOnWay.go(this->targetData.clicckedCell);
+  //   }
+  //   else if (this->targetData.unit && this->targetData.unit->cell)
+  //   {
+  //     this->orderOnWay.go(this->targetData.unit->cell);
+  //   }
+  // }
     
   }
 }

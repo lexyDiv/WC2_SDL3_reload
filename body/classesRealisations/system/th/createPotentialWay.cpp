@@ -4,16 +4,18 @@
 void ThData::createPotentialWay(Unit *unit)
 {
 
-    console.log("free = ", unit->iNeedFreeWay);
+    // console.log("free = ", unit->iNeedFreeWay);
 
     TargetData &utd = unit->targetData;
+    Td_way_data *td_way_data = unit->cell->thwd.length ? unit->cell->thwd.getItemPtr(this->num) : nullptr;
+    bool isTry = false;
 
     if (utd.unit && utd.unit->type == "building" &&
         !unit->isIexplored && !utd.nextCell)
     {
         unit->iNeedFreeWay = utd.unit->isBlockedBuilding(unit, this);
         // utd.saveTargetIsBlocked = unit->iNeedFreeWay;
-        //console.log("free = ", unit->iNeedFreeWay);
+        // console.log("free = ", unit->iNeedFreeWay);
     }
 
     unit->way.clear();
@@ -29,8 +31,6 @@ void ThData::createPotentialWay(Unit *unit)
     this->iter = 0;
 
     // bool tryChecked = false;
-
-    Td_way_data *td_way_data = unit->cell->thwd.length ? unit->cell->thwd.getItemPtr(this->num) : nullptr;
 
     this->createCount += 0.001;
     if (this->createCount >= 100000000)
@@ -119,8 +119,8 @@ void ThData::createPotentialWay(Unit *unit)
                 this->exploreNewCellAndAddToOpenArr(unit, unit->cell, cell);
             } });
     }
-   // unit->goodNextCellUnit = nullptr;
-// (unit->goodNextCellUnit && unit->goodNextCellUnit != gu)
+    // unit->goodNextCellUnit = nullptr;
+    // (unit->goodNextCellUnit && unit->goodNextCellUnit != gu)
     // this->openArr.forEach([this](Cell *c){
     //     console.log("F = ", c->thwd.getItemPtr(this->num)->F);
     // });
@@ -168,6 +168,24 @@ void ThData::createPotentialWay(Unit *unit)
                 this->globalMin_H_cell = this->min_F_cell;
             }
         }
+        else if (!this->openArr.length && 
+            iter < currentDeep &&
+            !isTry && this->globalMin_H_cell)
+        {
+            isTry = true;
+            this->min_F_cell = this->globalMin_H_cell;
+            this->min_F_cell->thwd.getItemPtr(this->num)->explored = 0;
+            this->min_F_cell->aroundCells.forEach([unit, this](Cell *c)
+                                                  {
+                if (!unit->isNextCellFreeToGoWay(c))
+                {
+                    c->thwd.getItemPtr(this->num)->explored = 0;
+                } });
+
+            unit->iNeedFreeWay = true;
+
+            this->openArr.push(this->min_F_cell);
+        }
         else
         {
             if (!this->globalMin_H_cell)
@@ -181,18 +199,15 @@ void ThData::createPotentialWay(Unit *unit)
 
                 if (
                     unit->personalCaseDeep != 3 &&
-                    (
-                        (utd.nextCell && iter < shortDeep) ||
-                        (iter <= this->deep) ||
-                        (utd.unit && utd.unit->type == "building")
-                    )
-                   )
+                    ((utd.nextCell && iter < shortDeep) ||
+                     (iter <= this->deep) //||
+                                          // (utd.unit && utd.unit->type == "building")
+                     ))
                 {
-                   // if (!unit->iNeedFreeWay) {
-                        unit->frashWayCheckNeed = true;
-                   // }
-                    unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON 3/3
-                    
+                       // if (!unit->iNeedFreeWay) {
+                           /// unit->frashWayCheckNeed = true;
+                       // }
+                        unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON 3/3
                 }
 
                 if (currentDeep == shortDeep)

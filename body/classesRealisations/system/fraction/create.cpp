@@ -6,6 +6,7 @@ void Fraction::create(Game *game, Nation *nation, string color)
   //////////////////////////////
   this->nation = nation;
   this->color = color;
+   this->game = game;
   if (this->color == "red")
   {
     this->mapColor = {R : 255, G : 0, B : 0};
@@ -17,11 +18,11 @@ void Fraction::create(Game *game, Nation *nation, string color)
   // console.log("fraction created");
 
   // console.log(this->nation.color);
-  this->game = game;
+ 
 
   Unit *peon = new Peon_peasant(this);
   peon->persNum = 2;
-  peon->create(game->gf->field.getItem(0).getItem(14));
+  peon->create(game->gf->field.getItem(0).getItem(0));
   this->game->allLifeUnitsPtr.push(peon);
   // this->AllLifeUnits.push(peon);
 
@@ -50,55 +51,55 @@ void Fraction::create(Game *game, Nation *nation, string color)
   townHall->isActive = true;
   townHall->createTimer = 1;
 
-  ////////////////////////////////////////////////////////////////////
+  // ////////////////////////////////////////////////////////////////////
 
-  townHall = new TownHall;
-  townHall->fraction = this;
-  townHall->create(game->gf->field.getItem(2).getItem(120), true, true);
-  townHall->isActive = true;
-  townHall->createTimer = 1;
+  // townHall = new TownHall;
+  // townHall->fraction = this;
+  // townHall->create(game->gf->field.getItem(2).getItem(120), true, true);
+  // townHall->isActive = true;
+  // townHall->createTimer = 1;
 
-  /////////////////////////////////////////////////////////
+  // /////////////////////////////////////////////////////////
 
-  townHall = new TownHall;
-  townHall->fraction = this;
-  townHall->create(game->gf->field.getItem(2).getItem(220), true, true);
-  townHall->isActive = true;
-  townHall->createTimer = 1;
+  // townHall = new TownHall;
+  // townHall->fraction = this;
+  // townHall->create(game->gf->field.getItem(2).getItem(220), true, true);
+  // townHall->isActive = true;
+  // townHall->createTimer = 1;
 
-  //////////////////////////////////////////////////////////////
+  // //////////////////////////////////////////////////////////////
 
-  townHall = new TownHall;
-  townHall->fraction = this;
-  townHall->create(game->gf->field.getItem(220).getItem(120), true, true);
-  townHall->isActive = true;
-  townHall->createTimer = 1;
+  // townHall = new TownHall;
+  // townHall->fraction = this;
+  // townHall->create(game->gf->field.getItem(220).getItem(120), true, true);
+  // townHall->isActive = true;
+  // townHall->createTimer = 1;
 
-  /////////////////////////////////////////////////////////////
+  // /////////////////////////////////////////////////////////////
 
-  townHall = new TownHall;
-  townHall->fraction = this;
-  townHall->create(game->gf->field.getItem(220).getItem(20), true, true);
-  townHall->isActive = true;
-  townHall->createTimer = 1;
+  // townHall = new TownHall;
+  // townHall->fraction = this;
+  // townHall->create(game->gf->field.getItem(220).getItem(20), true, true);
+  // townHall->isActive = true;
+  // townHall->createTimer = 1;
 
-  /////////////////////////////////////////////////////////////
+  // /////////////////////////////////////////////////////////////
 
-  townHall = new TownHall;
-  townHall->fraction = this;
-  townHall->create(game->gf->field.getItem(220).getItem(220), true, true);
-  townHall->isActive = true;
-  townHall->createTimer = 1;
+  // townHall = new TownHall;
+  // townHall->fraction = this;
+  // townHall->create(game->gf->field.getItem(220).getItem(220), true, true);
+  // townHall->isActive = true;
+  // townHall->createTimer = 1;
 
-  /////////////////////////////////////////////////////////////
+  // /////////////////////////////////////////////////////////////
 
-  townHall = new TownHall;
-  townHall->fraction = this;
-  townHall->create(game->gf->field.getItem(230).getItem(220), true, true);
-  townHall->isActive = true;
-  townHall->createTimer = 1;
+  // townHall = new TownHall;
+  // townHall->fraction = this;
+  // townHall->create(game->gf->field.getItem(230).getItem(220), true, true);
+  // townHall->isActive = true;
+  // townHall->createTimer = 1;
 
-  /////////////////////////////////////////////////////////////
+  // /////////////////////////////////////////////////////////////
 
 
 };

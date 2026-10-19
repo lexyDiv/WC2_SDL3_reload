@@ -63,7 +63,7 @@ int main()
             // console.log("mounts = ", game->allMountsPtr.length);
            // console.log("all = ", game->allLifeUnitsPtr.length);
         }
-        else // if (!th_create_game)
+        else  // if (!th_create_game)
         {
 
            // console.log("all = ", game->AllUnitsPtr.length);

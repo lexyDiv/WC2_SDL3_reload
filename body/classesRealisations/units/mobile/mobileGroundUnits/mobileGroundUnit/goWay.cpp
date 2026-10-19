@@ -15,7 +15,7 @@ void MobileGroundUnit::goWay()
         //     this->targetData.specialFreeG0 = false;
         // }
         if ( // this->isPotentialWayComplite &&
-            this->wayIndex > 0)
+            this->wayIndex > 0 && this->orderOnWay.isComplite)
         {
 
             this->nextCell = this->way.getItem(this->wayIndex - 1);

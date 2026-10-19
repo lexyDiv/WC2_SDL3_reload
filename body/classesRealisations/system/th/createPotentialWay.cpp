@@ -3,6 +3,9 @@
 
 void ThData::createPotentialWay(Unit *unit)
 {
+
+    console.log("free = ", unit->iNeedFreeWay);
+
     TargetData &utd = unit->targetData;
 
     if (utd.unit && utd.unit->type == "building" &&

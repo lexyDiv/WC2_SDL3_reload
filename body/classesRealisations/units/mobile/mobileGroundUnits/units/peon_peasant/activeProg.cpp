@@ -34,6 +34,38 @@ void Peon_peasant::activeProg()
   //   console.log("timer = " + to_string(this->needHolTimer));
   // }
 
+  // if (this->frashWayCheckNeed && this->orderOnWay.isComplite)
+  // {
+  //   this->iNeedFreeWay = true;
+  //   // this->frashWayCheckNeed = false;
+  //   // if (this->profession != "")
+  //   // {
+  //   //   this->orderOnWay.go(this->profession);
+  //   // }
+  //   // else if (this->targetData.clicckedCell)
+  //   // {
+  //   //   this->orderOnWay.go(this->targetData.clicckedCell);
+  //   // }
+  //   // else if (this->targetData.unit && this->targetData.unit->cell)
+  //   // {
+  //   //   this->orderOnWay.go(this->targetData.unit->cell);
+  //   // }
+  // }
+
+  this->basicActionCheck();
+
+  if (this->fightTarget)
+  {
+    this->fightControl(); 
+    this->flipCell = nullptr;
+  }
+  else
+  {
+    this->blockedData = this->blockedCheck(this);
+
+    this->goWay();
+
+
   if (this->frashWayCheckNeed && this->orderOnWay.isComplite)
   {
     this->frashWayCheckNeed = false;
@@ -50,20 +82,6 @@ void Peon_peasant::activeProg()
       this->orderOnWay.go(this->targetData.unit->cell);
     }
   }
-
-  this->basicActionCheck();
-
-  if (this->fightTarget)
-  {
-    this->fightControl(); 
-    this->flipCell = nullptr;
-  }
-  else
-  {
-    this->blockedData = this->blockedCheck(this);
-
-    this->goWay();
-
     
   }
 }

@@ -97,8 +97,9 @@ void MobileGroundUnit::stepToTheSide()
     }
     //////////////////////////////////////////////////////////////////////////////////// => HARD
     else if (this->blockedData.isBlocked && this->blockedData.type == 'f' 
-        && this->orderOnWay.specialFreeG0 
-        && this->needHolTimer)
+       // && this->orderOnWay.specialFreeG0 
+       // && this->needHolTimer
+    )
     {
         // this->iNeedFreeWay = false;
 
@@ -177,15 +178,15 @@ void MobileGroundUnit::stepToTheSide()
             // }
         }
     }
-    else if (!this->needHolTimer && !this->targetData.specialFreeG0)
-    {
-        this->iNeedFreeWay = false;
-            this->way.clear();
-            this->wayIndex = 0;
-       // this->orderOnWay.go(this->cell);
+    // else if (!this->needHolTimer && !this->targetData.specialFreeG0)
+    // {
+    //     this->iNeedFreeWay = false;
+    //         this->way.clear();
+    //         this->wayIndex = 0;
+    //    // this->orderOnWay.go(this->cell);
 
-            //             if (this->focus) {
-            //     console.log("hard final");
-            // }
-    }
+    //         //             if (this->focus) {
+    //         //     console.log("hard final");
+    //         // }
+    // }
 }

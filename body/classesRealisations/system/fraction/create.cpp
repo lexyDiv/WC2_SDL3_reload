@@ -20,26 +20,17 @@ void Fraction::create(Game *game, Nation *nation, string color)
   // console.log(this->nation.color);
  
 
-  Unit *peon = new Peon_peasant(this);
-  peon->persNum = 2;
-  peon->create(game->gf->field.getItem(0).getItem(0));
-  this->game->allLifeUnitsPtr.push(peon);
-  // this->AllLifeUnits.push(peon);
+  // Unit *peon = new Peon_peasant(this);
+  // peon->persNum = 2;
+  // peon->fraction = this;
+  // peon->create(game->gf->field.getItem(5).getItem(5));
 
-  //   // peon->orderOnWay.cell = this->game->gf->field.getItem(10).getItem(18);
-  //   // peon->orderOnWay.isComplite = false;
-  //   // peon->isActive = true;
 
   //  Unit *peon2 = new Peon_peasant(this);
   //  peon2->persNum = 1;
   //  peon2->fraction = this;
-  //  peon2->create(game->gf->field.getItem(3).getItem(0)); // 8 // 7 => magistral 17 ok 18 ok 19 ok
-  //   this->game->allLifeUnitsPtr.push(peon2);
-  //    this->AllLifeUnits.push(peon2);
+  //  peon2->create(game->gf->field.getItem(5).getItem(15)); // 8 // 7 => magistral 17 ok 18 ok 19 ok
 
-  //   peon2->orderOnWay.cell = this->game->gf->field.getItem(10).getItem(3);
-  //   peon2->orderOnWay.isComplite = false;
-  //   peon2->isActive = true;
 
   ////////////////// townHall
 

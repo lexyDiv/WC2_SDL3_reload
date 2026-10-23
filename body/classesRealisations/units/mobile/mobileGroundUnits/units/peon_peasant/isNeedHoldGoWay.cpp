@@ -44,6 +44,7 @@ bool Peon_peasant::isNeedHoldGoWay()
         {
             this->needHolTimer = 0;
             this->iNeedFreeWay = false;
+            this->badNCU = nextCell->groundUnit;
            // console.log("stop by timer");
             return false;
         }
@@ -80,6 +81,7 @@ bool Peon_peasant::isNeedHoldGoWay()
                 || !ncgu->needHolTimer
                  || this->wayTakts > 5))
               )
+
              )
 
             )
@@ -89,6 +91,12 @@ bool Peon_peasant::isNeedHoldGoWay()
 
             return true;
         }
+    }
+
+    this->badNCU = nextCell->groundUnit;
+
+    if (this->iNeedFreeWay && ncgu && !ncgu->isActive) {
+        this->badNCU = nullptr;
     }
 
     return false;

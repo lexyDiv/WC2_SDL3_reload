@@ -194,6 +194,7 @@ public:
   bool isDelete = false;
   Cell *flipCell = nullptr;
   Cell *nextCell = nullptr;
+  Unit *badNCU = nullptr;
  
 
   function<bool(Cell *c)> isOnGetPotentialWayGetTarget = [](Cell *c)

@@ -58,8 +58,9 @@ void ThData::createPotentialWay(Unit *unit)
 
     /////////////////////////////////////////////////////////////////////////// => special
 
-    if (                                                                //! unit->iNeedFreeWay &&
-        !(unit->blockedData.isBlocked && unit->blockedData.type == 'f') //&&
+    if (  
+        unit->badNCU                                                              //! unit->iNeedFreeWay &&
+        //!(unit->blockedData.isBlocked && unit->blockedData.type == 'f') //&&
       //  && !unit->iNeedFreeWay                                          // !(utd.nextCell && unit->isLoopNextCellUnit)
     )
     {
@@ -67,34 +68,18 @@ void ThData::createPotentialWay(Unit *unit)
         // {
         //     console.log("here 1");
         // }
+        
         unit->cell->aroundCells.forEach([this, unit, utd](Cell *cell)
                                         {
             Unit *gu = cell->groundUnit;
 
             if ( 
                 cell->plane != unit->cell->plane ||
-                (gu && gu->canStandStill) ||
-                (
-                    (gu && gu != utd.unit) &&
-                    (utd.clicckedCell != cell) &&
-                    !(unit->profession == "w" && gu->name == "tree" && !gu->lesorub && gu->hp) &&
-                    gu->orderOnWay.isComplite &&
-                    (!utd.nextCell || 
-                        !(
-                            utd.unit && 
-                            gu->targetData.unit &&
-                            (
-                                gu->targetData.unit == utd.unit || 
-                                (gu->targetData.unit->canGiveTree && utd.unit->canGiveTree)
-                            ) &&
-                            gu->way.length &&
-                            !gu->needHolTimer &&
-                            gu->nextCell
-                             &&
-                            gu->nextCell != unit->cell
-                        )
-                    )
-                ) 
+                (gu &&
+                 (gu->canStandStill ||
+                  gu->canGiveTree ||
+                  gu == unit->badNCU)
+                )
                
             ) {
                 cell->thwd.getItemPtr(this->num)->explored = this->createCount;
@@ -103,6 +88,8 @@ void ThData::createPotentialWay(Unit *unit)
                // cell->thwd.getItemPtr(this->num)->createCountData = this->createCount;
                 this->exploreNewCellAndAddToOpenArr(unit, unit->cell, cell);
             } });
+
+            unit->badNCU = nullptr;
     }
     // else if (unit->iNeedFreeWay)
     // {

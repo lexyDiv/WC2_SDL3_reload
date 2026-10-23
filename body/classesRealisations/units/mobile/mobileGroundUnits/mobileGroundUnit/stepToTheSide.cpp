@@ -97,7 +97,7 @@ void MobileGroundUnit::stepToTheSide()
     }
     //////////////////////////////////////////////////////////////////////////////////// => HARD
     else if (this->blockedData.isBlocked && this->blockedData.type == 'f' 
-       // && this->orderOnWay.specialFreeG0 
+        && this->orderOnWay.specialFreeG0 
        // && this->needHolTimer
     )
     {

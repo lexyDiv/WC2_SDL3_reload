@@ -16,7 +16,7 @@ void TownHall::wellCome(Unit *peon)
             //peon->inSave = true;
             peon->inOutCount = ceil(wellComeCell.min / peon->fraction->peon.speed);
             peon->inOutMashtabCount = (1 - peon->inOutMashtabMin) / peon->inOutCount;
-
+            peon->iNeedFreeWay = false;
             this->potentialClients.push(peon);
             peon->cell->groundUnitOnDraw.push(peon);
             peon->myDoorCell = peon->cell;

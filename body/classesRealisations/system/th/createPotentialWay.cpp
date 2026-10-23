@@ -60,7 +60,7 @@ void ThData::createPotentialWay(Unit *unit)
 
     if (                                                                //! unit->iNeedFreeWay &&
         !(unit->blockedData.isBlocked && unit->blockedData.type == 'f') //&&
-        && !unit->iNeedFreeWay                                          // !(utd.nextCell && unit->isLoopNextCellUnit)
+      //  && !unit->iNeedFreeWay                                          // !(utd.nextCell && unit->isLoopNextCellUnit)
     )
     {
         // if (unit->focus)
@@ -104,46 +104,46 @@ void ThData::createPotentialWay(Unit *unit)
                 this->exploreNewCellAndAddToOpenArr(unit, unit->cell, cell);
             } });
     }
-    else if (unit->iNeedFreeWay)
-    {
-        // if (unit->focus) {
-        //     console.log("here 2");
-        // }
-        unit->cell->aroundCells.forEach([this, unit, utd](Cell *cell)
-                                        {
-            Unit *gu = cell->groundUnit;
+    // else if (unit->iNeedFreeWay)
+    // {
+    //     // if (unit->focus) {
+    //     //     console.log("here 2");
+    //     // }
+    //     unit->cell->aroundCells.forEach([this, unit, utd](Cell *cell)
+    //                                     {
+    //         Unit *gu = cell->groundUnit;
 
-            if ( 
-                cell->plane != unit->cell->plane ||
-                (gu && 
-                    (
-                        // (gu->way.length &&
-                        //     !gu->needHolTimer &&
-                        //     gu->nextCell
-                        //      &&
-                        //     gu->nextCell != unit->cell) ||
-                        gu->canStandStill ||
-                        gu->canGiveTree ||
-                        gu->iNeedFreeWay ||
-                                (gu->way.length &&
-                            !gu->needHolTimer &&
-                            gu->nextCell
-                             &&
-                            gu->nextCell == unit->cell)
-                        // ||
-                        // (gu->canGiveTree && (!utd.unit || !utd.unit->canGiveTree))
+    //         if ( 
+    //             cell->plane != unit->cell->plane ||
+    //             (gu && 
+    //                 (
+    //                     // (gu->way.length &&
+    //                     //     !gu->needHolTimer &&
+    //                     //     gu->nextCell
+    //                     //      &&
+    //                     //     gu->nextCell != unit->cell) ||
+    //                     gu->canStandStill ||
+    //                     gu->canGiveTree ||
+    //                     gu->iNeedFreeWay ||
+    //                             (gu->way.length &&
+    //                         !gu->needHolTimer &&
+    //                         gu->nextCell
+    //                          &&
+    //                         gu->nextCell == unit->cell)
+    //                     // ||
+    //                     // (gu->canGiveTree && (!utd.unit || !utd.unit->canGiveTree))
 
-                    ) 
-                )
+    //                 ) 
+    //             )
                
-            ) {
-                cell->thwd.getItemPtr(this->num)->explored = this->createCount;
-                cell->thwd.getItemPtr(this->num)->createCountData = this->createCount;
-            } else {
-               // cell->thwd.getItemPtr(this->num)->createCountData = this->createCount;
-                this->exploreNewCellAndAddToOpenArr(unit, unit->cell, cell);
-            } });
-    }
+    //         ) {
+    //             cell->thwd.getItemPtr(this->num)->explored = this->createCount;
+    //             cell->thwd.getItemPtr(this->num)->createCountData = this->createCount;
+    //         } else {
+    //            // cell->thwd.getItemPtr(this->num)->createCountData = this->createCount;
+    //             this->exploreNewCellAndAddToOpenArr(unit, unit->cell, cell);
+    //         } });
+    // }
 
     /////////////////////////////////////////////////////////////////////////// <= special
     // unit->goodNextCellUnit = nullptr;

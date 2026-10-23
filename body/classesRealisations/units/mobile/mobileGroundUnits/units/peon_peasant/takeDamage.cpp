@@ -10,6 +10,7 @@ void Peon_peasant::takeDamage(int damage)
         this->hp -= damage;
         if (this->hp <= 0) {
             this->hp = 0;
+            this->iNeedFreeWay = false;
             this->gf->addToTrupsOnDelete(this);
         }
     }

@@ -36,17 +36,15 @@ bool Peon_peasant::isNeedHoldGoWay()
 
         this->isLoopNextCellUnit = isLoop(this);
 
-        int needHoldIndex = !this->iNeedFreeWay ? 10 : 5;
+        int needHoldIndex = 5;
 
-        // if (td.nextCell) {
-        //     needHoldIndex = 50;
-        // }
+        int holdCount = this->nextCell && this->way.length <= 10 ? 20 : this->wayIndex * needHoldIndex;
 
-        if (this->needHolTimer >= this->wayIndex * needHoldIndex)
+        if (this->needHolTimer >= holdCount)
         {
             this->needHolTimer = 0;
             this->iNeedFreeWay = false;
-
+           // console.log("stop by timer");
             return false;
         }
 

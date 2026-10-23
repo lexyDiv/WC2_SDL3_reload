@@ -51,10 +51,11 @@ bool Peon_peasant::isGetTarget()
         if (this->cell == this->targetData.clicckedCell ||
             // ( this->wayIndex == 1) ||
             (this->wayIndex == 1 && this->way.length &&
-             this->way.getItem(0)->groundUnit))
+             this->way.getItem(0)->groundUnit && (!this->targetData.nextCell || this->personalCaseDeep == 3)))
         {
             this->iNeedFreeWay = false;
             this->isIgetMyTarget = true;
+          //  console.log("get");
             return true;
         }
     }

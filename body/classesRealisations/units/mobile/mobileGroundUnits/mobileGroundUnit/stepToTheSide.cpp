@@ -174,7 +174,7 @@ void MobileGroundUnit::stepToTheSide()
             // this->targetData.clear();
             // if (this->focus)
             // {
-            //     console.log("hard 3");
+               // console.log("hard stop STOPPED");
             // }
         }
     }

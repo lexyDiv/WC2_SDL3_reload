@@ -1,7 +1,7 @@
 #include "Tree.cpp"
 //=>getContactCells
 
-void Tree::create(Cell *cell)
+void Tree::create(Cell *cell, bool isComplite = false, bool isNew = false)
 {
     this->deleteTimer = 50;
     cell->groundUnit = this;
@@ -36,5 +36,7 @@ void Tree::create(Cell *cell)
     this->gf = cell->gf;
     cell->plane->trees.push(this);
     this->cell->game->AllUnitsPtr.push(this);
+    this->cell->game->allTreesPtr.push(this);
+
     this->canGiveTree = true;
 }

@@ -15,6 +15,9 @@ public:
     Image *img_1 = nullptr;
     Image *img_2 = nullptr;
     Image *img_3 = nullptr;
+    Image *img_4 = nullptr;
+    Image *img_5 = nullptr;
+    
     double sight = 1;
     double speed = 1;
     double hpMax = 5;
@@ -43,4 +46,8 @@ public:
     double conorBottom_right = 0;  // degToRad(45);
     double bottom_rightDeltaX = 0; // cos(conorBottom_right) * this->speed;
     double bottom_rightDeltaY = 0; // sin(conorBottom_right) * this->speed;
+
+    ////////////////////////////
+    int level = 0;
+    Array<int> hpByLevel;
 };

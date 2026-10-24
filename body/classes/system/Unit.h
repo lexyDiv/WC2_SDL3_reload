@@ -18,7 +18,7 @@ public:
 
   Cell *cell = nullptr;
   bool focus = false;
-  virtual void create(Cell *) {};
+  virtual void create(Cell *c, bool isComplite = false, bool isNew = false) {};
   virtual void getContactCells();
   virtual void draw() {};
   virtual void drawTrup() {};
@@ -69,6 +69,9 @@ public:
     cell : nullptr
   }; };
 
+
+  virtual void selectGetTargetLambda() {};
+  virtual bool basicActionCheck() { return false; };
   virtual void getCurrentTarget() {};
   virtual void getHandTarget(Cell *cell) {};
   virtual void getCurrentTargetCell() {};
@@ -131,6 +134,7 @@ public:
   int hp = 50;
   int hpMax = 0;
   bool isComplite = false;
+  int level = 0;
   int animGabX = 0;
   int animGabY = 0;
   int animStepX = 0;
@@ -152,9 +156,11 @@ public:
   bool inSave = false;
   double animMashtab = 1;
   bool isActive = false;
+  bool needResetAround = false;
   int animTimer = 0;
   bool isGetMyCell = true;
-  bool inFight = false;
+ // bool inFight = false;
+  Unit *fightTarget = nullptr;
   int createTimer = 0;
   int persNum = 0;
   string profession = "";
@@ -174,7 +180,7 @@ public:
   // int holdWayCount = 0;
   int wayIndex = 0;
   bool isPotentialWayComplite = true;
-  bool isIgetMyTarget = true;
+  bool isIgetMyTarget = false;
   bool iNeedFreeWay = false;
   Order orderOnWay= Order(this);
   TargetData targetData;
@@ -189,12 +195,16 @@ public:
   bool isDelete = false;
   Cell *flipCell = nullptr;
   Cell *nextCell = nullptr;
+  Unit *badNCU = nullptr;
  
 
   function<bool(Cell *c)> isOnGetPotentialWayGetTarget = [](Cell *c)
   { return false; };
 
   function<bool(Cell *c, int iter)> isNewCellOnGetWayValide = [](Cell *c, int iter)
+  { return false; };
+
+    function<bool(Cell *c)> isGetTargetLambda = [](Cell *c)
   { return false; };
 
   int needHolTimer = 0;
@@ -227,6 +237,18 @@ bool canGiveTree = false;
 bool canGiveGold = false;
 bool canTakeWood = false;
 bool canTakeGold = false;
+bool canBuild = false;
+bool canFight = false;
+bool canDestroyFly = false;
+bool canGuard = false;
+bool canDestroyTowers = false;
+bool canCreateBuilders = false;
+bool canCreateFighters = false;
+bool canOgre = false;
+bool canStandStill = false;
+bool canMove = false;
+
+bool onWood = false;
 
 bool inBufer = false;
 

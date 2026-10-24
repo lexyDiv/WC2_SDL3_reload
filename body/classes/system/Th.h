@@ -64,6 +64,7 @@ public:
     void byCl_potentialWayCreate(Unit *unit, Zone *finalZone);
     void getSuccessLambda(Unit *unit);
     Array<Zone *> openArr_z;
+  //  Array<Zone *> bad_z;
 
     Zone *min_F_zone = nullptr;
     Zone *globalMin_H_zone = nullptr;

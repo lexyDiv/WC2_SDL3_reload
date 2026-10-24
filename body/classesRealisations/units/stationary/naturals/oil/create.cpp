@@ -1,7 +1,7 @@
 #include "Oil.cpp"
 //=>draw
 
-void Oil::create(Cell *cell)
+void Oil::create(Cell *cell, bool isComplite = false, bool isNew = false)
 {
    // this->createUnitMenu();
     /////////////////////////////
@@ -10,6 +10,7 @@ void Oil::create(Cell *cell)
     Cell *centerCell = cell->bottom_right;
     this->cell = centerCell;
     this->cell->game->AllUnitsPtr.push(this);
+    this->cell->game->allOilsPtr.push(this);
 
     this->getContactAndExitCells(cell, exitCell, centerCell);
 

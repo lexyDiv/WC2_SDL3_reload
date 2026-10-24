@@ -53,6 +53,7 @@ void MobileGroundUnit::stepToTheSide()
                     cu != this &&
                     // (cu->profession == "" || cu->blockedCheck(cu).isBlocked) &&
                     // ncgu->profession == "" &&
+                    !cu->focus &&
                     !cu->isActive &&
                     !cu->inSave &&
                     cu->type == "life" &&
@@ -90,24 +91,15 @@ void MobileGroundUnit::stepToTheSide()
       //  if (valU->profession != "")
       //  {
            // valU->orderOnWay.go(valU->profession, 200);
-            // if (this->focus) {
-            //     console.log("in step 1");
-            // }
-       // }
-      //  else
-      //  {
+
             valU->orderOnWay.go(validCells.getItem(rand), 3);
-            //             if (this->focus) {
-            //     console.log("in step 2");
-            // }
-       // }
-        // valU->orderOnWay.go(validCells.getItem(rand), 3);
         valU->isActive = true;
     }
     //////////////////////////////////////////////////////////////////////////////////// => HARD
     else if (this->blockedData.isBlocked && this->blockedData.type == 'f' 
-        && this->orderOnWay.specialFreeG0 
-        && this->needHolTimer)
+       // && this->orderOnWay.specialFreeG0 
+       // && this->needHolTimer
+    )
     {
         // this->iNeedFreeWay = false;
 
@@ -124,6 +116,7 @@ void MobileGroundUnit::stepToTheSide()
    
                 if (cu && c->plane == this->cell->plane) {
                 Unit *tu = cu->type == "life" &&
+                !cu->focus &&
                  !cu->isActive &&
                  !cu->inSave &&
                  cu->cell
@@ -160,21 +153,8 @@ void MobileGroundUnit::stepToTheSide()
                 Cell *pc = validU->cell->panicCells.getItem(i);
                 if (!pc->groundUnit)
                 {
-                   // if (validU->profession != "")
-                  //  {
-                      //  validU->orderOnWay.go(validU->profession, 200);
-                        //                         if (this->focus) {
-                        //     console.log("in step 3");
-                        // }
-                   // }
-                   // else
-                    //{
+ 
                         validU->orderOnWay.go(pc, 3);
-                        //                         if (this->focus) {
-                        //     console.log("in step 4");
-                        // }
-                   // }
-                    // validU->orderOnWay.go(pc, 3);
                     validU->isActive = true;
                     break;
                 }
@@ -188,21 +168,25 @@ void MobileGroundUnit::stepToTheSide()
         {
             this->targetData.specialFreeG0 = false;
             this->iNeedFreeWay = false;
-            this->orderOnWay.go(this->cell);
+            this->way.clear();
+            this->wayIndex = 0;
+          //  this->orderOnWay.go(this->cell);
             // this->targetData.clear();
             // if (this->focus)
             // {
-            //     console.log("hard 3");
+               // console.log("hard stop STOPPED");
             // }
         }
     }
-    else if (!this->needHolTimer && !this->targetData.specialFreeG0)
-    {
-        this->iNeedFreeWay = false;
-        this->orderOnWay.go(this->cell);
+    // else if (!this->needHolTimer && !this->targetData.specialFreeG0)
+    // {
+    //     this->iNeedFreeWay = false;
+    //         this->way.clear();
+    //         this->wayIndex = 0;
+    //    // this->orderOnWay.go(this->cell);
 
-            //             if (this->focus) {
-            //     console.log("hard final");
-            // }
-    }
+    //         //             if (this->focus) {
+    //         //     console.log("hard final");
+    //         // }
+    // }
 }

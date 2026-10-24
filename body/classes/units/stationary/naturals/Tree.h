@@ -6,7 +6,7 @@ class Tree : public Unit
 public:
     Tree() {};
     ~Tree() {};
-    void create(Cell *cell) override;
+    void create(Cell *cell, bool isComplite, bool isNew) override;
     void getContactCells() override;
     void draw() override;
     void stressControl() override;

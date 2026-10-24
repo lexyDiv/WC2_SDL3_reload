@@ -3,14 +3,22 @@
 
 void ThData::createPotentialWay(Unit *unit)
 {
+
+    // if (unit->focus)
+    // {
+    //     console.log("free = ", unit->iNeedFreeWay);
+    // }
+
     TargetData &utd = unit->targetData;
+    Td_way_data *td_way_data = unit->cell->thwd.length ? unit->cell->thwd.getItemPtr(this->num) : nullptr;
+    bool isTry = false;
 
     if (utd.unit && utd.unit->type == "building" &&
         !unit->isIexplored && !utd.nextCell)
     {
         unit->iNeedFreeWay = utd.unit->isBlockedBuilding(unit, this);
         // utd.saveTargetIsBlocked = unit->iNeedFreeWay;
-        //console.log("free = ", unit->iNeedFreeWay);
+        // console.log("free = ", unit->iNeedFreeWay);
     }
 
     unit->way.clear();
@@ -26,8 +34,6 @@ void ThData::createPotentialWay(Unit *unit)
     this->iter = 0;
 
     // bool tryChecked = false;
-
-    Td_way_data *td_way_data = unit->cell->thwd.length ? unit->cell->thwd.getItemPtr(this->num) : nullptr;
 
     this->createCount += 0.001;
     if (this->createCount >= 100000000)
@@ -50,60 +56,39 @@ void ThData::createPotentialWay(Unit *unit)
     //     console.log("loop = " + to_string(unit->isLoopNextCellUnit));
     //  }
 
-    if (                                                                //! unit->iNeedFreeWay &&
-        !(unit->blockedData.isBlocked && unit->blockedData.type == 'f') //&&
-                                                                        // !(utd.nextCell && unit->isLoopNextCellUnit)
+    /////////////////////////////////////////////////////////////////////////// => special
+
+    if (  
+        unit->badNCU ||
+        unit->needResetAround                                                              //! unit->iNeedFreeWay &&
+        //!(unit->blockedData.isBlocked && unit->blockedData.type == 'f') //&&
+      //  && !unit->iNeedFreeWay                                          // !(utd.nextCell && unit->isLoopNextCellUnit)
     )
     {
+        // if (unit->focus)
+        // {
+        //     console.log("here 1");
+        // }
+        
         unit->cell->aroundCells.forEach([this, unit, utd](Cell *cell)
                                         {
             Unit *gu = cell->groundUnit;
 
-
-            // if (unit->focus && utd.nextCell && gu) {
-            //     console.log("utd.unit = ", utd.unit);
-            //     console.log("gu->targetData.unit = ", gu->targetData.unit);
-            //     console.log("targetData.unit == utd.unit = ", gu->targetData.unit == utd.unit);
-            //     console.log("gu->way.length = ", gu->way.length);
-            //     console.log("!gu->needHolTimer = ", !gu->needHolTimer);
-            //     console.log("gu->nextCell = ", gu->nextCell);
-            //     console.log("gu->nextCell != unit->cell = ", gu->nextCell != unit->cell);
-            //     console.log("all = ", (!utd.nextCell || 
-            //             !(
-            //                 utd.unit && 
-            //                 gu->targetData.unit &&
-            //                 gu->targetData.unit == utd.unit &&
-            //                 gu->way.length &&
-            //                 !gu->needHolTimer &&
-            //                 gu->nextCell &&
-            //                 gu->nextCell != unit->cell
-            //             )
-            //         ));
-            //     console.log("----------------------------------------------");
-            // }
-            
-
             if ( 
-                
-                
                 cell->plane != unit->cell->plane ||
-                (
-                    (gu && gu != utd.unit) &&
-                    (utd.clicckedCell != cell) &&
-                    !(unit->profession == "w" && gu->name == "tree" && !gu->lesorub && gu->hp) &&
-                    gu->orderOnWay.isComplite &&
-                    (!utd.nextCell || 
-                        !(
-                            utd.unit && 
-                            gu->targetData.unit &&
-                            gu->targetData.unit == utd.unit &&
-                            gu->way.length &&
-                            !gu->needHolTimer &&
-                            gu->nextCell &&
-                            gu->nextCell != unit->cell
-                        )
+                (gu &&
+                    (    unit->needResetAround ||
+                        !gu->way.length ||
+                     !gu->nextCell ||
+                     gu == unit->badNCU ||
+                     !gu->targetData.unit ||
+                     (gu->targetData.unit != unit->targetData.unit)
                     )
-                ) 
+                //  (gu->canStandStill ||
+                //   gu->canGiveTree ||
+                //   (!gu->isActive && !unit->iNeedFreeWay) ||
+                //   gu == unit->badNCU)
+                )
                
             ) {
                 cell->thwd.getItemPtr(this->num)->explored = this->createCount;
@@ -112,9 +97,54 @@ void ThData::createPotentialWay(Unit *unit)
                // cell->thwd.getItemPtr(this->num)->createCountData = this->createCount;
                 this->exploreNewCellAndAddToOpenArr(unit, unit->cell, cell);
             } });
+
+            unit->badNCU = nullptr;
+            unit->needResetAround = false;
     }
-   // unit->goodNextCellUnit = nullptr;
-// (unit->goodNextCellUnit && unit->goodNextCellUnit != gu)
+    // else if (unit->iNeedFreeWay)
+    // {
+    //     // if (unit->focus) {
+    //     //     console.log("here 2");
+    //     // }
+    //     unit->cell->aroundCells.forEach([this, unit, utd](Cell *cell)
+    //                                     {
+    //         Unit *gu = cell->groundUnit;
+
+    //         if ( 
+    //             cell->plane != unit->cell->plane ||
+    //             (gu && 
+    //                 (
+    //                     // (gu->way.length &&
+    //                     //     !gu->needHolTimer &&
+    //                     //     gu->nextCell
+    //                     //      &&
+    //                     //     gu->nextCell != unit->cell) ||
+    //                     gu->canStandStill ||
+    //                     gu->canGiveTree ||
+    //                     gu->iNeedFreeWay ||
+    //                             (gu->way.length &&
+    //                         !gu->needHolTimer &&
+    //                         gu->nextCell
+    //                          &&
+    //                         gu->nextCell == unit->cell)
+    //                     // ||
+    //                     // (gu->canGiveTree && (!utd.unit || !utd.unit->canGiveTree))
+
+    //                 ) 
+    //             )
+               
+    //         ) {
+    //             cell->thwd.getItemPtr(this->num)->explored = this->createCount;
+    //             cell->thwd.getItemPtr(this->num)->createCountData = this->createCount;
+    //         } else {
+    //            // cell->thwd.getItemPtr(this->num)->createCountData = this->createCount;
+    //             this->exploreNewCellAndAddToOpenArr(unit, unit->cell, cell);
+    //         } });
+    // }
+
+    /////////////////////////////////////////////////////////////////////////// <= special
+    // unit->goodNextCellUnit = nullptr;
+    // (unit->goodNextCellUnit && unit->goodNextCellUnit != gu)
     // this->openArr.forEach([this](Cell *c){
     //     console.log("F = ", c->thwd.getItemPtr(this->num)->F);
     // });
@@ -162,6 +192,29 @@ void ThData::createPotentialWay(Unit *unit)
                 this->globalMin_H_cell = this->min_F_cell;
             }
         }
+        else if (unit->personalCaseDeep != 3 &&
+                 (!this->openArr.length || iter == currentDeep) &&
+                 // iter < currentDeep &&
+                 !isTry && this->globalMin_H_cell)
+        {
+            // console.log("new = ", iter);
+            currentDeep += 10;
+            isTry = true;
+            this->min_F_cell = this->globalMin_H_cell;
+            this->min_F_cell->thwd.getItemPtr(this->num)->explored = 0;
+            this->min_F_cell->aroundCells.forEach([unit, this](Cell *c)
+                                                  {
+                if (!unit->isNextCellFreeToGoWay(c))
+                {
+                    c->thwd.getItemPtr(this->num)->explored = 0;
+                   // this->openArr.push(c);
+                } });
+
+            unit->iNeedFreeWay = true;
+
+            // this->openArr.clear();
+            this->openArr.push(this->min_F_cell);
+        }
         else
         {
             if (!this->globalMin_H_cell)
@@ -169,24 +222,21 @@ void ThData::createPotentialWay(Unit *unit)
             }
             else
             {
-
+                // console.log("create hard = ", iter);
                 this->potentialWayCreate(unit, this->globalMin_H_cell);
                 // console.log("deep");
 
                 if (
                     unit->personalCaseDeep != 3 &&
-                    (
-                        (utd.nextCell && iter < shortDeep) ||
-                        (iter <= this->deep) ||
-                        (utd.unit && utd.unit->type == "building")
-                    )
-                   )
+                    ((utd.nextCell && iter < shortDeep) ||
+                     (iter <= this->deep) //||
+                                          // (utd.unit && utd.unit->type == "building")
+                     ))
                 {
-                   // if (!unit->iNeedFreeWay) {
-                        unit->frashWayCheckNeed = true;
-                   // }
+                    // if (!unit->iNeedFreeWay) {
+                    /// unit->frashWayCheckNeed = true;
+                    // }
                     unit->iNeedFreeWay = true; /////////////// <<<<<<<<<<<<<<<<<<<<<<<<<<<< ON 3/3
-                    
                 }
 
                 if (currentDeep == shortDeep)

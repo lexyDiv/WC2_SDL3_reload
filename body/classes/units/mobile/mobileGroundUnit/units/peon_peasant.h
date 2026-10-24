@@ -7,7 +7,7 @@ public:
     Peon_peasant(Fraction *fraction);
     ~Peon_peasant(){};
      bool isActiveCheck() override;
-     void create(Cell *cell) override;
+     void create(Cell *cell, bool isComplite, bool isNew) override;
      void draw() override;
     // void getHandTarget(Cell *cell) override;
     // void getCurrentTargetCell() override;
@@ -43,6 +43,10 @@ public:
 
      void orderOnWayControl() override;
      bool isNeedHoldGoWay() override;
+
+void selectGetTargetLambda() override;
+bool basicActionCheck() override;
+
     //  void goWayAnimation() override;
     // void goWay() override;
     // bool isNextCellFreeToGoWay(ProtoObj *nextCell) override;

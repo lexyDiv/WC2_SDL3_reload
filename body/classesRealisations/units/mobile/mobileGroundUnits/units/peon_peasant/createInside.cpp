@@ -31,7 +31,15 @@ void Peon_peasant::createInside(Cell *c, bool isNew = false)
     this->inOutTimer = 0;
     this->inSave = true;
     this->animMashtab = this->startAnimMashtab;
-    this->fraction->AllLifeUnits.push(this);
+    this->fraction->allUnits.push(this);
+    //this->fraction->AllLifeUnits.push(this);
+
+        canGiveTree = false;
+        canGiveGold = false;
+        canTakeWood = false;
+        canTakeGold = false;
+        canBuild = true;
+        canMove = true;
 
     if (isNew)
     {
@@ -41,16 +49,12 @@ void Peon_peasant::createInside(Cell *c, bool isNew = false)
     else
     {
 
-        canGiveTree = false;
-        canGiveGold = false;
-        canTakeWood = false;
-        canTakeGold = false;
-
+        this->thwd.clear();
         ////////////////////////////// reset
         this->isPotentialWayComplite = true;
         this->orderOnWay.isComplite = true;
         this->isGetMyCell = true;
-        this->inFight = false;
+        this->fightTarget = nullptr;
         this->outHoldTimer = 0;
         this->way.clear();
         this->iNeedFreeWay = false;
@@ -59,5 +63,6 @@ void Peon_peasant::createInside(Cell *c, bool isNew = false)
         this->deleteTimer = 3000;
         this->alpha = 255;
         this->inBufer = false;
+        this->isIgetMyTarget = false;
     }
 }

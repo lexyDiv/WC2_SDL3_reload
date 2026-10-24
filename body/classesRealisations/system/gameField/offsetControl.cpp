@@ -118,8 +118,12 @@ void GameField::offsetControl()
                 }
                 tc->groundUnit->focus = true;
                 this->focusUnit = tc->groundUnit;
-                 this->focusUnit->takeDamage(1000);
-
+               // console.log("prof = " + this->focusUnit->profession + " n = " + to_string(this->focusUnit->persNum));
+                // if (focusUnit->type == "life") {
+                //     console.clear();
+                // }
+                // this->focusUnit->takeDamage(1000);
+               // console.log(this->focusUnit->profession);
             }
             else
             {

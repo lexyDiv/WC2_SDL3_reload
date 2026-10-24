@@ -12,13 +12,12 @@ void TownHall::activeProg()
         return;
     }
 
-    // if (!this->outClients.length)
-    // {
-    //     if (this->fraction->peons.length < 10000) // 6000 crash 3000
-    //     {
-    //         this->createTimer = 1;
-    //     }
-    // }
+   if (!this->isComplite) {
+
+   // console.log("here");
+    return;
+   }
+
 
     if (this->createTimer)
     {
@@ -52,7 +51,7 @@ void TownHall::activeProg()
             int rand = intRand(0, 10);
             peon->profession = rand >= 1 ? "w" : "g";
 
-            if (this->fraction->peons.length < 1) // 6000 crash 3000
+            if (this->fraction->peons.length < 10000) // 6000 crash 3000
             {
                 this->createTimer = 1;
             }
@@ -91,10 +90,10 @@ void TownHall::activeProg()
 
                                            peon->inOutTimer = 0;
                                            peon->animMashtab = peon->inOutMashtabMin;
-                                           if (this->fraction->fTownHoll.level_3_townHollsCount) {
+                                           if (this->fraction->fTownHoll.townHollsByLevel.getItem(2).length) {
                                             this->fraction->gold = peon->gold ? this->fraction->gold + 150 : this->fraction->gold;
                                             this->fraction->wood = peon->wood ? this->fraction->wood + 150 : this->fraction->wood;
-                                           } else if (this->fraction->fTownHoll.level_2_townHollsCount) {
+                                           } else if (this->fraction->fTownHoll.townHollsByLevel.getItem(1).length) {
                                             this->fraction->gold = peon->gold ? this->fraction->gold + 125 : this->fraction->gold;
                                             this->fraction->wood = peon->wood ? this->fraction->wood + 125 : this->fraction->wood;
                                            } else {

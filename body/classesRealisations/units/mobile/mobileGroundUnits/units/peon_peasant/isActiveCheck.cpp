@@ -13,7 +13,7 @@ bool Peon_peasant::isActiveCheck()
          !this->isPotentialWayComplite || // 0 <=
          !this->orderOnWay.isComplite ||  // 0
          !this->isGetMyCell ||            // 0
-         this->inFight ||                 // 0
+         this->fightTarget ||                 // 0
          this->outHoldTimer ||            // 0
          this->way.length                 // 0
          || this->iNeedFreeWay
@@ -25,13 +25,15 @@ bool Peon_peasant::isActiveCheck()
         return true;
     }
     this->isActive = false;
-    if (
-       // this->hp <= 0 || 
-        !this->isTargetObjValide() || !this->targetData.unit) {
-        this->targetData.clear();
-        // if (this->focus) {
-        //     console.log("clear in activeCheck");
-        // }
-    }
+    // if (
+    //    // this->hp <= 0 || 
+    //     !this->isTargetObjValide() 
+    //    // || (!this->targetData.unit)
+    // ) {
+    //     this->targetData.clear();
+    //     // if (this->focus) {
+    //     //     console.log("clear in activeCheck");
+    //     // }
+    // }
     return false;
 };

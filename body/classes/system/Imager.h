@@ -48,14 +48,33 @@ public:
     Image *goldIcon = new Image("images/gold.png");
     Image *oilIcon = new Image("images/oil.png");
     Image *woodIcon = new Image("images/wood.png");
+
+///////////////////////////////////////////////////////////////////////////////  => red orcs
     Image *peonRed = new Image("images/images/peon_new.png");
     Image *peonWithWoodRed = new Image("images/images/peon_with_wood.png");
     Image *peonWithGoldRed = new Image("images/images/peon_with_gold.png");
+    ////////////////////////////////////////////////////////////// => red orcs builds
     Image *townHallOrcRed = new Image("images/orcs/red/buildings/great_hall.png");
+    Image *strongholdOrcRed = new Image("images/images/orc/orc/buildings/summer/stronghold.png");
+    Image *fortressOrcRed = new Image("images/images/orc/orc/buildings/summer/fortress.png");
+    ////////////////////////////////////////////////////////////// <= red orcs builds
+    Image *land_construction_site = new Image("images/images/neutral/buildings/land_construction_site.png");
+    
+
+///////////////////////////////////////////////////////////////////////////////  <= red orcs    
 
     Imager() {};
     ~Imager()
     {
+       delete land_construction_site;
+       land_construction_site = nullptr;
+
+       delete strongholdOrcRed;
+       strongholdOrcRed = nullptr;
+        
+       delete fortressOrcRed;
+       fortressOrcRed = nullptr;
+
         delete this->townHallOrcRed;
         this->townHallOrcRed = nullptr;
 

@@ -1,5 +1,5 @@
 #include "takeDamage.cpp"
-//=>out
+//=>selectGetTargetLambda
 
 void Peon_peasant::drawTrup()
 {

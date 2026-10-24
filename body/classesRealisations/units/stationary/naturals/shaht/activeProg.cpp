@@ -5,12 +5,13 @@ void Shaht::activeProg()
 {
 
 
-
     this->isActive = this->isActiveCheck();
     if (!this->isActive)
     {
         return;
     }
+
+
 
     this->potentialClients.forEach([this](Unit *peon)
                                    {

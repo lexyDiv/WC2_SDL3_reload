@@ -1,7 +1,7 @@
 #include "Shaht.cpp"
 //=>draw
 
-void Shaht::create(Cell *cell)
+void Shaht::create(Cell *cell, bool isComplite = false, bool isNew = false)
 {
 
    // this->createUnitMenu();
@@ -20,6 +20,7 @@ void Shaht::create(Cell *cell)
     Cell *centerCell = cell->bottom_right;
     this->cell = centerCell;
     this->cell->game->AllUnitsPtr.push(this);
+    this->cell->game->allShahtsPtr.push(this);
 
     this->getContactAndExitCells(cell, exitCell, centerCell);
     this->getWellComeCells();
@@ -44,4 +45,8 @@ void Shaht::create(Cell *cell)
     this->hp = 1000;
     this->isComplite = true;
     cell->plane->shahts.push(this);
+
+
+    this->canGiveGold = true;
+    canStandStill = true;
 };

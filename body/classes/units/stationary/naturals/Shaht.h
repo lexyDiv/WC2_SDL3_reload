@@ -9,7 +9,7 @@ public:
 
   
 
-    void create(Cell *cell) override;
+    void create(Cell *cell, bool isComplite, bool isNew) override;
     void draw() override;
   //  void createUnitMenu() override;
    // bool isBlockedd(Unit *unit) override;

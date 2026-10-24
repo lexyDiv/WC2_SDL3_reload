@@ -21,7 +21,7 @@ void TownHall::draw()
       //   ctx.FillRect(this->tt->x + drawDeltaX, this->tt->y + drawDeltaY, this->cell->gabX, this->cell->gabY, "green");
       // }            
 
-    // this->myCells.forEach([drawDeltaX, drawDeltaY](ProtoObj *cell)
+    // this->myCells.forEach([drawDeltaX, drawDeltaY](Cell *cell)
     //                       { ctx.StrokeRect(
     //                             cell->x + drawDeltaX,
     //                             cell->y + drawDeltaY,

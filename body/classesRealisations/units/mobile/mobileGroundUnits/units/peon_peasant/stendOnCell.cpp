@@ -14,6 +14,7 @@ void Peon_peasant::stendOnCell()
     this->animTimer = 0;
     this->animY = 0;
     this->needHolTimer = 0;
+    this->targetData.isNeedMagistralFinish = false;
 
     ///////////////////////////////
 

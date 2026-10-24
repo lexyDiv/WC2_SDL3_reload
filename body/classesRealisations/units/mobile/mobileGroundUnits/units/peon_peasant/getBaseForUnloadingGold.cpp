@@ -3,11 +3,22 @@
 
 Unit *Peon_peasant::getBaseForUnloadingGold()
 {
-    
-    if (this->fraction->fTownHoll.townHolls.length)
+
+    Array<Unit *> validTH;
+  
+    this->fraction->fTownHoll.townHollsByLevel.forEach([&validTH, this](Array<Unit *> &thblarr)
+                                                       { thblarr.forEach([&validTH, this](Unit *thbl)
+                                                                         {
+            if (thbl->hp > 0 &&
+                thbl->cell->plane == this->cell->plane) {
+                    validTH.push(thbl);
+                } }); });
+
+
+    if (validTH.length)
     {
-        MinData md = this->fraction->fTownHoll.townHolls.getMinDataU([this](Unit *item)
-                                                                    {
+        MinData md = validTH.getMinDataU([this](Unit *item)
+                                         {
                                                         PointF pointThis = {x : this->cell->x, y : this->cell->y};
                                                         PointF pointLM = {x : item->cell->x, y : item->cell->y};
                                                         Delta delta = getDeltas(&pointThis, &pointLM);

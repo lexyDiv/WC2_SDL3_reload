@@ -80,9 +80,9 @@ void ThData::byCl_createPW(Unit *unit)
         (!unit->cell->zone->contactZones.length)
        )
     {
-        if (unit->focus && utd.unit && utd.unit->name == "tree") {
-            console.log("return by tree = ", isTreeNeare(unit, utd));
-        }
+        // if (unit->focus && utd.unit && utd.unit->name == "tree") {
+        //     console.log("return by tree = ", isTreeNeare(unit, utd));
+        // }
         return;
     }
 
@@ -153,7 +153,7 @@ void ThData::byCl_createPW(Unit *unit)
            // console.log("this->min_F_zone H = ", this->min_F_zone->thwd.getItemPtr(this->num)->H);
             if (this->min_F_zone &&
                 (this->min_F_zone->thwd.getItemPtr(this->num)->H) &&
-                (!this->globalMin_H_zone || this->globalMin_H_zone->thwd.getItemPtr(this->num)->H > this->min_F_zone->thwd.getItemPtr(this->num)->H)
+                (!this->globalMin_H_zone || this->globalMin_H_zone->thwd.getItemPtr(this->num)->H >= this->min_F_zone->thwd.getItemPtr(this->num)->H)
                )
             {
                // console.log("here = ", this->min_F_zone->thwd.getItemPtr(this->num)->H);
@@ -167,8 +167,10 @@ void ThData::byCl_createPW(Unit *unit)
             }
             else
             {
-               // console.log("deep");
+                //console.log("deep");
                 this->byCl_potentialWayCreate(unit, this->globalMin_H_zone);
+                unit->targetData.unit = nullptr;
+                unit->targetData.clicckedCell = this->globalMin_H_zone->cell;
             }
             return;
         }

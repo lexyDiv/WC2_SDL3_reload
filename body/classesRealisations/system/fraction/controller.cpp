@@ -11,15 +11,55 @@ void Fraction::controller()
     // }
 
     this->peons.clear();
+    this->allBuildings.clear();
+    this->peonsOnGold.clear();
+    this->peonsOnWood.clear();
+    this->AllLifeUnits.clear();
+    this->damagedAndConstructionBuildings.clear();
+    this->fTownHoll.townHollsByLevel.forEach([](Array<Unit *> &thls){
+        thls.clear();
+    });
 
-    this->AllLifeUnits.filterSelf([this](Unit *u)
-                                  {
-                    if (!u->isDelete) {
-                        this->peons.push(u);
-                return false;
-            }
+    this->allUnits.filterSelf([this](Unit *u)
+                              {
+                if (u->hp > 0) {
+                    if (u->canMove) 
+                    {
+                       if (u->canBuild) {
+                            this->peons.push(u);
+                            if (u->onWood) 
+                                    {
+                                       this->peonsOnWood.push(u);
+                                    } 
+                                    else 
+                                    {
+                                       this->peonsOnGold.push(u);
+                                    }
+                       }
+                       this->AllLifeUnits.push(u);
+                    } 
+                    else if (u->canStandStill) {
+                        if (u->isComplite)
+                        {
+                           if (u->canTakeGold) 
+                           {
+                              this->fTownHoll.townHollsByLevel.getItemPtr(u->level)->push(u);
+                           }
+                        }
+                        else 
+                        {
+                           this->damagedAndConstructionBuildings.push(u);
+                        }
+                        
+                        if (u->hp < u->hpMax) {
+                            this->damagedAndConstructionBuildings.push(u);
+                        }
+                        this->allBuildings.push(u);
+                    }
+                    return false;
+                }                    
+
             return true; });
-
 
     // console.log("length = ", this->AllLifeUnits.length);
 
@@ -31,7 +71,6 @@ void Fraction::controller()
         // int current = 0;
         // Array<Unit *> onHard;
         // bool isOne = false;
-
 
         // /////////////////////////// => test kill
         // if (this->peons.length)
@@ -51,7 +90,6 @@ void Fraction::controller()
             Unit *peon = this->peons.getItem(i);
             bool isBlocked = peon->blockedCheck(peon).isBlocked;
 
-
             // if (peon->profession != "" && !this->hardCount)
             // {
             //     onHard.push(peon);
@@ -64,6 +102,9 @@ void Fraction::controller()
                 peon->orderOnWay.isComplite &&
                 !isBlocked)
             {
+                // if (peon->focus) {
+                //     console.log("go controller");
+                // }
                 activeCount++;
                 peon->orderOnWay.go(peon->profession, 0, true);
                 peon->isActive = true;
@@ -74,109 +115,21 @@ void Fraction::controller()
                 break;
             }
         }
-
-
-
-        // ////////////////////////
-        // if (onHard.length)
-        // {
-        //     int rand = intRand(0, onHard.length);
-        //     Unit *randUnit = onHard.getItem(rand);
-        //     BlockedData bd = randUnit->blockedCheck(randUnit);
-        //     if (bd.isBlocked && bd.type == 'f' &&
-        //         !randUnit->isActive &&
-        //         randUnit->profession != "" &&
-        //         !randUnit->inSave)
-        //     {
-        //         randUnit->orderOnWay.go(randUnit->profession, 0, true);
-        //         randUnit->isActive = true;
-        //         // console.log("hard go");
-        //     }
-        // }
-        // //////////////////////////////////////
-
-
-
-        // for (int i = this->hold; i < this->peons.length; i++)
-        // {
-
-        //     this->hold = i;
-        //     Unit *peon = this->peons.getItem(i);
-        //     bool isBlocked = peon->blockedCheck(peon).isBlocked;
-
-        //     // if (peon->profession != "" && !this->hardCount)
-        //     // {
-        //     //     onHard.push(peon);
-        //     // }
-
-        //      if(peon->focus) {
-        //         console.log("here");
-        //      }
-
-        //     if (peon->hp &&
-        //         !peon->inSave &&
-        //         !peon->isActive &&
-        //         peon->profession != "" &&
-        //         peon->orderOnWay.isComplite &&
-        //         !isBlocked //! peon->isBlockedd_full(peon)
-        //     )
-        //     {
-        //         // console.log("here");
-        //         // if (peon->focus) {
-        //         //     console.log("go in fraction");
-        //         // }
-        //         current++;
-        //         peon->orderOnWay.go(peon->profession, 0, true);
-        //         peon->isActive = true;
-        //     }
-        //     if (current == ordinar)
-        //     {
-        //         break;
-        //     }
-        // };
-
-        //////////////////////////
-        // if (onHard.length)
-        // {
-        //     int rand = intRand(0, onHard.length);
-        //     Unit *randUnit = onHard.getItem(rand);
-        //     BlockedData bd = randUnit->blockedCheck(randUnit);
-        //     if (bd.isBlocked && bd.type == 'f' &&
-        //         !randUnit->isActive &&
-        //         randUnit->profession != "" &&
-        //         !randUnit->inSave)
-        //     {
-        //         randUnit->orderOnWay.go(randUnit->profession, 0, true);
-        //         randUnit->isActive = true;
-        //         // console.log("hard go");
-        //     }
-        // }
-        ////////////////////////////////////////
-
-        //     if (this->hold >= this->peons.length - 1)
-        //     {
-        //         // console.log("obnul");
-        //         this->peons.filterSelf([](Unit *peon)
-        //                                {
-        //         if (!peon->isDelete) {
-        //             return false;
-        //         }
-        //         return true; });
-        //         this->hold = 0;
-        //        // console.log("peons length = ", this->peons.length);
-        //     }
     }
 
-    this->allBuildings.filterSelf([this](Unit *u)
-                                  {
-                            if (!u->isDelete) {
-                return false;
-            }
-            return true; });
+    // this->allBuildings.filterSelf([this](Unit *u)
+    //                               {
+    //                         if (!u->isDelete) {
+    //             return false;
+    //         }
+    //         return true; });
 
     this->allBuildings.forEach([](Unit *building)
                                {
             if (building->isActive) {
                 building->activeProg();
             } });
+
+    // console.log("peons = ", this->peons.length);
+    // console.log("buildings = ", this->allBuildings.length);
 };

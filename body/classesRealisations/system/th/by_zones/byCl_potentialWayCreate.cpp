@@ -15,7 +15,7 @@ void ThData::byCl_potentialWayCreate(Unit *unit, Zone *finalZone)
   }
    else if (td.unit->canGiveTree) {
        // td.magistral.push(td.unit->cell);
-       td.magistral.push(nextZone->cell);
+       td.magistral.push(td.unit->cell);
   }
 
   while (true)
@@ -66,17 +66,24 @@ void ThData::byCl_potentialWayCreate(Unit *unit, Zone *finalZone)
     td.magistral.clear();
   }
 
-  if (unit->focus)
-  {
-    console.log("in magistral ", td.magistral.length);
-    console.log("zone way iter = ", iter);
-    console.log("-----------------------------------------------------");
-  }
+  // if (unit->focus) {
+  //     console.log("---------------------MAGISTRAL--------------------------");  
+  //      console.log("magistral length = ", td.magistral.length);
+  //   console.log("iter = ", iter);
+
+  // }
+
+  // if (unit->focus)
+  // {
+  //   console.log("in magistral ", td.magistral.length);
+  //   console.log("zone way iter = ", iter);
+  //   console.log("-----------------------------------------------------");
+  // }
 
   // unit->way.push(unit->cell->aroundCells.getItem(0));
   //  console.log("iter = ", iter);
 
-  // console.log("zone way length = ", unit->targetData.magistral.length);
+ //  console.log("zone way length = ", unit->targetData.magistral.length);
   // console.log("zone way iter = ", iter);
   //    console.log("------------------------------------------------------");
 }

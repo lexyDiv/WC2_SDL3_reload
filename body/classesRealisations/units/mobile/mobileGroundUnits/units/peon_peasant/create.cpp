@@ -2,13 +2,12 @@
 //=>draw
 
 
-void Peon_peasant::create(Cell *cell)
+void Peon_peasant::create(Cell *cell, bool isComplite = false, bool isNew = false)
 {
 
   //this->unitMenu = unitMenuPack.peon;
 
   this->cell = cell;
- // this->cell->game->AllUnitsPtr.push(this);
   this->myCells.push(cell);
   this->cell->groundUnit = this;
   this->gf = cell->gf;
@@ -35,9 +34,12 @@ void Peon_peasant::create(Cell *cell)
     canGiveGold = false;
     canTakeWood = false;
     canTakeGold = false;
+    canBuild = true;
+    canMove = true;
 
     this->deleteTimer = 3000;
 
     this->game->addToAllUnitsPtr(this);
+    this->fraction->allUnits.push(this);
    
 };

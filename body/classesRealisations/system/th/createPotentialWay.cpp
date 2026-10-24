@@ -59,7 +59,8 @@ void ThData::createPotentialWay(Unit *unit)
     /////////////////////////////////////////////////////////////////////////// => special
 
     if (  
-        unit->badNCU                                                              //! unit->iNeedFreeWay &&
+        unit->badNCU ||
+        unit->needResetAround                                                              //! unit->iNeedFreeWay &&
         //!(unit->blockedData.isBlocked && unit->blockedData.type == 'f') //&&
       //  && !unit->iNeedFreeWay                                          // !(utd.nextCell && unit->isLoopNextCellUnit)
     )
@@ -76,9 +77,17 @@ void ThData::createPotentialWay(Unit *unit)
             if ( 
                 cell->plane != unit->cell->plane ||
                 (gu &&
-                 (gu->canStandStill ||
-                  gu->canGiveTree ||
-                  gu == unit->badNCU)
+                    (    unit->needResetAround ||
+                        !gu->way.length ||
+                     !gu->nextCell ||
+                     gu == unit->badNCU ||
+                     !gu->targetData.unit ||
+                     (gu->targetData.unit != unit->targetData.unit)
+                    )
+                //  (gu->canStandStill ||
+                //   gu->canGiveTree ||
+                //   (!gu->isActive && !unit->iNeedFreeWay) ||
+                //   gu == unit->badNCU)
                 )
                
             ) {
@@ -90,6 +99,7 @@ void ThData::createPotentialWay(Unit *unit)
             } });
 
             unit->badNCU = nullptr;
+            unit->needResetAround = false;
     }
     // else if (unit->iNeedFreeWay)
     // {

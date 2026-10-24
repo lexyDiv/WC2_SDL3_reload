@@ -156,6 +156,7 @@ public:
   bool inSave = false;
   double animMashtab = 1;
   bool isActive = false;
+  bool needResetAround = false;
   int animTimer = 0;
   bool isGetMyCell = true;
  // bool inFight = false;

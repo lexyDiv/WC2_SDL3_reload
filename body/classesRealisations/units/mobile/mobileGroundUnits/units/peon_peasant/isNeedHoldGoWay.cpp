@@ -46,6 +46,7 @@ bool Peon_peasant::isNeedHoldGoWay()
             this->iNeedFreeWay = false;
             this->badNCU = nextCell->groundUnit;
            // console.log("stop by timer");
+           this->needResetAround = true;
             return false;
         }
 

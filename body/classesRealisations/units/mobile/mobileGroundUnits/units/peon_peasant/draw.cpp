@@ -23,10 +23,10 @@ void Peon_peasant::draw()
           this->drawGabaritX, this->drawGabaritY);
 
      // ctx.DrawText(this->x + drawDeltaX, this->y + drawDeltaY + 10, 15, to_string(this->persNum));
-      if (this->iNeedFreeWay)
-      {
-        ctx.DrawText(this->x + drawDeltaX + 10, this->y + drawDeltaY + 10, 25, "F");
-      }
+      // if (this->iNeedFreeWay)
+      // {
+      //   ctx.DrawText(this->x + drawDeltaX + 10, this->y + drawDeltaY + 10, 25, "F");
+      // }
     }
     else
     {

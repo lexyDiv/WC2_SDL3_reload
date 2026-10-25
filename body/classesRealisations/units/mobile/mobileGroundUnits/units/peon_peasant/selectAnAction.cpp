@@ -31,7 +31,15 @@ void Peon_peasant::selectAnAction()
                 console.log("any do");
             this->image = this->fraction->peon.img_1;
             this->fightTarget = gu;
-            this->getConor(gu->cell);
+            //////////////////////////////////////
+           int index = gu->contactCells.indexOf(this->cell);
+           MinData wellComeCell = index != -1 ? gu->wellComeCells.getItem(index) : wellComeCell;
+           if (wellComeCell.cell) {
+           // console.log("get conor");
+               this->getConor(wellComeCell.cell);
+           }
+            /////////////////////////////////////
+            
             }
             else if (
                 (gu->canTakeGold && this->gold) ||

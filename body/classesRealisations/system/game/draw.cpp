@@ -99,10 +99,10 @@ void Game::draw()
             //     ctx.DrawText(td.nextCell->x +drawDeltaX + 5, td.nextCell->y + drawDeltaY + 5, 10, m);
             // }
 
-            if (td.clicckedCell)
-            {
-                ctx.FillRect(td.clicckedCell->x + drawDeltaX, td.clicckedCell->y + drawDeltaY, td.clicckedCell->gabX, td.clicckedCell->gabY, "yellow");
-            }
+            // if (td.clicckedCell)
+            // {
+            //     ctx.FillRect(td.clicckedCell->x + drawDeltaX, td.clicckedCell->y + drawDeltaY, td.clicckedCell->gabX, td.clicckedCell->gabY, "yellow");
+            // }
         }
 
         ////////////////////////////////////////////////////////////////////////// => zones Way draw

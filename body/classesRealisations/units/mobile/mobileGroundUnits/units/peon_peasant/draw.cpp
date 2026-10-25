@@ -18,10 +18,9 @@ void Peon_peasant::draw()
           this->animY,
           this->animGabX,
           this->animGabY,
-          this->x + drawDeltaX - 25,
-          this->y + drawDeltaY - 25,
-          100,
-          100);
+          this->x + drawDeltaX - this->animCorrectionX, // 25
+          this->y + drawDeltaY - this->animCorrectionY, // 25
+          this->drawGabaritX, this->drawGabaritY);
 
      // ctx.DrawText(this->x + drawDeltaX, this->y + drawDeltaY + 10, 15, to_string(this->persNum));
       if (this->iNeedFreeWay)

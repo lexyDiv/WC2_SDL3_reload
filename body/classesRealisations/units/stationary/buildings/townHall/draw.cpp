@@ -9,11 +9,11 @@ void TownHall::draw()
     float drawDeltaY = this->gf->drawDeltaY;
 
     ctx.DrawImage(this->image,
-                  0, 0,
+                  this->animX, this->animY,
                   this->animGabX, this->animGabY,
-                  (this->cell->x - 90) + drawDeltaX,
-                  (this->cell->y - 120) + drawDeltaY,
-                  285, 290);
+                  (this->cell->x - this->animCorrectionX) + drawDeltaX, // 90
+                  (this->cell->y - this->animCorrectionY) + drawDeltaY, // 120
+                  this->drawGabaritX, this->drawGabaritY); // x 285, y 290
 
    // ctx.DrawText((this->cell->x) + drawDeltaX, (this->cell->y) + drawDeltaY, 40, to_string(this->persNum));              
 

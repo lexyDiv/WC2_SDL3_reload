@@ -1,12 +1,14 @@
 #include "Th.h"
 //=>system out
 
-struct BlockedData {
+struct BlockedData
+{
   bool isBlocked = false;
   char type = 'f';
 };
 
-struct Td_xploredData {
+struct Td_xploredData
+{
   double explored = 0;
 };
 
@@ -37,9 +39,13 @@ public:
   virtual bool isNeedHoldGoWay() { return false; };
   virtual bool isGetTarget() { return false; };
   virtual bool isTargetObjValide() { return false; };
- //  virtual bool isBlockedd(Unit *unit) { return false; };
+  //  virtual bool isBlockedd(Unit *unit) { return false; };
   // virtual bool isBlockedd_full(Unit *unit) { return false; };
-  virtual BlockedData blockedCheck(Unit *unit) { BlockedData bd; return bd; };
+  virtual BlockedData blockedCheck(Unit *unit)
+  {
+    BlockedData bd;
+    return bd;
+  };
   virtual void iAmHere() {};
   virtual void iSeeYou(Unit *unit) {};
 
@@ -70,7 +76,6 @@ public:
     cell : nullptr
   }; };
 
-
   virtual void selectGetTargetLambda() {};
   virtual bool basicActionCheck() { return false; };
   virtual void getCurrentTarget() {};
@@ -90,36 +95,34 @@ public:
   virtual void updateCurrentTarget() {};
   virtual void takeDamage(int damage) {};
   virtual void trupCreate() {};
- 
+
   virtual void standOnCell() {};
   virtual void stressControl() {};
   virtual void targetObjControl() {};
-  
 
   int deleteTimer = 50;
   Array<Cell *> myCells;
   Array<Cell *> contactCells;
-   Array<Cell *> exitCells;
+  Array<Cell *> exitCells;
   // Array<Unit *> clients;
- //  Array<Unit *> outClients;
-   Array<MinData> wellComeCells;
+  //  Array<Unit *> outClients;
+  Array<MinData> wellComeCells;
   // Array<Unit *> potentialClients;
   Array<Cell *> potentialWay;
   Array<Cell *> way;
   Array<Unit *> orderedTrees;
   Array<Unit *> orderedShahts;
- // Array<Unit *> potentialClients;
+  // Array<Unit *> potentialClients;
   Cell *myDoorCell = nullptr;
 
-    Array<Unit *> potentialClients;
-    Array<Unit *> clients;
-    Array<Unit *> outClients;
+  Array<Unit *> potentialClients;
+  Array<Unit *> clients;
+  Array<Unit *> outClients;
 
   string name = "tree";
   string type = "building";
   Color mapColor = {R : 0, G : 150, B : 0};
-  double drawGabaritX = 0;
-  double drawGabaritY = 0;
+
   int randX = intRand(0, 15);
   int randXVec = intRand(0, 2);
   int randY = intRand(0, 15);
@@ -136,15 +139,24 @@ public:
   int hpMax = 0;
   bool isComplite = false;
   int level = 0;
+
+  /////////////////////////// => anim
   int animGabX = 0;
   int animGabY = 0;
   int animStepX = 0;
   int animStepY = 0;
-  Image *image = nullptr;
-  Image *image2 = nullptr;
+  int animCorrectionX = 0;
+  int animCorrectionY = 0;
   int animX = 0;
   int animY = 0;
   int animTakt = 0;
+  double drawGabaritX = 0;
+  double drawGabaritY = 0;
+  /////////////////////////// <= anim
+
+  Image *image = nullptr;
+  Image *image2 = nullptr;
+
   GameField *gf = nullptr;
   Game *game = nullptr;
   Fraction *fraction = nullptr;
@@ -160,7 +172,7 @@ public:
   bool needResetAround = false;
   int animTimer = 0;
   bool isGetMyCell = true;
- // bool inFight = false;
+  // bool inFight = false;
   Unit *fightTarget = nullptr;
   int createTimer = 0;
   int persNum = 0;
@@ -183,7 +195,7 @@ public:
   bool isPotentialWayComplite = true;
   bool isIgetMyTarget = false;
   bool iNeedFreeWay = false;
-  Order orderOnWay= Order(this);
+  Order orderOnWay = Order(this);
   TargetData targetData;
   // Cell *targetCell = nullptr;
   // Cell *preTargetCell = nullptr;
@@ -197,7 +209,6 @@ public:
   Cell *flipCell = nullptr;
   Cell *nextCell = nullptr;
   Unit *badNCU = nullptr;
- 
 
   function<bool(Cell *c)> isOnGetPotentialWayGetTarget = [](Cell *c)
   { return false; };
@@ -205,7 +216,7 @@ public:
   function<bool(Cell *c, int iter)> isNewCellOnGetWayValide = [](Cell *c, int iter)
   { return false; };
 
-    function<bool(Cell *c)> isGetTargetLambda = [](Cell *c)
+  function<bool(Cell *c)> isGetTargetLambda = [](Cell *c)
   { return false; };
 
   int needHolTimer = 0;
@@ -213,53 +224,51 @@ public:
 
   virtual bool crox() { return false; };
 
- // RefactorWayData rwd;
+  // RefactorWayData rwd;
   void getRefactorCell();
   BlockedData blockedData;
- // bool isBlocked = false;
- // bool metka = false;
+  // bool isBlocked = false;
+  // bool metka = false;
 
   virtual void stepToTheSide() {};
   int personalCaseDeep = 0;
   bool frashWayCheckNeed = false;
- ThData * thd = nullptr;
- // Unit *targetUnit = nullptr;
- Cell *freeCell = nullptr;
- ////////////////////////// => debug
-// bool freeSpetial = false;
- int freeGoWayTimer = 0;
- bool isIexplored = false;
- bool isLoopNextCellUnit = false;
-// bool deepMetka = false;
- //Cell *tt = nullptr;
-// Unit *valU = nullptr;
-// bool specialFreeGo = false;
-bool canGiveTree = false;
-bool canGiveGold = false;
-bool canTakeWood = false;
-bool canTakeGold = false;
-bool canBuild = false;
-bool canFight = false;
-bool canDestroyFly = false;
-bool canGuard = false;
-bool canDestroyTowers = false;
-bool canCreateBuilders = false;
-bool canCreateFighters = false;
-bool canOgre = false;
-bool canStandStill = false;
-bool canMove = false;
+  ThData *thd = nullptr;
+  // Unit *targetUnit = nullptr;
+  Cell *freeCell = nullptr;
+  ////////////////////////// => debug
+  // bool freeSpetial = false;
+  int freeGoWayTimer = 0;
+  bool isIexplored = false;
+  bool isLoopNextCellUnit = false;
+  // bool deepMetka = false;
+  // Cell *tt = nullptr;
+  // Unit *valU = nullptr;
+  // bool specialFreeGo = false;
+  bool canGiveTree = false;
+  bool canGiveGold = false;
+  bool canTakeWood = false;
+  bool canTakeGold = false;
+  bool canBuild = false;
+  bool canFight = false;
+  bool canDestroyFly = false;
+  bool canGuard = false;
+  bool canDestroyTowers = false;
+  bool canCreateBuilders = false;
+  bool canCreateFighters = false;
+  bool canOgre = false;
+  bool canStandStill = false;
+  bool canMove = false;
 
-bool onWood = false;
+  bool onWood = false;
 
-bool inBufer = false;
+  bool inBufer = false;
 
-////////////////////////// <= debug
- 
-virtual void checkNextMagistralCell() {};
-bool isBlockedBuilding(Unit *u, ThData *td);
+  ////////////////////////// <= debug
 
-Array<Td_xploredData> thwd;
-mutex potentialClientsMT;
+  virtual void checkNextMagistralCell() {};
+  bool isBlockedBuilding(Unit *u, ThData *td);
 
-
+  Array<Td_xploredData> thwd;
+  mutex potentialClientsMT;
 };

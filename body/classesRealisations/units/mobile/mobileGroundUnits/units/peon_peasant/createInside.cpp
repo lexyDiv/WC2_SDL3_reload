@@ -22,6 +22,10 @@ void Peon_peasant::createInside(Cell *c, bool isNew = false)
     this->animGabY = 100;
     this->animStepX = 100;
     this->animStepY = 100;
+    this->animCorrectionX = 25;
+    this->animCorrectionY = 25;
+    this->drawGabaritX = 100;
+    this->drawGabaritY = 100;
 
     this->animX = intRand(0, 8) * 100;
     this->animY = 0;
@@ -32,19 +36,19 @@ void Peon_peasant::createInside(Cell *c, bool isNew = false)
     this->inSave = true;
     this->animMashtab = this->startAnimMashtab;
     this->fraction->allUnits.push(this);
-    //this->fraction->AllLifeUnits.push(this);
+    // this->fraction->AllLifeUnits.push(this);
 
-        canGiveTree = false;
-        canGiveGold = false;
-        canTakeWood = false;
-        canTakeGold = false;
-        canBuild = true;
-        canMove = true;
+    canGiveTree = false;
+    canGiveGold = false;
+    canTakeWood = false;
+    canTakeGold = false;
+    canBuild = true;
+    canMove = true;
 
     if (isNew)
     {
         c->game->AllUnitsPtr.push(this);
-       // console.log("push");
+        // console.log("push");
     }
     else
     {

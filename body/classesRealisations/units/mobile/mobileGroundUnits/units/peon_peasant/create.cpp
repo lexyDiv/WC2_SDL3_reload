@@ -29,6 +29,10 @@ void Peon_peasant::create(Cell *cell, bool isComplite = false, bool isNew = fals
   this->animY = 0;
   this->hp = this->fraction->peon.hpMax;
   this->orderOnWay.unit = this;
+  this->animCorrectionX = 25;
+  this->animCorrectionY = 25;
+  this->drawGabaritX = 100;
+  this->drawGabaritY = 100;
 
     canGiveTree = false;
     canGiveGold = false;

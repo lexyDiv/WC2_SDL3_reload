@@ -41,6 +41,10 @@ void TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
     this->animGabY = 128;
     this->animStepX = 128;
     this->animStepY = 128;
+    this->animCorrectionX = 90;
+    this->animCorrectionY = 120;
+    this->drawGabaritX = 285;
+    this->drawGabaritY = 290;
 
     this->animX = 0;
     this->animY = 0;
@@ -60,7 +64,10 @@ void TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
         this->image = this->fraction->townHall.construction;
         this->animGabX = 64;
         this->animGabY = 64;
-        // this->fraction->damagedAndConstructionBuildings.push(this);
+        this->drawGabaritX = 220;
+        this->drawGabaritY = 220;
+        this->animCorrectionX = 60;
+        this->animCorrectionY = 60;
     }
     ///////////////////////////////////////////////////////////////////////
     console.log(this->hp);

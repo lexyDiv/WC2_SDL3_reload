@@ -38,7 +38,7 @@ void Fraction::create(Game *game, Nation *nation, string color)
 
   townHall = new TownHall;
   townHall->fraction = this;
-  townHall->create(game->gf->field.getItem(2).getItem(20), false, true);
+  townHall->create(game->gf->field.getItem(2).getItem(20), true, true);
   townHall->isActive = true;
   townHall->createTimer = 1;
 

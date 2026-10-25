@@ -4,14 +4,11 @@
 void Shaht::activeProg()
 {
 
-
     this->isActive = this->isActiveCheck();
     if (!this->isActive)
     {
         return;
     }
-
-
 
     this->potentialClients.forEach([this](Unit *peon)
                                    {
@@ -43,7 +40,6 @@ void Shaht::activeProg()
 
 
                                        } });
-                          
 
     this->potentialClients.filterSelf([](Unit *peon)
                                       {
@@ -51,8 +47,6 @@ void Shaht::activeProg()
             return true;
         }
         return false; });
-
-
 
     this->clients.forEach([this](Unit *peon)
                           {
@@ -64,9 +58,6 @@ void Shaht::activeProg()
            // console.log("nextPush");
         } });
 
-
-
-        
     this->clients.filterSelf([](Unit *peon)
                              {
          if (!peon->inOutTimer) {
@@ -76,9 +67,7 @@ void Shaht::activeProg()
        // console.log("no filter = ", peon->inOutTimer);
         return false; });
 
-
-
-      //  console.log("length = ", this->clients.length);
+    //  console.log("length = ", this->clients.length);
 
     for (int i = 0; i < this->outClients.length; i++)
     {
@@ -108,16 +97,25 @@ void Shaht::activeProg()
             else
             {
                 MinData md = this->getPeonExtrimeOutCell();
-                Cell *oc = md.cell;
-                peon->cell = oc;
-                peon->inOutCount = 0;
-                peon->x = peon->cell->x;
-                peon->y = peon->cell->y;
-                peon->drawIndexY = peon->y;
-                peon->inOutMashtabCount = 1;
-                peon->image = peon->fraction->peon.img_3;
-                oc->groundUnit = peon;
-                peon->hp = peon->hp > 0 ? peon->hp : 1;
+                if (md.cell)
+                {
+                    Cell *oc = md.cell;
+                    peon->cell = oc;
+                    peon->inOutCount = 0;
+                    peon->x = peon->cell->x;
+                    peon->y = peon->cell->y;
+                    peon->drawIndexY = peon->y;
+                    peon->inOutMashtabCount = 1;
+                    peon->image = peon->fraction->peon.img_3;
+                    oc->groundUnit = peon;
+                    peon->hp = peon->hp > 0 ? peon->hp : 1;
+                    this->stopCreateUnit = false;
+                }
+                else
+                {
+                    this->stopCreateUnit = true;
+                    return;
+                }
             }
         }
 
@@ -150,14 +148,10 @@ void Shaht::activeProg()
         }
     };
 
-
-
     this->outClients.filterSelf([](Unit *peon)
                                 {
             if (!peon->inOutTimer) {
             return true;
         }
         return false; });
-
-
 }

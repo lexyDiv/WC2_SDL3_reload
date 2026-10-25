@@ -101,6 +101,7 @@ public:
   virtual void targetObjControl() {};
 
   bool checkStateNeed = false;
+  bool stopCreateUnit = false;
 
   int deleteTimer = 50;
   Array<Cell *> myCells;

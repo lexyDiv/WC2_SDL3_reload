@@ -132,7 +132,9 @@ public:
     Unit *flyUnit = nullptr;
     Array<Cell *> aroundCells;
     Array<Cell *> maxAroundCells;
+    Array<Cell *> extreamAroundCells;
     Array<double> maxAroundCellsDis;
+    
     Array<Cell *> panicCells;
     Array<Cell *> drawCells;
     Array<Array<Cell *>> cellsOnDraw;

@@ -18,7 +18,7 @@ void TownHall::activeProg()
 
         if (this->checkStateNeed)
         {
-            
+
             int complitePercent = (this->hp * 100) / this->hpMax;
             if (complitePercent <= 30)
             {
@@ -68,7 +68,7 @@ void TownHall::activeProg()
                 this->animX = 0;
                 this->animY = 0;
                 this->isComplite = true;
-               // console.log("complite");
+                // console.log("complite");
             }
 
             this->checkStateNeed = false;
@@ -86,7 +86,7 @@ void TownHall::activeProg()
     }
 
     ///////////////////////////////////////////////////////////////////////
-    if (this->createTimer)
+    if (this->createTimer && !this->stopCreateUnit)
     {
         this->createTimer--;
         if (!this->createTimer)
@@ -116,9 +116,9 @@ void TownHall::activeProg()
             peon->outHoldTimer = 30;
 
             int rand = intRand(0, 10);
-            // peon->profession = rand >= 1 ? "w" : "g";
+             peon->profession = rand >= 1 ? "w" : "g";
 
-            if (this->fraction->peons.length < 0) // 6000 crash 3000
+            if (this->fraction->peons.length < 400) // 6000 crash 3000
             {
                 this->createTimer = 1;
             }
@@ -229,16 +229,27 @@ void TownHall::activeProg()
             else
             {
                 MinData md = this->getPeonExtrimeOutCell();
-                Cell *oc = md.cell;
-                peon->cell = oc;
-                peon->inOutCount = 0;
-                peon->x = peon->cell->x;
-                peon->y = peon->cell->y;
-                peon->drawIndexY = peon->y;
-                peon->inOutMashtabCount = 1;
-                peon->image = peon->fraction->peon.img_1;
-                oc->groundUnit = peon;
-                peon->hp = peon->hp > 0 ? peon->hp : 1;
+
+                if (md.cell)
+                {
+                    Cell *oc = md.cell;
+                    peon->cell = oc;
+                    peon->inOutCount = 0;
+                    peon->x = peon->cell->x;
+                    peon->y = peon->cell->y;
+                    peon->drawIndexY = peon->y;
+                    peon->inOutMashtabCount = 1;
+                    peon->image = peon->fraction->peon.img_1;
+                    oc->groundUnit = peon;
+                    peon->hp = peon->hp > 0 ? peon->hp : 1;
+                    this->stopCreateUnit = false;
+                }
+                else
+                {
+                    this->stopCreateUnit = true;
+                   // console.log("on out cell");
+                    return;
+                }
 
                 //                 if (peon->cell == this->cell) {
                 //     console.log("extrime outCell");

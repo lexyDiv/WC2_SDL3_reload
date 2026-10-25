@@ -3,13 +3,14 @@
 
 void Tree::create(Cell *cell, bool isComplite = false, bool isNew = false)
 {
+    this->name = "tree";
+    this->type = "tree";
     this->deleteTimer = 50;
     cell->groundUnit = this;
     this->myCells.push(cell);
     this->cell = cell;
     this->getContactCells();
-    this->name = "tree";
-    this->type = "tree";
+
     this->mapColor = {R : 0, G : 150, B : 0};
     int randGY = intRand(0, 50);
     this->drawGabaritX = 40 + randGY;

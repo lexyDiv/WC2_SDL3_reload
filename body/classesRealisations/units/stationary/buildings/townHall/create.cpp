@@ -20,7 +20,7 @@ void TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
     Cell *centerCell = cell->bottom_right;
     this->cell = centerCell;
     this->game = this->cell->game;
-   // this->fraction->allBuildings.push(this);
+    // this->fraction->allBuildings.push(this);
 
     this->getContactAndExitCells(cell, exitCell, centerCell);
     this->getWellComeCells();
@@ -29,7 +29,7 @@ void TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
     this->name = "greatHall";
     this->type = "building";
     this->mapColor = this->fraction->mapColor;
-    this->image = this->fraction->townHall.img_1;
+    this->image = this->fraction->townHall.imagesByLevel.getItem(this->level); // this->fraction->townHall.img_1;
     this->gf = this->cell->gf;
     this->x = cell->x;
     this->y = cell->y;
@@ -50,14 +50,17 @@ void TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
     this->fraction->allUnits.push(this);
     if (this->isComplite)
     {
-       // this->fraction->fTownHoll.townHollsByLevel.getItemPtr(this->level)->push(this);
+        // this->fraction->fTownHoll.townHollsByLevel.getItemPtr(this->level)->push(this);
         this->hp = this->hpMax;
     }
     else
     {
         this->hp = this->hpMax / 10;
         this->isActive = true;
-       // this->fraction->damagedAndConstructionBuildings.push(this);
+        this->image = this->fraction->townHall.construction;
+        this->animGabX = 64;
+        this->animGabY = 64;
+        // this->fraction->damagedAndConstructionBuildings.push(this);
     }
     ///////////////////////////////////////////////////////////////////////
     console.log(this->hp);

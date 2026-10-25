@@ -6,6 +6,10 @@ bool ok = false;
 
 void TownHall::activeProg()
 {
+
+
+
+
     this->isActive = this->isActiveCheck();
     if (!this->isActive)
     {
@@ -14,7 +18,9 @@ void TownHall::activeProg()
 
    if (!this->isComplite) {
 
-   // console.log("here");
+    
+    
+
     return;
    }
 

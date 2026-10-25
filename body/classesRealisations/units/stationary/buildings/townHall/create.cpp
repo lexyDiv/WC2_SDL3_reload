@@ -68,6 +68,8 @@ void TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
         this->drawGabaritY = 220;
         this->animCorrectionX = 60;
         this->animCorrectionY = 60;
+        this->animX = 0;
+        this->animY = 0;
     }
     ///////////////////////////////////////////////////////////////////////
     console.log(this->hp);

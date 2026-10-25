@@ -49,11 +49,19 @@ void Peon_peasant::fightControl()
         if (this->inFightTimer == 50)
         {
             // console.log("tuk");
+            this->fightTarget->takeDamage(-50);
         }
         if (this->inFightTimer == 70)
         {
             this->inFightTimer = 0;
-            if (!this->orderOnWay.isComplite)
+            if (this->fightTarget->hp <= 0 ||
+                this->fightTarget->hp >= this->fightTarget->hpMax)
+            {
+                this->targetData.unit = nullptr;
+                this->fightTarget = nullptr;
+                this->animY = 0;
+            }
+            else if (!this->orderOnWay.isComplite)
             {
                 this->targetData.unit = nullptr;
                 this->fightTarget = nullptr;

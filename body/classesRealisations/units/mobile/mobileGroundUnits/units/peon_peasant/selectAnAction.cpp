@@ -28,7 +28,7 @@ void Peon_peasant::selectAnAction()
         {
             if (!gu->isComplite || gu->hp < gu->hpMax)
             {
-                console.log("any do");
+               // console.log("any do");
             this->image = this->fraction->peon.img_1;
             this->fightTarget = gu;
             //////////////////////////////////////

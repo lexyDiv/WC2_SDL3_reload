@@ -100,6 +100,8 @@ public:
   virtual void stressControl() {};
   virtual void targetObjControl() {};
 
+  bool checkStateNeed = false;
+
   int deleteTimer = 50;
   Array<Cell *> myCells;
   Array<Cell *> contactCells;

@@ -92,8 +92,9 @@ void TownHall::activeProg()
         if (!this->createTimer)
         {
 
-            Unit *peon = this->game->unitsBufer.find([](Unit *u)
-                                                     {
+            Unit *peon = nullptr;
+            peon = this->fraction->nation->peonsBuffer.find([](Unit *u)
+                                                            {
               if (u->inBufer) {
                 u->inBufer = false;
                 return true;
@@ -116,7 +117,7 @@ void TownHall::activeProg()
             peon->outHoldTimer = 30;
 
             int rand = intRand(0, 10);
-             peon->profession = rand >= 1 ? "w" : "g";
+            peon->profession = rand >= 1 ? "w" : "g";
 
             if (this->fraction->peons.length < 400) // 6000 crash 3000
             {
@@ -247,7 +248,7 @@ void TownHall::activeProg()
                 else
                 {
                     this->stopCreateUnit = true;
-                   // console.log("on out cell");
+                    // console.log("on out cell");
                     return;
                 }
 

@@ -27,8 +27,8 @@ void Peon_peasant::trupCreate()
    if (!this->alpha)
    {
       this->cell->ripUnits.splice(this->cell->ripUnits.indexOf(this), 1);
-      this->game->unitsBufer.push(this);
-      this->inBufer = true;
+     // this->game->unitsBufer.push(this);
+      this->fraction->nation->addToBuffer(this);
       this->deleteTimer = 0;
    }
    else if (this->deleteTimer < 2970 && this->deleteTimer % 6 == 0)

@@ -3,7 +3,7 @@
 
 int th_count = std::thread::hardware_concurrency() - 1;
 std::vector<std::thread> threads;
-//Uint64 PWPstart;
+// Uint64 PWPstart;
 
 void Game::process()
 {
@@ -14,11 +14,19 @@ void Game::process()
     this->gf->trupsControl();
     this->gf->updateClasters();
 
-    this->unitsBufer.filterSelf([](Unit *u){
-        return !u->inBufer;
-    });
+    orcs.allBuffers.forEach([](Array<Unit *> *b)
+                            { b->filterSelf([](Unit *u)
+                                            { return !u->inBufer; }); });
 
-   // console.log("length = ", this->unitsBufer.length);
+    humans.allBuffers.forEach([](Array<Unit *> *b)
+                            { b->filterSelf([](Unit *u)
+                                            { return !u->inBufer; }); });
+
+    // this->unitsBufer.filterSelf([](Unit *u){
+    //     return !u->inBufer;
+    // });
+
+    // console.log("length = ", this->unitsBufer.length);
 
     this->thSpin = !this->thSpin;
 
@@ -41,12 +49,8 @@ void Game::process()
 
     threads.clear();
 
-    
-
     thDatas.forEach([](ThData *td)
                     { threads.emplace_back(&ThData::PWProcess, td); });
-
-
 
     this->preDraw();
 }

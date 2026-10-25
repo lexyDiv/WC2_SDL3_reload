@@ -18,14 +18,14 @@ void TownHall::trupCreate()
 
         this->potentialClients.forEach([this](Unit *u)
                                        {
-                  this->game->unitsBufer.push(u);
-                  u->inBufer = true;
+                 // this->game->unitsBufer.push(u);
+                  this->fraction->nation->addToBuffer(u);
+
                   u->deleteTimer = 0; });
 
         this->clients.forEach([this](Unit *u)
                               {
-                                  this->game->unitsBufer.push(u);
-                                  u->inBufer = true;
+                                 this->fraction->nation->addToBuffer(u);
                                   u->deleteTimer = 0; });
 
         this->outClients.forEach([this](Unit *u)
@@ -34,8 +34,7 @@ void TownHall::trupCreate()
             {
                 u->cell->groundUnit = nullptr;
             }
-                  this->game->unitsBufer.push(u);
-                  u->inBufer = true;
+                  this->fraction->nation->addToBuffer(u);
                   u->deleteTimer = 0; });
     }
 
@@ -48,7 +47,7 @@ void TownHall::trupCreate()
 
     if (this->deleteTimer <= 0)
     {
-        this->game->unitsBufer.push(this);
+        // this->game->unitsBufer.push(this);
         this->inBufer = true;
         this->deleteTimer = 0;
         this->myCells.forEach([this](Cell *c)

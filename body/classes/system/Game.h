@@ -54,7 +54,7 @@ public:
    Array<Unit *> allLifeUnitsPtr;
 
 
-    Array<Unit *> unitsBufer;
+   // Array<Unit *> unitsBufer;
 
     void addToAllUnitsPtr(Unit *unit);
     void addToUnitsBufer(Unit *unit);

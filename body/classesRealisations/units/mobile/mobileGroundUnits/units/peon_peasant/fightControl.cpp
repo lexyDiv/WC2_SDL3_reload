@@ -17,8 +17,6 @@ void Peon_peasant::fightControl()
 
                 // //// <=  ????????????????????????????????????? MUTEX !!!!!!
                 this->gf->savePushOnTrups(gu);
-                
-
             }
         }
         if (this->inFightTimer == 70)
@@ -41,9 +39,27 @@ void Peon_peasant::fightControl()
                 this->fightTarget = nullptr;
                 this->animY = 0;
                 // this->profession = "";
-                
             }
         }
         gu->stressControl();
+    }
+    else
+    {
+        this->inFightTimer += 2;
+        if (this->inFightTimer == 50)
+        {
+            // console.log("tuk");
+        }
+        if (this->inFightTimer == 70)
+        {
+            this->inFightTimer = 0;
+            if (!this->orderOnWay.isComplite)
+            {
+                this->targetData.unit = nullptr;
+                this->fightTarget = nullptr;
+                this->animY = 0;
+                // this->profession = "";
+            }
+        }
     }
 };

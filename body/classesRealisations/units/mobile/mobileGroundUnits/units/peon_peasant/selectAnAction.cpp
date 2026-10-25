@@ -29,6 +29,9 @@ void Peon_peasant::selectAnAction()
             if (!gu->isComplite || gu->hp < gu->hpMax)
             {
                 console.log("any do");
+            this->image = this->fraction->peon.img_1;
+            this->fightTarget = gu;
+            this->getConor(gu->cell);
             }
             else if (
                 (gu->canTakeGold && this->gold) ||

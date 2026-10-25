@@ -32,10 +32,29 @@ void Unit::getContactAndExitCells(Cell *cell, Cell *exitCell, Cell *centerCell)
   // cell->plane->cells.forEach([this, centerCell, &proContactCells](Cell *pc)
   //                            {
 
-
-  for (int i = 0; i < this->cell->extreamAroundCells.length; i++)
+  Array<Cell *> extreamCells;
+  for (int ver = this->cell->ver - 25; ver <= this->cell->ver + 25; ver++)
   {
-    Cell *pc = this->cell->extreamAroundCells.getItem(i);
+    if (ver >= 0 && ver < this->gf->gabarit)
+    {
+      Array<Cell *> &line = this->gf->field.getItemLnk(ver);
+      for (int hor = this->cell->hor - 20; hor <= this->cell->hor + 20; hor++)
+      {
+        if (hor >= 0 && hor < this->gf->gabarit)
+        {
+          Cell *c = line.getItem(hor);
+          if (c->plane == this->cell->plane)
+          {
+            extreamCells.push(c);
+          }
+        }
+      }
+    }
+  }
+
+  for (int i = 0; i < extreamCells.length; i++)
+  {
+    Cell *pc = extreamCells.getItem(i);
     if (pc->plane == this->cell->plane &&
         pc->createCountData != this->gf->createCount &&
         pc->groundUnit != this)
@@ -55,5 +74,5 @@ void Unit::getContactAndExitCells(Cell *cell, Cell *exitCell, Cell *centerCell)
   this->exitCells = proContactCells.map([](CellDis &cd)
                                         { return cd.cell; });
 
-                                    //    console.log(this->name + " exit length = ", this->exitCells.length);
+    //  console.log(this->name + " exit length = ", this->exitCells.length);
 };

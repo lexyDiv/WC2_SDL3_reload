@@ -48,7 +48,8 @@ void TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
     this->animCorrectionY = 120;
     this->drawGabaritX = 285;
     this->drawGabaritY = 290;
-    this->deleteTimer = 3000;
+    this->deleteTimer = 0;
+    this->maxDeleteTimer = 3000;
 
     this->animX = 0;
     this->animY = 0;
@@ -101,7 +102,8 @@ void TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
         this->iNeedFreeWay = false;
         this->targetData.clear();
         this->isDelete = false;
-        this->deleteTimer = 3000;
+        this->deleteTimer = 0;
+        this->maxDeleteTimer = 3000;
         this->alpha = 255;
         this->inBufer = false;
     }

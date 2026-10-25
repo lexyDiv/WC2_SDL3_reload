@@ -23,7 +23,7 @@ void Fraction::create(Game *game, Nation *nation, string color)
   Unit *peon = new Peon_peasant(this);
   peon->persNum = 2;
   peon->fraction = this;
-  peon->create(game->gf->field.getItem(5).getItem(15));
+  peon->create(game->gf->field.getItem(3).getItem(24));
 
 
   //  Unit *peon2 = new Peon_peasant(this);

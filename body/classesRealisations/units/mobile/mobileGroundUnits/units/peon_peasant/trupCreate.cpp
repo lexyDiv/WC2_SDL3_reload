@@ -18,7 +18,7 @@ void Peon_peasant::trupCreate()
       }
    }
 
-   this->deleteTimer--;
+   this->deleteTimer ++;
    if (this->deleteTimer % 10 == 0 && this->animY < 1200)
    {
       this->animY += 100;
@@ -27,16 +27,15 @@ void Peon_peasant::trupCreate()
    if (!this->alpha)
    {
       this->cell->ripUnits.splice(this->cell->ripUnits.indexOf(this), 1);
-     // this->game->unitsBufer.push(this);
       this->fraction->nation->addToBuffer(this);
-      this->deleteTimer = 0;
+      this->deleteTimer = this->maxDeleteTimer;
    }
-   else if (this->deleteTimer < 2970 && this->deleteTimer % 6 == 0)
+   else if (this->deleteTimer > 30 && this->deleteTimer % 6 == 0)
    {
       this->alpha--;
 
    }
-   else if (this->deleteTimer == 2970)
+   else if (this->deleteTimer == 30)
    {
       this->cell->groundUnit = nullptr;
       this->alpha = 230;

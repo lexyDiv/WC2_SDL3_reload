@@ -7,7 +7,7 @@ void GameField::trupsControl()
                                 { trup->trupCreate(); });
     this->trupsOnDelete.filterSelf([](Unit *trup)
                                    {
-     if (!trup->deleteTimer) {
+     if (trup->deleteTimer >= trup->maxDeleteTimer) {
         return true;
      }
      return false; });

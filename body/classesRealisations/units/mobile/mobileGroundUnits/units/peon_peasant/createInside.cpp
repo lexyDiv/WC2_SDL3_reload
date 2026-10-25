@@ -28,12 +28,12 @@ void Peon_peasant::createInside(Cell *c, bool isNew = false)
     this->drawGabaritY = 100;
     this->inOutCount = 0;
 
-
     this->animX = intRand(0, 8) * 100;
     this->animY = 0;
     this->hpMax = 50;
     this->hp = 50;
-    this->deleteTimer = 3000;
+    this->deleteTimer = 0;
+    this->maxDeleteTimer = 3000;
 
     this->inOutTimer = 0;
     this->inSave = true;
@@ -67,7 +67,8 @@ void Peon_peasant::createInside(Cell *c, bool isNew = false)
         this->iNeedFreeWay = false;
         this->targetData.clear();
         this->isDelete = false;
-        this->deleteTimer = 3000;
+        this->deleteTimer = 0;
+        this->maxDeleteTimer = 3000;
         this->alpha = 255;
         this->inBufer = false;
         this->isIgetMyTarget = false;

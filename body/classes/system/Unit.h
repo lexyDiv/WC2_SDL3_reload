@@ -104,6 +104,8 @@ public:
   bool stopCreateUnit = false;
 
   int deleteTimer = 50;
+  int maxDeleteTimer = 0;
+
   Array<Cell *> myCells;
   Array<Cell *> contactCells;
   Array<Cell *> exitCells;

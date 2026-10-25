@@ -41,7 +41,8 @@ void Peon_peasant::create(Cell *cell, bool isComplite = false, bool isNew = fals
     canBuild = true;
     canMove = true;
 
-    this->deleteTimer = 3000;
+    this->deleteTimer = 0;
+    this->maxDeleteTimer = 3000;
 
     this->game->addToAllUnitsPtr(this);
     this->fraction->allUnits.push(this);

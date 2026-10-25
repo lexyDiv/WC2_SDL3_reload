@@ -46,10 +46,7 @@ void Fraction::controller()
                               this->fTownHoll.townHollsByLevel.getItemPtr(u->level)->push(u);
                            }
                         }
-                        else 
-                        {
-                           this->damagedAndConstructionBuildings.push(u);
-                        }
+
                         
                         if (u->hp < u->hpMax) {
                             this->damagedAndConstructionBuildings.push(u);

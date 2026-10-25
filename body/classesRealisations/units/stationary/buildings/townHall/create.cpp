@@ -35,6 +35,7 @@ void TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
     this->getGabX = cell->gabX * 4;
     this->getGabY = this->getGabX;
     this->drawIndexY = cell->y + 30;
+    this->inOutCount = 0;
 
     this->animGabX = 128;
     this->animGabY = 128;

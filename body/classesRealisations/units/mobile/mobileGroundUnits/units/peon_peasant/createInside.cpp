@@ -26,6 +26,8 @@ void Peon_peasant::createInside(Cell *c, bool isNew = false)
     this->animCorrectionY = 25;
     this->drawGabaritX = 100;
     this->drawGabaritY = 100;
+    this->inOutCount = 0;
+
 
     this->animX = intRand(0, 8) * 100;
     this->animY = 0;

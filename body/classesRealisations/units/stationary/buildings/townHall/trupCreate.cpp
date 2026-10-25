@@ -6,7 +6,6 @@ void TownHall::trupCreate()
     if (!this->isDelete)
     {
         this->isDelete = true;
-        // this->cell->ripUnits.push(this);
         this->image = imager.land_destroyed_site;
         this->animX = 0;
         this->animY = 0;
@@ -16,9 +15,31 @@ void TownHall::trupCreate()
         this->animCorrectionY = 40;
         this->animGabX = 64;
         this->animGabY = 64;
+
+        this->potentialClients.forEach([this](Unit *u)
+                                       {
+                  this->game->unitsBufer.push(u);
+                  u->inBufer = true;
+                  u->deleteTimer = 0; });
+
+        this->clients.forEach([this](Unit *u)
+                              {
+                                  this->game->unitsBufer.push(u);
+                                  u->inBufer = true;
+                                  u->deleteTimer = 0; });
+
+        this->outClients.forEach([this](Unit *u)
+                                 {
+            if (u->cell && u->cell->groundUnit == u)
+            {
+                u->cell->groundUnit = nullptr;
+            }
+                  this->game->unitsBufer.push(u);
+                  u->inBufer = true;
+                  u->deleteTimer = 0; });
     }
 
-    this->deleteTimer --;
+    this->deleteTimer--;
 
     if (this->deleteTimer == 1500)
     {
@@ -30,10 +51,10 @@ void TownHall::trupCreate()
         this->game->unitsBufer.push(this);
         this->inBufer = true;
         this->deleteTimer = 0;
-        this->myCells.forEach([this](Cell *c){
+        this->myCells.forEach([this](Cell *c)
+                              {
             c->groundUnit = nullptr;
-            this->gf->addClasterOnUpdate(c->claster);
-        });
+            this->gf->addClasterOnUpdate(c->claster); });
     }
     else if (this->deleteTimer <= 250)
     {

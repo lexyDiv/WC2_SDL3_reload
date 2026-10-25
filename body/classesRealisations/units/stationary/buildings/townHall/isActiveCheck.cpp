@@ -7,18 +7,19 @@ bool TownHall::isActiveCheck()
     // console.log("this->potentialClients.length = ", this->potentialClients.length);
     // console.log("this->outClients.length = ", this->outClients.length);
     // console.log("================================================");
-    if (this->clients.length ||
-        this->potentialClients.length ||
-        this->outClients.length ||
-        !this->isComplite ||
-        this->hp != this->hpMax ||
-        this->createTimer ||
-        this->updateTimer
-    )
+    if (
+        this->hp > 0 &&
+        (this->clients.length ||
+         this->potentialClients.length ||
+         this->outClients.length ||
+         !this->isComplite ||
+         this->hp != this->hpMax ||
+         this->createTimer ||
+         this->updateTimer))
     {
-        //console.log("active");
+        // console.log("active");
         return true;
     }
-   // console.log("NO ACTIVE");
+    // console.log("NO ACTIVE");
     return false;
 }

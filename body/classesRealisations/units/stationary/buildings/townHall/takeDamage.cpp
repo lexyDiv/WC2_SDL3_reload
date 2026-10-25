@@ -1,5 +1,5 @@
 #include "getTrees.cpp"
-//=>out
+//=>trupCreate
 
 void TownHall::takeDamage(int damage)
 {
@@ -12,6 +12,11 @@ void TownHall::takeDamage(int damage)
        if (this->hp > this->hpMax)
        {
         this->hp = this->hpMax;
+       }
+       else if (this->hp <= 0)
+       {
+        this->hp = 0;
+        this->gf->addToTrupsOnDelete(this);
        }
       // console.log(this->hp);
     }

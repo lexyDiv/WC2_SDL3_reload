@@ -31,6 +31,7 @@ void Peon_peasant::createInside(Cell *c, bool isNew = false)
     this->animY = 0;
     this->hpMax = 50;
     this->hp = 50;
+    this->deleteTimer = 3000;
 
     this->inOutTimer = 0;
     this->inSave = true;

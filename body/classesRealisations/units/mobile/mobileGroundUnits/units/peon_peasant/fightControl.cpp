@@ -49,7 +49,7 @@ void Peon_peasant::fightControl()
         if (this->inFightTimer == 50)
         {
             // console.log("tuk");
-            this->fightTarget->takeDamage(-50);
+            this->fightTarget->takeDamage(50);
         }
         if (this->inFightTimer == 70)
         {

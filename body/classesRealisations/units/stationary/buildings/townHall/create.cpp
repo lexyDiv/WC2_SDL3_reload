@@ -13,7 +13,6 @@ void TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
         Td_xploredData tapd;
         this->thwd.push(tapd);
     }
-
     this->get4x4myCells(cell);
 
     Cell *exitCell = cell->bottom_right->bottom_right->bottom_right->bottom_right;
@@ -45,6 +44,7 @@ void TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
     this->animCorrectionY = 120;
     this->drawGabaritX = 285;
     this->drawGabaritY = 290;
+    this->deleteTimer = 3000;
 
     this->animX = 0;
     this->animY = 0;
@@ -72,7 +72,7 @@ void TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
         this->animY = 0;
     }
     ///////////////////////////////////////////////////////////////////////
-    console.log(this->hp);
+   // console.log(this->hp);
     this->createTimer = 0;
 
     canGiveTree = false;
@@ -101,4 +101,5 @@ void TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
         this->alpha = 255;
         this->inBufer = false;
     }
+   // console.log(this->thd);
 }

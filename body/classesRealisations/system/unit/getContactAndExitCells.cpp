@@ -3,6 +3,9 @@
 
 void Unit::getContactAndExitCells(Cell *cell, Cell *exitCell, Cell *centerCell)
 {
+
+  this->exitCells.clear();
+  this->contactCells.clear();
   Array<CellDis> proContactCells;
   this->gf = cell->gf;
   this->gf->createCount += 0.001;

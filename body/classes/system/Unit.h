@@ -27,6 +27,7 @@ public:
   virtual void get4x4myCells(Cell *cell);
   virtual void getContactAndExitCells(Cell *cell, Cell *exitCell, Cell *centerCell);
   virtual void getWellComeCells();
+  virtual void startedCheckAroundCells(ThData *th) {};
 
   virtual void orderOnWayControl() {};
   virtual void goWayAnimation() {};

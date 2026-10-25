@@ -1,5 +1,5 @@
 #include "selectGetTargetLambda.cpp"
-// => out
+// => startedCheckAroundCells
 
 bool Peon_peasant::basicActionCheck()
 {

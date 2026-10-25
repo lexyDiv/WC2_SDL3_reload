@@ -1,5 +1,5 @@
 #include "takeDamage.cpp"
-//=> out
+//=> drawTrup
 
 void TownHall::trupCreate()
 {
@@ -9,12 +9,13 @@ void TownHall::trupCreate()
         this->image = imager.land_destroyed_site;
         this->animX = 0;
         this->animY = 0;
-        // this->drawGabaritX = 180;
-        // this->drawGabaritY = 180;
-        // this->animCorrectionX = 40;
-        // this->animCorrectionY = 40;
         this->animGabX = 64;
         this->animGabY = 64;
+
+        this->isAddOnDraw = false;
+        this->myCells.forEach([this](Cell *c){
+            c->ripUnits.push(this);
+        });
 
         this->potentialClients.forEach([this](Unit *u)
                                        {
@@ -43,12 +44,13 @@ void TownHall::trupCreate()
 
     if (this->deleteTimer >= this->maxDeleteTimer)
     {
-        // this->game->unitsBufer.push(this);
+        
         this->fraction->nation->addToBuffer(this);
         this->inBufer = true;
         this->deleteTimer = 0;
         this->myCells.forEach([this](Cell *c)
                               {
+            c->ripUnits.splice(c->ripUnits.indexOf(this), 1);                   
             c->groundUnit = nullptr;
             this->gf->addClasterOnUpdate(c->claster); });
     }

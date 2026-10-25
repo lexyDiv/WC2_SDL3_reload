@@ -30,6 +30,12 @@ void TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
     this->getTrees();
     this->getShahts();
 
+    if (this->cell->claster)
+    {
+        this->myCells.forEach([this](Cell *c)
+                              { this->gf->addClasterOnUpdate(c->claster); });
+    }
+
     this->mapColor = this->fraction->mapColor;
     this->image = this->fraction->townHall.imagesByLevel.getItem(this->level); // this->fraction->townHall.img_1;
     this->gf = this->cell->gf;
@@ -98,9 +104,9 @@ void TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
         this->isGetMyCell = true;
         this->fightTarget = nullptr;
         this->outHoldTimer = 0;
-        this->way.clear();
+        // this->way.clear();
         this->iNeedFreeWay = false;
-        this->targetData.clear();
+        //  this->targetData.clear();
         this->isDelete = false;
         this->deleteTimer = 0;
         this->maxDeleteTimer = 3000;

@@ -39,7 +39,9 @@ void Game::draw()
                                                        cell->draw();
 
                                                        Unit *groundUnit = cell->groundUnit;
-                                                       if (groundUnit && !groundUnit->isAddOnDraw)
+                                                       if (groundUnit &&
+                                                           !groundUnit->isAddOnDraw &&
+                                                           groundUnit->hp > 0)
                                                        {
                                                            int index = ceil((((groundUnit->drawIndexY) + drawDeltaY) / 10) + 30);
 
@@ -65,25 +67,23 @@ void Game::draw()
                                 { drawLine.forEach([&trups](Cell *cell)
                                                    { cell->ripUnits.forEach([&trups](Unit *trup)
                                                                             { 
-                                                                               // trup->drawTrup(); 
-                                                                               trups.push(trup);
-                                                                            }); }); });
+                                                       
+                                                                        if (!trup->isAddOnDraw) {                                                       
+                                                                            trup->isAddOnDraw = true;
+                                                                            trups.push(trup);
+                                                                        } }); }); });
+
+        trups.sort([](Unit *a, Unit *b)
+                   { return a->deleteTimer > b->deleteTimer; });
+
+        trups.forEach([](Unit *u)
+                      { u->drawTrup(); });
 
         DA.forEach([](Array<Unit *> &line)
                    { line.forEach([](Unit *unit)
                                   { unit->draw(); }); });
 
-
-       trups.sort([](Unit *a, Unit *b){
-        return a->deleteTimer > b->deleteTimer;
-       }); 
-       
-       trups.forEach([](Unit *u){
-        u->drawTrup();
-       });
-
-
-//////////////////////////////////////////////////////////////////////////////// => DEBUG
+        //////////////////////////////////////////////////////////////////////////////// => DEBUG
         Unit *u = this->gf->focusUnit;
         if (u && u->cell)
         {
@@ -123,40 +123,38 @@ void Game::draw()
 
         ////////////////////////////////////////////////////////////////////////// => zones Way draw
 
-//         ThData *thd = thDatas.getItem(0);
+        //         ThData *thd = thDatas.getItem(0);
 
-//                 if (thd->min_F_zone)
-//         {
-//             Claster *fzcl = thd->min_F_zone->cl;
-//             ctx.FillRect(fzcl->x + drawDeltaX, fzcl->y + drawDeltaY, fzcl->size, fzcl->size, "blue", 150);
-//         }
+        //                 if (thd->min_F_zone)
+        //         {
+        //             Claster *fzcl = thd->min_F_zone->cl;
+        //             ctx.FillRect(fzcl->x + drawDeltaX, fzcl->y + drawDeltaY, fzcl->size, fzcl->size, "blue", 150);
+        //         }
 
-//         thd->openArr_z.forEach([&drawDeltaX, &drawDeltaY](Zone *z)
-//                                {
-//   Claster *zc = z->cl;
-//     ctx.FillRect(zc->x +drawDeltaX, zc->y + drawDeltaY, zc->size, zc->size, "green", 100);
-//     ctx.StrokeRect(zc->x +drawDeltaX, zc->y + drawDeltaY, zc->size, zc->size, "blue"); 
+        //         thd->openArr_z.forEach([&drawDeltaX, &drawDeltaY](Zone *z)
+        //                                {
+        //   Claster *zc = z->cl;
+        //     ctx.FillRect(zc->x +drawDeltaX, zc->y + drawDeltaY, zc->size, zc->size, "green", 100);
+        //     ctx.StrokeRect(zc->x +drawDeltaX, zc->y + drawDeltaY, zc->size, zc->size, "blue");
 
-//     Td_way_data_z *thwd = z->thwd.getItemPtr(0);
-//     ctx.DrawText(zc->x +drawDeltaX + 30, zc->y + 30 + drawDeltaY, 30, "G : " + to_string(thwd->G));
-//     ctx.DrawText(zc->x +drawDeltaX + 30, zc->y + 70 + drawDeltaY, 30, "H : " + to_string(thwd->H));
-//     ctx.DrawText(zc->x +drawDeltaX + 30, zc->y + 110 + drawDeltaY, 30, "F : " + to_string(thwd->F));
+        //     Td_way_data_z *thwd = z->thwd.getItemPtr(0);
+        //     ctx.DrawText(zc->x +drawDeltaX + 30, zc->y + 30 + drawDeltaY, 30, "G : " + to_string(thwd->G));
+        //     ctx.DrawText(zc->x +drawDeltaX + 30, zc->y + 70 + drawDeltaY, 30, "H : " + to_string(thwd->H));
+        //     ctx.DrawText(zc->x +drawDeltaX + 30, zc->y + 110 + drawDeltaY, 30, "F : " + to_string(thwd->F));
 
-// });
+        // });
 
-//         thd->bad_z.forEach([&drawDeltaX, &drawDeltaY](Zone *z)
-//                            {
-//   Claster *zc = z->cl;
-//     ctx.FillRect(zc->x +drawDeltaX, zc->y + drawDeltaY, zc->size, zc->size, "red", 100);
-//     ctx.StrokeRect(zc->x +drawDeltaX, zc->y + drawDeltaY, zc->size, zc->size, "violet");
+        //         thd->bad_z.forEach([&drawDeltaX, &drawDeltaY](Zone *z)
+        //                            {
+        //   Claster *zc = z->cl;
+        //     ctx.FillRect(zc->x +drawDeltaX, zc->y + drawDeltaY, zc->size, zc->size, "red", 100);
+        //     ctx.StrokeRect(zc->x +drawDeltaX, zc->y + drawDeltaY, zc->size, zc->size, "violet");
 
-//     Td_way_data_z *thwd = z->thwd.getItemPtr(0);
-//     ctx.DrawText(zc->x +drawDeltaX + 30, zc->y + 30 + drawDeltaY, 30, "G : " + to_string(thwd->G));
-//     ctx.DrawText(zc->x +drawDeltaX + 30, zc->y + 70 + drawDeltaY, 30, "H : " + to_string(thwd->H));
-//     ctx.DrawText(zc->x +drawDeltaX + 30, zc->y + 110 + drawDeltaY, 30, "F : " + to_string(thwd->F));
-// });
-
-
+        //     Td_way_data_z *thwd = z->thwd.getItemPtr(0);
+        //     ctx.DrawText(zc->x +drawDeltaX + 30, zc->y + 30 + drawDeltaY, 30, "G : " + to_string(thwd->G));
+        //     ctx.DrawText(zc->x +drawDeltaX + 30, zc->y + 70 + drawDeltaY, 30, "H : " + to_string(thwd->H));
+        //     ctx.DrawText(zc->x +drawDeltaX + 30, zc->y + 110 + drawDeltaY, 30, "F : " + to_string(thwd->F));
+        // });
 
         ////////////////////////////////////////////////////////////////////////  <=  zones Way draw
 

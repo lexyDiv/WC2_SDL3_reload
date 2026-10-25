@@ -19,6 +19,7 @@ public:
     MinData getPeonExtrimeOutCell() override;
     void takeDamage(int damage) override;
     void trupCreate() override;
+    void drawTrup() override;
 
   
     

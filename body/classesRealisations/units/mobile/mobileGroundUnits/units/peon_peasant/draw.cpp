@@ -3,7 +3,7 @@
 
 void Peon_peasant::draw()
 {
-
+  this->isAddOnDraw = false;
   if (this->cell)
   {
     this->preDraw();

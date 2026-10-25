@@ -23,7 +23,7 @@ public:
   virtual void create(Cell *c, bool isComplite = false, bool isNew = false) {};
   virtual void getContactCells();
   virtual void draw() {};
-  virtual void drawTrup() {};
+  virtual void drawTrup() { console.log("drawTrup"); };
   virtual void get2x2myCells(Cell *cell);
   virtual void get3x3myCells(Cell *cell);
   virtual void get4x4myCells(Cell *cell);

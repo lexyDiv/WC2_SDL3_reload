@@ -26,7 +26,9 @@ void Peon_peasant::selectAnAction()
             gu->fraction == this->fraction &&
             gu->canStandStill)
         {
-            if (!gu->isComplite || gu->hp < gu->hpMax)
+            if (gu->hp &&
+                (!gu->isComplite || gu->hp < gu->hpMax)
+            )
             {
                // console.log("any do");
             this->image = this->fraction->peon.img_1;

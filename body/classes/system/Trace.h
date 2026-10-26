@@ -25,9 +25,13 @@ public:
     int animY = 0;
     int animTakt = 0;
     int drawY = 0;
+    int alpha = 255;
+    Unit *father = nullptr;
 
     bool readyToOut = false;
     bool isAddOnDraw = false;
+
+    Cell *cell = nullptr;
 
     Game *game = nullptr;
 

@@ -51,6 +51,8 @@ public:
    Array<Unit *> allShahtsPtr;
    Array<Unit *> allOilsPtr;
 
+   Array<Boo *> allBoos;
+
    Array<Unit *> allLifeUnitsPtr;
 
 

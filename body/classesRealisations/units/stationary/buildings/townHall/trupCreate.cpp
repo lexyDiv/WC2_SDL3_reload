@@ -13,8 +13,13 @@ void TownHall::trupCreate()
         this->animGabY = 64;
 
         this->isAddOnDraw = false;
-        this->myCells.forEach([this](Cell *c){
+
+        Boo *boo = new BuildingBoo;
+        boo->create(0, 0, 0, 0, this);
+
+        this->myCells.forEach([this, boo](Cell *c){
             c->ripUnits.push(this);
+            c->boos.push(boo);
         });
 
         this->potentialClients.forEach([this](Unit *u)

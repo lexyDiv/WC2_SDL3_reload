@@ -6,12 +6,15 @@ class Boo
 
 public:
     Boo() {};
-    virtual void create(int x, int y, double width, double height) {};
+    virtual void create(int x, int y, double width, double height, Unit *father) {};
+    virtual void draw() {};
+    virtual void process() {};
 
     int x = 0;
     int y = 0;
     double width = 0;
     double height = 0;
+    int timer = 0;
     Image *image = nullptr;
 
     int animGabX = 0;
@@ -25,4 +28,9 @@ public:
     int animTakt = 0;
 
     bool readyToOut = false;
+    bool isAddOnDraw = false;
+
+    Game *game = nullptr;
+
+    Array<Cell *> fatherMyCells;
 };

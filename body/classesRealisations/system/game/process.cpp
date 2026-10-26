@@ -19,8 +19,25 @@ void Game::process()
                                             { return !u->inBufer; }); });
 
     humans.allBuffers.forEach([](Array<Unit *> *b)
-                            { b->filterSelf([](Unit *u)
-                                            { return !u->inBufer; }); });
+                              { b->filterSelf([](Unit *u)
+                                              { return !u->inBufer; }); });
+
+    this->allBoos.filterSelf([](Boo *boo)
+                             {
+
+        if (boo->readyToOut) {
+            delete boo;
+            boo = nullptr;
+            return true;
+        }
+        else
+        {
+            boo->process();
+            return false;
+        } });
+
+
+
 
     // this->unitsBufer.filterSelf([](Unit *u){
     //     return !u->inBufer;

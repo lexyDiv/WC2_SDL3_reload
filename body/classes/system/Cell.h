@@ -16,6 +16,8 @@ class ToOtherPlane;
 class Nation;
 class Claster;
 class Zone;
+class Boo;
+class Bullet;
 
 class TargetData
 {
@@ -138,6 +140,7 @@ public:
     Array<Cell *> panicCells;
     Array<Cell *> drawCells;
     Array<Array<Cell *>> cellsOnDraw;
+    Array<Boo *> boos;
     /////////////////////////////////////////////// => draw potentialClients
     Array<Unit *> groundUnitOnDraw;
     

@@ -27,6 +27,7 @@ public:
     int drawY = 0;
     int alpha = 255;
     Unit *father = nullptr;
+    static Uint64 count;
 
     bool readyToOut = false;
     bool isAddOnDraw = false;
@@ -37,3 +38,5 @@ public:
 
     Array<Cell *> fatherMyCells;
 };
+
+Uint64 Trace::count = 0;

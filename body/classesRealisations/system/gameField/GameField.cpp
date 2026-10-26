@@ -20,6 +20,12 @@ GameField::~GameField()
         delete plane;
         plane = nullptr; });
 
-
+    this->traces.forEach([](Trace *t){
+        if (t)
+        {
+            delete t;
+            t = nullptr;
+        }
+    });
 
 }

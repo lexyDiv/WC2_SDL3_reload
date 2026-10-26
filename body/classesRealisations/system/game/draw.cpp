@@ -29,13 +29,13 @@ void Game::draw()
 
         Array<int> max;
 
-        Array<Unit *> trups;
+        Array<Trace *> traces;
         Array<Boo *> boosOnDraw;
 
         Cell *dc = this->gf->drawCell;
 
-        dc->cellsOnDraw.forEach([drawDeltaY, &DA, &max, &trups, &boosOnDraw](Array<Cell *> &drawLine)
-                                { drawLine.forEach([&drawDeltaY, &DA, &max, &trups, &boosOnDraw](Cell *cell)
+        dc->cellsOnDraw.forEach([drawDeltaY, &DA, &max, &traces, &boosOnDraw](Array<Cell *> &drawLine)
+                                { drawLine.forEach([&drawDeltaY, &DA, &max, &traces, &boosOnDraw](Cell *cell)
                                                    {
                                                        cell->draw();
 
@@ -46,12 +46,12 @@ void Game::draw()
                                                         }
                                                        });
 
-                                                       cell->ripUnits.forEach([&trups](Unit *trup)
+                                                       cell->traces.forEach([&traces](Trace *trace)
                                                                             { 
                                                        
-                                                                        if (!trup->isAddOnDraw) {                                                       
-                                                                            trup->isAddOnDraw = true;
-                                                                            trups.push(trup);
+                                                                        if (!trace->isAddOnDraw) {                                                       
+                                                                            trace->isAddOnDraw = true;
+                                                                            traces.push(trace);
                                                                         } }); 
 
                                                        Unit *groundUnit = cell->groundUnit;
@@ -90,11 +90,13 @@ void Game::draw()
         //                                                                 } }); 
         //                                                             }); });
 
-        trups.sort([](Unit *a, Unit *b)
-                   { return a->deleteTimer > b->deleteTimer; });
+        traces.sort([](Trace *a, Trace *b)
+                   { return a->count > b->count; });
 
-        trups.forEach([](Unit *u)
-                      { u->drawTrup(); });
+        traces.forEach([](Trace *t)
+                      { 
+                        t->draw(); 
+                    });
 
         DA.forEach([](Array<Unit *> &line)
                    { line.forEach([](Unit *unit)

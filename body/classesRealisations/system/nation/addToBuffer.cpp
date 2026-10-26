@@ -3,8 +3,8 @@
 
 void Nation::addToBuffer(Unit *u)
 {
-    mutex mt;
-    mt.lock();
+   // mutex mt;
+   // mt.lock();
     if (u->name == "peon")
     {
         this->peonsBuffer.push(u);
@@ -14,5 +14,5 @@ void Nation::addToBuffer(Unit *u)
         this->townHallsBuffer.push(u);
     }
     u->inBufer = true;
-    mt.unlock();
+   // mt.unlock();
 }

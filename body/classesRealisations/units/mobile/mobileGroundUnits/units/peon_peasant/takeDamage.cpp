@@ -11,7 +11,10 @@ void Peon_peasant::takeDamage(int damage)
         if (this->hp <= 0) {
             this->hp = 0;
             this->iNeedFreeWay = false;
-            this->gf->addToTrupsOnDelete(this);
+            Trace *t = new PeonTrace;
+            t->create(0, 0, 0, 0, this);
+            this->gf->addToTraces(t);
+            //this->gf->addToTrupsOnDelete(this);
         }
         else if (this->hp > this->hpMax) {
             this->hp = this->hpMax;

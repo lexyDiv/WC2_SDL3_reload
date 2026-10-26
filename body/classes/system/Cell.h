@@ -20,6 +20,7 @@ class Boo;
 class Bullet;
 class Trace;
 
+
 class TargetData
 {
 public:
@@ -148,6 +149,7 @@ public:
     /////////////////////////////////////////////// <= draw potentialClients
 
     Array<Unit *> ripUnits; // trupy
+    Array<Trace *> traces;
 
     void drawTrup() { console.log("trup draw"); };
 

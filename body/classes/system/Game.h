@@ -51,6 +51,8 @@ public:
    Array<Unit *> allShahtsPtr;
    Array<Unit *> allOilsPtr;
 
+   Array<Trace *> allTracesPtr;
+
    Array<Boo *> allBoos;
 
    Array<Unit *> allLifeUnitsPtr;
@@ -59,7 +61,7 @@ public:
    // Array<Unit *> unitsBufer;
 
     void addToAllUnitsPtr(Unit *unit);
-    void addToUnitsBufer(Unit *unit);
+   // void addToUnitsBufer(Unit *unit);
   //  void addToUnitsBufer(Unit *unit);
 
    //Array<Unit *> allMobileActiveUnits;

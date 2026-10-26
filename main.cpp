@@ -24,9 +24,15 @@ void loadDrawFn()
     ctx.DrawText(30, 30, 50, "loading");
 }
 
+
+
+
+
 int main()
 {
-  // console.log("papa ", 1 == 1);
+
+
+
 
     Array<int> deltas;
 

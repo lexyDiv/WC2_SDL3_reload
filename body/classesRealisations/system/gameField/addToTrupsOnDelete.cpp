@@ -10,7 +10,7 @@ void GameField::addToTrupsOnDelete(Unit *unit)
 }
 
 
-void GameField::addToTraces(Trace *trace)
+void GameField::addToTraces(Trace trace)
 {
     mutex mt;
     mt.lock();

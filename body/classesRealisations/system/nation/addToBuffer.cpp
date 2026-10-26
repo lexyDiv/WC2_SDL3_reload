@@ -1,5 +1,5 @@
 #include "in.h"
-//=>out
+//=>addToAllTracesBuffers
 
 void Nation::addToBuffer(Unit *u)
 {

@@ -5,6 +5,13 @@ Game::~Game()
 {
     int deleteCount = 0;
 
+    this->allTracesPtr.forEach([](Trace *t){
+        delete t;
+        t = nullptr;
+    });
+
+    
+
     this->allBoos.forEach([](Boo *boo){
         delete boo;
         boo = nullptr;

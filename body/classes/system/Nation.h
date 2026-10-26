@@ -20,13 +20,28 @@ public:
         this->allBuffers.push(&this->peonsBuffer);
         this->allBuffers.push(&this->townHallsBuffer);
 
+        /////////////////////////////
+        for (int i = 0; i < 2; i++)
+        {
+            Array<Trace *> buffer;
+            this->allTracesBuffers.push(buffer);
+        }
+
     };
     string type = "";
 
     Array<Unit *> peonsBuffer;
     Array<Unit *> townHallsBuffer;
     Array<Array<Unit *>*> allBuffers;
+
+    //////////////////////////////////////////
+    Array<Array<Trace *>> allTracesBuffers;
+    ///////////////////////////////////////////////
     
+    void addToAllTracesBuffers(Trace *t);
+
+
+
     void addToBuffer(Unit *u);
 
 };

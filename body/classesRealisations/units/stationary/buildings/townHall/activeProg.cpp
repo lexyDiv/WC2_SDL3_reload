@@ -93,13 +93,13 @@ void TownHall::activeProg()
         {
 
             Unit *peon = nullptr;
-            peon = this->fraction->nation->peonsBuffer.find([](Unit *u)
-                                                            {
-              if (u->inBufer) {
-                u->inBufer = false;
-                return true;
-              }
-              return false; });
+            // peon = this->fraction->nation->peonsBuffer.find([](Unit *u)
+            //                                                 {
+            //   if (u->inBufer) {
+            //     u->inBufer = false;
+            //     return true;
+            //   }
+            //   return false; });
 
             if (peon)
             {

@@ -8,6 +8,8 @@ public:
     virtual void draw() {};
     virtual void process() {};
 
+    int bufferIndex = 0;
+
     int x = 0;
     int y = 0;
     double width = 0;

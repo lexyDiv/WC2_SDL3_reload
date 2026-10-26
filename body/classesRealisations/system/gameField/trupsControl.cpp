@@ -13,23 +13,20 @@ void GameField::trupsControl()
    //   return false; });
    // //  console.log(to_string(this->trupsOnDelete.length));
 
-   this->traces.filterSelf([](Trace *t){
-
-       if (t->readyToOut)
+   this->traces.filterSelf([](Trace &t)
+                           {
+       if (t.readyToOut)
        {
-         console.log("delete trace");
-         delete t;
-         t = nullptr;
          return true;
        }
        else
        {
-       //  console.log("process trace");
-         t->process();
+         t.process();
          return false;
-       }
+       } });
 
-   });
-
-
+   // tracesOnDelete.forEach([](Trace *t){
+   //    delete t;
+   //    t = nullptr;
+   // });
 };

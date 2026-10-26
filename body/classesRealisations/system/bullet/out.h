@@ -1,2 +1,2 @@
 #include "in.h"
-//=>system/out
+//=>trace/in

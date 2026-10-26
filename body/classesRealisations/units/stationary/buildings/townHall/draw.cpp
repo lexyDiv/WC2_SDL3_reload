@@ -5,7 +5,7 @@ void TownHall::draw()
 {
     // console.log("draw");
 
-    if (this->hp)
+    if (!this->isDelete)
     {
         this->isAddOnDraw = false;
         float drawDeltaX = this->gf->drawDeltaX;

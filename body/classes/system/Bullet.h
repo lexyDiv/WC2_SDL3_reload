@@ -1,2 +1,2 @@
 #include "Boo.h"
-//=>out
+//=>Trace

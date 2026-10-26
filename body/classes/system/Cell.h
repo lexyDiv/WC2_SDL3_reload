@@ -18,6 +18,7 @@ class Claster;
 class Zone;
 class Boo;
 class Bullet;
+class Trace;
 
 class TargetData
 {

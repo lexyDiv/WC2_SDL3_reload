@@ -101,7 +101,7 @@ void Game::draw()
                                   { unit->draw(); }); });
 
         boosOnDraw.sort([](Boo *a, Boo *b){
-            return a->drawY > b->drawY;
+            return a->drawY < b->drawY;
         }); 
         
         boosOnDraw.forEach([](Boo *boo){

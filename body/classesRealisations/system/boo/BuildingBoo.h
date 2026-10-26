@@ -38,7 +38,7 @@ void BuildingBoo::process()
         this->animX += 100;
         if (this->animX == 800)
         {
-            this->animCorrectionX += 4;
+            this->animCorrectionX += 3;
             this->animCorrectionY -= 4;
 
             this->animX = 0;

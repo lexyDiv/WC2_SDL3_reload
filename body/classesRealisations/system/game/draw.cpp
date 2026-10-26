@@ -30,13 +30,29 @@ void Game::draw()
         Array<int> max;
 
         Array<Unit *> trups;
+        Array<Boo *> boosOnDraw;
 
         Cell *dc = this->gf->drawCell;
 
-        dc->cellsOnDraw.forEach([drawDeltaY, &DA, &max](Array<Cell *> &drawLine)
-                                { drawLine.forEach([&drawDeltaY, &DA, &max](Cell *cell)
+        dc->cellsOnDraw.forEach([drawDeltaY, &DA, &max, &trups, &boosOnDraw](Array<Cell *> &drawLine)
+                                { drawLine.forEach([&drawDeltaY, &DA, &max, &trups, &boosOnDraw](Cell *cell)
                                                    {
                                                        cell->draw();
+
+                                                       cell->boos.forEach([&boosOnDraw](Boo * boo){
+                                                        if (!boo->isAddOnDraw) {
+                                                            boo->isAddOnDraw = true;
+                                                            boosOnDraw.push(boo);
+                                                        }
+                                                       });
+
+                                                       cell->ripUnits.forEach([&trups](Unit *trup)
+                                                                            { 
+                                                       
+                                                                        if (!trup->isAddOnDraw) {                                                       
+                                                                            trup->isAddOnDraw = true;
+                                                                            trups.push(trup);
+                                                                        } }); 
 
                                                        Unit *groundUnit = cell->groundUnit;
                                                        if (groundUnit &&
@@ -54,7 +70,7 @@ void Game::draw()
                                                        /////////////////////////////////////////////////
                                                        cell->groundUnitOnDraw.forEach([&drawDeltaY, &DA, &max](Unit *u)
                                                                                       {
-                                            int index = ceil((((u->drawIndexY) + drawDeltaY) / 10) + 30);
+                                                        int index = ceil((((u->drawIndexY) + drawDeltaY) / 10) + 30);
 
                         u->isAddOnDraw = true;
                        Array<Unit *> &line = DA.getItemLnk(index);                    
@@ -63,15 +79,16 @@ void Game::draw()
                                                        ////////////////////////////////////////
                                                    }); });
 
-        dc->cellsOnDraw.forEach([&trups](Array<Cell *> &drawLine)
-                                { drawLine.forEach([&trups](Cell *cell)
-                                                   { cell->ripUnits.forEach([&trups](Unit *trup)
-                                                                            { 
+        // dc->cellsOnDraw.forEach([&trups](Array<Cell *> &drawLine)
+        //                         { drawLine.forEach([&trups](Cell *cell)
+        //                                            { cell->ripUnits.forEach([&trups](Unit *trup)
+        //                                                                     { 
                                                        
-                                                                        if (!trup->isAddOnDraw) {                                                       
-                                                                            trup->isAddOnDraw = true;
-                                                                            trups.push(trup);
-                                                                        } }); }); });
+        //                                                                 if (!trup->isAddOnDraw) {                                                       
+        //                                                                     trup->isAddOnDraw = true;
+        //                                                                     trups.push(trup);
+        //                                                                 } }); 
+        //                                                             }); });
 
         trups.sort([](Unit *a, Unit *b)
                    { return a->deleteTimer > b->deleteTimer; });
@@ -82,6 +99,14 @@ void Game::draw()
         DA.forEach([](Array<Unit *> &line)
                    { line.forEach([](Unit *unit)
                                   { unit->draw(); }); });
+
+        boosOnDraw.sort([](Boo *a, Boo *b){
+            return a->drawY > b->drawY;
+        }); 
+        
+        boosOnDraw.forEach([](Boo *boo){
+            boo->draw();
+        });
 
         //////////////////////////////////////////////////////////////////////////////// => DEBUG
         Unit *u = this->gf->focusUnit;

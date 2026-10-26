@@ -5,6 +5,11 @@ Game::~Game()
 {
     int deleteCount = 0;
 
+    this->allBoos.forEach([](Boo *boo){
+        delete boo;
+        boo = nullptr;
+    });
+
     this->AllUnitsPtr.forEach([&deleteCount](Unit *u)
                               {
         delete u;

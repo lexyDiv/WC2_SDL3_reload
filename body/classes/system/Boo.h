@@ -26,6 +26,7 @@ public:
     int animX = 0;
     int animY = 0;
     int animTakt = 0;
+    int drawY = 0;
 
     bool readyToOut = false;
     bool isAddOnDraw = false;

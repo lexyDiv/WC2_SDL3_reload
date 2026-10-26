@@ -15,7 +15,7 @@ void TownHall::trupCreate()
         this->isAddOnDraw = false;
 
         Boo *boo = new BuildingBoo;
-        boo->create(0, 0, 0, 0, this);
+        boo->create(this->cell->x - 150, this->cell->y - 140, 400, 400, this);
 
         this->myCells.forEach([this, boo](Cell *c){
             c->ripUnits.push(this);

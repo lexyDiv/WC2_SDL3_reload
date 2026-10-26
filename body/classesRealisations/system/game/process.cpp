@@ -37,7 +37,7 @@ void Game::process()
         } });
 
 
-
+     // console.log("buffer = " + orcs.peonsBuffer.length);
 
     // this->unitsBufer.filterSelf([](Unit *u){
     //     return !u->inBufer;

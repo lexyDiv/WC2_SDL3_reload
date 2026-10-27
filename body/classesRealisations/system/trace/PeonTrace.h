@@ -28,6 +28,22 @@ void PeonTrace::create(int x, int y, double width, double height, Unit *father)
     this->persnum = this->count;
     this->timer = 0;
     this->alpha = father->alpha;
+
+
+        if (!this->father->isDelete)
+    {
+        this->father->isDelete = true;
+        this->cell->traces.push(this);
+        this->animY = 1000;
+
+        if (this->father->targetData.unit &&
+            this->father->targetData.unit->lesorub &&
+            this->father->targetData.unit->lesorub == this->father)
+        {
+            this->father->targetData.unit->lesorub = nullptr;
+        }
+    }
+
 }
 
 void PeonTrace::draw()
@@ -47,20 +63,8 @@ void PeonTrace::draw()
 
 void PeonTrace::process()
 {
-   if (father->cell) {
-        if (!this->father->isDelete)
-    {
-        this->father->isDelete = true;
-        this->cell->traces.push(this);
-        this->animY = 1000;
 
-        if (this->father->targetData.unit &&
-            this->father->targetData.unit->lesorub &&
-            this->father->targetData.unit->lesorub == this->father)
-        {
-            this->father->targetData.unit->lesorub = nullptr;
-        }
-    }
+
 
     this->timer ++;
     if (this->timer % 10 == 0 && this->animY < 1200)
@@ -85,9 +89,5 @@ void PeonTrace::process()
         this->father->cell->groundUnit = nullptr;
         this->alpha = 230;
     }
-   }
-   else 
-   {
-    cout << "no father cell" << endl;
-   }
+
 }

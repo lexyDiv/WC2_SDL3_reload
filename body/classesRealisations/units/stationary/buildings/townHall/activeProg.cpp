@@ -7,9 +7,12 @@ bool ok = false;
 void TownHall::activeProg()
 {
 
+                    
+
     this->isActive = this->isActiveCheck();
     if (!this->isActive)
     {
+
         return;
     }
 
@@ -86,6 +89,13 @@ void TownHall::activeProg()
     }
 
     ///////////////////////////////////////////////////////////////////////
+
+            // if (this->fraction->peons.length < 1) // 6000 crash 3000
+            // {
+
+            //     this->createTimer = 1;
+            // }
+
     if (this->createTimer && !this->stopCreateUnit)
     {
         this->createTimer--;
@@ -93,13 +103,13 @@ void TownHall::activeProg()
         {
 
              Unit *peon = nullptr;
-            // peon = this->fraction->nation->peonsBuffer.find([](Unit *u)
-            //                                                 {
-            //   if (u->inBufer) {
-            //     u->inBufer = false;
-            //     return true;
-            //   }
-            //   return false; });
+            peon = this->fraction->nation->peonsBuffer.find([](Unit *u)
+                                                            {
+              if (u->inBufer) {
+                u->inBufer = false;
+                return true;
+              }
+              return false; });
 
            // console.log("this->fraction->nation-> ", this->fraction->nation->peonsBuffer.length);
 

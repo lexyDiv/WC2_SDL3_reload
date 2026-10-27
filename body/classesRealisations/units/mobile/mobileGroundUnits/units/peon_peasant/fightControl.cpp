@@ -16,9 +16,9 @@ void Peon_peasant::fightControl()
             {
 
                 // //// <=  ????????????????????????????????????? MUTEX !!!!!!
-               // this->gf->savePushOnTrups(gu);
-               this->fightTarget->deleteTimer = 1;
-               this->fightTarget->trupCreate();
+                this->gf->savePushOnTrups(gu);
+              // this->fightTarget->deleteTimer = 1;
+              // this->fightTarget->trupCreate();
 
             }
         }

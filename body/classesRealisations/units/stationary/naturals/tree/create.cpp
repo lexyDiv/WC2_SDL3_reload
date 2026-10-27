@@ -5,7 +5,7 @@ void Tree::create(Cell *cell, bool isComplite = false, bool isNew = false)
 {
     this->name = "tree";
     this->type = "tree";
-    this->deleteTimer = 50;
+    this->deleteTimer = 0;
     cell->groundUnit = this;
     this->myCells.push(cell);
     this->cell = cell;

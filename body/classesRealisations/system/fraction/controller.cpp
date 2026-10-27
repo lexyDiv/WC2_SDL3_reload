@@ -95,7 +95,7 @@ void Fraction::controller()
             {
  
                 if (peon->targetData.unit &&
-                    peon->targetData.unit->deleteTimer)
+                    peon->targetData.unit->deleteTimer >= 100)
                     {
                         peon->targetData.unit = nullptr;
                     }

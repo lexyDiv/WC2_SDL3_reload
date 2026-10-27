@@ -21,6 +21,7 @@ class Bullet;
 class Trace;
 
 mutex damage_mt;
+mutex pushOnTrups_mt;
 
 class TargetData
 {

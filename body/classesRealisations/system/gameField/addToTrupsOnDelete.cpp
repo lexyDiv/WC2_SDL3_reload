@@ -9,13 +9,13 @@ void GameField::addToTrupsOnDelete(Unit *unit)
     mt.unlock();
 }
 
-void GameField::addToTraces(Trace *t)
-{
-    mutex mt;
+// void GameField::addToTraces(Trace *t)
+// {
+//     // mutex mt;
 
-    mt.lock();
-      this->traces.push(t);
-    mt.unlock();
-}
+//     // mt.lock();
+//     //   this->traces.push(t);
+//     // mt.unlock();
+// }
 
 

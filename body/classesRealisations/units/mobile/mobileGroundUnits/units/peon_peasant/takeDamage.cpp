@@ -10,17 +10,17 @@ void Peon_peasant::takeDamage(int damage)
         if (this->hp <= 0) {
             this->hp = 0;
             this->iNeedFreeWay = false;
-            Trace *t = this->fraction->nation->getTraceFromBuffer(this->bufferIndex) ;
-            if (!t)
-            {
-               t = new PeonTrace;
-               this->game->addToAllTracesPtr(t);
-               this->game->tracesCount++;
-            }
+            // Trace *t = this->fraction->nation->getTraceFromBuffer(this->bufferIndex) ;
+            // if (!t)
+            // {
+            //    t = new PeonTrace;
+            //    this->game->addToAllTracesPtr(t);
+            //    this->game->tracesCount++;
+            // }
 
 
-            t->create(0, 0, 0, 0, this);
-            this->gf->addToTraces(t);
+            // t->create(0, 0, 0, 0, this);
+            // this->gf->addToTraces(t);
 
 
 

@@ -13,18 +13,18 @@ void GameField::trupsControl()
    //   return false; });
    // //  console.log(to_string(this->trupsOnDelete.length));
 
-   this->traces.filterSelf([](Trace *t)
-                           {
-       if (t->readyToOut)
-       {
-       // console.log("filter = ", t->father->persNum);
-         return true;
-       }
-       else
-       {
-         t->process();
-         return false;
-       } });
+  //  this->traces.filterSelf([](Trace *t)
+  //                          {
+  //      if (t->readyToOut)
+  //      {
+  //      // console.log("filter = ", t->father->persNum);
+  //        return true;
+  //      }
+  //      else
+  //      {
+  //        t->process();
+  //        return false;
+  //      } });
 
    // tracesOnDelete.forEach([](Trace *t){
    //    delete t;

@@ -16,9 +16,8 @@ void Fraction::controller()
     this->peonsOnWood.clear();
     this->AllLifeUnits.clear();
     this->damagedAndConstructionBuildings.clear();
-    this->fTownHoll.townHollsByLevel.forEach([](Array<Unit *> &thls){
-        thls.clear();
-    });
+    this->fTownHoll.townHollsByLevel.forEach([](Array<Unit *> &thls)
+                                             { thls.clear(); });
 
     this->allUnits.filterSelf([this](Unit *u)
                               {
@@ -92,19 +91,29 @@ void Fraction::controller()
             //     onHard.push(peon);
             // }
 
-            if (peon->hp &&
-                !peon->inSave &&
-                !peon->isActive &&
-                peon->profession != "" &&
-                peon->orderOnWay.isComplite &&
-                !isBlocked)
+            if (peon->hp)
             {
-                // if (peon->focus) {
-                //     console.log("go controller");
-                // }
-                activeCount++;
-                peon->orderOnWay.go(peon->profession, 0, true);
-                peon->isActive = true;
+ 
+                if (peon->targetData.unit &&
+                    !peon->targetData.unit->hp)
+                    {
+                        peon->targetData.unit = nullptr;
+                    }
+
+                if (
+                    !peon->inSave &&
+                    !peon->isActive &&
+                    peon->profession != "" &&
+                    peon->orderOnWay.isComplite &&
+                    !isBlocked)
+                {
+                    // if (peon->focus) {
+                    //     console.log("go controller");
+                    // }
+                    activeCount++;
+                    peon->orderOnWay.go(peon->profession, 0, true);
+                    peon->isActive = true;
+                }
             }
 
             if (activeCount == 1000)

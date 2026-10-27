@@ -89,7 +89,7 @@ bool Peon_peasant::isNeedHoldGoWay()
 
         )
         {
-            ncgu->takeDamage(1000);
+          //  ncgu->takeDamage(1000);
             return true;
         }
     }

@@ -29,30 +29,30 @@ void Game::draw()
 
         Array<int> max;
 
-        Array<Trace *> traces;
-        Array<Boo *> boosOnDraw;
+        //Array<Trace *> traces;
+       // Array<Boo *> boosOnDraw;
 
         Cell *dc = this->gf->drawCell;
 
-        dc->cellsOnDraw.forEach([drawDeltaY, &DA, &max, &traces, &boosOnDraw](Array<Cell *> &drawLine)
-                                { drawLine.forEach([&drawDeltaY, &DA, &max, &traces, &boosOnDraw](Cell *cell)
+        dc->cellsOnDraw.forEach([drawDeltaY, &DA, &max](Array<Cell *> &drawLine)
+                                { drawLine.forEach([&drawDeltaY, &DA, &max](Cell *cell)
                                                    {
                                                        cell->draw();
 
-                                                       cell->boos.forEach([&boosOnDraw](Boo * boo){
-                                                        if (!boo->isAddOnDraw) {
-                                                            boo->isAddOnDraw = true;
-                                                            boosOnDraw.push(boo);
-                                                        }
-                                                       });
+                                                    //    cell->boos.forEach([&boosOnDraw](Boo * boo){
+                                                    //     if (!boo->isAddOnDraw) {
+                                                    //         boo->isAddOnDraw = true;
+                                                    //         boosOnDraw.push(boo);
+                                                    //     }
+                                                    //    });
 
-                                                       cell->traces.forEach([&traces](Trace *trace)
-                                                                            { 
+                                                    //    cell->traces.forEach([&traces](Trace *trace)
+                                                    //                         { 
                                                        
-                                                                        if (!trace->isAddOnDraw) {                                                       
-                                                                            trace->isAddOnDraw = true;
-                                                                            traces.push(trace);
-                                                                        } }); 
+                                                    //                     if (!trace->isAddOnDraw) {                                                       
+                                                    //                         trace->isAddOnDraw = true;
+                                                    //                         traces.push(trace);
+                                                    //                     } }); 
 
                                                        Unit *groundUnit = cell->groundUnit;
                                                        if (groundUnit &&
@@ -90,25 +90,25 @@ void Game::draw()
         //                                                                 } }); 
         //                                                             }); });
 
-        traces.sort([](Trace *a, Trace *b)
-                   { return a->persnum < b->persnum; });
+        // traces.sort([](Trace *a, Trace *b)
+        //            { return a->persnum < b->persnum; });
 
-        traces.forEach([](Trace *t)
-                      { 
-                        t->draw(); 
-                    });
+        // traces.forEach([](Trace *t)
+        //               { 
+        //                 t->draw(); 
+        //             });
 
         DA.forEach([](Array<Unit *> &line)
                    { line.forEach([](Unit *unit)
                                   { unit->draw(); }); });
 
-        boosOnDraw.sort([](Boo *a, Boo *b){
-            return a->drawY < b->drawY;
-        }); 
+        // boosOnDraw.sort([](Boo *a, Boo *b){
+        //     return a->drawY < b->drawY;
+        // }); 
         
-        boosOnDraw.forEach([](Boo *boo){
-            boo->draw();
-        });
+        // boosOnDraw.forEach([](Boo *boo){
+        //     boo->draw();
+        // });
 
         //////////////////////////////////////////////////////////////////////////////// => DEBUG
         Unit *u = this->gf->focusUnit;

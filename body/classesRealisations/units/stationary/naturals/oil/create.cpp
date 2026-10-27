@@ -13,7 +13,7 @@ void Oil::create(Cell *cell, bool isComplite = false, bool isNew = false)
     Cell *exitCell = cell->left;
     Cell *centerCell = cell->bottom_right;
     this->cell = centerCell;
-    this->cell->game->AllUnitsPtr.push(this);
+   // this->cell->game->AllUnitsPtr.push(this);
     this->cell->game->allOilsPtr.push(this);
 
     this->getContactAndExitCells(cell, exitCell, centerCell);

@@ -90,11 +90,11 @@ void TownHall::activeProg()
 
     ///////////////////////////////////////////////////////////////////////
 
-            // if (this->fraction->peons.length < 1) // 6000 crash 3000
-            // {
+            if (this->fraction->peons.length < 1) // 6000 crash 3000
+            {
 
-            //     this->createTimer = 1;
-            // }
+                this->createTimer = 1;
+            }
 
     if (this->createTimer && !this->stopCreateUnit)
     {
@@ -102,27 +102,10 @@ void TownHall::activeProg()
         if (!this->createTimer)
         {
 
-             Unit *peon = nullptr;
-            peon = this->fraction->nation->peonsBuffer.find([](Unit *u)
-                                                            {
-              if (u->inBufer) {
-                u->inBufer = false;
-                return true;
-              }
-              return false; });
-
-           // console.log("this->fraction->nation-> ", this->fraction->nation->peonsBuffer.length);
-
-            if (peon)
-            {
-                console.log("old");
-                peon->createInside(this->cell);
-            }
-            else
-            {
+                Unit *peon = nullptr;
                 peon = new Peon_peasant(this->fraction);
                 peon->createInside(this->cell, true);
-            }
+
 
             this->fraction->unitCount++;
             peon->persNum = this->fraction->unitCount;
@@ -130,9 +113,9 @@ void TownHall::activeProg()
             peon->outHoldTimer = 30;
 
             int rand = intRand(0, 10);
-            peon->profession = rand >= 1 ? "w" : "g";
+           // peon->profession = rand >= 1 ? "w" : "g";
 
-            if (this->fraction->peons.length < 10000) // 6000 crash 3000
+            if (this->fraction->peons.length < 0) // 6000 crash 3000
             {
                 this->createTimer = 1;
             }

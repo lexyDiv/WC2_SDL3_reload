@@ -16,38 +16,38 @@ void Game::process()
 
     //////////////////////////////////////////////////////////////////////////////////
 
-    orcs.allTracesBuffers.forEach([](Array<Trace *> &buffer)
-                                  { buffer.filterSelf([](Trace *t)
-                                                      { return !t->readyToOut; }); });
+    // orcs.allTracesBuffers.forEach([](Array<Trace *> &buffer)
+    //                               { buffer.filterSelf([](Trace *t)
+    //                                                   { return !t->readyToOut; }); });
 
-    humans.allTracesBuffers.forEach([](Array<Trace *> &buffer)
-                                    { buffer.filterSelf([](Trace *t)
-                                                        { return !t->readyToOut; }); });
+    // humans.allTracesBuffers.forEach([](Array<Trace *> &buffer)
+    //                                 { buffer.filterSelf([](Trace *t)
+    //                                                     { return !t->readyToOut; }); });
 
-    orcs.allBuffers.forEach([](Array<Unit *> *b)
-                            { b->filterSelf([](Unit *u)
-                                            { return !u->inBufer; }); });
+    // orcs.allBuffers.forEach([](Array<Unit *> *b)
+    //                         { b->filterSelf([](Unit *u)
+    //                                         { return !u->inBufer; }); });
 
-    humans.allBuffers.forEach([](Array<Unit *> *b)
-                              { b->filterSelf([](Unit *u)
-                                              { return !u->inBufer; }); });
+    // humans.allBuffers.forEach([](Array<Unit *> *b)
+    //                           { b->filterSelf([](Unit *u)
+    //                                           { return !u->inBufer; }); });
 
     //console.log("length = ", orcs.allTracesBuffers.getItemLnk(0).length);                                          
     //////////////////////////////////////////////////////////////////////////////
 
-    this->allBoos.filterSelf([](Boo *boo)
-                             {
+    // this->allBoos.filterSelf([](Boo *boo)
+    //                          {
 
-        if (boo->readyToOut) {
-            delete boo;
-            boo = nullptr;
-            return true;
-        }
-        else
-        {
-            boo->process();
-            return false;
-        } });
+    //     if (boo->readyToOut) {
+    //         delete boo;
+    //         boo = nullptr;
+    //         return true;
+    //     }
+    //     else
+    //     {
+    //         boo->process();
+    //         return false;
+    //     } });
 
     // console.log("buffer = " + orcs.peonsBuffer.length);
 

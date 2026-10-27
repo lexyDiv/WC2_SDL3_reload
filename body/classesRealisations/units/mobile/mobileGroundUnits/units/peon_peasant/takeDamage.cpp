@@ -17,23 +17,14 @@ void Peon_peasant::takeDamage(int damage)
                this->game->addToAllTracesPtr(t);
                this->game->tracesCount++;
             }
-            // else {
-            //     console.log("this trace from buffer = ", t->readyToOut);
-            // }
+
 
             t->create(0, 0, 0, 0, this);
             this->gf->addToTraces(t);
-            // console.log("======================");
-            // console.log("length = ", this->gf->traces.length);
-            // console.log("readyToOut = ", this->gf->traces.getItem(0)->readyToOut);
 
 
-           // Trace t = PeonTrace();
-           // t.create(0, 0, 0, 0, this);
-           // this->gf->addToTraces(t);
-          //  Trace *t_ptr = this->gf->traces.getItemPtr(this->gf->traces.length - 1);
-           // t_ptr->create(0, 0, 0, 0, this);
-            //this->gf->addToTrupsOnDelete(this);
+
+
         }
         else if (this->hp > this->hpMax) {
             this->hp = this->hpMax;

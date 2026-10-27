@@ -27,8 +27,12 @@ public:
       void process();
 
       bool quit = false;
-
+////////////////////////////////////////////////////////////////////////
       int tracesCount = 0;
+      int peonsCreate = 0;
+      int peonsDelete = 0;
+///////////////////////////////////////////////////////////
+
 
       Uint64 finishTick = SDL_GetTicks();
       Uint64 startTick = SDL_GetTicks();

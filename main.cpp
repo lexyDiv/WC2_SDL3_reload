@@ -67,10 +67,10 @@ int main()
                 th_create_game = nullptr;
             }
 
-            // console.log("trees = ", game->allTreesPtr.length);
-            // console.log("shahts = ", game->allShahtsPtr.length);
-            // console.log("mounts = ", game->allMountsPtr.length);
-           // console.log("all = ", game->allLifeUnitsPtr.length);
+        //     console.log("trees = ", game->allTreesPtr.length);
+        //     console.log("shahts = ", game->allShahtsPtr.length);
+        //     console.log("mounts = ", game->allMountsPtr.length);
+        //    console.log("all = ", game->allLifeUnitsPtr.length);
 
 
 
@@ -79,6 +79,8 @@ int main()
         {
 
            // console.log("all = ", game->AllUnitsPtr.length);
+
+
 
             game->startTick = SDL_GetTicks();
 

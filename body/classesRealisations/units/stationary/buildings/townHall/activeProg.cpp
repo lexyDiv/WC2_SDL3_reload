@@ -92,7 +92,7 @@ void TownHall::activeProg()
         if (!this->createTimer)
         {
 
-            Unit *peon = nullptr;
+             Unit *peon = nullptr;
             // peon = this->fraction->nation->peonsBuffer.find([](Unit *u)
             //                                                 {
             //   if (u->inBufer) {
@@ -101,8 +101,11 @@ void TownHall::activeProg()
             //   }
             //   return false; });
 
+           // console.log("this->fraction->nation-> ", this->fraction->nation->peonsBuffer.length);
+
             if (peon)
             {
+                console.log("old");
                 peon->createInside(this->cell);
             }
             else

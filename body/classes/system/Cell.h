@@ -20,6 +20,7 @@ class Boo;
 class Bullet;
 class Trace;
 
+mutex damage_mt;
 
 class TargetData
 {

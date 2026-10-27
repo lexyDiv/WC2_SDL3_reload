@@ -47,7 +47,8 @@ void PeonTrace::draw()
 
 void PeonTrace::process()
 {
-    if (!this->father->isDelete)
+   if (father->cell) {
+        if (!this->father->isDelete)
     {
         this->father->isDelete = true;
         this->cell->traces.push(this);
@@ -61,7 +62,7 @@ void PeonTrace::process()
         }
     }
 
-    this->timer += 10;
+    this->timer ++;
     if (this->timer % 10 == 0 && this->animY < 1200)
     {
         this->animY += 100;
@@ -84,4 +85,9 @@ void PeonTrace::process()
         this->father->cell->groundUnit = nullptr;
         this->alpha = 230;
     }
+   }
+   else 
+   {
+    cout << "no father cell" << endl;
+   }
 }

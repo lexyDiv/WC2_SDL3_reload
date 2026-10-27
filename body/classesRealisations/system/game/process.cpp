@@ -11,7 +11,7 @@ void Game::process()
     this->fractionsControl();
 
     this->gf->activeShahtsControl();
-    this->gf->trupsControl();
+   // this->gf->trupsControl();
     this->gf->updateClasters();
 
     //////////////////////////////////////////////////////////////////////////////////
@@ -77,6 +77,8 @@ void Game::process()
     }
 
     threads.clear();
+
+    this->gf->trupsControl();
 
     thDatas.forEach([](ThData *td)
                     { threads.emplace_back(&ThData::PWProcess, td); });

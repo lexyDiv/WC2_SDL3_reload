@@ -23,6 +23,7 @@ Game::~Game()
     deleteCount++; });
 
     cout << "==========================================" << endl;
+    cout << "tracesCount = " + to_string(tracesCount) << endl;
     cout << "allTracesPtr.length = " + to_string(this->allTracesPtr.length) << endl;
     cout << "delete " + to_string(deleteCount) + " traces" << endl;
     deleteCount = 0;
@@ -84,10 +85,10 @@ void Game::addToAllUnitsPtr(Unit *unit)
 
 void Game::addToAllTracesPtr(Trace *t)
 {
-    mutex mt;
-    mt.lock();
+  //  mutex mt;
+   // mt.lock();
     this->allTracesPtr.push(t);
-    mt.unlock();
+  //  mt.unlock();
 }
 
 // void Game::addToUnitsBufer(Unit *unit)

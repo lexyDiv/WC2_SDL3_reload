@@ -28,6 +28,8 @@ public:
 
       bool quit = false;
 
+      int tracesCount = 0;
+
       Uint64 finishTick = SDL_GetTicks();
       Uint64 startTick = SDL_GetTicks();
       int optimalDeltaTime = 1000 / 30;

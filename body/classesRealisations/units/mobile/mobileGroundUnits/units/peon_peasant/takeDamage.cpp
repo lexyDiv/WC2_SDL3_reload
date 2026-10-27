@@ -3,8 +3,7 @@
 
 void Peon_peasant::takeDamage(int damage)
 {
-    mutex mt;
-    mt.lock();
+    damage_mt.lock();
     if (this->hp > 0 && !this->inSave)
     {
         this->hp -= damage;
@@ -16,6 +15,7 @@ void Peon_peasant::takeDamage(int damage)
             {
                t = new PeonTrace;
                this->game->addToAllTracesPtr(t);
+               this->game->tracesCount++;
             }
             // else {
             //     console.log("this trace from buffer = ", t->readyToOut);
@@ -39,5 +39,5 @@ void Peon_peasant::takeDamage(int damage)
             this->hp = this->hpMax;
         }
     }
-    mt.unlock();
+    damage_mt.unlock();
 }

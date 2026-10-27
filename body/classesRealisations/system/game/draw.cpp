@@ -91,7 +91,7 @@ void Game::draw()
         //                                                             }); });
 
         traces.sort([](Trace *a, Trace *b)
-                   { return a->count > b->count; });
+                   { return a->persnum < b->persnum; });
 
         traces.forEach([](Trace *t)
                       { 

@@ -1,5 +1,5 @@
 #include "trupCreate.cpp"
-//=>out
+//=>takeDamage
 
 void Tree::drawTrup()
 {

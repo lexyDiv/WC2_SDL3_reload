@@ -10,17 +10,19 @@ void Peon_peasant::fightControl()
         this->inFightTimer += 2;
         if (this->inFightTimer == 50)
         {
-            gu->stress = 6;
-            gu->hp -= 5;
-            if (gu->hp <= 0)
-            {
 
-                // //// <=  ????????????????????????????????????? MUTEX !!!!!!
-                this->gf->savePushOnTrups(gu);
-              // this->fightTarget->deleteTimer = 1;
-              // this->fightTarget->trupCreate();
+            this->fightTarget->takeDamage(5);
+            // gu->stress = 6;
+            // gu->hp -= 5;
+            // if (gu->hp <= 0)
+            // {
 
-            }
+            //     // //// <=  ????????????????????????????????????? MUTEX !!!!!!
+            //     this->gf->savePushOnTrups(gu);
+            //   // this->fightTarget->deleteTimer = 1;
+            //   // this->fightTarget->trupCreate();
+
+            // }
         }
         if (this->inFightTimer == 70)
         {

@@ -12,6 +12,7 @@ public:
     void stressControl() override;
     void trupCreate() override;
     void drawTrup() override;
+    void takeDamage(int) override;
     BlockedData blockedCheck(Unit* unit) override;
 };
 

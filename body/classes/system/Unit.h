@@ -158,7 +158,7 @@ public:
   double drawGabaritX = 0;
   double drawGabaritY = 0;
   /////////////////////////// <= anim
-
+    int bufferIndex = 0;
   Image *image = nullptr;
   Image *image2 = nullptr;
 

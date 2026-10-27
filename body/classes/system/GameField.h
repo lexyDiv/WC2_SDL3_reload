@@ -102,10 +102,10 @@ public:
     Array<Unit *> activeShahts;
 
     Array<Unit *> trupsOnDelete;
-    Array<Trace> traces;
+    Array<Trace *> traces;
      void trupsControl();
      void addToTrupsOnDelete(Unit *unit);
-     void addToTraces(Trace trace);
+     void addToTraces(Trace *trace);
      void activeShahtsControl();
 
     Image *miniMap = nullptr;

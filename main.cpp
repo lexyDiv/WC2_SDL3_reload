@@ -45,6 +45,9 @@ int main()
         thDatas.push(td);
     }
 
+
+
+
     while (!quit)
     {
 
@@ -68,6 +71,9 @@ int main()
             // console.log("shahts = ", game->allShahtsPtr.length);
             // console.log("mounts = ", game->allMountsPtr.length);
            // console.log("all = ", game->allLifeUnitsPtr.length);
+
+
+
         }
         else  // if (!th_create_game)
         {

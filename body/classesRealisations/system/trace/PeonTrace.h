@@ -21,12 +21,18 @@ void PeonTrace::create(int x, int y, double width, double height, Unit *father)
     this->game = this->father->game;
     this->animGabX = father->animGabX;
     this->animGabY = father->animGabY;
+    this->bufferIndex = father->bufferIndex;
+    this->animX = father->animX;
+    this->animY = father->animY;
     this->count++;
+    this->persnum = this->count;
+    this->timer = 0;
+    this->alpha = father->alpha;
 }
 
 void PeonTrace::draw()
 {
-
+   // console.log("draw = ", this->father->persNum);
     this->isAddOnDraw = false;
     float drawDeltaX = this->game->gf->drawDeltaX;
     float drawDeltaY = this->game->gf->drawDeltaY;
@@ -55,7 +61,7 @@ void PeonTrace::process()
         }
     }
 
-    this->timer++;
+    this->timer += 10;
     if (this->timer % 10 == 0 && this->animY < 1200)
     {
         this->animY += 100;
@@ -64,7 +70,9 @@ void PeonTrace::process()
     if (!this->alpha)
     {
         this->cell->traces.splice(this->cell->traces.indexOf(this), 1);
+        this->father->fraction->nation->addToAllTracesBuffers(this);
         this->readyToOut = true;
+       // console.log("trace delete");
     }
     else if (this->timer > 30 && this->timer % 6 == 0)
     {

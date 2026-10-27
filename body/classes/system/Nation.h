@@ -36,6 +36,7 @@ public:
 
     //////////////////////////////////////////
     Array<Array<Trace *>> allTracesBuffers;
+    Trace *getTraceFromBuffer(int);
     ///////////////////////////////////////////////
     
     void addToAllTracesBuffers(Trace *t);

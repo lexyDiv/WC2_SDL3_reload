@@ -6,6 +6,7 @@ void TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
 
     this->fraction->unitCount++;
     this->persNum = this->fraction->unitCount;
+         bufferIndex = 1;
 
     this->thwd.clear();
     for (int i = 0; i < thDatas.length; i++)

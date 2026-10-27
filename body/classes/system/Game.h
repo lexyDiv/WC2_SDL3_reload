@@ -61,6 +61,7 @@ public:
    // Array<Unit *> unitsBufer;
 
     void addToAllUnitsPtr(Unit *unit);
+    void addToAllTracesPtr(Trace *t);
    // void addToUnitsBufer(Unit *unit);
   //  void addToUnitsBufer(Unit *unit);
 

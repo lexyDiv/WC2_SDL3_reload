@@ -30,6 +30,7 @@ public:
     int alpha = 255;
     Unit *father = nullptr;
     static Uint64 count;
+    Uint64 persnum = 0;
 
     bool readyToOut = false;
     bool isAddOnDraw = false;

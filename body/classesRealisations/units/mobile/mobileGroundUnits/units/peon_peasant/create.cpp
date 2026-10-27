@@ -41,6 +41,8 @@ void Peon_peasant::create(Cell *cell, bool isComplite = false, bool isNew = fals
     canBuild = true;
     canMove = true;
 
+         bufferIndex = 0;
+
     this->deleteTimer = 0;
     this->maxDeleteTimer = 3000;
 

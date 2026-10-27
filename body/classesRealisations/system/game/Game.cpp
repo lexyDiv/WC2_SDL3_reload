@@ -5,17 +5,27 @@ Game::~Game()
 {
     int deleteCount = 0;
 
-    this->allTracesPtr.forEach([](Trace *t){
-        delete t;
-        t = nullptr;
-    });
-
-    
-
-    this->allBoos.forEach([](Boo *boo){
+    this->allBoos.forEach([&deleteCount](Boo *boo)
+                          {
         delete boo;
         boo = nullptr;
-    });
+    deleteCount++; });
+    cout << "delete " + to_string(deleteCount) + " booses" << endl;
+    deleteCount = 0;
+
+    this->allTracesPtr.forEach([&deleteCount](Trace *t)
+                               {
+     if (t)
+     {
+         delete t;
+        t = nullptr;
+     } 
+    deleteCount++; });
+
+    cout << "==========================================" << endl;
+    cout << "allTracesPtr.length = " + to_string(this->allTracesPtr.length) << endl;
+    cout << "delete " + to_string(deleteCount) + " traces" << endl;
+    deleteCount = 0;
 
     this->AllUnitsPtr.forEach([&deleteCount](Unit *u)
                               {
@@ -72,6 +82,13 @@ void Game::addToAllUnitsPtr(Unit *unit)
     mt.unlock();
 }
 
+void Game::addToAllTracesPtr(Trace *t)
+{
+    mutex mt;
+    mt.lock();
+    this->allTracesPtr.push(t);
+    mt.unlock();
+}
 
 // void Game::addToUnitsBufer(Unit *unit)
 // {

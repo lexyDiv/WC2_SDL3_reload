@@ -13,15 +13,16 @@ void GameField::trupsControl()
    //   return false; });
    // //  console.log(to_string(this->trupsOnDelete.length));
 
-   this->traces.filterSelf([](Trace &t)
+   this->traces.filterSelf([](Trace *t)
                            {
-       if (t.readyToOut)
+       if (t->readyToOut)
        {
+       // console.log("filter = ", t->father->persNum);
          return true;
        }
        else
        {
-         t.process();
+         t->process();
          return false;
        } });
 

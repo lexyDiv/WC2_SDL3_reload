@@ -3,8 +3,7 @@
 
 void TownHall::takeDamage(int damage)
 {
-    mutex mt;
-    mt.lock();
+    damage_mt.lock();
     this->checkStateNeed = true;
     if (this->hp > 0)
     {
@@ -16,9 +15,9 @@ void TownHall::takeDamage(int damage)
        else if (this->hp <= 0)
        {
         this->hp = 0;
-        this->gf->addToTrupsOnDelete(this);
+        this->gf->trupsOnDelete.push(this);
+        //this->gf->addToTrupsOnDelete(this);
        }
-      // console.log(this->hp);
     }
-    mt.unlock();
+    damage_mt.unlock();
 }

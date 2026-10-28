@@ -2,8 +2,8 @@
 //=>activeShahtsControl
 
 void GameField::savePushOnTrups(Unit *unit) {
-    pushOnTrups_mt.lock();
+   // pushOnTrups_mt.lock();
     unit->hp = 0;
     this->trupsOnDelete.push(unit);
-    pushOnTrups_mt.unlock();
+   // pushOnTrups_mt.unlock();
 }

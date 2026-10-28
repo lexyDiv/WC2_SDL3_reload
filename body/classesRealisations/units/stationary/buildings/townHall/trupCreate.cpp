@@ -12,32 +12,41 @@ void TownHall::trupCreate()
         this->animGabX = 64;
         this->animGabY = 64;
 
-        this->isAddOnDraw = false;
+       // this->isAddOnDraw = false;
 
-        Boo *boo = new BuildingBoo;
-        boo->create(this->cell->x - 150, this->cell->y - 140, 400, 400, this);
+       //Boo *boo = new BuildingBoo;
+       // boo->create(this->cell->x - 150, this->cell->y - 140, 400, 400, this);
 
-        this->myCells.forEach([this, boo](Cell *c){
+        this->myCells.forEach([this](Cell *c){
             c->ripUnits.push(this);
-            c->boos.push(boo);
+           // c->boos.push(boo);
         });
 
         this->potentialClients.forEach([this](Unit *u)
                                        {
+                   u->fastDead = true; 
+                   u->takeDamage(3000);                    
                  // this->game->unitsBufer.push(u);
-                  this->fraction->nation->addToBuffer(u);});
+                 // this->fraction->nation->addToBuffer(u);
+                });
 
         this->clients.forEach([this](Unit *u)
                               {
-                                 this->fraction->nation->addToBuffer(u);});
+                                u->fastDead = true;
+                                u->takeDamage(3000);
+                                // this->fraction->nation->addToBuffer(u);
+                                });
 
         this->outClients.forEach([this](Unit *u)
                                  {
             if (u->cell && u->cell->groundUnit == u)
             {
+                u->fastDead = true;
                 u->cell->groundUnit = nullptr;
+                u->takeDamage(3000);
             }
-                  this->fraction->nation->addToBuffer(u);});
+                 // this->fraction->nation->addToBuffer(u);
+                });
     }
 
     this->deleteTimer ++;
@@ -50,7 +59,7 @@ void TownHall::trupCreate()
     if (this->deleteTimer >= this->maxDeleteTimer)
     {
         
-        this->fraction->nation->addToBuffer(this);
+       // this->fraction->nation->addToBuffer(this);
         this->inBufer = true;
         this->deleteTimer = 0;
         this->myCells.forEach([this](Cell *c)

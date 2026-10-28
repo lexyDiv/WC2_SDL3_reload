@@ -10,6 +10,9 @@ void Peon_peasant::takeDamage(int damage)
         if (this->hp <= 0) {
             this->hp = 0;
             this->iNeedFreeWay = false;
+
+            this->gf->trupsOnDelete.push(this);
+
             // Trace *t = this->fraction->nation->getTraceFromBuffer(this->bufferIndex) ;
             // if (!t)
             // {

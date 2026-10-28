@@ -11,7 +11,7 @@ void Peon_peasant::fightControl()
         if (this->inFightTimer == 50)
         {
 
-            this->fightTarget->takeDamage(5);
+            this->fightTarget->takeDamageByPeon(5);
             // gu->stress = 6;
             // gu->hp -= 5;
             // if (gu->hp <= 0)

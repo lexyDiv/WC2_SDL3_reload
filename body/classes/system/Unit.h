@@ -94,6 +94,7 @@ public:
   virtual void preDraw() {};
   virtual void updateCurrentTarget() {};
   virtual void takeDamage(int damage) {};
+  virtual void takeDamageByPeon(int damage) {};
   virtual void trupCreate() {};
 
   virtual void standOnCell() {};
@@ -102,6 +103,9 @@ public:
 
   bool checkStateNeed = false;
   bool stopCreateUnit = false;
+  bool fastDead = false;
+  bool readyToHardDelete = false;
+  bool readyToLightDelete = false;
 
   int deleteTimer = 50;
   int maxDeleteTimer = 0;

@@ -4,40 +4,49 @@
 void Peon_peasant::trupCreate()
 {
 
-   if (!this->isDelete)
+   if (!this->fastDead)
    {
-      this->isDelete = true;
-      this->cell->ripUnits.push(this);
-      this->animY = 1000;
-
-      if (this->targetData.unit &&
-          this->targetData.unit->lesorub &&
-          this->targetData.unit->lesorub == this)
+      if (!this->isDelete)
       {
-         this->targetData.unit->lesorub = nullptr;
+         this->isDelete = true;
+         this->cell->ripUnits.push(this);
+         this->animY = 1000;
+
+         if (this->targetData.unit &&
+             this->targetData.unit->lesorub &&
+             this->targetData.unit->lesorub == this)
+         {
+            this->targetData.unit->lesorub = nullptr;
+         }
+      }
+
+      this->deleteTimer++;
+      if (this->deleteTimer % 10 == 0 && this->animY < 1200)
+      {
+         this->animY += 100;
+      }
+
+      if (!this->alpha)
+      {
+         this->cell->ripUnits.splice(this->cell->ripUnits.indexOf(this), 1); // this is true save
+         this->readyToHardDelete = true;
+      }
+      else if (this->deleteTimer > 30 && this->deleteTimer % 6 == 0)
+      {
+         this->alpha--;
+      }
+      else if (this->deleteTimer == 30)
+      {
+         this->cell->groundUnit = nullptr;
+         this->alpha = 230;
       }
    }
-
-   this->deleteTimer ++;
-   if (this->deleteTimer % 10 == 0 && this->animY < 1200)
+   else
    {
-      this->animY += 100;
-   }
-
-   if (!this->alpha)
-   {
-      this->cell->ripUnits.splice(this->cell->ripUnits.indexOf(this), 1);
-      this->fraction->nation->addToBuffer(this);
-      this->deleteTimer = this->maxDeleteTimer;
-   }
-   else if (this->deleteTimer > 30 && this->deleteTimer % 6 == 0)
-   {
-      this->alpha--;
-
-   }
-   else if (this->deleteTimer == 30)
-   {
-      this->cell->groundUnit = nullptr;
-      this->alpha = 230;
+      this->deleteTimer++;
+      if (this->deleteTimer == this->maxDeleteTimer)
+      {
+         this->readyToHardDelete = true;
+      }
    }
 }

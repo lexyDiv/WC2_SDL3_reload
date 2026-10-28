@@ -6,7 +6,7 @@ class BuildingBoo : public Boo
 
 public:
     void create(int x, int y, double width, double height, Unit *father) override;
-    void process() override;
+    void trupCreate() override;
     void draw() override;
 };
 
@@ -25,12 +25,12 @@ void BuildingBoo::create(int x, int y, double width, double height, Unit *father
 
     this->animGabX = 100;
     this->animGabY = 100;
-    this->drawY = this->y + this->height;
+    this->drawIndexY = this->y + this->height;
 
     this->game->allBoos.push(this);
 };
 
-void BuildingBoo::process()
+void BuildingBoo::trupCreate()
 {
 
     if (this->timer % 2 == 0)
@@ -47,9 +47,9 @@ void BuildingBoo::process()
 
         if (this->animY == 600)
         {
-            this->fatherMyCells.forEach([this](Cell *c)
-                                        { c->boos.splice(c->boos.indexOf(this), 1); });
-            this->readyToOut = true;
+            // this->fatherMyCells.forEach([this](Cell *c)
+            //                             { c->boos.splice(c->boos.indexOf(this), 1); });
+            this->readyToHardDelete = true;
            // console.log("boo delete");
         }
     }

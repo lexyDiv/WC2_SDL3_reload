@@ -31,8 +31,7 @@ void Game::draw()
 
         Array<int> max;
 
-
-       // Array<Boo *> boosOnDraw;
+        // Array<Boo *> boosOnDraw;
 
         Cell *dc = this->gf->drawCell;
 
@@ -41,34 +40,34 @@ void Game::draw()
                                                    {
                                                        cell->draw();
 
-                                                       cell->ripUnits.forEach([&traces](Unit *u){
+                                                       cell->ripUnits.forEach([&traces](Unit *u)
+                                                                              {
                                                         if (!u->isAddOnDrawTrup)
                                                         {
                                                             u->isAddOnDrawTrup = true;
                                                             traces.push(u);
-                                                        }
-                                                       });
+                                                        } });
 
-                                                    //    cell->boos.forEach([&boosOnDraw](Boo * boo){
-                                                    //     if (!boo->isAddOnDraw) {
-                                                    //         boo->isAddOnDraw = true;
-                                                    //         boosOnDraw.push(boo);
-                                                    //     }
-                                                    //    });
+                                                       //    cell->boos.forEach([&boosOnDraw](Boo * boo){
+                                                       //     if (!boo->isAddOnDraw) {
+                                                       //         boo->isAddOnDraw = true;
+                                                       //         boosOnDraw.push(boo);
+                                                       //     }
+                                                       //    });
 
-                                                    //    cell->traces.forEach([&traces](Trace *trace)
-                                                    //                         { 
-                                                       
-                                                    //                     if (!trace->isAddOnDraw) {                                                       
-                                                    //                         trace->isAddOnDraw = true;
-                                                    //                         traces.push(trace);
-                                                    //                     } }); 
+                                                       //    cell->traces.forEach([&traces](Trace *trace)
+                                                       //                         {
+
+                                                       //                     if (!trace->isAddOnDraw) {
+                                                       //                         trace->isAddOnDraw = true;
+                                                       //                         traces.push(trace);
+                                                       //                     } });
 
                                                        Unit *groundUnit = cell->groundUnit;
                                                        if (groundUnit &&
                                                            !groundUnit->isAddOnDraw //&&
-                                                          // groundUnit->hp > 0
-                                                        )
+                                                                                    // groundUnit->hp > 0
+                                                       )
                                                        {
                                                            int index = ceil((((groundUnit->drawIndexY) + drawDeltaY) / 10) + 30);
 
@@ -93,21 +92,19 @@ void Game::draw()
         // dc->cellsOnDraw.forEach([&trups](Array<Cell *> &drawLine)
         //                         { drawLine.forEach([&trups](Cell *cell)
         //                                            { cell->ripUnits.forEach([&trups](Unit *trup)
-        //                                                                     { 
-                                                       
-        //                                                                 if (!trup->isAddOnDraw) {                                                       
+        //                                                                     {
+
+        //                                                                 if (!trup->isAddOnDraw) {
         //                                                                     trup->isAddOnDraw = true;
         //                                                                     trups.push(trup);
-        //                                                                 } }); 
+        //                                                                 } });
         //                                                             }); });
 
-        traces.sort([](Unit *a, Unit *b){
-            return a->timeOfDeath < b->timeOfDeath;
-        });
+        traces.sort([](Unit *a, Unit *b)
+                    { return a->timeOfDeath < b->timeOfDeath; });
 
-        traces.forEach([](Unit *u){
-            u->drawTrup();
-        });
+        traces.forEach([](Unit *u)
+                       { u->drawTrup(); });
 
         DA.forEach([](Array<Unit *> &line)
                    { line.forEach([](Unit *unit)
@@ -115,8 +112,8 @@ void Game::draw()
 
         // boosOnDraw.sort([](Boo *a, Boo *b){
         //     return a->drawY < b->drawY;
-        // }); 
-        
+        // });
+
         // boosOnDraw.forEach([](Boo *boo){
         //     boo->draw();
         // });

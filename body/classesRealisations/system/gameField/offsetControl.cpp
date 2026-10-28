@@ -124,7 +124,7 @@ void GameField::offsetControl()
                 // }
                 // if (this->focusUnit->canStandStill)
                 // {
-                    this->focusUnit->takeDamage(3000);
+                  //  this->focusUnit->takeDamage(3000);
                 // }
                // console.log(this->focusUnit->profession);
             }

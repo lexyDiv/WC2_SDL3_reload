@@ -4,8 +4,6 @@
 Game::~Game()
 {
 
-
-
     this->fractions.forEach([this](Fraction *f)
                             {
                                 f->allUnits.filterSelf([](Unit *u){

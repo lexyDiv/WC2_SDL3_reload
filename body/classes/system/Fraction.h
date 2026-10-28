@@ -1,23 +1,25 @@
 #include "Nation.h"
 //=> Game
 
-
-
-
-class Upgrade {
-    public:
+class Upgrade
+{
+public:
     int current = 0;
     int complite = 0;
     string name = "";
-    Upgrade(int complite, string name) {
-       this->complite = complite;
-       this->name = name;
+    Upgrade(int complite, string name)
+    {
+        this->complite = complite;
+        this->name = name;
     };
 };
 
-struct FractionTownHall {
-    FractionTownHall() {
-        for (int i = 0; i < 3; i++) {
+struct FractionTownHall
+{
+    FractionTownHall()
+    {
+        for (int i = 0; i < 3; i++)
+        {
             Array<Unit *> thbl;
             this->townHollsByLevel.push(thbl);
         }
@@ -31,7 +33,8 @@ struct FractionTownHall {
     // int level_3_townHollsCount = 0;
 };
 
-struct FractionLamberMill {
+struct FractionLamberMill
+{
     Array<Unit *> lamberMills;
     Array<Upgrade> seengUpgrades;
     Array<Upgrade> damageUpgrades;
@@ -39,38 +42,37 @@ struct FractionLamberMill {
     int seengLevel = 0;
     int damageLevel = 0;
     int regenerationLevel = 0;
-
 };
 
+class Fraction
+{
+public:
+    Fraction() {};
+    virtual ~Fraction();
 
+    virtual void create(Game *game, Nation *nation, string color);
 
-class Fraction {
-    public:
-     Fraction(){};
-   virtual ~Fraction(){};
-    virtual void create(Game* game, Nation *nation, string color);
+    virtual void orderControl() {};
+    virtual void controller();
+    virtual void activeUnitsControl();
 
-   virtual void orderControl(){};
-   virtual void controller();
-   virtual void activeUnitsControl();
+    ////////////////////// => new system
+    UnitData peon;
+    UnitData townHall;
+    ////////////////////// <= new system
 
-   ////////////////////// => new system
-   UnitData peon;
-   UnitData townHall;
-   ////////////////////// <= new system
-
-   /////////////////////  union buildings
+    /////////////////////  union buildings
     FractionTownHall fTownHoll;
     FractionLamberMill fLamberMill;
 
-   ////////////////////
+    ////////////////////
 
     string name = "";
     bool control = false;
     string color = "";
-    Color mapColor = { R: 255, G: 0, B: 0 };
+    Color mapColor = {R : 255, G : 0, B : 0};
     int level = 0;
-   // Array<Unit *> units;
+    // Array<Unit *> units;
     Array<Unit *> allUnits;
     Array<Unit *> AllLifeUnits;
     Array<Unit *> allBuildings;
@@ -95,5 +97,4 @@ class Fraction {
     int unitCount = 0;
     int hold = 0;
     int hardCount = 0;
-
 };

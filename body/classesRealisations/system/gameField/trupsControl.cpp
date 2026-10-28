@@ -24,11 +24,18 @@ void GameField::trupsControl()
             return false;
          } });
 
-   //  this->trupsOnDelete.forEach([](Unit *trup)
-   //                              { trup->trupCreate(); });
-   //  this->trupsOnDelete.filterSelf([](Unit *trup)
+   //  this->trupsOnDelete.forEach([](Unit *u)
+   //                              { 
+   //                               u->trupCreate();
+   //                               if (u->readyToHardDelete) {
+   //                                  delete u;
+   //                                  u = nullptr;
+   //                               } 
+   //                             });
+
+   //  this->trupsOnDelete.filterSelf([](Unit *u)
    //                                 {
-   //   if (trup->deleteTimer >= trup->maxDeleteTimer) {
+   //   if (!u || u->readyToLightDelete) {
    //      return true;
    //   }
    //   return false; });

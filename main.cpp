@@ -24,15 +24,8 @@ void loadDrawFn()
     ctx.DrawText(30, 30, 50, "loading");
 }
 
-
-
-
-
 int main()
 {
-
-
-
 
     Array<int> deltas;
 
@@ -44,9 +37,6 @@ int main()
         td->thds = &thDatas;
         thDatas.push(td);
     }
-
-
-
 
     while (!quit)
     {
@@ -67,36 +57,32 @@ int main()
                 th_create_game = nullptr;
             }
 
-        //     console.log("trees = ", game->allTreesPtr.length);
-        //     console.log("shahts = ", game->allShahtsPtr.length);
-        //     console.log("mounts = ", game->allMountsPtr.length);
-        //    console.log("all = ", game->allLifeUnitsPtr.length);
-
-
-
+            //     console.log("trees = ", game->allTreesPtr.length);
+            //     console.log("shahts = ", game->allShahtsPtr.length);
+            //     console.log("mounts = ", game->allMountsPtr.length);
+            //    console.log("all = ", game->allLifeUnitsPtr.length);
         }
-        else  // if (!th_create_game)
+        else // if (!th_create_game)
         {
 
-           // console.log("all = ", game->AllUnitsPtr.length);
-
-
+            // console.log("all = ", game->AllUnitsPtr.length);
 
             game->startTick = SDL_GetTicks();
 
-           if (!globalPause) {
-             basicDo();
-           }
+            if (!globalPause)
+            {
+                basicDo();
+            }
 
             basicDraw();
 
-           // if (!globalPause)
-           // {
-                for (auto &t : threads)
-                {
-                    t.join();
-                }
-          //  }
+            // if (!globalPause)
+            // {
+            for (auto &t : threads)
+            {
+                t.join();
+            }
+            //  }
 
             game->unitsOnWay.clear();
 
@@ -134,4 +120,6 @@ int main()
 
     thDatas.forEach([](ThData *td)
                     { delete td; });
+
+
 }

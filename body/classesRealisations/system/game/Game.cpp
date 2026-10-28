@@ -4,17 +4,11 @@
 Game::~Game()
 {
 
-    this->gf->trupsOnDelete.forEach([this](Unit *u)
-                                    {
-        if (!u->canGiveTree)
-        {
-            if (u->canBuild)
-            {
-               this->peonsDelete++;
-            }
-            delete u;
-            u = nullptr;
-        } });
+
+
+
+
+
 
     this->fractions.forEach([this](Fraction *f)
                             { f->allUnits.forEach([this](Unit *u)

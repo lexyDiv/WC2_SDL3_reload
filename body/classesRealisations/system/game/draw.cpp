@@ -9,8 +9,6 @@ void Game::draw()
         return;
     }
 
-    // ctx.CreateDrawZone(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT);
-    //  ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "black");
 
     ctx.CreateDrawZone(this->gf->x, this->gf->y, this->gf->screenWidth, this->gf->screenHeight);
 
@@ -70,11 +68,14 @@ void Game::draw()
                                                        )
                                                        {
                                                            int index = ceil((((groundUnit->drawIndexY) + drawDeltaY) / 10) + 30);
-
+                                                        //    if (groundUnit->focus)
+                                                        //    {
+                                                        //     console.log("?? index = ", index);
+                                                        //    }
                                                            groundUnit->isAddOnDraw = true;
                                                            Array<Unit *> &line = DA.getItemLnk(index);
                                                            line.push(groundUnit);
-                                                           max.push(index);
+                                                          // max.push(index);
                                                        }
 
                                                        /////////////////////////////////////////////////

@@ -4,13 +4,39 @@
 Game::~Game()
 {
 
+    this->gf->trupsOnDelete.forEach([this](Unit *u)
+                                    {
+        if (!u->canGiveTree)
+        {
+            if (u->canBuild)
+            {
+               this->peonsDelete++;
+            }
+            delete u;
+            u = nullptr;
+        } });
+
+    this->fractions.forEach([this](Fraction *f)
+                            { f->allUnits.forEach([this](Unit *u)
+                                                  {
+            if (u->canBuild)
+            {
+               this->peonsDelete++;
+            }
+            delete u;
+            u = nullptr; }); });
+
+
+    cout << "==================================" << endl;
+    cout << "peons create = " + to_string(this->peonsCreate) << endl;
+    cout << "peons delete = " + to_string(this->peonsDelete) << endl;        
 
     this->allTreesPtr.forEach([](Unit *tree)
                               {
         if (tree) {
             delete tree;
         } });
-        
+
     this->allMountsPtr.forEach([](Unit *mount)
                                {
         if (mount) {
@@ -29,13 +55,11 @@ Game::~Game()
             delete oil;
         } });
 
-
     this->fractions.forEach([](Fraction *fr)
                             {
         delete fr;
         fr = nullptr; });
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -49,10 +73,10 @@ void Game::addToAllUnitsPtr(Unit *unit)
 
 void Game::addToAllTracesPtr(Trace *t)
 {
-  //  mutex mt;
-   // mt.lock();
+    //  mutex mt;
+    // mt.lock();
     this->allTracesPtr.push(t);
-  //  mt.unlock();
+    //  mt.unlock();
 }
 
 // void Game::addToUnitsBufer(Unit *unit)

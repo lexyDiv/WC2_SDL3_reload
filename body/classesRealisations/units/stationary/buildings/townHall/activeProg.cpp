@@ -105,7 +105,7 @@ void TownHall::activeProg()
                 Unit *peon = nullptr;
                 peon = new Peon_peasant(this->fraction);
                 peon->createInside(this->cell, true);
-
+                this->game->peonsCreate++;
 
             this->fraction->unitCount++;
             peon->persNum = this->fraction->unitCount;

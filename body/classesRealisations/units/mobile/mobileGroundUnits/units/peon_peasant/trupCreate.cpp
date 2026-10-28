@@ -31,6 +31,10 @@ void Peon_peasant::trupCreate()
       {
          this->cell->ripUnits.splice(this->cell->ripUnits.indexOf(this), 1); // this is true save
          this->readyToHardDelete = true;
+         if (this->focus)
+         {
+            this->gf->focusUnit = nullptr;
+         }
       }
       else if (this->deleteTimer > 30 && this->deleteTimer % 6 == 0)
       {

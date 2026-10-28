@@ -54,7 +54,7 @@ void Fraction::controller()
                     }
                     return false;
                 }                    
-
+               //console.log("get out of fractoin");
             return true; });
 
     // console.log("length = ", this->AllLifeUnits.length);

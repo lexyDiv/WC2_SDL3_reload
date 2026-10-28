@@ -11,6 +11,7 @@ void GameField::trupsControl()
             delete u;
             u = nullptr;
             this->game->peonsDelete++;
+           // console.log("peon delete");
             return true;
          }
          else if (u->readyToLightDelete)

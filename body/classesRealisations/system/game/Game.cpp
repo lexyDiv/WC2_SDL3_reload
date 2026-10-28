@@ -6,12 +6,17 @@ Game::~Game()
 
 
 
-
-
-
-
     this->fractions.forEach([this](Fraction *f)
-                            { f->allUnits.forEach([this](Unit *u)
+                            {
+                                f->allUnits.filterSelf([](Unit *u){
+                                    if (u->hp <= 0)
+                                    {
+                                        return true;
+                                    }
+                                    return false;
+                                });
+                                
+                                f->allUnits.forEach([this](Unit *u)
                                                   {
             if (u->canBuild)
             {
@@ -20,10 +25,9 @@ Game::~Game()
             delete u;
             u = nullptr; }); });
 
-
-    cout << "==================================" << endl;
-    cout << "peons create = " + to_string(this->peonsCreate) << endl;
-    cout << "peons delete = " + to_string(this->peonsDelete) << endl;        
+    // cout << "==================================" << endl;
+    // cout << "peons create = " + to_string(this->peonsCreate) << endl;
+    // cout << "peons delete = " + to_string(this->peonsDelete) << endl;
 
     this->allTreesPtr.forEach([](Unit *tree)
                               {

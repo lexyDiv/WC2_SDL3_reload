@@ -8,6 +8,7 @@ void Peon_peasant::trupCreate()
    {
       if (!this->isDelete)
       {
+         this->timeOfDeath = SDL_GetTicks();
          this->isDelete = true;
          this->cell->ripUnits.push(this);
          this->animY = 1000;

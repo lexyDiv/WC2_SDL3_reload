@@ -106,6 +106,7 @@ public:
   bool fastDead = false;
   bool readyToHardDelete = false;
   bool readyToLightDelete = false;
+  Uint64 timeOfDeath = 0;
 
   int deleteTimer = 50;
   int maxDeleteTimer = 0;
@@ -170,6 +171,7 @@ public:
   Game *game = nullptr;
   Fraction *fraction = nullptr;
   bool isAddOnDraw = false;
+  bool isAddOnDrawTrup = false;
   int alpha = 255;
   int getGabX = 0;
   int getGabY = 0;

@@ -20,6 +20,8 @@ void Game::draw()
         float drawDeltaX = this->gf->drawDeltaX;
         float drawDeltaY = this->gf->drawDeltaY;
 
+        Array<Unit *> traces;
+
         Array<Array<Unit *>> DA;
         for (int i = 0; i < 230; i++)
         {
@@ -29,15 +31,23 @@ void Game::draw()
 
         Array<int> max;
 
-        //Array<Trace *> traces;
+
        // Array<Boo *> boosOnDraw;
 
         Cell *dc = this->gf->drawCell;
 
-        dc->cellsOnDraw.forEach([drawDeltaY, &DA, &max](Array<Cell *> &drawLine)
-                                { drawLine.forEach([&drawDeltaY, &DA, &max](Cell *cell)
+        dc->cellsOnDraw.forEach([drawDeltaY, &DA, &max, &traces](Array<Cell *> &drawLine)
+                                { drawLine.forEach([&drawDeltaY, &DA, &max, &traces](Cell *cell)
                                                    {
                                                        cell->draw();
+
+                                                       cell->ripUnits.forEach([&traces](Unit *u){
+                                                        if (!u->isAddOnDrawTrup)
+                                                        {
+                                                            u->isAddOnDrawTrup = true;
+                                                            traces.push(u);
+                                                        }
+                                                       });
 
                                                     //    cell->boos.forEach([&boosOnDraw](Boo * boo){
                                                     //     if (!boo->isAddOnDraw) {
@@ -56,8 +66,9 @@ void Game::draw()
 
                                                        Unit *groundUnit = cell->groundUnit;
                                                        if (groundUnit &&
-                                                           !groundUnit->isAddOnDraw &&
-                                                           groundUnit->hp > 0)
+                                                           !groundUnit->isAddOnDraw //&&
+                                                          // groundUnit->hp > 0
+                                                        )
                                                        {
                                                            int index = ceil((((groundUnit->drawIndexY) + drawDeltaY) / 10) + 30);
 
@@ -90,13 +101,13 @@ void Game::draw()
         //                                                                 } }); 
         //                                                             }); });
 
-        // traces.sort([](Trace *a, Trace *b)
-        //            { return a->persnum < b->persnum; });
+        traces.sort([](Unit *a, Unit *b){
+            return a->timeOfDeath < b->timeOfDeath;
+        });
 
-        // traces.forEach([](Trace *t)
-        //               { 
-        //                 t->draw(); 
-        //             });
+        traces.forEach([](Unit *u){
+            u->drawTrup();
+        });
 
         DA.forEach([](Array<Unit *> &line)
                    { line.forEach([](Unit *unit)

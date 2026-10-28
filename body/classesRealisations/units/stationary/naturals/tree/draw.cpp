@@ -3,9 +3,15 @@
 
 void Tree::draw() {
 
+        this->isAddOnDraw = false;
 
+        // if (this->lesorub)
+        // {
+        //   console.log("here = ", this->deleteTimer);
+        // }
 
-      this->isAddOnDraw = false;
+if (this->deleteTimer < 50)
+{
   float drawDeltaX = this->gf->drawDeltaX;
   float drawDeltaY = this->gf->drawDeltaY;
 
@@ -32,6 +38,7 @@ void Tree::draw() {
     }
 
   }
+}
 
 
   // ProtoObj *cell = this->myCells.getItem(0);

@@ -7,7 +7,7 @@ class BuildingBoo : public Unit
 public:
     void create(int x, int y, double width, double height, Unit *father) override;
     void trupCreate() override;
-    void drawTrup() override;
+    void draw() override;
 
          double width = 0;
      double height = 0;
@@ -36,7 +36,7 @@ void BuildingBoo::create(int x, int y, double width, double height, Unit *father
     this->drawIndexY = this->y + this->height;
 
 
-    this->game->gf->trupsOnDelete.push(this);
+    
 
 
    // this->game->allBoos.push(this);
@@ -49,7 +49,7 @@ void BuildingBoo::trupCreate()
     {
         this->isDelete = true;
         this->fatherMyCells.forEach([this](Cell *c){
-            c->ripUnits.push(this);
+            c->groundUnitOnDraw.push(this);
         });
        // this->drawIndexY = this->
     }
@@ -69,7 +69,7 @@ void BuildingBoo::trupCreate()
         if (this->animY == 600)
         {
             this->fatherMyCells.forEach([this](Cell *c)
-                                        { c->ripUnits.splice(c->ripUnits.indexOf(this), 1); });
+                                        { c->groundUnitOnDraw.splice(c->groundUnitOnDraw.indexOf(this), 1); });
         
             this->readyToHardDelete = true;
            // console.log("boo delete");
@@ -79,10 +79,10 @@ void BuildingBoo::trupCreate()
     this->timer++;
 };
 
-void BuildingBoo::drawTrup()
+void BuildingBoo::draw()
 {
 
-    this->isAddOnDrawTrup = false;
+    this->isAddOnDraw = false;
 
     float drawDeltaX = this->game->gf->drawDeltaX;
     float drawDeltaY = this->game->gf->drawDeltaY;

@@ -28,6 +28,14 @@ void TownHall::trupCreate()
         this->potentialClients.forEach([this](Unit *u)
                                        {
                    u->fastDead = true; 
+                   if (u->myDoorCell)
+                   {
+                    int index = u->myDoorCell->groundUnitOnDraw.indexOf(u);
+                    if (index != -1)
+                    {
+                        u->myDoorCell->groundUnitOnDraw.splice(index, 1);
+                    }
+                   }
                    u->takeDamage(3000);                    
                  // this->game->unitsBufer.push(u);
                  // this->fraction->nation->addToBuffer(u);

@@ -22,6 +22,7 @@ class Trace;
 
 mutex damage_mt;
 mutex pushOnTrups_mt;
+mutex groundUnitOnDraw_mt;
 
 class TargetData
 {
@@ -144,7 +145,7 @@ public:
     Array<Cell *> panicCells;
     Array<Cell *> drawCells;
     Array<Array<Cell *>> cellsOnDraw;
-    Array<Boo *> boos;
+    Array<Unit *> boos;
     /////////////////////////////////////////////// => draw potentialClients
     Array<Unit *> groundUnitOnDraw;
     

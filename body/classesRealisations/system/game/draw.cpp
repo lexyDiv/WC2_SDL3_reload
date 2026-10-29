@@ -9,7 +9,6 @@ void Game::draw()
         return;
     }
 
-
     ctx.CreateDrawZone(this->gf->x, this->gf->y, this->gf->screenWidth, this->gf->screenHeight);
 
     ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "green");
@@ -68,25 +67,29 @@ void Game::draw()
                                                        )
                                                        {
                                                            int index = ceil((((groundUnit->drawIndexY) + drawDeltaY) / 10) + 30);
-                                                        //    if (groundUnit->focus)
-                                                        //    {
-                                                        //     console.log("?? index = ", index);
-                                                        //    }
+                                                           //    if (groundUnit->focus)
+                                                           //    {
+                                                           //     console.log("?? index = ", index);
+                                                           //    }
                                                            groundUnit->isAddOnDraw = true;
                                                            Array<Unit *> &line = DA.getItemLnk(index);
                                                            line.push(groundUnit);
-                                                          // max.push(index);
+                                                           // max.push(index);
                                                        }
 
-                                                       /////////////////////////////////////////////////
+                                                       ///////////////////////////////////////////////// for wellcome units
                                                        cell->groundUnitOnDraw.forEach([&drawDeltaY, &DA, &max](Unit *u)
                                                                                       {
-                                                        int index = ceil((((u->drawIndexY) + drawDeltaY) / 10) + 30);
+                                                                                          if (!u->isAddOnDraw)
+                                                                                          {
+                                                                                              int index = ceil((((u->drawIndexY) + drawDeltaY) / 10) + 30);
 
-                        u->isAddOnDraw = true;
-                       Array<Unit *> &line = DA.getItemLnk(index);                    
-                        line.push(u);
-                       max.push(index); });
+                                                                                              u->isAddOnDraw = true;
+                                                                                              Array<Unit *> &line = DA.getItemLnk(index);
+                                                                                              line.push(u);
+                                                                                              max.push(index);
+                                                                                          }
+                                                                                      });
                                                        ////////////////////////////////////////
                                                    }); });
 

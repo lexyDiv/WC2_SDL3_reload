@@ -3,7 +3,8 @@
 
 void TownHall::drawTrup()
 {
-    this->isAddOnDraw = false;
+   // console.log("draw trup");
+    this->isAddOnDrawTrup = false;
     float drawDeltaX = this->gf->drawDeltaX;
     float drawDeltaY = this->gf->drawDeltaY;
 

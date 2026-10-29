@@ -3,6 +3,9 @@
 
 void TownHall::trupCreate()
 {
+
+   // console.log("trup create");
+
     if (!this->isDelete)
     {
         this->isDelete = true;
@@ -67,6 +70,7 @@ void TownHall::trupCreate()
             c->ripUnits.splice(c->ripUnits.indexOf(this), 1);                   
             c->groundUnit = nullptr;
             this->gf->addClasterOnUpdate(c->claster); });
+            this->readyToHardDelete = true;
     }
     else if (this->deleteTimer >= 2750)
     {

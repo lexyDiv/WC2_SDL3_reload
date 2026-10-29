@@ -21,6 +21,8 @@ public:
     void trupCreate() override;
     void drawTrup() override;
 
+    void checkCompliteState();
+
   
     
    // mutex mt;

@@ -99,8 +99,8 @@ void TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
 
         this->animGabX_2 = 48;
         this->animGabY_2 = 48;
-        this->drawGabaritX_2 = 220;
-        this->drawGabaritY_2 = 220;
+        this->drawGabaritX_2 = 0;
+        this->drawGabaritY_2 = 0;
         this->animCorrectionX_2 = 0;
         this->animCorrectionY_2 = 0;
         this->animX_2 = 0;
@@ -116,26 +116,26 @@ void TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
     canTakeGold = true;
     canStandStill = true;
 
-    if (isNew)
-    {
-        this->cell->game->AllUnitsPtr.push(this);
-    }
-    else
-    {
+    // if (isNew)
+    // {
+    //     this->cell->game->AllUnitsPtr.push(this);
+    // }
+    // else
+    // {
 
-        this->isPotentialWayComplite = true;
-        this->orderOnWay.isComplite = true;
-        this->isGetMyCell = true;
-        this->fightTarget = nullptr;
-        this->outHoldTimer = 0;
-        // this->way.clear();
-        this->iNeedFreeWay = false;
-        //  this->targetData.clear();
-        this->isDelete = false;
-        this->deleteTimer = 0;
-        this->maxDeleteTimer = 3000;
-        this->alpha = 255;
-        this->inBufer = false;
-    }
-    // console.log(this->thd);
+    //     this->isPotentialWayComplite = true;
+    //     this->orderOnWay.isComplite = true;
+    //     this->isGetMyCell = true;
+    //     this->fightTarget = nullptr;
+    //     this->outHoldTimer = 0;
+    //     // this->way.clear();
+    //     this->iNeedFreeWay = false;
+    //     //  this->targetData.clear();
+    //     this->isDelete = false;
+    //     this->deleteTimer = 0;
+    //     this->maxDeleteTimer = 3000;
+    //     this->alpha = 255;
+    //     this->inBufer = false;
+    // }
+    // // console.log(this->thd);
 }

@@ -3,7 +3,7 @@
 
 bool TownHall::isActiveCheck()
 {
-    return true;
+   // return true;
     // console.log("this->clients.length CHECK = ", this->clients.length);
     // console.log("this->potentialClients.length = ", this->potentialClients.length);
     // console.log("this->outClients.length = ", this->outClients.length);

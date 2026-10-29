@@ -48,6 +48,8 @@ void Peon_peasant::trupCreate()
    }
    else
    {
+                  if (this->fastDead)
+            // {console.log("trupCreate fast");}
       this->deleteTimer++;
       if (this->deleteTimer == this->maxDeleteTimer)
       {

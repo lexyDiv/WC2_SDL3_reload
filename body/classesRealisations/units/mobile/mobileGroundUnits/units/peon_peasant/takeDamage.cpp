@@ -4,7 +4,7 @@
 void Peon_peasant::takeDamage(int damage)
 {
     damage_mt.lock();
-    if (this->hp > 0 && !this->inSave)
+    if (this->hp > 0 && (!this->inSave || this->fastDead))
     {
         this->hp -= damage;
         if (this->hp <= 0) {
@@ -13,6 +13,8 @@ void Peon_peasant::takeDamage(int damage)
 
             this->gf->trupsOnDelete.push(this);
 
+            // if (this->fastDead)
+            // {console.log("takeDamage fast");}
             // Trace *t = this->fraction->nation->getTraceFromBuffer(this->bufferIndex) ;
             // if (!t)
             // {

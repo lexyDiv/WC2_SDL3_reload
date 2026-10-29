@@ -84,6 +84,11 @@ void Game::draw()
                                                                                           {
                                                                                               int index = ceil((((u->drawIndexY) + drawDeltaY) / 10) + 30);
 
+                                                                                            //   if (u->name == "b")
+                                                                                            //   {
+                                                                                            //     console.log(index);
+                                                                                            //   }
+
                                                                                               u->isAddOnDraw = true;
                                                                                               Array<Unit *> &line = DA.getItemLnk(index);
                                                                                               line.push(u);

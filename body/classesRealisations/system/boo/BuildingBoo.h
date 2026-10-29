@@ -18,7 +18,7 @@ public:
 void BuildingBoo::create(int x, int y, double width, double height, Unit *father)
 {
 
-    console.log("create");
+    //console.log("create");
 
     this->x = x;
     this->y = y;

@@ -65,11 +65,15 @@ public:
     Image *land_destroyed_site = new Image("images/images/neutral/buildings/summer/destroyed_site.png");
 
     Image *buildingBoo_image = new Image("images/images/boo_ball.png");
+    Image *explosion = new Image("images/images/explosion.png");
     Image *big_fire = new Image("images/images/big_fire.png");
 
     Imager() {};
     ~Imager()
     {
+        delete explosion;
+        explosion = nullptr;
+
         delete big_fire;
         big_fire = nullptr;
 

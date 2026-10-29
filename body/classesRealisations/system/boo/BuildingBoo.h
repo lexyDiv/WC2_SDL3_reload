@@ -9,16 +9,16 @@ public:
     void trupCreate() override;
     void draw() override;
 
-         double width = 0;
-     double height = 0;
-     int timer = 0;
-     Array<Cell *> fatherMyCells;
+    double width = 0;
+    double height = 0;
+    int timer = 0;
+    Array<Cell *> fatherMyCells;
 };
 
 void BuildingBoo::create(int x, int y, double width, double height, Unit *father)
 {
 
-    //console.log("create");
+    // console.log("create");
 
     this->x = x;
     this->y = y;
@@ -29,17 +29,16 @@ void BuildingBoo::create(int x, int y, double width, double height, Unit *father
     this->fatherMyCells.copy(father->myCells);
     this->game = father->game;
 
-    this->image = imager.buildingBoo_image;
+    // this->image = imager.buildingBoo_image; // super
+    this->image = imager.explosion;
 
-    this->animGabX = 100;
-    this->animGabY = 100;
+    this->animGabX = 64;
+    this->animGabY = 64;
+    this->animX = 0;
+    this->animY = 0;
     this->drawIndexY = this->y + this->height;
 
-
-    
-
-
-   // this->game->allBoos.push(this);
+    // this->game->allBoos.push(this);
 };
 
 void BuildingBoo::trupCreate()
@@ -48,32 +47,49 @@ void BuildingBoo::trupCreate()
     if (!this->isDelete)
     {
         this->isDelete = true;
-        this->fatherMyCells.forEach([this](Cell *c){
-            c->groundUnitOnDraw.push(this);
-        });
-       // this->drawIndexY = this->
+        this->fatherMyCells.forEach([this](Cell *c)
+                                    { c->groundUnitOnDraw.push(this); });
+        // this->drawIndexY = this->
     }
 
-    if (this->timer % 2 == 0)
+    if (this->timer % 3 == 0)
     {
-        this->animX += 100;
-        if (this->animX == 800)
-        {
-            this->animCorrectionX += 3;
-            this->animCorrectionY -= 4;
 
+        this->animX += 64;
+        if (this->animX == 320)
+        {
             this->animX = 0;
-            this->animY += 100;
+            this->animY += 64;
         }
 
-        if (this->animY == 600)
+        if (this->animY == 256)
         {
             this->fatherMyCells.forEach([this](Cell *c)
                                         { c->groundUnitOnDraw.splice(c->groundUnitOnDraw.indexOf(this), 1); });
-        
+
             this->readyToHardDelete = true;
-           // console.log("boo delete");
         }
+
+        // ///////////////////////////////////////// => super
+        // this->animX += 100;
+        // if (this->animX == 800)
+        // {
+        //     this->animCorrectionX += 3;
+        //     this->animCorrectionY -= 4;
+
+        //     this->animX = 0;
+        //     this->animY += 100;
+        // }
+
+        // if (this->animY == 600)
+        // {
+        //     this->fatherMyCells.forEach([this](Cell *c)
+        //                                 { c->groundUnitOnDraw.splice(c->groundUnitOnDraw.indexOf(this), 1); });
+
+        //     this->readyToHardDelete = true;
+        //    // console.log("boo delete");
+        // }
+        // ///////////////////////////////////////// <= super
     }
 
     this->timer++;
@@ -87,12 +103,21 @@ void BuildingBoo::draw()
     float drawDeltaX = this->game->gf->drawDeltaX;
     float drawDeltaY = this->game->gf->drawDeltaY;
 
-    ctx.DrawImage(this->image, 
-        this->animX, 
-        this->animY, 
-        100, 98, 
-        this->x + drawDeltaX + this->animCorrectionX, 
-        this->y + drawDeltaY + this->animCorrectionY, 
-        this->width, 
-        this->height );
+        ctx.DrawImage(this->image, 
+                  this->animX,
+                  this->animY,
+                  64, 64,
+                  this->x + drawDeltaX + this->animCorrectionX,
+                  this->y + drawDeltaY + this->animCorrectionY,
+                  this->width,
+                  this->height);
+
+    // ctx.DrawImage(this->image, // super
+    //               this->animX,
+    //               this->animY,
+    //               100, 98,
+    //               this->x + drawDeltaX + this->animCorrectionX,
+    //               this->y + drawDeltaY + this->animCorrectionY,
+    //               this->width,
+    //               this->height);
 };

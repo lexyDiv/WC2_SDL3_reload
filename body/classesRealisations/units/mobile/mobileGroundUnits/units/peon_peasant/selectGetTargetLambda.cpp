@@ -60,7 +60,7 @@ void Peon_peasant::selectGetTargetLambda()
                     Unit *cgu = c->groundUnit;
                     if (cgu &&
                         cgu->fraction == this->fraction &&
-                        cgu->canTakeGold &&
+                        (cgu->canTakeGold || (cgu->hp < cgu->hpMax && !this->fraction->control)) &&
                         cgu->hp > 0)
                     {
                         return true;
@@ -75,7 +75,7 @@ void Peon_peasant::selectGetTargetLambda()
                     Unit *cgu = c->groundUnit;
                     if (cgu &&
                         cgu->fraction == this->fraction &&
-                        (cgu->canTakeGold || cgu->canTakeWood) &&
+                        (cgu->canTakeGold || cgu->canTakeWood || (cgu->hp < cgu->hpMax && !this->fraction->control)) &&
                         cgu->hp > 0)
                     {
                         return true;
@@ -85,16 +85,21 @@ void Peon_peasant::selectGetTargetLambda()
             }
             else if (td.unit->canGiveTree)
             {
-                // console.log("here");
+               // console.log("here = ", this->fraction->control);
                 this->isGetTargetLambda = [this](Cell *c)
                 {
                     Unit *cgu = c->groundUnit;
                     if (
                         cgu &&
-                        cgu->canGiveTree &&
                         cgu->hp > 0 &&
-                        !cgu->lesorub)
+                        ((
+                             cgu->canGiveTree &&
+
+                             !cgu->lesorub) ||
+                         (cgu->fraction == this->fraction &&
+                          cgu->hp < cgu->hpMax && !this->fraction->control)))
                     {
+                       // console.log("here 2");
                         return true;
                     }
                     return false;
@@ -107,9 +112,12 @@ void Peon_peasant::selectGetTargetLambda()
                     Unit *cgu = c->groundUnit;
                     if (
                         cgu &&
-                        cgu->canGiveGold &&
-                        cgu->gold &&
-                        cgu->hp > 0)
+                        ((
+                             cgu->canGiveGold &&
+                             cgu->gold &&
+                             cgu->hp > 0) ||
+                         (cgu->fraction == this->fraction &&
+                          cgu->hp < cgu->hpMax && !this->fraction->control)))
                     {
                         return true;
                     }

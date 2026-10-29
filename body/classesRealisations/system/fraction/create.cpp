@@ -7,6 +7,7 @@ void Fraction::create(Game *game, Nation *nation, string color)
   this->nation = nation;
   this->color = color;
    this->game = game;
+   
   if (this->color == "red")
   {
     this->mapColor = {R : 255, G : 0, B : 0};

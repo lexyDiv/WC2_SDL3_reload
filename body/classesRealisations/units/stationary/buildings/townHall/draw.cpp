@@ -17,13 +17,13 @@ void TownHall::draw()
                       (this->cell->y - this->animCorrectionY) + drawDeltaY, // 120
                       this->drawGabaritX, this->drawGabaritY);              // x 285, y 290
 
-        this->myCells.forEach([drawDeltaX, drawDeltaY](Cell *cell)
-                              { ctx.StrokeRect(
-                                    cell->x + drawDeltaX,
-                                    cell->y + drawDeltaY,
-                                    cell->gabX,
-                                    cell->gabY,
-                                    "violet"); });
+        // this->myCells.forEach([drawDeltaX, drawDeltaY](Cell *cell)
+        //                       { ctx.StrokeRect(
+        //                             cell->x + drawDeltaX,
+        //                             cell->y + drawDeltaY,
+        //                             cell->gabX,
+        //                             cell->gabY,
+        //                             "violet"); });
     }
     // else
     // {

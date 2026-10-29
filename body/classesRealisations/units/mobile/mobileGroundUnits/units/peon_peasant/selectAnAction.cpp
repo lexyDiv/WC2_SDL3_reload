@@ -31,7 +31,7 @@ void Peon_peasant::selectAnAction()
             )
             {
                // console.log("any do");
-            this->image = this->fraction->peon.img_1;
+           // this->image = this->fraction->peon.img_1;
             this->fightTarget = gu;
             //////////////////////////////////////
            int index = gu->contactCells.indexOf(this->cell);

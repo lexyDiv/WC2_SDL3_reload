@@ -16,7 +16,7 @@ void Game::create()
 
   Fraction *fraction = new Fraction;
   fraction->create(this, &orcs, "red");
-  fraction->control = "human";
+  fraction->control = false;
   this->fractions.push(fraction);
 
 

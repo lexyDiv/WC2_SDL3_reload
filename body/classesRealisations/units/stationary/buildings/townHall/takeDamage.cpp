@@ -16,7 +16,8 @@ void TownHall::takeDamage(int damage)
        {
         this->hp = 0;
         this->gf->trupsOnDelete.push(this);
-        //this->gf->addToTrupsOnDelete(this);
+        Unit *boo = new BuildingBoo;
+        boo->create(this->x - 100, this->y - 100, 400, 400, this);
        }
     }
     damage_mt.unlock();

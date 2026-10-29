@@ -1,17 +1,25 @@
 #include "in.h"
 //=>out
 
-class BuildingBoo : public Boo
+class BuildingBoo : public Unit
 {
 
 public:
     void create(int x, int y, double width, double height, Unit *father) override;
     void trupCreate() override;
-    void draw() override;
+    void drawTrup() override;
+
+         double width = 0;
+     double height = 0;
+     int timer = 0;
+     Array<Cell *> fatherMyCells;
 };
 
 void BuildingBoo::create(int x, int y, double width, double height, Unit *father)
 {
+
+    console.log("create");
+
     this->x = x;
     this->y = y;
     this->width = width;
@@ -27,11 +35,24 @@ void BuildingBoo::create(int x, int y, double width, double height, Unit *father
     this->animGabY = 100;
     this->drawIndexY = this->y + this->height;
 
-    this->game->allBoos.push(this);
+
+    this->game->gf->trupsOnDelete.push(this);
+
+
+   // this->game->allBoos.push(this);
 };
 
 void BuildingBoo::trupCreate()
 {
+
+    if (!this->isDelete)
+    {
+        this->isDelete = true;
+        this->fatherMyCells.forEach([this](Cell *c){
+            c->ripUnits.push(this);
+        });
+       // this->drawIndexY = this->
+    }
 
     if (this->timer % 2 == 0)
     {
@@ -47,8 +68,9 @@ void BuildingBoo::trupCreate()
 
         if (this->animY == 600)
         {
-            // this->fatherMyCells.forEach([this](Cell *c)
-            //                             { c->boos.splice(c->boos.indexOf(this), 1); });
+            this->fatherMyCells.forEach([this](Cell *c)
+                                        { c->ripUnits.splice(c->ripUnits.indexOf(this), 1); });
+        
             this->readyToHardDelete = true;
            // console.log("boo delete");
         }
@@ -57,10 +79,10 @@ void BuildingBoo::trupCreate()
     this->timer++;
 };
 
-void BuildingBoo::draw()
+void BuildingBoo::drawTrup()
 {
 
-    this->isAddOnDraw = false;
+    this->isAddOnDrawTrup = false;
 
     float drawDeltaX = this->game->gf->drawDeltaX;
     float drawDeltaY = this->game->gf->drawDeltaY;

@@ -6,8 +6,8 @@ class Boo : public Unit
 
 public:
     Boo() {};
-    virtual void create(int x, int y, double width, double height, Unit *father) {};
-    virtual void trupCreate() {};
+    // virtual void create(int x, int y, double width, double height, Unit *father) override;
+    // virtual void trupCreate() override;
 
     // int x = 0;
     // int y = 0;

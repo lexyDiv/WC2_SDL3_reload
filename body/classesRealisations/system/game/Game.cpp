@@ -23,9 +23,9 @@ Game::~Game()
             delete u;
             u = nullptr; }); });
 
-    // cout << "==================================" << endl;
-    // cout << "peons create = " + to_string(this->peonsCreate) << endl;
-    // cout << "peons delete = " + to_string(this->peonsDelete) << endl;
+    std::cout << "==================================" << std::endl;
+    std::cout << "peons create = " + to_string(this->peonsCreate) << std::endl;
+    std::cout << "peons delete = " + to_string(this->peonsDelete) << std::endl;
 
     this->allTreesPtr.forEach([](Unit *tree)
                               {

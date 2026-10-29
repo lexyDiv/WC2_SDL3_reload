@@ -36,9 +36,9 @@ bool Peon_peasant::isNeedHoldGoWay()
 
         this->isLoopNextCellUnit = isLoop(this);
 
-        // if (isLoopNextCellUnit) {
-        //     ncgu->takeDamage(3000);
-        // }
+        if (isLoopNextCellUnit) {
+            ncgu->takeDamage(3000);
+        }
 
         int needHoldIndex = 5;
 

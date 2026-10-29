@@ -9,10 +9,15 @@ void GameField::trupsControl()
          if (u->readyToHardDelete)
          {
           //  console.log("delete " + u->name);
+
+            if (u->canBuild)
+            {
+               this->game->peonsDelete++;
+            }
+
             delete u;
             u = nullptr;
-            this->game->peonsDelete++;
-            
+
             return true;
          }
          else if (u->readyToLightDelete)
@@ -26,12 +31,12 @@ void GameField::trupsControl()
          } });
 
    //  this->trupsOnDelete.forEach([](Unit *u)
-   //                              { 
+   //                              {
    //                               u->trupCreate();
    //                               if (u->readyToHardDelete) {
    //                                  delete u;
    //                                  u = nullptr;
-   //                               } 
+   //                               }
    //                             });
 
    //  this->trupsOnDelete.filterSelf([](Unit *u)

@@ -5,7 +5,7 @@ void Peon_peasant::selectAnAction()
 {
     Unit *gu = this->targetData.unit;
 
-    if (gu)
+    if (gu && gu->hp > 0)
     {
         if (
             (gu->canGiveTree && this->wood) ||
@@ -55,54 +55,4 @@ void Peon_peasant::selectAnAction()
             gu->wellCome(this);
         }
     }
-
-    //     if (gu)
-    //     {
-    //         console.log("here");
-    //         // if (this->focus) {
-    //         //     console.log("wood : " + to_string(this->wood));
-    //         //     console.log("target name : " + gu->name);
-    //         //     console.log("--------------------------------------------");
-    //         // }
-
-    //         if (gu->canGiveTree && this->wood)
-    //         {
-    //             console.log("here 2");
-    //             return;
-    //         }
-    //         else if (gu->canGiveTree && !this->wood)
-    //         {
-    //             console.log("here 3");
-    //             this->gold = 0;
-    //             this->fightTarget = true;
-    //             this->getConor(gu->cell);
-    //             gu->lesorub = this;
-    //         }
-    //         else if ((gu->fraction == this->fraction
-    //             //|| !gu->fraction
-    //         ) &&
-    //                  gu->type != "life")
-    //         {
-    //            console.log("here 4");
-    //             if (
-    //                 (!gu->isComplite || gu->hp < gu->hpMax))
-    //             {
-    //                // console.log("here 2");
-    //                 this->fightTarget = true;
-    //             }
-    //             else
-    //             {
-    //                // if (this->wood || this->gold){
-    // //console.log("here 3");
-    // console.log("here 5");
-    //                 gu->wellCome(this);
-    //                // }
-    //             }
-    //         }
-    //         // else
-    //         // {
-    //         //     gu->wellCome(this);
-    //         // }
-    //         console.log("here 6");
-    //     }
 };

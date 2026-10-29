@@ -17,6 +17,8 @@ public:
     Image *img_3 = nullptr;
     Image *img_4 = nullptr;
     Image *img_5 = nullptr;
+
+    Image *construction = nullptr;
     
     double sight = 1;
     double speed = 1;
@@ -50,4 +52,5 @@ public:
     ////////////////////////////
     int level = 0;
     Array<int> hpByLevel;
+    Array<Image *> imagesByLevel;
 };

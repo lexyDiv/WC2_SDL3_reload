@@ -3,19 +3,21 @@
 
 void Oil::create(Cell *cell, bool isComplite = false, bool isNew = false)
 {
-   // this->createUnitMenu();
+    // this->createUnitMenu();
     /////////////////////////////
+
+    this->name = "oil";
+    this->type = "building";
+
     this->get2x2myCells(cell);
     Cell *exitCell = cell->left;
     Cell *centerCell = cell->bottom_right;
     this->cell = centerCell;
-    this->cell->game->AllUnitsPtr.push(this);
+   // this->cell->game->AllUnitsPtr.push(this);
     this->cell->game->allOilsPtr.push(this);
 
     this->getContactAndExitCells(cell, exitCell, centerCell);
 
-    this->name = "oil";
-    this->type = "building";
     this->mapColor = {R : 0, G : 0, B : 0};
     this->image = imager.oilPoint;
     this->x = cell->x;

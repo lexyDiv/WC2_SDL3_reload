@@ -3,6 +3,7 @@
 
 void Unit::getWellComeCells()
 {
+    this->wellComeCells.clear();
     this->contactCells.forEach([this](Cell *cell)
                                {
                                    MinData md = this->myCells.getMinData([this, cell](Cell *item)

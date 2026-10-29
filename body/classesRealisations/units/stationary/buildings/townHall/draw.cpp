@@ -4,30 +4,34 @@
 void TownHall::draw()
 {
     // console.log("draw");
-    this->isAddOnDraw = false;
-    float drawDeltaX = this->gf->drawDeltaX;
-    float drawDeltaY = this->gf->drawDeltaY;
 
-    ctx.DrawImage(this->image,
-                  0, 0,
-                  this->animGabX, this->animGabY,
-                  (this->cell->x - 90) + drawDeltaX,
-                  (this->cell->y - 120) + drawDeltaY,
-                  285, 290);
+    if (!this->isDelete)
+    {
+        this->isAddOnDraw = false;
+        float drawDeltaX = this->gf->drawDeltaX;
+        float drawDeltaY = this->gf->drawDeltaY;
+        ctx.DrawImage(this->image,
+                      this->animX, this->animY,
+                      this->animGabX, this->animGabY,
+                      (this->cell->x - this->animCorrectionX) + drawDeltaX, // 90
+                      (this->cell->y - this->animCorrectionY) + drawDeltaY, // 120
+                      this->drawGabaritX, this->drawGabaritY);              // x 285, y 290
 
-   // ctx.DrawText((this->cell->x) + drawDeltaX, (this->cell->y) + drawDeltaY, 40, to_string(this->persNum));              
-
-      // if (this->tt) {
-      //   ctx.FillRect(this->tt->x + drawDeltaX, this->tt->y + drawDeltaY, this->cell->gabX, this->cell->gabY, "green");
-      // }            
-
-    // this->myCells.forEach([drawDeltaX, drawDeltaY](Cell *cell)
-    //                       { ctx.StrokeRect(
-    //                             cell->x + drawDeltaX,
-    //                             cell->y + drawDeltaY,
-    //                             cell->gabX,
-    //                             cell->gabY,
-    //                             "violet"); });
-    //  ctx.FillRect(this->cell->x + drawDeltaX, this->cell->y + drawDeltaY, this->cell->gabX, this->cell->gabY, "blue");
+        this->myCells.forEach([drawDeltaX, drawDeltaY](Cell *cell)
+                              { ctx.StrokeRect(
+                                    cell->x + drawDeltaX,
+                                    cell->y + drawDeltaY,
+                                    cell->gabX,
+                                    cell->gabY,
+                                    "violet"); });
+    }
+    // else
+    // {
+    //             ctx.DrawImage(this->image,
+    //                   this->animX, this->animY,
+    //                   this->animGabX, this->animGabY,
+    //                   (this->cell->x - this->animCorrectionX) + drawDeltaX, // 90
+    //                   (this->cell->y - this->animCorrectionY) + drawDeltaY, // 120
+    //                   this->drawGabaritX, this->drawGabaritY, SDL_FLIP_NONE, 0, this->alpha);
+    // }
 };
-

@@ -9,9 +9,6 @@ void Game::draw()
         return;
     }
 
-    // ctx.CreateDrawZone(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT);
-    //  ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "black");
-
     ctx.CreateDrawZone(this->gf->x, this->gf->y, this->gf->screenWidth, this->gf->screenHeight);
 
     ctx.FillRect(0, 0, ctx.SCREEN_WIDTH, ctx.SCREEN_HEIGHT, "green");
@@ -19,6 +16,8 @@ void Game::draw()
     {
         float drawDeltaX = this->gf->drawDeltaX;
         float drawDeltaY = this->gf->drawDeltaY;
+
+        Array<Unit *> traces;
 
         Array<Array<Unit *>> DA;
         for (int i = 0; i < 230; i++)
@@ -29,45 +28,106 @@ void Game::draw()
 
         Array<int> max;
 
+        // Array<Boo *> boosOnDraw;
+
         Cell *dc = this->gf->drawCell;
 
-        dc->cellsOnDraw.forEach([drawDeltaY, &DA, &max](Array<Cell *> &drawLine)
-                                { drawLine.forEach([&drawDeltaY, &DA, &max](Cell *cell)
+        dc->cellsOnDraw.forEach([drawDeltaY, &DA, &max, &traces](Array<Cell *> &drawLine)
+                                { drawLine.forEach([&drawDeltaY, &DA, &max, &traces](Cell *cell)
                                                    {
                                                        cell->draw();
 
+                                                       cell->ripUnits.forEach([&traces](Unit *u)
+                                                                              {
+                                                        if (!u->isAddOnDrawTrup)
+                                                        {
+                                                            u->isAddOnDrawTrup = true;
+                                                            traces.push(u);
+                                                        } });
+
+                                                       //    cell->boos.forEach([&boosOnDraw](Boo * boo){
+                                                       //     if (!boo->isAddOnDraw) {
+                                                       //         boo->isAddOnDraw = true;
+                                                       //         boosOnDraw.push(boo);
+                                                       //     }
+                                                       //    });
+
+                                                       //    cell->traces.forEach([&traces](Trace *trace)
+                                                       //                         {
+
+                                                       //                     if (!trace->isAddOnDraw) {
+                                                       //                         trace->isAddOnDraw = true;
+                                                       //                         traces.push(trace);
+                                                       //                     } });
+
                                                        Unit *groundUnit = cell->groundUnit;
-                                                       if (groundUnit && !groundUnit->isAddOnDraw)
+                                                       if (groundUnit &&
+                                                           !groundUnit->isAddOnDraw //&&
+                                                                                    // groundUnit->hp > 0
+                                                       )
                                                        {
                                                            int index = ceil((((groundUnit->drawIndexY) + drawDeltaY) / 10) + 30);
-
+                                                           //    if (groundUnit->focus)
+                                                           //    {
+                                                           //     console.log("?? index = ", index);
+                                                           //    }
                                                            groundUnit->isAddOnDraw = true;
                                                            Array<Unit *> &line = DA.getItemLnk(index);
                                                            line.push(groundUnit);
-                                                           max.push(index);
+                                                           // max.push(index);
                                                        }
 
-                                                       /////////////////////////////////////////////////
+                                                       ///////////////////////////////////////////////// for wellcome units
                                                        cell->groundUnitOnDraw.forEach([&drawDeltaY, &DA, &max](Unit *u)
                                                                                       {
-                                            int index = ceil((((u->drawIndexY) + drawDeltaY) / 10) + 30);
+                                                                                          if (!u->isAddOnDraw)
+                                                                                          {
+                                                                                              int index = ceil((((u->drawIndexY) + drawDeltaY) / 10) + 30);
 
-                        u->isAddOnDraw = true;
-                       Array<Unit *> &line = DA.getItemLnk(index);                    
-                        line.push(u);
-                       max.push(index); });
+                                                                                            //   if (u->name == "b")
+                                                                                            //   {
+                                                                                            //     console.log(index);
+                                                                                            //   }
+
+                                                                                              u->isAddOnDraw = true;
+                                                                                              Array<Unit *> &line = DA.getItemLnk(index);
+                                                                                              line.push(u);
+                                                                                              max.push(index);
+                                                                                          }
+                                                                                      });
                                                        ////////////////////////////////////////
                                                    }); });
 
-        dc->cellsOnDraw.forEach([drawDeltaY, &DA, &max](Array<Cell *> &drawLine)
-                                { drawLine.forEach([drawDeltaY, &DA, &max](Cell *cell)
-                                                   { cell->ripUnits.forEach([](Unit *trup)
-                                                                            { trup->drawTrup(); }); }); });
+        // dc->cellsOnDraw.forEach([&trups](Array<Cell *> &drawLine)
+        //                         { drawLine.forEach([&trups](Cell *cell)
+        //                                            { cell->ripUnits.forEach([&trups](Unit *trup)
+        //                                                                     {
+
+        //                                                                 if (!trup->isAddOnDraw) {
+        //                                                                     trup->isAddOnDraw = true;
+        //                                                                     trups.push(trup);
+        //                                                                 } });
+        //                                                             }); });
+
+        traces.sort([](Unit *a, Unit *b)
+                    { return a->timeOfDeath < b->timeOfDeath; });
+
+        traces.forEach([](Unit *u)
+                       { u->drawTrup(); });
 
         DA.forEach([](Array<Unit *> &line)
                    { line.forEach([](Unit *unit)
                                   { unit->draw(); }); });
 
+        // boosOnDraw.sort([](Boo *a, Boo *b){
+        //     return a->drawY < b->drawY;
+        // });
+
+        // boosOnDraw.forEach([](Boo *boo){
+        //     boo->draw();
+        // });
+
+        //////////////////////////////////////////////////////////////////////////////// => DEBUG
         Unit *u = this->gf->focusUnit;
         if (u && u->cell)
         {
@@ -99,48 +159,46 @@ void Game::draw()
             //     ctx.DrawText(td.nextCell->x +drawDeltaX + 5, td.nextCell->y + drawDeltaY + 5, 10, m);
             // }
 
-            if (td.clicckedCell)
-            {
-                ctx.FillRect(td.clicckedCell->x + drawDeltaX, td.clicckedCell->y + drawDeltaY, td.clicckedCell->gabX, td.clicckedCell->gabY, "yellow");
-            }
+            // if (td.clicckedCell)
+            // {
+            //     ctx.FillRect(td.clicckedCell->x + drawDeltaX, td.clicckedCell->y + drawDeltaY, td.clicckedCell->gabX, td.clicckedCell->gabY, "yellow");
+            // }
         }
 
         ////////////////////////////////////////////////////////////////////////// => zones Way draw
 
-//         ThData *thd = thDatas.getItem(0);
+        //         ThData *thd = thDatas.getItem(0);
 
-//                 if (thd->min_F_zone)
-//         {
-//             Claster *fzcl = thd->min_F_zone->cl;
-//             ctx.FillRect(fzcl->x + drawDeltaX, fzcl->y + drawDeltaY, fzcl->size, fzcl->size, "blue", 150);
-//         }
+        //                 if (thd->min_F_zone)
+        //         {
+        //             Claster *fzcl = thd->min_F_zone->cl;
+        //             ctx.FillRect(fzcl->x + drawDeltaX, fzcl->y + drawDeltaY, fzcl->size, fzcl->size, "blue", 150);
+        //         }
 
-//         thd->openArr_z.forEach([&drawDeltaX, &drawDeltaY](Zone *z)
-//                                {
-//   Claster *zc = z->cl;
-//     ctx.FillRect(zc->x +drawDeltaX, zc->y + drawDeltaY, zc->size, zc->size, "green", 100);
-//     ctx.StrokeRect(zc->x +drawDeltaX, zc->y + drawDeltaY, zc->size, zc->size, "blue"); 
+        //         thd->openArr_z.forEach([&drawDeltaX, &drawDeltaY](Zone *z)
+        //                                {
+        //   Claster *zc = z->cl;
+        //     ctx.FillRect(zc->x +drawDeltaX, zc->y + drawDeltaY, zc->size, zc->size, "green", 100);
+        //     ctx.StrokeRect(zc->x +drawDeltaX, zc->y + drawDeltaY, zc->size, zc->size, "blue");
 
-//     Td_way_data_z *thwd = z->thwd.getItemPtr(0);
-//     ctx.DrawText(zc->x +drawDeltaX + 30, zc->y + 30 + drawDeltaY, 30, "G : " + to_string(thwd->G));
-//     ctx.DrawText(zc->x +drawDeltaX + 30, zc->y + 70 + drawDeltaY, 30, "H : " + to_string(thwd->H));
-//     ctx.DrawText(zc->x +drawDeltaX + 30, zc->y + 110 + drawDeltaY, 30, "F : " + to_string(thwd->F));
+        //     Td_way_data_z *thwd = z->thwd.getItemPtr(0);
+        //     ctx.DrawText(zc->x +drawDeltaX + 30, zc->y + 30 + drawDeltaY, 30, "G : " + to_string(thwd->G));
+        //     ctx.DrawText(zc->x +drawDeltaX + 30, zc->y + 70 + drawDeltaY, 30, "H : " + to_string(thwd->H));
+        //     ctx.DrawText(zc->x +drawDeltaX + 30, zc->y + 110 + drawDeltaY, 30, "F : " + to_string(thwd->F));
 
-// });
+        // });
 
-//         thd->bad_z.forEach([&drawDeltaX, &drawDeltaY](Zone *z)
-//                            {
-//   Claster *zc = z->cl;
-//     ctx.FillRect(zc->x +drawDeltaX, zc->y + drawDeltaY, zc->size, zc->size, "red", 100);
-//     ctx.StrokeRect(zc->x +drawDeltaX, zc->y + drawDeltaY, zc->size, zc->size, "violet");
+        //         thd->bad_z.forEach([&drawDeltaX, &drawDeltaY](Zone *z)
+        //                            {
+        //   Claster *zc = z->cl;
+        //     ctx.FillRect(zc->x +drawDeltaX, zc->y + drawDeltaY, zc->size, zc->size, "red", 100);
+        //     ctx.StrokeRect(zc->x +drawDeltaX, zc->y + drawDeltaY, zc->size, zc->size, "violet");
 
-//     Td_way_data_z *thwd = z->thwd.getItemPtr(0);
-//     ctx.DrawText(zc->x +drawDeltaX + 30, zc->y + 30 + drawDeltaY, 30, "G : " + to_string(thwd->G));
-//     ctx.DrawText(zc->x +drawDeltaX + 30, zc->y + 70 + drawDeltaY, 30, "H : " + to_string(thwd->H));
-//     ctx.DrawText(zc->x +drawDeltaX + 30, zc->y + 110 + drawDeltaY, 30, "F : " + to_string(thwd->F));
-// });
-
-
+        //     Td_way_data_z *thwd = z->thwd.getItemPtr(0);
+        //     ctx.DrawText(zc->x +drawDeltaX + 30, zc->y + 30 + drawDeltaY, 30, "G : " + to_string(thwd->G));
+        //     ctx.DrawText(zc->x +drawDeltaX + 30, zc->y + 70 + drawDeltaY, 30, "H : " + to_string(thwd->H));
+        //     ctx.DrawText(zc->x +drawDeltaX + 30, zc->y + 110 + drawDeltaY, 30, "F : " + to_string(thwd->F));
+        // });
 
         ////////////////////////////////////////////////////////////////////////  <=  zones Way draw
 

@@ -17,6 +17,9 @@ public:
     bool isActiveCheck() override;
     MinData getPeonOutCell() override;
     MinData getPeonExtrimeOutCell() override;
+    void takeDamage(int damage) override;
+    void trupCreate() override;
+    void drawTrup() override;
 
   
     

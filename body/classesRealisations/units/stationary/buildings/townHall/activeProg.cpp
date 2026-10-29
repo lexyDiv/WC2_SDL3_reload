@@ -6,42 +6,106 @@ bool ok = false;
 
 void TownHall::activeProg()
 {
+
+                    
+
     this->isActive = this->isActiveCheck();
     if (!this->isActive)
     {
+
         return;
     }
 
-   if (!this->isComplite) {
+    if (!this->isComplite)
+    {
 
-   // console.log("here");
-    return;
-   }
+        if (this->checkStateNeed)
+        {
 
+            int complitePercent = (this->hp * 100) / this->hpMax;
+            if (complitePercent <= 30)
+            {
+                this->image = this->fraction->townHall.construction;
+                this->animGabX = 64;
+                this->animGabY = 64;
+                this->drawGabaritX = 220;
+                this->drawGabaritY = 220;
+                this->animCorrectionX = 60;
+                this->animCorrectionY = 60;
+                this->animX = 0;
+                this->animY = 0;
+            }
+            else if (complitePercent <= 50)
+            {
+                this->image = this->fraction->townHall.construction;
+                this->animGabX = 64;
+                this->animGabY = 64;
+                this->drawGabaritX = 220;
+                this->drawGabaritY = 220;
+                this->animCorrectionX = 60;
+                this->animCorrectionY = 60;
+                this->animX = 0;
+                this->animY = 64;
+            }
+            else if (complitePercent < 100)
+            {
+                this->image = this->fraction->townHall.imagesByLevel.getItem(this->level);
+                this->animGabX = 128;
+                this->animGabY = 128;
+                this->animCorrectionX = 90;
+                this->animCorrectionY = 120;
+                this->drawGabaritX = 285;
+                this->drawGabaritY = 290;
+                this->animX = 0;
+                this->animY = 128;
+            }
+            else
+            {
+                this->image = this->fraction->townHall.imagesByLevel.getItem(this->level);
+                this->animGabX = 128;
+                this->animGabY = 128;
+                this->animCorrectionX = 90;
+                this->animCorrectionY = 120;
+                this->drawGabaritX = 285;
+                this->drawGabaritY = 290;
+                this->animX = 0;
+                this->animY = 0;
+                this->isComplite = true;
+                // console.log("complite");
+            }
 
-    if (this->createTimer)
+            this->checkStateNeed = false;
+        }
+
+        return;
+    }
+    else
+    {
+        if (this->checkStateNeed)
+        {
+
+            this->checkStateNeed = false;
+        }
+    }
+
+    ///////////////////////////////////////////////////////////////////////
+
+            // if (this->fraction->peons.length < 10000) // 6000 crash 3000
+            // {
+
+            //     this->createTimer = 1;
+            // }
+
+    if (this->createTimer && !this->stopCreateUnit)
     {
         this->createTimer--;
         if (!this->createTimer)
         {
 
-            Unit *peon = this->game->unitsBufer.find([](Unit *u)
-                                                     {
-              if (u->inBufer) {
-                u->inBufer = false;
-                return true;
-              }
-              return false; });
-
-
-            if (peon) {
-                peon->createInside(this->cell);
-            } else {
+                Unit *peon = nullptr;
                 peon = new Peon_peasant(this->fraction);
                 peon->createInside(this->cell, true);
-            }
-
-            
+                this->game->peonsCreate++;
 
             this->fraction->unitCount++;
             peon->persNum = this->fraction->unitCount;
@@ -53,7 +117,7 @@ void TownHall::activeProg()
 
             if (this->fraction->peons.length < 10000) // 6000 crash 3000
             {
-                this->createTimer = 1;
+                this->createTimer = 10;
             }
         }
     }
@@ -162,16 +226,27 @@ void TownHall::activeProg()
             else
             {
                 MinData md = this->getPeonExtrimeOutCell();
-                Cell *oc = md.cell;
-                peon->cell = oc;
-                peon->inOutCount = 0;
-                peon->x = peon->cell->x;
-                peon->y = peon->cell->y;
-                peon->drawIndexY = peon->y;
-                peon->inOutMashtabCount = 1;
-                peon->image = peon->fraction->peon.img_1;
-                oc->groundUnit = peon;
-                peon->hp = peon->hp > 0 ? peon->hp : 1;
+
+                if (md.cell)
+                {
+                    Cell *oc = md.cell;
+                    peon->cell = oc;
+                    peon->inOutCount = 0;
+                    peon->x = peon->cell->x;
+                    peon->y = peon->cell->y;
+                    peon->drawIndexY = peon->y;
+                    peon->inOutMashtabCount = 1;
+                    peon->image = peon->fraction->peon.img_1;
+                    oc->groundUnit = peon;
+                    peon->hp = peon->hp > 0 ? peon->hp : 1;
+                    this->stopCreateUnit = false;
+                }
+                else
+                {
+                    this->stopCreateUnit = true;
+                    // console.log("on out cell");
+                    return;
+                }
 
                 //                 if (peon->cell == this->cell) {
                 //     console.log("extrime outCell");

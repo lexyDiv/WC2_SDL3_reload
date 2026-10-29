@@ -16,6 +16,13 @@ class ToOtherPlane;
 class Nation;
 class Claster;
 class Zone;
+class Boo;
+class Bullet;
+class Trace;
+
+mutex damage_mt;
+mutex pushOnTrups_mt;
+mutex groundUnitOnDraw_mt;
 
 class TargetData
 {
@@ -132,16 +139,20 @@ public:
     Unit *flyUnit = nullptr;
     Array<Cell *> aroundCells;
     Array<Cell *> maxAroundCells;
+   // Array<Cell *> extreamAroundCells;
     Array<double> maxAroundCellsDis;
+    
     Array<Cell *> panicCells;
     Array<Cell *> drawCells;
     Array<Array<Cell *>> cellsOnDraw;
+    Array<Unit *> boos;
     /////////////////////////////////////////////// => draw potentialClients
     Array<Unit *> groundUnitOnDraw;
     
     /////////////////////////////////////////////// <= draw potentialClients
 
     Array<Unit *> ripUnits; // trupy
+    Array<Trace *> traces;
 
     void drawTrup() { console.log("trup draw"); };
 

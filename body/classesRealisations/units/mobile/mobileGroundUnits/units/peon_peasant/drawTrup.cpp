@@ -4,9 +4,11 @@
 void Peon_peasant::drawTrup()
 {
 
+    this->isAddOnDrawTrup = false;
+
 
     if (!this->alpha <= 230) {
-            this->isAddOnDraw = false;
+            
     float drawDeltaX = this->gf->drawDeltaX;
     float drawDeltaY = this->gf->drawDeltaY;
 

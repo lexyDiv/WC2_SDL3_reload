@@ -18,7 +18,9 @@ void TownHall::wellCome(Unit *peon)
             peon->inOutMashtabCount = (1 - peon->inOutMashtabMin) / peon->inOutCount;
             peon->iNeedFreeWay = false;
             this->potentialClients.push(peon);
+           // groundUnitOnDraw_mt.lock();
             peon->cell->groundUnitOnDraw.push(peon);
+          //  groundUnitOnDraw_mt.unlock();
             peon->myDoorCell = peon->cell;
             peon->cell->groundUnit = nullptr; //// <=
             if (!this->isActive)

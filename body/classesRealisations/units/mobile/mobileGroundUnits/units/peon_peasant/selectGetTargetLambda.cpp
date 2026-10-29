@@ -19,7 +19,8 @@ void Peon_peasant::selectGetTargetLambda()
                     if (
                         cgu &&
                         cgu->fraction == this->fraction &&
-                        (cgu->canTakeWood || cgu->canTakeGold))
+                        (cgu->canTakeWood || cgu->canTakeGold) &&
+                        cgu->hp > 0)
                     {
                         return true;
                     }
@@ -34,7 +35,8 @@ void Peon_peasant::selectGetTargetLambda()
                     if (
                         cgu &&
                         cgu->fraction == this->fraction &&
-                        cgu->canTakeGold)
+                        cgu->canTakeGold &&
+                        cgu->hp > 0)
                     {
                         return true;
                     }
@@ -58,7 +60,8 @@ void Peon_peasant::selectGetTargetLambda()
                     Unit *cgu = c->groundUnit;
                     if (cgu &&
                         cgu->fraction == this->fraction &&
-                        cgu->canTakeGold)
+                        cgu->canTakeGold &&
+                        cgu->hp > 0)
                     {
                         return true;
                     }
@@ -72,7 +75,8 @@ void Peon_peasant::selectGetTargetLambda()
                     Unit *cgu = c->groundUnit;
                     if (cgu &&
                         cgu->fraction == this->fraction &&
-                        (cgu->canTakeGold || cgu->canTakeWood))
+                        (cgu->canTakeGold || cgu->canTakeWood) &&
+                        cgu->hp > 0)
                     {
                         return true;
                     }
@@ -104,7 +108,8 @@ void Peon_peasant::selectGetTargetLambda()
                     if (
                         cgu &&
                         cgu->canGiveGold &&
-                        cgu->gold)
+                        cgu->gold &&
+                        cgu->hp > 0)
                     {
                         return true;
                     }

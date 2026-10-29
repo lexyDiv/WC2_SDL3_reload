@@ -1,5 +1,5 @@
 #include "getShahts.cpp"
-//=>out
+//=>takeDamage
 
 void TownHall::getTrees()
 {

@@ -23,13 +23,13 @@ void Fraction::create(Game *game, Nation *nation, string color)
   // Unit *peon = new Peon_peasant(this);
   // peon->persNum = 2;
   // peon->fraction = this;
-  // peon->create(game->gf->field.getItem(5).getItem(5));
+  // peon->create(game->gf->field.getItem(3).getItem(24));
 
 
   //  Unit *peon2 = new Peon_peasant(this);
   //  peon2->persNum = 1;
   //  peon2->fraction = this;
-  //  peon2->create(game->gf->field.getItem(5).getItem(15)); // 8 // 7 => magistral 17 ok 18 ok 19 ok
+  //  peon2->create(game->gf->field.getItem(2).getItem(19)); // 8 // 7 => magistral 17 ok 18 ok 19 ok
 
 
   ////////////////// townHall
@@ -42,7 +42,7 @@ void Fraction::create(Game *game, Nation *nation, string color)
   townHall->isActive = true;
   townHall->createTimer = 1;
 
-  // ////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////
 
   townHall = new TownHall;
   townHall->fraction = this;

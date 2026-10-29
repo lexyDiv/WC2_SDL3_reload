@@ -20,6 +20,15 @@ GameField::~GameField()
         delete plane;
         plane = nullptr; });
 
-
-
+    this->trupsOnDelete.forEach([this](Unit *u)
+                                    {
+        if (!u->canGiveTree)
+        {
+            if (u->canBuild)
+            {
+               this->game->peonsDelete++;
+            }
+            delete u;
+          //  u = nullptr;
+        } });
 }

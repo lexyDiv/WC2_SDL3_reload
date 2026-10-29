@@ -3,6 +3,9 @@
 
 void Unit::getContactAndExitCells(Cell *cell, Cell *exitCell, Cell *centerCell)
 {
+
+  this->exitCells.clear();
+  this->contactCells.clear();
   Array<CellDis> proContactCells;
   this->gf = cell->gf;
   this->gf->createCount += 0.001;
@@ -26,20 +29,50 @@ void Unit::getContactAndExitCells(Cell *cell, Cell *exitCell, Cell *centerCell)
   this->contactCells = proContactCells.map([](CellDis &cd)
                                            { return cd.cell; });
   proContactCells.clear();
-  cell->plane->cells.forEach([this, centerCell, &proContactCells](Cell *pc)
-                             {
-      if (pc->createCountData != this->gf->createCount &&
-      pc->groundUnit != this) {
-        pc->createCountData = this->gf->createCount;
-            CellDis cd;
-            cd.cell = pc;
-            Delta del = getDeltas({ x: pc->x, y: pc->y },
-             { x: centerCell->x, y: centerCell->y });
-            cd.dis = getDis(&del);
-            proContactCells.push(cd);
-      } });
+  // cell->plane->cells.forEach([this, centerCell, &proContactCells](Cell *pc)
+  //                            {
+
+  Array<Cell *> extreamCells;
+  for (int ver = this->cell->ver - 25; ver <= this->cell->ver + 25; ver++)
+  {
+    if (ver >= 0 && ver < this->gf->gabarit)
+    {
+      Array<Cell *> &line = this->gf->field.getItemLnk(ver);
+      for (int hor = this->cell->hor - 20; hor <= this->cell->hor + 20; hor++)
+      {
+        if (hor >= 0 && hor < this->gf->gabarit)
+        {
+          Cell *c = line.getItem(hor);
+          if (c->plane == this->cell->plane)
+          {
+            extreamCells.push(c);
+          }
+        }
+      }
+    }
+  }
+
+  for (int i = 0; i < extreamCells.length; i++)
+  {
+    Cell *pc = extreamCells.getItem(i);
+    if (pc->plane == this->cell->plane &&
+        pc->createCountData != this->gf->createCount &&
+        pc->groundUnit != this)
+    {
+      pc->createCountData = this->gf->createCount;
+      CellDis cd;
+      cd.cell = pc;
+      Delta del = getDeltas({x : pc->x, y : pc->y},
+                            {x : centerCell->x, y : centerCell->y});
+      cd.dis = getDis(&del);
+      proContactCells.push(cd);
+    }
+  }
+  // });
   proContactCells.sort([](CellDis a, CellDis b)
                        { return a.dis < b.dis; });
   this->exitCells = proContactCells.map([](CellDis &cd)
                                         { return cd.cell; });
+
+    //  console.log(this->name + " exit length = ", this->exitCells.length);
 };

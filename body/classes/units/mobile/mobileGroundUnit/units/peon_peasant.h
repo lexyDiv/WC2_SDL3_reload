@@ -23,6 +23,7 @@ public:
      void selectAnAction() override;
      void fightControl() override;
      void createInside(Cell *c, bool isNew) override;
+     void startedCheckAroundCells(ThData *th) override;
 
      Unit *getAnyTree() override;
      Unit *getAnyShaht() override;

@@ -1,5 +1,5 @@
 #include "selectGetTargetLambda.cpp"
-// => out
+// => startedCheckAroundCells
 
 bool Peon_peasant::basicActionCheck()
 {
@@ -29,6 +29,10 @@ bool Peon_peasant::basicActionCheck()
                 this->stendOnCell();
                 this->updateCurrentTarget();
             }
+            // if (this->focus)
+            // {
+            //     console.log("valide = ", isTOValide);
+            // }
         }
         this->isGetTarget();
 

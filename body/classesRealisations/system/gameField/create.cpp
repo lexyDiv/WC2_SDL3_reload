@@ -104,6 +104,8 @@ void GameField::create()
                         { focusCell->drawCells.push(pushedCell); });
    this->getAroundCells(11, false, [](Cell *focusCell, Cell *pushedCell)
                         { focusCell->maxAroundCells.push(pushedCell); });
+      //  this->getAroundCells(20, false, [](Cell *focusCell, Cell *pushedCell)
+      //                   { focusCell->extreamAroundCells.push(pushedCell); });                    
 
    this->getAroundCells(3, false, [](Cell *focusCell, Cell *pushedCell)
                         { focusCell->panicCells.push(pushedCell); });

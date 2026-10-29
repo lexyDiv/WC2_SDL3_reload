@@ -12,33 +12,39 @@ public:
        // this->color = color;
         if (type == "orcs")
         {
-            // if (color == "red")
-            // {
-            //     this->peon = imager.peonRed;
-            //     this->peonWithWood = imager.peonWithWoodRed;
-            //     this->peonWithGold = imager.peonWithGoldRed;
-            //     this->greateHall = imager.townHallOrcRed;
-            //     this->mapColor = { R: 255, G: 0, B: 0 };
-            // }
         }
         else
         {
         }
+       
+        this->allBuffers.push(&this->peonsBuffer);
+        this->allBuffers.push(&this->townHallsBuffer);
+
+        /////////////////////////////
+        for (int i = 0; i < 2; i++)
+        {
+            Array<Trace *> buffer;
+            this->allTracesBuffers.push(buffer);
+        }
+
     };
     string type = "";
-   // string color = "";
-  //  Color mapColor;
-    ///////////////////////// => peon
-    // Image *peon = nullptr;
-    // Image *peonWithWood = nullptr;
-    // Image *peonWithGold = nullptr;
-    // float peon_peasant_sight = 1.0f;
-    // float peon_peasant_speed = 1.0f;
-    // float peon_peasant_hpMax = 50.0f;
-    // /////////////////////////// <= peon
-    // Image *greateHall = nullptr;
-    // Image *greateHall2 = nullptr;
-    // Image *greateHall3 = nullptr;
+
+    Array<Unit *> peonsBuffer;
+    Array<Unit *> townHallsBuffer;
+    Array<Array<Unit *>*> allBuffers;
+
+    //////////////////////////////////////////
+    Array<Array<Trace *>> allTracesBuffers;
+    Trace *getTraceFromBuffer(int);
+    ///////////////////////////////////////////////
+    
+    void addToAllTracesBuffers(Trace *t);
+
+
+
+    void addToBuffer(Unit *u);
+
 };
 
 Nation orcs("orcs");

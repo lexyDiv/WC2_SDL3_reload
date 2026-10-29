@@ -7,10 +7,14 @@ void UnitData::createTownHall(Fraction *fraction)
     {
         if (fraction->color == "red")
         {
-            this->img_1 = imager.townHallOrcRed;
-            this->img_2 = imager.strongholdOrcRed;
-            this->img_3 = imager.fortressOrcRed;
-            this->img_4 = imager.land_construction_site;
+            // this->img_1 = imager.townHallOrcRed;
+            // this->img_2 = imager.strongholdOrcRed;
+            // this->img_3 = imager.fortressOrcRed;
+            // this->img_4 = imager.land_construction_site;
+            this->imagesByLevel.push(imager.townHallOrcRed);
+            this->imagesByLevel.push(imager.strongholdOrcRed);
+            this->imagesByLevel.push(imager.fortressOrcRed);
+            this->construction = imager.land_construction_site;
         }
     }
     hpByLevel.push(1200);

@@ -3,16 +3,37 @@
 
 void Peon_peasant::takeDamage(int damage)
 {
-    mutex mt;
-    mt.lock();
-    if (this->hp > 0 && !this->inSave)
+    damage_mt.lock();
+    if (this->hp > 0 && (!this->inSave || this->fastDead))
     {
         this->hp -= damage;
         if (this->hp <= 0) {
             this->hp = 0;
             this->iNeedFreeWay = false;
-            this->gf->addToTrupsOnDelete(this);
+
+            this->gf->trupsOnDelete.push(this);
+
+            // if (this->fastDead)
+            // {console.log("takeDamage fast");}
+            // Trace *t = this->fraction->nation->getTraceFromBuffer(this->bufferIndex) ;
+            // if (!t)
+            // {
+            //    t = new PeonTrace;
+            //    this->game->addToAllTracesPtr(t);
+            //    this->game->tracesCount++;
+            // }
+
+
+            // t->create(0, 0, 0, 0, this);
+            // this->gf->addToTraces(t);
+
+
+
+
+        }
+        else if (this->hp > this->hpMax) {
+            this->hp = this->hpMax;
         }
     }
-    mt.unlock();
+    damage_mt.unlock();
 }

@@ -29,6 +29,10 @@ void Peon_peasant::create(Cell *cell, bool isComplite = false, bool isNew = fals
   this->animY = 0;
   this->hp = this->fraction->peon.hpMax;
   this->orderOnWay.unit = this;
+  this->animCorrectionX = 25;
+  this->animCorrectionY = 25;
+  this->drawGabaritX = 100;
+  this->drawGabaritY = 100;
 
     canGiveTree = false;
     canGiveGold = false;
@@ -37,9 +41,12 @@ void Peon_peasant::create(Cell *cell, bool isComplite = false, bool isNew = fals
     canBuild = true;
     canMove = true;
 
-    this->deleteTimer = 3000;
+         bufferIndex = 0;
 
-    this->game->addToAllUnitsPtr(this);
+    this->deleteTimer = 0;
+    this->maxDeleteTimer = 3000;
+
+   // this->game->addToAllUnitsPtr(this);
     this->fraction->allUnits.push(this);
    
 };

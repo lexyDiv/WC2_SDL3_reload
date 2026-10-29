@@ -27,6 +27,12 @@ public:
       void process();
 
       bool quit = false;
+////////////////////////////////////////////////////////////////////////
+      int tracesCount = 0;
+      int peonsCreate = 0;
+      int peonsDelete = 0;
+///////////////////////////////////////////////////////////
+
 
       Uint64 finishTick = SDL_GetTicks();
       Uint64 startTick = SDL_GetTicks();
@@ -51,13 +57,18 @@ public:
    Array<Unit *> allShahtsPtr;
    Array<Unit *> allOilsPtr;
 
+   Array<Trace *> allTracesPtr;
+
+   Array<Boo *> allBoos;
+
    Array<Unit *> allLifeUnitsPtr;
 
 
-    Array<Unit *> unitsBufer;
+   // Array<Unit *> unitsBufer;
 
     void addToAllUnitsPtr(Unit *unit);
-    void addToUnitsBufer(Unit *unit);
+    void addToAllTracesPtr(Trace *t);
+   // void addToUnitsBufer(Unit *unit);
   //  void addToUnitsBufer(Unit *unit);
 
    //Array<Unit *> allMobileActiveUnits;

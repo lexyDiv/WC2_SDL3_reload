@@ -4,28 +4,30 @@
 void Shaht::create(Cell *cell, bool isComplite = false, bool isNew = false)
 {
 
-   // this->createUnitMenu();
+    // this->createUnitMenu();
     //////////////////
 
     this->thwd.clear();
-    for (int i = 0; i < thDatas.length; i ++) {
+    for (int i = 0; i < thDatas.length; i++)
+    {
         Td_xploredData tapd;
         this->thwd.push(tapd);
     }
 
+    this->name = "shaht";
+    this->type = "building";
 
     this->get3x3myCells(cell);
 
     Cell *exitCell = cell->bottom->bottom->bottom_left;
     Cell *centerCell = cell->bottom_right;
     this->cell = centerCell;
-    this->cell->game->AllUnitsPtr.push(this);
+   // this->cell->game->AllUnitsPtr.push(this);
     this->cell->game->allShahtsPtr.push(this);
 
     this->getContactAndExitCells(cell, exitCell, centerCell);
     this->getWellComeCells();
-    this->name = "shaht";
-    this->type = "building";
+
     this->mapColor = {R : 255, G : 255, B : 0};
     this->image = imager.shaht;
     this->x = cell->x;
@@ -45,7 +47,6 @@ void Shaht::create(Cell *cell, bool isComplite = false, bool isNew = false)
     this->hp = 1000;
     this->isComplite = true;
     cell->plane->shahts.push(this);
-
 
     this->canGiveGold = true;
     canStandStill = true;

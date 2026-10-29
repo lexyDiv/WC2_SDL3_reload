@@ -47,6 +47,9 @@ public:
     Array();
     ~Array();
     //  T &operator[] (int i) { return this->vec[i]; }
+
+    int reserve(int count);
+
     T getItem(int i);
     T getItem(int i, string str);
     T getItem2(int i);
@@ -78,7 +81,7 @@ public:
     T find(function<bool(T item)> fn);
     void splice(int index, int count, T el);
     void splice(int index, int count);
-    void filterSelf(function<bool(T item)> fn);
+    void filterSelf(function<bool(T &item)> fn);
     void sort(function<bool(T &a, T &b)> fn);
     Array<Cell *> map(function<Cell *(T &item)> fn);
     Array<Unit *> mapU(function<Unit *(T &item)> fn);
@@ -106,6 +109,13 @@ inline Array<T>::~Array()
 {
     // delete vec;
     // vec = nullptr;
+}
+
+template <typename T>
+inline int Array<T>::reserve(int count)
+{
+    this->vec.reserve(count);
+    return this->vec.size();
 }
 
 template <typename T>
@@ -410,7 +420,7 @@ inline void Array<T>::splice(int index, int count)
 }
 
 template <typename T>
-inline void Array<T>::filterSelf(function<bool(T item)> fn)
+inline void Array<T>::filterSelf(function<bool(T &item)> fn)
 {
     this->vec.erase(remove_if(this->vec.begin(), this->vec.end(), [fn](T el)
                               { return fn(el); }),

@@ -3,54 +3,61 @@
 
 Game::~Game()
 {
-    int deleteCount = 0;
 
-    this->AllUnitsPtr.forEach([&deleteCount](Unit *u)
+    this->fractions.forEach([this](Fraction *f)
+                            {
+                                f->allUnits.filterSelf([](Unit *u){
+                                    if (u->hp <= 0)
+                                    {
+                                        return true;
+                                    }
+                                    return false;
+                                });
+                                
+                                f->allUnits.forEach([this](Unit *u)
+                                                  {
+            if (u->canBuild)
+            {
+               this->peonsDelete++;
+            }
+            delete u;
+            u = nullptr; }); });
+
+    std::cout << "==================================" << std::endl;
+    std::cout << "peons create = " + to_string(this->peonsCreate) << std::endl;
+    std::cout << "peons delete = " + to_string(this->peonsDelete) << std::endl;
+
+    this->allTreesPtr.forEach([](Unit *tree)
                               {
-        delete u;
-        u = nullptr;
-        deleteCount++; });
-    cout << "delete " + to_string(deleteCount) + " units" << endl;
+        if (tree) {
+            delete tree;
+        } });
 
-    // this->allTreesPtr.forEach([&deleteCount](Unit *tree)
-    //                           {
-    //     if (tree) {
-    //         deleteCount++;
-    //         delete tree;
-    //     } });
+    this->allMountsPtr.forEach([](Unit *mount)
+                               {
+        if (mount) {
+            delete mount;
+        } });
 
-    //     cout << "delete " + to_string(deleteCount) + " units" << endl;
+    this->allShahtsPtr.forEach([](Unit *shaht)
+                               {
+        if (shaht) {
+            delete shaht;
+        } });
 
-    // this->allMountsPtr.forEach([](Unit *mount)
-    //                            {
-    //     if (mount) {
-    //         delete mount;
-    //     } });
-
-    // this->allShahtsPtr.forEach([](Unit *shaht)
-    //                            {
-    //     if (shaht) {
-    //         delete shaht;
-    //     } });
-
-    // this->allOilsPtr.forEach([](Unit *oil)
-    //                          {
-    //     if (oil) {
-    //         delete oil;
-    //     } });
-    // // this->AllUnits.forEach([](Unit *unit)
-    // //                        {
-    // //     delete unit;
-    // //     unit = nullptr; });
+    this->allOilsPtr.forEach([](Unit *oil)
+                             {
+        if (oil) {
+            delete oil;
+        } });
 
     this->fractions.forEach([](Fraction *fr)
                             {
         delete fr;
         fr = nullptr; });
-
-    // delete nationsHub;
-    // nationsHub = nullptr;   // opredelit chto eto !!!
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void Game::addToAllUnitsPtr(Unit *unit)
 {
@@ -60,10 +67,18 @@ void Game::addToAllUnitsPtr(Unit *unit)
     mt.unlock();
 }
 
-void Game::addToUnitsBufer(Unit *unit)
+void Game::addToAllTracesPtr(Trace *t)
 {
-    mutex mt;
-    mt.lock();
-    this->unitsBufer.push(unit);
-    mt.unlock();
+    //  mutex mt;
+    // mt.lock();
+    this->allTracesPtr.push(t);
+    //  mt.unlock();
 }
+
+// void Game::addToUnitsBufer(Unit *unit)
+// {
+//     mutex mt;
+//     mt.lock();
+//     this->unitsBufer.push(unit);
+//     mt.unlock();
+// }

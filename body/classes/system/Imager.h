@@ -49,7 +49,7 @@ public:
     Image *oilIcon = new Image("images/oil.png");
     Image *woodIcon = new Image("images/wood.png");
 
-///////////////////////////////////////////////////////////////////////////////  => red orcs
+    ///////////////////////////////////////////////////////////////////////////////  => red orcs
     Image *peonRed = new Image("images/images/peon_new.png");
     Image *peonWithWoodRed = new Image("images/images/peon_with_wood.png");
     Image *peonWithGoldRed = new Image("images/images/peon_with_gold.png");
@@ -60,32 +60,33 @@ public:
     ////////////////////////////////////////////////////////////// <= red orcs builds
     Image *land_construction_site = new Image("images/images/neutral/buildings/land_construction_site.png");
 
-    
-
-///////////////////////////////////////////////////////////////////////////////  <= red orcs  
+    ///////////////////////////////////////////////////////////////////////////////  <= red orcs
 
     Image *land_destroyed_site = new Image("images/images/neutral/buildings/summer/destroyed_site.png");
 
     Image *buildingBoo_image = new Image("images/images/boo_ball.png");
+    Image *big_fire = new Image("images/images/big_fire.png");
 
     Imager() {};
     ~Imager()
     {
+        delete big_fire;
+        big_fire = nullptr;
 
-       delete buildingBoo_image;
-       buildingBoo_image = nullptr;
+        delete buildingBoo_image;
+        buildingBoo_image = nullptr;
 
-       delete land_destroyed_site;
-       land_destroyed_site = nullptr;
+        delete land_destroyed_site;
+        land_destroyed_site = nullptr;
 
-       delete land_construction_site;
-       land_construction_site = nullptr;
+        delete land_construction_site;
+        land_construction_site = nullptr;
 
-       delete strongholdOrcRed;
-       strongholdOrcRed = nullptr;
-        
-       delete fortressOrcRed;
-       fortressOrcRed = nullptr;
+        delete strongholdOrcRed;
+        strongholdOrcRed = nullptr;
+
+        delete fortressOrcRed;
+        fortressOrcRed = nullptr;
 
         delete this->townHallOrcRed;
         this->townHallOrcRed = nullptr;

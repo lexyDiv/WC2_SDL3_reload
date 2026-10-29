@@ -163,6 +163,21 @@ public:
   int animTakt = 0;
   double drawGabaritX = 0;
   double drawGabaritY = 0;
+  int centerDrawX = 0;
+  int centerDrawY = 0;
+
+
+  int animGabX_2 = 0;
+  int animGabY_2 = 0;
+  int animStepX_2 = 0;
+  int animStepY_2 = 0;
+  int animCorrectionX_2 = 0;
+  int animCorrectionY_2 = 0;
+  int animX_2 = 0;
+  int animY_2 = 0;
+  int animTakt_2 = 0;
+  double drawGabaritX_2 = 0;
+  double drawGabaritY_2 = 0;
   /////////////////////////// <= anim
     int bufferIndex = 0;
   Image *image = nullptr;

@@ -36,9 +36,9 @@ void TownHall::checkCompliteState()
             this->image = this->fraction->townHall.imagesByLevel.getItem(this->level);
             this->animGabX = 128;
             this->animGabY = 128;
-            this->animCorrectionX = 90;
+            this->animCorrectionX = 60;
             this->animCorrectionY = 120;
-            this->drawGabaritX = 285;
+            this->drawGabaritX = 220;
             this->drawGabaritY = 290;
             this->animX = 0;
             this->animY = 128;
@@ -48,9 +48,9 @@ void TownHall::checkCompliteState()
             this->image = this->fraction->townHall.imagesByLevel.getItem(this->level);
             this->animGabX = 128;
             this->animGabY = 128;
-            this->animCorrectionX = 90;
+            this->animCorrectionX = 60;
             this->animCorrectionY = 120;
-            this->drawGabaritX = 285;
+            this->drawGabaritX = 220;
             this->drawGabaritY = 290;
             this->animX = 0;
             this->animY = 0;

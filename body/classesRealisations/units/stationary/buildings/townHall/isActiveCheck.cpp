@@ -16,7 +16,8 @@ bool TownHall::isActiveCheck()
          !this->isComplite ||
          this->hp != this->hpMax ||
          this->createTimer ||
-         this->updateTimer))
+         this->updateTicker ||
+         this->startUpdate))
     {
         // console.log("active");
         return true;

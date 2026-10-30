@@ -52,9 +52,9 @@ void TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
     this->animGabY = 128;
     this->animStepX = 128;
     this->animStepY = 128;
-    this->animCorrectionX = 90;
+    this->animCorrectionX = 60;
     this->animCorrectionY = 120;
-    this->drawGabaritX = 285;
+    this->drawGabaritX = 220;
     this->drawGabaritY = 290;
     this->deleteTimer = 0;
     this->maxDeleteTimer = 3000;
@@ -77,6 +77,7 @@ void TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
     this->hp = this->hpMax / 10;
     this->isComplite = isComplite;
     this->fraction->allUnits.push(this);
+    this->updateCompliteTick = 2000;
     if (this->isComplite)
     {
         // this->fraction->fTownHoll.townHollsByLevel.getItemPtr(this->level)->push(this);

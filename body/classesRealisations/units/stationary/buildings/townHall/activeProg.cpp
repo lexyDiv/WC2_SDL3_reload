@@ -7,8 +7,6 @@ bool ok = false;
 void TownHall::activeProg()
 {
 
-                    
-
     this->isActive = this->isActiveCheck();
     if (!this->isActive)
     {
@@ -22,23 +20,48 @@ void TownHall::activeProg()
         this->checkCompliteState();
 
         this->checkStateNeed = false;
+        this->startUpdate = false;
 
         return;
     }
 
-    
+    if (this->updateTicker)
+    {
+        this->updateTicker++;
+        if (this->updateTicker == this->updateCompliteTick)
+        {
+            this->level++;
+            this->updateTicker = 0;
+            this->updateCompliteTick = 3000;
+            this->animY = 0;
+            int complitePercent = (this->hp * 100) / this->hpMax;
+            this->hpMax = this->fraction->townHall.hpByLevel.getItem(this->level);
+            this->hp = (complitePercent * hpMax) / 100;
+        }
+    }
+    if (this->startUpdate &&
+        !this->updateTicker)
+    {
 
-      
-        
-    
+        if (this->level < 2)
+        {
+            this->updateTicker++;
+            this->image = this->fraction->townHall.imagesByLevel.getItem(this->level + 1);
+            this->animGabX = 200;
+            this->animGabY = 200;
+            this->animY = 200;
+        }
+
+        this->startUpdate = false;
+    }
 
     ///////////////////////////////////////////////////////////////////////
 
-            // if (this->fraction->peons.length < 1) // 6000 crash 3000
-            // {
+    // if (this->fraction->peons.length < 1) // 6000 crash 3000
+    // {
 
-            //     this->createTimer = 1;
-            // }
+    //     this->createTimer = 1;
+    // }
 
     if (this->createTimer && !this->stopCreateUnit)
     {
@@ -46,10 +69,10 @@ void TownHall::activeProg()
         if (!this->createTimer)
         {
 
-                Unit *peon = nullptr;
-                peon = new Peon_peasant(this->fraction);
-                peon->createInside(this->cell, true);
-                this->game->peonsCreate++;
+            Unit *peon = nullptr;
+            peon = new Peon_peasant(this->fraction);
+            peon->createInside(this->cell, true);
+            this->game->peonsCreate++;
 
             this->fraction->unitCount++;
             peon->persNum = this->fraction->unitCount;
@@ -57,9 +80,9 @@ void TownHall::activeProg()
             peon->outHoldTimer = 30;
 
             int rand = intRand(0, 10);
-            peon->profession = rand >= 1 ? "w" : "g";
+            //peon->profession = rand >= 1 ? "w" : "g";
 
-            if (this->fraction->peons.length < 100) // 6000 crash 3000
+            if (this->fraction->peons.length < 0) // 6000 crash 3000
             {
                 this->createTimer = 1;
             }

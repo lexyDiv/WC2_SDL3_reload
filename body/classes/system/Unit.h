@@ -213,7 +213,10 @@ public:
   double wayDeltaX = 0;
   double wayDeltaY = 0;
   int outHoldTimer = 0;
-  int updateTimer = 0;
+  int updateTicker = 0;
+  int updateCompliteTick = 0;
+  bool startUpdate = false;
+  
 
   double speedTale = 0;
   int wayTakts = 0;

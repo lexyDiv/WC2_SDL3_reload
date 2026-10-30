@@ -55,8 +55,8 @@ public:
     Image *peonWithGoldRed = new Image("images/images/peon_with_gold.png");
     ////////////////////////////////////////////////////////////// => red orcs builds
     Image *townHallOrcRed = new Image("images/orcs/red/buildings/great_hall.png");
-    Image *strongholdOrcRed = new Image("images/images/orc/orc/buildings/summer/stronghold.png");
-    Image *fortressOrcRed = new Image("images/images/orc/orc/buildings/summer/fortress.png");
+    Image *strongholdOrcRed = new Image("images/AI/townHall_level_2_orc_red.png");
+    Image *fortressOrcRed = new Image("images/AI/townHall_level_3_orc_red.png");
     ////////////////////////////////////////////////////////////// <= red orcs builds
     Image *land_construction_site = new Image("images/images/neutral/buildings/land_construction_site.png");
 

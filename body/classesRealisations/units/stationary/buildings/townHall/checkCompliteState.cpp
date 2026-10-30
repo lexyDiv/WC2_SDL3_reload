@@ -1,5 +1,5 @@
 #include "drawTrup.cpp"
-//=>out
+//=>upgrage
 
 void TownHall::checkCompliteState()
 {

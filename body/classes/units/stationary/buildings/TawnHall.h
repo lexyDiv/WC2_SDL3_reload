@@ -22,6 +22,7 @@ public:
     void drawTrup() override;
 
     void checkCompliteState();
+    void upgrade();
 
     
 

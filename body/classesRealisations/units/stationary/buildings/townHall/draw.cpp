@@ -20,11 +20,11 @@ void TownHall::draw()
         if (this->isComplite && this->hp < this->hpMax)
         {
 
-            double y = ((double)this->centerDrawY - this->drawGabaritY_2 + (this->drawGabaritY_2 / 10)) + drawDeltaY;
+            double y = ((double)this->centerDrawY - this->drawGabaritY_2 + (this->drawGabaritY_2 / 5)) + drawDeltaY;
 
             ctx.DrawImage(this->image2,
-                          this->animX_2 + 1, this->animY_2 + 1,
-                          this->animGabX_2 - 1, this->animGabY_2 - 1,
+                          this->animX_2, this->animY_2,
+                          this->animGabX_2, this->animGabY_2,
                           (this->centerDrawX - this->drawGabaritX_2 / 2) + drawDeltaX,
                           y,
                           this->drawGabaritX_2, this->drawGabaritY_2);
@@ -34,16 +34,17 @@ void TownHall::draw()
 
                 int percent = (this->hp * 100) / this->hpMax;
                 int delta = 100 - percent;
-                int gab = (delta * 220) / 100;
-                this->drawGabaritX_2 = gab;
-                this->drawGabaritY_2 = gab;
-
-                this->animX_2 += 48;
-                if (this->animX_2 == 240)
+                int gabY = (delta * 300) / 100;
+                int gabX = (delta * 220) / 100;
+                this->drawGabaritX_2 = gabX;
+                this->drawGabaritY_2 = gabY;
+               // console.log(this->animX_2);
+                this->animX_2 += 256;
+                if (this->animX_2 == 1024)
                 {
                     this->animX_2 = 0;
-                    this->animY_2 += 48;
-                    if (this->animY_2 == 96)
+                    this->animY_2 += 256;
+                    if (this->animY_2 == 1024)
                     {
                         this->animY_2 = 0;
                     }

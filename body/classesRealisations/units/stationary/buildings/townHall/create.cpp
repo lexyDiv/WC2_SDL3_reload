@@ -62,8 +62,8 @@ void TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
     this->animX = 0;
     this->animY = 0;
 
-    this->animGabX_2 = 48;
-    this->animGabY_2 = 48;
+    this->animGabX_2 = 256;
+    this->animGabY_2 = 256;
     this->drawGabaritX_2 = 0;
     this->drawGabaritY_2 = 0;
     this->animCorrectionX_2 = 0;

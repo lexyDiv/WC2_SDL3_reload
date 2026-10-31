@@ -76,7 +76,7 @@ public:
 
     Image *buildingBoo_image = new Image("images/images/boo_ball.png");
     Image *explosion = new Image("images/images/explosion.png");
-    Image *big_fire = new Image("images/images/big_fire.png");
+    Image *big_fire = new Image("images/AI/land/ai_fire.png");
 
     Imager() {};
     ~Imager()

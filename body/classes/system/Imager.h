@@ -29,6 +29,16 @@ public:
 
     Image *tree1 = new Image("images/images/trees.png");
     Image *tree2 = new Image("images/images/trees2.png");
+    Image *ai_tree_1 = new Image("images/AI/land/ai_tree_1_400.png");
+    Image *ai_tree_1_trup = new Image("images/AI/land/ai_tree_1_400_trup.png");
+
+    Image *ai_tree_2 = new Image("images/AI/land/ai_tree_2_400.png");
+    Image *ai_tree_3 = new Image("images/AI/land/ai_tree_3.png");
+    Image *ai_tree_4 = new Image("images/AI/land/ai_tree_4.png");
+    Image *ai_tree_5 = new Image("images/AI/land/ai_tree_5.png");
+    Image *ai_tree_6 = new Image("images/AI/land/ai_tree_6.png");
+    Image *ai_tree_7 = new Image("images/AI/land/ai_tree_7.png");
+    Image *ai_tree_8 = new Image("images/AI/land/ai_tree_8.png");
 
     Image *tree1Trup = new Image("images/images/treesTrup.png");
     Image *tree2Trup = new Image("images/images/trees2Trup.png");
@@ -71,6 +81,30 @@ public:
     Imager() {};
     ~Imager()
     {
+        delete ai_tree_8;
+        ai_tree_8 = nullptr;
+
+        delete ai_tree_7;
+        ai_tree_7 = nullptr;
+
+        delete ai_tree_6;
+        ai_tree_6 = nullptr;
+
+        delete ai_tree_5;
+        ai_tree_5 = nullptr;
+
+        delete ai_tree_4;
+        ai_tree_4 = nullptr;
+
+        delete ai_tree_3;
+        ai_tree_3 = nullptr;
+
+        delete ai_tree_1_trup;
+        ai_tree_1_trup = nullptr;
+
+        delete ai_tree_1;
+        ai_tree_1 = nullptr;
+
         delete explosion;
         explosion = nullptr;
 

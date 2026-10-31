@@ -14,6 +14,9 @@ public:
     void drawTrup() override;
     void takeDamageByPeon(int) override;
     BlockedData blockedCheck(Unit* unit) override;
+
+    bool isAI = false;
+
 };
 
 // BlockedData Tree::blockedCheck(Unit *unit) {

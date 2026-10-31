@@ -1,46 +1,62 @@
 #include "getContactCells.cpp"
 //=> tree stressControl
 
-void Tree::draw() {
-
-        this->isAddOnDraw = false;
-
-        // if (this->lesorub)
-        // {
-        //   console.log("here = ", this->deleteTimer);
-        // }
-
-if (this->deleteTimer < 50)
+void Tree::draw()
 {
-  float drawDeltaX = this->gf->drawDeltaX;
-  float drawDeltaY = this->gf->drawDeltaY;
 
-    ctx.DrawImage(this->image,
-                  this->animX, this->animY,
-                  this->animGabX, this->animGabY,
-                  (this->x - this->drawGabaritX / 2) + drawDeltaX,
-                  (this->y - this->drawGabaritY) + 13 + drawDeltaY,
-                  this->drawGabaritX, this->drawGabaritY, SDL_FLIP_NONE, 0, this->alpha);
+  this->isAddOnDraw = false;
 
-   // ctx.FillRect(this->x + drawDeltaX, this->y + drawDeltaY, 5, 5, "blue");
-
-
-
-  this->animTakt++;
-
-  if (this->animTakt == 15)
+  if (this->deleteTimer < 50)
   {
-    this->animX += this->animStepX;
-    this->animTakt = 0;
-    if (this->animX == 800)
+    float drawDeltaX = this->gf->drawDeltaX;
+    float drawDeltaY = this->gf->drawDeltaY;
+
+    if (!this->isAI)
     {
-      this->animX = 0;
+      ctx.DrawImage(this->image,
+                    this->animX, this->animY,
+                    this->animGabX, this->animGabY,
+                    (this->x - this->drawGabaritX / 2) + drawDeltaX,
+                    (this->y - this->drawGabaritY) + 13 + drawDeltaY,
+                    this->drawGabaritX, this->drawGabaritY, SDL_FLIP_NONE, 0, this->alpha);
+
+      this->animTakt++;
+
+      if (this->animTakt == 15)
+      {
+        this->animX += this->animStepX;
+        this->animTakt = 0;
+        if (this->animX == 800)
+        {
+          this->animX = 0;
+        }
+      }
     }
+    else
+    {
 
+      ctx.DrawImage(this->image,
+                    this->animX, this->animY,
+                    this->animGabX, this->animGabY,
+                    (this->x - this->drawGabaritX / 2) + drawDeltaX,
+                    (this->y - this->drawGabaritY) + 13 + drawDeltaY,
+                    this->drawGabaritX, this->drawGabaritY, SDL_FLIP_NONE, 0, this->alpha);
+
+      if (this->animTakt == 7)
+      {
+        this->animTakt = 0;
+              this->animX += this->animStepX;
+      if (this->animX >= 400)
+      {
+        this->animX = 0;
+        this->animY += this->animStepX;
+        if (this->animY >= 400)
+        {
+          this->animY = 0;
+        }
+      }
+      }
+      this->animTakt ++;
+    }
   }
-}
-
-
-  // ProtoObj *cell = this->myCells.getItem(0);
-  // ctx.StrokeRect(cell->x + drawDeltaX, cell->y + drawDeltaY, cell->gabX, cell->gabY);
 }

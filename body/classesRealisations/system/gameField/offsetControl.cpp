@@ -124,9 +124,9 @@ void GameField::offsetControl()
                 // }
                  if (this->focusUnit->canStandStill)
                  {
-                   // this->focusUnit->takeDamage(100);
-                   this->focusUnit->startUpdate = true;
-                   this->focusUnit->isActive = true;
+                    this->focusUnit->takeDamage(100);
+                  // this->focusUnit->startUpdate = true;
+                  // this->focusUnit->isActive = true;
                  }
                // console.log(this->focusUnit->profession);
             }

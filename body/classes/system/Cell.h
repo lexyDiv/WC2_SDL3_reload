@@ -20,6 +20,7 @@ class Boo;
 class Bullet;
 class Trace;
 
+
 mutex damage_mt;
 mutex pushOnTrups_mt;
 mutex groundUnitOnDraw_mt;

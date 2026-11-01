@@ -22,6 +22,7 @@ public:
   bool focus = false;
   virtual void create(Cell *c, bool isComplite = false, bool isNew = false) {};
   virtual void create(int x, int y, double width, double height, Unit *father) {};
+  virtual void create(int x, int y, double width, double height, Unit *father, Cell *c) {};
   virtual void getContactCells();
   virtual void draw() {};
   virtual void drawTrup() { console.log("drawTrup"); };

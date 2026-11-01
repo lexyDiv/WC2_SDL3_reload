@@ -1,5 +1,5 @@
 #include "in.h"
-//=>out
+//=>TowerBoo
 
 class BuildingBoo : public Unit
 {
@@ -37,6 +37,8 @@ void BuildingBoo::create(int x, int y, double width, double height, Unit *father
     this->animX = 0;
     this->animY = 0;
     this->drawIndexY = this->y + this->height;
+
+    
 
     // this->game->allBoos.push(this);
 };

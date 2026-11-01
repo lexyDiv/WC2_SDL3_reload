@@ -77,10 +77,14 @@ public:
     Image *buildingBoo_image = new Image("images/images/boo_ball.png");
     Image *explosion = new Image("images/images/explosion.png");
     Image *big_fire = new Image("images/AI/land/ai_fire.png");
+    Image *tower_boo = new Image("images/AI/land/tower_boo.png");
 
     Imager() {};
     ~Imager()
     {
+       delete tower_boo;
+       tower_boo = nullptr;
+
         delete ai_tree_8;
         ai_tree_8 = nullptr;
 

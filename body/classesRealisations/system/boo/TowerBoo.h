@@ -27,7 +27,7 @@ void TowerBoo::create(int x, int y, double width, double height, Unit *father, C
     this->height = height;
 
     this->cell = c;
-    this->game = game;
+    this->game = c->game;
     this->image = imager.tower_boo;
 
     this->animGabX = 128;
@@ -52,7 +52,7 @@ void TowerBoo::trupCreate()
         //                             { c->groundUnitOnDraw.push(this); });
     }
 
-    if (this->timer % 3 == 0)
+    if (this->timer % 1 == 0)
     {
 
         this->animX += 128;

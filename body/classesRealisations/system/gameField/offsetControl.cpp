@@ -138,8 +138,8 @@ void GameField::offsetControl()
                 }
                 this->focusUnit = nullptr;
 
-                //  Unit *boo = new TowerBoo();
-                //  boo->create(cx, cy, 100, 100, nullptr, tc);
+                  Unit *boo = new TowerBoo;
+                  boo->create(cx, cy, 100, 100, nullptr, tc);
 
             }
 

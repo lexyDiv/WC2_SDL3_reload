@@ -4,6 +4,7 @@
 class TowerBoo : public Unit
 {
 public:
+
     void create(int x, int y, double width, double height, Unit *father, Cell *c) override;
     void trupCreate() override;
     void draw() override;
@@ -15,7 +16,7 @@ public:
 };
 
 
-void TowerBoo::create(int x, int y, double width, double height, Unit *father, Cell *c)
+void TowerBoo::create(int x, int y, double width, double height, Unit *father, Cell *c = nullptr)
 {
 
     // console.log("create");
@@ -35,7 +36,8 @@ void TowerBoo::create(int x, int y, double width, double height, Unit *father, C
     this->animY = 0;
     this->drawIndexY = this->y + this->height;
 
-    this->game->gf->addToTrupsOnDelete(this); // ?????????
+   // this->game->gf->addToTrupsOnDelete(this); // ?????????
+   this->game->gf->trupsOnDelete.push(this);
 };
 
 

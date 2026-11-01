@@ -5,7 +5,7 @@ class BuildingBoo : public Unit
 {
 
 public:
-    void create(int x, int y, double width, double height, Unit *father) override;
+    void create(int x, int y, double width, double height, Unit *father, Cell *c) override;
     void trupCreate() override;
     void draw() override;
 
@@ -15,7 +15,7 @@ public:
     Array<Cell *> fatherMyCells;
 };
 
-void BuildingBoo::create(int x, int y, double width, double height, Unit *father)
+void BuildingBoo::create(int x, int y, double width, double height, Unit *father, Cell *c = nullptr)
 {
 
     // console.log("create");

@@ -67,6 +67,7 @@ public:
     Image *townHallOrcRed = new Image("images/orcs/red/buildings/great_hall.png");
     Image *strongholdOrcRed = new Image("images/AI/townHall_level_2_orc_red.png");
     Image *fortressOrcRed = new Image("images/AI/townHall_level_3_orc_red.png");
+    Image *farm_orc_red = new Image("images/images/farm_orc_red.png");
     ////////////////////////////////////////////////////////////// <= red orcs builds
     Image *land_construction_site = new Image("images/images/neutral/buildings/land_construction_site.png");
 
@@ -82,8 +83,11 @@ public:
     Imager() {};
     ~Imager()
     {
-       delete tower_boo;
-       tower_boo = nullptr;
+        delete farm_orc_red;
+        farm_orc_red = nullptr;
+
+        delete tower_boo;
+        tower_boo = nullptr;
 
         delete ai_tree_8;
         ai_tree_8 = nullptr;

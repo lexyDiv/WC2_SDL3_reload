@@ -1,6 +1,6 @@
 #include "in.h"
 
-//=>out
+//=>farm
 
 class TownHall : public Unit
 {

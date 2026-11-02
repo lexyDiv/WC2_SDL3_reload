@@ -138,6 +138,14 @@ void GameField::offsetControl()
                 }
                 this->focusUnit = nullptr;
 
+
+                Unit *u = new Farm;
+                bool ok = u->create(tc);
+                console.log(ok);
+
+                delete u;
+                u = nullptr;
+
                  // Unit *boo = new TowerBoo;
                 //  boo->create(cx, cy, 200, 200, nullptr, tc);
 

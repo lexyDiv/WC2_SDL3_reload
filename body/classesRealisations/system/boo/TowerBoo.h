@@ -4,7 +4,6 @@
 class TowerBoo : public Unit
 {
 public:
-
     void create(int x, int y, double width, double height, Unit *father, Cell *c) override;
     void trupCreate() override;
     void draw() override;
@@ -14,7 +13,6 @@ public:
     int timer = 0;
     Array<Cell *> fatherMyCells;
 };
-
 
 void TowerBoo::create(int x, int y, double width, double height, Unit *father, Cell *c = nullptr)
 {
@@ -30,16 +28,15 @@ void TowerBoo::create(int x, int y, double width, double height, Unit *father, C
     this->game = c->game;
     this->image = imager.tower_boo;
 
-    this->animGabX = 128;
-    this->animGabY = 128;
+    this->animGabX = 1024 / 6;
+    this->animGabY = 1024 / 6;
     this->animX = 0;
     this->animY = 0;
-    this->drawIndexY = this->y + this->height;
+    this->drawIndexY = this->y + height;
 
-   // this->game->gf->addToTrupsOnDelete(this); // ?????????
-   this->game->gf->trupsOnDelete.push(this);
+    // this->game->gf->addToTrupsOnDelete(this); // ?????????
+    this->game->gf->trupsOnDelete.push(this);
 };
-
 
 void TowerBoo::trupCreate()
 {
@@ -52,17 +49,20 @@ void TowerBoo::trupCreate()
         //                             { c->groundUnitOnDraw.push(this); });
     }
 
+
+  
+
     if (this->timer % 1 == 0)
     {
 
-        this->animX += 128;
-        if (this->animX == 1024)
+        this->animX += this->animGabX;
+        if (this->animX >= 1000)
         {
             this->animX = 0;
-            this->animY += 128;
+            this->animY += this->animGabX;
         }
 
-        if (this->animY == 1024)
+        if (this->animY >= 1000)
         {
             this->cell->groundUnitOnDraw.splice(this->cell->groundUnitOnDraw.indexOf(this), 1);
             // this->fatherMyCells.forEach([this](Cell *c)
@@ -70,13 +70,10 @@ void TowerBoo::trupCreate()
 
             this->readyToHardDelete = true;
         }
-
     }
 
     this->timer++;
 };
-
-
 
 void TowerBoo::draw()
 {
@@ -86,13 +83,14 @@ void TowerBoo::draw()
     float drawDeltaX = this->game->gf->drawDeltaX;
     float drawDeltaY = this->game->gf->drawDeltaY;
 
-        ctx.DrawImage(this->image, 
+    ctx.DrawImage(this->image,
                   this->animX,
                   this->animY,
-                  128, 128,
+                  animGabX, animGabY,
                   this->x + drawDeltaX + this->animCorrectionX,
                   this->y + drawDeltaY + this->animCorrectionY,
                   this->width,
                   this->height);
 
+     ctx.FillRect(this->x + drawDeltaX, this->drawIndexY + drawDeltaY, 5, 5, "red");
 };

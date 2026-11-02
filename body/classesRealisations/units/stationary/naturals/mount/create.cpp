@@ -1,7 +1,7 @@
 #include "in.h"
 //=>draw
 
-void Mount::create(Cell *cell, bool isComplite = false, bool isNew = false)
+bool Mount::create(Cell *cell, bool isComplite = false, bool isNew = false)
 {
     this->get2x2myCells(cell);
 
@@ -27,4 +27,6 @@ void Mount::create(Cell *cell, bool isComplite = false, bool isNew = false)
     this->type = "land";
     this->mapColor = {R : 127, G : 0, B : 255};
     this->hp = 1000;
+
+    return true;
 }

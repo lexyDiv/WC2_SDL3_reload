@@ -1,7 +1,7 @@
 #include "in.h"
 //=>draw
 
-void TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
+bool TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
 {
 
     this->fraction->unitCount++;
@@ -116,6 +116,8 @@ void TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
     canTakeWood = true;
     canTakeGold = true;
     canStandStill = true;
+
+    return true;
 
     // if (isNew)
     // {

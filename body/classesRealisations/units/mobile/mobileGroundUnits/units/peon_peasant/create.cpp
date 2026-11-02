@@ -2,7 +2,7 @@
 //=>draw
 
 
-void Peon_peasant::create(Cell *cell, bool isComplite = false, bool isNew = false)
+bool Peon_peasant::create(Cell *cell, bool isComplite = false, bool isNew = false)
 {
 
   //this->unitMenu = unitMenuPack.peon;
@@ -48,5 +48,5 @@ void Peon_peasant::create(Cell *cell, bool isComplite = false, bool isNew = fals
 
    // this->game->addToAllUnitsPtr(this);
     this->fraction->allUnits.push(this);
-   
+   return true;
 };

@@ -20,8 +20,8 @@ public:
 
   Cell *cell = nullptr;
   bool focus = false;
-  virtual void create(Cell *c, bool isComplite = false, bool isNew = false) {};
-  virtual void create(int x, int y, double width, double height, Unit *father, Cell *c = nullptr) {};
+  virtual bool create(Cell *c, bool isComplite = false, bool isNew = false) {return true;};
+  virtual bool create(int x, int y, double width, double height, Unit *father, Cell *c = nullptr) {return true;};
 
   virtual void getContactCells();
   virtual void draw() {};

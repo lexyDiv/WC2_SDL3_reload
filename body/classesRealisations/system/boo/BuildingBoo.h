@@ -5,7 +5,7 @@ class BuildingBoo : public Unit
 {
 
 public:
-    void create(int x, int y, double width, double height, Unit *father, Cell *c) override;
+    bool create(int x, int y, double width, double height, Unit *father, Cell *c) override;
     void trupCreate() override;
     void draw() override;
 
@@ -15,7 +15,7 @@ public:
     Array<Cell *> fatherMyCells;
 };
 
-void BuildingBoo::create(int x, int y, double width, double height, Unit *father, Cell *c = nullptr)
+bool BuildingBoo::create(int x, int y, double width, double height, Unit *father, Cell *c = nullptr)
 {
 
     // console.log("create");
@@ -39,7 +39,7 @@ void BuildingBoo::create(int x, int y, double width, double height, Unit *father
     this->drawIndexY = this->y + this->height;
 
     
-
+  return true;
     // this->game->allBoos.push(this);
 };
 

@@ -3,7 +3,6 @@
 
 void Unit::get4x4myCells(Cell *cell)
 {
-    this->myCells.clear();
     
     cell->groundUnit = this;
     this->myCells.push(cell);

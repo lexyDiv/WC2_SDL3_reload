@@ -1,7 +1,7 @@
 #include "Tree.cpp"
 //=>getContactCells
 
-void Tree::create(Cell *cell, bool isComplite = false, bool isNew = false)
+bool Tree::create(Cell *cell, bool isComplite = false, bool isNew = false)
 {
     this->name = "tree";
     this->type = "tree";
@@ -100,4 +100,5 @@ void Tree::create(Cell *cell, bool isComplite = false, bool isNew = false)
 
     this->canGiveTree = true;
     // this->draw();
+    return true;
 }

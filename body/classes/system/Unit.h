@@ -26,9 +26,9 @@ public:
   virtual void getContactCells();
   virtual void draw() {};
   virtual void drawTrup() { console.log("drawTrup"); };
-  virtual void get2x2myCells(Cell *cell);
-  virtual void get3x3myCells(Cell *cell);
-  virtual void get4x4myCells(Cell *cell);
+  virtual bool get2x2myCells(Cell *cell);
+  virtual bool get3x3myCells(Cell *cell);
+  virtual bool get4x4myCells(Cell *cell);
   virtual void getContactAndExitCells(Cell *cell, Cell *exitCell, Cell *centerCell);
   virtual void getWellComeCells();
   virtual void startedCheckAroundCells(ThData *th) {};

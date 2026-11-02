@@ -4,6 +4,13 @@
 bool TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
 {
 
+    bool ok = this->get4x4myCells(cell);
+
+    if (!ok)
+    {
+        return false;
+    }
+
     this->fraction->unitCount++;
     this->persNum = this->fraction->unitCount;
     bufferIndex = 1;
@@ -17,8 +24,6 @@ bool TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
 
     this->name = "greatHall";
     this->type = "building";
-
-    this->get4x4myCells(cell);
 
     Cell *exitCell = cell->bottom_right->bottom_right->bottom_right->bottom_right;
     Cell *centerCell = cell->bottom_right;
@@ -70,7 +75,7 @@ bool TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
     this->animCorrectionY_2 = 0;
     this->animX_2 = 0;
     this->animY_2 = 0;
-    this->centerDrawX = this->cell->x + cell->gabX; //+ this->getGabX / 2;
+    this->centerDrawX = this->cell->x + cell->gabX;     //+ this->getGabX / 2;
     this->centerDrawY = this->cell->y + cell->gabY / 2; //+ this->getGabY / 2;
 
     this->hpMax = this->fraction->townHall.hpByLevel.getItem(this->level); // 1200;

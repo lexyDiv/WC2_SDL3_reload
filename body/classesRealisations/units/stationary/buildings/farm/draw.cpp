@@ -58,13 +58,13 @@ void Farm::draw()
         //     }
         // }
 
-        // this->myCells.forEach([drawDeltaX, drawDeltaY](Cell *cell)
-        //                       { ctx.StrokeRect(
-        //                             cell->x + drawDeltaX,
-        //                             cell->y + drawDeltaY,
-        //                             cell->gabX,
-        //                             cell->gabY,
-        //                             "violet"); });
+        this->myCells.forEach([drawDeltaX, drawDeltaY](Cell *cell)
+                              { ctx.StrokeRect(
+                                    cell->x + drawDeltaX,
+                                    cell->y + drawDeltaY,
+                                    cell->gabX,
+                                    cell->gabY,
+                                    "violet"); });
 
 
     }

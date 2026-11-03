@@ -1,37 +1,41 @@
 #include "in.h"
 //=>draw
 
+bool Farm::create(Cell *c, bool isComplite = false, bool isNew = false)
+{
 
-bool Farm::create(Cell *c, bool isComplite = false, bool isNew = false) {
-
-   this->myCells.forEach([this](Cell *c){
-    c->groundUnit = this;
-   });
+    this->myCells.forEach([this](Cell *c)
+                          { c->groundUnit = this; });
 
     this->cell = c;
     this->canGiveMeal = true;
-    this->image = this->fraction->farm.construction; //this->fraction->farm.img_1;
-  //  console.log(this->fraction->farm.construction);
-   // this->image2 = this->fraction->farm.construction;
+    this->image = this->fraction->farm.construction; // this->fraction->farm.img_1;
+    //  console.log(this->fraction->farm.construction);
+    // this->image2 = this->fraction->farm.construction;
     this->getGabX = cell->gabX * 2;
     this->getGabY = this->getGabX;
     this->gf = c->gf;
     this->isComplite = false;
 
-
-    this->animGabX = 128;
-    this->animGabY = 128;
-    this->animStepX = 128;
-    this->animStepY = 128;
-    this->animCorrectionX = 60;
-    this->animCorrectionY = 120;
-    this->drawGabaritX = 220;
-    this->drawGabaritY = 290;
-    this->deleteTimer = 0;
-    this->maxDeleteTimer = 3000;
+    if (this->isComplite)
+    {
+    }
+    else
+    {
+        this->animGabX = 64;
+        this->animGabY = 64;
+        this->animStepX = 64;
+        this->animStepY = 64;
+        this->animCorrectionX = 0;
+        this->animCorrectionY = 0;
+        this->drawGabaritX = 100;
+        this->drawGabaritY = 100;
+        this->deleteTimer = 0;
+        this->maxDeleteTimer = 3000;
+        this->animY = 64;
+    }
 
     this->fraction->allUnits.push(this);
-
 
     return true;
 }

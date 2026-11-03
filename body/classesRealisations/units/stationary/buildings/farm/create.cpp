@@ -4,7 +4,11 @@
 
 bool Farm::create(Cell *c, bool isComplite = false, bool isNew = false) {
 
-   bool ok = this->get2x2myCells(c);
+
+
+
+
+    bool ok = this->get2x2myCells(c);
 
    if (!ok)
    {

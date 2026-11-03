@@ -44,6 +44,10 @@ void Fraction::controller()
                            {
                               this->fTownHoll.townHollsByLevel.getItemPtr(u->level)->push(u);
                            }
+                           else if (u->canGiveMeal)
+                           {
+                            
+                           }
                         }
 
                         

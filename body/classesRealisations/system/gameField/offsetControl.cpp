@@ -140,11 +140,17 @@ void GameField::offsetControl()
 
 
                 Unit *u = new Farm;
-                bool ok = u->create(tc);
-                console.log(ok);
+               // console.log(this->game->fractions.length);
+               u->fraction = this->game->fractions.getItem(0);
+                bool ok = u->get2x2myCells(tc); //u->create(tc);
+               // console.log(ok);
+                if (ok)
+                {
+                    u->create(tc);
+                }
 
-                delete u;
-                u = nullptr;
+                // delete u;
+                // u = nullptr;
 
                  // Unit *boo = new TowerBoo;
                 //  boo->create(cx, cy, 200, 200, nullptr, tc);

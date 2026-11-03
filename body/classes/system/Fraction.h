@@ -59,6 +59,7 @@ public:
     ////////////////////// => new system
     UnitData peon;
     UnitData townHall;
+    UnitData farm;
     ////////////////////// <= new system
 
     /////////////////////  union buildings

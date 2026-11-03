@@ -14,6 +14,7 @@ void Fraction::create(Game *game, Nation *nation, string color)
   }
   this->peon.createPeon(this);
   this->townHall.createTownHall(this);
+  this->farm.createFarm(this);
   this->unionCase = 1;
   ///////////////////////////
   // console.log("fraction created");

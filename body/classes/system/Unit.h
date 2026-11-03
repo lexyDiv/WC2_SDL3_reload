@@ -113,7 +113,10 @@ public:
   int deleteTimer = 50;
   int maxDeleteTimer = 0;
 
+  bool isValidBuildStation = false;
+
   Array<Cell *> myCells;
+  Array<Cell *> notValidMyCells;
   Array<Cell *> contactCells;
   Array<Cell *> exitCells;
   // Array<Unit *> clients;

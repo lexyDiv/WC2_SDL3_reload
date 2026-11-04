@@ -139,15 +139,13 @@ void GameField::offsetControl()
                 this->focusUnit = nullptr;
 
 
-                Unit *u = new Farm;
-               // console.log(this->game->fractions.length);
-               u->fraction = this->game->fractions.getItem(0);
-                bool ok = u->get2x2myCells(tc); //u->create(tc);
-               // console.log(ok);
-                if (ok)
-                {
-                    u->create(tc, true);
-                }
+            //     Unit *u = new Farm;
+            //    u->fraction = this->game->fractions.getItem(0);
+            //     bool ok = u->get2x2myCells(tc); 
+            //     if (ok)
+            //     {
+            //         u->create(tc, true);
+            //     }
 
                 // delete u;
                 // u = nullptr;

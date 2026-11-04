@@ -17,6 +17,9 @@ bool Farm::create(Cell *c, bool isComplite = false, bool isNew = false)
 
     this->canGiveMeal = true;
     this->canStandStill = true;
+    this->canGiveTree = false;
+
+
     this->getGabX = cell->gabX * 2;
     this->getGabY = this->getGabX;
     this->gf = c->gf;

@@ -34,6 +34,17 @@ void Fraction::create(Game *game, Nation *nation, string color)
    peon2->create(game->gf->field.getItem(2).getItem(19)); // 8 // 7 => magistral 17 ok 18 ok 19 ok
 
 
+   ///////////////////////////  farm =>
+
+    Unit *u = new Farm;
+    u->fraction = this;
+    Cell *fc = game->gf->field.getItem(6).getItem(20);
+    u->get2x2myCells(fc);
+    u->create(fc, false);
+
+   ///////////////////////////   <= farm
+
+
   ////////////////// townHall
 
   Unit *townHall = nullptr;

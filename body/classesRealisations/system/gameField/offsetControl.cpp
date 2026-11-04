@@ -146,7 +146,7 @@ void GameField::offsetControl()
                // console.log(ok);
                 if (ok)
                 {
-                    u->create(tc);
+                    u->create(tc, false);
                 }
 
                 // delete u;

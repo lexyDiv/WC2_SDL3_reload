@@ -9,19 +9,35 @@ bool Farm::create(Cell *c, bool isComplite = false, bool isNew = false)
 
     this->cell = c;
     this->canGiveMeal = true;
-    this->image = this->fraction->farm.construction; // this->fraction->farm.img_1;
+    this->canStandStill = true;
+   // this->image = this->fraction->farm.construction; // this->fraction->farm.img_1;
     //  console.log(this->fraction->farm.construction);
     // this->image2 = this->fraction->farm.construction;
     this->getGabX = cell->gabX * 2;
     this->getGabY = this->getGabX;
     this->gf = c->gf;
     this->isComplite = false;
+    this->maxDeleteTimer = 3000;
+    this->hpMax = 500;
 
     if (this->isComplite)
     {
+        this->image = this->fraction->farm.img_1;
+        this->animGabX = 100;
+        this->animGabY = 100;
+        this->animStepX = 100;
+        this->animStepY = 100;
+        this->animCorrectionX = 0;
+        this->animCorrectionY = 0;
+        this->drawGabaritX = 100;
+        this->drawGabaritY = 100;
+        this->deleteTimer = 0;
+        this->animY = 0;
+        this->hp = this->hpMax;
     }
     else
     {
+        this->image = this->fraction->farm.construction;
         this->animGabX = 64;
         this->animGabY = 64;
         this->animStepX = 64;
@@ -31,8 +47,9 @@ bool Farm::create(Cell *c, bool isComplite = false, bool isNew = false)
         this->drawGabaritX = 100;
         this->drawGabaritY = 100;
         this->deleteTimer = 0;
-        this->maxDeleteTimer = 3000;
-        this->animY = 64;
+        this->animY = 0;
+        this->isActive = true;
+        this->hp = (10 * this->hpMax) / 100;
     }
 
     this->fraction->allUnits.push(this);

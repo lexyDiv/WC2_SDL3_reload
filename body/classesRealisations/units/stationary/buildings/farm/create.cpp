@@ -7,7 +7,21 @@ bool Farm::create(Cell *c, bool isComplite = false, bool isNew = false)
     this->myCells.forEach([this](Cell *c)
                           { c->groundUnit = this; });
 
+    this->name = "farm";
+
     this->cell = c;
+
+    for (int i = 0; i < thDatas.length; i++)
+    {
+        Td_xploredData tapd;
+        this->thwd.push(tapd);
+    }
+
+    if (this->cell->claster)
+    {
+        this->myCells.forEach([this](Cell *c)
+                              { this->gf->addClasterOnUpdate(c->claster); });
+    }
 
     this->x = cell->x;
     this->y = cell->y;
@@ -18,7 +32,6 @@ bool Farm::create(Cell *c, bool isComplite = false, bool isNew = false)
     this->canGiveMeal = true;
     this->canStandStill = true;
     this->canGiveTree = false;
-
 
     this->getGabX = cell->gabX * 2;
     this->getGabY = this->getGabX;

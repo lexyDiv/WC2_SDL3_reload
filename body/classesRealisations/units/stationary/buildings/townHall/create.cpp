@@ -15,7 +15,7 @@ bool TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
     this->persNum = this->fraction->unitCount;
     bufferIndex = 1;
 
-    this->thwd.clear();
+   // this->thwd.clear();
     for (int i = 0; i < thDatas.length; i++)
     {
         Td_xploredData tapd;

@@ -12,8 +12,8 @@ void Farm::draw()
         ctx.DrawImage(this->image,
                       this->animX, this->animY,
                       this->animGabX, this->animGabY,
-                      (this->cell->x - this->animCorrectionX) + drawDeltaX,
-                      (this->cell->y - this->animCorrectionY) + drawDeltaY,
+                      (this->x - this->animCorrectionX) + drawDeltaX,
+                      (this->y - this->animCorrectionY) + drawDeltaY,
                       this->drawGabaritX, this->drawGabaritY);
 
         if (this->isComplite && this->hp < this->hpMax)

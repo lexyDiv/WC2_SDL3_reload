@@ -8,11 +8,15 @@ bool Farm::create(Cell *c, bool isComplite = false, bool isNew = false)
                           { c->groundUnit = this; });
 
     this->cell = c;
+
+    this->x = cell->x;
+    this->y = cell->y;
+    this->getGabX = cell->gabX * 2;
+    this->getGabY = this->getGabX;
+    this->drawIndexY = cell->y + 30;
+
     this->canGiveMeal = true;
     this->canStandStill = true;
-   // this->image = this->fraction->farm.construction; // this->fraction->farm.img_1;
-    //  console.log(this->fraction->farm.construction);
-    // this->image2 = this->fraction->farm.construction;
     this->getGabX = cell->gabX * 2;
     this->getGabY = this->getGabX;
     this->gf = c->gf;
@@ -20,7 +24,7 @@ bool Farm::create(Cell *c, bool isComplite = false, bool isNew = false)
     this->maxDeleteTimer = 3000;
     this->hpMax = 500;
 
-    if (this->isComplite)
+    if (isComplite)
     {
         this->image = this->fraction->farm.img_1;
         this->animGabX = 100;
@@ -48,9 +52,10 @@ bool Farm::create(Cell *c, bool isComplite = false, bool isNew = false)
         this->drawGabaritY = 100;
         this->deleteTimer = 0;
         this->animY = 0;
-        this->isActive = true;
         this->hp = (10 * this->hpMax) / 100;
     }
+
+    this->isActive = true;
 
     this->fraction->allUnits.push(this);
 

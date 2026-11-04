@@ -10,10 +10,10 @@ void GameField::trupsControl()
          {
           // console.log("delete " + u->name);
 
-            if (u->canBuild)
-            {
-               this->game->peonsDelete++;
-            }
+            // if (u->canBuild)
+            // {
+            //    this->game->peonsDelete++;
+            // }
 
             delete u;
             u = nullptr;

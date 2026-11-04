@@ -4,5 +4,5 @@
 
 void Farm::activeProg()
 {
-    console.log("active");
+   // console.log(this->isActive);
 }

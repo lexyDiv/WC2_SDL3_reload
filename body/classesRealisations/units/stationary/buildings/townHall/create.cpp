@@ -122,6 +122,8 @@ bool TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
     canTakeGold = true;
     canStandStill = true;
 
+    this->isActive = true;
+
     return true;
 
     // if (isNew)

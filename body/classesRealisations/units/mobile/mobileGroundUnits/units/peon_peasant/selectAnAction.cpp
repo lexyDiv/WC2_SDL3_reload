@@ -58,6 +58,7 @@ void Peon_peasant::selectAnAction()
 
                 this->getConor(cc);
 
+
                 //    int index = gu->contactCells.indexOf(this->cell);
                 //    MinData wellComeCell = index != -1 ? gu->wellComeCells.getItem(index) : wellComeCell;
                 //    bool is = false;

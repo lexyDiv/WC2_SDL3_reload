@@ -59,6 +59,8 @@ void TownHall::draw()
             }
         }
 
+      //  ctx.FillRect(this->centerX + drawDeltaX, this->centerDrawY + drawDeltaY, 5, 5, "red");
+
         // this->myCells.forEach([drawDeltaX, drawDeltaY](Cell *cell)
         //                       { ctx.StrokeRect(
         //                             cell->x + drawDeltaX,

@@ -14,4 +14,6 @@ void Unit::getWellComeCells()
                                                         double dis = getDis(&delta);
                                                         return dis; });
                                     this->wellComeCells.push(md); });
+
+
 };

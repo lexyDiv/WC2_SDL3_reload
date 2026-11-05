@@ -29,12 +29,10 @@ bool TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
     Cell *centerCell = cell->bottom_right;
     this->cell = centerCell;
     this->game = this->cell->game;
-    // this->fraction->allBuildings.push(this);
 
-    this->getContactAndExitCells(cell, exitCell, centerCell);
-    this->getWellComeCells();
-    this->getTrees();
-    this->getShahts();
+    
+
+
 
     if (this->cell->claster)
     {
@@ -83,6 +81,14 @@ bool TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
     this->isComplite = isComplite;
     this->fraction->allUnits.push(this);
     this->updateCompliteTick = 2000;
+
+
+    this->getContactAndExitCells(cell, exitCell, centerCell);
+    this->getWellComeCells();
+    this->getTrees();
+    this->getShahts();
+
+
     if (this->isComplite)
     {
         // this->fraction->fTownHoll.townHollsByLevel.getItemPtr(this->level)->push(this);

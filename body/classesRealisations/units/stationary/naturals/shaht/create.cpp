@@ -22,11 +22,8 @@ bool Shaht::create(Cell *cell, bool isComplite = false, bool isNew = false)
     Cell *exitCell = cell->bottom->bottom->bottom_left;
     Cell *centerCell = cell->bottom_right;
     this->cell = centerCell;
-   // this->cell->game->AllUnitsPtr.push(this);
+    // this->cell->game->AllUnitsPtr.push(this);
     this->cell->game->allShahtsPtr.push(this);
-
-    this->getContactAndExitCells(cell, exitCell, centerCell);
-    this->getWellComeCells();
 
     this->mapColor = {R : 255, G : 255, B : 0};
     this->image = imager.shaht;
@@ -35,6 +32,10 @@ bool Shaht::create(Cell *cell, bool isComplite = false, bool isNew = false)
     this->getGabX = cell->gabX * 3;
     this->getGabY = this->getGabX;
     this->drawIndexY = cell->y + 20;
+
+
+    this->getContactAndExitCells(cell, exitCell, centerCell);
+    this->getWellComeCells();
 
     this->animGabX = 96;
     this->animGabY = 96;

@@ -15,7 +15,7 @@ void Farm::activeProg()
    {
 
       this->checkCompliteState();
-
+      // console.log(this->hp);
       this->checkStateNeed = false;
 
       return;

@@ -18,7 +18,7 @@ void Farm::draw()
 
         if (this->isComplite && this->hp < this->hpMax)
         {
-
+           
             double y = ((double)this->centerDrawY - this->drawGabaritY_2 + (this->drawGabaritY_2 / 5)) + drawDeltaY;
 
             ctx.DrawImage(this->image2,

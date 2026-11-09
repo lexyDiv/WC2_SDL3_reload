@@ -51,6 +51,7 @@ void Fraction::create(Game *game, Nation *nation, string color)
 
   townHall = new TownHall;
   townHall->fraction = this;
+  townHall->get4x4myCells(game->gf->field.getItem(2).getItem(20));
   townHall->create(game->gf->field.getItem(2).getItem(20), true, true);
   townHall->isActive = true;
   townHall->createTimer = 1;

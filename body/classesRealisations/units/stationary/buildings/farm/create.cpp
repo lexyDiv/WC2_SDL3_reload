@@ -10,6 +10,8 @@ bool Farm::create(Cell *c, bool isComplite = false, bool isNew = false)
     this->name = "farm";
 
     this->cell = c;
+    this->game = c->game;
+    this->gf = this->game->gf;
 
     for (int i = 0; i < thDatas.length; i++)
     {
@@ -39,6 +41,17 @@ bool Farm::create(Cell *c, bool isComplite = false, bool isNew = false)
     this->isComplite = false;
     this->maxDeleteTimer = 3000;
     this->hpMax = 500;
+    this->image2 = imager.big_fire;
+    this->animGabX_2 = 256;
+    this->animGabY_2 = 256;
+    this->drawGabaritX_2 = 0;
+    this->drawGabaritY_2 = 0;
+    this->animCorrectionX_2 = 0;
+    this->animCorrectionY_2 = 0;
+    this->animX_2 = 0;
+    this->animY_2 = 0;
+    this->centerDrawX = this->cell->x + cell->gabX;     //+ this->getGabX / 2;
+    this->centerDrawY = this->cell->y + cell->gabY; //+ this->getGabY / 2;
 
     if (isComplite)
     {
@@ -54,6 +67,7 @@ bool Farm::create(Cell *c, bool isComplite = false, bool isNew = false)
         this->deleteTimer = 0;
         this->animY = 0;
         this->hp = this->hpMax;
+        this->isComplite = true;
     }
     else
     {

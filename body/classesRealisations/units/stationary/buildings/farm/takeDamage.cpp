@@ -17,7 +17,7 @@ void Farm::takeDamage(int damage)
             this->hp = 0;
             this->gf->trupsOnDelete.push(this);
             Unit *boo = new BuildingBoo;
-            boo->create(this->x - 80, this->y - 150, 200, 200, this);
+            boo->create(this->x - 50, this->y - 70, 200, 200, this);
             this->gf->trupsOnDelete.push(boo);
         }
     }

@@ -4,18 +4,15 @@
 bool TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
 {
 
-    bool ok = this->get4x4myCells(cell);
 
-    if (!ok)
-    {
-        return false;
-    }
+    this->myCells.forEach([this](Cell *c)
+                          { c->groundUnit = this; });
 
     this->fraction->unitCount++;
     this->persNum = this->fraction->unitCount;
     bufferIndex = 1;
 
-   // this->thwd.clear();
+    // this->thwd.clear();
     for (int i = 0; i < thDatas.length; i++)
     {
         Td_xploredData tapd;
@@ -29,10 +26,6 @@ bool TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
     Cell *centerCell = cell->bottom_right;
     this->cell = centerCell;
     this->game = this->cell->game;
-
-    
-
-
 
     if (this->cell->claster)
     {
@@ -82,12 +75,10 @@ bool TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
     this->fraction->allUnits.push(this);
     this->updateCompliteTick = 2000;
 
-
     this->getContactAndExitCells(cell, exitCell, centerCell);
     this->getWellComeCells();
     this->getTrees();
     this->getShahts();
-
 
     if (this->isComplite)
     {
@@ -131,27 +122,4 @@ bool TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
     this->isActive = true;
 
     return true;
-
-    // if (isNew)
-    // {
-    //     this->cell->game->AllUnitsPtr.push(this);
-    // }
-    // else
-    // {
-
-    //     this->isPotentialWayComplite = true;
-    //     this->orderOnWay.isComplite = true;
-    //     this->isGetMyCell = true;
-    //     this->fightTarget = nullptr;
-    //     this->outHoldTimer = 0;
-    //     // this->way.clear();
-    //     this->iNeedFreeWay = false;
-    //     //  this->targetData.clear();
-    //     this->isDelete = false;
-    //     this->deleteTimer = 0;
-    //     this->maxDeleteTimer = 3000;
-    //     this->alpha = 255;
-    //     this->inBufer = false;
-    // }
-    // // console.log(this->thd);
 }

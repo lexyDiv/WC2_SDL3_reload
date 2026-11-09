@@ -124,7 +124,7 @@ void GameField::offsetControl()
                 // }
                  if (this->focusUnit->canStandStill)
                  {
-                    this->focusUnit->takeDamage(100);
+                   // this->focusUnit->takeDamage(100);
                   // this->focusUnit->startUpdate = true;
                   // this->focusUnit->isActive = true;
                  }
@@ -144,7 +144,12 @@ void GameField::offsetControl()
             //     bool ok = u->get2x2myCells(tc); 
             //     if (ok)
             //     {
+            //         console.log("ok");
             //         u->create(tc, true);
+            //     }
+            //     else 
+            //     {
+            //         console.log("bad station");
             //     }
 
                 // delete u;

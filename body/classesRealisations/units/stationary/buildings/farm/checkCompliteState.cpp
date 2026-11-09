@@ -1,5 +1,5 @@
 #include "takeDamage.cpp"
-//=>out
+//=>trupCreate
 
 void Farm::checkCompliteState()
 {

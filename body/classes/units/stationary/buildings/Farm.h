@@ -11,4 +11,6 @@ public:
     void activeProg() override;
     void takeDamage(int damage) override;
     void checkCompliteState();
+    void trupCreate() override;
+    void drawTrup() override;
 };

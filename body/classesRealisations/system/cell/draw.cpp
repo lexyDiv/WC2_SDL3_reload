@@ -34,11 +34,10 @@ void Cell::draw()
                     this->drawGabaritX, this->drawGabaritY);
 
               }
-                    // if (this->thwd.getItemPtr(0)->dopWayIndex >= 0) {
-                    //   ctx.StrokeRect(this->x + drawDeltaX, this->y + drawDeltaY, this->gf->cellSize, this->gf->cellSize, "black");
-                    //   ctx.DrawText(this->x + drawDeltaX, this->y + drawDeltaY, 20, to_string(this->thwd.getItemPtr(0)->dopWayIndex));
-                    //   ctx.DrawText(this->x + drawDeltaX + 5, this->y + drawDeltaY + 20, 10, to_string(this->persNum));
-                    // }
+            //  if (this->stopBuild)
+            //  {
+            //     ctx.FillRect(x + drawDeltaX, y + drawDeltaY, this->gabX, this->gabX, "red");
+            //  }
 
            } else {
                 this->waters.forEach([this](Water &water, int i){

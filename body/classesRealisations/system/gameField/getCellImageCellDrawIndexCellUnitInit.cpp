@@ -40,6 +40,7 @@ void GameField::getCellImageCellDrawIndexCellUnitInit()
                                                    cell->animGabX = 100;
                                                    cell->animGabY = 100;
                                                    cell->cellDrawIndex = cell->lineToOtherPlaneNumber == 1 ? 1 : 0;
+                                                   cell->stopBuild = cell->cellDrawIndex ? true : false;
                                                    // cell->drawGabaritX = cell->lineToOtherPlaneNumber == 1 ? 100 : 100;
                                                    // cell->drawGabaritY = cell->drawGabaritX;
                                                }

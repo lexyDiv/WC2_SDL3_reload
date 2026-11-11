@@ -27,7 +27,8 @@ bool Unit::get4x4myCells(Cell *cell)
     {
         Cell *c = this->myCells.getItem(i);
         if (c->groundUnit ||
-            c->litera == 'w')
+            c->litera == 'w' ||
+            c->stopBuild)
         {
             return false;
         }

@@ -17,14 +17,16 @@ void Cell::draw()
   //     this->getMapColor().B,
   //     255);
 
- // if (this->plane)
-//  {
+  // if (this->plane)
+  //  {
 
   //  if (this->cellImage)
   //  {
-           if (this->litera != 'w') {
-              if (this->cellImage) {
-                                  ctx.DrawImage(this->cellImage,
+  if (this->litera != 'w')
+  {
+    if (this->cellImage)
+    {
+      ctx.DrawImage(this->cellImage,
                     this->animX,
                     this->animY,
                     this->animGabX,
@@ -32,53 +34,54 @@ void Cell::draw()
                     this->x + drawDeltaX - 35,
                     this->y + drawDeltaY - 35,
                     this->drawGabaritX, this->drawGabaritY);
-
-              }
-            //  if (this->stopBuild)
-            //  {
-            //     ctx.FillRect(x + drawDeltaX, y + drawDeltaY, this->gabX, this->gabX, "red");
-            //  }
-
-           } else {
-                this->waters.forEach([this](Water &water, int i){
+    }
+    //  if (this->shahtsNear.length)
+    //  {
+    //     ctx.FillRect(x + drawDeltaX, y + drawDeltaY, this->gabX, this->gabX, "red");
+    //     ctx.DrawText(x + drawDeltaX, y + drawDeltaY, 30, to_string(this->shahtsNear.length));
+    //  }
+  }
+  else
+  {
+    this->waters.forEach([this](Water &water, int i)
+                         {
                   water.drawControlBasic(i);
-                  water.draw(this, i);
-                });
-           }
+                  water.draw(this, i); });
+  }
 
-   // }
+  // }
 
-    //     string str = "K: " + to_string(this->plane->number);
-    //     if (this->plane->type == "sea") {
-    //       str = "S: " + to_string(this->plane->number);
-    //     }
-    //    ctx.DrawText(this->x + drawDeltaX, this->y + drawDeltaY + 5, 10,  str, 255);
-    // if (this->lineToOtherPlaneNumber && this->plane->type == "ground") {
-    //           ctx.StrokeRect(
-    //     this->x + drawDeltaX,
-    //     this->y + drawDeltaY,
-    //     this->gabX,
-    //     this->gabY,
-    //     "red");
-    // }
+  //     string str = "K: " + to_string(this->plane->number);
+  //     if (this->plane->type == "sea") {
+  //       str = "S: " + to_string(this->plane->number);
+  //     }
+  //    ctx.DrawText(this->x + drawDeltaX, this->y + drawDeltaY + 5, 10,  str, 255);
+  // if (this->lineToOtherPlaneNumber && this->plane->type == "ground") {
+  //           ctx.StrokeRect(
+  //     this->x + drawDeltaX,
+  //     this->y + drawDeltaY,
+  //     this->gabX,
+  //     this->gabY,
+  //     "red");
+  // }
 
-    //     if (this->lineToOtherPlaneNumber && this->plane->type == "sea") {
-    //           ctx.StrokeRect(
-    //     this->x + drawDeltaX,
-    //     this->y + drawDeltaY,
-    //     this->gabX,
-    //     this->gabY,
-    //     "green");
-    // }
-    //   if (this->plane->type == "sea" && this->lineToOtherPlaneNumber) {
-    //         string str = "K: " + to_string(this->lineToOtherPlaneNumber);
-    //        ctx.DrawText(this->x + drawDeltaX, this->y + drawDeltaY + 5, 10,  str, 255);
-    //   }
-    //     if (this->plane->type == "ground" && this->lineToDarckGround) {
-    //       string str = "K: " + to_string(this->lineToDarckGround);
-    //      ctx.DrawText(this->x + drawDeltaX, this->y + drawDeltaY + 5, 10,  str, 255);
-    // }
- // }
+  //     if (this->lineToOtherPlaneNumber && this->plane->type == "sea") {
+  //           ctx.StrokeRect(
+  //     this->x + drawDeltaX,
+  //     this->y + drawDeltaY,
+  //     this->gabX,
+  //     this->gabY,
+  //     "green");
+  // }
+  //   if (this->plane->type == "sea" && this->lineToOtherPlaneNumber) {
+  //         string str = "K: " + to_string(this->lineToOtherPlaneNumber);
+  //        ctx.DrawText(this->x + drawDeltaX, this->y + drawDeltaY + 5, 10,  str, 255);
+  //   }
+  //     if (this->plane->type == "ground" && this->lineToDarckGround) {
+  //       string str = "K: " + to_string(this->lineToDarckGround);
+  //      ctx.DrawText(this->x + drawDeltaX, this->y + drawDeltaY + 5, 10,  str, 255);
+  // }
+  // }
 
   // ctx.StrokeRect(
   //     this->x + drawDeltaX,

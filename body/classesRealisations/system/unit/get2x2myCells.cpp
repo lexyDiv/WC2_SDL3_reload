@@ -23,7 +23,8 @@ bool Unit::get2x2myCells(Cell *cell)
         {
             if (
                 c->groundUnit ||
-                c->litera == 'w')
+                c->litera == 'w' ||
+                c->stopBuild)
             {
                 this->notValidMyCells.push(c);
             }

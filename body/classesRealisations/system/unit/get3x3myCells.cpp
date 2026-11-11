@@ -22,7 +22,8 @@ bool Unit::get3x3myCells(Cell *cell)
     {
         Cell *c = this->myCells.getItem(i);
         if (c->groundUnit ||
-            c->litera == 'w')
+            c->litera == 'w' ||
+            c->stopBuild)
         {
             return false;
         }

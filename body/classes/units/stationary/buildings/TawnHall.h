@@ -23,6 +23,7 @@ public:
 
     void checkCompliteState();
     void upgrade();
+    bool get4x4myCells(Cell *cell) override;
 
     
 

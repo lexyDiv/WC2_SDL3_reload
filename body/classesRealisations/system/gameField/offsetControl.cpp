@@ -139,18 +139,20 @@ void GameField::offsetControl()
                 this->focusUnit = nullptr;
 
 
-            //     Unit *u = new Farm;
-            //    u->fraction = this->game->fractions.getItem(0);
-            //     bool ok = u->get2x2myCells(tc); 
-            //     if (ok)
-            //     {
-            //         console.log("ok");
-            //         u->create(tc, true);
-            //     }
-            //     else 
-            //     {
-            //         console.log("bad station");
-            //     }
+                Unit *u = new TownHall;
+                u->fraction = this->game->fractions.getItem(0);
+                bool ok = u->get4x4myCells(tc); 
+                if (ok)
+                {
+                    console.log("ok");
+                    u->create(tc, true, true);
+                }
+                else 
+                {
+                    delete u;
+                    u = nullptr;
+                    console.log("bad station");
+                }
 
                 // delete u;
                 // u = nullptr;

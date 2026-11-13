@@ -1,5 +1,5 @@
 #include "checkCompliteState.cpp"
-//=>out
+//=>get4x4myCells
 
 void TownHall::upgrade()
 {

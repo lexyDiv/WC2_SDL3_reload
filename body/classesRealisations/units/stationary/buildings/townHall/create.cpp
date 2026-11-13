@@ -26,6 +26,7 @@ bool TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
     Cell *centerCell = cell->bottom_right;
     this->cell = centerCell;
     this->game = this->cell->game;
+    this->gf = this->cell->gf;
 
     if (this->cell->claster)
     {
@@ -36,7 +37,6 @@ bool TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
     this->mapColor = this->fraction->mapColor;
     this->image = this->fraction->townHall.imagesByLevel.getItem(this->level); // this->fraction->townHall.img_1;
     this->image2 = imager.big_fire;
-    this->gf = this->cell->gf;
     this->x = cell->x;
     this->y = cell->y;
     this->getGabX = cell->gabX * 4;

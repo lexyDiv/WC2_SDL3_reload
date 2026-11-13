@@ -40,6 +40,7 @@ void GameField::getToTreeCellLineNumber()
                                    if (cell->litera == 'g') {
                         arrStones.push(cell);
                         Unit *mount = new Mount();
+                        mount->get2x2myCells(cell);
                         mount->create(cell);
                     }
                     if (cell->litera == 'e') {

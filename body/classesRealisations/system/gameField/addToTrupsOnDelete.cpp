@@ -3,10 +3,9 @@
 
 void GameField::addToTrupsOnDelete(Unit *unit)
 {
-    mutex mt;
-    mt.lock();
+    damage_mt.lock();
     this->trupsOnDelete.push(unit);
-    mt.unlock();
+    damage_mt.unlock();
 }
 
 // void GameField::addToTraces(Trace *t)

@@ -8,7 +8,7 @@ void Game::create()
 
   gfData = GameField();
   this->gf = &gfData; 
-  this->gf->getPathes(&this->pathes[0], 1);
+  this->gf->getPathes(&this->pathes[2], 1);
   this->gf->game = this;
   this->gf->create();
 
@@ -16,7 +16,7 @@ void Game::create()
 
   Fraction *fraction = new Fraction;
   fraction->create(this, &orcs, "red");
-  fraction->control = "human";
+  fraction->control = false;
   this->fractions.push(fraction);
 
 

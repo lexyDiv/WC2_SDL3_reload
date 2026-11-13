@@ -124,7 +124,9 @@ void GameField::offsetControl()
                 // }
                  if (this->focusUnit->canStandStill)
                  {
-                    this->focusUnit->takeDamage(3000);
+                   // this->focusUnit->takeDamage(100);
+                  // this->focusUnit->startUpdate = true;
+                  // this->focusUnit->isActive = true;
                  }
                // console.log(this->focusUnit->profession);
             }
@@ -135,6 +137,29 @@ void GameField::offsetControl()
                     this->focusUnit->focus = false;
                 }
                 this->focusUnit = nullptr;
+
+
+                Unit *u = new TownHall;
+                u->fraction = this->game->fractions.getItem(0);
+                bool ok = u->get4x4myCells(tc); 
+                if (ok)
+                {
+                    console.log("ok");
+                    u->create(tc, true, true);
+                }
+                else 
+                {
+                    delete u;
+                    u = nullptr;
+                    console.log("bad station");
+                }
+
+                // delete u;
+                // u = nullptr;
+
+                 // Unit *boo = new TowerBoo;
+                //  boo->create(cx, cy, 200, 200, nullptr, tc);
+
             }
 
             if (!this->focusUnit && !tc->groundUnit) {

@@ -55,7 +55,10 @@ int main()
                 th_create_game->join();
                 delete th_create_game;
                 th_create_game = nullptr;
+
             }
+
+
 
             //     console.log("trees = ", game->allTreesPtr.length);
             //     console.log("shahts = ", game->allShahtsPtr.length);

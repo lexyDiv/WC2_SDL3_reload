@@ -35,7 +35,7 @@ public:
     bool isActual = false;
     bool specialFreeG0 = false;
     int forNeedFreeWayCount = 0;
-    
+
     /////////////////////////////////// => magistral
     Array<Cell *> magistral;
     bool checkMagistral = false;
@@ -45,12 +45,11 @@ public:
     int magistrlLoop = 0;
     bool isNeedMagistralFinish = false;
     bool isZones = false;
-  //  bool isNeedClasterMagistral = true;
-
+    //  bool isNeedClasterMagistral = true;
 
     void clear()
     {
-       // isNeedClasterMagistral = true;
+        // isNeedClasterMagistral = true;
         unit = nullptr;
         unitPersNum = 0;
         clicckedCell = nullptr;
@@ -58,7 +57,7 @@ public:
         profession = "";
         isActual = false;
         specialFreeG0 = false;
-        
+
         /////////////////////////////////// => magistral
         isZones = false;
         checkMagistral = false;
@@ -68,10 +67,9 @@ public:
         nextCellIndex = 0;
         magistrlLoop = 0;
         isNeedMagistralFinish = false;
-        //saveNextCell = nullptr;
+        // saveNextCell = nullptr;
     };
 };
-
 
 class Td_way_data
 {
@@ -119,6 +117,9 @@ public:
     Game *game = nullptr;
     Plane *plane = nullptr;
 
+    bool stopBuild = false;
+    Array<Unit *> shahtsNear;
+
     float x = 0.0f;
     float y = 0.0f;
     int ver = 0;
@@ -139,16 +140,16 @@ public:
     Unit *flyUnit = nullptr;
     Array<Cell *> aroundCells;
     Array<Cell *> maxAroundCells;
-   // Array<Cell *> extreamAroundCells;
+    // Array<Cell *> extreamAroundCells;
     Array<double> maxAroundCellsDis;
-    
+
     Array<Cell *> panicCells;
     Array<Cell *> drawCells;
     Array<Array<Cell *>> cellsOnDraw;
     Array<Unit *> boos;
     /////////////////////////////////////////////// => draw potentialClients
     Array<Unit *> groundUnitOnDraw;
-    
+
     /////////////////////////////////////////////// <= draw potentialClients
 
     Array<Unit *> ripUnits; // trupy
@@ -175,11 +176,11 @@ public:
     Array<Water> waters;
     Image *cellImage = nullptr;
     ////////////////////////////////=> clasters
-    Claster * claster = nullptr;
+    Claster *claster = nullptr;
     Zone *zone = nullptr;
     Array<Cell *> clasterCells;
-   // bool ok = false;
-  //  bool hz = false;
+    // bool ok = false;
+    //  bool hz = false;
 
 private:
 };

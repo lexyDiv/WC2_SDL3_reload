@@ -166,7 +166,7 @@ void Peon_peasant::orderOnWayControl()
                     }
                     else
                     {
-
+                       // console.log("here");
                         currentTD.clicckedCell = ocu->cell;
                         currentTD.unit = ocu;
                         currentTD.unitPersNum = ocu->persNum;

@@ -36,9 +36,9 @@ bool Peon_peasant::isNeedHoldGoWay()
 
         this->isLoopNextCellUnit = isLoop(this);
 
-        if (isLoopNextCellUnit) {
-            ncgu->takeDamage(3000);
-        }
+        // if (isLoopNextCellUnit) {
+        //     ncgu->takeDamage(3000);
+        // }
 
         int needHoldIndex = 5;
 
@@ -49,8 +49,8 @@ bool Peon_peasant::isNeedHoldGoWay()
             this->needHolTimer = 0;
             this->iNeedFreeWay = false;
             this->badNCU = nextCell->groundUnit;
-           // console.log("stop by timer");
-           this->needResetAround = true;
+            // console.log("stop by timer");
+            this->needResetAround = true;
             return false;
         }
 
@@ -66,41 +66,32 @@ bool Peon_peasant::isNeedHoldGoWay()
             }
         }
 
-
         if (
             ncgu->type == "life" &&
-            (
-                (this->iNeedFreeWay && !this->isLoopNextCellUnit) ||
-                this->blockedData.isBlocked ||
-             (
-                ncgu->isActive 
-                &&
-              (
-                !this->isLoopNextCellUnit ||
-               !ncgu->isPotentialWayComplite
-              ) 
-              &&
-              (
-                !ncgu->isPotentialWayComplite ||
-               (ncgu->way.length && (td.nextCell 
-                || !ncgu->needHolTimer
-                 || this->wayTakts > 5))
-              )
+            !ncgu->fightTarget &&
+            ((this->iNeedFreeWay && !this->isLoopNextCellUnit) ||
+             this->blockedData.isBlocked ||
+             (ncgu->isActive &&
+              (!this->isLoopNextCellUnit ||
+               !ncgu->isPotentialWayComplite) &&
+              (!ncgu->isPotentialWayComplite ||
+               (ncgu->way.length && (td.nextCell || !ncgu->needHolTimer || this->wayTakts > 5)))
 
-             )
+                  )
 
-            )
+                 )
 
         )
         {
-          //  ncgu->takeDamage(1000);
+            //  ncgu->takeDamage(1000);
             return true;
         }
     }
 
     this->badNCU = nextCell->groundUnit;
 
-    if (this->iNeedFreeWay && ncgu && !ncgu->isActive) {
+    if (this->iNeedFreeWay && ncgu && !ncgu->isActive)
+    {
         this->badNCU = nullptr;
     }
 

@@ -38,11 +38,16 @@ void Fraction::controller()
                        this->AllLifeUnits.push(u);
                     } 
                     else if (u->canStandStill) {
+
                         if (u->isComplite)
                         {
                            if (u->canTakeGold) 
                            {
                               this->fTownHoll.townHollsByLevel.getItemPtr(u->level)->push(u);
+                           }
+                           else if (u->canGiveMeal)
+                           {
+                              this->fFarm.farms.push(u);
                            }
                         }
 
@@ -50,6 +55,7 @@ void Fraction::controller()
                         if (u->hp < u->hpMax) {
                             this->damagedAndConstructionBuildings.push(u);
                         }
+
                         this->allBuildings.push(u);
                     }
                     return false;
@@ -93,12 +99,12 @@ void Fraction::controller()
 
             if (peon->hp)
             {
- 
+
                 if (peon->targetData.unit &&
                     peon->targetData.unit->deleteTimer >= 100)
-                    {
-                        peon->targetData.unit = nullptr;
-                    }
+                {
+                    peon->targetData.unit = nullptr;
+                }
 
                 if (
                     !peon->inSave &&

@@ -7,12 +7,14 @@ void Fraction::create(Game *game, Nation *nation, string color)
   this->nation = nation;
   this->color = color;
    this->game = game;
+   
   if (this->color == "red")
   {
     this->mapColor = {R : 255, G : 0, B : 0};
   }
   this->peon.createPeon(this);
   this->townHall.createTownHall(this);
+  this->farm.createFarm(this);
   this->unionCase = 1;
   ///////////////////////////
   // console.log("fraction created");
@@ -20,16 +22,27 @@ void Fraction::create(Game *game, Nation *nation, string color)
   // console.log(this->nation.color);
  
 
-  // Unit *peon = new Peon_peasant(this);
-  // peon->persNum = 2;
-  // peon->fraction = this;
-  // peon->create(game->gf->field.getItem(3).getItem(24));
+  Unit *peon = new Peon_peasant(this);
+  peon->persNum = 2;
+  peon->fraction = this;
+  peon->create(game->gf->field.getItem(3).getItem(24));
 
 
-  //  Unit *peon2 = new Peon_peasant(this);
-  //  peon2->persNum = 1;
-  //  peon2->fraction = this;
-  //  peon2->create(game->gf->field.getItem(2).getItem(19)); // 8 // 7 => magistral 17 ok 18 ok 19 ok
+   Unit *peon2 = new Peon_peasant(this);
+   peon2->persNum = 1;
+   peon2->fraction = this;
+   peon2->create(game->gf->field.getItem(2).getItem(19)); // 8 // 7 => magistral 17 ok 18 ok 19 ok
+
+
+   ///////////////////////////  farm =>
+
+    Unit *u = new Farm;
+    u->fraction = this;
+    Cell *fc = game->gf->field.getItem(6).getItem(20);
+    u->get2x2myCells(fc);
+    u->create(fc, false);
+
+   ///////////////////////////   <= farm
 
 
   ////////////////// townHall
@@ -38,59 +51,60 @@ void Fraction::create(Game *game, Nation *nation, string color)
 
   townHall = new TownHall;
   townHall->fraction = this;
+  townHall->get4x4myCells(game->gf->field.getItem(2).getItem(20));
   townHall->create(game->gf->field.getItem(2).getItem(20), true, true);
   townHall->isActive = true;
   townHall->createTimer = 1;
 
   ////////////////////////////////////////////////////////////////////
 
-  townHall = new TownHall;
-  townHall->fraction = this;
-  townHall->create(game->gf->field.getItem(2).getItem(120), true, true);
-  townHall->isActive = true;
-  townHall->createTimer = 1;
+  // townHall = new TownHall;
+  // townHall->fraction = this;
+  // townHall->create(game->gf->field.getItem(2).getItem(120), true, true);
+  // townHall->isActive = true;
+  // townHall->createTimer = 1;
 
-  /////////////////////////////////////////////////////////
+  // /////////////////////////////////////////////////////////
 
-  townHall = new TownHall;
-  townHall->fraction = this;
-  townHall->create(game->gf->field.getItem(2).getItem(220), true, true);
-  townHall->isActive = true;
-  townHall->createTimer = 1;
+  // townHall = new TownHall;
+  // townHall->fraction = this;
+  // townHall->create(game->gf->field.getItem(2).getItem(220), true, true);
+  // townHall->isActive = true;
+  // townHall->createTimer = 1;
 
-  //////////////////////////////////////////////////////////////
+  // //////////////////////////////////////////////////////////////
 
-  townHall = new TownHall;
-  townHall->fraction = this;
-  townHall->create(game->gf->field.getItem(220).getItem(120), true, true);
-  townHall->isActive = true;
-  townHall->createTimer = 1;
+  // townHall = new TownHall;
+  // townHall->fraction = this;
+  // townHall->create(game->gf->field.getItem(220).getItem(120), true, true);
+  // townHall->isActive = true;
+  // townHall->createTimer = 1;
 
-  /////////////////////////////////////////////////////////////
+  // /////////////////////////////////////////////////////////////
 
-  townHall = new TownHall;
-  townHall->fraction = this;
-  townHall->create(game->gf->field.getItem(220).getItem(20), true, true);
-  townHall->isActive = true;
-  townHall->createTimer = 1;
+  // townHall = new TownHall;
+  // townHall->fraction = this;
+  // townHall->create(game->gf->field.getItem(220).getItem(20), true, true);
+  // townHall->isActive = true;
+  // townHall->createTimer = 1;
 
-  /////////////////////////////////////////////////////////////
+  // /////////////////////////////////////////////////////////////
 
-  townHall = new TownHall;
-  townHall->fraction = this;
-  townHall->create(game->gf->field.getItem(220).getItem(220), true, true);
-  townHall->isActive = true;
-  townHall->createTimer = 1;
+  // townHall = new TownHall;
+  // townHall->fraction = this;
+  // townHall->create(game->gf->field.getItem(220).getItem(220), true, true);
+  // townHall->isActive = true;
+  // townHall->createTimer = 1;
 
-  /////////////////////////////////////////////////////////////
+  // /////////////////////////////////////////////////////////////
 
-  townHall = new TownHall;
-  townHall->fraction = this;
-  townHall->create(game->gf->field.getItem(230).getItem(220), true, true);
-  townHall->isActive = true;
-  townHall->createTimer = 1;
+  // townHall = new TownHall;
+  // townHall->fraction = this;
+  // townHall->create(game->gf->field.getItem(230).getItem(220), true, true);
+  // townHall->isActive = true;
+  // townHall->createTimer = 1;
 
-  /////////////////////////////////////////////////////////////
+  // /////////////////////////////////////////////////////////////
 
 
 };

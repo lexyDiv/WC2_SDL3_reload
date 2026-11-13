@@ -10,6 +10,7 @@ public:
 
     void createPeon(Fraction *fraction);
     void createTownHall(Fraction *fraction);
+    void createFarm(Fraction *f);
 
     string name = "";
     Image *img_1 = nullptr;

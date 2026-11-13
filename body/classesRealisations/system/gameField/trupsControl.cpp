@@ -8,12 +8,12 @@ void GameField::trupsControl()
                                   {
          if (u->readyToHardDelete)
          {
-          //  console.log("delete " + u->name);
+           console.log("delete " + u->name);
 
-            if (u->canBuild)
-            {
-               this->game->peonsDelete++;
-            }
+            // if (u->canBuild)
+            // {
+            //    this->game->peonsDelete++;
+            // }
 
             delete u;
             u = nullptr;

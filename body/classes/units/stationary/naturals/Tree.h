@@ -6,7 +6,7 @@ class Tree : public Unit
 public:
     Tree() {};
     ~Tree() {};
-    void create(Cell *cell, bool isComplite, bool isNew) override;
+    bool create(Cell *cell, bool isComplite, bool isNew) override;
     void getContactCells() override;
     void draw() override;
     void stressControl() override;
@@ -14,6 +14,9 @@ public:
     void drawTrup() override;
     void takeDamageByPeon(int) override;
     BlockedData blockedCheck(Unit* unit) override;
+
+    bool isAI = false;
+
 };
 
 // BlockedData Tree::blockedCheck(Unit *unit) {

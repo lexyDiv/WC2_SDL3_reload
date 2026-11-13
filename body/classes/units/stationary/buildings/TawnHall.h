@@ -1,6 +1,6 @@
 #include "in.h"
 
-//=>out
+//=>farm
 
 class TownHall : public Unit
 {
@@ -8,7 +8,7 @@ public:
     TownHall() : Unit() {};
     ~TownHall() {};
 
-    void create(Cell *cell, bool isComplite, bool isNew) override;
+    bool create(Cell *cell, bool isComplite, bool isNew) override;
     void draw() override;
     void wellCome(Unit *peon) override;
     void activeProg() override;
@@ -20,6 +20,12 @@ public:
     void takeDamage(int damage) override;
     void trupCreate() override;
     void drawTrup() override;
+
+    void checkCompliteState();
+    void upgrade();
+    bool get4x4myCells(Cell *cell) override;
+
+    
 
   
     

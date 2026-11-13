@@ -7,8 +7,6 @@ bool ok = false;
 void TownHall::activeProg()
 {
 
-                    
-
     this->isActive = this->isActiveCheck();
     if (!this->isActive)
     {
@@ -19,82 +17,23 @@ void TownHall::activeProg()
     if (!this->isComplite)
     {
 
-        if (this->checkStateNeed)
-        {
+        this->checkCompliteState();
 
-            int complitePercent = (this->hp * 100) / this->hpMax;
-            if (complitePercent <= 30)
-            {
-                this->image = this->fraction->townHall.construction;
-                this->animGabX = 64;
-                this->animGabY = 64;
-                this->drawGabaritX = 220;
-                this->drawGabaritY = 220;
-                this->animCorrectionX = 60;
-                this->animCorrectionY = 60;
-                this->animX = 0;
-                this->animY = 0;
-            }
-            else if (complitePercent <= 50)
-            {
-                this->image = this->fraction->townHall.construction;
-                this->animGabX = 64;
-                this->animGabY = 64;
-                this->drawGabaritX = 220;
-                this->drawGabaritY = 220;
-                this->animCorrectionX = 60;
-                this->animCorrectionY = 60;
-                this->animX = 0;
-                this->animY = 64;
-            }
-            else if (complitePercent < 100)
-            {
-                this->image = this->fraction->townHall.imagesByLevel.getItem(this->level);
-                this->animGabX = 128;
-                this->animGabY = 128;
-                this->animCorrectionX = 90;
-                this->animCorrectionY = 120;
-                this->drawGabaritX = 285;
-                this->drawGabaritY = 290;
-                this->animX = 0;
-                this->animY = 128;
-            }
-            else
-            {
-                this->image = this->fraction->townHall.imagesByLevel.getItem(this->level);
-                this->animGabX = 128;
-                this->animGabY = 128;
-                this->animCorrectionX = 90;
-                this->animCorrectionY = 120;
-                this->drawGabaritX = 285;
-                this->drawGabaritY = 290;
-                this->animX = 0;
-                this->animY = 0;
-                this->isComplite = true;
-                // console.log("complite");
-            }
-
-            this->checkStateNeed = false;
-        }
+        this->checkStateNeed = false;
+        this->startUpdate = false;
 
         return;
     }
-    else
-    {
-        if (this->checkStateNeed)
-        {
 
-            this->checkStateNeed = false;
-        }
-    }
+    this->upgrade();
 
     ///////////////////////////////////////////////////////////////////////
 
-            // if (this->fraction->peons.length < 10000) // 6000 crash 3000
-            // {
+    // if (this->fraction->peons.length < 1) // 6000 crash 3000
+    // {
 
-            //     this->createTimer = 1;
-            // }
+    //     this->createTimer = 1;
+    // }
 
     if (this->createTimer && !this->stopCreateUnit)
     {
@@ -102,10 +41,10 @@ void TownHall::activeProg()
         if (!this->createTimer)
         {
 
-                Unit *peon = nullptr;
-                peon = new Peon_peasant(this->fraction);
-                peon->createInside(this->cell, true);
-                this->game->peonsCreate++;
+            Unit *peon = nullptr;
+            peon = new Peon_peasant(this->fraction);
+            peon->createInside(this->cell, true);
+            this->game->peonsCreate++;
 
             this->fraction->unitCount++;
             peon->persNum = this->fraction->unitCount;
@@ -113,11 +52,11 @@ void TownHall::activeProg()
             peon->outHoldTimer = 30;
 
             int rand = intRand(0, 10);
-            peon->profession = rand >= 1 ? "w" : "g";
+            //peon->profession = rand >= 1 ? "w" : "g";
 
-            if (this->fraction->peons.length < 10000) // 6000 crash 3000
+            if (this->fraction->peons.length < 0) // 6000 crash 3000
             {
-                this->createTimer = 10;
+                this->createTimer = 1;
             }
         }
     }

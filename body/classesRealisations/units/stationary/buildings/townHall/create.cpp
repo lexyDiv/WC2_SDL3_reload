@@ -1,14 +1,18 @@
 #include "in.h"
 //=>draw
 
-void TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
+bool TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
 {
+
+
+    this->myCells.forEach([this](Cell *c)
+                          { c->groundUnit = this; });
 
     this->fraction->unitCount++;
     this->persNum = this->fraction->unitCount;
-         bufferIndex = 1;
+    bufferIndex = 1;
 
-    this->thwd.clear();
+    // this->thwd.clear();
     for (int i = 0; i < thDatas.length; i++)
     {
         Td_xploredData tapd;
@@ -18,18 +22,11 @@ void TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
     this->name = "greatHall";
     this->type = "building";
 
-    this->get4x4myCells(cell);
-
     Cell *exitCell = cell->bottom_right->bottom_right->bottom_right->bottom_right;
     Cell *centerCell = cell->bottom_right;
     this->cell = centerCell;
     this->game = this->cell->game;
-    // this->fraction->allBuildings.push(this);
-
-    this->getContactAndExitCells(cell, exitCell, centerCell);
-    this->getWellComeCells();
-    this->getTrees();
-    this->getShahts();
+    this->gf = this->cell->gf;
 
     if (this->cell->claster)
     {
@@ -39,7 +36,7 @@ void TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
 
     this->mapColor = this->fraction->mapColor;
     this->image = this->fraction->townHall.imagesByLevel.getItem(this->level); // this->fraction->townHall.img_1;
-    this->gf = this->cell->gf;
+    this->image2 = imager.big_fire;
     this->x = cell->x;
     this->y = cell->y;
     this->getGabX = cell->gabX * 4;
@@ -51,19 +48,38 @@ void TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
     this->animGabY = 128;
     this->animStepX = 128;
     this->animStepY = 128;
-    this->animCorrectionX = 90;
+    this->animCorrectionX = 60;
     this->animCorrectionY = 120;
-    this->drawGabaritX = 285;
+    this->drawGabaritX = 220;
     this->drawGabaritY = 290;
     this->deleteTimer = 0;
     this->maxDeleteTimer = 3000;
 
     this->animX = 0;
     this->animY = 0;
+
+    this->animGabX_2 = 256;
+    this->animGabY_2 = 256;
+    this->drawGabaritX_2 = 0;
+    this->drawGabaritY_2 = 0;
+    this->animCorrectionX_2 = 0;
+    this->animCorrectionY_2 = 0;
+    this->animX_2 = 0;
+    this->animY_2 = 0;
+    this->centerDrawX = this->cell->x + cell->gabX;     //+ this->getGabX / 2;
+    this->centerDrawY = this->cell->y + cell->gabY / 2; //+ this->getGabY / 2;
+
     this->hpMax = this->fraction->townHall.hpByLevel.getItem(this->level); // 1200;
     this->hp = this->hpMax / 10;
     this->isComplite = isComplite;
     this->fraction->allUnits.push(this);
+    this->updateCompliteTick = 2000;
+
+    this->getContactAndExitCells(cell, exitCell, centerCell);
+    this->getWellComeCells();
+    this->getTrees();
+    this->getShahts();
+
     if (this->isComplite)
     {
         // this->fraction->fTownHoll.townHollsByLevel.getItemPtr(this->level)->push(this);
@@ -74,6 +90,7 @@ void TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
         this->hp = this->hpMax / 10;
         this->isActive = true;
         this->image = this->fraction->townHall.construction;
+        this->image2 = imager.big_fire;
         this->animGabX = 64;
         this->animGabY = 64;
         this->drawGabaritX = 220;
@@ -82,6 +99,15 @@ void TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
         this->animCorrectionY = 60;
         this->animX = 0;
         this->animY = 0;
+
+        this->animGabX_2 = 48;
+        this->animGabY_2 = 48;
+        this->drawGabaritX_2 = 0;
+        this->drawGabaritY_2 = 0;
+        this->animCorrectionX_2 = 0;
+        this->animCorrectionY_2 = 0;
+        this->animX_2 = 0;
+        this->animY_2 = 0;
     }
     ///////////////////////////////////////////////////////////////////////
     // console.log(this->hp);
@@ -93,26 +119,7 @@ void TownHall::create(Cell *cell, bool isComplite = false, bool isNew = false)
     canTakeGold = true;
     canStandStill = true;
 
-    if (isNew)
-    {
-        this->cell->game->AllUnitsPtr.push(this);
-    }
-    else
-    {
+    this->isActive = true;
 
-        this->isPotentialWayComplite = true;
-        this->orderOnWay.isComplite = true;
-        this->isGetMyCell = true;
-        this->fightTarget = nullptr;
-        this->outHoldTimer = 0;
-        // this->way.clear();
-        this->iNeedFreeWay = false;
-        //  this->targetData.clear();
-        this->isDelete = false;
-        this->deleteTimer = 0;
-        this->maxDeleteTimer = 3000;
-        this->alpha = 255;
-        this->inBufer = false;
-    }
-    // console.log(this->thd);
+    return true;
 }

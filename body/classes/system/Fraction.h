@@ -44,6 +44,11 @@ struct FractionLamberMill
     int regenerationLevel = 0;
 };
 
+struct FractionFarm
+{
+    Array<Unit *> farms;
+};
+
 class Fraction
 {
 public:
@@ -59,12 +64,13 @@ public:
     ////////////////////// => new system
     UnitData peon;
     UnitData townHall;
+    UnitData farm;
     ////////////////////// <= new system
 
     /////////////////////  union buildings
     FractionTownHall fTownHoll;
     FractionLamberMill fLamberMill;
-
+    FractionFarm fFarm;
     ////////////////////
 
     string name = "";

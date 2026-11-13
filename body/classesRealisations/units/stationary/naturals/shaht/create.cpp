@@ -1,7 +1,7 @@
 #include "Shaht.cpp"
 //=>draw
 
-void Shaht::create(Cell *cell, bool isComplite = false, bool isNew = false)
+bool Shaht::create(Cell *cell, bool isComplite = false, bool isNew = false)
 {
 
     // this->createUnitMenu();
@@ -22,11 +22,7 @@ void Shaht::create(Cell *cell, bool isComplite = false, bool isNew = false)
     Cell *exitCell = cell->bottom->bottom->bottom_left;
     Cell *centerCell = cell->bottom_right;
     this->cell = centerCell;
-   // this->cell->game->AllUnitsPtr.push(this);
     this->cell->game->allShahtsPtr.push(this);
-
-    this->getContactAndExitCells(cell, exitCell, centerCell);
-    this->getWellComeCells();
 
     this->mapColor = {R : 255, G : 255, B : 0};
     this->image = imager.shaht;
@@ -35,6 +31,9 @@ void Shaht::create(Cell *cell, bool isComplite = false, bool isNew = false)
     this->getGabX = cell->gabX * 3;
     this->getGabY = this->getGabX;
     this->drawIndexY = cell->y + 20;
+
+    this->getContactAndExitCells(cell, exitCell, centerCell);
+    this->getWellComeCells();
 
     this->animGabX = 96;
     this->animGabY = 96;
@@ -50,4 +49,14 @@ void Shaht::create(Cell *cell, bool isComplite = false, bool isNew = false)
 
     this->canGiveGold = true;
     canStandStill = true;
+
+    this->myCells.forEach([this](Cell *mc)
+                          { mc->panicCells.forEach([this](Cell *c)
+                                                   {
+                    if (c->shahtsNear.indexOf(this) == -1)
+        {
+            c->shahtsNear.push(this);
+        } }); });
+
+    return true;
 };

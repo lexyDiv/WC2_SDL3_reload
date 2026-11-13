@@ -29,6 +29,16 @@ public:
 
     Image *tree1 = new Image("images/images/trees.png");
     Image *tree2 = new Image("images/images/trees2.png");
+    Image *ai_tree_1 = new Image("images/AI/land/ai_tree_1_400.png");
+    Image *ai_tree_1_trup = new Image("images/AI/land/ai_tree_1_400_trup.png");
+
+    Image *ai_tree_2 = new Image("images/AI/land/ai_tree_2_400.png");
+    Image *ai_tree_3 = new Image("images/AI/land/ai_tree_3.png");
+    Image *ai_tree_4 = new Image("images/AI/land/ai_tree_4.png");
+    Image *ai_tree_5 = new Image("images/AI/land/ai_tree_5.png");
+    Image *ai_tree_6 = new Image("images/AI/land/ai_tree_6.png");
+    Image *ai_tree_7 = new Image("images/AI/land/ai_tree_7.png");
+    Image *ai_tree_8 = new Image("images/AI/land/ai_tree_8.png");
 
     Image *tree1Trup = new Image("images/images/treesTrup.png");
     Image *tree2Trup = new Image("images/images/trees2Trup.png");
@@ -49,43 +59,80 @@ public:
     Image *oilIcon = new Image("images/oil.png");
     Image *woodIcon = new Image("images/wood.png");
 
-///////////////////////////////////////////////////////////////////////////////  => red orcs
+    ///////////////////////////////////////////////////////////////////////////////  => red orcs
     Image *peonRed = new Image("images/images/peon_new.png");
     Image *peonWithWoodRed = new Image("images/images/peon_with_wood.png");
     Image *peonWithGoldRed = new Image("images/images/peon_with_gold.png");
     ////////////////////////////////////////////////////////////// => red orcs builds
     Image *townHallOrcRed = new Image("images/orcs/red/buildings/great_hall.png");
-    Image *strongholdOrcRed = new Image("images/images/orc/orc/buildings/summer/stronghold.png");
-    Image *fortressOrcRed = new Image("images/images/orc/orc/buildings/summer/fortress.png");
+    Image *strongholdOrcRed = new Image("images/AI/townHall_level_2_orc_red.png");
+    Image *fortressOrcRed = new Image("images/AI/townHall_level_3_orc_red.png");
+    Image *farm_orc_red = new Image("images/images/farm_orc_red.png");
     ////////////////////////////////////////////////////////////// <= red orcs builds
     Image *land_construction_site = new Image("images/images/neutral/buildings/land_construction_site.png");
 
-    
-
-///////////////////////////////////////////////////////////////////////////////  <= red orcs  
+    ///////////////////////////////////////////////////////////////////////////////  <= red orcs
 
     Image *land_destroyed_site = new Image("images/images/neutral/buildings/summer/destroyed_site.png");
 
     Image *buildingBoo_image = new Image("images/images/boo_ball.png");
+    Image *explosion = new Image("images/images/explosion.png");
+    Image *big_fire = new Image("images/AI/land/ai_fire.png");
+    Image *tower_boo = new Image("images/AI/land/tower_boo.png");
 
     Imager() {};
     ~Imager()
     {
+        delete farm_orc_red;
+        farm_orc_red = nullptr;
 
-       delete buildingBoo_image;
-       buildingBoo_image = nullptr;
+        delete tower_boo;
+        tower_boo = nullptr;
 
-       delete land_destroyed_site;
-       land_destroyed_site = nullptr;
+        delete ai_tree_8;
+        ai_tree_8 = nullptr;
 
-       delete land_construction_site;
-       land_construction_site = nullptr;
+        delete ai_tree_7;
+        ai_tree_7 = nullptr;
 
-       delete strongholdOrcRed;
-       strongholdOrcRed = nullptr;
-        
-       delete fortressOrcRed;
-       fortressOrcRed = nullptr;
+        delete ai_tree_6;
+        ai_tree_6 = nullptr;
+
+        delete ai_tree_5;
+        ai_tree_5 = nullptr;
+
+        delete ai_tree_4;
+        ai_tree_4 = nullptr;
+
+        delete ai_tree_3;
+        ai_tree_3 = nullptr;
+
+        delete ai_tree_1_trup;
+        ai_tree_1_trup = nullptr;
+
+        delete ai_tree_1;
+        ai_tree_1 = nullptr;
+
+        delete explosion;
+        explosion = nullptr;
+
+        delete big_fire;
+        big_fire = nullptr;
+
+        delete buildingBoo_image;
+        buildingBoo_image = nullptr;
+
+        delete land_destroyed_site;
+        land_destroyed_site = nullptr;
+
+        delete land_construction_site;
+        land_construction_site = nullptr;
+
+        delete strongholdOrcRed;
+        strongholdOrcRed = nullptr;
+
+        delete fortressOrcRed;
+        fortressOrcRed = nullptr;
 
         delete this->townHallOrcRed;
         this->townHallOrcRed = nullptr;

@@ -1,7 +1,7 @@
 #include "Oil.cpp"
 //=>draw
 
-void Oil::create(Cell *cell, bool isComplite = false, bool isNew = false)
+bool Oil::create(Cell *cell, bool isComplite = false, bool isNew = false)
 {
     // this->createUnitMenu();
     /////////////////////////////
@@ -44,4 +44,6 @@ void Oil::create(Cell *cell, bool isComplite = false, bool isNew = false)
     }
 
     cell->plane->oils.push(this);
+
+    return true;
 };

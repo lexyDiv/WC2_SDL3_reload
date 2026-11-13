@@ -20,14 +20,15 @@ public:
 
   Cell *cell = nullptr;
   bool focus = false;
-  virtual void create(Cell *c, bool isComplite = false, bool isNew = false) {};
-  virtual void create(int x, int y, double width, double height, Unit *father) {};
+  virtual bool create(Cell *c, bool isComplite = false, bool isNew = false) {return true;};
+  virtual bool create(int x, int y, double width, double height, Unit *father, Cell *c = nullptr) {return true;};
+
   virtual void getContactCells();
   virtual void draw() {};
   virtual void drawTrup() { console.log("drawTrup"); };
-  virtual void get2x2myCells(Cell *cell);
-  virtual void get3x3myCells(Cell *cell);
-  virtual void get4x4myCells(Cell *cell);
+  virtual bool get2x2myCells(Cell *cell);
+  virtual bool get3x3myCells(Cell *cell);
+  virtual bool get4x4myCells(Cell *cell);
   virtual void getContactAndExitCells(Cell *cell, Cell *exitCell, Cell *centerCell);
   virtual void getWellComeCells();
   virtual void startedCheckAroundCells(ThData *th) {};
@@ -112,7 +113,10 @@ public:
   int deleteTimer = 50;
   int maxDeleteTimer = 0;
 
+  bool isValidBuildStation = false;
+
   Array<Cell *> myCells;
+  Array<Cell *> notValidMyCells;
   Array<Cell *> contactCells;
   Array<Cell *> exitCells;
   // Array<Unit *> clients;
@@ -152,17 +156,32 @@ public:
   int level = 0;
 
   /////////////////////////// => anim
-  int animGabX = 0;
-  int animGabY = 0;
-  int animStepX = 0;
-  int animStepY = 0;
-  int animCorrectionX = 0;
-  int animCorrectionY = 0;
-  int animX = 0;
-  int animY = 0;
-  int animTakt = 0;
+  float animGabX = 0;
+  float animGabY = 0;
+  float animStepX = 0;
+  float animStepY = 0;
+  float animCorrectionX = 0;
+  float animCorrectionY = 0;
+  float animX = 0;
+  float animY = 0;
+  float animTakt = 0;
   double drawGabaritX = 0;
   double drawGabaritY = 0;
+  float centerDrawX = 0;
+  float centerDrawY = 0;
+
+
+  float animGabX_2 = 0;
+  float animGabY_2 = 0;
+  float animStepX_2 = 0;
+  float animStepY_2 = 0;
+  float animCorrectionX_2 = 0;
+  float animCorrectionY_2 = 0;
+  float animX_2 = 0;
+  float animY_2 = 0;
+  float animTakt_2 = 0;
+  double drawGabaritX_2 = 0;
+  double drawGabaritY_2 = 0;
   /////////////////////////// <= anim
     int bufferIndex = 0;
   Image *image = nullptr;
@@ -198,7 +217,10 @@ public:
   double wayDeltaX = 0;
   double wayDeltaY = 0;
   int outHoldTimer = 0;
-  int updateTimer = 0;
+  int updateTicker = 0;
+  int updateCompliteTick = 0;
+  bool startUpdate = false;
+  
 
   double speedTale = 0;
   int wayTakts = 0;
@@ -257,6 +279,7 @@ public:
   // Cell *tt = nullptr;
   // Unit *valU = nullptr;
   // bool specialFreeGo = false;
+  bool canGiveMeal = false;
   bool canGiveTree = false;
   bool canGiveGold = false;
   bool canTakeWood = false;
